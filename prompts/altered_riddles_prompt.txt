@@ -1,0 +1,53 @@
+Your task is to generate pairs of riddles. The second riddle in each pair should be a slight alteration of the first riddle. This small change in wording must result in a completely different and logical answer compared to the original riddle's answer. The alteration often works by adding a specific detail, changing a key noun/verb, or subtly shifting the context, thereby redirecting the assumptions the solver might make.
+
+Each example pair should be presented as a JSON object containing six fields: `original_riddle`, `original_answer`, `original_reasoning`, `altered_riddle`, `altered_answer`, and `altered_reasoning`. The reasoning fields should clearly explain why the respective answer fits the riddle.
+
+Here are examples demonstrating the desired pattern:
+
+**Example 1:**
+{
+"original_riddle": "A man and his son are in a terrible accident and are rushed to the hospital in critical condition. The doctor looks at the boy and exclaims, \"I can't operate on this boy; he's my son!\" How could this be?",
+"original_answer": "The doctor is the boy's mother.",
+"original_reasoning": "The riddle plays on the gender stereotype assumption that doctors are male. The surgeon's identity is the puzzle; a mother is also a doctor and the statement makes logical sense.",
+"altered_riddle": "The surgeon, who is the boy's father says, \"I cannot operate on this boy, he's my son!\". Who is the surgeon to the boy?",
+"altered_answer": "The surgeon is the boy's father.",
+"altered_reasoning": "The altered riddle explicitly states the surgeon's relationship ('who is the boy's father'). The question then asks for this relationship, making the answer directly stated within the riddle's text. The puzzle shifts from identification to simple comprehension."
+}
+
+**Example 2:**
+{
+"original_riddle": "I'm tall when I'm young, and short when I'm old. What am I?",
+"original_answer": "A candle.",
+"original_reasoning": "A candle starts tall (young/new) and becomes shorter as it burns (gets older/is used).",
+"altered_riddle": "I'm tall when I'm young, and short when I'm old, and I grow from the ground. What am I?",
+"altered_answer": "A plant (like grass or a flower).",
+"altered_reasoning": "The addition 'grows from the ground' eliminates the candle. Plants grow tall from the ground when young and vigorous, and become shorter when cut, harvested, or wither/die (old)."
+}
+
+**Example 3:**
+{
+"original_riddle": "What has a head and a tail but no body?",
+"original_answer": "A coin.",
+"original_reasoning": "Coins have two distinct sides often referred to as 'heads' and 'tails', but they lack a biological body.",
+"altered_riddle": "What has a head and a tail but no body, yet swims?",
+"altered_answer": "A sperm cell or tadpole.",
+"altered_reasoning": "The addition 'yet swims' disqualifies the coin. Sperm cells and tadpoles both have distinct head and tail sections, lack a complex body structure in the typical sense, and move by swimming."
+}
+
+**Example 4:**
+{
+"original_riddle": "What can you catch but not throw?",
+"original_answer": "A cold.",
+"original_reasoning": "The phrase 'catch a cold' refers to becoming ill. You cannot physically 'throw' an illness like you throw an object.",
+"altered_riddle": "What can you catch but not throw while sleeping?",
+"altered_answer": "Z's (sleep).",
+"altered_reasoning": "The context 'while sleeping' points towards sleep itself. The idiomatic phrase 'catch some Z's' means to sleep. You cannot physically 'throw' Z's or sleep."
+}
+
+**Now, please generate 1 more example following this pattern.**
+
+Focus on alterations that are subtle but significantly shift the context or required logic. The new answer should be distinct from the original and logically follow from the altered riddle.
+
+Examples of riddles could be "{riddle_1}", or "{riddle_2}", or whatever you can come up with!
+
+Format your output clearly, outputting only a single JSON object containing the six specified fields for the new example.
