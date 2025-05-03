@@ -12,6 +12,13 @@ While working on the [academic-chains](https://huggingface.co/datasets/marcodsn/
 
 Many models incorrectly answer "The mother" (the answer to the classic riddle) despite the prompt explicitly stating the surgeon is the father. Analysis of token importance gradients suggests **overfitting to the original pattern** - models have seen and memorized standard riddles so often that they appear to ignore crucial, altered details.
 
+*(Image below: Importance gradients for Llama-3-8B, which answers incorrectly, show low importance on "father")*
+![Importance Gradients - Affected Model](data/gradient_importance_bad.png)
+
+*(Image below: Importance gradients for Qwen-3-4B, which answers correctly, show focus on "father")*
+![Importance Gradients - Unaffected Model](data/gradient_importance_good.png)
+
+
 ## Dataset Structure
 
 Each example includes:
