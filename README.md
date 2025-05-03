@@ -24,12 +24,16 @@ Each example includes:
 * `altered_reasoning`: The explanation for the altered riddle's answer
 * `model`: The LLM used to generate this dataset entry
 
-## Example Cases
+## Notable Examples
 
-Multiple SOTA models fail these altered riddles. For instance, Gemini 2.5 Pro consistently gives incorrect answers to altered riddles about:
-- A riddle where the answer should be "sleep"
-- A riddle where the answer should be "A sperm cell or tadpole"
-- A riddle where the answer should be "A plant"
+*(Image below: Failure by Gemini 2.5 Pro; the answer should be "sleep"!)*
+![Gemini 2.5 Pro Failure Example 1](data/failed_riddle_1.png)
+
+*(Image below: Failure by Gemini 2.5 Pro; the answer should be "A sperm cell or tadpole"!)*
+![Gemini 2.5 Pro Failure Example 2](data/failed_riddle_2.png)
+
+*(Image below: Failure by Gemini 2.5 Pro; the answer should be "A plant"!)*
+![Gemini 2.5 Pro Failure Example 3](data/failed_riddle_3.png)
 
 ## Dataset Creation
 
