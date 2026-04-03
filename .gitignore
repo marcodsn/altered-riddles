@@ -1,5 +1,34 @@
-.ropeproject
-.env
-filter-repo.py
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
 
-*.jsonl
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# IDE
+.ropeproject/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project - generated data (keep benchmark.jsonl, riddles_source.txt)
+data/generated/
+data/model_outputs/
+results/
+
+# Large files
+*.jsonl.bak

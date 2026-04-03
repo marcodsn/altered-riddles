@@ -1,120 +1,239 @@
-# Altered Riddles Dataset
+# Altered Riddles Benchmark
 
-## Overview
+> An LLM benchmark testing whether models can override memorized patterns when riddle details are subtly changed.
 
-The **Altered Riddles Dataset** is a curated collection designed to combat a specific type of reasoning failure in LLMs: the tendency to override explicit information when it conflicts with familiar patterns. This dataset contains well-known riddles where key details have been deliberately changed, challenging models to pay closer attention to the actual input.
+## Motivation
 
-## Background & Motivation
+Large language models often memorize well-known riddles and produce the standard answer even when critical details have been changed. This benchmark measures how reliably models can override those memorized patterns and attend to the actual content of the prompt.
 
-While working on the [academic-chains](https://huggingface.co/datasets/marcodsn/academic-chains) dataset, I discovered that many powerful LLMs (including `gemini-2.5-pro`, `claude-sonnet-3.7`, and `qwen3-30b-a3b`) fail on simple variations of common riddles. For example:
+**Classic example:**
 
-> *The surgeon, who is the boy's father, says, 'I cannot operate on this boy-he's my son!'. Who is the surgeon to the boy?*
+> *"The surgeon, who is the boy's father, says 'I cannot operate on this boy, he's my son!' — Who is the surgeon?"*
 
-Many models incorrectly answer "The mother" (the answer to the classic riddle) despite the prompt explicitly stating the surgeon is the father. Analysis of token importance gradients suggests **overfitting to the original pattern** - models have seen and memorized standard riddles so often that they appear to ignore crucial, altered details.
+Many LLMs answer **"the mother"** — the answer to the original, well-known version of this riddle — despite the prompt explicitly stating that the surgeon is the boy's **father**. The correct answer is simply "the father."
 
-*(Image below: Importance gradients for Llama-3-8B, which answers incorrectly, show low importance on "father")*
-![Importance Gradients - Affected Model](data/gradient_importance_bad.png)
+**Hypothesis:** Attention drops on well-known patterns. When a model encounters a familiar riddle structure, it under-weights the tokens that carry the altered information and falls back to the memorized answer. This is conceptually similar to needle-in-a-haystack failures, but for memorized facts rather than long-context retrieval.
 
-*(Image below: Importance gradients for Qwen-3-4B, which answers correctly, show focus on "father")*
-![Importance Gradients - Unaffected Model](data/gradient_importance_good.png)
+### Gradient Importance Analysis
 
+Token importance gradients reveal this failure mode clearly. In affected models, the altered details receive minimal attention:
 
-## Dataset Structure
+*(Below: Importance gradients for Llama-3-8B, which answers **incorrectly** — note the low importance on "father")*
 
-Each example includes:
+![Importance Gradients - Affected Model](data/images/gradient_importance_bad.png)
 
-* `original_riddle`: The text of the original, unaltered riddle
-* `original_answer`: The correct answer to the original riddle
-* `original_reasoning`: The explanation for the original riddle's answer
-* `altered_riddle`: The modified version with additional constraints or details
-* `altered_answer`: The correct answer to the altered riddle
-* `altered_reasoning`: The explanation for the altered riddle's answer
-* `model`: The LLM used to generate this dataset entry
+*(Below: Importance gradients for Qwen-3-4B, which answers **correctly** — note the high importance on "father")*
 
-## Notable Examples
+![Importance Gradients - Unaffected Model](data/images/gradient_importance_good.png)
 
-*(Image below: Failure by Gemini 2.5 Pro; the answer should be "sleep"!)*
-![Gemini 2.5 Pro Failure Example 1](data/failed_riddle_1.png)
+### Failure Examples
 
-*(Image below: Failure by Gemini 2.5 Pro; the answer should be "A sperm cell or tadpole"!)*
-![Gemini 2.5 Pro Failure Example 2](data/failed_riddle_2.png)
+Even frontier models fall victim to this pattern override:
 
-*(Image below: Failure by Gemini 2.5 Pro; the answer should be "A plant"!)*
-![Gemini 2.5 Pro Failure Example 3](data/failed_riddle_3.png)
+![Failure Example 1](data/images/failed_riddle_1.png)
 
-## Dataset Creation
+![Failure Example 2](data/images/failed_riddle_2.png)
 
-### Process
-1. **Riddle Selection & Alteration:** Selecting common riddles and adding key details that change the expected answer
-2. **Answer & Reasoning Generation:** Using LLMs prompted with few-shot examples
-3. **Verification & Formatting:** Checking model performance and structuring into JSONL format
+![Failure Example 3](data/images/failed_riddle_3.png)
 
-The dataset currently contains a **train split (N=104 examples)**.
+## Project Structure
 
-## Potential Applications
+```
+altered-riddles/
+├── data/
+│   ├── riddles_source.txt          # Pool of source riddles for generation
+│   ├── benchmark.jsonl             # The benchmark dataset (editable accepted answers)
+│   ├── images/                     # Example screenshots
+│   ├── generated/                  # Raw generation outputs
+│   └── model_outputs/              # Raw model answers per model
+├── prompts/
+│   ├── generation.j2               # Jinja2 template for generating altered riddles
+│   ├── validation.j2               # Jinja2 template for validating riddles
+│   └── solve.j2                    # Jinja2 template for solving riddles
+├── scripts/
+│   ├── generate.py                 # Generate altered riddles via LLM
+│   ├── validate.py                 # Validate generated riddles via LLM
+│   ├── deduplicate.py              # Remove duplicate riddles from benchmark
+│   ├── benchmark.py                # Run benchmark on a model
+│   └── evaluate.py                 # Score model outputs (re-runnable)
+├── results/                        # Evaluation results and leaderboard
+├── requirements.txt
+└── README.md
+```
 
-This dataset can be used to:
-- **Test models** and study their behavior
-- **Investigate why** LLMs fail on this task
-- **Fine-tune models** to:
-  - Improve attention to detail
-  - Mitigate pattern-based bias
-  - Enhance robustness to prompt variations
-  - Strengthen chain-of-thought reasoning
+## How It Works
 
-We hypothesize that models trained on this dataset might show improved performance on:
-- RAG tasks (better grounding in provided documents)
-- Instruction following with subtle nuances
-- Reasoning tasks requiring careful attention to details
+The benchmark follows a five-stage pipeline:
 
-## Evaluation Plans
+### 1. Generate
 
-Future evaluation will focus on:
-1. **Fine-tuning** using efficient methods (e.g., LoRA)
-2. **Direct Evaluation** on held-out altered riddles
-3. **Pattern Bias Probes** testing both altered and original versions
-4. **Generalization Tests** on standard reasoning benchmarks
-5. **Qualitative Analysis** of reasoning quality
+```bash
+python scripts/generate.py --provider gemini --num-calls 10
+```
 
-## Limitations
+Uses an LLM to create altered riddle pairs from the source riddles in `data/riddles_source.txt`. For each well-known riddle, the model produces a subtly modified version where the correct answer changes. Raw outputs are saved to `data/generated/`.
 
-- **Limited Scope:** Currently focuses on a specific failure mode using a limited set of base riddles
-- **Generation Artifacts:** LLM-generated reasoning may contain errors
-- **Experimental Nature:** Effectiveness requires empirical validation
+### 2. Validate
 
-## Future Plans
+```bash
+python scripts/validate.py --input data/generated/raw_*.jsonl --append-to-benchmark
 
-If initial experiments show promise:
-1. Incorporate generations from additional LLMs
-2. Experiment with more complex alterations
-3. Scale up generation and refine QC process
-4. Develop standardized evaluation procedures
-5. Explore cross-lingual pattern-override issues
+# Batched async calls for speed
+python scripts/validate.py --input data/generated/raw_*.jsonl --append-to-benchmark --batch-size 10
+```
+
+A second LLM pass validates each generated riddle pair, checking that the alteration is coherent, the new answer is correct, and the riddle is not trivially obvious. Valid riddles are appended to `data/benchmark.jsonl`.
+
+### 3. Deduplicate
+
+```bash
+python scripts/deduplicate.py
+```
+
+Removes duplicate or near-duplicate riddles from the benchmark dataset to ensure each entry tests a distinct pattern-override scenario.
+
+### 4. Benchmark
+
+```bash
+# Default: deterministic single pass
+python scripts/benchmark.py --provider openai --model gpt-4o
+
+# RL model with temperature and multiple samples
+python scripts/benchmark.py --provider openai --model o1-mini --temperature 0.7 --num-samples 5
+
+# Batched async calls for speed
+python scripts/benchmark.py --provider openai --model gpt-4o --batch-size 20
+
+# Limit output tokens (useful for models that get stuck in thinking loops)
+python scripts/benchmark.py --provider local --model my-model --max-output-tokens 4096
+```
+
+Tests a specific model against all riddles in `data/benchmark.jsonl`. The model receives each altered riddle and its raw answer is stored in `data/model_outputs/`. Token usage (input/output) is tracked per call and included in evaluation results and the leaderboard. Temperature is set to 0 by default for deterministic, reproducible results.
+
+### 5. Evaluate
+
+```bash
+python scripts/evaluate.py
+```
+
+Scores all model outputs in `data/model_outputs/` against the accepted answers in `data/benchmark.jsonl` and generates a leaderboard in `results/`. This step is fully re-runnable — for example, we can update accepted answers and re-evaluate without re-running any models.
+
+When multi-sample benchmark outputs exist (from `--num-samples`), evaluation reports additional metrics:
+- **best-of-n accuracy**: at least one sample is correct
+- **majority vote accuracy**: score based on the most common answer
+- **average accuracy**: mean per-sample score
+
+## Key Design Decisions
+
+- **Separated model outputs from evaluation.** Model answers are stored in `data/model_outputs/`. Evaluation reads these alongside `data/benchmark.jsonl` to produce scores. We can edit `altered_accepted_answers` in the benchmark file and re-run `evaluate.py` without needing to re-run any models.
+
+- **Multiple accepted answers.** Each riddle has a list of accepted answers (e.g., `["plant", "grass", "flower"]`) that can be manually edited to account for valid phrasings. A separate `altered_competing_answers` list captures alternative valid answers that are automatically generated during validation, scored at partial credit (0.5×). Competing answers may be promoted to `altered_accepted_answers` after manual inspection.
+
+- **Temperature 0 by default.** A single deterministic pass per model ensures reproducibility across runs. For RL reasoning models (e.g., those trained with specific temperatures), a higher temperature may be needed for best quality — the benchmark script supports `--temperature` and `--num-samples` flags for this case. At temp 0, if the model fails (e.g., returns invalid JSON), the raw answer is recorded and the script moves on — repeating the call won't change anything, but these can be manually reviewed later. At temp > 0, multiple samples are collected per riddle and evaluated with best-of-n, majority vote, and average accuracy metrics.
+
+- **Pattern override rate.** The key metric — measures how often a model gives the **original** answer to an **altered** riddle, falling back to memorized patterns instead of reasoning about the modified details.
+
+- **Multi-provider support.** All scripts accept `--provider gemini|openai` to work with both the Gemini and OpenAI APIs.
+
+- **Max output tokens.** The `--max-output-tokens` flag is available across generate, validate, and benchmark scripts to prevent runaway token generation (e.g., models stuck in thinking loops).
+
+## Quick Start
+
+```bash
+# Setup
+pip install -r requirements.txt
+cp .env.example .env  # Add your API keys
+
+# Generate altered riddles
+python scripts/generate.py --provider gemini --num-calls 10
+
+# Validate them
+python scripts/validate.py --input data/generated/raw_*.jsonl --append-to-benchmark
+
+# Run benchmark on a model
+python scripts/benchmark.py --provider openai --model gpt-4o
+
+# Evaluate all models
+python scripts/evaluate.py
+```
+
+## Benchmark Data Format
+
+Each line in `data/benchmark.jsonl` follows this schema:
+
+```json
+{
+  "id": "alt_001",
+  "original_riddle": "...",
+  "original_answer": "...",
+  "original_accepted_answers": ["..."],
+  "original_reasoning": "...",
+  "altered_riddle": "...",
+  "altered_answer": "...",
+  "altered_accepted_answers": ["...", "..."],
+  "altered_competing_answers": ["...", "..."],
+  "altered_reasoning": "...",
+  "source": "manual|gemini-2.0-flash|gpt-4o",
+  "type": "constraint_addition|meaning_shift|context_swap|bias_probe"
+}
+```
+
+| Field | Description |
+|---|---|
+| `id` | Unique identifier for the riddle pair |
+| `original_riddle` | The well-known version of the riddle |
+| `original_answer` | The standard answer to the original riddle |
+| `original_accepted_answers` | List of accepted phrasings for the original answer |
+| `original_reasoning` | Explanation of why the original answer is correct |
+| `altered_riddle` | The modified riddle with changed details |
+| `altered_answer` | The correct answer to the altered version |
+| `altered_accepted_answers` | List of accepted phrasings for the altered answer (editable) — full credit |
+| `altered_competing_answers` | Other valid answers found during validation (editable) — partial credit |
+| `altered_reasoning` | Explanation of why the altered answer is correct |
+| `source` | How this entry was created (manually or by which model) |
+| `type` | Alteration type: `constraint_addition`, `meaning_shift`, `context_swap`, or `bias_probe` |
+
+## Scoring
+
+Evaluation uses **weighted scoring** to distinguish between primary and competing answers:
+
+| Match type | Score | Description |
+|---|---|---|
+| Primary match (`altered_accepted_answers`) | **1.0** | Model gave the intended altered answer |
+| Competing match (`altered_competing_answers`) | **0.5** | Model gave a valid but non-primary answer |
+| Original answer | **0.0** | Model fell back to the memorized answer (counted as pattern override) |
+| Wrong answer | **0.0** | Model gave an unrelated incorrect answer |
+
+The key insight: competing answers that differ from the original still demonstrate the model is **reasoning about the altered text** rather than recalling a memorized response. They deserve partial credit because the benchmark's primary goal is detecting pattern override, not requiring a single exact answer.
+
+The `total_score` on the leaderboard uses `altered_weighted_accuracy`, which accounts for partial credit from competing answers. The leaderboard also shows total output tokens used per model.
+
+## Updating Evaluation
+
+One of the core design goals is that evaluation is decoupled from model runs. If we find that an accepted answer list is too narrow (or too broad), we can:
+
+1. Open `data/benchmark.jsonl`
+2. Edit the `altered_accepted_answers` or `altered_competing_answers` arrays for any riddle entry
+3. Re-run `python scripts/evaluate.py`
+
+Scores and the leaderboard will be regenerated using the updated accepted answers — no need to re-run any models.
 
 ## Links
-- **Dataset on Hugging Face:** [marcodsn/altered-riddles](https://huggingface.co/datasets/marcodsn/altered-riddles)
-- **GitHub Repository:** [marcodsn/altered-riddles](https://github.com/marcodsn/altered-riddles)
 
-## Acknowledgements
-
-This experiment was inspired by the `academic-chains` dataset and the [Reasoning Datasets Competition](https://huggingface.co/blog/bespokelabs/reasoning-datasets-competition). Thanks to [HuggingFace](https://huggingface.co/), [Bespoke Labs](https://www.bespokelabs.ai/), and [Together AI](https://together.ai/) for organizing the competition!
-
-## License
-
-This dataset is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt).
+- **HuggingFace:** [marcodsn/altered-riddles](https://huggingface.co/datasets/marcodsn/altered-riddles)
+- **GitHub:** [marcodsn/altered-riddles](https://github.com/marcodsn/altered-riddles)
 
 ## Citation
 
 ```bibtex
 @misc{marcodsn_2025_alteredriddles,
-  title = {Altered Riddles Dataset},
+  title = {Altered Riddles Benchmark},
   author = {Marco De Santis},
-  month = {May},
   year = {2025},
-  url = {https://huggingface.co/datasets/marcodsn/altered-riddles}
+  url = {https://github.com/marcodsn/altered-riddles}
 }
 ```
 
-## Development Updates
+## License
 
-**[May 3, 2025]** Initial dataset created!
+This project is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt).
