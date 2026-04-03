@@ -10,7 +10,7 @@ Usage examples:
     python -m scripts.benchmark
 
     # Run with OpenAI
-    python -m scripts.benchmark --provider openai --model gpt-4o-mini --max-output-tokens 8192
+    python -m scripts.benchmark --provider openai --model gpt-5.4 --max-output-tokens 8192
 
     # Only test altered riddles
     python -m scripts.benchmark --only altered

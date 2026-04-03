@@ -12,17 +12,17 @@ Large language models often memorize well-known riddles and produce the standard
 
 Many LLMs answer **"the mother"** — the answer to the original, well-known version of this riddle — despite the prompt explicitly stating that the surgeon is the boy's **father**. The correct answer is simply "the father."
 
-**Hypothesis:** Attention drops on well-known patterns. When a model encounters a familiar riddle structure, it under-weights the tokens that carry the altered information and falls back to the memorized answer. This is conceptually similar to needle-in-a-haystack failures, but for memorized facts rather than long-context retrieval.
+**Hypothesis (TBD):** Attention drops on well-known patterns. When a model encounters a familiar riddle structure, it under-weights the tokens that carry the altered information and falls back to the memorized answer. This is conceptually similar to needle-in-a-haystack failures, but for memorized facts rather than long-context retrieval.
 
 ### Failure Examples
 
 Even frontier models fall victim to this pattern override:
 
+![Example of pattern override failure with the surgeon riddle](data/images/failed-riddle-1-sonnet-46.png)
+*Model: Sonnet 4.6; fail*
 
-
-
-
-
+![Example of pattern override failure with another riddle](data/images/failed-riddle-2-gemini-31-flash.png)
+*Model: Gemini 3.1 Flash with Thinking; fail, a correct answer could have been "a plant"*
 
 ## Project Structure
 
@@ -209,7 +209,7 @@ Each line in `data/benchmark.jsonl` follows this schema:
   "altered_accepted_answers": ["...", "..."],
   "altered_competing_answers": ["...", "..."],
   "altered_reasoning": "...",
-  "source": "manual|gemini-2.0-flash|gpt-4o",
+  "source": "manual|gemini-3.1-pro|gpt-5.4",
   "type": "constraint_addition|meaning_shift|context_swap|bias_probe",
   "set": "fixed|auxiliary",
   "version_added": "2604"

@@ -35,12 +35,12 @@ PROVIDERS: dict[str, dict] = {
         "client_type": "gemini",
     },
     "openai": {
-        "default_model": "gpt-4o-mini",
+        "default_model": "gpt-5.4",
         "env_key": "OPENAI_API_KEY",
         "client_type": "openai_compat",
     },
     "local": {
-        "default_model": "Mistral-Small-4-119B-2603",
+        "default_model": "qwen3.5-27b",
         "env_key": None,
         "client_type": "openai_compat",
         "base_url": "http://10.8.0.5:8083/v1",
@@ -72,9 +72,9 @@ PROVIDERS: dict[str, dict] = {
 # model's reasoning-style bias in the benchmark.
 
 GENERATOR_MODELS: list[dict[str, str]] = [
-    {"provider": "gemini", "model": "gemma-4-31b-it"},
-    {"provider": "openai", "model": "gpt-5.4"},
-    {"provider": "local", "model": "Mistral-Small-4-119B-2603"},
+    # {"provider": "gemini", "model": "gemma-4-31b-it"},
+    # {"provider": "openai", "model": "gpt-5.4"},
+    {"provider": "local", "model": "qwen3.5-27b"},
     {"provider": "mistral", "model": "mistral-small-2603"},
 ]
 

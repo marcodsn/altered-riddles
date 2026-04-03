@@ -3,7 +3,7 @@
 
 Usage examples:
     python -m scripts.generate --provider gemini --num-calls 20 --batch-size 8
-    python -m scripts.generate --provider openai --model gpt-4o-mini --source data/riddles_source.txt
+    python -m scripts.generate --provider openai --model gpt-5.4 --source data/riddles_source.txt
     python -m scripts.generate --provider local --num-calls 40 --batch-size 16
     python -m scripts.generate --num-variations 3 --num-calls 2
 """

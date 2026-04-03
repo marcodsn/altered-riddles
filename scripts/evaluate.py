@@ -11,7 +11,7 @@ Usage examples:
     python -m scripts.evaluate
 
     # Evaluate a single model output file
-    python -m scripts.evaluate --model-outputs data/model_outputs/gemini-2.0-flash.jsonl
+    python -m scripts.evaluate --model-outputs data/model_outputs/gemini-3.1-pro.jsonl
 
     # Verbose per-riddle breakdown
     python -m scripts.evaluate --verbose
