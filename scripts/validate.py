@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """validate.py — Validate generated altered riddles using an LLM.
 
-Reads a JSONL file of generated riddle pairs, sends each one through an LLM
+Reads JSONL files of generated riddle pairs, sends each one through an LLM
 validation prompt, and writes the results (with validation fields attached)
 to an output JSONL file. Optionally appends passing entries to the benchmark
 or the riddle pool.
 
 Usage examples:
+    python -m scripts.validate
+    python -m scripts.validate --provider openai --append-to-benchmark
     python -m scripts.validate --input data/generated/raw_20250101_120000.jsonl
-    python -m scripts.validate --provider openai --input data/generated/raw.jsonl --append-to-benchmark
     python -m scripts.validate --input data/generated/raw.jsonl --append-to-pool
     python -m scripts.validate --input data/generated/raw.jsonl --delay 1.0
 """
@@ -68,6 +69,13 @@ VALIDATION_FIELDS = {
 # ---------------------------------------------------------------------------
 
 
+def _entry_key(entry: dict[str, Any]) -> tuple[str, str] | None:
+    """Return a normalised (original_riddle, altered_riddle) key, or None if incomplete."""
+    orig = entry.get("original_riddle", "").strip().lower()
+    alt = entry.get("altered_riddle", "").strip().lower()
+    return (orig, alt) if orig and alt else None
+
+
 def parse_validation_response(raw_text: str) -> dict[str, Any]:
     """Parse the LLM validation response into a dict.
 
@@ -120,14 +128,104 @@ def validate(args: argparse.Namespace) -> None:
     provider = args.provider
     model, api_key = resolve_provider(provider, args.model)
 
-    # Resolve output path with timestamp
+    generated_dir = Path(args.generated_dir)
+    generated_dir.mkdir(parents=True, exist_ok=True)
+
+    # ------------------------------------------------------------------
+    # Determine input file(s)
+    # ------------------------------------------------------------------
+    if args.input:
+        input_paths = [Path(args.input)]
+    else:
+        input_paths = sorted(generated_dir.glob("raw_*.jsonl"))
+        if not input_paths:
+            logger.warning(
+                "No raw_*.jsonl files found in %s — nothing to validate.",
+                generated_dir,
+            )
+            return
+
+    # ------------------------------------------------------------------
+    # Build already-validated set from all validated_*.jsonl in generated_dir
+    # ------------------------------------------------------------------
+    already_validated: set[tuple[str, str]] = set()
+    for vpath in sorted(generated_dir.glob("validated_*.jsonl")):
+        for entry in load_jsonl(str(vpath)):
+            key = _entry_key(entry)
+            if key:
+                already_validated.add(key)
+    logger.info("Already-validated entries loaded: %d", len(already_validated))
+
+    # ------------------------------------------------------------------
+    # Determine output path
+    # ------------------------------------------------------------------
+    today_str = datetime.now(timezone.utc).strftime("%Y%m%d")
     ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
-    output_path = Path(args.output.replace("{timestamp}", ts))
+
+    if args.output is not None:
+        # Explicit --output given; honour {timestamp} substitution as before
+        output_path = Path(args.output.replace("{timestamp}", ts))
+    else:
+        # Auto-detect: look for today's validated file in generated_dir
+        today_files = sorted(generated_dir.glob(f"validated_{today_str}*.jsonl"))
+        if today_files:
+            output_path = today_files[-1]
+            logger.info("Appending to existing today's file: %s", output_path)
+        else:
+            output_path = generated_dir / f"validated_{ts}.jsonl"
+            logger.info("Creating new output file: %s", output_path)
+
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # Load entries + template
-    entries = load_jsonl(args.input)
+    # ------------------------------------------------------------------
+    # Load all input entries
+    # ------------------------------------------------------------------
+    all_raw_entries: list[dict[str, Any]] = []
+    for ipath in input_paths:
+        batch = load_jsonl(str(ipath))
+        all_raw_entries.extend(batch)
+        logger.info("Loaded %d entries from %s", len(batch), ipath)
+
+    # Load template
     template = load_template(args.prompt_template)
+
+    # ------------------------------------------------------------------
+    # Filter: skip already-validated and within-batch duplicates
+    # ------------------------------------------------------------------
+    seen_in_batch: set[tuple[str, str]] = set()
+    entries_to_validate: list[dict[str, Any]] = []
+    skipped_count = 0
+
+    for entry in all_raw_entries:
+        key = _entry_key(entry)
+        if key is None:
+            # No key derivable — include it and let validation handle it
+            entries_to_validate.append(entry)
+            continue
+        if key in already_validated or key in seen_in_batch:
+            skipped_count += 1
+            logger.debug(
+                "Skipping already-validated / duplicate entry id=%s",
+                entry.get("id", "?"),
+            )
+            continue
+        seen_in_batch.add(key)
+        entries_to_validate.append(entry)
+
+    if skipped_count:
+        logger.info(
+            "Skipped %d already-validated / duplicate-within-batch entries.",
+            skipped_count,
+        )
+
+    if not entries_to_validate:
+        logger.info(
+            "No new entries to validate — all %d entries already processed. Exiting.",
+            len(all_raw_entries),
+        )
+        return
+
+    entries = entries_to_validate
 
     batch_size = args.batch_size
     use_batching = batch_size > 1
@@ -135,7 +233,12 @@ def validate(args: argparse.Namespace) -> None:
 
     logger.info("Provider : %s", provider)
     logger.info("Model    : %s", model)
-    logger.info("Input    : %s (%d entries)", args.input, len(entries))
+    logger.info(
+        "Input    : %s (%d file(s), %d new entries)",
+        ", ".join(str(p) for p in input_paths),
+        len(input_paths),
+        len(entries),
+    )
     logger.info("Output   : %s", output_path)
     logger.info("Temp     : %.2f", args.temperature)
     logger.info("Delay    : %.2fs between calls", args.delay)
@@ -413,14 +516,31 @@ def build_parser() -> argparse.ArgumentParser:
         help="Model name (default: per-provider default from config)",
     )
     parser.add_argument(
+        "--generated-dir",
+        default="data/generated",
+        help=(
+            "Directory containing raw_*.jsonl and validated_*.jsonl files "
+            "(default: data/generated). Used for auto-discovery of input files "
+            "when --input is omitted and for auto-detecting today's output file."
+        ),
+    )
+    parser.add_argument(
         "--input",
-        required=True,
-        help="Input JSONL path — the generated riddles file",
+        default=None,
+        help=(
+            "Input JSONL path (overrides auto-discovery of raw_*.jsonl files "
+            "inside --generated-dir)."
+        ),
     )
     parser.add_argument(
         "--output",
-        default="data/generated/validated_{timestamp}.jsonl",
-        help="Output JSONL path. {timestamp} is replaced at runtime (default: data/generated/validated_{timestamp}.jsonl)",
+        default=None,
+        help=(
+            "Output JSONL path. {timestamp} is replaced at runtime. "
+            "If omitted, today's validated_{YYYYMMDD}*.jsonl file in "
+            "--generated-dir is used when one exists; otherwise a new "
+            "validated_{YYYYMMDD_HHMMSS}.jsonl is created there."
+        ),
     )
     parser.add_argument(
         "--prompt-template",
@@ -442,8 +562,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--temperature",
         type=float,
-        default=0.0,
-        help="Sampling temperature (default: 0.0)",
+        default=1.0,
+        help="Sampling temperature (default: 1.0)",
     )
     parser.add_argument(
         "--delay",

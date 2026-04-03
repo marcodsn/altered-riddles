@@ -18,10 +18,10 @@ Many LLMs answer **"the mother"** — the answer to the original, well-known ver
 
 Even frontier models fall victim to this pattern override:
 
-![Example of pattern override failure with the surgeon riddle](data/images/failed-riddle-1-sonnet-46.png)
+![Example of pattern override failure with the surgeon riddle](data/images/failed-riddle-1-sonnet-4-6.png)
 *Model: Sonnet 4.6; fail*
 
-![Example of pattern override failure with another riddle](data/images/failed-riddle-2-gemini-31-flash.png)
+![Example of pattern override failure with another riddle](data/images/failed-riddle-2-gemini-3-1-flash.png)
 *Model: Gemini 3.1 Flash with Thinking; fail, a correct answer could have been "a plant"*
 
 ## Project Structure

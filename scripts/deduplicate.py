@@ -8,7 +8,7 @@ For each group of duplicates the entry with the most accepted answers is kept.
 Usage examples:
     python -m scripts.deduplicate
     python -m scripts.deduplicate --dry-run
-    python -m scripts.deduplicate --benchmark data/benchmark.jsonl --similarity-threshold 0.9
+    python -m scripts.deduplicate --pool data/pool.jsonl --similarity-threshold 0.9
     python -m scripts.deduplicate --dry-run --similarity-threshold 0.8
 """
 
@@ -159,14 +159,14 @@ class UnionFind:
 
 def deduplicate(args: argparse.Namespace) -> None:
     """Run the deduplication pipeline according to parsed CLI *args*."""
-    benchmark_path = args.benchmark
+    pool_path = args.pool
     threshold = args.similarity_threshold
     dry_run = args.dry_run
 
-    entries = load_jsonl(benchmark_path)
+    entries = load_jsonl(pool_path)
     n = len(entries)
 
-    logger.info("Benchmark : %s", benchmark_path)
+    logger.info("Pool      : %s", pool_path)
     logger.info("Entries   : %d", n)
     logger.info("Threshold : %.2f", threshold)
     logger.info("Dry run   : %s", dry_run)
@@ -245,8 +245,8 @@ def deduplicate(args: argparse.Namespace) -> None:
     if dry_run:
         logger.info("Dry run — no changes written to disk.")
     else:
-        write_jsonl(benchmark_path, deduped)
-        logger.info("Benchmark rewritten to %s", benchmark_path)
+        write_jsonl(pool_path, deduped)
+        logger.info("Pool rewritten to %s", pool_path)
 
 
 # ---------------------------------------------------------------------------
@@ -256,12 +256,12 @@ def deduplicate(args: argparse.Namespace) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Deduplicate the benchmark JSONL file by comparing altered riddles.",
+        description="Deduplicate the pool JSONL file by comparing altered riddles.",
     )
     parser.add_argument(
-        "--benchmark",
-        default="data/benchmark.jsonl",
-        help="Path to benchmark JSONL file (default: data/benchmark.jsonl)",
+        "--pool",
+        default="data/pool.jsonl",
+        help="Path to pool JSONL file (default: data/pool.jsonl)",
     )
     parser.add_argument(
         "--similarity-threshold",
