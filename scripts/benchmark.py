@@ -7,41 +7,56 @@ structured JSONL output for later evaluation.
 
 Usage examples:
     # Run with Gemini (default)
-    python scripts/benchmark.py
+    python -m scripts.benchmark
 
     # Run with OpenAI
-    python scripts/benchmark.py --provider openai --model gpt-4o-mini --max-output-tokens 8192
+    python -m scripts.benchmark --provider openai --model gpt-4o-mini --max-output-tokens 8192
 
     # Only test altered riddles
-    python scripts/benchmark.py --only altered
+    python -m scripts.benchmark --only altered
 
     # Multiple samples at temperature > 0
-    python scripts/benchmark.py --temperature 0.7 --num-samples 5
+    python -m scripts.benchmark --temperature 0.7 --num-samples 5
 
     # Batched async calls
-    python scripts/benchmark.py --provider openai --batch-size 20
+    python -m scripts.benchmark --provider openai --batch-size 20
 
     # Custom benchmark file and output directory
-    python scripts/benchmark.py --benchmark data/benchmark.jsonl --output-dir data/model_outputs
+    python -m scripts.benchmark --benchmark data/benchmark.jsonl --output-dir data/model_outputs
 """
 
 from __future__ import annotations
 
 import argparse
-import asyncio
 import json
 import logging
-import os
-import re
 import sys
 import time
-from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
 
 from dotenv import load_dotenv
-from jinja2 import Environment, FileSystemLoader, TemplateNotFound
+
+from scripts.core.config import (
+    DEFAULT_BENCHMARK,
+    DEFAULT_MODEL_OUTPUTS,
+    DEFAULT_RESULTS,  # noqa: F401 — re-exported for convenience
+    get_benchmark_version,
+    provider_names,
+    resolve_provider,
+)
+from scripts.core.io_utils import (
+    append_jsonl,
+    load_jsonl,
+    load_template,
+    sanitize_model_name,
+    strip_markdown_fences,
+)
+from scripts.core.llm_client import (  # noqa: F401 — LLMResponse re-exported
+    LLMResponse,
+    call_llm,
+    call_llm_batched,
+)
 
 # ---------------------------------------------------------------------------
 # Logging
@@ -53,374 +68,10 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ---------------------------------------------------------------------------
-# Constants
-# ---------------------------------------------------------------------------
-DEFAULT_GEMINI_MODEL = "gemma-4-31b-it"
-DEFAULT_OPENAI_MODEL = "gpt-4o-mini"
-MAX_RETRIES = 3
-INITIAL_BACKOFF = 2.0  # seconds
-LOCAL_BASE_URL = "http://10.8.0.5:8083/v1"
-DEFAULT_LOCAL_MODEL = "Mistral-Small-4-119B-2603"
-
 
 # ---------------------------------------------------------------------------
-# LLMResponse dataclass
+# Response parsing
 # ---------------------------------------------------------------------------
-
-
-@dataclass
-class LLMResponse:
-    """Carries the raw text and optional token-usage counters from an LLM call."""
-
-    text: str
-    input_tokens: int | None = None
-    output_tokens: int | None = None
-
-
-# ---------------------------------------------------------------------------
-# Sync API helpers  (used when batch_size == 1)
-# ---------------------------------------------------------------------------
-
-
-def call_gemini(
-    prompt_text: str,
-    model_name: str,
-    temperature: float,
-    api_key: str,
-    max_output_tokens: int | None = None,
-) -> LLMResponse:
-    """Call the Google Gemini API and return an LLMResponse."""
-    from google import genai  # type: ignore[import-untyped]
-    from google.genai.types import GenerateContentConfig
-
-    client = genai.Client(api_key=api_key)
-    config = GenerateContentConfig(
-        temperature=temperature,
-        response_mime_type="application/json",
-        max_output_tokens=max_output_tokens,
-    )
-
-    response = client.models.generate_content(
-        model=model_name,
-        contents=prompt_text,
-        config=config,
-    )
-    assert response.text is not None, "Gemini returned an empty response"
-
-    input_tokens: int | None = None
-    output_tokens: int | None = None
-    if hasattr(response, "usage_metadata") and response.usage_metadata is not None:
-        input_tokens = getattr(response.usage_metadata, "prompt_token_count", None)
-        output_tokens = getattr(response.usage_metadata, "candidates_token_count", None)
-
-    return LLMResponse(
-        text=response.text,
-        input_tokens=input_tokens,
-        output_tokens=output_tokens,
-    )
-
-
-def call_openai(
-    prompt_text: str,
-    model_name: str,
-    temperature: float,
-    api_key: str,
-    max_output_tokens: int | None = None,
-) -> LLMResponse:
-    """Call the OpenAI API and return an LLMResponse."""
-    from openai import OpenAI  # type: ignore[import-untyped]
-
-    client = OpenAI(api_key=api_key)
-    kwargs: dict[str, Any] = dict(
-        model=model_name,
-        messages=[{"role": "user", "content": prompt_text}],
-        temperature=temperature,
-        response_format={"type": "json_object"},
-    )
-    if max_output_tokens is not None:
-        kwargs["max_completion_tokens"] = max_output_tokens
-
-    response = client.chat.completions.create(**kwargs)
-    result = response.choices[0].message.content
-    assert result is not None, "OpenAI returned an empty response"
-
-    input_tokens: int | None = None
-    output_tokens: int | None = None
-    if response.usage is not None:
-        input_tokens = response.usage.prompt_tokens
-        output_tokens = response.usage.completion_tokens
-
-    return LLMResponse(
-        text=result,
-        input_tokens=input_tokens,
-        output_tokens=output_tokens,
-    )
-
-
-def call_local(
-    prompt_text: str,
-    model_name: str,
-    temperature: float,
-    api_key: str,
-    max_output_tokens: int | None = None,
-) -> LLMResponse:
-    """Call a local OpenAI-compatible server (llama.cpp / vLLM) and return an LLMResponse."""
-    from openai import OpenAI  # type: ignore[import-untyped]
-
-    client = OpenAI(base_url=LOCAL_BASE_URL, api_key="local")
-    kwargs: dict[str, Any] = dict(
-        model=model_name,
-        messages=[{"role": "user", "content": prompt_text}],
-        temperature=temperature,
-        response_format={"type": "json_object"},
-    )
-    if max_output_tokens is not None:
-        kwargs["max_completion_tokens"] = max_output_tokens
-
-    response = client.chat.completions.create(**kwargs)
-    result = response.choices[0].message.content
-    assert result is not None, "Local server returned an empty response"
-
-    input_tokens: int | None = None
-    output_tokens: int | None = None
-    if response.usage is not None:
-        input_tokens = response.usage.prompt_tokens
-        output_tokens = response.usage.completion_tokens
-
-    return LLMResponse(
-        text=result,
-        input_tokens=input_tokens,
-        output_tokens=output_tokens,
-    )
-
-
-def call_llm(
-    provider: str,
-    prompt_text: str,
-    model_name: str,
-    temperature: float,
-    api_key: str,
-    max_output_tokens: int | None = None,
-) -> LLMResponse:
-    """Dispatch to the correct provider with retry + exponential backoff."""
-    if provider == "gemini":
-        call_fn = call_gemini
-    elif provider == "local":
-        call_fn = call_local
-    else:
-        call_fn = call_openai
-    backoff = INITIAL_BACKOFF
-
-    for attempt in range(1, MAX_RETRIES + 1):
-        try:
-            return call_fn(
-                prompt_text, model_name, temperature, api_key, max_output_tokens
-            )
-        except Exception as exc:
-            logger.warning(
-                "API call failed (attempt %d/%d): %s", attempt, MAX_RETRIES, exc
-            )
-            if attempt == MAX_RETRIES:
-                raise
-            logger.info("Retrying in %.1f s …", backoff)
-            time.sleep(backoff)
-            backoff *= 2
-
-    # Should never reach here, but satisfy type checkers.
-    raise RuntimeError("Exhausted retries")
-
-
-# ---------------------------------------------------------------------------
-# Async / batched helpers
-# ---------------------------------------------------------------------------
-
-
-async def _call_provider_async(
-    prompt_text: str,
-    *,
-    provider: str,
-    model: str,
-    temperature: float,
-    api_key: str,
-    max_output_tokens: int | None = None,
-) -> LLMResponse:
-    """Single async LLM call dispatched by provider, returning LLMResponse."""
-    if provider == "gemini":
-        from google import genai  # type: ignore[import-untyped]
-        from google.genai.types import GenerateContentConfig
-
-        client = genai.Client(api_key=api_key)
-        config = GenerateContentConfig(
-            temperature=temperature,
-            response_mime_type="application/json",
-            max_output_tokens=max_output_tokens,
-        )
-
-        response = await client.aio.models.generate_content(
-            model=model,
-            contents=prompt_text,
-            config=config,
-        )
-        result = response.text
-        assert result is not None, "Gemini returned an empty response"
-
-        input_tokens: int | None = None
-        output_tokens: int | None = None
-        if hasattr(response, "usage_metadata") and response.usage_metadata is not None:
-            input_tokens = getattr(response.usage_metadata, "prompt_token_count", None)
-            output_tokens = getattr(
-                response.usage_metadata, "candidates_token_count", None
-            )
-
-        return LLMResponse(
-            text=result, input_tokens=input_tokens, output_tokens=output_tokens
-        )
-
-    else:  # openai or local — both use AsyncOpenAI
-        from openai import AsyncOpenAI  # type: ignore[import-untyped]
-
-        kw: dict[str, Any] = {"api_key": api_key}
-        if provider == "local":
-            kw["base_url"] = LOCAL_BASE_URL
-            kw["api_key"] = "local"
-        client_oai = AsyncOpenAI(**kw)
-
-        call_kwargs: dict[str, Any] = dict(
-            model=model,
-            messages=[{"role": "user", "content": prompt_text}],
-            temperature=temperature,
-            response_format={"type": "json_object"},
-        )
-        if max_output_tokens is not None:
-            call_kwargs["max_completion_tokens"] = max_output_tokens
-
-        response_oai = await client_oai.chat.completions.create(**call_kwargs)
-        result_oai = response_oai.choices[0].message.content
-        assert result_oai is not None, f"{provider} returned an empty response"
-
-        input_tokens_oai: int | None = None
-        output_tokens_oai: int | None = None
-        if response_oai.usage is not None:
-            input_tokens_oai = response_oai.usage.prompt_tokens
-            output_tokens_oai = response_oai.usage.completion_tokens
-
-        return LLMResponse(
-            text=result_oai,
-            input_tokens=input_tokens_oai,
-            output_tokens=output_tokens_oai,
-        )
-
-
-async def _provider_batch_async(
-    prompts: list[str],
-    *,
-    provider: str,
-    model: str,
-    temperature: float,
-    api_key: str,
-    max_output_tokens: int | None = None,
-    max_concurrency: int = 10,
-) -> list[LLMResponse | BaseException]:
-    """Send all prompts concurrently, capped at max_concurrency in-flight requests.
-
-    Returns one LLMResponse (or exception) per prompt, preserving order.
-    Each slot independently retries with exponential backoff so a single
-    flaky request never stalls the rest of the batch.
-    """
-    semaphore = asyncio.Semaphore(max_concurrency)
-
-    async def _guarded(idx: int, prompt: str) -> LLMResponse:
-        async with semaphore:
-            backoff = INITIAL_BACKOFF
-            for attempt in range(1, MAX_RETRIES + 1):
-                try:
-                    return await _call_provider_async(
-                        prompt,
-                        provider=provider,
-                        model=model,
-                        temperature=temperature,
-                        api_key=api_key,
-                        max_output_tokens=max_output_tokens,
-                    )
-                except Exception as exc:
-                    logger.warning(
-                        "Prompt %d async attempt %d/%d failed: %s",
-                        idx,
-                        attempt,
-                        MAX_RETRIES,
-                        exc,
-                    )
-                    if attempt == MAX_RETRIES:
-                        raise
-                    await asyncio.sleep(backoff)
-                    backoff *= 2
-        raise RuntimeError("Exhausted retries")
-
-    tasks = [asyncio.create_task(_guarded(i, p)) for i, p in enumerate(prompts)]
-    return await asyncio.gather(*tasks, return_exceptions=True)  # type: ignore[return-value]
-
-
-def call_llm_batched(
-    prompts: list[str],
-    *,
-    provider: str,
-    model: str,
-    temperature: float,
-    api_key: str,
-    max_output_tokens: int | None = None,
-    max_concurrency: int = 10,
-) -> list[LLMResponse | BaseException]:
-    """Synchronous entry-point for batched inference on any provider.
-
-    Runs all prompts through a single asyncio event loop, returning results
-    in the same order.  Exceptions are returned as values so the caller can
-    handle them per-prompt without aborting the batch.
-    """
-    return asyncio.run(
-        _provider_batch_async(
-            prompts,
-            provider=provider,
-            model=model,
-            temperature=temperature,
-            api_key=api_key,
-            max_output_tokens=max_output_tokens,
-            max_concurrency=max_concurrency,
-        )
-    )
-
-
-# ---------------------------------------------------------------------------
-# I/O helpers
-# ---------------------------------------------------------------------------
-
-
-def load_jsonl(path: Path) -> list[dict]:
-    """Read a JSONL file and return a list of dicts."""
-    entries: list[dict] = []
-    with open(path, "r", encoding="utf-8") as fh:
-        for lineno, line in enumerate(fh, start=1):
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                entries.append(json.loads(line))
-            except json.JSONDecodeError as exc:
-                logger.warning(
-                    "Skipping malformed line %d in %s: %s", lineno, path, exc
-                )
-    return entries
-
-
-def append_jsonl(path: Path, record: dict) -> None:
-    """Append a single JSON record to a JSONL file."""
-    with open(path, "a", encoding="utf-8") as fh:
-        fh.write(json.dumps(record, ensure_ascii=False) + "\n")
-
-
-def sanitize_model_name(name: str) -> str:
-    """Make a model name safe for use as a filename component."""
-    return re.sub(r"[/\\]", "_", name)
 
 
 def parse_model_response(raw_text: str) -> tuple[str, str]:
@@ -430,15 +81,7 @@ def parse_model_response(raw_text: str) -> tuple[str, str]:
     Handles both clean JSON and JSON embedded in markdown code fences.
     On parse failure, returns (raw_text[:500], "") so we can inspect it later.
     """
-    text = raw_text.strip()
-
-    # Strip markdown code fences if present
-    if text.startswith("```"):
-        # Remove opening fence (```json or ```)
-        text = re.sub(r"^```[a-zA-Z]*\n?", "", text)
-        # Remove closing fence
-        text = re.sub(r"\n?```\s*$", "", text)
-        text = text.strip()
+    text = strip_markdown_fences(raw_text)
 
     try:
         data = json.loads(text)
@@ -541,29 +184,8 @@ def _make_record(
 
 def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
     """Main benchmark loop."""
-    # --- Resolve API key ---------------------------------------------------
-    if args.provider == "gemini":
-        api_key = os.environ.get("GEMINI_API_KEY", "")
-        if not api_key:
-            logger.error("GEMINI_API_KEY not set. Add it to your .env file.")
-            sys.exit(1)
-    elif args.provider == "local":
-        api_key = "local"  # not needed but kept for uniform call signature
-    else:  # openai
-        api_key = os.environ.get("OPENAI_API_KEY", "")
-        if not api_key:
-            logger.error("OPENAI_API_KEY not set. Add it to your .env file.")
-            sys.exit(1)
-
-    # --- Resolve model name ------------------------------------------------
-    model_name: str = args.model
-    if model_name is None:
-        if args.provider == "gemini":
-            model_name = DEFAULT_GEMINI_MODEL
-        elif args.provider == "local":
-            model_name = DEFAULT_LOCAL_MODEL
-        else:
-            model_name = DEFAULT_OPENAI_MODEL
+    # --- Resolve provider, model, and API key ------------------------------
+    model_name, api_key = resolve_provider(args.provider, args.model)
 
     # --- Resolve num_samples -----------------------------------------------
     num_samples: int = args.num_samples
@@ -586,23 +208,11 @@ def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
     logger.info("Loaded %d benchmark entries from %s", len(entries), benchmark_path)
 
     # --- Load Jinja2 template ----------------------------------------------
-    template_path = Path(args.prompt_template)
-    if not template_path.exists():
-        logger.error("Prompt template not found: %s", template_path)
-        sys.exit(1)
+    template = load_template(args.prompt_template)
 
-    env = Environment(
-        loader=FileSystemLoader(str(template_path.parent)),
-        keep_trailing_newline=True,
-    )
-    try:
-        template = env.get_template(template_path.name)
-    except TemplateNotFound:
-        logger.error("Could not load template: %s", template_path)
-        sys.exit(1)
-
-    # --- Prepare output path -----------------------------------------------
-    output_dir = Path(args.output_dir)
+    # --- Prepare output path (version-aware) -------------------------------
+    version = get_benchmark_version()
+    output_dir = Path(args.output_dir) / version
     output_dir.mkdir(parents=True, exist_ok=True)
 
     safe_name = sanitize_model_name(model_name)
@@ -679,9 +289,9 @@ def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
             output_tokens: int | None = None
             try:
                 llm_resp = call_llm(
+                    prompt_text,
                     provider=args.provider,
-                    prompt_text=prompt_text,
-                    model_name=model_name,
+                    model=model_name,
                     temperature=args.temperature,
                     api_key=api_key,
                     max_output_tokens=max_output_tokens,
@@ -691,11 +301,10 @@ def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
                 output_tokens = llm_resp.output_tokens
             except Exception as exc:
                 logger.error(
-                    "Failed to get response for %s (%s, sample %d) after %d retries: %s",
+                    "Failed to get response for %s (%s, sample %d) after retries: %s",
                     riddle_id,
                     riddle_type,
                     sample_index,
-                    MAX_RETRIES,
                     exc,
                 )
 
@@ -856,30 +465,26 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--provider",
-        choices=["gemini", "openai", "local"],
+        choices=provider_names(),
         default="gemini",
-        help="LLM provider to use ('local' targets the OpenAI-compatible server at LOCAL_BASE_URL).",
+        help="LLM provider to use.",
     )
     parser.add_argument(
         "--model",
         type=str,
         default=None,
-        help=(
-            "Model name to use. Defaults to "
-            f"'{DEFAULT_GEMINI_MODEL}' for Gemini or "
-            f"'{DEFAULT_OPENAI_MODEL}' for OpenAI."
-        ),
+        help="Model name to use. Defaults to the provider's default model (see config.py).",
     )
     parser.add_argument(
         "--benchmark",
         type=str,
-        default="data/benchmark.jsonl",
+        default=DEFAULT_BENCHMARK,
         help="Path to the benchmark JSONL file.",
     )
     parser.add_argument(
         "--output-dir",
         type=str,
-        default="data/model_outputs",
+        default=DEFAULT_MODEL_OUTPUTS,
         help="Directory for model output JSONL files.",
     )
     parser.add_argument(

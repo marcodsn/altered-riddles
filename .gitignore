@@ -25,9 +25,10 @@ env/
 .DS_Store
 Thumbs.db
 
-# Project - generated data (keep benchmark.jsonl, riddles_source.txt)
+# Project - generated data (keep benchmark.jsonl, riddles_source.txt, VERSION)
 data/generated/
 data/model_outputs/
+data/pool.jsonl
 results/
 
 # Large files

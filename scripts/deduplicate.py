@@ -6,24 +6,22 @@ Uses exact matching (after normalisation) and fuzzy matching via
 For each group of duplicates the entry with the most accepted answers is kept.
 
 Usage examples:
-    python scripts/deduplicate.py
-    python scripts/deduplicate.py --dry-run
-    python scripts/deduplicate.py --benchmark data/benchmark.jsonl --similarity-threshold 0.9
+    python -m scripts.deduplicate
+    python -m scripts.deduplicate --dry-run
+    python -m scripts.deduplicate --benchmark data/benchmark.jsonl --similarity-threshold 0.9
     python -m scripts.deduplicate --dry-run --similarity-threshold 0.8
 """
 
 from __future__ import annotations
 
 import argparse
-import json
 import logging
 import re
 import string
 from difflib import SequenceMatcher
-from pathlib import Path
 from typing import Any
 
-from dotenv import load_dotenv
+from scripts.core.io_utils import load_jsonl, write_jsonl
 
 # ---------------------------------------------------------------------------
 # Logging setup
@@ -52,34 +50,6 @@ def normalise(text: str) -> str:
 def similarity(a: str, b: str) -> float:
     """Return SequenceMatcher ratio between two strings."""
     return SequenceMatcher(None, a, b).ratio()
-
-
-def load_jsonl(path: str) -> list[dict[str, Any]]:
-    """Load a JSONL file and return a list of dicts."""
-    entries: list[dict[str, Any]] = []
-    filepath = Path(path)
-    if not filepath.exists():
-        logger.error("Benchmark file not found: %s", path)
-        raise SystemExit(1)
-    with open(filepath, encoding="utf-8") as fh:
-        for line_num, line in enumerate(fh, start=1):
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                entries.append(json.loads(line))
-            except json.JSONDecodeError as exc:
-                logger.warning("Skipping malformed JSON on line %d: %s", line_num, exc)
-    return entries
-
-
-def write_jsonl(path: str, entries: list[dict[str, Any]]) -> None:
-    """Write a list of dicts to a JSONL file (overwrites)."""
-    filepath = Path(path)
-    filepath.parent.mkdir(parents=True, exist_ok=True)
-    with open(filepath, "w", encoding="utf-8") as fh:
-        for entry in entries:
-            fh.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 
 def accepted_answer_count(entry: dict[str, Any]) -> int:
@@ -189,8 +159,6 @@ class UnionFind:
 
 def deduplicate(args: argparse.Namespace) -> None:
     """Run the deduplication pipeline according to parsed CLI *args*."""
-    load_dotenv()
-
     benchmark_path = args.benchmark
     threshold = args.similarity_threshold
     dry_run = args.dry_run

@@ -14,51 +14,49 @@ Many LLMs answer **"the mother"** — the answer to the original, well-known ver
 
 **Hypothesis:** Attention drops on well-known patterns. When a model encounters a familiar riddle structure, it under-weights the tokens that carry the altered information and falls back to the memorized answer. This is conceptually similar to needle-in-a-haystack failures, but for memorized facts rather than long-context retrieval.
 
-### Gradient Importance Analysis
-
-Token importance gradients reveal this failure mode clearly. In affected models, the altered details receive minimal attention:
-
-*(Below: Importance gradients for Llama-3-8B, which answers **incorrectly** — note the low importance on "father")*
-
-![Importance Gradients - Affected Model](data/images/gradient_importance_bad.png)
-
-*(Below: Importance gradients for Qwen-3-4B, which answers **correctly** — note the high importance on "father")*
-
-![Importance Gradients - Unaffected Model](data/images/gradient_importance_good.png)
-
 ### Failure Examples
 
 Even frontier models fall victim to this pattern override:
 
-![Failure Example 1](data/images/failed_riddle_1.png)
 
-![Failure Example 2](data/images/failed_riddle_2.png)
 
-![Failure Example 3](data/images/failed_riddle_3.png)
+
+
+
 
 ## Project Structure
 
 ```
 altered-riddles/
 ├── data/
+│   ├── VERSION                     # Current benchmark version (YYMM format)
 │   ├── riddles_source.txt          # Pool of source riddles for generation
-│   ├── benchmark.jsonl             # The benchmark dataset (editable accepted answers)
+│   ├── benchmark.jsonl             # The benchmark dataset (fixed + auxiliary sets)
+│   ├── pool.jsonl                  # Validated riddles awaiting promotion
 │   ├── images/                     # Example screenshots
-│   ├── generated/                  # Raw generation outputs
-│   └── model_outputs/              # Raw model answers per model
+│   ├── generated/                  # Raw + validated generation outputs
+│   └── model_outputs/              # Raw model answers (versioned subdirs)
 ├── prompts/
 │   ├── generation.j2               # Jinja2 template for generating altered riddles
 │   ├── validation.j2               # Jinja2 template for validating riddles
 │   └── solve.j2                    # Jinja2 template for solving riddles
 ├── scripts/
-│   ├── generate.py                 # Generate altered riddles via LLM
+│   ├── core/
+│   │   ├── config.py               # Provider registry, defaults, paths
+│   │   ├── io_utils.py             # Shared I/O helpers (JSONL, templates, JSON)
+│   │   └── llm_client.py           # Unified LLM client (sync/async/batched)
+│   ├── generate.py                 # Generate altered riddles via LLM (single provider)
+│   ├── generate_all.py             # Generate riddles from all configured model families
 │   ├── validate.py                 # Validate generated riddles via LLM
 │   ├── deduplicate.py              # Remove duplicate riddles from benchmark
+│   ├── promote.py                  # Pool management: promote riddles to benchmark
 │   ├── benchmark.py                # Run benchmark on a model
 │   └── evaluate.py                 # Score model outputs (re-runnable)
 ├── results/                        # Evaluation results and leaderboard
+│   └── {YYMM}/                     # Per-version results
 ├── requirements.txt
-└── README.md
+├── README.md
+└── REPORT.md                       # Full technical report on the benchmark
 ```
 
 ## How It Works
@@ -68,55 +66,80 @@ The benchmark follows a five-stage pipeline:
 ### 1. Generate
 
 ```bash
-python scripts/generate.py --provider gemini --num-calls 10
+# Single provider
+python -m scripts.generate --provider gemini --num-calls 10
+
+# All configured generators at once (recommended for diversity)
+python -m scripts.generate_all --num-calls 5 --validate
 ```
 
 Uses an LLM to create altered riddle pairs from the source riddles in `data/riddles_source.txt`. For each well-known riddle, the model produces a subtly modified version where the correct answer changes. Raw outputs are saved to `data/generated/`.
 
+**`generate_all.py`** orchestrates generation across all models listed in `GENERATOR_MODELS` (see `scripts/config.py`). Using 2–3 generators from different families (e.g. Gemini, GPT-4o, a Llama-family model) maximises stylistic diversity and equalises contamination.
+
 ### 2. Validate
 
 ```bash
-python scripts/validate.py --input data/generated/raw_*.jsonl --append-to-benchmark
+python -m scripts.validate --input data/generated/raw_*.jsonl --append-to-pool
+
+# Or append directly to benchmark (legacy)
+python -m scripts.validate --input data/generated/raw_*.jsonl --append-to-benchmark
 
 # Batched async calls for speed
-python scripts/validate.py --input data/generated/raw_*.jsonl --append-to-benchmark --batch-size 10
+python -m scripts.validate --input data/generated/raw_*.jsonl --append-to-pool --batch-size 10
 ```
 
-A second LLM pass validates each generated riddle pair, checking that the alteration is coherent, the new answer is correct, and the riddle is not trivially obvious. Valid riddles are appended to `data/benchmark.jsonl`.
+A second LLM pass validates each generated riddle pair, checking that the alteration is coherent, the new answer is correct, and the riddle is not trivially obvious. Valid riddles are appended to `data/pool.jsonl` (recommended) or directly to `data/benchmark.jsonl`.
 
-### 3. Deduplicate
+### 3. Promote to Benchmark
 
 ```bash
-python scripts/deduplicate.py
+# Promote riddles from pool to benchmark
+python -m scripts.promote add --count 150 --set fixed
+python -m scripts.promote add --count 100 --set auxiliary
+
+# Check benchmark composition
+python -m scripts.promote status
+
+# Refresh auxiliary set for a new benchmark version
+python -m scripts.promote refresh-auxiliary --count 100
+```
+
+Moves validated riddles from the pool into the benchmark, tagging them as **fixed** (longitudinal baseline, never regenerated) or **auxiliary** (refreshed each run for contamination resistance). See [REPORT.md](REPORT.md) for the full split rationale.
+
+### 4. Deduplicate
+
+```bash
+python -m scripts.deduplicate
 ```
 
 Removes duplicate or near-duplicate riddles from the benchmark dataset to ensure each entry tests a distinct pattern-override scenario.
 
-### 4. Benchmark
+### 5. Benchmark
 
 ```bash
 # Default: deterministic single pass
-python scripts/benchmark.py --provider openai --model gpt-4o
+python -m scripts.benchmark --provider openai --model gpt-4o
 
 # RL model with temperature and multiple samples
-python scripts/benchmark.py --provider openai --model o1-mini --temperature 0.7 --num-samples 5
+python -m scripts.benchmark --provider openai --model o1-mini --temperature 0.7 --num-samples 5
 
 # Batched async calls for speed
-python scripts/benchmark.py --provider openai --model gpt-4o --batch-size 20
+python -m scripts.benchmark --provider openai --model gpt-4o --batch-size 20
 
 # Limit output tokens (useful for models that get stuck in thinking loops)
-python scripts/benchmark.py --provider local --model my-model --max-output-tokens 4096
+python -m scripts.benchmark --provider local --model my-model --max-output-tokens 4096
 ```
 
-Tests a specific model against all riddles in `data/benchmark.jsonl`. The model receives each altered riddle and its raw answer is stored in `data/model_outputs/`. Token usage (input/output) is tracked per call and included in evaluation results and the leaderboard. Temperature is set to 0 by default for deterministic, reproducible results.
+Tests a specific model against all riddles in `data/benchmark.jsonl`. The model receives each altered riddle and its raw answer is stored in `data/model_outputs/{version}/`. Token usage (input/output) is tracked per call and included in evaluation results and the leaderboard. Temperature is set to 0 by default for deterministic, reproducible results. **Already-tested riddles are automatically skipped** — when the benchmark grows with new auxiliary riddles, re-running only tests the new entries.
 
-### 5. Evaluate
+### 6. Evaluate
 
 ```bash
-python scripts/evaluate.py
+python -m scripts.evaluate
 ```
 
-Scores all model outputs in `data/model_outputs/` against the accepted answers in `data/benchmark.jsonl` and generates a leaderboard in `results/`. This step is fully re-runnable — for example, we can update accepted answers and re-evaluate without re-running any models.
+Scores all model outputs against the accepted answers in `data/benchmark.jsonl` and generates a leaderboard in `results/{version}/`. This step is fully re-runnable — for example, we can update accepted answers and re-evaluate without re-running any models.
 
 When multi-sample benchmark outputs exist (from `--num-samples`), evaluation reports additional metrics:
 - **best-of-n accuracy**: at least one sample is correct
@@ -133,7 +156,15 @@ When multi-sample benchmark outputs exist (from `--num-samples`), evaluation rep
 
 - **Pattern override rate.** The key metric — measures how often a model gives the **original** answer to an **altered** riddle, falling back to memorized patterns instead of reasoning about the modified details.
 
-- **Multi-provider support.** All scripts accept `--provider gemini|openai` to work with both the Gemini and OpenAI APIs.
+- **Pluggable multi-provider support.** All providers are registered in `scripts/config.py`. Adding a new provider (Together, Groq, Fireworks, or any OpenAI-compatible endpoint) requires editing a single dict — every script picks it up automatically.
+
+- **Fixed + auxiliary benchmark split.** ~150 fixed riddles provide a stable longitudinal baseline; ~100–150 auxiliary riddles are regenerated each version to resist contamination. See [REPORT.md](REPORT.md) for the statistical justification.
+
+- **Multi-family generation.** Riddles are generated by 2–3 models from different families to maximise diversity and equalise contamination. The `source` field makes it easy to stratify results by generator.
+
+- **Riddle pool.** Validated riddles land in `data/pool.jsonl` before being promoted to the benchmark via `promote.py`. This decouples generation from benchmark composition.
+
+- **YYMM versioning.** Results are stored in `results/{version}/` so historical data is preserved. `promote.py refresh-auxiliary` bumps the version automatically.
 
 - **Max output tokens.** The `--max-output-tokens` flag is available across generate, validate, and benchmark scripts to prevent runaway token generation (e.g., models stuck in thinking loops).
 
@@ -144,17 +175,22 @@ When multi-sample benchmark outputs exist (from `--num-samples`), evaluation rep
 pip install -r requirements.txt
 cp .env.example .env  # Add your API keys
 
-# Generate altered riddles
-python scripts/generate.py --provider gemini --num-calls 10
+# Generate altered riddles from multiple model families
+python -m scripts.generate_all --num-calls 5 --validate
 
-# Validate them
-python scripts/validate.py --input data/generated/raw_*.jsonl --append-to-benchmark
+# Check the pool and promote to benchmark
+python -m scripts.promote status
+python -m scripts.promote add --count 150 --set fixed
+python -m scripts.promote add --count 100 --set auxiliary
+
+# Deduplicate
+python -m scripts.deduplicate
 
 # Run benchmark on a model
-python scripts/benchmark.py --provider openai --model gpt-4o
+python -m scripts.benchmark --provider openai --model gpt-4o
 
 # Evaluate all models
-python scripts/evaluate.py
+python -m scripts.evaluate
 ```
 
 ## Benchmark Data Format
@@ -174,7 +210,9 @@ Each line in `data/benchmark.jsonl` follows this schema:
   "altered_competing_answers": ["...", "..."],
   "altered_reasoning": "...",
   "source": "manual|gemini-2.0-flash|gpt-4o",
-  "type": "constraint_addition|meaning_shift|context_swap|bias_probe"
+  "type": "constraint_addition|meaning_shift|context_swap|bias_probe",
+  "set": "fixed|auxiliary",
+  "version_added": "2604"
 }
 ```
 
@@ -192,6 +230,8 @@ Each line in `data/benchmark.jsonl` follows this schema:
 | `altered_reasoning` | Explanation of why the altered answer is correct |
 | `source` | How this entry was created (manually or by which model) |
 | `type` | Alteration type: `constraint_addition`, `meaning_shift`, `context_swap`, or `bias_probe` |
+| `set` | `fixed` (longitudinal baseline) or `auxiliary` (refreshed each version) |
+| `version_added` | YYMM version when this entry was added to the benchmark |
 
 ## Scoring
 
@@ -214,7 +254,7 @@ One of the core design goals is that evaluation is decoupled from model runs. If
 
 1. Open `data/benchmark.jsonl`
 2. Edit the `altered_accepted_answers` or `altered_competing_answers` arrays for any riddle entry
-3. Re-run `python scripts/evaluate.py`
+3. Re-run `python -m scripts.evaluate`
 
 Scores and the leaderboard will be regenerated using the updated accepted answers — no need to re-run any models.
 

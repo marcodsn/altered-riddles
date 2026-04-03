@@ -8,19 +8,18 @@ them WITHOUT calling any API. If you update ``altered_accepted_answers`` in
 
 Usage examples:
     # Evaluate all models in data/model_outputs/
-    python scripts/evaluate.py
+    python -m scripts.evaluate
 
     # Evaluate a single model output file
-    python scripts/evaluate.py --model-outputs data/model_outputs/gemini-2.0-flash.jsonl
+    python -m scripts.evaluate --model-outputs data/model_outputs/gemini-2.0-flash.jsonl
 
     # Verbose per-riddle breakdown
-    python scripts/evaluate.py --verbose
+    python -m scripts.evaluate --verbose
 """
 
 from __future__ import annotations
 
 import argparse
-import json
 import logging
 import re
 import sys
@@ -28,7 +27,13 @@ from collections import Counter
 from itertools import groupby
 from pathlib import Path
 
-from dotenv import load_dotenv
+from scripts.core.config import (
+    DEFAULT_BENCHMARK,
+    DEFAULT_MODEL_OUTPUTS,
+    DEFAULT_RESULTS,
+    get_benchmark_version,
+)
+from scripts.core.io_utils import load_jsonl, write_json
 
 # ---------------------------------------------------------------------------
 # Logging
@@ -42,36 +47,6 @@ logger = logging.getLogger(__name__)
 
 # Partial credit for answers that match a competing (non-primary) accepted answer
 COMPETING_ANSWER_WEIGHT = 0.5
-
-
-# ---------------------------------------------------------------------------
-# I/O helpers
-# ---------------------------------------------------------------------------
-
-
-def load_jsonl(path: Path) -> list[dict]:
-    """Read a JSONL file and return a list of dicts."""
-    entries: list[dict] = []
-    with open(path, "r", encoding="utf-8") as fh:
-        for lineno, line in enumerate(fh, start=1):
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                entries.append(json.loads(line))
-            except json.JSONDecodeError as exc:
-                logger.warning(
-                    "Skipping malformed line %d in %s: %s", lineno, path, exc
-                )
-    return entries
-
-
-def write_json(path: Path, data, indent: int = 2) -> None:
-    """Write a Python object as pretty-printed JSON."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w", encoding="utf-8") as fh:
-        json.dump(data, fh, indent=indent, ensure_ascii=False)
-        fh.write("\n")
 
 
 # ---------------------------------------------------------------------------
@@ -590,10 +565,13 @@ def run_evaluation(args: argparse.Namespace) -> None:
         logger.error("Model outputs path not found: %s", model_outputs_path)
         sys.exit(1)
 
-    # --- Evaluate each model -----------------------------------------------
-    results_dir = Path(args.results_dir)
+    # --- Version-aware results directory -----------------------------------
+    version = get_benchmark_version()
+    results_root = Path(args.results_dir)
+    results_dir = results_root / version
     results_dir.mkdir(parents=True, exist_ok=True)
 
+    # --- Evaluate each model -----------------------------------------------
     all_results: list[dict] = []
 
     for output_file in output_files:
@@ -646,9 +624,17 @@ def run_evaluation(args: argparse.Namespace) -> None:
 
     # --- Build and write leaderboard ---------------------------------------
     leaderboard = build_leaderboard(all_results)
+
+    # Write to the versioned results directory
     leaderboard_path = results_dir / "leaderboard.json"
     write_json(leaderboard_path, leaderboard)
     logger.info("Leaderboard written to %s", leaderboard_path)
+
+    # Also write to the root results/ dir for convenience
+    root_leaderboard_path = results_root / "leaderboard.json"
+    results_root.mkdir(parents=True, exist_ok=True)
+    write_json(root_leaderboard_path, leaderboard)
+    logger.info("Leaderboard also written to %s", root_leaderboard_path)
 
     # --- Print table -------------------------------------------------------
     print()
@@ -669,13 +655,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--benchmark",
         type=str,
-        default="data/benchmark.jsonl",
+        default=DEFAULT_BENCHMARK,
         help="Path to the benchmark JSONL file.",
     )
     parser.add_argument(
         "--model-outputs",
         type=str,
-        default="data/model_outputs",
+        default=DEFAULT_MODEL_OUTPUTS,
         help=(
             "Path to a single model output JSONL file, or a directory "
             "containing multiple output files to evaluate all at once."
@@ -684,7 +670,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--results-dir",
         type=str,
-        default="results",
+        default=DEFAULT_RESULTS,
         help="Directory where evaluation results and leaderboard are written.",
     )
     parser.add_argument(
@@ -701,9 +687,5 @@ def parse_args() -> argparse.Namespace:
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    # Load .env from project root (one level up from scripts/)
-    dotenv_path = Path(__file__).resolve().parent.parent / ".env"
-    load_dotenv(dotenv_path)
-
     args = parse_args()
     run_evaluation(args)
