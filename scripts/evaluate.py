@@ -181,8 +181,13 @@ def _score_single_output(
     return detail
 
 
-def _collect_token_stats(model_outputs: list[dict]) -> dict:
-    """Aggregate token usage statistics across all output records."""
+def _collect_token_stats(model_outputs: list[dict], num_samples: int = 1) -> dict:
+    """Aggregate token usage statistics across all output records.
+
+    When *num_samples* > 1 the totals are divided by *num_samples* so
+    that the reported figures represent the mean cost of a single run
+    rather than the sum across all samples.
+    """
     input_tokens = [
         o["input_tokens"] for o in model_outputs if o.get("input_tokens") is not None
     ]
@@ -190,10 +195,21 @@ def _collect_token_stats(model_outputs: list[dict]) -> dict:
         o["output_tokens"] for o in model_outputs if o.get("output_tokens") is not None
     ]
 
-    total_in = sum(input_tokens) if input_tokens else 0
-    total_out = sum(output_tokens) if output_tokens else 0
-    avg_in = round(total_in / len(input_tokens), 1) if input_tokens else 0.0
-    avg_out = round(total_out / len(output_tokens), 1) if output_tokens else 0.0
+    raw_in = sum(input_tokens) if input_tokens else 0
+    raw_out = sum(output_tokens) if output_tokens else 0
+
+    # Mean over samples so multi-sample runs report per-run cost
+    effective_samples = max(num_samples, 1)
+    total_in = round(raw_in / effective_samples)
+    total_out = round(raw_out / effective_samples)
+
+    # Per-riddle averages (count of records is already inflated by samples)
+    n_records = max(len(input_tokens) // effective_samples, 1) if input_tokens else 0
+    avg_in = round(total_in / n_records, 1) if n_records else 0.0
+    n_records_out = (
+        max(len(output_tokens) // effective_samples, 1) if output_tokens else 0
+    )
+    avg_out = round(total_out / n_records_out, 1) if n_records_out else 0.0
 
     return {
         "total_input_tokens": total_in,
@@ -394,7 +410,7 @@ def evaluate_model(
     # ------------------------------------------------------------------
     # Token usage statistics (always present)
     # ------------------------------------------------------------------
-    token_stats = _collect_token_stats(model_outputs)
+    token_stats = _collect_token_stats(model_outputs, num_samples=num_samples)
     summary.update(token_stats)
 
     return {

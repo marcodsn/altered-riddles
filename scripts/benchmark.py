@@ -174,7 +174,7 @@ def _make_record(
         "model_answer": answer,
         "model_reasoning": reasoning,
         "raw_response": raw_response,
-        "model": model_name,
+        "model": model_name.lower(),
         "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S"),
         "temperature": temperature,
         "input_tokens": input_tokens,
@@ -215,11 +215,12 @@ def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
     output_dir = Path(args.output_dir) / version
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    safe_name = sanitize_model_name(model_name)
+    safe_name = sanitize_model_name(model_name).lower()
+    cot_tag = "_cot" if args.chain_of_thought else ""
     if args.temperature > 0:
-        output_path = output_dir / f"{safe_name}_temp{args.temperature}.jsonl"
+        output_path = output_dir / f"{safe_name}{cot_tag}_temp{args.temperature}.jsonl"
     else:
-        output_path = output_dir / f"{safe_name}.jsonl"
+        output_path = output_dir / f"{safe_name}{cot_tag}.jsonl"
 
     # --- Resume support: skip already-answered riddles ---------------------
     done = already_answered_keys(output_path)
@@ -281,7 +282,9 @@ def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
             )
 
             # Render prompt
-            prompt_text = template.render(riddle=riddle_text)
+            prompt_text = template.render(
+                riddle=riddle_text, chain_of_thought=args.chain_of_thought
+            )
 
             # Call the LLM
             raw_response = ""
@@ -379,7 +382,9 @@ def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
                         riddle_type,
                     )
                     continue
-                prompt_text = template.render(riddle=riddle_text)
+                prompt_text = template.render(
+                    riddle=riddle_text, chain_of_thought=args.chain_of_thought
+                )
                 prompts.append(prompt_text)
                 chunk_meta.append((riddle_id, riddle_type, sample_index, riddle_text))
 
@@ -528,6 +533,12 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=10,
         help="Max concurrent async requests per batch (1 = sequential).",
+    )
+    parser.add_argument(
+        "--chain-of-thought",
+        action="store_true",
+        default=False,
+        help="Include reasoning in the prompt (adds a 'reasoning' field before 'answer' in the model's response).",
     )
     return parser.parse_args()
 

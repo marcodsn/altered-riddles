@@ -37,6 +37,12 @@ ALTERED RIDDLE:
 PROPOSED ALTERED ANSWER:
 {{ altered_answer }}
 
+NOTE: If the proposed altered answer above presents alternatives — e.g.
+"Encryption (or an encryption key)." or "A playing card (specifically a King,
+Queen, or Jack)." — you must split it: put only the single canonical primary
+form in `altered_answer` (without parentheses) and list all equivalent forms
+(including the primary) in `altered_accepted_answers`.
+
 PROVIDED REASONING:
 {{ altered_reasoning }}
 ─────────────────────────────────
@@ -92,6 +98,7 @@ fencing):
   "is_logical": true or false,
   "is_clear": true or false,
   "competing_answers": ["list", "of", "alternative", "answers", "if any"],
+  "altered_accepted_answers": ["canonical primary answer", "any equivalent alternative phrasing"],
   "overall_valid": true or false,
   "reasoning": "Brief explanation covering all six criteria and your overall verdict."
 }
@@ -110,6 +117,11 @@ block `overall_valid`:
   • is_subtle – A quality indicator. Moderate alterations are acceptable.
   • is_clear – A quality indicator. Multiple valid answers are fine for this
     benchmark as long as at least one answer is clearly defensible.
+  • altered_accepted_answers – Always include at least the canonical primary
+    answer. If the proposed altered_answer contained alternatives
+    (e.g. "X (or Y)"), list each alternative as a separate entry here. Any
+    phrasing that a lenient judge would score as equivalent to the primary
+    answer should also be listed.
 
 If ANY of the three hard requirements fails, `overall_valid` must be false.
 

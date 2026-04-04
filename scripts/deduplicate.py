@@ -2,7 +2,7 @@
 """deduplicate.py — Deduplicate the benchmark file by comparing altered riddles.
 
 Uses exact matching (after normalisation) and fuzzy matching via
-``difflib.SequenceMatcher`` to find duplicate or near-duplicate entries.
+`difflib.SequenceMatcher` to find duplicate or near-duplicate entries.
 For each group of duplicates the entry with the most accepted answers is kept.
 
 Usage examples:
@@ -71,10 +71,10 @@ def is_duplicate_pair(
     """Determine whether entries *a* and *b* are duplicates.
 
     Two entries are considered duplicates if either:
-      1. Their normalised ``altered_riddle`` texts are identical, OR
-      2. Their ``altered_riddle`` texts have fuzzy similarity >= *threshold*, OR
-      3. Their ``original_riddle`` texts are very similar (>= *threshold*) AND
-         their ``altered_answer`` texts are also very similar (>= *threshold*),
+      1. Their normalised `altered_riddle` texts are identical, OR
+      2. Their `altered_riddle` texts have fuzzy similarity >= *threshold*, OR
+      3. Their `original_riddle` texts are very similar (>= *threshold*) AND
+         their `altered_answer` texts are also very similar (>= *threshold*),
          indicating the same base riddle was altered in the same way.
     """
     id_a = id(a)  # Use object id for cache keys
@@ -166,7 +166,7 @@ def remove_benchmark_duplicates(
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     """Remove pool entries that are near-duplicates of existing benchmark entries.
 
-    Returns ``(kept, removed)``.
+    Returns `(kept, removed)`.
     """
     if not benchmark:
         return pool, []

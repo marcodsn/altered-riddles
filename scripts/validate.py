@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -62,9 +63,48 @@ VALIDATION_FIELDS = {
     "is_logical",
     "is_clear",
     "competing_answers",
+    "altered_accepted_answers",
     "overall_valid",
     "reasoning",
 }
+
+
+# ---------------------------------------------------------------------------
+# Parenthetical-answer splitting
+# ---------------------------------------------------------------------------
+
+_PAREN_RE = re.compile(r"^(.*?)\s*\((.+?)\)\.?\s*$", re.DOTALL)
+
+
+def _split_paren_alternatives(text: str) -> tuple[str, list[str]] | None:
+    """Split ``"Answer (or alternative)."`` into ``("Answer.", ["alternative"])``.
+
+    Returns ``None`` when *text* contains no parseable parenthetical section.
+    Handles three patterns:
+
+    * ``"or X"`` / ``"or X/Y"`` — slash-separated alternatives
+    * ``"specifically A, B, or C"`` — comma/or-separated clarifications
+    * Any other prefix — treated as a single alternative
+    """
+    m = _PAREN_RE.match(text.strip())
+    if not m:
+        return None
+    primary = m.group(1).strip()
+    paren = m.group(2).strip()
+    if text.rstrip().endswith(".") and not primary.endswith("."):
+        primary += "."
+    lower = paren.lower()
+    if lower.startswith("or "):
+        parts = [p.strip() for p in paren[3:].split("/")]
+        return primary, [p for p in parts if p]
+    if lower.startswith("specifically "):
+        rest = paren[13:].strip()
+        or_parts = re.split(r"\s+or\s+", rest)
+        parts = []
+        for segment in or_parts:
+            parts.extend(s.strip() for s in segment.split(","))
+        return primary, [p for p in parts if p]
+    return primary, [paren]
 
 
 # ---------------------------------------------------------------------------
@@ -95,11 +135,43 @@ def parse_validation_response(raw_text: str) -> dict[str, Any]:
 def to_benchmark_format(entry: dict[str, Any], new_id: str) -> dict[str, Any]:
     """Convert a validated generation entry to the benchmark JSONL format."""
     original_answer_lower = entry.get("original_answer", "").strip().lower()
+
+    # ── Clean up altered_answer ────────────────────────────────────────
+    # Split out any parenthetical alternatives baked into the raw answer
+    # (e.g. "Encryption (or an encryption key)." from the generation LLM).
+    raw_answer = entry.get("altered_answer", "")
+    paren_result = _split_paren_alternatives(raw_answer)
+    if paren_result is not None:
+        primary_answer, paren_alts = paren_result
+    else:
+        primary_answer, paren_alts = raw_answer, []
+
+    # ── Build accepted-answers list ────────────────────────────────────
+    # Prefer the validator LLM's explicit list; fall back to paren-split.
+    llm_accepted: list[str] | None = entry.get("altered_accepted_answers")
+    if llm_accepted and isinstance(llm_accepted, list):
+        seen: set[str] = set()
+        accepted: list[str] = []
+        for ans in [primary_answer, *llm_accepted]:
+            key = ans.strip().lower()
+            if key and key not in seen:
+                seen.add(key)
+                accepted.append(ans)
+    else:
+        seen = set()
+        accepted = []
+        for ans in [primary_answer, *paren_alts]:
+            key = ans.strip().lower()
+            if key and key not in seen:
+                seen.add(key)
+                accepted.append(ans)
+
     competing = [
         a
         for a in entry.get("competing_answers", [])
         if a.strip().lower() != original_answer_lower
     ]
+
     return {
         "id": new_id,
         "original_riddle": entry.get("original_riddle", ""),
@@ -107,8 +179,8 @@ def to_benchmark_format(entry: dict[str, Any], new_id: str) -> dict[str, Any]:
         "original_accepted_answers": [entry.get("original_answer", "")],
         "original_reasoning": entry.get("original_reasoning", ""),
         "altered_riddle": entry.get("altered_riddle", ""),
-        "altered_answer": entry.get("altered_answer", ""),
-        "altered_accepted_answers": [entry.get("altered_answer", "")],
+        "altered_answer": primary_answer,
+        "altered_accepted_answers": accepted,
         "altered_competing_answers": competing,
         "altered_reasoning": entry.get("altered_reasoning", ""),
         "source": entry.get("source", ""),

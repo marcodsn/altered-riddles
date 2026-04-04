@@ -61,12 +61,19 @@ The purpose is to test whether language models can reason about the specific wor
    - `meaning_shift` — A key word is changed so that it takes on a different meaning in the new context, leading to a different answer (e.g., changing "bucket" to "room" so "lighter" shifts from weight to brightness).
    - `context_swap` — The context or setting is swapped in a way that changes the logical answer (e.g., the question's perspective is redirected, or the entity is placed in a different domain).
    - `bias_probe` — The riddle is specifically designed to test a known model bias or memorized pattern. The alteration explicitly states information that contradicts the expected (biased) answer (e.g., stating the surgeon IS the father, directly countering the gender-bias assumption).
+8. **Use a single canonical answer form.** The ``altered_answer`` field must
+   contain exactly one clean answer string — no parenthetical alternatives or
+   qualifiers (e.g. do NOT write ``"Encryption (or an encryption key)."`` or
+   ``"A die (or dice)."``). If multiple phrasings are valid, pick the most
+   natural one as the primary answer; other forms will be captured later.
 
 ## Few-Shot Examples
 
 Here are examples of well-crafted altered-riddle pairs:
 
+```json
 {{ examples_block }}
+```
 
 Study these examples carefully. Notice how each alteration is small but decisive.
 

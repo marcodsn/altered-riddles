@@ -119,7 +119,7 @@ def load_template(template_path: str | Path) -> jinja2.Template:
 
 def sanitize_model_name(name: str) -> str:
     """Make a model name safe for use as a filename component."""
-    return re.sub(r"[/\\]", "_", name)
+    return re.sub(r"[/\\:]", "_", name)
 
 
 def strip_markdown_fences(text: str) -> str:

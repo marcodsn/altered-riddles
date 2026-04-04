@@ -96,7 +96,7 @@ def _call_openai_compat_sync(
         model=model,
         messages=[{"role": "user", "content": prompt_text}],
         temperature=temperature,
-        response_format={"type": "json_object"},
+        # response_format={"type": "json_object"},
     )
     if max_output_tokens is not None:
         create_kwargs["max_completion_tokens"] = max_output_tokens
@@ -134,7 +134,7 @@ def _call_mistral_sync(
         model=model,
         messages=[{"role": "user", "content": prompt_text}],
         temperature=temperature,
-        response_format={"type": "json_object"},
+        # response_format={"type": "json_object"},
     )
     if max_output_tokens is not None:
         create_kwargs["max_tokens"] = max_output_tokens
@@ -263,7 +263,7 @@ async def _call_openai_compat_async(
         model=model,
         messages=[{"role": "user", "content": prompt_text}],
         temperature=temperature,
-        response_format={"type": "json_object"},
+        # response_format={"type": "json_object"},
     )
     if max_output_tokens is not None:
         create_kwargs["max_completion_tokens"] = max_output_tokens
@@ -301,7 +301,7 @@ async def _call_mistral_async(
         model=model,
         messages=[{"role": "user", "content": prompt_text}],
         temperature=temperature,
-        response_format={"type": "json_object"},
+        # response_format={"type": "json_object"},
     )
     if max_output_tokens is not None:
         create_kwargs["max_tokens"] = max_output_tokens

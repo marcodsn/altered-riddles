@@ -43,7 +43,8 @@ PROVIDERS: dict[str, dict] = {
         "default_model": "qwen3.5-27b",
         "env_key": None,
         "client_type": "openai_compat",
-        "base_url": "http://10.8.0.5:8083/v1",
+        # "base_url": "http://10.8.0.5:8083/v1",
+        "base_url": "http://192.168.1.67:8083/v1",
         "api_key_override": "local",
     },
     "mistral": {
@@ -56,6 +57,12 @@ PROVIDERS: dict[str, dict] = {
         "env_key": "HF_API_KEY",
         "base_url": "https://router.huggingface.co/v1",
         "client_type": "openai_compat",
+    },
+    "together": {
+        "default_model": "zai-org/GLM-5",
+        "env_key": "TOGETHER_API_KEY",
+        "client_type": "openai_compat",
+        "base_url": "https://api.together.xyz/v1",
     },
     # ── Examples — uncomment / adapt as needed ────────────────────────
     # "together": {
