@@ -404,8 +404,7 @@ def evaluate_model(
         summary["best_of_n_accuracy"] = best_of_n_accuracy
         summary["majority_vote_accuracy"] = majority_vote_accuracy
         summary["average_accuracy"] = average_accuracy
-        # For multi-sample, total_score uses best-of-n (most generous)
-        summary["total_score"] = best_of_n_accuracy
+        summary["total_score"] = average_accuracy
 
     # ------------------------------------------------------------------
     # Token usage statistics (always present)
