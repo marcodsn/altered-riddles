@@ -51,6 +51,12 @@ PROVIDERS: dict[str, dict] = {
         "env_key": "MISTRAL_API_KEY",
         "client_type": "mistral",
     },
+    "hf": {
+        "default_model": "zai-org/GLM-5:fireworks-ai",
+        "env_key": "HF_API_KEY",
+        "base_url": "https://router.huggingface.co/v1",
+        "client_type": "openai_compat",
+    },
     # ── Examples — uncomment / adapt as needed ────────────────────────
     # "together": {
     #     "default_model": "meta-llama/Llama-3-70b-chat-hf",

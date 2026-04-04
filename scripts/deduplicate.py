@@ -10,6 +10,8 @@ Usage examples:
     python -m scripts.deduplicate --dry-run
     python -m scripts.deduplicate --pool data/pool.jsonl --similarity-threshold 0.9
     python -m scripts.deduplicate --dry-run --similarity-threshold 0.8
+    python -m scripts.deduplicate --benchmark data/benchmark.jsonl
+    python -m scripts.deduplicate --benchmark ""  # skip benchmark cross-check
 """
 
 from __future__ import annotations
@@ -157,6 +159,38 @@ class UnionFind:
 # ---------------------------------------------------------------------------
 
 
+def remove_benchmark_duplicates(
+    pool: list[dict[str, Any]],
+    benchmark: list[dict[str, Any]],
+    threshold: float,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Remove pool entries that are near-duplicates of existing benchmark entries.
+
+    Returns ``(kept, removed)``.
+    """
+    if not benchmark:
+        return pool, []
+
+    norm_cache: dict[int, str] = {}
+    kept: list[dict[str, Any]] = []
+    removed: list[dict[str, Any]] = []
+
+    for pool_entry in pool:
+        is_dup = False
+        for bench_entry in benchmark:
+            if is_duplicate_pair(pool_entry, bench_entry, norm_cache, threshold):
+                logger.info(
+                    "  Pool %s duplicates benchmark %s — removing from pool.",
+                    pool_entry.get("id", "?"),
+                    bench_entry.get("id", "?"),
+                )
+                is_dup = True
+                break
+        (removed if is_dup else kept).append(pool_entry)
+
+    return kept, removed
+
+
 def deduplicate(args: argparse.Namespace) -> None:
     """Run the deduplication pipeline according to parsed CLI *args*."""
     pool_path = args.pool
@@ -171,8 +205,39 @@ def deduplicate(args: argparse.Namespace) -> None:
     logger.info("Threshold : %.2f", threshold)
     logger.info("Dry run   : %s", dry_run)
 
+    # ------------------------------------------------------------------
+    # Optional cross-check: remove pool entries that duplicate benchmark
+    # ------------------------------------------------------------------
+    if args.benchmark:
+        from scripts.core.io_utils import load_jsonl_if_exists as _load_if
+
+        benchmark_entries = _load_if(args.benchmark)
+        if benchmark_entries:
+            logger.info(
+                "Cross-checking %d pool entries against %d benchmark entries …",
+                n,
+                len(benchmark_entries),
+            )
+            entries, bench_removed = remove_benchmark_duplicates(
+                entries, benchmark_entries, threshold
+            )
+            n = len(entries)
+            logger.info(
+                "Removed %d pool entries that duplicate benchmark entries. "
+                "Pool size now: %d",
+                len(bench_removed),
+                n,
+            )
+        else:
+            logger.info(
+                "Benchmark file %s not found or empty — skipping cross-check.",
+                args.benchmark,
+            )
+
     if n <= 1:
         logger.info("Nothing to deduplicate (0–1 entries).")
+        if not dry_run:
+            write_jsonl(pool_path, entries)
         return
 
     # Build duplicate groups using union-find
@@ -234,7 +299,7 @@ def deduplicate(args: argparse.Namespace) -> None:
 
     # Renumber IDs sequentially
     for idx, entry in enumerate(deduped, start=1):
-        entry["id"] = f"alt_{idx:03d}"
+        entry["id"] = f"pool_{idx:04d}"
 
     # Summary
     logger.info("=" * 60)
@@ -268,6 +333,16 @@ def build_parser() -> argparse.ArgumentParser:
         type=float,
         default=0.85,
         help="Fuzzy matching threshold 0–1 (default: 0.85)",
+    )
+    parser.add_argument(
+        "--benchmark",
+        default="data/benchmark.jsonl",
+        help=(
+            "Path to benchmark JSONL file used to cross-check pool entries. "
+            "Pool entries that are near-duplicates of existing benchmark entries "
+            "are removed. Set to empty string to skip. "
+            "(default: data/benchmark.jsonl)"
+        ),
     )
     parser.add_argument(
         "--dry-run",

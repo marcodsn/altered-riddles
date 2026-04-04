@@ -1,6 +1,6 @@
 """promote.py — Manage the riddle pool and promote riddles to the benchmark.
 
-Moves validated riddles from ``data/pool.jsonl`` to ``data/benchmark.jsonl``,
+Moves validated riddles from `data/pool.jsonl` to `data/benchmark.jsonl`,
 optionally tagging them as **fixed** (longitudinal baseline, never regenerated)
 or **auxiliary** (refreshed each run).
 
@@ -23,6 +23,8 @@ from __future__ import annotations
 import argparse
 import logging
 import re
+import shutil
+from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -46,7 +48,7 @@ logger = logging.getLogger(__name__)
 
 
 def _make_id(n: int) -> str:
-    """Format a numeric ID as ``alt_NNN`` (zero-padded to 3+ digits)."""
+    """Format a numeric ID as `alt_NNN` (zero-padded to 3+ digits)."""
     return f"alt_{n:03d}"
 
 
@@ -55,13 +57,66 @@ def _current_yymm() -> str:
 
 
 def _bump_version() -> str:
-    """Write the current YYMM to ``data/VERSION`` and return it."""
+    """Write the current YYMM to `data/VERSION` and return it."""
     version = _current_yymm()
     vf = Path(VERSION_FILE)
     vf.parent.mkdir(parents=True, exist_ok=True)
     vf.write_text(version + "\n", encoding="utf-8")
     logger.info("Bumped VERSION → %s", version)
     return version
+
+
+def _pick_balanced(pool: list[dict], count: int) -> tuple[list[dict], list[dict]]:
+    """Pick *count* entries from *pool* spread evenly across `source` values.
+
+    Uses round-robin over source buckets (preserving each bucket's original
+    order), so every source contributes as equally as possible.
+
+    Returns `(selected, remaining)`.
+    """
+    # Group pool indices by source, preserving insertion order.
+    buckets: dict[str, list[int]] = defaultdict(list)
+    for i, entry in enumerate(pool):
+        source = entry.get("source", "__unknown__")
+        buckets[source].append(i)
+
+    sources = list(buckets.keys())
+    selected_indices: list[int] = []
+
+    # Round-robin until we have enough or all buckets are exhausted.
+    while len(selected_indices) < count:
+        made_progress = False
+        for src in sources:
+            if len(selected_indices) >= count:
+                break
+            if buckets[src]:
+                selected_indices.append(buckets[src].pop(0))
+                made_progress = True
+        if not made_progress:
+            break
+
+    selected_set = set(selected_indices)
+    selected = [pool[i] for i in selected_indices]
+    remaining = [pool[i] for i in range(len(pool)) if i not in selected_set]
+
+    # Emit a per-source breakdown at DEBUG level.
+    if logger.isEnabledFor(logging.DEBUG):
+        counts: dict[str, int] = defaultdict(int)
+        for entry in selected:
+            counts[entry.get("source", "__unknown__")] += 1
+        breakdown = ", ".join(f"{s}={n}" for s, n in sorted(counts.items()))
+        logger.debug("Balanced pick breakdown: %s", breakdown)
+
+    return selected, remaining
+
+
+def _log_source_breakdown(entries: list[dict], label: str) -> None:
+    """Log an INFO-level per-source count summary."""
+    counts: dict[str, int] = defaultdict(int)
+    for e in entries:
+        counts[e.get("source", "__unknown__")] += 1
+    breakdown = ", ".join(f"{s}={n}" for s, n in sorted(counts.items()))
+    logger.info("%s source breakdown: %s", label, breakdown)
 
 
 # ── Subcommand: add ───────────────────────────────────────────────────
@@ -81,8 +136,7 @@ def cmd_add(args: argparse.Namespace) -> None:
             len(pool),
         )
     count = min(args.count, len(pool))
-    to_promote = pool[:count]
-    remaining = pool[count:]
+    to_promote, remaining = _pick_balanced(pool, min(args.count, len(pool)))
 
     max_id = get_max_benchmark_id(args.benchmark)
     version = get_benchmark_version()
@@ -110,6 +164,7 @@ def cmd_add(args: argparse.Namespace) -> None:
         promoted[-1]["id"],
         len(remaining),
     )
+    _log_source_breakdown(promoted, "Promoted")
 
 
 # ── Subcommand: status ───────────────────────────────────────────────
@@ -127,6 +182,11 @@ def cmd_status(args: argparse.Namespace) -> None:
 
     version = get_benchmark_version()
 
+    # Per-source counts in the pool
+    pool_sources: dict[str, int] = defaultdict(int)
+    for e in pool:
+        pool_sources[e.get("source", "__unknown__")] += 1
+
     print()
     print("╔══════════════════════════════════════╗")
     print("║    Altered Riddles — Benchmark Status ║")
@@ -134,9 +194,15 @@ def cmd_status(args: argparse.Namespace) -> None:
     print(f"║  Version          : {version:<17s}║")
     print(f"║  Benchmark total  : {total:<17d}║")
     print(f"║    ├─ fixed       : {fixed:<17d}║")
-    print(f"║    ├─ auxiliary    : {auxiliary:<17d}║")
+    print(f"║    ├─ auxiliary   : {auxiliary:<17d}║")
     print(f"║    └─ untagged    : {untagged:<17d}║")
     print(f"║  Pool (pending)   : {len(pool):<17d}║")
+    if pool_sources:
+        print("╠══════════════════════════════════════╣")
+        print("║  Pool by source                      ║")
+        for src, n in sorted(pool_sources.items()):
+            label = f"    {src}"
+            print(f"║  {label:<20s}: {n:<15d}║")
     print("╚══════════════════════════════════════╝")
     print()
 
@@ -146,6 +212,18 @@ def cmd_status(args: argparse.Namespace) -> None:
 
 def cmd_refresh_auxiliary(args: argparse.Namespace) -> None:
     """Replace all auxiliary entries with fresh ones from the pool."""
+    # ------------------------------------------------------------------
+    # Back up the current benchmark before any modification
+    # ------------------------------------------------------------------
+    benchmark_path_obj = Path(args.benchmark)
+    if benchmark_path_obj.exists():
+        backup_dir = Path(args.backup_dir)
+        backup_dir.mkdir(parents=True, exist_ok=True)
+        backup_ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+        backup_path = backup_dir / f"benchmark_{backup_ts}.jsonl"
+        shutil.copy2(args.benchmark, backup_path)
+        logger.info("Benchmark backed up → %s", backup_path)
+
     benchmark = load_jsonl_if_exists(args.benchmark)
     pool = load_jsonl_if_exists(args.pool)
 
@@ -164,8 +242,7 @@ def cmd_refresh_auxiliary(args: argparse.Namespace) -> None:
             len(pool),
         )
     count = min(args.count, len(pool))
-    to_promote = pool[:count]
-    remaining = pool[count:]
+    to_promote, remaining = _pick_balanced(pool, min(args.count, len(pool)))
 
     # Find max ID among fixed entries to continue numbering after them
     max_fixed_id = 0
@@ -201,6 +278,7 @@ def cmd_refresh_auxiliary(args: argparse.Namespace) -> None:
         len(fixed_entries) + count,
         len(remaining),
     )
+    _log_source_breakdown(new_auxiliary, "New auxiliary")
 
 
 # ── CLI ───────────────────────────────────────────────────────────────
@@ -249,6 +327,11 @@ def build_parser() -> argparse.ArgumentParser:
     p_refresh.add_argument("--pool", default=DEFAULT_POOL, help="Pool file path")
     p_refresh.add_argument(
         "--benchmark", default=DEFAULT_BENCHMARK, help="Benchmark file path"
+    )
+    p_refresh.add_argument(
+        "--backup-dir",
+        default="data/backups",
+        help="Directory for benchmark backups (default: data/backups)",
     )
     p_refresh.set_defaults(func=cmd_refresh_auxiliary)
 

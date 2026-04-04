@@ -3,8 +3,8 @@
 evaluate.py — Evaluate model outputs against the Altered Riddles benchmark.
 
 This script is RE-RUNNABLE: it reads model outputs and benchmark data, scores
-them WITHOUT calling any API. If you update ``altered_accepted_answers`` in
-``benchmark.jsonl``, you can re-run evaluation to get updated scores.
+them WITHOUT calling any API. If you update `altered_accepted_answers` in
+`benchmark.jsonl`, you can re-run evaluation to get updated scores.
 
 Usage examples:
     # Evaluate all models in data/model_outputs/
@@ -82,7 +82,7 @@ def is_match(model_answer: str, accepted_answers: list[str]) -> bool:
 
 
 def build_benchmark_lookup(entries: list[dict]) -> dict[str, dict]:
-    """Build a lookup dict keyed by riddle ``id``."""
+    """Build a lookup dict keyed by riddle `id`."""
     lookup: dict[str, dict] = {}
     for entry in entries:
         rid = entry.get("id", "")
@@ -96,10 +96,10 @@ def extract_accepted_answers(benchmark_entry: dict, riddle_type: str) -> list[st
     Return the list of accepted answers for a given riddle type.
 
     For *original* riddles the accepted answers come from
-    ``original_accepted_answers`` (falling back to ``original_answer``).
+    `original_accepted_answers` (falling back to `original_answer`).
 
     For *altered* riddles the accepted answers come from
-    ``altered_accepted_answers`` (falling back to ``altered_answer``).
+    `altered_accepted_answers` (falling back to `altered_answer`).
     """
     if riddle_type == "original":
         answers = benchmark_entry.get("original_accepted_answers")
@@ -210,7 +210,7 @@ def evaluate_model(
 ) -> dict:
     """
     Evaluate a single model's outputs and return a results dict containing
-    a ``summary`` and a ``details`` list.
+    a `summary` and a `details` list.
 
     Supports multi-sample benchmark outputs: when multiple samples exist per
     (riddle_id, riddle_type), additional metrics (best-of-n, majority vote,
@@ -411,8 +411,8 @@ def evaluate_model(
 
 def build_leaderboard(all_results: list[dict]) -> list[dict]:
     """
-    Build the leaderboard sorted by ``total_score`` descending, then
-    ``pattern_override_rate`` ascending (lower is better).
+    Build the leaderboard sorted by `total_score` descending, then
+    `pattern_override_rate` ascending (lower is better).
     """
     rows: list[dict] = []
     for result in all_results:

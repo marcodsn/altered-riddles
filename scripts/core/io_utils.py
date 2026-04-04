@@ -154,3 +154,29 @@ def get_max_benchmark_id(benchmark_path: str | Path) -> int:
             if match:
                 max_id = max(max_id, int(match.group(1)))
     return max_id
+
+
+def get_max_pool_id(pool_path: str | Path) -> int:
+    """Return the maximum numeric ID (from ``pool_NNNN``) in *pool_path*.
+
+    Returns 0 if the file does not exist or is empty.
+    """
+    filepath = Path(pool_path)
+    if not filepath.exists():
+        return 0
+
+    max_id = 0
+    with open(filepath, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                entry = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            entry_id = entry.get("id", "")
+            match = re.match(r"pool_(\d+)", entry_id)
+            if match:
+                max_id = max(max_id, int(match.group(1)))
+    return max_id

@@ -75,7 +75,7 @@ python -m scripts.generate_all --num-calls 5 --validate
 
 Uses an LLM to create altered riddle pairs from the source riddles in `data/riddles_source.txt`. For each well-known riddle, the model produces a subtly modified version where the correct answer changes. Raw outputs are saved to `data/generated/`.
 
-**`generate_all.py`** orchestrates generation across all models listed in `GENERATOR_MODELS` (see `scripts/config.py`). Using 2–3 generators from different families (e.g. Gemini, GPT-4o, a Llama-family model) maximises stylistic diversity and equalises contamination.
+**`generate_all.py`** orchestrates generation across all models listed in `GENERATOR_MODELS` (see `scripts/config.py`). Using 2–3 generators from different families (e.g. Gemini, GPT-5.4, a Qwen-family model) maximises stylistic diversity and equalises contamination.
 
 ### 2. Validate
 
@@ -119,13 +119,13 @@ Removes duplicate or near-duplicate riddles from the benchmark dataset to ensure
 
 ```bash
 # Default: deterministic single pass
-python -m scripts.benchmark --provider openai --model gpt-4o
+python -m scripts.benchmark --provider openai --model gpt-5.4
 
 # RL model with temperature and multiple samples
-python -m scripts.benchmark --provider openai --model o1-mini --temperature 0.7 --num-samples 5
+python -m scripts.benchmark --provider openai --model gpt-5.4 --temperature 0.7 --num-samples 5
 
 # Batched async calls for speed
-python -m scripts.benchmark --provider openai --model gpt-4o --batch-size 20
+python -m scripts.benchmark --provider openai --model gpt-5.4 --batch-size 20
 
 # Limit output tokens (useful for models that get stuck in thinking loops)
 python -m scripts.benchmark --provider local --model my-model --max-output-tokens 4096
@@ -187,7 +187,7 @@ python -m scripts.promote add --count 100 --set auxiliary
 python -m scripts.deduplicate
 
 # Run benchmark on a model
-python -m scripts.benchmark --provider openai --model gpt-4o
+python -m scripts.benchmark --provider openai --model gpt-5.4
 
 # Evaluate all models
 python -m scripts.evaluate

@@ -8,10 +8,11 @@ or the riddle pool.
 
 Usage examples:
     python -m scripts.validate
-    python -m scripts.validate --provider openai --append-to-benchmark
+    python -m scripts.validate --provider openai --append-to-pool
     python -m scripts.validate --input data/generated/raw_20250101_120000.jsonl
     python -m scripts.validate --input data/generated/raw.jsonl --append-to-pool
     python -m scripts.validate --input data/generated/raw.jsonl --delay 1.0
+    python -m scripts.validate --promote-from-validated --append-to-pool
 """
 
 from __future__ import annotations
@@ -31,7 +32,9 @@ from scripts.core.config import DEFAULT_POOL, provider_names, resolve_provider
 from scripts.core.io_utils import (
     append_jsonl,
     get_max_benchmark_id,
+    get_max_pool_id,
     load_jsonl,
+    load_jsonl_if_exists,
     load_template,
     strip_markdown_fences,
     write_jsonl_entry,
@@ -91,8 +94,6 @@ def parse_validation_response(raw_text: str) -> dict[str, Any]:
 
 def to_benchmark_format(entry: dict[str, Any], new_id: str) -> dict[str, Any]:
     """Convert a validated generation entry to the benchmark JSONL format."""
-    # Collect competing answers from validation, filtering out any that match
-    # the original answer (those would indicate a flawed alteration).
     original_answer_lower = entry.get("original_answer", "").strip().lower()
     competing = [
         a
@@ -115,6 +116,155 @@ def to_benchmark_format(entry: dict[str, Any], new_id: str) -> dict[str, Any]:
     }
 
 
+def _load_entry_keys(entries: list[dict[str, Any]]) -> set[tuple[str, str]]:
+    """Extract normalised entry keys from a list of JSONL records."""
+    keys: set[tuple[str, str]] = set()
+    for entry in entries:
+        key = _entry_key(entry)
+        if key:
+            keys.add(key)
+    return keys
+
+
+def init_promotion_state(args: argparse.Namespace) -> dict[str, Any]:
+    """Initialise append targets, ID counters, and dedupe state."""
+    state: dict[str, Any] = {
+        "append_to_benchmark": args.append_to_benchmark,
+        "append_to_pool": args.append_to_pool,
+        "benchmark_path": "data/benchmark.jsonl",
+        "pool_path": DEFAULT_POOL,
+        "benchmark_existing_keys": set(),
+        "pool_existing_keys": set(),
+        "next_benchmark_id": 0,
+        "next_pool_id": 0,
+        "benchmark_appended": 0,
+        "benchmark_skipped": 0,
+        "pool_appended": 0,
+        "pool_skipped": 0,
+    }
+
+    if args.append_to_benchmark:
+        benchmark_path = Path(state["benchmark_path"])
+        benchmark_path.parent.mkdir(parents=True, exist_ok=True)
+        existing_benchmark = load_jsonl_if_exists(str(benchmark_path))
+        state["benchmark_existing_keys"] = _load_entry_keys(existing_benchmark)
+        state["next_benchmark_id"] = get_max_benchmark_id(str(benchmark_path))
+
+    if args.append_to_pool:
+        pool_path = Path(state["pool_path"])
+        pool_path.parent.mkdir(parents=True, exist_ok=True)
+        existing_pool = load_jsonl_if_exists(str(pool_path))
+        state["pool_existing_keys"] = _load_entry_keys(existing_pool)
+        state["next_pool_id"] = get_max_pool_id(str(pool_path))
+
+    return state
+
+
+def promote_entry(entry: dict[str, Any], state: dict[str, Any]) -> None:
+    """Promote one passing validated entry into benchmark/pool immediately."""
+    if not entry.get("overall_valid"):
+        return
+
+    key = _entry_key(entry)
+
+    if state["append_to_benchmark"]:
+        if key and key in state["benchmark_existing_keys"]:
+            state["benchmark_skipped"] += 1
+        else:
+            state["next_benchmark_id"] += 1
+            new_id = f"alt_{state['next_benchmark_id']:03d}"
+            append_jsonl(
+                state["benchmark_path"],
+                to_benchmark_format(entry, new_id),
+            )
+            if key:
+                state["benchmark_existing_keys"].add(key)
+            state["benchmark_appended"] += 1
+
+    if state["append_to_pool"]:
+        if key and key in state["pool_existing_keys"]:
+            state["pool_skipped"] += 1
+        else:
+            state["next_pool_id"] += 1
+            new_id = f"pool_{state['next_pool_id']:04d}"
+            append_jsonl(
+                state["pool_path"],
+                to_benchmark_format(entry, new_id),
+            )
+            if key:
+                state["pool_existing_keys"].add(key)
+            state["pool_appended"] += 1
+
+
+def promote_from_validated(args: argparse.Namespace, generated_dir: Path) -> None:
+    """Promote already-validated passing entries without re-calling the LLM."""
+    if not (args.append_to_benchmark or args.append_to_pool):
+        logger.error(
+            "--promote-from-validated requires --append-to-benchmark "
+            "and/or --append-to-pool."
+        )
+        return
+
+    if args.input:
+        input_paths = [Path(args.input)]
+    else:
+        input_paths = sorted(generated_dir.glob("validated_*.jsonl"))
+        if not input_paths:
+            logger.warning(
+                "No validated_*.jsonl files found in %s — nothing to promote.",
+                generated_dir,
+            )
+            return
+
+    promotion_state = init_promotion_state(args)
+
+    total_loaded = 0
+    total_candidates = 0
+    skipped_duplicates = 0
+    seen_keys: set[tuple[str, str]] = set()
+
+    for ipath in input_paths:
+        batch = load_jsonl(str(ipath))
+        total_loaded += len(batch)
+        logger.info("Loaded %d entries from %s", len(batch), ipath)
+
+        for entry in batch:
+            if not entry.get("overall_valid"):
+                continue
+
+            key = _entry_key(entry)
+            if key and key in seen_keys:
+                skipped_duplicates += 1
+                continue
+
+            if key:
+                seen_keys.add(key)
+
+            total_candidates += 1
+            promote_entry(entry, promotion_state)
+
+    logger.info("=" * 60)
+    logger.info(
+        "Promotion-only mode scanned %d entries: %d valid candidates, %d "
+        "duplicate candidates skipped.",
+        total_loaded,
+        total_candidates,
+        skipped_duplicates,
+    )
+    if args.append_to_benchmark:
+        logger.info(
+            "Benchmark: appended %d, skipped %d already present.",
+            promotion_state["benchmark_appended"],
+            promotion_state["benchmark_skipped"],
+        )
+    if args.append_to_pool:
+        logger.info(
+            "Pool: appended %d, skipped %d already present.",
+            promotion_state["pool_appended"],
+            promotion_state["pool_skipped"],
+        )
+
+
 # ---------------------------------------------------------------------------
 # Main validation loop
 # ---------------------------------------------------------------------------
@@ -124,16 +274,16 @@ def validate(args: argparse.Namespace) -> None:
     """Run the validation pipeline according to parsed CLI *args*."""
     load_dotenv()
 
-    # Resolve provider + API key via shared config
-    provider = args.provider
-    model, api_key = resolve_provider(provider, args.model)
-
     generated_dir = Path(args.generated_dir)
     generated_dir.mkdir(parents=True, exist_ok=True)
 
-    # ------------------------------------------------------------------
-    # Determine input file(s)
-    # ------------------------------------------------------------------
+    if args.promote_from_validated:
+        promote_from_validated(args, generated_dir)
+        return
+
+    provider = args.provider
+    model, api_key = resolve_provider(provider, args.model)
+
     if args.input:
         input_paths = [Path(args.input)]
     else:
@@ -145,9 +295,6 @@ def validate(args: argparse.Namespace) -> None:
             )
             return
 
-    # ------------------------------------------------------------------
-    # Build already-validated set from all validated_*.jsonl in generated_dir
-    # ------------------------------------------------------------------
     already_validated: set[tuple[str, str]] = set()
     for vpath in sorted(generated_dir.glob("validated_*.jsonl")):
         for entry in load_jsonl(str(vpath)):
@@ -156,17 +303,12 @@ def validate(args: argparse.Namespace) -> None:
                 already_validated.add(key)
     logger.info("Already-validated entries loaded: %d", len(already_validated))
 
-    # ------------------------------------------------------------------
-    # Determine output path
-    # ------------------------------------------------------------------
     today_str = datetime.now(timezone.utc).strftime("%Y%m%d")
     ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
 
     if args.output is not None:
-        # Explicit --output given; honour {timestamp} substitution as before
         output_path = Path(args.output.replace("{timestamp}", ts))
     else:
-        # Auto-detect: look for today's validated file in generated_dir
         today_files = sorted(generated_dir.glob(f"validated_{today_str}*.jsonl"))
         if today_files:
             output_path = today_files[-1]
@@ -177,21 +319,14 @@ def validate(args: argparse.Namespace) -> None:
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # ------------------------------------------------------------------
-    # Load all input entries
-    # ------------------------------------------------------------------
     all_raw_entries: list[dict[str, Any]] = []
     for ipath in input_paths:
         batch = load_jsonl(str(ipath))
         all_raw_entries.extend(batch)
         logger.info("Loaded %d entries from %s", len(batch), ipath)
 
-    # Load template
     template = load_template(args.prompt_template)
 
-    # ------------------------------------------------------------------
-    # Filter: skip already-validated and within-batch duplicates
-    # ------------------------------------------------------------------
     seen_in_batch: set[tuple[str, str]] = set()
     entries_to_validate: list[dict[str, Any]] = []
     skipped_count = 0
@@ -199,7 +334,6 @@ def validate(args: argparse.Namespace) -> None:
     for entry in all_raw_entries:
         key = _entry_key(entry)
         if key is None:
-            # No key derivable — include it and let validation handle it
             entries_to_validate.append(entry)
             continue
         if key in already_validated or key in seen_in_batch:
@@ -253,10 +387,8 @@ def validate(args: argparse.Namespace) -> None:
     total_validated = 0
     total_passed = 0
     total_failed = 0
+    promotion_state = init_promotion_state(args)
 
-    validated_entries: list[dict[str, Any]] = []
-
-    # Build (entry, prompt_text) pairs upfront so we can slice into batches.
     entry_prompts: list[tuple[dict[str, Any], str]] = []
     for entry in entries:
         try:
@@ -277,9 +409,6 @@ def validate(args: argparse.Namespace) -> None:
 
     with open(output_path, "a", encoding="utf-8") as out_fh:
         if use_batching:
-            # ----------------------------------------------------------
-            # BATCHED PATH  (all providers, async concurrency)
-            # ----------------------------------------------------------
             for chunk_start in range(0, len(entry_prompts), batch_size):
                 chunk = entry_prompts[chunk_start : chunk_start + batch_size]
                 prompts_only = [p for _, p in chunk]
@@ -319,10 +448,8 @@ def validate(args: argparse.Namespace) -> None:
                         )
                         continue
 
-                    # Extract text from LLMResponse
                     raw_text = raw.text
 
-                    # Parse the validation response
                     try:
                         validation = parse_validation_response(raw_text)
                     except (json.JSONDecodeError, ValueError) as exc:
@@ -334,12 +461,10 @@ def validate(args: argparse.Namespace) -> None:
                         logger.debug("  Raw response:\n%s", raw_text[:500])
                         continue
 
-                    # Merge validation fields into the entry
                     for field in VALIDATION_FIELDS:
                         if field in validation:
                             entry[field] = validation[field]
 
-                    # Determine pass/fail
                     passed = bool(validation.get("overall_valid", False))
                     if passed:
                         total_passed += 1
@@ -348,7 +473,8 @@ def validate(args: argparse.Namespace) -> None:
                     total_validated += 1
 
                     write_jsonl_entry(out_fh, entry)
-                    validated_entries.append(entry)
+                    out_fh.flush()
+                    promote_entry(entry, promotion_state)
 
                     logger.info(
                         "    → %s (answer_valid=%s, is_distinct=%s, overall_valid=%s)",
@@ -358,12 +484,7 @@ def validate(args: argparse.Namespace) -> None:
                         validation.get("overall_valid"),
                     )
 
-                out_fh.flush()
-
         else:
-            # ----------------------------------------------------------
-            # SEQUENTIAL PATH  (batch_size == 1)
-            # ----------------------------------------------------------
             for idx, (entry, prompt_text) in enumerate(entry_prompts, start=1):
                 logger.info(
                     "Validating %d/%d — id=%s",
@@ -372,7 +493,6 @@ def validate(args: argparse.Namespace) -> None:
                     entry.get("id", "?"),
                 )
 
-                # Call the LLM
                 try:
                     response = call_llm(
                         prompt_text,
@@ -390,10 +510,8 @@ def validate(args: argparse.Namespace) -> None:
                     )
                     continue
 
-                # Extract text from LLMResponse
                 raw_text = response.text
 
-                # Parse the validation response
                 try:
                     validation = parse_validation_response(raw_text)
                 except (json.JSONDecodeError, ValueError) as exc:
@@ -405,12 +523,10 @@ def validate(args: argparse.Namespace) -> None:
                     logger.debug("Raw response:\n%s", raw_text[:500])
                     continue
 
-                # Merge validation fields into the entry
                 for field in VALIDATION_FIELDS:
                     if field in validation:
                         entry[field] = validation[field]
 
-                # Determine pass/fail
                 passed = bool(validation.get("overall_valid", False))
                 if passed:
                     total_passed += 1
@@ -419,8 +535,8 @@ def validate(args: argparse.Namespace) -> None:
                 total_validated += 1
 
                 write_jsonl_entry(out_fh, entry)
-                validated_entries.append(entry)
                 out_fh.flush()
+                promote_entry(entry, promotion_state)
 
                 logger.info(
                     "  → %s (answer_valid=%s, is_distinct=%s, overall_valid=%s)",
@@ -430,61 +546,9 @@ def validate(args: argparse.Namespace) -> None:
                     validation.get("overall_valid"),
                 )
 
-                # Rate-limit delay between calls (skip after the last one)
                 if idx < len(entry_prompts) and args.delay > 0:
                     time.sleep(args.delay)
 
-    # ------------------------------------------------------------------
-    # Optionally append valid entries to the benchmark file
-    # ------------------------------------------------------------------
-    if args.append_to_benchmark:
-        benchmark_path = "data/benchmark.jsonl"
-        valid_entries = [e for e in validated_entries if e.get("overall_valid")]
-
-        if not valid_entries:
-            logger.info("No valid entries to append to benchmark.")
-        else:
-            current_max_id = get_max_benchmark_id(benchmark_path)
-            Path(benchmark_path).parent.mkdir(parents=True, exist_ok=True)
-
-            with open(benchmark_path, "a", encoding="utf-8") as bench_fh:
-                for i, entry in enumerate(valid_entries, start=1):
-                    new_id = f"alt_{current_max_id + i:03d}"
-                    bench_entry = to_benchmark_format(entry, new_id)
-                    write_jsonl_entry(bench_fh, bench_entry)
-
-            logger.info(
-                "Appended %d valid entries to %s (IDs alt_%03d–alt_%03d)",
-                len(valid_entries),
-                benchmark_path,
-                current_max_id + 1,
-                current_max_id + len(valid_entries),
-            )
-
-    # ------------------------------------------------------------------
-    # Optionally append valid entries to the riddle pool
-    # ------------------------------------------------------------------
-    if args.append_to_pool:
-        pool_path = DEFAULT_POOL
-        valid_entries = [e for e in validated_entries if e.get("overall_valid")]
-
-        if not valid_entries:
-            logger.info("No valid entries to append to pool.")
-        else:
-            for i, entry in enumerate(valid_entries, start=1):
-                pool_id = f"pool_{i:03d}"
-                pool_entry = to_benchmark_format(entry, pool_id)
-                append_jsonl(pool_path, pool_entry)
-
-            logger.info(
-                "Appended %d valid entries to %s",
-                len(valid_entries),
-                pool_path,
-            )
-
-    # ------------------------------------------------------------------
-    # Summary
-    # ------------------------------------------------------------------
     logger.info("=" * 60)
     logger.info(
         "Done. Validated %d entries: %d passed, %d failed.",
@@ -492,6 +556,18 @@ def validate(args: argparse.Namespace) -> None:
         total_passed,
         total_failed,
     )
+    if args.append_to_benchmark:
+        logger.info(
+            "Benchmark promotion: appended %d, skipped %d already present.",
+            promotion_state["benchmark_appended"],
+            promotion_state["benchmark_skipped"],
+        )
+    if args.append_to_pool:
+        logger.info(
+            "Pool promotion: appended %d, skipped %d already present.",
+            promotion_state["pool_appended"],
+            promotion_state["pool_skipped"],
+        )
     logger.info("Output written to %s", output_path)
 
 
@@ -528,8 +604,9 @@ def build_parser() -> argparse.ArgumentParser:
         "--input",
         default=None,
         help=(
-            "Input JSONL path (overrides auto-discovery of raw_*.jsonl files "
-            "inside --generated-dir)."
+            "Input JSONL path. In normal mode this overrides auto-discovery of "
+            "raw_*.jsonl inside --generated-dir. In --promote-from-validated "
+            "mode, this should point to a validated JSONL file."
         ),
     )
     parser.add_argument(
@@ -551,13 +628,30 @@ def build_parser() -> argparse.ArgumentParser:
         "--append-to-benchmark",
         action="store_true",
         default=False,
-        help="If set, automatically append valid entries to data/benchmark.jsonl",
+        help=(
+            "Append passing entries to data/benchmark.jsonl immediately as they "
+            "are validated; also used by --promote-from-validated."
+        ),
     )
     parser.add_argument(
         "--append-to-pool",
         action="store_true",
         default=False,
-        help="Append valid entries to the riddle pool (data/pool.jsonl) for later promotion",
+        help=(
+            "Append passing entries to the riddle pool immediately as they are "
+            "validated; also used by --promote-from-validated."
+        ),
+    )
+    parser.add_argument(
+        "--promote-from-validated",
+        action="store_true",
+        default=False,
+        help=(
+            "Skip LLM validation and promote already-validated passing entries "
+            "from validated JSONL file(s) into the benchmark and/or pool. Uses "
+            "--input if provided; otherwise scans validated_*.jsonl in "
+            "--generated-dir."
+        ),
     )
     parser.add_argument(
         "--temperature",
