@@ -109,6 +109,11 @@ def build_tasks(
     Each benchmark entry can produce up to two riddle types (original and
     altered), each with up to num_samples samples.
 
+    Note: original riddles are deduplicated by their text content before
+    building tasks, because the same source riddle often has multiple altered
+    variants in the benchmark. Testing the original riddle once per unique
+    text is sufficient.
+
     Parameters
     ----------
     entries : list[dict]
@@ -123,10 +128,14 @@ def build_tasks(
     list of (entry, riddle_type, sample_index) tuples.
     """
     tasks: list[tuple[dict, str, int]] = []
+    seen_original_riddles: set[str] = set()
     for entry in entries:
         types: list[str] = []
         if only in ("both", "original"):
-            types.append("original")
+            orig_text = entry.get("original_riddle", "")
+            if orig_text and orig_text not in seen_original_riddles:
+                seen_original_riddles.add(orig_text)
+                types.append("original")
         if only in ("both", "altered"):
             types.append("altered")
         for rtype in types:

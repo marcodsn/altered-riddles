@@ -75,7 +75,7 @@ python -m scripts.generate_all --num-calls 5 --validate
 
 Uses an LLM to create altered riddle pairs from the source riddles in `data/riddles_source.txt`. For each well-known riddle, the model produces a subtly modified version where the correct answer changes. Raw outputs are saved to `data/generated/`.
 
-**`generate_all.py`** orchestrates generation across all models listed in `GENERATOR_MODELS` (see `scripts/config.py`). Using 2–3 generators from different families (e.g. Gemini, GPT-5.4, a Qwen-family model) maximises stylistic diversity and equalises contamination.
+**`generate_all.py`** orchestrates generation across all models listed in `GENERATOR_MODELS` (see `scripts/config.py`). Using 2–3 generators from different families (e.g. Gemini, GPT-5.4, GLM-5) maximises stylistic diversity and equalises contamination.
 
 ### 2. Validate
 
@@ -105,7 +105,7 @@ python -m scripts.promote status
 python -m scripts.promote refresh-auxiliary --count 100
 ```
 
-Moves validated riddles from the pool into the benchmark, tagging them as **fixed** (longitudinal baseline, never regenerated) or **auxiliary** (refreshed each run for contamination resistance). See [REPORT.md](REPORT.md) for the full split rationale.
+Moves validated riddles from the pool into the benchmark, tagging them as **fixed** (longitudinal baseline, never regenerated) or **auxiliary** (may be refreshed for contamination resistance). See [REPORT.md](REPORT.md) for the full split rationale.
 
 ### 4. Deduplicate
 
@@ -151,8 +151,6 @@ When multi-sample benchmark outputs exist (from `--num-samples`), evaluation rep
 - **Separated model outputs from evaluation.** Model answers are stored in `data/model_outputs/`. Evaluation reads these alongside `data/benchmark.jsonl` to produce scores. We can edit `altered_accepted_answers` in the benchmark file and re-run `evaluate.py` without needing to re-run any models.
 
 - **Multiple accepted answers.** Each riddle has a list of accepted answers (e.g., `["plant", "grass", "flower"]`) that can be manually edited to account for valid phrasings. A separate `altered_competing_answers` list captures alternative valid answers that are automatically generated during validation, scored at partial credit (0.5×). Competing answers may be promoted to `altered_accepted_answers` after manual inspection.
-
-- **Temperature 0 by default.** A single deterministic pass per model ensures reproducibility across runs. For RL reasoning models (e.g., those trained with specific temperatures), a higher temperature may be needed for best quality — the benchmark script supports `--temperature` and `--num-samples` flags for this case. At temp 0, if the model fails (e.g., returns invalid JSON), the raw answer is recorded and the script moves on — repeating the call won't change anything, but these can be manually reviewed later. At temp > 0, multiple samples are collected per riddle and evaluated with best-of-n, majority vote, and average accuracy metrics.
 
 - **Pattern override rate.** The key metric — measures how often a model gives the **original** answer to an **altered** riddle, falling back to memorized patterns instead of reasoning about the modified details.
 

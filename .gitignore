@@ -26,6 +26,7 @@ env/
 Thumbs.db
 
 # Project - generated data (keep benchmark.jsonl, riddles_source.txt, VERSION)
+data/backups/pool*.jsonl
 data/generated/
 data/model_outputs/
 data/pool.jsonl

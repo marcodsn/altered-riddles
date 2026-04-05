@@ -130,7 +130,7 @@ examples and the classification taxonomy.
 
 **`generate_all.py`** orchestrates generation across all models listed in
 `GENERATOR_MODELS` (see `scripts/config.py`). Using 2–3 generators from
-different families (e.g. Gemini, GPT-4o, a Llama-family model) is the
+different families (e.g. Gemini, GPT-5.4, GLM-5) is the
 recommended approach because:
 
 - No single model's reasoning style dominates the benchmark.
@@ -181,7 +181,7 @@ Moves validated riddles from the pool into the benchmark, tagging them as
 ### Stage 5 — Benchmark a Model
 
 ```bash
-python -m scripts.benchmark --provider openai --model gpt-4o
+python -m scripts.benchmark --provider openai --model gpt-5.4
 python -m scripts.benchmark --provider local --model my-model --batch-size 20
 ```
 
@@ -192,7 +192,6 @@ JSON response is stored in `data/model_outputs/{version}/`.
 **Key features:**
 - **Resume support** — already-answered riddles are skipped (the script won't
   repeat tested riddles when re-running on a new benchmark iteration).
-- **Temperature 0 by default** — deterministic, reproducible results.
 - **Multi-sample mode** — at temperature > 0, collect multiple samples per
   riddle for best-of-n, majority vote, and average accuracy.
 - **Token tracking** — input/output tokens logged per call.
@@ -204,7 +203,7 @@ python -m scripts.evaluate
 ```
 
 Scores all model outputs against the accepted answers in the benchmark.
-**This step is fully re-runnable** — you can update `altered_accepted_answers`
+**This step is fully re-runnable** — we can update `altered_accepted_answers`
 in `benchmark.jsonl` and re-evaluate without re-running any models.
 
 ---
@@ -253,14 +252,12 @@ into two parts:
 - **Never regenerated.**
 - Serves as the longitudinal baseline so scores are comparable across runs.
 - Tagged with `"set": "fixed"` in `benchmark.jsonl`.
-- Recommended for upload to HuggingFace as the stable public dataset.
 
 ### Fresh auxiliary set (~100–150 riddles)
 
-- **Regenerated each run** via `promote.py refresh-auxiliary`.
+- **May be regenerated in the future** via `promote.py refresh-auxiliary`.
 - Tests generalisation and resists overfitting / contamination.
 - Tagged with `"set": "auxiliary"` in `benchmark.jsonl`.
-- Reported separately in evaluation results.
 
 ### Sample size justification
 
@@ -294,7 +291,7 @@ The benchmark uses **YYMM** versioning (e.g. `2604` = April 2026).
 
 This means:
 - Historical results are preserved in their version folders.
-- You can always trace which riddles were added in which version.
+- We can always trace which riddles were added in which version.
 - The leaderboard is also written to `results/leaderboard.json` for convenience.
 
 ---
@@ -392,7 +389,7 @@ altered-riddles/
   "altered_accepted_answers": ["A plant", "plant", "tree"],
   "altered_competing_answers": ["grass", "flower"],
   "altered_reasoning": "Adding 'grows from the ground' eliminates candle...",
-  "source": "gemini-2.0-flash",
+  "source": "gemini-3.1-flash",
   "type": "constraint_addition",
   "set": "fixed",
   "version_added": "2604"
@@ -410,7 +407,7 @@ altered-riddles/
   "model_answer": "candle",
   "model_reasoning": "A candle starts tall...",
   "raw_response": "{\"answer\": \"candle\", ...}",
-  "model": "gpt-4o",
+  "model": "gpt-5.4",
   "timestamp": "2026-04-03T12:00:00",
   "temperature": 0.0,
   "input_tokens": 142,
@@ -476,9 +473,7 @@ python -m scripts.evaluate
 
 ### HuggingFace upload
 
-The **fixed core** should be uploaded to HuggingFace as the stable public
-dataset. The auxiliary set changes each version and is primarily for internal
-contamination resistance.
+Results and the benchmark dataset are uploaded to HuggingFace for public access.
 
 ---
 
@@ -512,28 +507,6 @@ new entries. This makes iterative development practical.
 
 ### Multi-family generation
 
-Using generators from different model families (Gemini, GPT-4o, Llama-family)
+Using generators from different model families (Gemini, GPT-5.4, GLM-5)
 ensures no single model's reasoning style dominates the benchmark. The `source`
 field in each entry makes it trivial to stratify results by generator later.
-
----
-
-## 13. Shared Module Summary
-
-The `scripts/` package is now split into:
-- `scripts/core/` for shared infrastructure (`config.py`, `io_utils.py`, `llm_client.py`)
-- top-level workflow entry points for the pipeline stages (`generate.py`, `validate.py`, `promote.py`, `benchmark.py`, etc.)
-
-This keeps the command-oriented scripts easy to scan while moving reusable internals into a dedicated package namespace.
-
-Before this refactoring, LLM client code (~200 lines) was copy-pasted across
-three scripts. Now:
-
-| Module | Purpose | Used by |
-|---|---|---|
-| `config.py` | Provider registry, defaults, paths, version | All scripts |
-| `llm_client.py` | Sync/async/batched LLM calls, `LLMResponse` | generate, validate, benchmark, generate_all |
-| `io_utils.py` | JSONL I/O, templates, text helpers | All scripts |
-
-Adding a new provider requires editing **one dict** in `config.py`. Every
-script picks it up automatically via `provider_names()` and `resolve_provider()`.

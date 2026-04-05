@@ -58,8 +58,8 @@ def normalize(text: str) -> str:
     """Lowercase, strip punctuation and articles for lenient matching."""
     text = text.lower()
     text = re.sub(r"[^a-z0-9 ]", " ", text)
-    text = re.sub(r"\b(a|an|the|it's|its|it is)\b", " ", text)
-    return re.sub(r"\s+", " ", text).strip()
+    text = re.sub(r"\\b(a|an|the|it's|its|it is)\\b", " ", text)
+    return re.sub(r"\\s+", " ", text).strip()
 
 
 def is_match(model_answer: str, accepted_answers: list[str]) -> bool:
@@ -182,40 +182,37 @@ def _score_single_output(
 
 
 def _collect_token_stats(model_outputs: list[dict], num_samples: int = 1) -> dict:
-    """Aggregate token usage statistics across all output records.
+    """Aggregate token usage statistics, separating original and altered."""
 
-    When *num_samples* > 1 the totals are divided by *num_samples* so
-    that the reported figures represent the mean cost of a single run
-    rather than the sum across all samples.
-    """
-    input_tokens = [
-        o["input_tokens"] for o in model_outputs if o.get("input_tokens") is not None
-    ]
-    output_tokens = [
-        o["output_tokens"] for o in model_outputs if o.get("output_tokens") is not None
-    ]
+    def _sum_tokens(outputs: list[dict], divisor: int) -> tuple[int, int]:
+        in_toks = [
+            o["input_tokens"] for o in outputs if o.get("input_tokens") is not None
+        ]
+        out_toks = [
+            o["output_tokens"] for o in outputs if o.get("output_tokens") is not None
+        ]
 
-    raw_in = sum(input_tokens) if input_tokens else 0
-    raw_out = sum(output_tokens) if output_tokens else 0
+        raw_in = sum(in_toks) if in_toks else 0
+        raw_out = sum(out_toks) if out_toks else 0
 
-    # Mean over samples so multi-sample runs report per-run cost
+        return round(raw_in / divisor), round(raw_out / divisor)
+
+    orig_outputs = [o for o in model_outputs if o.get("riddle_type") == "original"]
+    alt_outputs = [o for o in model_outputs if o.get("riddle_type") == "altered"]
+
+    # Riddles are divided by num_samples to get the cost per run
     effective_samples = max(num_samples, 1)
-    total_in = round(raw_in / effective_samples)
-    total_out = round(raw_out / effective_samples)
 
-    # Per-riddle averages (count of records is already inflated by samples)
-    n_records = max(len(input_tokens) // effective_samples, 1) if input_tokens else 0
-    avg_in = round(total_in / n_records, 1) if n_records else 0.0
-    n_records_out = (
-        max(len(output_tokens) // effective_samples, 1) if output_tokens else 0
-    )
-    avg_out = round(total_out / n_records_out, 1) if n_records_out else 0.0
+    orig_in, orig_out = _sum_tokens(orig_outputs, effective_samples)
+    alt_in, alt_out = _sum_tokens(alt_outputs, effective_samples)
 
     return {
-        "total_input_tokens": total_in,
-        "total_output_tokens": total_out,
-        "avg_input_tokens": avg_in,
-        "avg_output_tokens": avg_out,
+        "original_input_tokens": orig_in,
+        "original_output_tokens": orig_out,
+        "altered_input_tokens": alt_in,
+        "altered_output_tokens": alt_out,
+        "total_input_tokens": orig_in + alt_in,
+        "total_output_tokens": orig_out + alt_out,
     }
 
 
@@ -229,8 +226,22 @@ def evaluate_model(
     a `summary` and a `details` list.
 
     Supports multi-sample benchmark outputs: when multiple samples exist per
-    (riddle_id, riddle_type), additional metrics (best-of-n, majority vote,
-    average accuracy) are computed.
+    (riddle_id, riddle_type), additional metrics (best-of-n, majority vote)
+    are computed.
+
+    Metric definitions
+    ------------------
+    altered_accuracy        Binary correctness (1 or 0, no partial credit),
+                            averaged over all samples then over all riddles.
+                            Consistent in both single- and multi-sample runs.
+    altered_weighted_accuracy  Like altered_accuracy but awards COMPETING_ANSWER_WEIGHT
+                            (0.5) for competing-answer matches. Uses sample_index==1
+                            only, serving as the single-sample partial-credit baseline.
+    average_accuracy        Partial-credit score (same scoring as
+                            altered_weighted_accuracy) averaged over ALL samples
+                            then over all riddles. Equals altered_weighted_accuracy
+                            in single-sample runs.
+    total_score             Always equal to average_accuracy.
     """
     model_name = ""
     details: list[dict] = []
@@ -269,7 +280,7 @@ def evaluate_model(
             )
 
     # ------------------------------------------------------------------
-    # Detect multi-sample runs
+    # Group by (riddle_id, riddle_type)
     # ------------------------------------------------------------------
     def _group_key(d: dict) -> tuple[str, str]:
         return (d["riddle_id"], d["riddle_type"])
@@ -284,19 +295,21 @@ def evaluate_model(
     num_samples = max(altered_group_sizes) if altered_group_sizes else 1
 
     # ------------------------------------------------------------------
-    # Single-sample aggregation (always computed — serves as the baseline)
+    # Single-sample baseline metrics (always computed using sample_index==1)
     # ------------------------------------------------------------------
     original_total = 0
     original_correct = 0
     altered_total = 0
-    altered_correct = 0
+    altered_correct_s1 = (
+        0  # binary correct on sample 1 only (for altered_weighted_accuracy baseline)
+    )
     altered_competing = 0
-    altered_score = 0.0
+    altered_score_s1 = 0.0
     altered_gave_original = 0
 
     for key, group in grouped.items():
         riddle_type = key[1]
-        # For single-sample: use sample_index == 1 (or the first record)
+        # Use sample_index == 1 (or the first record) for single-sample metrics
         rec = next(
             (d for d in group if d.get("sample_index", 1) == 1),
             group[0],
@@ -311,45 +324,74 @@ def evaluate_model(
             if rec.get("gave_original_answer"):
                 altered_gave_original += 1
             if rec["correct"]:
-                altered_correct += 1
-                altered_score += 1.0
+                altered_correct_s1 += 1
+                altered_score_s1 += 1.0
             elif rec.get("competing_match") and not rec.get("gave_original_answer"):
                 altered_competing += 1
-                altered_score += COMPETING_ANSWER_WEIGHT
+                altered_score_s1 += COMPETING_ANSWER_WEIGHT
 
     original_accuracy = (
         round(original_correct / original_total, 3) if original_total else 0.0
     )
-    altered_accuracy = (
-        round(altered_correct / altered_total, 3) if altered_total else 0.0
-    )
+    # Partial-credit accuracy on sample_index==1 — kept as a stable single-sample baseline.
     altered_weighted_accuracy = (
-        round(altered_score / altered_total, 3) if altered_total else 0.0
+        round(altered_score_s1 / altered_total, 3) if altered_total else 0.0
     )
     pattern_override_rate = (
         round(altered_gave_original / altered_total, 3) if altered_total else 0.0
     )
+
+    # ------------------------------------------------------------------
+    # All-sample metrics (always computed, consistent across run types)
+    # ------------------------------------------------------------------
+    # altered_accuracy  — binary correctness, averaged across ALL samples
+    # average_accuracy  — partial-credit score, averaged across ALL samples
+    # Both are computed per riddle first, then averaged across riddles.
+    alt_binary_sum = 0.0
+    avg_acc_sum = 0.0
+
+    for key, group in grouped.items():
+        if key[1] != "altered":
+            continue
+        binary_scores = [1.0 if d["correct"] else 0.0 for d in group]
+        alt_binary_sum += sum(binary_scores) / len(binary_scores)
+
+        sample_scores = [d.get("score", 0.0) for d in group]
+        avg_acc_sum += sum(sample_scores) / len(sample_scores)
+
+    altered_accuracy = (
+        round(alt_binary_sum / altered_total, 3) if altered_total else 0.0
+    )
+    average_accuracy = round(avg_acc_sum / altered_total, 3) if altered_total else 0.0
+
+    # total_score is always average_accuracy (partial credit, all samples).
+    # In single-sample runs this equals altered_weighted_accuracy.
+    total_score = average_accuracy
 
     summary: dict = {
         "original_total": original_total,
         "original_correct": original_correct,
         "original_accuracy": original_accuracy,
         "altered_total": altered_total,
-        "altered_correct": altered_correct,
+        # altered_correct reflects sample_index==1 count, kept for human readability
+        "altered_correct": altered_correct_s1,
         "altered_competing": altered_competing,
+        # altered_accuracy: binary, all samples — the canonical correctness metric
         "altered_accuracy": altered_accuracy,
+        # altered_weighted_accuracy: partial credit, sample_index==1 only — single-sample baseline
         "altered_weighted_accuracy": altered_weighted_accuracy,
         "pattern_override_rate": pattern_override_rate,
-        "total_score": altered_weighted_accuracy,
+        # average_accuracy: partial credit, all samples — always the primary score
+        "average_accuracy": average_accuracy,
+        "total_score": total_score,
     }
 
     # ------------------------------------------------------------------
-    # Multi-sample metrics (only when num_samples > 1)
+    # Multi-sample-only metrics (best-of-n, majority vote)
     # ------------------------------------------------------------------
     if num_samples > 1:
         best_of_n_correct = 0
         majority_vote_correct = 0
-        avg_acc_sum = 0.0
         altered_count_multi = 0
 
         for key, group in grouped.items():
@@ -382,35 +424,35 @@ def evaluate_model(
             if rep["correct"]:
                 majority_vote_correct += 1
             elif rep.get("competing_match") and not rep.get("gave_original_answer"):
-                # Partial credit for majority vote
                 majority_vote_correct += COMPETING_ANSWER_WEIGHT
-
-            # --- average accuracy across samples ---
-            sample_scores = [d.get("score", 0.0) for d in group]
-            avg_acc_sum += sum(sample_scores) / len(sample_scores)
 
         if altered_count_multi:
             best_of_n_accuracy = round(best_of_n_correct / altered_count_multi, 3)
             majority_vote_accuracy = round(
                 majority_vote_correct / altered_count_multi, 3
             )
-            average_accuracy = round(avg_acc_sum / altered_count_multi, 3)
         else:
             best_of_n_accuracy = 0.0
             majority_vote_accuracy = 0.0
-            average_accuracy = 0.0
 
         summary["num_samples"] = num_samples
         summary["best_of_n_accuracy"] = best_of_n_accuracy
         summary["majority_vote_accuracy"] = majority_vote_accuracy
-        summary["average_accuracy"] = average_accuracy
-        summary["total_score"] = average_accuracy
 
     # ------------------------------------------------------------------
     # Token usage statistics (always present)
     # ------------------------------------------------------------------
     token_stats = _collect_token_stats(model_outputs, num_samples=num_samples)
     summary.update(token_stats)
+
+    # Number of distinct riddles tested for this model
+    summary["num_riddles"] = len({d["riddle_id"] for d in details})
+    summary["original_num_riddles"] = len(
+        {d["riddle_id"] for d in details if d["riddle_type"] == "original"}
+    )
+    summary["altered_num_riddles"] = len(
+        {d["riddle_id"] for d in details if d["riddle_type"] == "altered"}
+    )
 
     return {
         "model": model_name,
@@ -438,15 +480,22 @@ def build_leaderboard(all_results: list[dict]) -> list[dict]:
             "altered_accuracy": s["altered_accuracy"],
             "altered_weighted_accuracy": s["altered_weighted_accuracy"],
             "pattern_override_rate": s["pattern_override_rate"],
+            "average_accuracy": s["average_accuracy"],
             "total_score": s["total_score"],
             "total_input_tokens": s.get("total_input_tokens", 0),
             "total_output_tokens": s.get("total_output_tokens", 0),
+            "original_input_tokens": s.get("original_input_tokens", 0),
+            "original_output_tokens": s.get("original_output_tokens", 0),
+            "altered_input_tokens": s.get("altered_input_tokens", 0),
+            "altered_output_tokens": s.get("altered_output_tokens", 0),
+            "num_riddles": s.get("num_riddles", s.get("altered_total", 0)),
+            "original_num_riddles": s.get("original_num_riddles", 0),
+            "altered_num_riddles": s.get("altered_num_riddles", 0),
         }
         if s.get("num_samples", 1) > 1:
             row["num_samples"] = s["num_samples"]
             row["best_of_n_accuracy"] = s["best_of_n_accuracy"]
             row["majority_vote_accuracy"] = s["majority_vote_accuracy"]
-            row["average_accuracy"] = s["average_accuracy"]
         rows.append(row)
 
     rows.sort(key=lambda r: (-r["total_score"], r["pattern_override_rate"]))
@@ -462,14 +511,21 @@ def build_leaderboard(all_results: list[dict]) -> list[dict]:
         entry["altered_accuracy"] = row["altered_accuracy"]
         entry["altered_weighted_accuracy"] = row["altered_weighted_accuracy"]
         entry["pattern_override_rate"] = row["pattern_override_rate"]
+        entry["average_accuracy"] = row["average_accuracy"]
         entry["total_score"] = row["total_score"]
         entry["total_input_tokens"] = row["total_input_tokens"]
         entry["total_output_tokens"] = row["total_output_tokens"]
+        entry["original_input_tokens"] = row["original_input_tokens"]
+        entry["original_output_tokens"] = row["original_output_tokens"]
+        entry["altered_input_tokens"] = row["altered_input_tokens"]
+        entry["altered_output_tokens"] = row["altered_output_tokens"]
+        entry["num_riddles"] = row.get("num_riddles", 0)
+        entry["original_num_riddles"] = row.get("original_num_riddles", 0)
+        entry["altered_num_riddles"] = row.get("altered_num_riddles", 0)
         if "num_samples" in row:
             entry["num_samples"] = row["num_samples"]
             entry["best_of_n_accuracy"] = row["best_of_n_accuracy"]
             entry["majority_vote_accuracy"] = row["majority_vote_accuracy"]
-            entry["average_accuracy"] = row["average_accuracy"]
         ordered.append(entry)
     return ordered
 
@@ -489,7 +545,6 @@ def _fmt_tokens(n: int) -> str:
 
 def print_leaderboard(leaderboard: list[dict]) -> None:
     """Print a nice Unicode table to stdout."""
-    # Column widths
     col_model = 22
     col_metric = 10
     col_tokens = 8
@@ -619,14 +674,14 @@ def run_evaluation(args: argparse.Namespace) -> None:
                 f"  samples={s['num_samples']}"
                 f"  best_of_n={s['best_of_n_accuracy'] * 100:.1f}%"
                 f"  majority={s['majority_vote_accuracy'] * 100:.1f}%"
-                f"  avg={s['average_accuracy'] * 100:.1f}%"
             )
         logger.info(
-            "  %s — orig_acc=%.1f%%  alt_acc=%.1f%%  alt_weighted=%.1f%%  override=%.1f%%  score=%.1f%%%s%s",
+            "  %s — orig_acc=%.1f%%  alt_acc=%.1f%%  alt_weighted=%.1f%%  avg_acc=%.1f%%  override=%.1f%%  score=%.1f%%%s%s",
             result["model"],
             s["original_accuracy"] * 100,
             s["altered_accuracy"] * 100,
             s["altered_weighted_accuracy"] * 100,
+            s["average_accuracy"] * 100,
             s["pattern_override_rate"] * 100,
             s["total_score"] * 100,
             multi_info,
