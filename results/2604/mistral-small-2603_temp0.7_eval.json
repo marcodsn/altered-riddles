@@ -1,0 +1,1508 @@
+{
+  "model": "mistral-small-2603",
+  "provider": "mistral",
+  "quantization": "",
+  "summary": {
+    "original_total": 15,
+    "original_correct": 12,
+    "original_accuracy": 0.8,
+    "altered_total": 22,
+    "altered_correct": 5,
+    "altered_competing": 1,
+    "altered_accuracy": 0.227,
+    "altered_weighted_accuracy": 0.25,
+    "pattern_override_rate": 0.5,
+    "average_accuracy": 0.242,
+    "total_score": 0.242,
+    "num_samples": 3,
+    "best_of_n_accuracy": 0.273,
+    "majority_vote_accuracy": 0.25,
+    "original_input_tokens": 1185,
+    "original_output_tokens": 119,
+    "altered_input_tokens": 1795,
+    "altered_output_tokens": 176,
+    "total_input_tokens": 2980,
+    "total_output_tokens": 295,
+    "num_riddles": 23,
+    "original_num_riddles": 15,
+    "altered_num_riddles": 22
+  },
+  "details": [
+    {
+      "riddle_id": "alt_001",
+      "riddle_type": "original",
+      "riddle_text": "What runs but has no legs?",
+      "model_answer": "water",
+      "accepted_answers": [
+        "A river."
+      ],
+      "correct": false,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_001",
+      "riddle_type": "original",
+      "riddle_text": "What runs but has no legs?",
+      "model_answer": "water",
+      "accepted_answers": [
+        "A river."
+      ],
+      "correct": false,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_001",
+      "riddle_type": "original",
+      "riddle_text": "What runs but has no legs?",
+      "model_answer": "water",
+      "accepted_answers": [
+        "A river."
+      ],
+      "correct": false,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_001",
+      "riddle_type": "altered",
+      "riddle_text": "What runs but has no legs, and happens when you have a cold?",
+      "model_answer": "Runny nose",
+      "accepted_answers": [
+        "A nose."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A river.",
+      "competing_match": true,
+      "score": 0.5
+    },
+    {
+      "riddle_id": "alt_001",
+      "riddle_type": "altered",
+      "riddle_text": "What runs but has no legs, and happens when you have a cold?",
+      "model_answer": "nose",
+      "accepted_answers": [
+        "A nose."
+      ],
+      "correct": true,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A river.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_001",
+      "riddle_type": "altered",
+      "riddle_text": "What runs but has no legs, and happens when you have a cold?",
+      "model_answer": "runny nose",
+      "accepted_answers": [
+        "A nose."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "A river.",
+      "competing_match": true,
+      "score": 0.5
+    },
+    {
+      "riddle_id": "alt_002",
+      "riddle_type": "original",
+      "riddle_text": "What goes through cities and fields but never moves?",
+      "model_answer": "a road",
+      "accepted_answers": [
+        "A road."
+      ],
+      "correct": true,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_002",
+      "riddle_type": "original",
+      "riddle_text": "What goes through cities and fields but never moves?",
+      "model_answer": "a road",
+      "accepted_answers": [
+        "A road."
+      ],
+      "correct": true,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_002",
+      "riddle_type": "original",
+      "riddle_text": "What goes through cities and fields but never moves?",
+      "model_answer": "A road",
+      "accepted_answers": [
+        "A road."
+      ],
+      "correct": true,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_002",
+      "riddle_type": "altered",
+      "riddle_text": "What goes through cities and fields but never moves, yet fits in your pocket?",
+      "model_answer": "a map",
+      "accepted_answers": [
+        "A map."
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A road.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_002",
+      "riddle_type": "altered",
+      "riddle_text": "What goes through cities and fields but never moves, yet fits in your pocket?",
+      "model_answer": "a map",
+      "accepted_answers": [
+        "A map."
+      ],
+      "correct": true,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A road.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_002",
+      "riddle_type": "altered",
+      "riddle_text": "What goes through cities and fields but never moves, yet fits in your pocket?",
+      "model_answer": "road map",
+      "accepted_answers": [
+        "A map."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "A road.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_003",
+      "riddle_type": "original",
+      "riddle_text": "Voiceless it cries, wingless flutters, toothless bites, mouthless mutters. What is it?",
+      "model_answer": "wind",
+      "accepted_answers": [
+        "The wind."
+      ],
+      "correct": true,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_003",
+      "riddle_type": "original",
+      "riddle_text": "Voiceless it cries, wingless flutters, toothless bites, mouthless mutters. What is it?",
+      "model_answer": "wind",
+      "accepted_answers": [
+        "The wind."
+      ],
+      "correct": true,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_003",
+      "riddle_type": "original",
+      "riddle_text": "Voiceless it cries, wingless flutters, toothless bites, mouthless mutters. What is it?",
+      "model_answer": "wind",
+      "accepted_answers": [
+        "The wind."
+      ],
+      "correct": true,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_003",
+      "riddle_type": "altered",
+      "riddle_text": "Voiceless it cries, wingless flutters, toothless bites, mouthless mutters—yet it is solid. What is it?",
+      "model_answer": "wind",
+      "accepted_answers": [
+        "A snowflake."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": true,
+      "original_answer": "The wind.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_003",
+      "riddle_type": "altered",
+      "riddle_text": "Voiceless it cries, wingless flutters, toothless bites, mouthless mutters—yet it is solid. What is it?",
+      "model_answer": "wind",
+      "accepted_answers": [
+        "A snowflake."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "The wind.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_003",
+      "riddle_type": "altered",
+      "riddle_text": "Voiceless it cries, wingless flutters, toothless bites, mouthless mutters—yet it is solid. What is it?",
+      "model_answer": "wind",
+      "accepted_answers": [
+        "A snowflake."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "The wind.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_004",
+      "riddle_type": "original",
+      "riddle_text": "What runs around the whole yard without moving?",
+      "model_answer": "fence",
+      "accepted_answers": [
+        "A fence."
+      ],
+      "correct": true,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_004",
+      "riddle_type": "original",
+      "riddle_text": "What runs around the whole yard without moving?",
+      "model_answer": "a fence",
+      "accepted_answers": [
+        "A fence."
+      ],
+      "correct": true,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_004",
+      "riddle_type": "original",
+      "riddle_text": "What runs around the whole yard without moving?",
+      "model_answer": "fence",
+      "accepted_answers": [
+        "A fence."
+      ],
+      "correct": true,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_004",
+      "riddle_type": "altered",
+      "riddle_text": "What runs around the whole yard without moving, but is made of water?",
+      "model_answer": "fence",
+      "accepted_answers": [
+        "A stream or pond."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": true,
+      "original_answer": "A fence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_004",
+      "riddle_type": "altered",
+      "riddle_text": "What runs around the whole yard without moving, but is made of water?",
+      "model_answer": "a fence",
+      "accepted_answers": [
+        "A stream or pond."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "A fence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_004",
+      "riddle_type": "altered",
+      "riddle_text": "What runs around the whole yard without moving, but is made of water?",
+      "model_answer": "fence",
+      "accepted_answers": [
+        "A stream or pond."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "A fence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_005",
+      "riddle_type": "original",
+      "riddle_text": "I have a head and a tail, but no body. What am I?",
+      "model_answer": "coin",
+      "accepted_answers": [
+        "A coin"
+      ],
+      "correct": true,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_005",
+      "riddle_type": "original",
+      "riddle_text": "I have a head and a tail, but no body. What am I?",
+      "model_answer": "coin",
+      "accepted_answers": [
+        "A coin"
+      ],
+      "correct": true,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_005",
+      "riddle_type": "original",
+      "riddle_text": "I have a head and a tail, but no body. What am I?",
+      "model_answer": "coin",
+      "accepted_answers": [
+        "A coin"
+      ],
+      "correct": true,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_005",
+      "riddle_type": "altered",
+      "riddle_text": "What has a head and a tail but no body, yet swims?",
+      "model_answer": "coin",
+      "accepted_answers": [
+        "A tadpole"
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": true,
+      "original_answer": "A coin",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_005",
+      "riddle_type": "altered",
+      "riddle_text": "What has a head and a tail but no body, yet swims?",
+      "model_answer": "coin",
+      "accepted_answers": [
+        "A tadpole"
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "A coin",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_005",
+      "riddle_type": "altered",
+      "riddle_text": "What has a head and a tail but no body, yet swims?",
+      "model_answer": "coin",
+      "accepted_answers": [
+        "A tadpole"
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "A coin",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_006",
+      "riddle_type": "original",
+      "riddle_text": "What has hands but can't clap?",
+      "model_answer": "clock",
+      "accepted_answers": [
+        "A clock."
+      ],
+      "correct": true,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_006",
+      "riddle_type": "original",
+      "riddle_text": "What has hands but can't clap?",
+      "model_answer": "clock",
+      "accepted_answers": [
+        "A clock."
+      ],
+      "correct": true,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_006",
+      "riddle_type": "original",
+      "riddle_text": "What has hands but can't clap?",
+      "model_answer": "clock",
+      "accepted_answers": [
+        "A clock."
+      ],
+      "correct": true,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_006",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap, and tells you where to go rather than what time it is?",
+      "model_answer": "clock hands",
+      "accepted_answers": [
+        "A compass rose.",
+        "a signpost"
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A clock.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_006",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap, and tells you where to go rather than what time it is?",
+      "model_answer": "traffic light",
+      "accepted_answers": [
+        "A compass rose.",
+        "a signpost"
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A clock.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_006",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap, and tells you where to go rather than what time it is?",
+      "model_answer": "traffic light",
+      "accepted_answers": [
+        "A compass rose.",
+        "a signpost"
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "A clock.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_007",
+      "riddle_type": "original",
+      "riddle_text": "What is so fragile that saying its name breaks it?",
+      "model_answer": "Silence",
+      "accepted_answers": [
+        "Silence."
+      ],
+      "correct": true,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_007",
+      "riddle_type": "original",
+      "riddle_text": "What is so fragile that saying its name breaks it?",
+      "model_answer": "Silence",
+      "accepted_answers": [
+        "Silence."
+      ],
+      "correct": true,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_007",
+      "riddle_type": "original",
+      "riddle_text": "What is so fragile that saying its name breaks it?",
+      "model_answer": "silence",
+      "accepted_answers": [
+        "Silence."
+      ],
+      "correct": true,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_007",
+      "riddle_type": "altered",
+      "riddle_text": "What is so fragile that touching it breaks it, and is found on a leaf in the morning?",
+      "model_answer": "dew drop",
+      "accepted_answers": [
+        "A dewdrop."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "Silence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_007",
+      "riddle_type": "altered",
+      "riddle_text": "What is so fragile that touching it breaks it, and is found on a leaf in the morning?",
+      "model_answer": "dew drop",
+      "accepted_answers": [
+        "A dewdrop."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "Silence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_007",
+      "riddle_type": "altered",
+      "riddle_text": "What is so fragile that touching it breaks it, and is found on a leaf in the morning?",
+      "model_answer": "dew drop",
+      "accepted_answers": [
+        "A dewdrop."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "Silence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_008",
+      "riddle_type": "altered",
+      "riddle_text": "What goes through cities and fields but never moves, and is often made of wood or wire?",
+      "model_answer": "A road",
+      "accepted_answers": [
+        "A fence."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": true,
+      "original_answer": "A road.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_008",
+      "riddle_type": "altered",
+      "riddle_text": "What goes through cities and fields but never moves, and is often made of wood or wire?",
+      "model_answer": "a road",
+      "accepted_answers": [
+        "A fence."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "A road.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_008",
+      "riddle_type": "altered",
+      "riddle_text": "What goes through cities and fields but never moves, and is often made of wood or wire?",
+      "model_answer": "a road",
+      "accepted_answers": [
+        "A fence."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "A road.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_009",
+      "riddle_type": "original",
+      "riddle_text": "What gets wetter as it dries?",
+      "model_answer": "towel",
+      "accepted_answers": [
+        "A towel."
+      ],
+      "correct": true,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_009",
+      "riddle_type": "original",
+      "riddle_text": "What gets wetter as it dries?",
+      "model_answer": "towel",
+      "accepted_answers": [
+        "A towel."
+      ],
+      "correct": true,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_009",
+      "riddle_type": "original",
+      "riddle_text": "What gets wetter as it dries?",
+      "model_answer": "towel",
+      "accepted_answers": [
+        "A towel."
+      ],
+      "correct": true,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_009",
+      "riddle_type": "altered",
+      "riddle_text": "What gets wetter as it dries, and is made of paper?",
+      "model_answer": "towel",
+      "accepted_answers": [
+        "A blotter or blotting paper."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": true,
+      "original_answer": "A towel.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_009",
+      "riddle_type": "altered",
+      "riddle_text": "What gets wetter as it dries, and is made of paper?",
+      "model_answer": "towel",
+      "accepted_answers": [
+        "A blotter or blotting paper."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "A towel.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_009",
+      "riddle_type": "altered",
+      "riddle_text": "What gets wetter as it dries, and is made of paper?",
+      "model_answer": "towel",
+      "accepted_answers": [
+        "A blotter or blotting paper."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "A towel.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_010",
+      "riddle_type": "altered",
+      "riddle_text": "What runs around the whole yard without moving, and you can hear it?",
+      "model_answer": "a fence",
+      "accepted_answers": [
+        "A rumor or gossip."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": true,
+      "original_answer": "A fence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_010",
+      "riddle_type": "altered",
+      "riddle_text": "What runs around the whole yard without moving, and you can hear it?",
+      "model_answer": "fence",
+      "accepted_answers": [
+        "A rumor or gossip."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "A fence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_010",
+      "riddle_type": "altered",
+      "riddle_text": "What runs around the whole yard without moving, and you can hear it?",
+      "model_answer": "fence",
+      "accepted_answers": [
+        "A rumor or gossip."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "A fence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_011",
+      "riddle_type": "original",
+      "riddle_text": "A man and his son are in a terrible accident. The father dies. The boy is rushed to the hospital. The surgeon says, 'I can't operate on this boy; he's my son!' How is this possible?",
+      "model_answer": "The surgeon is his mother",
+      "accepted_answers": [
+        "The surgeon is the boy's mother"
+      ],
+      "correct": false,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_011",
+      "riddle_type": "original",
+      "riddle_text": "A man and his son are in a terrible accident. The father dies. The boy is rushed to the hospital. The surgeon says, 'I can't operate on this boy; he's my son!' How is this possible?",
+      "model_answer": "The surgeon is his mother",
+      "accepted_answers": [
+        "The surgeon is the boy's mother"
+      ],
+      "correct": false,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_011",
+      "riddle_type": "original",
+      "riddle_text": "A man and his son are in a terrible accident. The father dies. The boy is rushed to the hospital. The surgeon says, 'I can't operate on this boy; he's my son!' How is this possible?",
+      "model_answer": "The surgeon is his mother",
+      "accepted_answers": [
+        "The surgeon is the boy's mother"
+      ],
+      "correct": false,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_011",
+      "riddle_type": "altered",
+      "riddle_text": "The surgeon, who is the boy's father, says 'I cannot operate on this boy, he's my son!' Who is the surgeon to the boy?",
+      "model_answer": "His mother",
+      "accepted_answers": [
+        "The surgeon is the boy's father"
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "The surgeon is the boy's mother",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_011",
+      "riddle_type": "altered",
+      "riddle_text": "The surgeon, who is the boy's father, says 'I cannot operate on this boy, he's my son!' Who is the surgeon to the boy?",
+      "model_answer": "Mother",
+      "accepted_answers": [
+        "The surgeon is the boy's father"
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "The surgeon is the boy's mother",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_011",
+      "riddle_type": "altered",
+      "riddle_text": "The surgeon, who is the boy's father, says 'I cannot operate on this boy, he's my son!' Who is the surgeon to the boy?",
+      "model_answer": "His mother",
+      "accepted_answers": [
+        "The surgeon is the boy's father"
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "The surgeon is the boy's mother",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_012",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap, and is made of dough?",
+      "model_answer": "clock",
+      "accepted_answers": [
+        "A gingerbread man."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": true,
+      "original_answer": "A clock.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_012",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap, and is made of dough?",
+      "model_answer": "clock",
+      "accepted_answers": [
+        "A gingerbread man."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "A clock.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_012",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap, and is made of dough?",
+      "model_answer": "clock",
+      "accepted_answers": [
+        "A gingerbread man."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "A clock.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_013",
+      "riddle_type": "original",
+      "riddle_text": "A father and son are in a car crash. The father dies, and the son is rushed to surgery. The surgeon looks at the boy and says, 'I can't operate on this boy; he's my son!' How is this possible?",
+      "model_answer": "The surgeon is his mother",
+      "accepted_answers": [
+        "The surgeon is the boy's mother."
+      ],
+      "correct": false,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_013",
+      "riddle_type": "original",
+      "riddle_text": "A father and son are in a car crash. The father dies, and the son is rushed to surgery. The surgeon looks at the boy and says, 'I can't operate on this boy; he's my son!' How is this possible?",
+      "model_answer": "The surgeon is his mother",
+      "accepted_answers": [
+        "The surgeon is the boy's mother."
+      ],
+      "correct": false,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_013",
+      "riddle_type": "original",
+      "riddle_text": "A father and son are in a car crash. The father dies, and the son is rushed to surgery. The surgeon looks at the boy and says, 'I can't operate on this boy; he's my son!' How is this possible?",
+      "model_answer": "The surgeon is his mother",
+      "accepted_answers": [
+        "The surgeon is the boy's mother."
+      ],
+      "correct": false,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_013",
+      "riddle_type": "altered",
+      "riddle_text": "A father and son are in a car crash. The father dies, and the son is rushed to surgery. The surgeon looks at the boy and says, 'I can't operate on this boy; he's my son!' If the surgeon is not the boy's mother, how is this possible?",
+      "model_answer": "The surgeon is his father",
+      "accepted_answers": [
+        "The boy has two fathers."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "The surgeon is the boy's mother.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_013",
+      "riddle_type": "altered",
+      "riddle_text": "A father and son are in a car crash. The father dies, and the son is rushed to surgery. The surgeon looks at the boy and says, 'I can't operate on this boy; he's my son!' If the surgeon is not the boy's mother, how is this possible?",
+      "model_answer": "The surgeon is his father",
+      "accepted_answers": [
+        "The boy has two fathers."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "The surgeon is the boy's mother.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_013",
+      "riddle_type": "altered",
+      "riddle_text": "A father and son are in a car crash. The father dies, and the son is rushed to surgery. The surgeon looks at the boy and says, 'I can't operate on this boy; he's my son!' If the surgeon is not the boy's mother, how is this possible?",
+      "model_answer": "The surgeon is his father",
+      "accepted_answers": [
+        "The boy has two fathers."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "The surgeon is the boy's mother.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_014",
+      "riddle_type": "altered",
+      "riddle_text": "What goes through pages and chapters but never moves?",
+      "model_answer": "Bookmark",
+      "accepted_answers": [
+        "A story."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A road.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_014",
+      "riddle_type": "altered",
+      "riddle_text": "What goes through pages and chapters but never moves?",
+      "model_answer": "Bookmark",
+      "accepted_answers": [
+        "A story."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A road.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_014",
+      "riddle_type": "altered",
+      "riddle_text": "What goes through pages and chapters but never moves?",
+      "model_answer": "Bookmark",
+      "accepted_answers": [
+        "A story."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "A road.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_015",
+      "riddle_type": "original",
+      "riddle_text": "What has to be broken before you can use it?",
+      "model_answer": "egg",
+      "accepted_answers": [
+        "An egg."
+      ],
+      "correct": true,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_015",
+      "riddle_type": "original",
+      "riddle_text": "What has to be broken before you can use it?",
+      "model_answer": "egg",
+      "accepted_answers": [
+        "An egg."
+      ],
+      "correct": true,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_015",
+      "riddle_type": "original",
+      "riddle_text": "What has to be broken before you can use it?",
+      "model_answer": "egg",
+      "accepted_answers": [
+        "An egg."
+      ],
+      "correct": true,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_015",
+      "riddle_type": "altered",
+      "riddle_text": "What has to be broken before you can use it, but isn't something you eat?",
+      "model_answer": "egg",
+      "accepted_answers": [
+        "A piggy bank.",
+        "savings jar"
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": true,
+      "original_answer": "An egg.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_015",
+      "riddle_type": "altered",
+      "riddle_text": "What has to be broken before you can use it, but isn't something you eat?",
+      "model_answer": "egg",
+      "accepted_answers": [
+        "A piggy bank.",
+        "savings jar"
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "An egg.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_015",
+      "riddle_type": "altered",
+      "riddle_text": "What has to be broken before you can use it, but isn't something you eat?",
+      "model_answer": "egg",
+      "accepted_answers": [
+        "A piggy bank.",
+        "savings jar"
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "An egg.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_016",
+      "riddle_type": "altered",
+      "riddle_text": "What runs around the whole yard without moving, but exists only on a page?",
+      "model_answer": "fence",
+      "accepted_answers": [
+        "The word 'yard' or a diagram."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": true,
+      "original_answer": "A fence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_016",
+      "riddle_type": "altered",
+      "riddle_text": "What runs around the whole yard without moving, but exists only on a page?",
+      "model_answer": "fence",
+      "accepted_answers": [
+        "The word 'yard' or a diagram."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "A fence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_016",
+      "riddle_type": "altered",
+      "riddle_text": "What runs around the whole yard without moving, but exists only on a page?",
+      "model_answer": "fence",
+      "accepted_answers": [
+        "The word 'yard' or a diagram."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "A fence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_017",
+      "riddle_type": "original",
+      "riddle_text": "What has an eye but cannot see?",
+      "model_answer": "needle",
+      "accepted_answers": [
+        "A needle"
+      ],
+      "correct": true,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_017",
+      "riddle_type": "original",
+      "riddle_text": "What has an eye but cannot see?",
+      "model_answer": "needle",
+      "accepted_answers": [
+        "A needle"
+      ],
+      "correct": true,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_017",
+      "riddle_type": "original",
+      "riddle_text": "What has an eye but cannot see?",
+      "model_answer": "needle",
+      "accepted_answers": [
+        "A needle"
+      ],
+      "correct": true,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_017",
+      "riddle_type": "altered",
+      "riddle_text": "What has eyes but cannot see, and grows underground?",
+      "model_answer": "potato",
+      "accepted_answers": [
+        "A potato"
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A needle",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_017",
+      "riddle_type": "altered",
+      "riddle_text": "What has eyes but cannot see, and grows underground?",
+      "model_answer": "potato",
+      "accepted_answers": [
+        "A potato"
+      ],
+      "correct": true,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A needle",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_017",
+      "riddle_type": "altered",
+      "riddle_text": "What has eyes but cannot see, and grows underground?",
+      "model_answer": "potato",
+      "accepted_answers": [
+        "A potato"
+      ],
+      "correct": true,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "A needle",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_018",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap? It once had a face too, but it's been buried for centuries.",
+      "model_answer": "clock",
+      "accepted_answers": [
+        "A statue."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": true,
+      "original_answer": "A clock.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_018",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap? It once had a face too, but it's been buried for centuries.",
+      "model_answer": "clock",
+      "accepted_answers": [
+        "A statue."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "A clock.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_018",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap? It once had a face too, but it's been buried for centuries.",
+      "model_answer": "clock",
+      "accepted_answers": [
+        "A statue."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "A clock.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_019",
+      "riddle_type": "original",
+      "riddle_text": "What starts with 'T', ends with 'T', and has 'T' in it?",
+      "model_answer": "teapot",
+      "accepted_answers": [
+        "A teapot"
+      ],
+      "correct": true,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_019",
+      "riddle_type": "original",
+      "riddle_text": "What starts with 'T', ends with 'T', and has 'T' in it?",
+      "model_answer": "teapot",
+      "accepted_answers": [
+        "A teapot"
+      ],
+      "correct": true,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_019",
+      "riddle_type": "original",
+      "riddle_text": "What starts with 'T', ends with 'T', and has 'T' in it?",
+      "model_answer": "teapot",
+      "accepted_answers": [
+        "A teapot"
+      ],
+      "correct": true,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_019",
+      "riddle_type": "altered",
+      "riddle_text": "What starts with 'T', ends with 'T', and is a kind of fish?",
+      "model_answer": "trout",
+      "accepted_answers": [
+        "A trout"
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A teapot",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_019",
+      "riddle_type": "altered",
+      "riddle_text": "What starts with 'T', ends with 'T', and is a kind of fish?",
+      "model_answer": "trout",
+      "accepted_answers": [
+        "A trout"
+      ],
+      "correct": true,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A teapot",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_019",
+      "riddle_type": "altered",
+      "riddle_text": "What starts with 'T', ends with 'T', and is a kind of fish?",
+      "model_answer": "trout",
+      "accepted_answers": [
+        "A trout"
+      ],
+      "correct": true,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "A teapot",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_020",
+      "riddle_type": "altered",
+      "riddle_text": "What goes through cities and fields but never moves, and has a mouth but never speaks?",
+      "model_answer": "a river",
+      "accepted_answers": [
+        "A river."
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A road.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_020",
+      "riddle_type": "altered",
+      "riddle_text": "What goes through cities and fields but never moves, and has a mouth but never speaks?",
+      "model_answer": "a river",
+      "accepted_answers": [
+        "A river."
+      ],
+      "correct": true,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A road.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_020",
+      "riddle_type": "altered",
+      "riddle_text": "What goes through cities and fields but never moves, and has a mouth but never speaks?",
+      "model_answer": "a river",
+      "accepted_answers": [
+        "A river."
+      ],
+      "correct": true,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "A road.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_021",
+      "riddle_type": "original",
+      "riddle_text": "What goes up but never comes down?",
+      "model_answer": "age",
+      "accepted_answers": [
+        "Your age."
+      ],
+      "correct": true,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_021",
+      "riddle_type": "original",
+      "riddle_text": "What goes up but never comes down?",
+      "model_answer": "age",
+      "accepted_answers": [
+        "Your age."
+      ],
+      "correct": true,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_021",
+      "riddle_type": "original",
+      "riddle_text": "What goes up but never comes down?",
+      "model_answer": "age",
+      "accepted_answers": [
+        "Your age."
+      ],
+      "correct": true,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_021",
+      "riddle_type": "altered",
+      "riddle_text": "What goes up but never comes down, and is made of rock?",
+      "model_answer": "mountain",
+      "accepted_answers": [
+        "A mountain."
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "Your age.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_021",
+      "riddle_type": "altered",
+      "riddle_text": "What goes up but never comes down, and is made of rock?",
+      "model_answer": "mountain",
+      "accepted_answers": [
+        "A mountain."
+      ],
+      "correct": true,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "Your age.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_021",
+      "riddle_type": "altered",
+      "riddle_text": "What goes up but never comes down, and is made of rock?",
+      "model_answer": "mountain",
+      "accepted_answers": [
+        "A mountain."
+      ],
+      "correct": true,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "Your age.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_022",
+      "riddle_type": "altered",
+      "riddle_text": "What runs around the whole yard without moving, but is invisible?",
+      "model_answer": "fence",
+      "accepted_answers": [
+        "A boundary line or property line."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": true,
+      "original_answer": "A fence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_022",
+      "riddle_type": "altered",
+      "riddle_text": "What runs around the whole yard without moving, but is invisible?",
+      "model_answer": "a fence",
+      "accepted_answers": [
+        "A boundary line or property line."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "A fence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_022",
+      "riddle_type": "altered",
+      "riddle_text": "What runs around the whole yard without moving, but is invisible?",
+      "model_answer": "fence",
+      "accepted_answers": [
+        "A boundary line or property line."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "A fence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_023",
+      "riddle_type": "original",
+      "riddle_text": "I have branches, but no fruit, trunk, or leaves. What am I?",
+      "model_answer": "a bank",
+      "accepted_answers": [
+        "A bank"
+      ],
+      "correct": true,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_023",
+      "riddle_type": "original",
+      "riddle_text": "I have branches, but no fruit, trunk, or leaves. What am I?",
+      "model_answer": "bank",
+      "accepted_answers": [
+        "A bank"
+      ],
+      "correct": true,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_023",
+      "riddle_type": "original",
+      "riddle_text": "I have branches, but no fruit, trunk, or leaves. What am I?",
+      "model_answer": "bank",
+      "accepted_answers": [
+        "A bank"
+      ],
+      "correct": true,
+      "sample_index": 3
+    }
+  ]
+}
