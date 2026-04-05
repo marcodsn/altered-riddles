@@ -6,111 +6,243 @@ tags:
 - chain-of-thought
 - common-sense
 - bias-mitigation
-- experimental
+- benchmark
 - riddles
 license: apache-2.0
 dataset_info:
   features:
+  - name: id
+    dtype: string
   - name: original_riddle
     dtype: string
   - name: original_answer
     dtype: string
+  - name: original_accepted_answers
+    sequence: string
   - name: original_reasoning
     dtype: string
   - name: altered_riddle
     dtype: string
   - name: altered_answer
     dtype: string
+  - name: altered_accepted_answers
+    sequence: string
+  - name: altered_competing_answers
+    sequence: string
   - name: altered_reasoning
     dtype: string
-  - name: model
+  - name: source
+    dtype: string
+  - name: type
+    dtype: string
+  - name: set
+    dtype: string
+  - name: version_added
     dtype: string
   splits:
   - name: train
-    num_examples: 250
-  download_size: 0
-  dataset_size: 0
+    num_bytes: 79702
+    num_examples: 102
+  download_size: 44515
+  dataset_size: 79702
 configs:
 - config_name: default
   data_files:
   - split: train
-    path: data.jsonl
+    path: benchmark.jsonl
 size_categories:
 - n<1K
 ---
 
-<a href="https://github.com/marcodsn/altered-riddles/">
- <img src="https://huggingface.co/datasets/marcodsn/academic-chains-dev/resolve/main/made_with_curator.png" alt="Made with Curator" width=200px>
-</a>
+# Dataset Card for Altered Riddles Benchmark
 
-# Altered Riddles — HuggingFace Release
+## Dataset Description
 
-This HuggingFace release packages the curated benchmark used to study a specific LLM failure mode: when models rely on memorized, canonical answers to well-known riddles and ignore newly introduced or modified details in the prompt. The dataset contains 250 carefully edited riddle pairs (original + altered) designed to detect and analyze this "pattern override" behavior.
+- **Benchmark** [https://marcodsn.me/altered-riddles]
+- **GitHub:** [https://github.com/marcodsn/altered-riddles](https://github.com/marcodsn/altered-riddles)
+- **Dataset:** [https://huggingface.co/datasets/marcodsn/altered-riddles](https://huggingface.co/datasets/marcodsn/altered-riddles) (This page)  
 
-- GitHub: https://github.com/marcodsn/altered-riddles  
-- HF dataset page: https://huggingface.co/datasets/marcodsn/altered-riddles
+While working on the [academic-chains](https://huggingface.co/datasets/marcodsn/academic-chains) dataset, I tested a well-known alteration of a common riddle, "just for fun":
 
-What you get in this release
-- `data.jsonl` — The full benchmark (N=250). Each line is a JSON object describing one riddle pair and metadata (schema summarized below).
-- `model_outputs/` — Collected model run artifacts. Each subdirectory corresponds to a model / run and contains JSONL records with the raw responses, reasoning (when available), token usage, and run metadata. These artifacts let you inspect failures and reproduce evaluation without re-running models.
-- `LICENSE` — Apache-2.0 license for the dataset and accompanying artifacts.
+> *The surgeon, who is the boy's father, says, 'I cannot operate on this boy—he's my son!'. Who is the surgeon to the boy?*
 
-Why this dataset exists
-Large language models are trained on massive text corpora and unavoidably see popular riddles many times. When given a slightly modified version of a familiar riddle that changes the correct answer, some models continue to return the memorized response instead of reasoning from the updated input. The classic "surgeon" riddle (explicitly stating the surgeon is the boy's `father`) is a recurring motivating example: despite the prompt, some models answer "mother" because they default to the canonical riddle pattern.
+(*Below is the original riddle for reference*)
+> *A man and his son are in a terrible accident and are rushed to the hospital in critical condition. The doctor looks at the boy and exclaims, "I can't operate on this boy; he's my son!" How could this be?*
 
-This dataset collects controlled variations that flip or change a riddle's intended answer so you can:
-- Measure how often models fall back to memorized answers.
-- Inspect model outputs and explanations to diagnose token-level or reasoning failures.
-- Evaluate mitigation strategies (e.g., fine-tuning, instruction tuning, or prompt engineering) that aim to improve attention to altered details.
+You likely immediately thought, *"The father!"*, but surprisingly, many powerful LLMs (including `claude-sonnet-4-6`, `gemini-3.1-flash`, and others in my tests) fail this simple variation. The classic riddle expects *"The mother"* as the answer, revealing societal biases. However, when the text *explicitly states* the father is the surgeon, why do models get it wrong?
 
-Data schema (summary)
-Each line in `data.jsonl` is a JSON object with (at least) the following keys:
+My investigation suggests **overfitting to the original pattern**. Models—especially large ones—have seen and memorized standard riddles so often that they appear to ignore crucial, altered details in the prompt.
 
-- `id`: unique identifier (e.g., `alt_001`)  
-- `original_riddle`: canonical riddle text  
-- `original_answer`: canonical answer  
-- `original_accepted_answers`: list of accepted phrasings for the original answer  
-- `original_reasoning`: explanation for the original answer  
-- `altered_riddle`: the modified riddle with added/changed details  
-- `altered_answer`: the correct answer to the altered riddle  
-- `altered_accepted_answers`: list of accepted phrasings for the altered answer (full credit)  
-- `altered_competing_answers`: other valid answers discovered during validation (partial credit)  
-- `altered_reasoning`: explanation of why the altered answer is correct  
-- `source`: how the entry was created (e.g., `manual`, or model name used for generation)  
-- `type`: alteration type (e.g., `constraint_addition`, `meaning_shift`, `context_swap`, `bias_probe`)  
-- `set`: `fixed` or `auxiliary`  
-- `version_added`: YYMM when the entry was added
+*(Image below: Failure by Claude Sonnet 4.6; the answer should simply be "the father"!)*  
+![Example of pattern override failure with the surgeon riddle](images/failed-riddle-1-sonnet-4-6.png)
 
-Model output records (in `model_outputs/`) include:
-- `riddle_id`, `model`, `timestamp`, `temperature`, `input_tokens`, `output_tokens`, `model_answer`, `model_reasoning`, and `raw_response`.
+*(Image below: Failure by Gemini 3.1 Flash with Thinking; a correct answer could have been "a plant"!)*  
+![Example of pattern override failure with another riddle](images/failed-riddle-2-gemini-3-1-flash.png)
 
-Intended uses
-- Benchmarking model susceptibility to memorized-pattern overrides on short, familiar contexts.
-- Analyzing token-level importance or gradient-based explanations for failures.
-- Evaluating fine-tuning or instruction-based interventions that improve attention to prompt details.
-- Generating targeted test suites for RAG and instruction-following systems where grounding matters.
+**This Benchmark:** The `altered-riddles` benchmark is a curated collection designed to combat this specific type of reasoning failure. It contains familiar riddles where **key details have been deliberately changed**. Each entry includes:  
+1. The original riddle and its answer  
+2. The altered version with additional or modified details  
+3. The correct answer to the altered riddle  
+4. Detailed reasoning explaining the solution for both versions
 
-Limitations
-- Narrow focus: this collection targets a single failure mode (pattern override in riddles) rather than general reasoning. Treat it as a diagnostic/benchmarking dataset, not a comprehensive reasoning corpus.
-- Generation artifacts: several examples and reasoning fields were generated or validated with LLMs. Reasoning text can contain imperfections and should be inspected before use in training.
-- English-only: current release is in English.
+## Repository Contents
 
-License
-This dataset is released under the Apache License 2.0: https://www.apache.org/licenses/LICENSE-2.0
+This HuggingFace repository contains the full benchmark release for version `2604` (April 2026):
 
-How to cite
-```bibtex
-@misc{marcodsn_2025_alteredriddles,
-  title = {Altered Riddles Dataset},
-  author = {Marco De Santis},
-  month = {May},
-  year = {2025},
-  url = {https://huggingface.co/datasets/marcodsn/altered-riddles}
-}
-```
+- **`benchmark.jsonl`** — The benchmark dataset (fixed + auxiliary riddle sets)  
+- **`leaderboard.json`** — Aggregated leaderboard across all evaluated models  
+- **`model_outputs/2604/`** — Raw per-model answer files  
+- **`results/2604/`** — Detailed per-model evaluation results  
+- **`images/`** — Charts and result visualizations  
 
-### Acknowledgements
-Developed for the Reasoning Datasets Competition and produced with Bespoke Curator. Thanks to HuggingFace and the research community for feedback and hosting.
+## Dataset Structure
 
-Notes
-- The project repository contains the complete pipeline (generation, validation, benchmarking, evaluation) and a technical report (`REPORT.md`) explaining design choices, scoring, and versioning rationale. The HuggingFace release intentionally provides the dataset and model outputs so researchers can analyze results without re-running expensive model calls.
+Each example in `benchmark.jsonl` includes the following features:  
+
+* `id`: Unique identifier for the riddle pair (e.g., `"alt_001"`).  
+* `original_riddle`: The text of the original, unaltered riddle.  
+* `original_answer`: The canonical answer to the original riddle.  
+* `original_accepted_answers`: List of accepted phrasings for the original answer.  
+* `original_reasoning`: The explanation for the original riddle's answer.  
+* `altered_riddle`: The modified version of the riddle with additional constraints or details.  
+* `altered_answer`: The correct answer to the altered riddle.  
+* `altered_accepted_answers`: List of accepted phrasings for the altered answer — **full credit (1.0×)**.  
+* `altered_competing_answers`: Other valid answers discovered during validation — **partial credit (0.5×)**. May be promoted to `altered_accepted_answers` after manual review.  
+* `altered_reasoning`: The explanation for the altered riddle's answer, often explicitly noting the deviation from the expected pattern.  
+* `source`: How the entry was created (`manual`, or the generating model name).  
+* `type`: Alteration type — one of `constraint_addition`, `meaning_shift`, `context_swap`, or `bias_probe`.  
+* `set`: `fixed` (longitudinal baseline, never regenerated) or `auxiliary` (may be refreshed for contamination resistance).  
+* `version_added`: The YYMM benchmark version when this entry was added.  
+
+### Alteration Types
+
+| Type | Description | Example change |
+|---|---|---|
+| `constraint_addition` | A new physical/functional constraint rules out the original answer | "…and it grows from the ground" |
+| `meaning_shift` | A key word takes on a different meaning in the new context | "bucket" → "room" shifts "lighter" from weight to brightness |
+| `context_swap` | The context or setting changes the logical answer | Redirecting the question's perspective |
+| `bias_probe` | Explicitly states information contradicting a known model bias | "The surgeon, who is the boy's father…" |
+
+## Scoring
+
+Evaluation uses **weighted scoring** to distinguish primary answers from competing ones:
+
+| Match type | Score | Description |
+|---|---|---|
+| Primary match (`altered_accepted_answers`) | **1.0** | Model gave the intended altered answer |
+| Competing match (`altered_competing_answers`) | **0.5** | Model gave a valid but non-primary answer |
+| Original answer | **0.0** | Model fell back to the memorized answer (counted as pattern override) |
+| Wrong answer | **0.0** | Model gave an unrelated incorrect answer |
+
+The key insight: a competing answer that differs from the original still demonstrates the model is **reasoning about the altered text** rather than recalling a memorised response. It deserves partial credit because the benchmark's primary goal is detecting pattern override, not requiring a single exact phrasing.
+
+### Key Metrics
+
+| Metric | What it tells you |
+|---|---|
+| **Altered accuracy** | How often the model gives the correct answer to the modified riddle |
+| **Pattern override rate** | How often the model gives the *original* (memorised) answer to the *altered* riddle — the central failure signal |
+| **Altered weighted accuracy** | Like altered accuracy, but accounting for partial credit from competing answers |
+| **Original accuracy** | Sanity check — can the model solve the unaltered riddles at all? |
+
+A model with high original accuracy but low altered accuracy is probably exhibiting the pattern-override failure this benchmark is designed to detect.
+
+### Evaluation Setup
+
+Models are tested using the **temperature recommended by their original creators** when available (e.g., a reasoning model's suggested thinking temperature).
+
+When temperature > 0, each riddle is sampled **3 times** (resource-constrained for now) and scores are reported as the **average accuracy** across samples. The leaderboard also shows best-of-3 and majority-vote accuracy for these models.
+
+## Benchmark Split
+
+To balance stability and contamination resistance, the benchmark is split into two parts:
+
+- **Fixed core (~150 riddles):** Never regenerated. Serves as the longitudinal baseline so scores are comparable across versions. Tagged `"set": "fixed"`.  
+- **Auxiliary set (~100–150 riddles):** May be refreshed in future versions to resist contamination. Tagged `"set": "auxiliary"`.  
+
+**Target working size: 200–350 riddles.** Statistical justification: at ~200 riddles and p≈0.65, the margin of error is ±7% at 95% confidence — sufficient for rough model rankings. Beyond ~500 riddles, diminishing returns set in. Current version has 250 riddles.
+
+## Benchmark Results (2604)
+
+Results are based on the top-10 ranked models evaluated on the full `2604` benchmark. All charts are generated from [leaderboard.json](https://huggingface.co/datasets/marcodsn/altered-riddles/blob/main/leaderboard.json) (check the linked file for the full leaderboard).
+
+### Performance Comparison
+
+![Performance comparison chart — altered accuracy with 95% confidence intervals](images/performance_chart.png)
+
+Each bar shows a model's **altered accuracy** (solid fill) against its **weighted accuracy** (faint extension), which includes partial-credit competing answers. Error bars are 95% confidence intervals. A large gap between the faint and solid portions means competing answers are carrying a significant share of the score.
+
+### Original vs. Altered Accuracy
+
+![Bubble chart of original accuracy vs. altered accuracy, bubble size encodes pattern override rate](images/original_vs_altered_chart.png)
+
+**Original accuracy** is on the X-axis, **altered accuracy** on the Y-axis. Bubble size and colour intensity encode the **pattern override rate** — how often the model gave the memorised answer to the modified riddle. Models in the bottom-right corner are the clearest failure cases: they solve the original riddle reliably, but fall back to the memorised answer when the details change.
+
+### Sampling Gain Comparison
+
+![Sampling gain chart showing majority vote and best-of-N gains over average accuracy](images/sampling_gain_chart.png)
+
+Each bar starts at the model's **average single-sample accuracy**, then shows the gain from **best-of-3** (gold segment) and **majority vote** (green or red segment). Best-of-3 gain is always non-negative — it only requires one correct sample out of three. Majority vote gain can go negative, meaning the model's most common answer across samples is worse than any individual sample.
+
+### Token Efficiency
+
+![Token efficiency scatter plot — output tokens per sample vs. altered accuracy, log scale](images/token_efficiency.png)
+
+Output tokens per altered riddle (log scale) vs. **altered accuracy**, with diagonal iso-efficiency lines — models on the same line deliver equal accuracy per token, and up-left is better. Reasoning models typically spend 10–100× more tokens than standard models; this chart makes it easy to see whether that cost translates into a meaningful accuracy gain.
+
+## Dataset Creation
+
+### Source Data  
+The base scenarios use common riddles found in LLM knowledge. The core creative step is identifying familiar riddles and adding key details that change the expected answer.  
+
+### Data Generation Pipeline  
+1. **Riddle Generation:** Use LLMs prompted with few-shot examples (via `prompts/generation.j2`) to produce altered riddle pairs from `data/riddles_source.txt`. Riddles are generated by 2–3 models from **different families** (e.g., Gemini, GPT-5.4, GLM-5) to maximise stylistic diversity and equalise contamination.  
+2. **Validation:** A second LLM pass (`prompts/validation.j2`) checks answer validity, distinctness, logical soundness, subtlety, and identifies any competing answers.  
+3. **Pool & Promotion:** Valid riddles land in `data/pool.jsonl` before being promoted to the benchmark via `scripts/promote.py`. This decouples generation from benchmark composition.  
+4. **Deduplication:** Exact and fuzzy matching removes near-duplicate entries.  
+5. **Benchmark & Evaluate:** Models are tested with `scripts/benchmark.py` and scored with `scripts/evaluate.py`. Evaluation is fully re-runnable — accepted answers can be edited and scores regenerated without re-running any models.  
+
+### Splits  
+The benchmark currently contains a **`train` split** used as the challenge/evaluation set. The fixed core provides a stable longitudinal baseline; the auxiliary set is refreshable per version.  
+
+## Example Uses  
+
+Given that our altered riddles are difficult for current SOTA LLMs, the main uses of this benchmark are to:  
+- **Test models** and study their pattern-override behavior.  
+- **Investigate why** LLMs fail on this task and how to address it.  
+
+## Scaling Plan  
+If initial experiments show promise, future plans include:  
+1. **More Diverse Models:** Incorporate generations from additional LLMs to increase riddle and alteration diversity.  
+2. **More Complex Alterations:** Experiment with different types of modifications beyond simple additions.  
+3. **Increased Volume:** Scale up generation and refine the QC process.  
+4. **Testing Framework:** Develop a standardized evaluation procedure for model performance.  
+5. **Cross-lingual Exploration:** Investigate pattern-override issues in riddles from other languages (soon™️).  
+
+## Limitations and Biases  
+- **Limited Scope:** The dataset currently focuses on a specific failure mode (pattern override) using a limited set of base riddles.  
+- **Generation Artifacts:** LLM-generated reasoning may contain errors or lack human-like awareness of alterations.  
+- **Experimental Nature:** This is an exploratory benchmark targeting a specific hypothesis; its effectiveness requires empirical validation.  
+
+## Acknowledgements  
+This experiment was inspired by the `academic-chains` dataset and the [Reasoning Datasets Competition](https://huggingface.co/blog/bespokelabs/reasoning-datasets-competition). Thanks to [HuggingFace](https://huggingface.co/), [Bespoke Labs](https://www.bespokelabs.ai/), and [Together AI](https://together.ai/) for organizing the competition!  
+
+## Licensing Information  
+This dataset is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt).  
+
+## Citation Information  
+```bibtex  
+@misc{marcodsn_2025_alteredriddles,  
+  title = {Altered Riddles Benchmark},  
+  author = {Marco De Santis},  
+  year = {2025},  
+  url = {https://huggingface.co/datasets/marcodsn/altered-riddles}  
+}  
+```  
+
+## Development Updates  
+> [!Note]  
+> **[03/05/2025]** Initial dataset created!  
+
+> [!Note]  
+> **[05/04/2026]** Benchmark v2604 published! Repository now includes `benchmark.jsonl` with fixed + auxiliary riddle sets, `leaderboard.json`, per-model outputs under `model_outputs/2604/`, detailed per-model results under `results/2604/`, and result charts. The project has grown from a simple dataset into a full evaluation benchmark with a multi-stage generation, validation, promotion, and scoring pipeline. Bespoke Curator is no longer used; all generation and evaluation is handled by the custom scripts in the repository.

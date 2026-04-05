@@ -60,7 +60,7 @@ fig.add_trace(
         y=y_vals,
         x=[1.0] * len(df),
         orientation="h",
-        marker=dict(color="#f3f4f6"),
+        marker=dict(color="#f1efec"),
         hoverinfo="none",
         showlegend=False,
         width=0.35,
@@ -125,12 +125,13 @@ fig.add_trace(
 annotations = []
 shapes = []
 for i, row in df.iterrows():
+    # Rank Box
     box_color = (
-        "#1f2937"
+        "#1a1a1a"
         if row["rank"] <= 3
-        else ("#4b5563" if row["rank"] <= 6 else "#d1d5db")
+        else ("#4a4a4a" if row["rank"] <= 6 else "#a0a0a0")
     )
-    text_color = "white" if row["rank"] <= 6 else "#4b5563"
+    text_color = "white"
     shapes.append(
         dict(
             type="rect",
@@ -164,7 +165,7 @@ for i, row in df.iterrows():
             xanchor="left",
             yanchor="bottom",
             yshift=12,
-            font=dict(size=13, family="monospace", color="#374151"),
+            font=dict(size=13, family="monospace", color="#1a1a1a"),
         )
     )
     bon_pct = row["bon_gain"] * 100
@@ -181,18 +182,19 @@ for i, row in df.iterrows():
             xanchor="right",
             yanchor="bottom",
             yshift=12,
-            font=dict(size=11, family="monospace", color="#6b7280"),
+            font=dict(size=11, family="monospace", color="#6b6b6b"),
         )
     )
 
 fig.update_layout(
+    font=dict(color="#1a1a1a", family="monospace"),
     barmode="overlay",
     title=dict(
         text="SAMPLING GAIN COMPARISON<br>"
-        "<span style='font-size:12px;font-weight:normal'>"
+        "<span style='font-size:12px;font-weight:normal;color:#4a4a4a'>"
         "Base = avg accuracy | majority gain | majority loss | best-of-N gain"
         "</span>",
-        font=dict(family="monospace", size=16),
+        font=dict(family="monospace", size=16, color="#1a1a1a"),
     ),
     xaxis=dict(
         showticklabels=False, showgrid=False, zeroline=False, range=[-0.1, 1.05]
@@ -203,7 +205,8 @@ fig.update_layout(
         zeroline=False,
         range=[-0.5, len(df) - 0.1],
     ),
-    plot_bgcolor="white",
+    plot_bgcolor="#f9f7f4",
+    paper_bgcolor="#f9f7f4",
     margin=dict(l=20, r=20, t=100, b=20),
     annotations=annotations,
     shapes=shapes,
@@ -218,5 +221,5 @@ fig.update_layout(
     height=850,
 )
 
-fig.write_image("data/images/sampling_gain_chart.png")
+fig.write_image("data/images/sampling_gain_chart.png", scale=3)
 print("Updated chart created successfully.")

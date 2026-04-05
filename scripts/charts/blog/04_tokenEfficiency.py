@@ -123,12 +123,6 @@ for _, row in df.iterrows():
 
 fig.update_layout(
     font=dict(color="#1a1a1a", family="monospace"),
-    title=dict(
-        text="TOKEN EFFICIENCY: Output Tokens vs. Altered Accuracy<br>"
-        "<span style='font-size:13px; font-weight:normal; color:#4a4a4a'>"
-        "Per-sample tokens normalised for variable test-set sizes · color = model family</span>",
-        font=dict(family="monospace", size=16, color="#1a1a1a"),
-    ),
     xaxis=dict(
         title="Output Tokens / Altered Sample (log scale)",
         type="log",
@@ -159,10 +153,10 @@ fig.update_layout(
     ),
     plot_bgcolor="#f9f7f4",
     paper_bgcolor="#f9f7f4",
-    margin=dict(l=70, r=40, t=110, b=60),
+    margin=dict(l=0, r=0, t=0, b=0),
     height=750,
     width=1000,
 )
 
-fig.write_image("data/images/token_efficiency.png", scale=3)
-print("Updated chart created successfully.")
+fig.write_image("data/images/blog/token_efficiency.png", scale=3)
+print("Updated blog chart created successfully.")

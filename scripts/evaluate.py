@@ -249,9 +249,15 @@ def evaluate_model(
     # ------------------------------------------------------------------
     # Score every individual output record
     # ------------------------------------------------------------------
+    provider = ""
+    quantization = ""
+    # temperature = 0.0
     for output in model_outputs:
         if not model_name:
             model_name = output.get("model", "unknown")
+            provider = output.get("provider", "")
+            quantization = output.get("quantization", "")
+            # temperature = output.get("temperature", 0.0)
 
         detail = _score_single_output(output, benchmark_lookup)
         if detail is None:
@@ -456,6 +462,9 @@ def evaluate_model(
 
     return {
         "model": model_name,
+        "provider": provider,
+        "quantization": quantization,
+        # "temperature": temperature,
         "summary": summary,
         "details": details,
     }
@@ -476,6 +485,9 @@ def build_leaderboard(all_results: list[dict]) -> list[dict]:
         s = result["summary"]
         row: dict = {
             "model": result["model"],
+            "provider": result.get("provider", ""),
+            "quantization": result.get("quantization", ""),
+            # "temperature": result.get("temperature", 0.0),
             "original_accuracy": s["original_accuracy"],
             "altered_accuracy": s["altered_accuracy"],
             "altered_weighted_accuracy": s["altered_weighted_accuracy"],
@@ -507,6 +519,9 @@ def build_leaderboard(all_results: list[dict]) -> list[dict]:
     ordered: list[dict] = []
     for row in rows:
         entry: dict = {"rank": row["rank"], "model": row["model"]}
+        entry["provider"] = row.get("provider", "")
+        entry["quantization"] = row.get("quantization", "")
+        # entry["temperature"] = row.get("temperature", 0.0)
         entry["original_accuracy"] = row["original_accuracy"]
         entry["altered_accuracy"] = row["altered_accuracy"]
         entry["altered_weighted_accuracy"] = row["altered_weighted_accuracy"]

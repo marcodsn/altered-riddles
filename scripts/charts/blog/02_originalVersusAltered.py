@@ -54,10 +54,6 @@ fig.add_trace(
 )
 
 fig.update_layout(
-    title=dict(
-        text="ORIGINAL VS. ALTERED ACCURACY<br><span style='font-size: 14px; font-weight: normal; color: #4a4a4a;'>Bubble size & color intensity scale with Pattern Override Rate</span>",
-        font=dict(family="monospace", size=18, color="#1a1a1a"),
-    ),
     xaxis=dict(
         title="Original Accuracy",
         range=[0.75, 0.95],
@@ -69,11 +65,11 @@ fig.update_layout(
     ),
     plot_bgcolor="#f9f7f4",
     paper_bgcolor="#f9f7f4",
-    margin=dict(l=60, r=40, t=80, b=60),
+    margin=dict(l=0, r=0, t=0, b=0),
     font=dict(family="monospace", color="#1a1a1a"),
     height=800,
     width=950,
 )
 
-fig.write_image("data/images/original_vs_altered_chart.png", scale=3)
-print("Updated chart created successfully.")
+fig.write_image("data/images/blog/original_vs_altered_chart.png", scale=3)
+print("Updated blog chart created successfully.")

@@ -173,6 +173,8 @@ def _make_record(
     temperature: float,
     input_tokens: int | None,
     output_tokens: int | None,
+    provider: str,
+    quantization: str | None = None,
 ) -> dict:
     """Build an output record dict."""
     return {
@@ -184,6 +186,8 @@ def _make_record(
         "model_reasoning": reasoning,
         "raw_response": raw_response,
         "model": model_name.lower(),
+        "provider": provider,
+        "quantization": quantization,
         "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S"),
         "temperature": temperature,
         "input_tokens": input_tokens,
@@ -195,6 +199,11 @@ def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
     """Main benchmark loop."""
     # --- Resolve provider, model, and API key ------------------------------
     model_name, api_key = resolve_provider(args.provider, args.model)
+
+    # Determine the model name to use when saving results
+    save_model_name = model_name
+    if args.reasoning:
+        save_model_name += ":reasoning"
 
     # --- Resolve num_samples -----------------------------------------------
     num_samples: int = args.num_samples
@@ -335,10 +344,12 @@ def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
                 answer=answer,
                 reasoning=reasoning,
                 raw_response=raw_response,
-                model_name=model_name,
+                model_name=save_model_name,
                 temperature=args.temperature,
                 input_tokens=input_tokens,
                 output_tokens=output_tokens,
+                provider=args.provider,
+                quantization=args.quantization,
             )
             append_jsonl(output_path, record)
 
@@ -443,10 +454,12 @@ def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
                     answer=answer,
                     reasoning=reasoning,
                     raw_response=raw_response,
-                    model_name=model_name,
+                    model_name=save_model_name,
                     temperature=args.temperature,
                     input_tokens=input_tokens_val,
                     output_tokens=output_tokens_val,
+                    provider=args.provider,
+                    quantization=args.quantization,
                 )
                 append_jsonl(output_path, record)
 
@@ -548,6 +561,18 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         default=False,
         help="Include reasoning in the prompt (adds a 'reasoning' field before 'answer' in the model's response).",
+    )
+    parser.add_argument(
+        "--reasoning",
+        action="store_true",
+        default=False,
+        help="Append ':reasoning' to the model name when saving results.",
+    )
+    parser.add_argument(
+        "--quantization",
+        type=str,
+        default=None,
+        help="Quantization type used by the model.",
     )
     return parser.parse_args()
 

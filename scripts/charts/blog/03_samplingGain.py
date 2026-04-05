@@ -1,6 +1,5 @@
 import json
 
-import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -18,34 +17,33 @@ for entry in data:
         entry["model"] = model.split("/")[-1]
 
 df = pd.DataFrame(data)
-df["error"] = 1.96 * np.sqrt(
-    df["total_score"] * (1 - df["total_score"]) / df["num_riddles"]
-)
-df = df.sort_values("total_score", ascending=True).reset_index(drop=True)
+df["maj_gain"] = df["majority_vote_accuracy"] - df["average_accuracy"]
+df["bon_gain"] = df["best_of_n_accuracy"] - df["average_accuracy"]
+df = df.sort_values("average_accuracy", ascending=True).reset_index(drop=True)
 
 
 def get_color(model):
     m = model.lower()
     if "gemma" in m or "gemini" in m:
-        return "#8ab4e8"  # Gemini blue — pastel of brand #4796E3
+        return "#8ab4e8"
     if "gpt" in m:
-        return "#82c8b4"  # ChatGPT green — pastel of brand #10A37F
+        return "#82c8b4"
     if "mistral" in m:
-        return "#f5ae76"  # Mistral orange — pastel of brand #FF8205
+        return "#f5ae76"
     if "qwen" in m:
-        return "#b09ddd"  # Qwen purple-blue — pastel of Alibaba/Qwen identity
+        return "#b09ddd"
     if "glm" in m:
-        return "#82bcd8"  # Zhipu GLM blue — pastel of brand identity
+        return "#82bcd8"
     if "kimi" in m:
-        return "#80c2c6"  # Kimi teal — pastel of Moonshot AI identity
+        return "#80c2c6"
     if "claude" in m:
-        return "#e8a086"  # Claude terra cotta — pastel of brand #DA7756
+        return "#e8a086"
     if "deepseek" in m:
-        return "#80aed8"  # DeepSeek blue — pastel of whale logo #2B6CB4
+        return "#80aed8"
     if "minimax" in m:
-        return "#d48e8e"  # MiniMax red — pastel of brand #B4393C
+        return "#d48e8e"
     if "llama" in m:
-        return "#86b6f2"  # Meta/LLaMA blue — pastel of Meta #0082FB
+        return "#86b6f2"
     if "lfm" in m or "liquid" in m:
         return "#7dcfcf"
     return "#9e9e9e"
@@ -56,7 +54,7 @@ df["color"] = df["model"].apply(get_color)
 fig = go.Figure()
 y_vals = list(range(len(df)))
 
-# 1) Background grey bar (100%)
+# 1) Background grey bar (full width)
 fig.add_trace(
     go.Bar(
         y=y_vals,
@@ -69,40 +67,63 @@ fig.add_trace(
     )
 )
 
-# Altered accuracy intersected with average_accuracy is the total score
-# Altered accuracy does not include partial score riddles, so it is always <= total_score
-# weighted accuracy includes partial score riddles, but only counts the first sample
-
-# 2) Faint bar for altered_weighted_accuracy
+# 2) Base bar (average_accuracy)
 fig.add_trace(
     go.Bar(
         y=y_vals,
         x=df["average_accuracy"],
         orientation="h",
-        marker=dict(color=df["color"], opacity=0.3),
+        name="Avg Accuracy",
         showlegend=False,
+        marker=dict(color=df["color"], opacity=0.85),
         width=0.35,
     )
 )
 
-# 3) Solid bar for altered_accuracy + error bars
+# 5) Best-of-N gain (always positive, gold segment)
 fig.add_trace(
     go.Bar(
         y=y_vals,
-        x=df["altered_accuracy"],
+        x=df["bon_gain"],
+        base=df["average_accuracy"],
         orientation="h",
-        marker=dict(color=df["color"], opacity=1.0),
-        error_x=dict(
-            type="data", array=df["error"], color="#111827", thickness=1.5, width=4
-        ),
-        showlegend=False,
+        name="Best-of-N Gain",
+        marker=dict(color="#fbbf24", opacity=0.75),
         width=0.35,
     )
 )
 
+# 3) Majority vote gain — POSITIVE (green segment extending right)
+pos_mask = df["maj_gain"] >= 0
+fig.add_trace(
+    go.Bar(
+        y=[y_vals[i] for i in df.index[pos_mask]],
+        x=df.loc[pos_mask, "maj_gain"],
+        base=df.loc[pos_mask, "average_accuracy"],
+        orientation="h",
+        name="Majority Vote Gain (+)",
+        marker=dict(color="#34d399", opacity=0.9),
+        width=0.35,
+    )
+)
+
+# 4) Majority vote gain — NEGATIVE (red segment extending left)
+neg_mask = df["maj_gain"] < 0
+fig.add_trace(
+    go.Bar(
+        y=[y_vals[i] for i in df.index[neg_mask]],
+        x=df.loc[neg_mask, "maj_gain"].abs(),
+        base=df.loc[neg_mask, "majority_vote_accuracy"],  # base is the lower value
+        orientation="h",
+        name="Majority Vote Loss (−)",
+        marker=dict(color="#f87171", opacity=0.9),
+        width=0.35,
+    )
+)
+
+# Annotations: rank box + model name on top + score on right
 annotations = []
 shapes = []
-
 for i, row in df.iterrows():
     # Rank Box
     box_color = (
@@ -111,7 +132,6 @@ for i, row in df.iterrows():
         else ("#4a4a4a" if row["rank"] <= 6 else "#a0a0a0")
     )
     text_color = "white"
-
     shapes.append(
         dict(
             type="rect",
@@ -125,8 +145,6 @@ for i, row in df.iterrows():
             yref="y",
         )
     )
-
-    # Rank Text
     annotations.append(
         dict(
             x=-0.05,
@@ -138,27 +156,23 @@ for i, row in df.iterrows():
             yanchor="middle",
         )
     )
-
-    # Model Name
     annotations.append(
         dict(
             x=0.0,
             y=i,
-            text=row["model"] + f" ({row.get('quantization', '')})"
-            if row.get("quantization")
-            else row["model"],
+            text=row["model"],
             showarrow=False,
             xanchor="left",
             yanchor="bottom",
             yshift=12,
-            font=dict(size=14, family="monospace", color="#1a1a1a"),
+            font=dict(size=13, family="monospace", color="#1a1a1a"),
         )
     )
-
-    # Score Text
-    val = row["altered_accuracy"] * 100
-    err = row["error"] * 100
-    txt = f"{val:.2f} ±{err:.2f}"
+    bon_pct = row["bon_gain"] * 100
+    maj_pct = row["maj_gain"] * 100
+    avg_pct = row["average_accuracy"] * 100
+    sign = "+" if maj_pct >= 0 else ""
+    txt = f"avg {avg_pct:.1f}%   maj {sign}{maj_pct:.1f}%   bon +{bon_pct:.1f}%"
     annotations.append(
         dict(
             x=1.0,
@@ -168,20 +182,13 @@ for i, row in df.iterrows():
             xanchor="right",
             yanchor="bottom",
             yshift=12,
-            font=dict(size=14, family="monospace", color="#6b6b6b"),
+            font=dict(size=11, family="monospace", color="#6b6b6b"),
         )
     )
 
 fig.update_layout(
     font=dict(color="#1a1a1a", family="monospace"),
     barmode="overlay",
-    title=dict(
-        text="PERFORMANCE COMPARISON<br>"
-        "<span style='font-size:12px;font-weight:normal;color:#4a4a4a'>"
-        "Average accuracy on altered riddles with 95% confidence intervals (sorted by score)"
-        "</span>",
-        font=dict(family="monospace", size=16, color="#1a1a1a"),
-    ),
     xaxis=dict(
         showticklabels=False, showgrid=False, zeroline=False, range=[-0.1, 1.05]
     ),
@@ -193,11 +200,19 @@ fig.update_layout(
     ),
     plot_bgcolor="#f9f7f4",
     paper_bgcolor="#f9f7f4",
-    margin=dict(l=20, r=20, t=80, b=20),
+    margin=dict(l=0, r=0, t=0, b=0),
     annotations=annotations,
     shapes=shapes,
-    height=750,
+    legend=dict(
+        orientation="h",
+        yanchor="top",
+        y=-0.02,
+        xanchor="center",
+        x=0.5,
+        font=dict(family="monospace", size=12),
+    ),
+    height=850,
 )
 
-fig.write_image("data/images/performance_chart.png", scale=3)
-print("Updated chart created successfully.")
+fig.write_image("data/images/blog/sampling_gain_chart.png", scale=3)
+print("Updated blog chart created successfully.")

@@ -175,13 +175,6 @@ for i, row in df.iterrows():
 fig.update_layout(
     font=dict(color="#1a1a1a", family="monospace"),
     barmode="overlay",
-    title=dict(
-        text="PERFORMANCE COMPARISON<br>"
-        "<span style='font-size:12px;font-weight:normal;color:#4a4a4a'>"
-        "Average accuracy on altered riddles with 95% confidence intervals (sorted by score)"
-        "</span>",
-        font=dict(family="monospace", size=16, color="#1a1a1a"),
-    ),
     xaxis=dict(
         showticklabels=False, showgrid=False, zeroline=False, range=[-0.1, 1.05]
     ),
@@ -193,11 +186,11 @@ fig.update_layout(
     ),
     plot_bgcolor="#f9f7f4",
     paper_bgcolor="#f9f7f4",
-    margin=dict(l=20, r=20, t=80, b=20),
+    margin=dict(l=0, r=0, t=0, b=0),
     annotations=annotations,
     shapes=shapes,
     height=750,
 )
 
-fig.write_image("data/images/performance_chart.png", scale=3)
-print("Updated chart created successfully.")
+fig.write_image("data/images/blog/performance_chart.png", scale=3)
+print("Updated blog chart created successfully.")
