@@ -254,7 +254,7 @@ fig.update_layout(
     ),
     plot_bgcolor="#f9f7f4",
     paper_bgcolor="#f9f7f4",
-    margin=dict(l=0, r=0, t=0, b=0),
+    margin=dict(l=0, r=0, t=20, b=0),
     annotations=annotations,
     shapes=shapes,
     height=750,
