@@ -25,6 +25,30 @@
   },
   {
     "rank": 2,
+    "model": "gemma-4-31b-it:reasoning",
+    "provider": "local",
+    "quantization": "UD-Q6_K_XL",
+    "original_accuracy": 0.828,
+    "altered_accuracy": 0.485,
+    "altered_weighted_accuracy": 0.514,
+    "pattern_override_rate": 0.228,
+    "average_accuracy": 0.529,
+    "total_score": 0.529,
+    "total_input_tokens": 27014,
+    "total_output_tokens": 325601,
+    "original_input_tokens": 6822,
+    "original_output_tokens": 18584,
+    "altered_input_tokens": 20192,
+    "altered_output_tokens": 307017,
+    "num_riddles": 250,
+    "original_num_riddles": 87,
+    "altered_num_riddles": 250,
+    "num_samples": 3,
+    "best_of_n_accuracy": 0.644,
+    "majority_vote_accuracy": 0.526
+  },
+  {
+    "rank": 3,
     "model": "zai-org/glm-5:reasoning",
     "provider": "together",
     "quantization": "FP4",
@@ -48,7 +72,7 @@
     "majority_vote_accuracy": 0.54
   },
   {
-    "rank": 3,
+    "rank": 4,
     "model": "openai/gpt-oss-120b:reasoning",
     "provider": "together",
     "quantization": "MXFP4",
@@ -72,7 +96,7 @@
     "majority_vote_accuracy": 0.482
   },
   {
-    "rank": 4,
+    "rank": 5,
     "model": "moonshotai/kimi-k2.5:reasoning",
     "provider": "together",
     "quantization": "",
@@ -96,7 +120,7 @@
     "majority_vote_accuracy": 0.47
   },
   {
-    "rank": 5,
+    "rank": 6,
     "model": "qwen3.5-35b-a3b:reasoning",
     "provider": "local",
     "quantization": "UD-Q4_K_XL",
@@ -120,7 +144,7 @@
     "majority_vote_accuracy": 0.43
   },
   {
-    "rank": 6,
+    "rank": 7,
     "model": "gpt-oss-20b:reasoning",
     "provider": "local",
     "quantization": "MXFP4",
@@ -144,7 +168,7 @@
     "majority_vote_accuracy": 0.462
   },
   {
-    "rank": 7,
+    "rank": 8,
     "model": "gemma-4-31b-it",
     "provider": "local",
     "quantization": "UD-Q6_K_XL",
@@ -168,7 +192,7 @@
     "majority_vote_accuracy": 0.426
   },
   {
-    "rank": 8,
+    "rank": 9,
     "model": "gemma-4-26b-a4b-it",
     "provider": "local",
     "quantization": "UD-Q6_K_XL",
@@ -192,7 +216,7 @@
     "majority_vote_accuracy": 0.382
   },
   {
-    "rank": 9,
+    "rank": 10,
     "model": "qwen/qwen3.5-27b",
     "provider": "local",
     "quantization": "UD-Q4_K_XL",
@@ -216,7 +240,7 @@
     "majority_vote_accuracy": 0.328
   },
   {
-    "rank": 10,
+    "rank": 11,
     "model": "lfm2-24b-a2b",
     "provider": "local",
     "quantization": "Q8_0",
@@ -240,7 +264,7 @@
     "majority_vote_accuracy": 0.318
   },
   {
-    "rank": 11,
+    "rank": 12,
     "model": "qwen3.5-35b-a3b",
     "provider": "local",
     "quantization": "UD-Q4_K_XL",
@@ -264,7 +288,7 @@
     "majority_vote_accuracy": 0.296
   },
   {
-    "rank": 12,
+    "rank": 13,
     "model": "mistral-small-2603",
     "provider": "mistral",
     "quantization": "",
@@ -288,7 +312,7 @@
     "majority_vote_accuracy": 0.25
   },
   {
-    "rank": 13,
+    "rank": 14,
     "model": "lfm2-8b-a1b",
     "provider": "local",
     "quantization": "UD-Q6_K_XL",
@@ -312,7 +336,7 @@
     "majority_vote_accuracy": 0.23
   },
   {
-    "rank": 14,
+    "rank": 15,
     "model": "lfm2.5-1.2b-instruct",
     "provider": "local",
     "quantization": "UD-Q8_K_XL",
@@ -336,7 +360,7 @@
     "majority_vote_accuracy": 0.224
   },
   {
-    "rank": 15,
+    "rank": 16,
     "model": "lfm2.5-1.2b-thinking:reasoning",
     "provider": "local",
     "quantization": "UD-Q8_K_XL",
@@ -360,7 +384,7 @@
     "majority_vote_accuracy": 0.222
   },
   {
-    "rank": 16,
+    "rank": 17,
     "model": "granite-4.0-h-tiny",
     "provider": "local",
     "quantization": "Q6_K",
@@ -381,7 +405,7 @@
     "altered_num_riddles": 250
   },
   {
-    "rank": 17,
+    "rank": 18,
     "model": "coherelabs/tiny-aya-global",
     "provider": "local",
     "quantization": "Q8_0",
@@ -405,7 +429,7 @@
     "majority_vote_accuracy": 0.202
   },
   {
-    "rank": 18,
+    "rank": 19,
     "model": "coherelabs/c4ai-command-r7b-12-2024",
     "provider": "local",
     "quantization": "Q6_K_L",

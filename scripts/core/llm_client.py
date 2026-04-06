@@ -13,7 +13,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any
 
 from scripts.core.config import (
@@ -31,11 +31,13 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class LLMResponse:
-    """Carries raw text and optional token-usage counters from an LLM call."""
+    """Carries raw text, optional reasoning trace, and token-usage counters."""
 
     text: str
+    reasoning: str | None = None  # chain-of-thought / thinking trace
     input_tokens: int | None = None
     output_tokens: int | None = None
+    reasoning_tokens: int | None = None  # Gemini: thoughts_token_count
 
 
 # ── Sync helpers (one provider call) ──────────────────────────────────
@@ -49,6 +51,7 @@ def _call_gemini_sync(
     max_output_tokens: int | None = None,
 ) -> LLMResponse:
     from google import genai
+    from google.genai import types
     from google.genai.types import GenerateContentConfig
 
     client = genai.Client(api_key=api_key)
@@ -56,24 +59,43 @@ def _call_gemini_sync(
         temperature=temperature,
         response_mime_type="application/json",
         max_output_tokens=max_output_tokens,
+        # Request thought summaries; harmless on non-thinking models.
+        thinking_config=types.ThinkingConfig(include_thoughts=True),
     )
     response = client.models.generate_content(
         model=model,
         contents=prompt_text,
         config=config,
     )
-    assert response.text is not None, "Gemini returned an empty response"
+
+    # Separate thought parts from answer parts.
+    thought_parts: list[str] = []
+    answer_parts: list[str] = []
+    for part in response.candidates[0].content.parts:
+        if not part.text:
+            continue
+        (thought_parts if part.thought else answer_parts).append(part.text)
+
+    text = "\n".join(answer_parts)
+    assert text, "Gemini returned an empty response"
+    reasoning = "\n".join(thought_parts) or None
 
     input_tokens: int | None = None
     output_tokens: int | None = None
+    reasoning_tokens: int | None = None
     if hasattr(response, "usage_metadata") and response.usage_metadata is not None:
         input_tokens = getattr(response.usage_metadata, "prompt_token_count", None)
         output_tokens = getattr(response.usage_metadata, "candidates_token_count", None)
+        reasoning_tokens = getattr(
+            response.usage_metadata, "thoughts_token_count", None
+        )
 
     return LLMResponse(
-        text=response.text,
+        text=text,
+        reasoning=reasoning,
         input_tokens=input_tokens,
         output_tokens=output_tokens,
+        reasoning_tokens=reasoning_tokens,
     )
 
 
@@ -102,10 +124,17 @@ def _call_openai_compat_sync(
         create_kwargs["max_completion_tokens"] = max_output_tokens
 
     response = client.chat.completions.create(**create_kwargs)
-    result = response.choices[0].message.content
+    message = response.choices[0].message
+    result = message.content
     assert result is not None, (
         f"OpenAI-compat ({base_url or 'default'}) returned an empty response"
     )
+
+    # `reasoning_content` is a non-standard extension supported by DeepSeek R1,
+    # Qwen-thinking, and many other OpenAI-compat providers.  Vanilla OpenAI
+    # o-series does NOT expose reasoning via the Chat Completions API (only via
+    # the newer Responses API), so this will simply be None for those models.
+    reasoning: str | None = getattr(message, "reasoning_content", None)
 
     input_tokens: int | None = None
     output_tokens: int | None = None
@@ -115,6 +144,7 @@ def _call_openai_compat_sync(
 
     return LLMResponse(
         text=result,
+        reasoning=reasoning,
         input_tokens=input_tokens,
         output_tokens=output_tokens,
     )
@@ -140,8 +170,21 @@ def _call_mistral_sync(
         create_kwargs["max_tokens"] = max_output_tokens
 
     response = client.chat.complete(**create_kwargs)
-    result = response.choices[0].message.content
+    message = response.choices[0].message
+    result = message.content
     assert result is not None, "Mistral returned an empty response"
+
+    # Magistral and reasoning_effort-enabled models return thinking_blocks —
+    # a list of objects each carrying a `.thinking` string.
+    reasoning: str | None = None
+    thinking_blocks = getattr(message, "thinking_blocks", None)
+    if thinking_blocks:
+        reasoning = (
+            "\n".join(
+                b.thinking for b in thinking_blocks if getattr(b, "thinking", None)
+            )
+            or None
+        )
 
     input_tokens: int | None = None
     output_tokens: int | None = None
@@ -151,6 +194,7 @@ def _call_mistral_sync(
 
     return LLMResponse(
         text=result,
+        reasoning=reasoning,
         input_tokens=input_tokens,
         output_tokens=output_tokens,
     )
@@ -216,6 +260,7 @@ async def _call_gemini_async(
     max_output_tokens: int | None = None,
 ) -> LLMResponse:
     from google import genai
+    from google.genai import types
     from google.genai.types import GenerateContentConfig
 
     client = genai.Client(api_key=api_key)
@@ -223,24 +268,41 @@ async def _call_gemini_async(
         temperature=temperature,
         response_mime_type="application/json",
         max_output_tokens=max_output_tokens,
+        thinking_config=types.ThinkingConfig(include_thoughts=True),
     )
     response = await client.aio.models.generate_content(
         model=model,
         contents=prompt_text,
         config=config,
     )
-    assert response.text is not None, "Gemini returned an empty response"
+
+    thought_parts: list[str] = []
+    answer_parts: list[str] = []
+    for part in response.candidates[0].content.parts:
+        if not part.text:
+            continue
+        (thought_parts if part.thought else answer_parts).append(part.text)
+
+    text = "\n".join(answer_parts)
+    assert text, "Gemini returned an empty response"
+    reasoning = "\n".join(thought_parts) or None
 
     input_tokens: int | None = None
     output_tokens: int | None = None
+    reasoning_tokens: int | None = None
     if hasattr(response, "usage_metadata") and response.usage_metadata is not None:
         input_tokens = getattr(response.usage_metadata, "prompt_token_count", None)
         output_tokens = getattr(response.usage_metadata, "candidates_token_count", None)
+        reasoning_tokens = getattr(
+            response.usage_metadata, "thoughts_token_count", None
+        )
 
     return LLMResponse(
-        text=response.text,
+        text=text,
+        reasoning=reasoning,
         input_tokens=input_tokens,
         output_tokens=output_tokens,
+        reasoning_tokens=reasoning_tokens,
     )
 
 
@@ -269,10 +331,13 @@ async def _call_openai_compat_async(
         create_kwargs["max_completion_tokens"] = max_output_tokens
 
     response = await client.chat.completions.create(**create_kwargs)
-    result = response.choices[0].message.content
+    message = response.choices[0].message
+    result = message.content
     assert result is not None, (
         f"OpenAI-compat async ({base_url or 'default'}) returned empty"
     )
+
+    reasoning: str | None = getattr(message, "reasoning_content", None)
 
     input_tokens: int | None = None
     output_tokens: int | None = None
@@ -282,6 +347,7 @@ async def _call_openai_compat_async(
 
     return LLMResponse(
         text=result,
+        reasoning=reasoning,
         input_tokens=input_tokens,
         output_tokens=output_tokens,
     )
@@ -307,8 +373,19 @@ async def _call_mistral_async(
         create_kwargs["max_tokens"] = max_output_tokens
 
     response = await client.chat.complete_async(**create_kwargs)
-    result = response.choices[0].message.content
+    message = response.choices[0].message
+    result = message.content
     assert result is not None, "Mistral async returned an empty response"
+
+    reasoning: str | None = None
+    thinking_blocks = getattr(message, "thinking_blocks", None)
+    if thinking_blocks:
+        reasoning = (
+            "\n".join(
+                b.thinking for b in thinking_blocks if getattr(b, "thinking", None)
+            )
+            or None
+        )
 
     input_tokens: int | None = None
     output_tokens: int | None = None
@@ -318,6 +395,7 @@ async def _call_mistral_async(
 
     return LLMResponse(
         text=result,
+        reasoning=reasoning,
         input_tokens=input_tokens,
         output_tokens=output_tokens,
     )
@@ -360,6 +438,10 @@ async def _call_provider_async(
 
 # ── Batched async dispatch ────────────────────────────────────────────
 
+# (unchanged — _provider_batch_async and call_llm_batched are identical to the
+# original; they just call _call_provider_async which now returns the richer
+# LLMResponse automatically.)
+
 
 async def _provider_batch_async(
     prompts: list[str],
@@ -371,12 +453,6 @@ async def _provider_batch_async(
     max_output_tokens: int | None = None,
     max_concurrency: int = 10,
 ) -> list[LLMResponse | BaseException]:
-    """Send *prompts* concurrently (capped at *max_concurrency*).
-
-    Returns one ``LLMResponse`` (or exception) per prompt, preserving
-    order.  Each slot independently retries with exponential backoff so a
-    single flaky request never stalls the rest of the batch.
-    """
     semaphore = asyncio.Semaphore(max_concurrency)
 
     async def _guarded(idx: int, prompt: str) -> LLMResponse:
@@ -420,12 +496,6 @@ def call_llm_batched(
     max_output_tokens: int | None = None,
     max_concurrency: int = 10,
 ) -> list[LLMResponse | BaseException]:
-    """Synchronous entry-point for batched inference on any provider.
-
-    Runs all prompts through a single ``asyncio`` event loop, returning
-    results in the same order.  Exceptions are returned as values so the
-    caller can handle them per-prompt without aborting the batch.
-    """
     return asyncio.run(
         _provider_batch_async(
             prompts,

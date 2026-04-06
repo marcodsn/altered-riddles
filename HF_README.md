@@ -58,7 +58,7 @@ size_categories:
 
 ## Dataset Description
 
-- **Benchmark** [https://marcodsn.me/altered-riddles]
+- **Benchmark:** [https://marcodsn.me/altered-riddles](https://marcodsn.me/altered-riddles)
 - **GitHub:** [https://github.com/marcodsn/altered-riddles](https://github.com/marcodsn/altered-riddles)
 - **Dataset:** [https://huggingface.co/datasets/marcodsn/altered-riddles](https://huggingface.co/datasets/marcodsn/altered-riddles) (This page)  
 
@@ -176,7 +176,7 @@ Each bar shows a model's **altered accuracy** (solid fill) against its **weighte
 
 ![Bubble chart of original accuracy vs. altered accuracy, bubble size encodes pattern override rate](images/original_vs_altered_chart.png)
 
-**Original accuracy** is on the X-axis, **altered accuracy** on the Y-axis. Bubble size and colour intensity encode the **pattern override rate** — how often the model gave the memorised answer to the modified riddle. Models in the bottom-right corner are the clearest failure cases: they solve the original riddle reliably, but fall back to the memorised answer when the details change.
+This dumbbell chart compares each model's **original accuracy** (hollow marker) against its **altered accuracy** (solid marker). The connecting segment shows how far performance drops once key details in the riddle are changed, making the pattern-override gap much easier to see model by model. Models are ordered by their original leaderboard rank, shown in the boxes on the left.
 
 ### Sampling Gain Comparison
 
@@ -186,9 +186,9 @@ Each bar starts at the model's **average single-sample accuracy**, then shows th
 
 ### Token Efficiency
 
-![Token efficiency scatter plot — output tokens per sample vs. altered accuracy, log scale](images/token_efficiency.png)
+![Token efficiency scatter plot — output tokens per sample vs. altered accuracy, log scale](images/token_efficiency_chart.png)
 
-Output tokens per altered riddle (log scale) vs. **altered accuracy**, with diagonal iso-efficiency lines — models on the same line deliver equal accuracy per token, and up-left is better. Reasoning models typically spend 10–100× more tokens than standard models; this chart makes it easy to see whether that cost translates into a meaningful accuracy gain.
+Each row compares a model’s **token-efficiency rank** (hollow circle; fewer output tokens per altered riddle is better) with its **altered accuracy rank** (solid circle). Points further right are better on both scales, and the line between them shows the trade-off: a large gap means the model’s cost and performance rankings diverge substantially.
 
 ## Dataset Creation
 
@@ -245,4 +245,4 @@ This dataset is licensed under the [Apache License 2.0](https://www.apache.org/l
 > **[03/05/2025]** Initial dataset created!  
 
 > [!Note]  
-> **[05/04/2026]** Benchmark v2604 published! Repository now includes `benchmark.jsonl` with fixed + auxiliary riddle sets, `leaderboard.json`, per-model outputs under `model_outputs/2604/`, detailed per-model results under `results/2604/`, and result charts. The project has grown from a simple dataset into a full evaluation benchmark with a multi-stage generation, validation, promotion, and scoring pipeline. Bespoke Curator is no longer used; all generation and evaluation is handled by the custom scripts in the repository.
+> **[05/04/2026]** Benchmark v2604 published! Repository now includes `benchmark.jsonl` with fixed + auxiliary riddle sets, `leaderboard.json`, per-model outputs under `model_outputs/2604/`, detailed per-model results under `results/2604/`, and result charts. The project has grown from a simple dataset into a full evaluation benchmark with a multi-stage generation, validation, and scoring pipeline.

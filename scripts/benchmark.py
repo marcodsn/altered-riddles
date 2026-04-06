@@ -175,6 +175,7 @@ def _make_record(
     output_tokens: int | None,
     provider: str,
     quantization: str | None = None,
+    model_thinking: str | None = None,
 ) -> dict:
     """Build an output record dict."""
     return {
@@ -184,6 +185,7 @@ def _make_record(
         "riddle_text": riddle_text,
         "model_answer": answer,
         "model_reasoning": reasoning,
+        "model_thinking": model_thinking,
         "raw_response": raw_response,
         "model": model_name.lower(),
         "provider": provider,
@@ -308,6 +310,7 @@ def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
             raw_response = ""
             input_tokens: int | None = None
             output_tokens: int | None = None
+            model_thinking: str | None = None
             try:
                 llm_resp = call_llm(
                     prompt_text,
@@ -320,6 +323,7 @@ def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
                 raw_response = llm_resp.text
                 input_tokens = llm_resp.input_tokens
                 output_tokens = llm_resp.output_tokens
+                model_thinking = llm_resp.reasoning
             except Exception as exc:
                 logger.error(
                     "Failed to get response for %s (%s, sample %d) after retries: %s",
@@ -350,6 +354,7 @@ def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
                 output_tokens=output_tokens,
                 provider=args.provider,
                 quantization=args.quantization,
+                model_thinking=model_thinking,
             )
             append_jsonl(output_path, record)
 
@@ -430,6 +435,7 @@ def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
                 raw_response = ""
                 input_tokens_val: int | None = None
                 output_tokens_val: int | None = None
+                model_thinking_val: str | None = None
 
                 if isinstance(result, BaseException):
                     logger.error(
@@ -444,6 +450,7 @@ def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
                     raw_response = result.text
                     input_tokens_val = result.input_tokens
                     output_tokens_val = result.output_tokens
+                    model_thinking_val = result.reasoning
                     answer, reasoning = parse_model_response(raw_response)
 
                 record = _make_record(
@@ -460,6 +467,7 @@ def run_benchmark(args: argparse.Namespace) -> None:  # noqa: C901
                     output_tokens=output_tokens_val,
                     provider=args.provider,
                     quantization=args.quantization,
+                    model_thinking=model_thinking_val,
                 )
                 append_jsonl(output_path, record)
 
