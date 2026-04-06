@@ -26,8 +26,11 @@ df["tokens_per_riddle"] = df["altered_output_tokens"] / df["altered_num_riddles"
 df["acc_rank"] = df["altered_accuracy"].rank(ascending=False, method="min")
 df["eff_rank"] = df["tokens_per_riddle"].rank(ascending=True, method="min")
 
-# Sort by accuracy rank descending so Rank 1 accuracy is at the top of the chart (highest y-value)
-df = df.sort_values("acc_rank", ascending=False).reset_index(drop=True)
+# Calculate a combined rank (average of accuracy and efficiency)
+df["combined_rank"] = ((df["acc_rank"] + df["eff_rank"]) / 2).rank(method="min")
+
+# Sort by combined rank descending so Rank 1 is at the top of the chart (highest y-value)
+df = df.sort_values("combined_rank", ascending=False).reset_index(drop=True)
 
 
 def get_color(model):
@@ -142,11 +145,11 @@ for i, row in df.iterrows():
 
     # --- 3) Layout Aesthetics & Annotations ---
 
-    # Rank Box (Using original leaderboard rank from your dataset)
+    # Rank Box (Using combined rank)
     box_color = (
         "#1a1a1a"
-        if row["rank"] <= 3
-        else ("#4a4a4a" if row["rank"] <= 6 else "#a0a0a0")
+        if row["combined_rank"] <= 3
+        else ("#4a4a4a" if row["combined_rank"] <= 6 else "#a0a0a0")
     )
 
     shapes.append(
@@ -168,7 +171,7 @@ for i, row in df.iterrows():
         dict(
             x=11.2,
             y=i,
-            text=str(row["rank"]),
+            text=str(int(row["combined_rank"])),
             showarrow=False,
             font=dict(color="white", size=14, family="monospace"),
             xanchor="center",
