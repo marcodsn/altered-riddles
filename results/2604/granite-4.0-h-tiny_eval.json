@@ -12,6 +12,7 @@
     "altered_accuracy": 0.18,
     "altered_weighted_accuracy": 0.206,
     "pattern_override_rate": 0.372,
+    "conditioned_override_rate": 0.484,
     "average_accuracy": 0.206,
     "total_score": 0.206,
     "original_input_tokens": 8108,

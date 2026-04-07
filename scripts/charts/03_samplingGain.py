@@ -88,7 +88,7 @@ fig.add_trace(
         base=df["average_accuracy"],
         orientation="h",
         name="Best-of-N Gain",
-        marker=dict(color="#fbbf24", opacity=0.75),
+        marker=dict(color="#f9d48e", opacity=0.75),
         width=0.35,
     )
 )
@@ -102,7 +102,7 @@ fig.add_trace(
         base=df.loc[pos_mask, "average_accuracy"],
         orientation="h",
         name="Majority Vote Gain (+)",
-        marker=dict(color="#34d399", opacity=0.9),
+        marker=dict(color="#a2d9b5", opacity=0.9),
         width=0.35,
     )
 )
@@ -116,7 +116,7 @@ fig.add_trace(
         base=df.loc[neg_mask, "majority_vote_accuracy"],  # base is the lower value
         orientation="h",
         name="Majority Vote Loss (−)",
-        marker=dict(color="#f87171", opacity=0.9),
+        marker=dict(color="#fca5a5", opacity=0.9),
         width=0.35,
     )
 )

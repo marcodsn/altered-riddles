@@ -11,7 +11,8 @@
     "altered_competing": 18,
     "altered_accuracy": 0.283,
     "altered_weighted_accuracy": 0.32,
-    "pattern_override_rate": 0.32,
+    "pattern_override_rate": 0.324,
+    "conditioned_override_rate": 0.444,
     "average_accuracy": 0.323,
     "total_score": 0.323,
     "num_samples": 3,
@@ -10716,7 +10717,7 @@
       "accepted_answers": [
         "The letter 'e'."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -10740,7 +10741,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "The letter 'e'.",
       "competing_match": false,
       "score": 0.0
@@ -10770,7 +10771,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "The letter 'e'.",
       "competing_match": false,
       "score": 0.0

@@ -4,19 +4,20 @@
   "quantization": "UD-Q4_K_XL",
   "summary": {
     "original_total": 87,
-    "original_correct": 68,
-    "original_accuracy": 0.782,
+    "original_correct": 70,
+    "original_accuracy": 0.805,
     "altered_total": 250,
-    "altered_correct": 66,
-    "altered_competing": 12,
-    "altered_accuracy": 0.249,
-    "altered_weighted_accuracy": 0.288,
-    "pattern_override_rate": 0.384,
-    "average_accuracy": 0.272,
-    "total_score": 0.272,
+    "altered_correct": 67,
+    "altered_competing": 13,
+    "altered_accuracy": 0.255,
+    "altered_weighted_accuracy": 0.294,
+    "pattern_override_rate": 0.392,
+    "conditioned_override_rate": 0.486,
+    "average_accuracy": 0.279,
+    "total_score": 0.279,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.404,
-    "majority_vote_accuracy": 0.296,
+    "best_of_n_accuracy": 0.416,
+    "majority_vote_accuracy": 0.302,
     "original_input_tokens": 6718,
     "original_output_tokens": 721,
     "altered_input_tokens": 19917,
@@ -10553,7 +10554,7 @@
       "accepted_answers": [
         "The letter 'g'."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -10575,7 +10576,7 @@
       "accepted_answers": [
         "The letter 'g'."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -10586,12 +10587,11 @@
       "accepted_answers": [
         "The letter 'e'."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "The letter 'g'.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_184",
@@ -10601,12 +10601,11 @@
       "accepted_answers": [
         "The letter 'e'."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "The letter 'g'.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_184",
@@ -10616,12 +10615,11 @@
       "accepted_answers": [
         "The letter 'e'."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "The letter 'g'.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_185",
@@ -10680,8 +10678,8 @@
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "The letter 'g'.",
-      "competing_match": false,
-      "score": 0.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_186",
@@ -10695,8 +10693,8 @@
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "The letter 'g'.",
-      "competing_match": false,
-      "score": 0.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_186",
@@ -10710,8 +10708,8 @@
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "The letter 'g'.",
-      "competing_match": false,
-      "score": 0.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_187",
@@ -10721,7 +10719,7 @@
       "accepted_answers": [
         "The letter 'e'."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -10732,7 +10730,7 @@
       "accepted_answers": [
         "The letter 'e'."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -10743,7 +10741,7 @@
       "accepted_answers": [
         "The letter 'e'."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -10756,7 +10754,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "The letter 'e'.",
       "competing_match": false,
       "score": 0.0
@@ -10771,7 +10769,7 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "The letter 'e'.",
       "competing_match": false,
       "score": 0.0
@@ -10784,12 +10782,11 @@
       "accepted_answers": [
         "The letter 'n'."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "The letter 'e'.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_188",
@@ -10801,7 +10798,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "The letter 'g'.",
       "competing_match": false,
       "score": 0.0
@@ -10816,7 +10813,7 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "The letter 'g'.",
       "competing_match": false,
       "score": 0.0
@@ -10831,7 +10828,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "The letter 'g'.",
       "competing_match": false,
       "score": 0.0
