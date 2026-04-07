@@ -59,7 +59,7 @@ def normalize(text: str) -> str:
     text = text.lower()
     text = re.sub(r"[^a-z0-9 ]", " ", text)
     text = re.sub(r"\\b(a|an|the|it's|its|it is)\\b", " ", text)
-    return re.sub(r"\\s+", " ", text).strip()
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def is_match(model_answer: str, accepted_answers: list[str]) -> bool:
@@ -94,12 +94,6 @@ def build_benchmark_lookup(entries: list[dict]) -> dict[str, dict]:
 def extract_accepted_answers(benchmark_entry: dict, riddle_type: str) -> list[str]:
     """
     Return the list of accepted answers for a given riddle type.
-
-    For *original* riddles the accepted answers come from
-    `original_accepted_answers` (falling back to `original_answer`).
-
-    For *altered* riddles the accepted answers come from
-    `altered_accepted_answers` (falling back to `altered_answer`).
     """
     if riddle_type == "original":
         answers = benchmark_entry.get("original_accepted_answers")
@@ -132,11 +126,7 @@ def _score_single_output(
     output: dict,
     benchmark_lookup: dict[str, dict],
 ) -> dict | None:
-    """Score a single model output record against the benchmark.
-
-    Returns a detail dict with scoring fields, or *None* if the riddle ID
-    is not found in the benchmark.
-    """
+    """Score a single model output record against the benchmark."""
     riddle_id = output.get("riddle_id", "")
     riddle_type = output.get("riddle_type", "")
     model_answer = output.get("model_answer", "")
@@ -169,7 +159,6 @@ def _score_single_output(
         if correct:
             detail["score"] = 1.0
         else:
-            # Check competing answers for partial credit
             competing = extract_competing_answers(benchmark_entry)
             competing_match = is_match(model_answer, competing) if competing else False
             detail["competing_match"] = competing_match
@@ -200,7 +189,6 @@ def _collect_token_stats(model_outputs: list[dict], num_samples: int = 1) -> dic
     orig_outputs = [o for o in model_outputs if o.get("riddle_type") == "original"]
     alt_outputs = [o for o in model_outputs if o.get("riddle_type") == "altered"]
 
-    # Riddles are divided by num_samples to get the cost per run
     effective_samples = max(num_samples, 1)
 
     orig_in, orig_out = _sum_tokens(orig_outputs, effective_samples)
@@ -221,43 +209,17 @@ def evaluate_model(
     benchmark_lookup: dict[str, dict],
     verbose: bool = False,
 ) -> dict:
-    """
-    Evaluate a single model's outputs and return a results dict containing
-    a `summary` and a `details` list.
-
-    Supports multi-sample benchmark outputs: when multiple samples exist per
-    (riddle_id, riddle_type), additional metrics (best-of-n, majority vote)
-    are computed.
-
-    Metric definitions
-    ------------------
-    altered_accuracy        Binary correctness (1 or 0, no partial credit),
-                            averaged over all samples then over all riddles.
-                            Consistent in both single- and multi-sample runs.
-    altered_weighted_accuracy  Like altered_accuracy but awards COMPETING_ANSWER_WEIGHT
-                            (0.5) for competing-answer matches. Uses sample_index==1
-                            only, serving as the single-sample partial-credit baseline.
-    average_accuracy        Partial-credit score (same scoring as
-                            altered_weighted_accuracy) averaged over ALL samples
-                            then over all riddles. Equals altered_weighted_accuracy
-                            in single-sample runs.
-    total_score             Always equal to average_accuracy.
-    """
+    """Evaluate a single model's outputs and return a results dict."""
     model_name = ""
     details: list[dict] = []
 
-    # ------------------------------------------------------------------
-    # Score every individual output record
-    # ------------------------------------------------------------------
     provider = ""
     quantization = ""
-    # temperature = 0.0
     for output in model_outputs:
         if not model_name:
             model_name = output.get("model", "unknown")
             provider = output.get("provider", "")
             quantization = output.get("quantization", "")
-            # temperature = output.get("temperature", 0.0)
 
         detail = _score_single_output(output, benchmark_lookup)
         if detail is None:
@@ -285,9 +247,6 @@ def evaluate_model(
                 sample_tag,
             )
 
-    # ------------------------------------------------------------------
-    # Group by (riddle_id, riddle_type)
-    # ------------------------------------------------------------------
     def _group_key(d: dict) -> tuple[str, str]:
         return (d["riddle_id"], d["riddle_type"])
 
@@ -296,26 +255,19 @@ def evaluate_model(
     for key, grp in groupby(sorted_details, key=lambda d: _group_key(d)):
         grouped[key] = list(grp)
 
-    # Determine the number of samples (use the max group size among altered)
     altered_group_sizes = [len(v) for k, v in grouped.items() if k[1] == "altered"]
     num_samples = max(altered_group_sizes) if altered_group_sizes else 1
 
-    # ------------------------------------------------------------------
-    # Single-sample baseline metrics (always computed using sample_index==1)
-    # ------------------------------------------------------------------
     original_total = 0
     original_correct = 0
     altered_total = 0
-    altered_correct_s1 = (
-        0  # binary correct on sample 1 only (for altered_weighted_accuracy baseline)
-    )
+    altered_correct_s1 = 0
     altered_competing = 0
     altered_score_s1 = 0.0
     altered_gave_original = 0
 
     for key, group in grouped.items():
         riddle_type = key[1]
-        # Use sample_index == 1 (or the first record) for single-sample metrics
         rec = next(
             (d for d in group if d.get("sample_index", 1) == 1),
             group[0],
@@ -336,23 +288,44 @@ def evaluate_model(
                 altered_competing += 1
                 altered_score_s1 += COMPETING_ANSWER_WEIGHT
 
+    # --- Conditioned Override Rate Logic ---
+    conditioned_override_total = 0
+    conditioned_override_count = 0
+
+    unique_riddles = {k[0] for k in grouped.keys()}
+    for rid in unique_riddles:
+        orig_group = grouped.get((rid, "original"), [])
+        alt_group = grouped.get((rid, "altered"), [])
+
+        if orig_group and alt_group:
+            # We use sample 1 to maintain consistency with the baseline metrics
+            orig_s1 = next(
+                (d for d in orig_group if d.get("sample_index", 1) == 1), orig_group[0]
+            )
+            alt_s1 = next(
+                (d for d in alt_group if d.get("sample_index", 1) == 1), alt_group[0]
+            )
+
+            if orig_s1["correct"]:
+                conditioned_override_total += 1
+                if alt_s1.get("gave_original_answer"):
+                    conditioned_override_count += 1
+
     original_accuracy = (
         round(original_correct / original_total, 3) if original_total else 0.0
     )
-    # Partial-credit accuracy on sample_index==1 — kept as a stable single-sample baseline.
     altered_weighted_accuracy = (
         round(altered_score_s1 / altered_total, 3) if altered_total else 0.0
     )
     pattern_override_rate = (
         round(altered_gave_original / altered_total, 3) if altered_total else 0.0
     )
+    conditioned_override_rate = (
+        round(conditioned_override_count / conditioned_override_total, 3)
+        if conditioned_override_total
+        else 0.0
+    )
 
-    # ------------------------------------------------------------------
-    # All-sample metrics (always computed, consistent across run types)
-    # ------------------------------------------------------------------
-    # altered_accuracy  — binary correctness, averaged across ALL samples
-    # average_accuracy  — partial-credit score, averaged across ALL samples
-    # Both are computed per riddle first, then averaged across riddles.
     alt_binary_sum = 0.0
     avg_acc_sum = 0.0
 
@@ -369,9 +342,6 @@ def evaluate_model(
         round(alt_binary_sum / altered_total, 3) if altered_total else 0.0
     )
     average_accuracy = round(avg_acc_sum / altered_total, 3) if altered_total else 0.0
-
-    # total_score is always average_accuracy (partial credit, all samples).
-    # In single-sample runs this equals altered_weighted_accuracy.
     total_score = average_accuracy
 
     summary: dict = {
@@ -379,22 +349,16 @@ def evaluate_model(
         "original_correct": original_correct,
         "original_accuracy": original_accuracy,
         "altered_total": altered_total,
-        # altered_correct reflects sample_index==1 count, kept for human readability
         "altered_correct": altered_correct_s1,
         "altered_competing": altered_competing,
-        # altered_accuracy: binary, all samples — the canonical correctness metric
         "altered_accuracy": altered_accuracy,
-        # altered_weighted_accuracy: partial credit, sample_index==1 only — single-sample baseline
         "altered_weighted_accuracy": altered_weighted_accuracy,
         "pattern_override_rate": pattern_override_rate,
-        # average_accuracy: partial credit, all samples — always the primary score
+        "conditioned_override_rate": conditioned_override_rate,
         "average_accuracy": average_accuracy,
         "total_score": total_score,
     }
 
-    # ------------------------------------------------------------------
-    # Multi-sample-only metrics (best-of-n, majority vote)
-    # ------------------------------------------------------------------
     if num_samples > 1:
         best_of_n_correct = 0
         majority_vote_correct = 0
@@ -405,7 +369,6 @@ def evaluate_model(
                 continue
             altered_count_multi += 1
 
-            # --- best-of-n: any sample correct (primary) or competing ---
             any_primary = any(d["correct"] for d in group)
             any_competing = any(
                 d.get("competing_match") and not d.get("gave_original_answer")
@@ -414,16 +377,13 @@ def evaluate_model(
             if any_primary:
                 best_of_n_correct += 1
             elif any_competing:
-                # partial credit counted as full for best-of-n
                 best_of_n_correct += 1
 
-            # --- majority vote: most common normalized answer ---
             answer_counts: Counter[str] = Counter()
             for d in group:
                 norm_ans = normalize(d["model_answer"])
                 answer_counts[norm_ans] += 1
             majority_answer_norm, _ = answer_counts.most_common(1)[0]
-            # Find a representative record with this normalized answer
             rep = next(
                 d for d in group if normalize(d["model_answer"]) == majority_answer_norm
             )
@@ -445,13 +405,9 @@ def evaluate_model(
         summary["best_of_n_accuracy"] = best_of_n_accuracy
         summary["majority_vote_accuracy"] = majority_vote_accuracy
 
-    # ------------------------------------------------------------------
-    # Token usage statistics (always present)
-    # ------------------------------------------------------------------
     token_stats = _collect_token_stats(model_outputs, num_samples=num_samples)
     summary.update(token_stats)
 
-    # Number of distinct riddles tested for this model
     summary["num_riddles"] = len({d["riddle_id"] for d in details})
     summary["original_num_riddles"] = len(
         {d["riddle_id"] for d in details if d["riddle_type"] == "original"}
@@ -464,7 +420,6 @@ def evaluate_model(
         "model": model_name,
         "provider": provider,
         "quantization": quantization,
-        # "temperature": temperature,
         "summary": summary,
         "details": details,
     }
@@ -476,10 +431,6 @@ def evaluate_model(
 
 
 def build_leaderboard(all_results: list[dict]) -> list[dict]:
-    """
-    Build the leaderboard sorted by `total_score` descending, then
-    `pattern_override_rate` ascending (lower is better).
-    """
     rows: list[dict] = []
     for result in all_results:
         s = result["summary"]
@@ -487,11 +438,11 @@ def build_leaderboard(all_results: list[dict]) -> list[dict]:
             "model": result["model"],
             "provider": result.get("provider", ""),
             "quantization": result.get("quantization", ""),
-            # "temperature": result.get("temperature", 0.0),
             "original_accuracy": s["original_accuracy"],
             "altered_accuracy": s["altered_accuracy"],
             "altered_weighted_accuracy": s["altered_weighted_accuracy"],
             "pattern_override_rate": s["pattern_override_rate"],
+            "conditioned_override_rate": s["conditioned_override_rate"],
             "average_accuracy": s["average_accuracy"],
             "total_score": s["total_score"],
             "total_input_tokens": s.get("total_input_tokens", 0),
@@ -515,17 +466,16 @@ def build_leaderboard(all_results: list[dict]) -> list[dict]:
     for rank, row in enumerate(rows, start=1):
         row["rank"] = rank
 
-    # Reorder keys so rank comes first
     ordered: list[dict] = []
     for row in rows:
         entry: dict = {"rank": row["rank"], "model": row["model"]}
         entry["provider"] = row.get("provider", "")
         entry["quantization"] = row.get("quantization", "")
-        # entry["temperature"] = row.get("temperature", 0.0)
         entry["original_accuracy"] = row["original_accuracy"]
         entry["altered_accuracy"] = row["altered_accuracy"]
         entry["altered_weighted_accuracy"] = row["altered_weighted_accuracy"]
         entry["pattern_override_rate"] = row["pattern_override_rate"]
+        entry["conditioned_override_rate"] = row["conditioned_override_rate"]
         entry["average_accuracy"] = row["average_accuracy"]
         entry["total_score"] = row["total_score"]
         entry["total_input_tokens"] = row["total_input_tokens"]
@@ -546,7 +496,6 @@ def build_leaderboard(all_results: list[dict]) -> list[dict]:
 
 
 def _fmt_tokens(n: int) -> str:
-    """Format a token count compactly (e.g. 1234 -> '1.2k', 0 -> '-')."""
     if n <= 0:
         return "-"
     if n < 1000:
@@ -559,7 +508,6 @@ def _fmt_tokens(n: int) -> str:
 
 
 def print_leaderboard(leaderboard: list[dict]) -> None:
-    """Print a nice Unicode table to stdout."""
     col_model = 22
     col_metric = 10
     col_tokens = 8
@@ -571,26 +519,27 @@ def print_leaderboard(leaderboard: list[dict]) -> None:
     header_orig = " Orig Acc".ljust(col_metric)
     header_alt = " Alt Acc".ljust(col_metric)
     header_ovr = " Override".ljust(col_metric)
+    header_covr = " Cond Ovr".ljust(col_metric)
     header_score = " Score".ljust(col_metric)
     header_tok = " Tokens".ljust(col_tokens)
 
     top = (
         f"╔{'═' * col_model}╦{'═' * col_metric}╦{'═' * col_metric}"
-        f"╦{'═' * col_metric}╦{'═' * col_metric}╦{'═' * col_tokens}╗"
+        f"╦{'═' * col_metric}╦{'═' * col_metric}╦{'═' * col_metric}╦{'═' * col_tokens}╗"
     )
     mid = (
         f"╠{'═' * col_model}╬{'═' * col_metric}╬{'═' * col_metric}"
-        f"╬{'═' * col_metric}╬{'═' * col_metric}╬{'═' * col_tokens}╣"
+        f"╬{'═' * col_metric}╬{'═' * col_metric}╬{'═' * col_metric}╬{'═' * col_tokens}╣"
     )
     bot = (
         f"╚{'═' * col_model}╩{'═' * col_metric}╩{'═' * col_metric}"
-        f"╩{'═' * col_metric}╩{'═' * col_metric}╩{'═' * col_tokens}╝"
+        f"╩{'═' * col_metric}╩{'═' * col_metric}╩{'═' * col_metric}╩{'═' * col_tokens}╝"
     )
 
     print(top)
     print(
         f"║{header_model}║{header_orig}║{header_alt}"
-        f"║{header_ovr}║{header_score}║{header_tok}║"
+        f"║{header_ovr}║{header_covr}║{header_score}║{header_tok}║"
     )
     print(mid)
 
@@ -602,9 +551,12 @@ def print_leaderboard(leaderboard: list[dict]) -> None:
         orig_str = f" {fmt_pct(row['original_accuracy'])}".ljust(col_metric)
         alt_str = f" {fmt_pct(row['altered_accuracy'])}".ljust(col_metric)
         ovr_str = f" {fmt_pct(row['pattern_override_rate'])}".ljust(col_metric)
+        covr_str = f" {fmt_pct(row['conditioned_override_rate'])}".ljust(col_metric)
         score_str = f" {fmt_pct(row['total_score'])}".ljust(col_metric)
         tok_str = f" {_fmt_tokens(row.get('total_output_tokens', 0))}".ljust(col_tokens)
-        print(f"║{model_str}║{orig_str}║{alt_str}║{ovr_str}║{score_str}║{tok_str}║")
+        print(
+            f"║{model_str}║{orig_str}║{alt_str}║{ovr_str}║{covr_str}║{score_str}║{tok_str}║"
+        )
 
     print(bot)
 
@@ -615,8 +567,6 @@ def print_leaderboard(leaderboard: list[dict]) -> None:
 
 
 def run_evaluation(args: argparse.Namespace) -> None:
-    """Main evaluation flow."""
-    # --- Load benchmark ----------------------------------------------------
     benchmark_path = Path(args.benchmark)
     if not benchmark_path.exists():
         logger.error("Benchmark file not found: %s", benchmark_path)
@@ -630,7 +580,6 @@ def run_evaluation(args: argparse.Namespace) -> None:
         benchmark_path,
     )
 
-    # --- Discover model output files ---------------------------------------
     model_outputs_path = Path(args.model_outputs)
     output_files: list[Path] = []
 
@@ -650,13 +599,11 @@ def run_evaluation(args: argparse.Namespace) -> None:
         logger.error("Model outputs path not found: %s", model_outputs_path)
         sys.exit(1)
 
-    # --- Version-aware results directory -----------------------------------
     version = get_benchmark_version()
     results_root = Path(args.results_dir)
     results_dir = results_root / version
     results_dir.mkdir(parents=True, exist_ok=True)
 
-    # --- Evaluate each model -----------------------------------------------
     all_results: list[dict] = []
 
     for output_file in output_files:
@@ -674,8 +621,7 @@ def run_evaluation(args: argparse.Namespace) -> None:
         )
         all_results.append(result)
 
-        # Derive filename for per-model results
-        model_name_safe = output_file.stem  # already sanitized from benchmark.py
+        model_name_safe = output_file.stem
         eval_path = results_dir / f"{model_name_safe}_eval.json"
         write_json(eval_path, result)
 
@@ -691,13 +637,13 @@ def run_evaluation(args: argparse.Namespace) -> None:
                 f"  majority={s['majority_vote_accuracy'] * 100:.1f}%"
             )
         logger.info(
-            "  %s — orig_acc=%.1f%%  alt_acc=%.1f%%  alt_weighted=%.1f%%  avg_acc=%.1f%%  override=%.1f%%  score=%.1f%%%s%s",
+            "  %s — orig=%.1f%%  alt=%.1f%%  avg_acc=%.1f%%  ovr=%.1f%%  cond_ovr=%.1f%%  score=%.1f%%%s%s",
             result["model"],
             s["original_accuracy"] * 100,
             s["altered_accuracy"] * 100,
-            s["altered_weighted_accuracy"] * 100,
             s["average_accuracy"] * 100,
             s["pattern_override_rate"] * 100,
+            s["conditioned_override_rate"] * 100,
             s["total_score"] * 100,
             multi_info,
             token_info,
@@ -707,21 +653,17 @@ def run_evaluation(args: argparse.Namespace) -> None:
         logger.error("No models were evaluated.")
         sys.exit(1)
 
-    # --- Build and write leaderboard ---------------------------------------
     leaderboard = build_leaderboard(all_results)
 
-    # Write to the versioned results directory
     leaderboard_path = results_dir / "leaderboard.json"
     write_json(leaderboard_path, leaderboard)
     logger.info("Leaderboard written to %s", leaderboard_path)
 
-    # Also write to the root results/ dir for convenience
     root_leaderboard_path = results_root / "leaderboard.json"
     results_root.mkdir(parents=True, exist_ok=True)
     write_json(root_leaderboard_path, leaderboard)
     logger.info("Leaderboard also written to %s", root_leaderboard_path)
 
-    # --- Print table -------------------------------------------------------
     print()
     print_leaderboard(leaderboard)
     print()

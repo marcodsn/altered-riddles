@@ -174,9 +174,15 @@ Each bar shows a model's **altered accuracy** (solid fill) against its **weighte
 
 ### Original vs. Altered Accuracy
 
-![Bubble chart of original accuracy vs. altered accuracy, bubble size encodes pattern override rate](images/original_vs_altered_chart.png)
+![Dumbbell chart of original accuracy vs. altered accuracy](images/original_vs_altered_chart.png)
 
 This dumbbell chart compares each model's **original accuracy** (hollow marker) against its **altered accuracy** (solid marker). The connecting segment shows how far performance drops once key details in the riddle are changed, making the pattern-override gap much easier to see model by model. Models are ordered by their original leaderboard rank, shown in the boxes on the left.
+
+### The True Trap Rate
+
+![Conditioned override rate chart — the true trap rate](images/conditioned_override_chart.png)
+
+This chart isolates a model's **conditioned override rate** — how often it falls for the trap and defaults to the original answer, given that it successfully solved the original version. Models are sorted with the most resilient (lowest override rate) at the top. This is the key failure signal this benchmark is designed to detect. A high conditioned override rate means the model is heavily overfitting to the original pattern and ignoring critical altered details.
 
 ### Sampling Gain Comparison
 

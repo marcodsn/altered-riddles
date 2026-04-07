@@ -1,5 +1,6 @@
 import json
 
+import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -17,9 +18,12 @@ for entry in data:
         entry["model"] = model.split("/")[-1]
 
 df = pd.DataFrame(data)
-df["maj_gain"] = df["majority_vote_accuracy"] - df["average_accuracy"]
-df["bon_gain"] = df["best_of_n_accuracy"] - df["average_accuracy"]
-df = df.sort_values("average_accuracy", ascending=True).reset_index(drop=True)
+
+# Sort by Conditioned Override Rate ascending (best/lowest rate at the top)
+df = df.sort_values("conditioned_override_rate", ascending=True).reset_index(drop=True)
+
+# Assign a new rank based on this specific metric's sorting
+df["new_rank"] = df.index + 1
 
 
 def get_color(model):
@@ -54,7 +58,7 @@ df["color"] = df["model"].apply(get_color)
 fig = go.Figure()
 y_vals = list(range(len(df)))
 
-# 1) Background grey bar (full width)
+# 1) Background grey bar (100%)
 fig.add_trace(
     go.Bar(
         y=y_vals,
@@ -67,71 +71,30 @@ fig.add_trace(
     )
 )
 
-# 2) Base bar (average_accuracy)
+# 2) Solid bar for conditioned_override_rate
 fig.add_trace(
     go.Bar(
         y=y_vals,
-        x=df["average_accuracy"],
+        x=df["conditioned_override_rate"],
         orientation="h",
-        name="Avg Accuracy",
+        marker=dict(color=df["color"], opacity=1.0),
         showlegend=False,
-        marker=dict(color=df["color"], opacity=0.85),
         width=0.35,
     )
 )
 
-# 5) Best-of-N gain (always positive, gold segment)
-fig.add_trace(
-    go.Bar(
-        y=y_vals,
-        x=df["bon_gain"],
-        base=df["average_accuracy"],
-        orientation="h",
-        name="Best-of-N Gain",
-        marker=dict(color="#f9d48e", opacity=0.75),
-        width=0.35,
-    )
-)
-
-# 3) Majority vote gain — POSITIVE (green segment extending right)
-pos_mask = df["maj_gain"] >= 0
-fig.add_trace(
-    go.Bar(
-        y=[y_vals[i] for i in df.index[pos_mask]],
-        x=df.loc[pos_mask, "maj_gain"],
-        base=df.loc[pos_mask, "average_accuracy"],
-        orientation="h",
-        name="Majority Vote Gain (+)",
-        marker=dict(color="#a2d9b5", opacity=0.9),
-        width=0.35,
-    )
-)
-
-# 4) Majority vote gain — NEGATIVE (red segment extending left)
-neg_mask = df["maj_gain"] < 0
-fig.add_trace(
-    go.Bar(
-        y=[y_vals[i] for i in df.index[neg_mask]],
-        x=df.loc[neg_mask, "maj_gain"].abs(),
-        base=df.loc[neg_mask, "majority_vote_accuracy"],  # base is the lower value
-        orientation="h",
-        name="Majority Vote Loss (−)",
-        marker=dict(color="#fca5a5", opacity=0.9),
-        width=0.35,
-    )
-)
-
-# Annotations: rank box + model name on top + score on right
 annotations = []
 shapes = []
+
 for i, row in df.iterrows():
-    # Rank Box
+    # Rank Box (now using the new_rank based on Conditioned Override)
     box_color = (
         "#1a1a1a"
-        if row["rank"] <= 3
-        else ("#4a4a4a" if row["rank"] <= 6 else "#a0a0a0")
+        if row["new_rank"] <= 3
+        else ("#4a4a4a" if row["new_rank"] <= 6 else "#a0a0a0")
     )
     text_color = "white"
+
     shapes.append(
         dict(
             type="rect",
@@ -145,34 +108,39 @@ for i, row in df.iterrows():
             yref="y",
         )
     )
+
+    # New Rank Text
     annotations.append(
         dict(
             x=-0.05,
             y=i,
-            text=str(row["rank"]),
+            text=str(row["new_rank"]),
             showarrow=False,
             font=dict(color=text_color, size=14, family="monospace"),
             xanchor="center",
             yanchor="middle",
         )
     )
+
+    # Model Name
     annotations.append(
         dict(
             x=0.0,
             y=i,
-            text=row["model"],
+            text=row["model"] + f" ({row.get('quantization', '')})"
+            if row.get("quantization")
+            else row["model"],
             showarrow=False,
             xanchor="left",
             yanchor="bottom",
             yshift=12,
-            font=dict(size=13, family="monospace", color="#1a1a1a"),
+            font=dict(size=14, family="monospace", color="#1a1a1a"),
         )
     )
-    bon_pct = row["bon_gain"] * 100
-    maj_pct = row["maj_gain"] * 100
-    avg_pct = row["average_accuracy"] * 100
-    sign = "+" if maj_pct >= 0 else ""
-    txt = f"avg {avg_pct:.1f}%   maj {sign}{maj_pct:.1f}%   bon +{bon_pct:.1f}%"
+
+    # Score Text (e.g., "14.2%")
+    val = row["conditioned_override_rate"] * 100
+    txt = f"{val:.1f}%"
     annotations.append(
         dict(
             x=1.0,
@@ -182,13 +150,21 @@ for i, row in df.iterrows():
             xanchor="right",
             yanchor="bottom",
             yshift=12,
-            font=dict(size=11, family="monospace", color="#6b6b6b"),
+            font=dict(size=14, family="monospace", color="#6b6b6b"),
         )
     )
 
 fig.update_layout(
     font=dict(color="#1a1a1a", family="monospace"),
     barmode="overlay",
+    title=dict(
+        text="THE TRUE TRAP RATE<br>"
+        "<span style='font-size:12px;font-weight:normal;color:#4a4a4a'>"
+        "Conditioned override rate: How often a model defaults to the original answer,<br>"
+        "given that it successfully solved the original version."
+        "</span>",
+        font=dict(family="monospace", size=16, color="#1a1a1a"),
+    ),
     xaxis=dict(
         showticklabels=False, showgrid=False, zeroline=False, range=[-0.1, 1.05]
     ),
@@ -197,22 +173,15 @@ fig.update_layout(
         showgrid=False,
         zeroline=False,
         range=[-0.5, len(df) - 0.1],
+        autorange="reversed",  # Flips y-axis so index 0 (Rank 1) is at the top
     ),
     plot_bgcolor="#f9f7f4",
     paper_bgcolor="#f9f7f4",
-    margin=dict(l=0, r=0, t=0, b=0),
+    margin=dict(l=20, r=20, t=130, b=20),
     annotations=annotations,
     shapes=shapes,
-    legend=dict(
-        orientation="h",
-        yanchor="top",
-        y=-0.02,
-        xanchor="center",
-        x=0.5,
-        font=dict(family="monospace", size=12),
-    ),
-    height=850,
+    height=750,
 )
 
-fig.write_image("data/images/blog/sampling_gain_chart.png", scale=3)
-print("Updated blog chart created successfully.")
+fig.write_image("data/images/conditioned_override_chart.png", scale=3)
+print("Conditioned Override chart created successfully.")

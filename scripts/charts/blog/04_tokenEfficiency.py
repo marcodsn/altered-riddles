@@ -263,5 +263,5 @@ fig.update_layout(
     height=750,
 )
 
-fig.write_image("data/images/blog/token_efficiency.png", scale=3)
+fig.write_image("data/images/blog/token_efficiency_chart.png", scale=3)
 print("Updated blog chart created successfully.")
