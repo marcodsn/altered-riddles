@@ -1,39 +1,47 @@
 #!/usr/bin/env python3
 """
-evaluate.py — Evaluate model outputs against the Altered Riddles benchmark.
+evaluate.py — Evaluate model outputs against the Altered Riddles benchmark using an LLM-as-a-judge.
 
-This script is RE-RUNNABLE: it reads model outputs and benchmark data, scores
-them WITHOUT calling any API. If you update `altered_accepted_answers` in
-`benchmark.jsonl`, you can re-run evaluation to get updated scores.
+This script reads model outputs, checks a local judgment cache to avoid re-evaluating,
+and calls an LLM to evaluate any pending outputs based on semantic meaning.
 
 Usage examples:
-    # Evaluate all models in data/model_outputs/
+    # Evaluate all models using the default Judge (Gemini)
     python -m scripts.evaluate
 
-    # Evaluate a single model output file
-    python -m scripts.evaluate --model-outputs data/model_outputs/gemini-3.1-pro.jsonl
-
-    # Verbose per-riddle breakdown
-    python -m scripts.evaluate --verbose
+    # Use a specific model as the judge (e.g., GPT-4o) with batched requests
+    python -m scripts.evaluate --provider openai --model gpt-4o --batch-size 20
 """
 
 from __future__ import annotations
 
 import argparse
+import json
 import logging
-import re
 import sys
+import time
 from collections import Counter
 from itertools import groupby
 from pathlib import Path
+
+from dotenv import load_dotenv
 
 from scripts.core.config import (
     DEFAULT_BENCHMARK,
     DEFAULT_MODEL_OUTPUTS,
     DEFAULT_RESULTS,
     get_benchmark_version,
+    provider_names,
+    resolve_provider,
 )
-from scripts.core.io_utils import load_jsonl, write_json
+from scripts.core.io_utils import (
+    append_jsonl,
+    load_jsonl,
+    load_template,
+    strip_markdown_fences,
+    write_json,
+)
+from scripts.core.llm_client import call_llm_batched
 
 # ---------------------------------------------------------------------------
 # Logging
@@ -50,39 +58,31 @@ COMPETING_ANSWER_WEIGHT = 0.5
 
 
 # ---------------------------------------------------------------------------
-# Answer-matching logic
+# LLM Judge Logic
 # ---------------------------------------------------------------------------
 
 
-def normalize(text: str) -> str:
-    """Lowercase, strip punctuation and articles for lenient matching."""
-    text = text.lower()
-    text = re.sub(r"[^a-z0-9 ]", " ", text)
-    text = re.sub(r"\b(a|an|the|it's|its|it is)\\b", " ", text)
-    return re.sub(r"\s+", " ", text).strip()
-
-
-def is_match(model_answer: str, accepted_answers: list[str]) -> bool:
-    """Check if model answer matches any accepted answer (lenient)."""
-    m = normalize(model_answer)
-    if not m:
-        return False
-    for accepted in accepted_answers:
-        a = normalize(accepted)
-        if not a:
-            continue
-        if a in m or m in a:
-            return True
-    return False
+def parse_judge_response(raw_text: str) -> dict:
+    """Parse the Judge LLM's JSON response."""
+    text = strip_markdown_fences(raw_text)
+    try:
+        data = json.loads(text)
+        return {
+            "correct": bool(data.get("correct", False)),
+            "gave_original": bool(data.get("gave_original", False)),
+            "competing": bool(data.get("competing", False)),
+        }
+    except json.JSONDecodeError:
+        logger.warning("Failed to parse Judge JSON: %s", text[:200])
+        return {"correct": False, "gave_original": False, "competing": False}
 
 
 # ---------------------------------------------------------------------------
-# Evaluation logic
+# Benchmark Data Extractors
 # ---------------------------------------------------------------------------
 
 
 def build_benchmark_lookup(entries: list[dict]) -> dict[str, dict]:
-    """Build a lookup dict keyed by riddle `id`."""
     lookup: dict[str, dict] = {}
     for entry in entries:
         rid = entry.get("id", "")
@@ -92,9 +92,6 @@ def build_benchmark_lookup(entries: list[dict]) -> dict[str, dict]:
 
 
 def extract_accepted_answers(benchmark_entry: dict, riddle_type: str) -> list[str]:
-    """
-    Return the list of accepted answers for a given riddle type.
-    """
     if riddle_type == "original":
         answers = benchmark_entry.get("original_accepted_answers")
         if not answers:
@@ -109,7 +106,6 @@ def extract_accepted_answers(benchmark_entry: dict, riddle_type: str) -> list[st
 
 
 def extract_original_answers(benchmark_entry: dict) -> list[str]:
-    """Return the list of accepted answers for the *original* riddle."""
     answers = benchmark_entry.get("original_accepted_answers")
     if not answers:
         ans = benchmark_entry.get("original_answer", "")
@@ -118,26 +114,29 @@ def extract_original_answers(benchmark_entry: dict) -> list[str]:
 
 
 def extract_competing_answers(benchmark_entry: dict) -> list[str]:
-    """Return the list of competing answers for the *altered* riddle."""
     return benchmark_entry.get("altered_competing_answers", [])
+
+
+# ---------------------------------------------------------------------------
+# Evaluation Logic
+# ---------------------------------------------------------------------------
 
 
 def _score_single_output(
     output: dict,
-    benchmark_lookup: dict[str, dict],
+    benchmark_entry: dict | None,
+    judgment: dict,
 ) -> dict | None:
-    """Score a single model output record against the benchmark."""
+    """Score a single model output record using the Judge's assessment."""
+    if benchmark_entry is None:
+        return None
+
     riddle_id = output.get("riddle_id", "")
     riddle_type = output.get("riddle_type", "")
     model_answer = output.get("model_answer", "")
-
-    benchmark_entry = benchmark_lookup.get(riddle_id)
-    if benchmark_entry is None:
-        logger.warning("Riddle ID '%s' not found in benchmark — skipping.", riddle_id)
-        return None
-
     accepted = extract_accepted_answers(benchmark_entry, riddle_type)
-    correct = is_match(model_answer, accepted)
+
+    correct = judgment.get("correct", False)
 
     detail: dict = {
         "riddle_id": riddle_id,
@@ -150,17 +149,16 @@ def _score_single_output(
     }
 
     if riddle_type == "altered":
-        # Check if the model gave the *original* answer instead
-        original_answers = extract_original_answers(benchmark_entry)
-        gave_original = is_match(model_answer, original_answers)
+        gave_original = judgment.get("gave_original", False)
+        competing_match = judgment.get("competing", False)
+
         detail["gave_original_answer"] = gave_original
+        original_answers = extract_original_answers(benchmark_entry)
         detail["original_answer"] = original_answers[0] if original_answers else ""
 
         if correct:
             detail["score"] = 1.0
         else:
-            competing = extract_competing_answers(benchmark_entry)
-            competing_match = is_match(model_answer, competing) if competing else False
             detail["competing_match"] = competing_match
             if competing_match and not gave_original:
                 detail["score"] = COMPETING_ANSWER_WEIGHT
@@ -171,8 +169,6 @@ def _score_single_output(
 
 
 def _collect_token_stats(model_outputs: list[dict], num_samples: int = 1) -> dict:
-    """Aggregate token usage statistics, separating original and altered."""
-
     def _sum_tokens(outputs: list[dict], divisor: int) -> tuple[int, int]:
         in_toks = [
             o["input_tokens"] for o in outputs if o.get("input_tokens") is not None
@@ -180,17 +176,14 @@ def _collect_token_stats(model_outputs: list[dict], num_samples: int = 1) -> dic
         out_toks = [
             o["output_tokens"] for o in outputs if o.get("output_tokens") is not None
         ]
-
         raw_in = sum(in_toks) if in_toks else 0
         raw_out = sum(out_toks) if out_toks else 0
-
         return round(raw_in / divisor), round(raw_out / divisor)
 
     orig_outputs = [o for o in model_outputs if o.get("riddle_type") == "original"]
     alt_outputs = [o for o in model_outputs if o.get("riddle_type") == "altered"]
 
     effective_samples = max(num_samples, 1)
-
     orig_in, orig_out = _sum_tokens(orig_outputs, effective_samples)
     alt_in, alt_out = _sum_tokens(alt_outputs, effective_samples)
 
@@ -206,42 +199,54 @@ def _collect_token_stats(model_outputs: list[dict], num_samples: int = 1) -> dic
 
 def evaluate_model(
     model_outputs: list[dict],
+    judgments: dict[tuple[str, str, int], dict],
     benchmark_lookup: dict[str, dict],
     verbose: bool = False,
 ) -> dict:
     """Evaluate a single model's outputs and return a results dict."""
     model_name = ""
     details: list[dict] = []
-
     provider = ""
     quantization = ""
+
     for output in model_outputs:
         if not model_name:
             model_name = output.get("model", "unknown")
             provider = output.get("provider", "")
             quantization = output.get("quantization", "")
 
-        detail = _score_single_output(output, benchmark_lookup)
+        riddle_id = output.get("riddle_id", "")
+        riddle_type = output.get("riddle_type", "")
+        sample_index = output.get("sample_index", 1)
+
+        benchmark_entry = benchmark_lookup.get(riddle_id)
+        if not benchmark_entry:
+            continue
+
+        key = (riddle_id, riddle_type, sample_index)
+        judgment = judgments.get(
+            key, {"correct": False, "gave_original": False, "competing": False}
+        )
+
+        detail = _score_single_output(output, benchmark_entry, judgment)
         if detail is None:
             continue
         details.append(detail)
 
         if verbose:
             status = "✓" if detail["correct"] else "✗"
-            extra = ""
-            if detail["riddle_type"] == "altered" and detail.get(
-                "gave_original_answer"
-            ):
-                extra = "  ⚠ gave original answer"
-            sample_tag = ""
-            if detail.get("sample_index", 1) > 1:
-                sample_tag = f"  [sample {detail['sample_index']}]"
+            extra = "  ⚠ gave original" if detail.get("gave_original_answer") else ""
+            sample_tag = (
+                f"  [sample {detail['sample_index']}]"
+                if detail.get("sample_index", 1) > 1
+                else ""
+            )
             logger.info(
-                "  %s  %s (%s): model=%r  accepted=%r%s%s",
+                "  %s  %s (%s): ans=%r  acc=%r%s%s",
                 status,
                 detail["riddle_id"],
                 detail["riddle_type"],
-                detail["model_answer"],
+                detail["model_answer"][:40] + "...",
                 detail["accepted_answers"],
                 extra,
                 sample_tag,
@@ -258,20 +263,13 @@ def evaluate_model(
     altered_group_sizes = [len(v) for k, v in grouped.items() if k[1] == "altered"]
     num_samples = max(altered_group_sizes) if altered_group_sizes else 1
 
-    original_total = 0
-    original_correct = 0
-    altered_total = 0
-    altered_correct_s1 = 0
-    altered_competing = 0
+    original_total = original_correct = 0
+    altered_total = altered_correct_s1 = altered_competing = altered_gave_original = 0
     altered_score_s1 = 0.0
-    altered_gave_original = 0
 
     for key, group in grouped.items():
         riddle_type = key[1]
-        rec = next(
-            (d for d in group if d.get("sample_index", 1) == 1),
-            group[0],
-        )
+        rec = next((d for d in group if d.get("sample_index", 1) == 1), group[0])
 
         if riddle_type == "original":
             original_total += 1
@@ -288,24 +286,19 @@ def evaluate_model(
                 altered_competing += 1
                 altered_score_s1 += COMPETING_ANSWER_WEIGHT
 
-    # --- Conditioned Override Rate Logic ---
-    conditioned_override_total = 0
-    conditioned_override_count = 0
-
+    conditioned_override_total = conditioned_override_count = 0
     unique_riddles = {k[0] for k in grouped.keys()}
+
     for rid in unique_riddles:
         orig_group = grouped.get((rid, "original"), [])
         alt_group = grouped.get((rid, "altered"), [])
-
         if orig_group and alt_group:
-            # We use sample 1 to maintain consistency with the baseline metrics
             orig_s1 = next(
                 (d for d in orig_group if d.get("sample_index", 1) == 1), orig_group[0]
             )
             alt_s1 = next(
                 (d for d in alt_group if d.get("sample_index", 1) == 1), alt_group[0]
             )
-
             if orig_s1["correct"]:
                 conditioned_override_total += 1
                 if alt_s1.get("gave_original_answer"):
@@ -326,15 +319,12 @@ def evaluate_model(
         else 0.0
     )
 
-    alt_binary_sum = 0.0
-    avg_acc_sum = 0.0
-
+    alt_binary_sum = avg_acc_sum = 0.0
     for key, group in grouped.items():
         if key[1] != "altered":
             continue
         binary_scores = [1.0 if d["correct"] else 0.0 for d in group]
         alt_binary_sum += sum(binary_scores) / len(binary_scores)
-
         sample_scores = [d.get("score", 0.0) for d in group]
         avg_acc_sum += sum(sample_scores) / len(sample_scores)
 
@@ -360,54 +350,41 @@ def evaluate_model(
     }
 
     if num_samples > 1:
-        best_of_n_correct = 0
-        majority_vote_correct = 0
-        altered_count_multi = 0
-
+        best_of_n_correct = majority_vote_correct = altered_count_multi = 0
         for key, group in grouped.items():
             if key[1] != "altered":
                 continue
             altered_count_multi += 1
-
-            any_primary = any(d["correct"] for d in group)
-            any_competing = any(
+            if any(d["correct"] for d in group) or any(
                 d.get("competing_match") and not d.get("gave_original_answer")
                 for d in group
-            )
-            if any_primary:
-                best_of_n_correct += 1
-            elif any_competing:
+            ):
                 best_of_n_correct += 1
 
+            # Simple majority norm logic (LLM judge is better, but this suffices for multi-sample consensus)
             answer_counts: Counter[str] = Counter()
             for d in group:
-                norm_ans = normalize(d["model_answer"])
-                answer_counts[norm_ans] += 1
-            majority_answer_norm, _ = answer_counts.most_common(1)[0]
-            rep = next(
-                d for d in group if normalize(d["model_answer"]) == majority_answer_norm
-            )
+                answer_counts[d["model_answer"]] += 1
+            majority_ans, _ = answer_counts.most_common(1)[0]
+            rep = next(d for d in group if d["model_answer"] == majority_ans)
             if rep["correct"]:
                 majority_vote_correct += 1
             elif rep.get("competing_match") and not rep.get("gave_original_answer"):
                 majority_vote_correct += COMPETING_ANSWER_WEIGHT
 
-        if altered_count_multi:
-            best_of_n_accuracy = round(best_of_n_correct / altered_count_multi, 3)
-            majority_vote_accuracy = round(
-                majority_vote_correct / altered_count_multi, 3
-            )
-        else:
-            best_of_n_accuracy = 0.0
-            majority_vote_accuracy = 0.0
-
         summary["num_samples"] = num_samples
-        summary["best_of_n_accuracy"] = best_of_n_accuracy
-        summary["majority_vote_accuracy"] = majority_vote_accuracy
+        summary["best_of_n_accuracy"] = (
+            round(best_of_n_correct / altered_count_multi, 3)
+            if altered_count_multi
+            else 0.0
+        )
+        summary["majority_vote_accuracy"] = (
+            round(majority_vote_correct / altered_count_multi, 3)
+            if altered_count_multi
+            else 0.0
+        )
 
-    token_stats = _collect_token_stats(model_outputs, num_samples=num_samples)
-    summary.update(token_stats)
-
+    summary.update(_collect_token_stats(model_outputs, num_samples=num_samples))
     summary["num_riddles"] = len({d["riddle_id"] for d in details})
     summary["original_num_riddles"] = len(
         {d["riddle_id"] for d in details if d["riddle_type"] == "original"}
@@ -451,7 +428,6 @@ def build_leaderboard(all_results: list[dict]) -> list[dict]:
             "original_output_tokens": s.get("original_output_tokens", 0),
             "altered_input_tokens": s.get("altered_input_tokens", 0),
             "altered_output_tokens": s.get("altered_output_tokens", 0),
-            "num_riddles": s.get("num_riddles", s.get("altered_total", 0)),
             "original_num_riddles": s.get("original_num_riddles", 0),
             "altered_num_riddles": s.get("altered_num_riddles", 0),
         }
@@ -462,211 +438,225 @@ def build_leaderboard(all_results: list[dict]) -> list[dict]:
         rows.append(row)
 
     rows.sort(key=lambda r: (-r["total_score"], r["pattern_override_rate"]))
-
     for rank, row in enumerate(rows, start=1):
         row["rank"] = rank
-
-    ordered: list[dict] = []
-    for row in rows:
-        entry: dict = {"rank": row["rank"], "model": row["model"]}
-        entry["provider"] = row.get("provider", "")
-        entry["quantization"] = row.get("quantization", "")
-        entry["original_accuracy"] = row["original_accuracy"]
-        entry["altered_accuracy"] = row["altered_accuracy"]
-        entry["altered_weighted_accuracy"] = row["altered_weighted_accuracy"]
-        entry["pattern_override_rate"] = row["pattern_override_rate"]
-        entry["conditioned_override_rate"] = row["conditioned_override_rate"]
-        entry["average_accuracy"] = row["average_accuracy"]
-        entry["total_score"] = row["total_score"]
-        entry["total_input_tokens"] = row["total_input_tokens"]
-        entry["total_output_tokens"] = row["total_output_tokens"]
-        entry["original_input_tokens"] = row["original_input_tokens"]
-        entry["original_output_tokens"] = row["original_output_tokens"]
-        entry["altered_input_tokens"] = row["altered_input_tokens"]
-        entry["altered_output_tokens"] = row["altered_output_tokens"]
-        entry["num_riddles"] = row.get("num_riddles", 0)
-        entry["original_num_riddles"] = row.get("original_num_riddles", 0)
-        entry["altered_num_riddles"] = row.get("altered_num_riddles", 0)
-        if "num_samples" in row:
-            entry["num_samples"] = row["num_samples"]
-            entry["best_of_n_accuracy"] = row["best_of_n_accuracy"]
-            entry["majority_vote_accuracy"] = row["majority_vote_accuracy"]
-        ordered.append(entry)
-    return ordered
-
-
-def _fmt_tokens(n: int) -> str:
-    if n <= 0:
-        return "-"
-    if n < 1000:
-        return str(n)
-    if n < 100_000:
-        return f"{n / 1000:.1f}k"
-    if n < 1_000_000:
-        return f"{n / 1000:.0f}k"
-    return f"{n / 1_000_000:.1f}M"
+    return rows
 
 
 def print_leaderboard(leaderboard: list[dict]) -> None:
-    col_model = 22
-    col_metric = 10
-    col_tokens = 8
+    col_model, col_metric, col_tokens = 22, 10, 8
 
     def fmt_pct(val: float) -> str:
         return f"{val * 100:5.1f}%"
 
-    header_model = " Model".ljust(col_model)
-    header_orig = " Orig Acc".ljust(col_metric)
-    header_alt = " Alt Acc".ljust(col_metric)
-    header_ovr = " Override".ljust(col_metric)
-    header_covr = " Cond Ovr".ljust(col_metric)
-    header_score = " Score".ljust(col_metric)
-    header_tok = " Tokens".ljust(col_tokens)
-
-    top = (
-        f"╔{'═' * col_model}╦{'═' * col_metric}╦{'═' * col_metric}"
-        f"╦{'═' * col_metric}╦{'═' * col_metric}╦{'═' * col_metric}╦{'═' * col_tokens}╗"
-    )
-    mid = (
-        f"╠{'═' * col_model}╬{'═' * col_metric}╬{'═' * col_metric}"
-        f"╬{'═' * col_metric}╬{'═' * col_metric}╬{'═' * col_metric}╬{'═' * col_tokens}╣"
-    )
-    bot = (
-        f"╚{'═' * col_model}╩{'═' * col_metric}╩{'═' * col_metric}"
-        f"╩{'═' * col_metric}╩{'═' * col_metric}╩{'═' * col_metric}╩{'═' * col_tokens}╝"
-    )
+    top = f"╔{'═' * col_model}╦{'═' * col_metric}╦{'═' * col_metric}╦{'═' * col_metric}╦{'═' * col_metric}╦{'═' * col_metric}╦{'═' * col_tokens}╗"
+    mid = f"╠{'═' * col_model}╬{'═' * col_metric}╬{'═' * col_metric}╬{'═' * col_metric}╬{'═' * col_metric}╬{'═' * col_metric}╬{'═' * col_tokens}╣"
+    bot = f"╚{'═' * col_model}╩{'═' * col_metric}╩{'═' * col_metric}╩{'═' * col_metric}╩{'═' * col_metric}╩{'═' * col_metric}╩{'═' * col_tokens}╝"
 
     print(top)
     print(
-        f"║{header_model}║{header_orig}║{header_alt}"
-        f"║{header_ovr}║{header_covr}║{header_score}║{header_tok}║"
+        f"║{' Model'.ljust(col_model)}║{' Orig Acc'.ljust(col_metric)}║{' Alt Acc'.ljust(col_metric)}║{' Override'.ljust(col_metric)}║{' Cond Ovr'.ljust(col_metric)}║{' Score'.ljust(col_metric)}║{' Tokens'.ljust(col_tokens)}║"
     )
     print(mid)
 
     for row in leaderboard:
-        model_label = row["model"]
-        if row.get("num_samples", 1) > 1:
-            model_label = f"{model_label}@{row['num_samples']}"
-        model_str = f" {model_label[: col_model - 1]}".ljust(col_model)
-        orig_str = f" {fmt_pct(row['original_accuracy'])}".ljust(col_metric)
-        alt_str = f" {fmt_pct(row['altered_accuracy'])}".ljust(col_metric)
-        ovr_str = f" {fmt_pct(row['pattern_override_rate'])}".ljust(col_metric)
-        covr_str = f" {fmt_pct(row['conditioned_override_rate'])}".ljust(col_metric)
-        score_str = f" {fmt_pct(row['total_score'])}".ljust(col_metric)
-        tok_str = f" {_fmt_tokens(row.get('total_output_tokens', 0))}".ljust(col_tokens)
-        print(
-            f"║{model_str}║{orig_str}║{alt_str}║{ovr_str}║{covr_str}║{score_str}║{tok_str}║"
+        model_label = (
+            f"{row['model']}@{row['num_samples']}"
+            if row.get("num_samples", 1) > 1
+            else row["model"]
         )
-
+        print(
+            f"║ {model_label[: col_model - 1].ljust(col_model - 1)}"
+            f"║ {fmt_pct(row['original_accuracy']).ljust(col_metric - 1)}"
+            f"║ {fmt_pct(row['altered_accuracy']).ljust(col_metric - 1)}"
+            f"║ {fmt_pct(row['pattern_override_rate']).ljust(col_metric - 1)}"
+            f"║ {fmt_pct(row['conditioned_override_rate']).ljust(col_metric - 1)}"
+            f"║ {fmt_pct(row['total_score']).ljust(col_metric - 1)}"
+            f"║ {str(row.get('total_output_tokens', '-')).ljust(col_tokens - 1)}║"
+        )
     print(bot)
 
 
 # ---------------------------------------------------------------------------
-# Main evaluation driver
+# Main Evaluation Driver
 # ---------------------------------------------------------------------------
 
 
 def run_evaluation(args: argparse.Namespace) -> None:
+    judge_model, judge_api_key = resolve_provider(args.provider, args.model)
+
     benchmark_path = Path(args.benchmark)
     if not benchmark_path.exists():
-        logger.error("Benchmark file not found: %s", benchmark_path)
+        logger.error("Benchmark not found: %s", benchmark_path)
         sys.exit(1)
 
     benchmark_entries = load_jsonl(benchmark_path)
     benchmark_lookup = build_benchmark_lookup(benchmark_entries)
-    logger.info(
-        "Loaded %d benchmark entries from %s",
-        len(benchmark_lookup),
-        benchmark_path,
-    )
 
     model_outputs_path = Path(args.model_outputs)
-    output_files: list[Path] = []
+    output_files = (
+        sorted(model_outputs_path.glob("*.jsonl"))
+        if model_outputs_path.is_dir()
+        else [model_outputs_path]
+    )
 
-    if model_outputs_path.is_dir():
-        output_files = sorted(model_outputs_path.glob("*.jsonl"))
-        if not output_files:
-            logger.error("No .jsonl files found in %s", model_outputs_path)
-            sys.exit(1)
-        logger.info(
-            "Found %d model output file(s) in %s",
-            len(output_files),
-            model_outputs_path,
-        )
-    elif model_outputs_path.is_file():
-        output_files = [model_outputs_path]
-    else:
-        logger.error("Model outputs path not found: %s", model_outputs_path)
+    if not output_files:
+        logger.error("No .jsonl files found in %s", model_outputs_path)
         sys.exit(1)
 
-    version = get_benchmark_version()
-    results_root = Path(args.results_dir)
-    results_dir = results_root / version
+    results_dir_root = Path(args.results_dir)
+    results_dir = Path(args.results_dir) / get_benchmark_version()
     results_dir.mkdir(parents=True, exist_ok=True)
+
+    judgments_dir = results_dir / "judgments"
+    judgments_dir.mkdir(exist_ok=True)
+
+    # --- Load the Jinja2 Template ---
+    judge_template = load_template(args.judge_template)
 
     all_results: list[dict] = []
 
     for output_file in output_files:
-        logger.info("Evaluating %s …", output_file.name)
         model_outputs = load_jsonl(output_file)
-
         if not model_outputs:
-            logger.warning("  No entries in %s — skipping.", output_file.name)
             continue
 
+        model_name_safe = output_file.stem
+        judgment_cache_path = judgments_dir / f"{model_name_safe}_judgments.jsonl"
+
+        # Load Existing Judgments
+        judgments: dict[tuple[str, str, int], dict] = {}
+        if judgment_cache_path.exists():
+            for j in load_jsonl(judgment_cache_path):
+                judgments[
+                    (j["riddle_id"], j["riddle_type"], j.get("sample_index", 1))
+                ] = j["judgment"]
+
+        # Identify Pending Tasks
+        pending_tasks = []
+        for output in model_outputs:
+            key = (
+                output.get("riddle_id", ""),
+                output.get("riddle_type", ""),
+                output.get("sample_index", 1),
+            )
+            if key not in judgments:
+                pending_tasks.append(output)
+
+        if pending_tasks:
+            logger.info(
+                "Calling Judge LLM for %d pending outputs in %s...",
+                len(pending_tasks),
+                model_name_safe,
+            )
+
+            total = len(pending_tasks)
+            for chunk_start in range(0, total, args.batch_size):
+                chunk = pending_tasks[chunk_start : chunk_start + args.batch_size]
+                prompts, chunk_meta = [], []
+
+                for output in chunk:
+                    rid, rtype = (
+                        output.get("riddle_id", ""),
+                        output.get("riddle_type", ""),
+                    )
+                    entry = benchmark_lookup.get(rid)
+                    if not entry:
+                        continue
+
+                    accepted = extract_accepted_answers(entry, rtype)
+                    original = extract_original_answers(entry)
+                    competing = extract_competing_answers(entry)
+
+                    # --- Render prompt from Jinja Template ---
+                    prompt = judge_template.render(
+                        riddle=output.get("riddle_text", ""),
+                        model_answer=output.get("model_answer", ""),
+                        accepted=accepted,
+                        original=original,
+                        competing=competing,
+                    )
+
+                    prompts.append(prompt)
+                    chunk_meta.append(output)
+
+                if not prompts:
+                    continue
+
+                logger.info(
+                    "  Dispatching Judge batch [%d–%d]...",
+                    chunk_start + 1,
+                    chunk_start + len(chunk),
+                )
+                results = call_llm_batched(
+                    prompts,
+                    provider=args.provider,
+                    model=judge_model,
+                    temperature=args.temperature,
+                    api_key=judge_api_key,
+                    max_concurrency=args.batch_size,
+                )
+
+                for output, res in zip(chunk_meta, results):
+                    key = (
+                        output.get("riddle_id", ""),
+                        output.get("riddle_type", ""),
+                        output.get("sample_index", 1),
+                    )
+                    if isinstance(res, BaseException):
+                        logger.error("Judge failed for %s: %s", key, res)
+                        parsed = {
+                            "correct": False,
+                            "gave_original": False,
+                            "competing": False,
+                        }
+                    else:
+                        parsed = parse_judge_response(res.text)
+
+                    judgments[key] = parsed
+                    append_jsonl(
+                        judgment_cache_path,
+                        {
+                            "riddle_id": key[0],
+                            "riddle_type": key[1],
+                            "sample_index": key[2],
+                            "judgment": parsed,
+                        },
+                    )
+
+                time.sleep(0.5)
+
+        # Evaluate and Save
         result = evaluate_model(
-            model_outputs,
-            benchmark_lookup,
-            verbose=args.verbose,
+            model_outputs, judgments, benchmark_lookup, verbose=args.verbose
         )
         all_results.append(result)
 
-        model_name_safe = output_file.stem
         eval_path = results_dir / f"{model_name_safe}_eval.json"
         write_json(eval_path, result)
-
         s = result["summary"]
-        token_info = ""
-        if s.get("total_output_tokens", 0) > 0:
-            token_info = f"  tokens_in={s['total_input_tokens']} tokens_out={s['total_output_tokens']}"
-        multi_info = ""
-        if s.get("num_samples", 1) > 1:
-            multi_info = (
-                f"  samples={s['num_samples']}"
-                f"  best_of_n={s['best_of_n_accuracy'] * 100:.1f}%"
-                f"  majority={s['majority_vote_accuracy'] * 100:.1f}%"
-            )
         logger.info(
-            "  %s — orig=%.1f%%  alt=%.1f%%  avg_acc=%.1f%%  ovr=%.1f%%  cond_ovr=%.1f%%  score=%.1f%%%s%s",
+            "  %s — orig=%.1f%%  alt=%.1f%%  score=%.1f%%",
             result["model"],
             s["original_accuracy"] * 100,
             s["altered_accuracy"] * 100,
-            s["average_accuracy"] * 100,
-            s["pattern_override_rate"] * 100,
-            s["conditioned_override_rate"] * 100,
             s["total_score"] * 100,
-            multi_info,
-            token_info,
         )
 
+        if args.live_leaderboard:
+            current_leaderboard = build_leaderboard(all_results)
+            write_json(results_dir / "leaderboard.json", current_leaderboard)
+            logger.info("  [Live Leaderboard updated]")
+
     if not all_results:
-        logger.error("No models were evaluated.")
         sys.exit(1)
 
     leaderboard = build_leaderboard(all_results)
-
-    leaderboard_path = results_dir / "leaderboard.json"
-    write_json(leaderboard_path, leaderboard)
-    logger.info("Leaderboard written to %s", leaderboard_path)
-
-    root_leaderboard_path = results_root / "leaderboard.json"
-    results_root.mkdir(parents=True, exist_ok=True)
-    write_json(root_leaderboard_path, leaderboard)
-    logger.info("Leaderboard also written to %s", root_leaderboard_path)
-
-    print()
+    write_json(results_dir_root / "leaderboard.json", leaderboard)
+    write_json(results_dir / "leaderboard.json", leaderboard)
+    print("\n")
     print_leaderboard(leaderboard)
-    print()
+    print("\n")
 
 
 # ---------------------------------------------------------------------------
@@ -676,43 +666,52 @@ def run_evaluation(args: argparse.Namespace) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Evaluate model outputs against the Altered Riddles benchmark.",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
+    parser.add_argument("--benchmark", type=str, default=DEFAULT_BENCHMARK)
+    parser.add_argument("--model-outputs", type=str, default=DEFAULT_MODEL_OUTPUTS)
+    parser.add_argument("--results-dir", type=str, default=DEFAULT_RESULTS)
     parser.add_argument(
-        "--benchmark",
+        "--judge-template",
         type=str,
-        default=DEFAULT_BENCHMARK,
-        help="Path to the benchmark JSONL file.",
+        default="prompts/judge.j2",
+        help="Path to the Jinja2 judge prompt template.",
     )
     parser.add_argument(
-        "--model-outputs",
+        "--provider",
+        choices=provider_names(),
+        default="local",
+        help="LLM Provider for the Judge.",
+    )
+    parser.add_argument(
+        "--model",
         type=str,
-        default=DEFAULT_MODEL_OUTPUTS,
-        help=(
-            "Path to a single model output JSONL file, or a directory "
-            "containing multiple output files to evaluate all at once."
-        ),
+        default="gemma-4-26b-a4b-it",
+        help="LLM Model for the Judge (defaults to provider's default).",
     )
     parser.add_argument(
-        "--results-dir",
-        type=str,
-        default=DEFAULT_RESULTS,
-        help="Directory where evaluation results and leaderboard are written.",
+        "--temperature",
+        type=float,
+        default=1.0,
+        help="Temperature for the Judge LLM.",
     )
     parser.add_argument(
-        "--verbose",
+        "--batch-size",
+        type=int,
+        default=4,
+        help="Batch size for concurrent LLM judge calls.",
+    )
+    parser.add_argument(
+        "--live-leaderboard",
         action="store_true",
         default=False,
-        help="Show detailed per-riddle results during evaluation.",
+        help="Generate and save leaderboard.json incrementally after each model finishes.",
     )
+    parser.add_argument("--verbose", action="store_true", default=False)
     return parser.parse_args()
 
 
-# ---------------------------------------------------------------------------
-# Entry point
-# ---------------------------------------------------------------------------
-
 if __name__ == "__main__":
-    args = parse_args()
-    run_evaluation(args)
+    dotenv_path = Path(__file__).resolve().parent.parent / ".env"
+    load_dotenv(dotenv_path)
+    run_evaluation(parse_args())
