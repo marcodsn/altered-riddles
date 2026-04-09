@@ -1,12 +1,14 @@
 import json
 
-import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 
 leaderboard_path = "results/leaderboard.json"
 with open(leaderboard_path, "r") as f:
     data = json.load(f)
+
+# Keep only reasoning models (name ends in ":reasoning")
+data = [entry for entry in data if entry["model"].endswith(":reasoning")]
 
 # Keep top-10 models based on their rank in the original leaderboard
 data = sorted(data, key=lambda x: x["rank"])[:10]

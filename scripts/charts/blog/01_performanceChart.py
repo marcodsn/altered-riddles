@@ -19,7 +19,7 @@ for entry in data:
 
 df = pd.DataFrame(data)
 df["error"] = 1.96 * np.sqrt(
-    df["total_score"] * (1 - df["total_score"]) / df["num_riddles"]
+    df["total_score"] * (1 - df["total_score"]) / df["altered_num_riddles"]
 )
 df = df.sort_values("total_score", ascending=True).reset_index(drop=True)
 

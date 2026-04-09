@@ -4,20 +4,20 @@
   "quantization": "UD-Q8_K_XL",
   "summary": {
     "original_total": 87,
-    "original_correct": 16,
-    "original_accuracy": 0.184,
+    "original_correct": 17,
+    "original_accuracy": 0.195,
     "altered_total": 250,
-    "altered_correct": 47,
-    "altered_competing": 17,
-    "altered_accuracy": 0.189,
-    "altered_weighted_accuracy": 0.222,
-    "pattern_override_rate": 0.08,
-    "conditioned_override_rate": 0.5,
-    "average_accuracy": 0.227,
-    "total_score": 0.227,
+    "altered_correct": 46,
+    "altered_competing": 14,
+    "altered_accuracy": 0.181,
+    "altered_weighted_accuracy": 0.212,
+    "pattern_override_rate": 0.096,
+    "conditioned_override_rate": 0.412,
+    "average_accuracy": 0.212,
+    "total_score": 0.212,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.28,
-    "majority_vote_accuracy": 0.224,
+    "best_of_n_accuracy": 0.264,
+    "majority_vote_accuracy": 0.208,
     "original_input_tokens": 6640,
     "original_output_tokens": 734,
     "altered_input_tokens": 19709,
@@ -664,12 +664,11 @@
       "accepted_answers": [
         "A blotter or blotting paper."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A towel.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_009",
@@ -679,12 +678,11 @@
       "accepted_answers": [
         "A blotter or blotting paper."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A towel.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_009",
@@ -694,12 +692,11 @@
       "accepted_answers": [
         "A blotter or blotting paper."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A towel.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_010",
@@ -896,7 +893,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3
     },
     {
@@ -1400,8 +1397,8 @@
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "Your age.",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_021",
@@ -1415,8 +1412,8 @@
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Your age.",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_021",
@@ -1430,8 +1427,8 @@
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Your age.",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_022",
@@ -2251,12 +2248,11 @@
       "accepted_answers": [
         "An e-reader"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A book",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_035",
@@ -2296,7 +2292,7 @@
       "accepted_answers": [
         "Footsteps."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -2318,7 +2314,7 @@
       "accepted_answers": [
         "Footsteps."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -2634,7 +2630,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Footsteps.",
       "competing_match": false,
       "score": 0.0
@@ -2649,7 +2645,7 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Footsteps.",
       "competing_match": false,
       "score": 0.0
@@ -2664,7 +2660,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Footsteps.",
       "competing_match": false,
       "score": 0.0
@@ -3175,11 +3171,12 @@
       "accepted_answers": [
         "A knitting needle set"
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A pine tree",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_052",
@@ -3189,11 +3186,12 @@
       "accepted_answers": [
         "A knitting needle set"
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A pine tree",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_052",
@@ -3203,11 +3201,12 @@
       "accepted_answers": [
         "A knitting needle set"
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A pine tree",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_053",
@@ -3706,7 +3705,7 @@
       "accepted_answers": [
         "A stamp."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -3717,7 +3716,7 @@
       "accepted_answers": [
         "A stamp."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -3728,7 +3727,7 @@
       "accepted_answers": [
         "A stamp."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -3741,7 +3740,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A stamp.",
       "competing_match": false,
       "score": 0.0
@@ -3758,8 +3757,8 @@
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A stamp.",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_061",
@@ -3773,8 +3772,8 @@
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A stamp.",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_062",
@@ -3830,12 +3829,11 @@
         "The raw egg remains intact if it is dropped into a deep pool of water on the concrete floor.",
         "i.e., from a height into a soft landing"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "You can drop it by holding it at a sufficient height where it doesn’t crack due to the force of impact.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_063",
@@ -3846,12 +3844,11 @@
         "The raw egg remains intact if it is dropped into a deep pool of water on the concrete floor.",
         "i.e., from a height into a soft landing"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "You can drop it by holding it at a sufficient height where it doesn’t crack due to the force of impact.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_063",
@@ -4603,7 +4600,7 @@
       "accepted_answers": [
         "Your shadow"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -4614,7 +4611,7 @@
       "accepted_answers": [
         "Your shadow"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -4625,7 +4622,7 @@
       "accepted_answers": [
         "Your shadow"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -4638,7 +4635,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Your shadow",
       "competing_match": false,
       "score": 0.0
@@ -4653,7 +4650,7 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Your shadow",
       "competing_match": false,
       "score": 0.0
@@ -4668,7 +4665,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Your shadow",
       "competing_match": false,
       "score": 0.0
@@ -4930,12 +4927,11 @@
       "accepted_answers": [
         "A steel tower or skyscraper."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A mountain.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_082",
@@ -4945,12 +4941,11 @@
       "accepted_answers": [
         "A steel tower or skyscraper."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A mountain.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_082",
@@ -4960,10 +4955,24 @@
       "accepted_answers": [
         "A steel tower or skyscraper."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A mountain.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_083",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap, and lives in the ocean?",
+      "model_answer": "fish",
+      "accepted_answers": [
+        "A starfish."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A clock.",
       "competing_match": false,
       "score": 0.0
     },
@@ -4975,25 +4984,12 @@
       "accepted_answers": [
         "A starfish."
       ],
-      "correct": true,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A clock.",
-      "score": 1.0
-    },
-    {
-      "riddle_id": "alt_083",
-      "riddle_type": "altered",
-      "riddle_text": "What has hands but can't clap, and lives in the ocean?",
-      "model_answer": "fish",
-      "accepted_answers": [
-        "A starfish."
-      ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A clock.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_083",
@@ -5003,11 +4999,12 @@
       "accepted_answers": [
         "A starfish."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A clock.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_084",
@@ -5549,8 +5546,8 @@
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "An umbrella.",
-      "competing_match": false,
-      "score": 0.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_092",
@@ -5564,8 +5561,8 @@
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "An umbrella.",
-      "competing_match": false,
-      "score": 0.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_092",
@@ -5579,158 +5576,188 @@
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "An umbrella.",
+      "competing_match": true,
+      "score": 0.5
+    },
+    {
+      "riddle_id": "alt_093",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap, and deals them out one by one?",
+      "model_answer": "card",
+      "accepted_answers": [
+        "A deck of cards."
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A clock.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_093",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap, and deals them out one by one?",
+      "model_answer": "card",
+      "accepted_answers": [
+        "A deck of cards."
+      ],
+      "correct": true,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A clock.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_093",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap, and deals them out one by one?",
+      "model_answer": "card",
+      "accepted_answers": [
+        "A deck of cards."
+      ],
+      "correct": true,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "A clock.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_094",
+      "riddle_type": "original",
+      "riddle_text": "What has many keys but can't open a single lock?",
+      "model_answer": "map",
+      "accepted_answers": [
+        "A piano."
+      ],
+      "correct": false,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_094",
+      "riddle_type": "original",
+      "riddle_text": "What has many keys but can't open a single lock?",
+      "model_answer": "map",
+      "accepted_answers": [
+        "A piano."
+      ],
+      "correct": false,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_094",
+      "riddle_type": "original",
+      "riddle_text": "What has many keys but can't open a single lock?",
+      "model_answer": "map",
+      "accepted_answers": [
+        "A piano."
+      ],
+      "correct": false,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_094",
+      "riddle_type": "altered",
+      "riddle_text": "What has many keys but can't open a single lock, and is used for typing?",
+      "model_answer": "keyboard",
+      "accepted_answers": [
+        "A computer keyboard."
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A piano.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_094",
+      "riddle_type": "altered",
+      "riddle_text": "What has many keys but can't open a single lock, and is used for typing?",
+      "model_answer": "keyboard",
+      "accepted_answers": [
+        "A computer keyboard."
+      ],
+      "correct": true,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A piano.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_094",
+      "riddle_type": "altered",
+      "riddle_text": "What has many keys but can't open a single lock, and is used for typing?",
+      "model_answer": "keyboard",
+      "accepted_answers": [
+        "A computer keyboard."
+      ],
+      "correct": true,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "A piano.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_095",
+      "riddle_type": "original",
+      "riddle_text": "If a red house is made of red bricks, and a blue house is made of blue bricks, what is a greenhouse made of?",
+      "model_answer": "glass",
+      "accepted_answers": [
+        "Glass."
+      ],
+      "correct": true,
+      "sample_index": 1
+    },
+    {
+      "riddle_id": "alt_095",
+      "riddle_type": "original",
+      "riddle_text": "If a red house is made of red bricks, and a blue house is made of blue bricks, what is a greenhouse made of?",
+      "model_answer": "glass",
+      "accepted_answers": [
+        "Glass."
+      ],
+      "correct": true,
+      "sample_index": 2
+    },
+    {
+      "riddle_id": "alt_095",
+      "riddle_type": "original",
+      "riddle_text": "If a red house is made of red bricks, and a blue house is made of blue bricks, what is a greenhouse made of?",
+      "model_answer": "glass",
+      "accepted_answers": [
+        "Glass."
+      ],
+      "correct": true,
+      "sample_index": 3
+    },
+    {
+      "riddle_id": "alt_095",
+      "riddle_type": "altered",
+      "riddle_text": "If a red house is made of red bricks, and a blue house is made of blue bricks, what is a green house made of?",
+      "model_answer": "green",
+      "accepted_answers": [
+        "Green bricks."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "Glass.",
       "competing_match": false,
       "score": 0.0
     },
     {
-      "riddle_id": "alt_093",
+      "riddle_id": "alt_095",
       "riddle_type": "altered",
-      "riddle_text": "What has hands but can't clap, and deals them out one by one?",
-      "model_answer": "card",
+      "riddle_text": "If a red house is made of red bricks, and a blue house is made of blue bricks, what is a green house made of?",
+      "model_answer": "green",
       "accepted_answers": [
-        "A deck of cards."
+        "Green bricks."
       ],
-      "correct": true,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A clock.",
-      "score": 1.0
-    },
-    {
-      "riddle_id": "alt_093",
-      "riddle_type": "altered",
-      "riddle_text": "What has hands but can't clap, and deals them out one by one?",
-      "model_answer": "card",
-      "accepted_answers": [
-        "A deck of cards."
-      ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
-      "original_answer": "A clock.",
-      "score": 1.0
-    },
-    {
-      "riddle_id": "alt_093",
-      "riddle_type": "altered",
-      "riddle_text": "What has hands but can't clap, and deals them out one by one?",
-      "model_answer": "card",
-      "accepted_answers": [
-        "A deck of cards."
-      ],
-      "correct": true,
-      "sample_index": 3,
-      "gave_original_answer": false,
-      "original_answer": "A clock.",
-      "score": 1.0
-    },
-    {
-      "riddle_id": "alt_094",
-      "riddle_type": "original",
-      "riddle_text": "What has many keys but can't open a single lock?",
-      "model_answer": "map",
-      "accepted_answers": [
-        "A piano."
-      ],
-      "correct": false,
-      "sample_index": 1
-    },
-    {
-      "riddle_id": "alt_094",
-      "riddle_type": "original",
-      "riddle_text": "What has many keys but can't open a single lock?",
-      "model_answer": "map",
-      "accepted_answers": [
-        "A piano."
-      ],
-      "correct": false,
-      "sample_index": 2
-    },
-    {
-      "riddle_id": "alt_094",
-      "riddle_type": "original",
-      "riddle_text": "What has many keys but can't open a single lock?",
-      "model_answer": "map",
-      "accepted_answers": [
-        "A piano."
-      ],
-      "correct": false,
-      "sample_index": 3
-    },
-    {
-      "riddle_id": "alt_094",
-      "riddle_type": "altered",
-      "riddle_text": "What has many keys but can't open a single lock, and is used for typing?",
-      "model_answer": "keyboard",
-      "accepted_answers": [
-        "A computer keyboard."
-      ],
-      "correct": true,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A piano.",
-      "score": 1.0
-    },
-    {
-      "riddle_id": "alt_094",
-      "riddle_type": "altered",
-      "riddle_text": "What has many keys but can't open a single lock, and is used for typing?",
-      "model_answer": "keyboard",
-      "accepted_answers": [
-        "A computer keyboard."
-      ],
-      "correct": true,
-      "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "A piano.",
-      "score": 1.0
-    },
-    {
-      "riddle_id": "alt_094",
-      "riddle_type": "altered",
-      "riddle_text": "What has many keys but can't open a single lock, and is used for typing?",
-      "model_answer": "keyboard",
-      "accepted_answers": [
-        "A computer keyboard."
-      ],
-      "correct": true,
-      "sample_index": 3,
-      "gave_original_answer": false,
-      "original_answer": "A piano.",
-      "score": 1.0
-    },
-    {
-      "riddle_id": "alt_095",
-      "riddle_type": "original",
-      "riddle_text": "If a red house is made of red bricks, and a blue house is made of blue bricks, what is a greenhouse made of?",
-      "model_answer": "glass",
-      "accepted_answers": [
-        "Glass."
-      ],
-      "correct": true,
-      "sample_index": 1
-    },
-    {
-      "riddle_id": "alt_095",
-      "riddle_type": "original",
-      "riddle_text": "If a red house is made of red bricks, and a blue house is made of blue bricks, what is a greenhouse made of?",
-      "model_answer": "glass",
-      "accepted_answers": [
-        "Glass."
-      ],
-      "correct": true,
-      "sample_index": 2
-    },
-    {
-      "riddle_id": "alt_095",
-      "riddle_type": "original",
-      "riddle_text": "If a red house is made of red bricks, and a blue house is made of blue bricks, what is a greenhouse made of?",
-      "model_answer": "glass",
-      "accepted_answers": [
-        "Glass."
-      ],
-      "correct": true,
-      "sample_index": 3
+      "original_answer": "Glass.",
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_095",
@@ -5740,39 +5767,12 @@
       "accepted_answers": [
         "Green bricks."
       ],
-      "correct": true,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "Glass.",
-      "score": 1.0
-    },
-    {
-      "riddle_id": "alt_095",
-      "riddle_type": "altered",
-      "riddle_text": "If a red house is made of red bricks, and a blue house is made of blue bricks, what is a green house made of?",
-      "model_answer": "green",
-      "accepted_answers": [
-        "Green bricks."
-      ],
-      "correct": true,
-      "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "Glass.",
-      "score": 1.0
-    },
-    {
-      "riddle_id": "alt_095",
-      "riddle_type": "altered",
-      "riddle_text": "If a red house is made of red bricks, and a blue house is made of blue bricks, what is a green house made of?",
-      "model_answer": "green",
-      "accepted_answers": [
-        "Green bricks."
-      ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Glass.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_096",
@@ -6051,7 +6051,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": true,
+      "gave_original_answer": false,
       "original_answer": "The man's son.",
       "competing_match": false,
       "score": 0.0
@@ -6066,7 +6066,7 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": true,
+      "gave_original_answer": false,
       "original_answer": "The man's son.",
       "competing_match": false,
       "score": 0.0
@@ -6081,7 +6081,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": true,
+      "gave_original_answer": false,
       "original_answer": "The man's son.",
       "competing_match": false,
       "score": 0.0
@@ -6184,7 +6184,7 @@
       "accepted_answers": [
         "A mushroom."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1
     },
     {
@@ -6195,7 +6195,7 @@
       "accepted_answers": [
         "A mushroom."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2
     },
     {
@@ -6206,7 +6206,7 @@
       "accepted_answers": [
         "A mushroom."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3
     },
     {
@@ -6219,11 +6219,12 @@
         "a wooden box",
         "crate acting as a room"
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
-      "gave_original_answer": true,
+      "gave_original_answer": false,
       "original_answer": "A mushroom.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_102",
@@ -6235,11 +6236,12 @@
         "a wooden box",
         "crate acting as a room"
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
-      "gave_original_answer": true,
+      "gave_original_answer": false,
       "original_answer": "A mushroom.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_102",
@@ -6251,11 +6253,12 @@
         "a wooden box",
         "crate acting as a room"
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
-      "gave_original_answer": true,
+      "gave_original_answer": false,
       "original_answer": "A mushroom.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_103",
@@ -6469,12 +6472,11 @@
       "accepted_answers": [
         "The man's son."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "The man himself.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_106",
@@ -6484,12 +6486,11 @@
       "accepted_answers": [
         "The man's son."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "The man himself.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_106",
@@ -6499,12 +6500,11 @@
       "accepted_answers": [
         "The man's son."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "The man himself.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_107",
@@ -6561,7 +6561,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A towel.",
       "competing_match": false,
       "score": 0.0
@@ -6576,7 +6576,7 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A towel.",
       "competing_match": false,
       "score": 0.0
@@ -6591,7 +6591,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A towel.",
       "competing_match": false,
       "score": 0.0
@@ -6696,7 +6696,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Footsteps.",
       "competing_match": false,
       "score": 0.0
@@ -6711,7 +6711,7 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Footsteps.",
       "competing_match": false,
       "score": 0.0
@@ -6726,7 +6726,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Footsteps.",
       "competing_match": false,
       "score": 0.0
@@ -6924,7 +6924,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Footsteps.",
       "competing_match": false,
       "score": 0.0
@@ -6939,7 +6939,7 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Footsteps.",
       "competing_match": false,
       "score": 0.0
@@ -6954,7 +6954,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Footsteps.",
       "competing_match": false,
       "score": 0.0
@@ -7616,11 +7616,12 @@
         "A wave",
         "a water wave"
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A cold",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_128",
@@ -7631,11 +7632,12 @@
         "A wave",
         "a water wave"
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A cold",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_128",
@@ -7646,10 +7648,25 @@
         "A wave",
         "a water wave"
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A cold",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_129",
+      "riddle_type": "altered",
+      "riddle_text": "I have kingdoms, but no kings rule there. I have dragons, but none breathe fire. I have treasure, but you cannot spend it. What am I?",
+      "model_answer": "book",
+      "accepted_answers": [
+        "A fantasy novel."
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A map.",
       "score": 1.0
     },
     {
@@ -7660,27 +7677,11 @@
       "accepted_answers": [
         "A fantasy novel."
       ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A map.",
-      "competing_match": true,
-      "score": 0.5
-    },
-    {
-      "riddle_id": "alt_129",
-      "riddle_type": "altered",
-      "riddle_text": "I have kingdoms, but no kings rule there. I have dragons, but none breathe fire. I have treasure, but you cannot spend it. What am I?",
-      "model_answer": "book",
-      "accepted_answers": [
-        "A fantasy novel."
-      ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A map.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_129",
@@ -7690,12 +7691,11 @@
       "accepted_answers": [
         "A fantasy novel."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A map.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_130",
@@ -7880,8 +7880,8 @@
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A map.",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_133",
@@ -7895,8 +7895,8 @@
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A map.",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_133",
@@ -7910,8 +7910,8 @@
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A map.",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_134",
@@ -9999,7 +9999,7 @@
       "accepted_answers": [
         "A map."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -10010,7 +10010,7 @@
       "accepted_answers": [
         "A map."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -10026,7 +10026,7 @@
       "sample_index": 1,
       "gave_original_answer": true,
       "original_answer": "A map.",
-      "competing_match": true,
+      "competing_match": false,
       "score": 0.0
     },
     {
@@ -10040,7 +10040,7 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A map.",
       "competing_match": false,
       "score": 0.0
@@ -10056,7 +10056,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A map.",
       "competing_match": false,
       "score": 0.0
@@ -10219,12 +10219,11 @@
       "accepted_answers": [
         "A hot ember or piece of coal."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "Breath.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_177",
@@ -10234,12 +10233,11 @@
       "accepted_answers": [
         "A hot ember or piece of coal."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Breath.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_177",
@@ -10249,12 +10247,11 @@
       "accepted_answers": [
         "A hot ember or piece of coal."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Breath.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_178",
@@ -10463,8 +10460,8 @@
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "Seven",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_181",
@@ -10478,8 +10475,8 @@
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Seven",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_181",
@@ -10493,8 +10490,8 @@
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Seven",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_182",
@@ -10674,7 +10671,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Seven",
       "competing_match": false,
       "score": 0.0
@@ -10689,7 +10686,7 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Seven",
       "competing_match": false,
       "score": 0.0
@@ -10704,7 +10701,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Seven",
       "competing_match": false,
       "score": 0.0
@@ -11041,11 +11038,12 @@
       "accepted_answers": [
         "Bacteria."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "Fire.",
-      "score": 1.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_191",
@@ -11055,11 +11053,12 @@
       "accepted_answers": [
         "Bacteria."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Fire.",
-      "score": 1.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_191",
@@ -11069,11 +11068,12 @@
       "accepted_answers": [
         "Bacteria."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Fire.",
-      "score": 1.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_192",
@@ -11671,11 +11671,12 @@
       "accepted_answers": [
         "A pen."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A cloud.",
-      "score": 1.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_204",
@@ -11704,8 +11705,8 @@
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A cloud.",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_205",
@@ -11719,8 +11720,8 @@
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A cloud.",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_205",
@@ -11734,8 +11735,8 @@
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A cloud.",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_206",
@@ -12085,7 +12086,7 @@
       "accepted_answers": [
         "An envelope."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1
     },
     {
@@ -12096,7 +12097,7 @@
       "accepted_answers": [
         "An envelope."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2
     },
     {
@@ -12107,7 +12108,7 @@
       "accepted_answers": [
         "An envelope."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3
     },
     {
@@ -12118,11 +12119,12 @@
       "accepted_answers": [
         "Eve."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
-      "gave_original_answer": true,
+      "gave_original_answer": false,
       "original_answer": "An envelope.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_213",
@@ -12147,11 +12149,12 @@
       "accepted_answers": [
         "Eve."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
-      "gave_original_answer": true,
+      "gave_original_answer": false,
       "original_answer": "An envelope.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_214",
@@ -12194,11 +12197,12 @@
       "accepted_answers": [
         "A hand of cards."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A clock.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_214",
@@ -12208,11 +12212,12 @@
       "accepted_answers": [
         "A hand of cards."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A clock.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_214",
@@ -12601,8 +12606,8 @@
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Lunch and dinner.",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_222",
@@ -12702,11 +12707,12 @@
       "accepted_answers": [
         "North and South."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "Lunch and dinner.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_224",
@@ -12716,11 +12722,12 @@
       "accepted_answers": [
         "North and South."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Lunch and dinner.",
-      "score": 1.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_224",
@@ -12730,11 +12737,12 @@
       "accepted_answers": [
         "North and South."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Lunch and dinner.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_225",
@@ -13108,12 +13116,11 @@
         "A loading icon.",
         "buffering symbol"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "Tomorrow.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_233",
@@ -13140,12 +13147,11 @@
         "A loading icon.",
         "buffering symbol"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Tomorrow.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_234",

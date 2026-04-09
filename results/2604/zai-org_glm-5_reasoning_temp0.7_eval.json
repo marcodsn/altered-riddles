@@ -4,26 +4,26 @@
   "quantization": "FP4",
   "summary": {
     "original_total": 87,
-    "original_correct": 77,
-    "original_accuracy": 0.885,
+    "original_correct": 83,
+    "original_accuracy": 0.954,
     "altered_total": 250,
-    "altered_correct": 128,
-    "altered_competing": 16,
-    "altered_accuracy": 0.491,
-    "altered_weighted_accuracy": 0.544,
-    "pattern_override_rate": 0.192,
-    "conditioned_override_rate": 0.208,
-    "average_accuracy": 0.524,
-    "total_score": 0.524,
+    "altered_correct": 145,
+    "altered_competing": 19,
+    "altered_accuracy": 0.559,
+    "altered_weighted_accuracy": 0.618,
+    "pattern_override_rate": 0.212,
+    "conditioned_override_rate": 0.205,
+    "average_accuracy": 0.594,
+    "total_score": 0.594,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.652,
-    "majority_vote_accuracy": 0.548,
+    "best_of_n_accuracy": 0.732,
+    "majority_vote_accuracy": 0.618,
     "original_input_tokens": 5933,
     "original_output_tokens": 42738,
     "altered_input_tokens": 17665,
-    "altered_output_tokens": 590960,
+    "altered_output_tokens": 570331,
     "total_input_tokens": 23598,
-    "total_output_tokens": 633698,
+    "total_output_tokens": 613069,
     "num_riddles": 250,
     "original_num_riddles": 87,
     "altered_num_riddles": 250
@@ -211,21 +211,6 @@
       ],
       "correct": true,
       "sample_index": 3
-    },
-    {
-      "riddle_id": "alt_003",
-      "riddle_type": "altered",
-      "riddle_text": "Voiceless it cries, wingless flutters, toothless bites, mouthless mutters—yet it is solid. What is it?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A snowflake."
-      ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "The wind.",
-      "competing_match": false,
-      "score": 0.0
     },
     {
       "riddle_id": "alt_003",
@@ -648,12 +633,11 @@
       "accepted_answers": [
         "A blotter or blotting paper."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A towel.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_009",
@@ -663,12 +647,11 @@
       "accepted_answers": [
         "A blotter or blotting paper."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A towel.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_009",
@@ -678,12 +661,11 @@
       "accepted_answers": [
         "A blotter or blotting paper."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A towel.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_010",
@@ -738,7 +720,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -749,7 +731,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -760,7 +742,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -771,12 +753,11 @@
       "accepted_answers": [
         "The surgeon is the boy's father"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "The surgeon is the boy's mother",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_011",
@@ -786,12 +767,11 @@
       "accepted_answers": [
         "The surgeon is the boy's father"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "The surgeon is the boy's mother",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_011",
@@ -801,12 +781,11 @@
       "accepted_answers": [
         "The surgeon is the boy's father"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "The surgeon is the boy's mother",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_012",
@@ -858,7 +837,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -869,7 +848,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -880,7 +859,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -1427,12 +1406,11 @@
       "accepted_answers": [
         "A boundary line or property line."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A fence.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_022",
@@ -1444,7 +1422,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A fence.",
       "competing_match": false,
       "score": 0.0
@@ -1577,11 +1555,12 @@
       "accepted_answers": [
         "A target"
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A teapot",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_025",
@@ -1591,11 +1570,12 @@
       "accepted_answers": [
         "A target"
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A teapot",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_025",
@@ -1605,11 +1585,12 @@
       "accepted_answers": [
         "A target"
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A teapot",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_026",
@@ -1817,21 +1798,6 @@
       "riddle_id": "alt_028",
       "riddle_type": "altered",
       "riddle_text": "What can run but never walks, has a mouth but never talks, has a head but never weeps, has a bed but never sleeps, and is found in a hospital?",
-      "model_answer": "",
-      "accepted_answers": [
-        "An IV drip or saline line."
-      ],
-      "correct": false,
-      "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "A river.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_028",
-      "riddle_type": "altered",
-      "riddle_text": "What can run but never walks, has a mouth but never talks, has a head but never weeps, has a bed but never sleeps, and is found in a hospital?",
       "model_answer": "An IV drip",
       "accepted_answers": [
         "An IV drip or saline line."
@@ -1985,21 +1951,6 @@
       "gave_original_answer": false,
       "original_answer": "A piano.",
       "score": 1.0
-    },
-    {
-      "riddle_id": "alt_032",
-      "riddle_type": "altered",
-      "riddle_text": "What has keys but opens no locks, and helps you find your way?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A map."
-      ],
-      "correct": false,
-      "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "A piano.",
-      "competing_match": false,
-      "score": 0.0
     },
     {
       "riddle_id": "alt_032",
@@ -2209,12 +2160,11 @@
       "accepted_answers": [
         "An e-reader"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A book",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_035",
@@ -2238,12 +2188,11 @@
       "accepted_answers": [
         "An e-reader"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A book",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_036",
@@ -2315,12 +2264,11 @@
       "accepted_answers": [
         "Holes."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Footsteps.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_037",
@@ -2410,31 +2358,15 @@
       "riddle_id": "alt_039",
       "riddle_type": "altered",
       "riddle_text": "What is so fragile that saying its name breaks it, but it is also a physical object?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A soap bubble."
-      ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "Silence.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_039",
-      "riddle_type": "altered",
-      "riddle_text": "What is so fragile that saying its name breaks it, but it is also a physical object?",
       "model_answer": "A bubble",
       "accepted_answers": [
         "A soap bubble."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Silence.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_039",
@@ -2444,44 +2376,11 @@
       "accepted_answers": [
         "A soap bubble."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Silence.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_040",
-      "riddle_type": "altered",
-      "riddle_text": "What has many needles but does not sew, yet measures the distance between two points?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A compass",
-        "drafting tool"
-      ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A pine tree",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_040",
-      "riddle_type": "altered",
-      "riddle_text": "What has many needles but does not sew, yet measures the distance between two points?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A compass",
-        "drafting tool"
-      ],
-      "correct": false,
-      "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "A pine tree",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_040",
@@ -2610,12 +2509,11 @@
       "accepted_answers": [
         "Photographs."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Footsteps.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_043",
@@ -2776,11 +2674,12 @@
       "accepted_answers": [
         "A train."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A cold.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_046",
@@ -2903,21 +2802,6 @@
       "riddle_id": "alt_048",
       "riddle_type": "altered",
       "riddle_text": "The more you take away, the more you leave behind — and what remains is worth more than what you removed.",
-      "model_answer": "",
-      "accepted_answers": [
-        "A sculpture."
-      ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "Footsteps.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_048",
-      "riddle_type": "altered",
-      "riddle_text": "The more you take away, the more you leave behind — and what remains is worth more than what you removed.",
       "model_answer": "Sculpting",
       "accepted_answers": [
         "A sculpture."
@@ -2937,12 +2821,11 @@
       "accepted_answers": [
         "A sculpture."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Footsteps.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_049",
@@ -2980,12 +2863,11 @@
       "accepted_answers": [
         "A musical note."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A coin.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_050",
@@ -3111,42 +2993,12 @@
       "riddle_id": "alt_052",
       "riddle_type": "altered",
       "riddle_text": "What has many needles but does not sew, and is made of metal?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A knitting needle set"
-      ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A pine tree",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_052",
-      "riddle_type": "altered",
-      "riddle_text": "What has many needles but does not sew, and is made of metal?",
       "model_answer": "A metal Christmas tree",
       "accepted_answers": [
         "A knitting needle set"
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "A pine tree",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_052",
-      "riddle_type": "altered",
-      "riddle_text": "What has many needles but does not sew, and is made of metal?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A knitting needle set"
-      ],
-      "correct": false,
-      "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A pine tree",
       "competing_match": false,
@@ -3295,11 +3147,12 @@
       "accepted_answers": [
         "An arrow."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A coin.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_055",
@@ -3309,11 +3162,12 @@
       "accepted_answers": [
         "An arrow."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A coin.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_056",
@@ -3434,12 +3288,11 @@
       "accepted_answers": [
         "You can drop it by placing it gently on the floor, such as by lowering it with your hand or rolling it off a low surface."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "You can drop it by holding it at a sufficient height where it doesn’t crack due to the force of impact.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_057",
@@ -3449,12 +3302,11 @@
       "accepted_answers": [
         "You can drop it by placing it gently on the floor, such as by lowering it with your hand or rolling it off a low surface."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "You can drop it by holding it at a sufficient height where it doesn’t crack due to the force of impact.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_057",
@@ -3464,12 +3316,11 @@
       "accepted_answers": [
         "You can drop it by placing it gently on the floor, such as by lowering it with your hand or rolling it off a low surface."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "You can drop it by holding it at a sufficient height where it doesn’t crack due to the force of impact.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_058",
@@ -4099,7 +3950,7 @@
       "accepted_answers": [
         "This was possible because there were only three people: a grandfather, a father (his son), and a son (the father's son)."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -4110,7 +3961,7 @@
       "accepted_answers": [
         "This was possible because there were only three people: a grandfather, a father (his son), and a son (the father's son)."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -4121,7 +3972,7 @@
       "accepted_answers": [
         "This was possible because there were only three people: a grandfather, a father (his son), and a son (the father's son)."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -4132,12 +3983,11 @@
       "accepted_answers": [
         "The family structure included a grandfather, his son (the father), and his grandson (the son). The youngest person is the grandson, who took two fish."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "This was possible because there were only three people: a grandfather, a father (his son), and a son (the father's son).",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_069",
@@ -4147,12 +3997,11 @@
       "accepted_answers": [
         "The family structure included a grandfather, his son (the father), and his grandson (the son). The youngest person is the grandson, who took two fish."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "This was possible because there were only three people: a grandfather, a father (his son), and a son (the father's son).",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_069",
@@ -4162,12 +4011,11 @@
       "accepted_answers": [
         "The family structure included a grandfather, his son (the father), and his grandson (the son). The youngest person is the grandson, who took two fish."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "This was possible because there were only three people: a grandfather, a father (his son), and a son (the father's son).",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_070",
@@ -4296,31 +4144,15 @@
       "riddle_id": "alt_072",
       "riddle_type": "altered",
       "riddle_text": "I speak without a mouth and hear without ears. I have no body, but I come alive with the wind — and I can knock down trees.",
-      "model_answer": "",
-      "accepted_answers": [
-        "A storm."
-      ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "An echo.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_072",
-      "riddle_type": "altered",
-      "riddle_text": "I speak without a mouth and hear without ears. I have no body, but I come alive with the wind — and I can knock down trees.",
       "model_answer": "Wind",
       "accepted_answers": [
         "A storm."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "An echo.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_072",
@@ -4330,12 +4162,11 @@
       "accepted_answers": [
         "A storm."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "An echo.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_073",
@@ -4374,11 +4205,12 @@
       "accepted_answers": [
         "A globe."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A stamp.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_074",
@@ -4406,21 +4238,6 @@
       "correct": false,
       "sample_index": 2,
       "gave_original_answer": true,
-      "original_answer": "Tomorrow.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_074",
-      "riddle_type": "altered",
-      "riddle_text": "What is always coming but never arrives, and disappears when the sun goes down?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A shadow."
-      ],
-      "correct": false,
-      "sample_index": 3,
-      "gave_original_answer": false,
       "original_answer": "Tomorrow.",
       "competing_match": false,
       "score": 0.0
@@ -4467,22 +4284,6 @@
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A coin.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_076",
-      "riddle_type": "altered",
-      "riddle_text": "What has keys but opens no locks, and is made of water?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A river.",
-        "specifically, a river with 'keys' or islands"
-      ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A piano.",
       "competing_match": false,
       "score": 0.0
     },
@@ -4645,42 +4446,12 @@
       "riddle_id": "alt_079",
       "riddle_type": "altered",
       "riddle_text": "What can travel around the world while staying in the corner of a digital screen?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A channel logo or watermark."
-      ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A stamp.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_079",
-      "riddle_type": "altered",
-      "riddle_text": "What can travel around the world while staying in the corner of a digital screen?",
       "model_answer": "A webcam",
       "accepted_answers": [
         "A channel logo or watermark."
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "A stamp.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_079",
-      "riddle_type": "altered",
-      "riddle_text": "What can travel around the world while staying in the corner of a digital screen?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A channel logo or watermark."
-      ],
-      "correct": false,
-      "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A stamp.",
       "competing_match": false,
@@ -4731,22 +4502,6 @@
       "correct": false,
       "sample_index": 1,
       "gave_original_answer": true,
-      "original_answer": "An anchor.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_080",
-      "riddle_type": "altered",
-      "riddle_text": "What do you take in when you want to use it and throw out when you don't want to use it?",
-      "model_answer": "",
-      "accepted_answers": [
-        "Breath.",
-        "Air"
-      ],
-      "correct": false,
-      "sample_index": 2,
-      "gave_original_answer": false,
       "original_answer": "An anchor.",
       "competing_match": false,
       "score": 0.0
@@ -4852,12 +4607,11 @@
       "accepted_answers": [
         "A steel tower or skyscraper."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A mountain.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_082",
@@ -4867,12 +4621,11 @@
       "accepted_answers": [
         "A steel tower or skyscraper."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A mountain.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_082",
@@ -4882,12 +4635,11 @@
       "accepted_answers": [
         "A steel tower or skyscraper."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A mountain.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_083",
@@ -4899,21 +4651,6 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A clock.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_083",
-      "riddle_type": "altered",
-      "riddle_text": "What has hands but can't clap, and lives in the ocean?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A starfish."
-      ],
-      "correct": false,
-      "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A clock.",
       "competing_match": false,
@@ -4975,11 +4712,12 @@
       "accepted_answers": [
         "A flower bed."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A river.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_084",
@@ -4989,11 +4727,12 @@
       "accepted_answers": [
         "A flower bed."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A river.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_084",
@@ -5065,36 +4804,6 @@
       "correct": false,
       "sample_index": 1,
       "gave_original_answer": true,
-      "original_answer": "A coin.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_086",
-      "riddle_type": "altered",
-      "riddle_text": "I have a head and a tail, but no body, and I’m bitten by dogs. What am I?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A dog's tail."
-      ],
-      "correct": false,
-      "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "A coin.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_086",
-      "riddle_type": "altered",
-      "riddle_text": "I have a head and a tail, but no body, and I’m bitten by dogs. What am I?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A dog's tail."
-      ],
-      "correct": false,
-      "sample_index": 3,
-      "gave_original_answer": false,
       "original_answer": "A coin.",
       "competing_match": false,
       "score": 0.0
@@ -5184,37 +4893,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A clock.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_088",
-      "riddle_type": "altered",
-      "riddle_text": "What has hands but can't clap, and stores your belongings?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A handbag."
-      ],
-      "correct": false,
-      "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "A clock.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_088",
-      "riddle_type": "altered",
-      "riddle_text": "What has hands but can't clap, and stores your belongings?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A handbag."
-      ],
-      "correct": false,
-      "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A clock.",
       "competing_match": false,
       "score": 0.0
@@ -5264,8 +4943,8 @@
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "An echo.",
-      "competing_match": false,
-      "score": 0.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_089",
@@ -5347,7 +5026,7 @@
       "accepted_answers": [
         "A phone."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -5358,7 +5037,7 @@
       "accepted_answers": [
         "A phone."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -5369,7 +5048,7 @@
       "accepted_answers": [
         "A phone."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -5415,8 +5094,8 @@
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A phone.",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_092",
@@ -5473,12 +5152,11 @@
       "accepted_answers": [
         "A mushroom."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "An umbrella.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_092",
@@ -5488,12 +5166,11 @@
       "accepted_answers": [
         "A mushroom."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "An umbrella.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_093",
@@ -5521,21 +5198,6 @@
       "correct": false,
       "sample_index": 2,
       "gave_original_answer": true,
-      "original_answer": "A clock.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_093",
-      "riddle_type": "altered",
-      "riddle_text": "What has hands but can't clap, and deals them out one by one?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A deck of cards."
-      ],
-      "correct": false,
-      "sample_index": 3,
-      "gave_original_answer": false,
       "original_answer": "A clock.",
       "competing_match": false,
       "score": 0.0
@@ -5581,12 +5243,11 @@
       "accepted_answers": [
         "A computer keyboard."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A piano.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_094",
@@ -5596,12 +5257,11 @@
       "accepted_answers": [
         "A computer keyboard."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A piano.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_094",
@@ -5611,12 +5271,11 @@
       "accepted_answers": [
         "A computer keyboard."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A piano.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_095",
@@ -5958,7 +5617,7 @@
       "accepted_answers": [
         "The man's son."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -5969,11 +5628,12 @@
       "accepted_answers": [
         "The man himself."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "The man's son.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_099",
@@ -5983,11 +5643,12 @@
       "accepted_answers": [
         "The man himself."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "The man's son.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_099",
@@ -5997,11 +5658,12 @@
       "accepted_answers": [
         "The man himself."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "The man's son.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_100",
@@ -6011,11 +5673,12 @@
       "accepted_answers": [
         "A glow stick."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "An egg.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_100",
@@ -6025,11 +5688,12 @@
       "accepted_answers": [
         "A glow stick."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "An egg.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_100",
@@ -6039,11 +5703,12 @@
       "accepted_answers": [
         "A glow stick."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "An egg.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_101",
@@ -6382,12 +6047,11 @@
       "accepted_answers": [
         "The man's son."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "The man himself.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_106",
@@ -6397,12 +6061,11 @@
       "accepted_answers": [
         "The man's son."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "The man himself.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_106",
@@ -6412,12 +6075,11 @@
       "accepted_answers": [
         "The man's son."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "The man himself.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_107",
@@ -6472,12 +6134,11 @@
       "accepted_answers": [
         "A dish towel."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": true,
       "original_answer": "A towel.",
-      "competing_match": true,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_108",
@@ -6487,12 +6148,11 @@
       "accepted_answers": [
         "A dish towel."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A towel.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_108",
@@ -6502,12 +6162,11 @@
       "accepted_answers": [
         "A dish towel."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A towel.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_109",
@@ -6646,12 +6305,11 @@
       "accepted_answers": [
         "Room for error."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A mushroom.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_112",
@@ -6661,12 +6319,11 @@
       "accepted_answers": [
         "Room for error."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A mushroom.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_112",
@@ -7052,21 +6709,6 @@
       "score": 0.0
     },
     {
-      "riddle_id": "alt_120",
-      "riddle_type": "altered",
-      "riddle_text": "I am taken from a mine and shut up in a wooden case, from which I am never released, and yet I am used by almost every person, but I am not for writing. What am I?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A match."
-      ],
-      "correct": false,
-      "sample_index": 3,
-      "gave_original_answer": false,
-      "original_answer": "Pencil lead (graphite).",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
       "riddle_id": "alt_121",
       "riddle_type": "altered",
       "riddle_text": "The more you take, the more you leave behind — and I am found in a quarry, not on a path.",
@@ -7119,7 +6761,7 @@
       "accepted_answers": [
         "A river."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -7270,12 +6912,11 @@
       "accepted_answers": [
         "A breath or puff of air"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A cold",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_124",
@@ -7300,12 +6941,11 @@
       "accepted_answers": [
         "A breath or puff of air"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A cold",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_125",
@@ -7348,12 +6988,11 @@
       "accepted_answers": [
         "A digital map."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": true,
       "original_answer": "A map.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_125",
@@ -7378,12 +7017,11 @@
       "accepted_answers": [
         "A digital map."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": true,
       "original_answer": "A map.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_126",
@@ -7580,21 +7218,6 @@
       "score": 0.0
     },
     {
-      "riddle_id": "alt_129",
-      "riddle_type": "altered",
-      "riddle_text": "I have kingdoms, but no kings rule there. I have dragons, but none breathe fire. I have treasure, but you cannot spend it. What am I?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A fantasy novel."
-      ],
-      "correct": false,
-      "sample_index": 3,
-      "gave_original_answer": false,
-      "original_answer": "A map.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
       "riddle_id": "alt_130",
       "riddle_type": "altered",
       "riddle_text": "What has an eye but cannot see, and can destroy a whole city?",
@@ -7770,8 +7393,8 @@
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A map.",
-      "competing_match": true,
-      "score": 0.5
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_133",
@@ -7783,21 +7406,6 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "A map.",
-      "competing_match": true,
-      "score": 0.5
-    },
-    {
-      "riddle_id": "alt_133",
-      "riddle_type": "altered",
-      "riddle_text": "I have players, but no one plays. I have a board, but no pieces move. I have rules, but no one follows them. What am I?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A rulebook."
-      ],
-      "correct": false,
-      "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A map.",
       "competing_match": false,
@@ -7924,51 +7532,6 @@
       "score": 1.0
     },
     {
-      "riddle_id": "alt_136",
-      "riddle_type": "altered",
-      "riddle_text": "What goes up but never comes down, and is locked in place once it reaches the top?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A hot air balloon at its maximum altitude."
-      ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "Your age.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_136",
-      "riddle_type": "altered",
-      "riddle_text": "What goes up but never comes down, and is locked in place once it reaches the top?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A hot air balloon at its maximum altitude."
-      ],
-      "correct": false,
-      "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "Your age.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_136",
-      "riddle_type": "altered",
-      "riddle_text": "What goes up but never comes down, and is locked in place once it reaches the top?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A hot air balloon at its maximum altitude."
-      ],
-      "correct": false,
-      "sample_index": 3,
-      "gave_original_answer": false,
-      "original_answer": "Your age.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
       "riddle_id": "alt_137",
       "riddle_type": "altered",
       "riddle_text": "What is more powerful than God, more cruel than the devil, the poor crave it, the rich have it, and if you lose it, you'll die?",
@@ -7981,21 +7544,6 @@
       "gave_original_answer": false,
       "original_answer": "Nothing.",
       "score": 1.0
-    },
-    {
-      "riddle_id": "alt_137",
-      "riddle_type": "altered",
-      "riddle_text": "What is more powerful than God, more cruel than the devil, the poor crave it, the rich have it, and if you lose it, you'll die?",
-      "model_answer": "",
-      "accepted_answers": [
-        "Money."
-      ],
-      "correct": false,
-      "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "Nothing.",
-      "competing_match": false,
-      "score": 0.0
     },
     {
       "riddle_id": "alt_137",
@@ -8019,11 +7567,12 @@
       "accepted_answers": [
         "The lamp."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "The match.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_138",
@@ -8033,11 +7582,12 @@
       "accepted_answers": [
         "The lamp."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "The match.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_138",
@@ -8378,21 +7928,6 @@
       "score": 0.0
     },
     {
-      "riddle_id": "alt_145",
-      "riddle_type": "altered",
-      "riddle_text": "What goes up but never comes down, and is universally understood as a metaphor for progress?",
-      "model_answer": "",
-      "accepted_answers": [
-        "Knowledge or education."
-      ],
-      "correct": false,
-      "sample_index": 3,
-      "gave_original_answer": false,
-      "original_answer": "Your age.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
       "riddle_id": "alt_146",
       "riddle_type": "altered",
       "riddle_text": "What has to be broken before you can read the encrypted message?",
@@ -8400,12 +7935,11 @@
       "accepted_answers": [
         "A code."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "An egg.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_146",
@@ -8580,11 +8114,12 @@
       "accepted_answers": [
         "A horse."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "An egg.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_149",
@@ -8650,12 +8185,11 @@
       "accepted_answers": [
         "A wax seal."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "An egg.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_151",
@@ -8665,12 +8199,11 @@
       "accepted_answers": [
         "A wax seal."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "An egg.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_151",
@@ -8680,12 +8213,11 @@
       "accepted_answers": [
         "A wax seal."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "An egg.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_152",
@@ -8713,21 +8245,6 @@
       "correct": false,
       "sample_index": 2,
       "gave_original_answer": true,
-      "original_answer": "A stamp.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_152",
-      "riddle_type": "altered",
-      "riddle_text": "What can travel around the world while staying in a corner, but never leaves the desk?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A computer mouse."
-      ],
-      "correct": false,
-      "sample_index": 3,
-      "gave_original_answer": false,
       "original_answer": "A stamp.",
       "competing_match": false,
       "score": 0.0
@@ -8896,21 +8413,6 @@
       "original_answer": "Darkness.",
       "competing_match": true,
       "score": 0.5
-    },
-    {
-      "riddle_id": "alt_155",
-      "riddle_type": "altered",
-      "riddle_text": "The more of this there is, the less you see, and it falls from the clouds. What is it?",
-      "model_answer": "",
-      "accepted_answers": [
-        "Snow."
-      ],
-      "correct": false,
-      "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "Darkness.",
-      "competing_match": false,
-      "score": 0.0
     },
     {
       "riddle_id": "alt_155",
@@ -9237,12 +8739,11 @@
       "accepted_answers": [
         "An athlete."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Your brain (or your wits).",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_162",
@@ -9414,12 +8915,11 @@
         "perfume",
         "fragrance"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Light.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_166",
@@ -9729,12 +9229,11 @@
         "Queen",
         "Jack"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A clock.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_172",
@@ -9747,12 +9246,11 @@
         "Queen",
         "Jack"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A clock.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_172",
@@ -9991,12 +9489,11 @@
       "accepted_answers": [
         "1."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "9.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_176",
@@ -10070,21 +9567,6 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "Breath.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_177",
-      "riddle_type": "altered",
-      "riddle_text": "I am light as a feather, yet the strongest man cannot hold me for long, and I burn the skin upon contact.",
-      "model_answer": "",
-      "accepted_answers": [
-        "A hot ember or piece of coal."
-      ],
-      "correct": false,
-      "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Breath.",
       "competing_match": false,
@@ -10190,12 +9672,11 @@
       "accepted_answers": [
         "A restaurant menu."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A book.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_179",
@@ -10205,12 +9686,11 @@
       "accepted_answers": [
         "A restaurant menu."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A book.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_180",
@@ -10818,96 +10298,87 @@
       "accepted_answers": [
         "Silence."
       ],
-      "correct": true,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A hole.",
-      "score": 1.0
-    },
-    {
-      "riddle_id": "alt_190",
-      "riddle_type": "altered",
-      "riddle_text": "What gets bigger the more you take away from it, but vanishes as soon as you speak?",
-      "model_answer": "Silence",
-      "accepted_answers": [
-        "Silence."
-      ],
-      "correct": true,
-      "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "A hole.",
-      "score": 1.0
-    },
-    {
-      "riddle_id": "alt_190",
-      "riddle_type": "altered",
-      "riddle_text": "What gets bigger the more you take away from it, but vanishes as soon as you speak?",
-      "model_answer": "Silence",
-      "accepted_answers": [
-        "Silence."
-      ],
-      "correct": true,
-      "sample_index": 3,
-      "gave_original_answer": false,
-      "original_answer": "A hole.",
-      "score": 1.0
-    },
-    {
-      "riddle_id": "alt_191",
-      "riddle_type": "altered",
-      "riddle_text": "Feed me and I live, yet give me antibiotics and I die. What am I?",
-      "model_answer": "Bacteria",
-      "accepted_answers": [
-        "Bacteria."
-      ],
-      "correct": true,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "Fire.",
-      "score": 1.0
-    },
-    {
-      "riddle_id": "alt_191",
-      "riddle_type": "altered",
-      "riddle_text": "Feed me and I live, yet give me antibiotics and I die. What am I?",
-      "model_answer": "Bacteria",
-      "accepted_answers": [
-        "Bacteria."
-      ],
-      "correct": true,
-      "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "Fire.",
-      "score": 1.0
-    },
-    {
-      "riddle_id": "alt_191",
-      "riddle_type": "altered",
-      "riddle_text": "Feed me and I live, yet give me antibiotics and I die. What am I?",
-      "model_answer": "Bacteria",
-      "accepted_answers": [
-        "Bacteria."
-      ],
-      "correct": true,
-      "sample_index": 3,
-      "gave_original_answer": false,
-      "original_answer": "Fire.",
-      "score": 1.0
-    },
-    {
-      "riddle_id": "alt_192",
-      "riddle_type": "altered",
-      "riddle_text": "What gets bigger the more you take away from it, and is made of the very material you removed?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A pile."
-      ],
       "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A hole.",
       "competing_match": false,
       "score": 0.0
+    },
+    {
+      "riddle_id": "alt_190",
+      "riddle_type": "altered",
+      "riddle_text": "What gets bigger the more you take away from it, but vanishes as soon as you speak?",
+      "model_answer": "Silence",
+      "accepted_answers": [
+        "Silence."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A hole.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_190",
+      "riddle_type": "altered",
+      "riddle_text": "What gets bigger the more you take away from it, but vanishes as soon as you speak?",
+      "model_answer": "Silence",
+      "accepted_answers": [
+        "Silence."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "A hole.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_191",
+      "riddle_type": "altered",
+      "riddle_text": "Feed me and I live, yet give me antibiotics and I die. What am I?",
+      "model_answer": "Bacteria",
+      "accepted_answers": [
+        "Bacteria."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "Fire.",
+      "competing_match": true,
+      "score": 0.5
+    },
+    {
+      "riddle_id": "alt_191",
+      "riddle_type": "altered",
+      "riddle_text": "Feed me and I live, yet give me antibiotics and I die. What am I?",
+      "model_answer": "Bacteria",
+      "accepted_answers": [
+        "Bacteria."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "Fire.",
+      "competing_match": true,
+      "score": 0.5
+    },
+    {
+      "riddle_id": "alt_191",
+      "riddle_type": "altered",
+      "riddle_text": "Feed me and I live, yet give me antibiotics and I die. What am I?",
+      "model_answer": "Bacteria",
+      "accepted_answers": [
+        "Bacteria."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "Fire.",
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_192",
@@ -11079,21 +10550,6 @@
       "correct": false,
       "sample_index": 1,
       "gave_original_answer": true,
-      "original_answer": "Fire.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_196",
-      "riddle_type": "altered",
-      "riddle_text": "Feed me and I live, yet give me a drink and I die, but I am not hot to the touch. What am I?",
-      "model_answer": "",
-      "accepted_answers": [
-        "An electronic device."
-      ],
-      "correct": false,
-      "sample_index": 2,
-      "gave_original_answer": false,
       "original_answer": "Fire.",
       "competing_match": false,
       "score": 0.0
@@ -11123,36 +10579,6 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A cold.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_197",
-      "riddle_type": "altered",
-      "riddle_text": "What can you catch but not throw, and it is something you hear?",
-      "model_answer": "",
-      "accepted_answers": [
-        "The drift."
-      ],
-      "correct": false,
-      "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "A cold.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_197",
-      "riddle_type": "altered",
-      "riddle_text": "What can you catch but not throw, and it is something you hear?",
-      "model_answer": "",
-      "accepted_answers": [
-        "The drift."
-      ],
-      "correct": false,
-      "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A cold.",
       "competing_match": false,
@@ -11298,11 +10724,12 @@
       "accepted_answers": [
         "An acupuncture kit."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A pine tree.",
-      "score": 1.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_201",
@@ -11312,11 +10739,12 @@
       "accepted_answers": [
         "An acupuncture kit."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A pine tree.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_201",
@@ -11326,11 +10754,12 @@
       "accepted_answers": [
         "An acupuncture kit."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A pine tree.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_202",
@@ -11372,7 +10801,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A pine tree.",
       "competing_match": false,
       "score": 0.0
@@ -11460,11 +10889,12 @@
       "accepted_answers": [
         "A pen."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A cloud.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_204",
@@ -11474,11 +10904,12 @@
       "accepted_answers": [
         "A pen."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A cloud.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_204",
@@ -11488,11 +10919,12 @@
       "accepted_answers": [
         "A pen."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A cloud.",
-      "score": 1.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_205",
@@ -11591,7 +11023,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A shoe.",
       "competing_match": false,
       "score": 0.0
@@ -11621,22 +11053,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
-      "original_answer": "A shoe.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_208",
-      "riddle_type": "altered",
-      "riddle_text": "What has a tongue but cannot talk, and is found at the front of a trailer?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A trailer tongue."
-      ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A shoe.",
       "competing_match": false,
       "score": 0.0
@@ -11797,12 +11214,11 @@
       "accepted_answers": [
         "A weather vane."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "An airplane.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_211",
@@ -11840,12 +11256,11 @@
       "accepted_answers": [
         "A pterosaur or dinosaur skeleton."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "An airplane.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_212",
@@ -11870,12 +11285,11 @@
       "accepted_answers": [
         "A pterosaur or dinosaur skeleton."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "An airplane.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_213",
@@ -12051,12 +11465,11 @@
       "accepted_answers": [
         "A reflection."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A shadow.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_215",
@@ -12202,21 +11615,6 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "An artichoke.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_218",
-      "riddle_type": "altered",
-      "riddle_text": "What has a heart that doesn't beat, and is the central part of a city?",
-      "model_answer": "",
-      "accepted_answers": [
-        "The city center."
-      ],
-      "correct": false,
-      "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "An artichoke.",
       "competing_match": false,
@@ -12500,11 +11898,12 @@
       "accepted_answers": [
         "North and South."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "Lunch and dinner.",
-      "score": 1.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_224",
@@ -12514,11 +11913,12 @@
       "accepted_answers": [
         "North and South."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Lunch and dinner.",
-      "score": 1.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_224",
@@ -12528,10 +11928,25 @@
       "accepted_answers": [
         "North and South."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Lunch and dinner.",
+      "competing_match": true,
+      "score": 0.5
+    },
+    {
+      "riddle_id": "alt_225",
+      "riddle_type": "altered",
+      "riddle_text": "What has a heart that doesn't beat, and is found in a deck of cards?",
+      "model_answer": "A heart",
+      "accepted_answers": [
+        "The Ace (or any card) of Hearts."
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "An artichoke.",
       "score": 1.0
     },
     {
@@ -12542,27 +11957,11 @@
       "accepted_answers": [
         "The Ace (or any card) of Hearts."
       ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "An artichoke.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_225",
-      "riddle_type": "altered",
-      "riddle_text": "What has a heart that doesn't beat, and is found in a deck of cards?",
-      "model_answer": "A heart",
-      "accepted_answers": [
-        "The Ace (or any card) of Hearts."
-      ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "An artichoke.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_225",
@@ -12572,12 +11971,11 @@
       "accepted_answers": [
         "The Ace (or any card) of Hearts."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "An artichoke.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_226",
@@ -12587,12 +11985,11 @@
       "accepted_answers": [
         "A fork and a knife."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "Lunch and dinner.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_226",
@@ -12602,12 +11999,11 @@
       "accepted_answers": [
         "A fork and a knife."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Lunch and dinner.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_226",
@@ -12617,12 +12013,11 @@
       "accepted_answers": [
         "A fork and a knife."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Lunch and dinner.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_227",
@@ -13003,7 +12398,7 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Tomorrow.",
       "competing_match": false,
       "score": 0.0
@@ -13071,61 +12466,15 @@
       "riddle_id": "alt_237",
       "riddle_type": "altered",
       "riddle_text": "What goes through cities and fields but never moves, despite not being a physical path?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A political border."
-      ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A road.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_237",
-      "riddle_type": "altered",
-      "riddle_text": "What goes through cities and fields but never moves, despite not being a physical path?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A political border."
-      ],
-      "correct": false,
-      "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "A road.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_237",
-      "riddle_type": "altered",
-      "riddle_text": "What goes through cities and fields but never moves, despite not being a physical path?",
       "model_answer": "A border",
       "accepted_answers": [
         "A political border."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A road.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_238",
-      "riddle_type": "altered",
-      "riddle_text": "What goes through cities and fields but never moves, and can be shut down with a switch?",
-      "model_answer": "",
-      "accepted_answers": [
-        "An electrical grid or power lines."
-      ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A road.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_238",
@@ -13135,12 +12484,11 @@
       "accepted_answers": [
         "An electrical grid or power lines."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A road.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_238",
@@ -13165,12 +12513,11 @@
         "A line of latitude or longitude.",
         "e.g., the Equator"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A road.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_239",
@@ -13197,12 +12544,11 @@
         "A line of latitude or longitude.",
         "e.g., the Equator"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A road.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_240",
@@ -13326,22 +12672,6 @@
       "riddle_id": "alt_242",
       "riddle_type": "altered",
       "riddle_text": "I have a thousand needles but I don't sew, and I help a pilot navigate. What am I?",
-      "model_answer": "",
-      "accepted_answers": [
-        "An instrument panel.",
-        "cockpit dashboard"
-      ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A porcupine.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_242",
-      "riddle_type": "altered",
-      "riddle_text": "I have a thousand needles but I don't sew, and I help a pilot navigate. What am I?",
       "model_answer": "A Pine Tree",
       "accepted_answers": [
         "An instrument panel.",
@@ -13420,11 +12750,12 @@
       "accepted_answers": [
         "An acupuncture mat."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A porcupine.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_244",
@@ -13448,27 +12779,11 @@
       "accepted_answers": [
         "An acupuncture mat."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A porcupine.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_245",
-      "riddle_type": "altered",
-      "riddle_text": "What has a mouth but cannot speak, and runs but has no legs, and is made of metal?",
-      "model_answer": "",
-      "accepted_answers": [
-        "A faucet."
-      ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "A river.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_245",
@@ -13482,8 +12797,8 @@
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A river.",
-      "competing_match": false,
-      "score": 0.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_245",
@@ -13508,7 +12823,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -13519,7 +12834,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -13530,38 +12845,8 @@
       "accepted_answers": [
         "The surgeon is the boy's mother."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
-    },
-    {
-      "riddle_id": "alt_246",
-      "riddle_type": "altered",
-      "riddle_text": "A father and son are in a terrible accident. The father dies, and the son is rushed to the hospital. The surgeon, who is the boy's stepfather, says 'I cannot operate on this boy, he's my son!' Who is the surgeon to the boy?",
-      "model_answer": "",
-      "accepted_answers": [
-        "The surgeon is the boy's stepfather."
-      ],
-      "correct": false,
-      "sample_index": 1,
-      "gave_original_answer": false,
-      "original_answer": "The surgeon is the boy's mother.",
-      "competing_match": false,
-      "score": 0.0
-    },
-    {
-      "riddle_id": "alt_246",
-      "riddle_type": "altered",
-      "riddle_text": "A father and son are in a terrible accident. The father dies, and the son is rushed to the hospital. The surgeon, who is the boy's stepfather, says 'I cannot operate on this boy, he's my son!' Who is the surgeon to the boy?",
-      "model_answer": "",
-      "accepted_answers": [
-        "The surgeon is the boy's stepfather."
-      ],
-      "correct": false,
-      "sample_index": 2,
-      "gave_original_answer": false,
-      "original_answer": "The surgeon is the boy's mother.",
-      "competing_match": false,
-      "score": 0.0
     },
     {
       "riddle_id": "alt_246",
@@ -13571,12 +12856,11 @@
       "accepted_answers": [
         "The surgeon is the boy's stepfather."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "The surgeon is the boy's mother.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_247",
@@ -13725,11 +13009,12 @@
       "accepted_answers": [
         "A robotic hand."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A glove.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_249",
@@ -13772,12 +13057,11 @@
       "accepted_answers": [
         "A pickup truck."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A river.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_249",
@@ -13787,12 +13071,11 @@
       "accepted_answers": [
         "A pickup truck."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A river.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_249",
@@ -13802,12 +13085,11 @@
       "accepted_answers": [
         "A pickup truck."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A river.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_250",
@@ -13883,6 +13165,673 @@
       "gave_original_answer": false,
       "original_answer": "Darkness",
       "score": 1.0
+    },
+    {
+      "riddle_id": "alt_003",
+      "riddle_type": "altered",
+      "riddle_text": "Voiceless it cries, wingless flutters, toothless bites, mouthless mutters—yet it is solid. What is it?",
+      "model_answer": "Paper",
+      "accepted_answers": [
+        "A snowflake."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "The wind.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_028",
+      "riddle_type": "altered",
+      "riddle_text": "What can run but never walks, has a mouth but never talks, has a head but never weeps, has a bed but never sleeps, and is found in a hospital?",
+      "model_answer": "",
+      "accepted_answers": [
+        "An IV drip or saline line."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A river.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_032",
+      "riddle_type": "altered",
+      "riddle_text": "What has keys but opens no locks, and helps you find your way?",
+      "model_answer": "A map",
+      "accepted_answers": [
+        "A map."
+      ],
+      "correct": true,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A piano.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_039",
+      "riddle_type": "altered",
+      "riddle_text": "What is so fragile that saying its name breaks it, but it is also a physical object?",
+      "model_answer": "Silence",
+      "accepted_answers": [
+        "A soap bubble."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": true,
+      "original_answer": "Silence.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_040",
+      "riddle_type": "altered",
+      "riddle_text": "What has many needles but does not sew, yet measures the distance between two points?",
+      "model_answer": "compass",
+      "accepted_answers": [
+        "A compass",
+        "drafting tool"
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A pine tree",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_040",
+      "riddle_type": "altered",
+      "riddle_text": "What has many needles but does not sew, yet measures the distance between two points?",
+      "model_answer": "",
+      "accepted_answers": [
+        "A compass",
+        "drafting tool"
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A pine tree",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_048",
+      "riddle_type": "altered",
+      "riddle_text": "The more you take away, the more you leave behind — and what remains is worth more than what you removed.",
+      "model_answer": "Statue",
+      "accepted_answers": [
+        "A sculpture."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "Footsteps.",
+      "competing_match": true,
+      "score": 0.5
+    },
+    {
+      "riddle_id": "alt_052",
+      "riddle_type": "altered",
+      "riddle_text": "What has many needles but does not sew, and is made of metal?",
+      "model_answer": "A pincushion",
+      "accepted_answers": [
+        "A knitting needle set"
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A pine tree",
+      "competing_match": true,
+      "score": 0.5
+    },
+    {
+      "riddle_id": "alt_052",
+      "riddle_type": "altered",
+      "riddle_text": "What has many needles but does not sew, and is made of metal?",
+      "model_answer": "Aluminum Christmas tree",
+      "accepted_answers": [
+        "A knitting needle set"
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "A pine tree",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_072",
+      "riddle_type": "altered",
+      "riddle_text": "I speak without a mouth and hear without ears. I have no body, but I come alive with the wind — and I can knock down trees.",
+      "model_answer": "",
+      "accepted_answers": [
+        "A storm."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "An echo.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_074",
+      "riddle_type": "altered",
+      "riddle_text": "What is always coming but never arrives, and disappears when the sun goes down?",
+      "model_answer": "Tomorrow",
+      "accepted_answers": [
+        "A shadow."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "Tomorrow.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_076",
+      "riddle_type": "altered",
+      "riddle_text": "What has keys but opens no locks, and is made of water?",
+      "model_answer": "The Florida Keys",
+      "accepted_answers": [
+        "A river.",
+        "specifically, a river with 'keys' or islands"
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A piano.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_079",
+      "riddle_type": "altered",
+      "riddle_text": "What can travel around the world while staying in the corner of a digital screen?",
+      "model_answer": "A profile picture",
+      "accepted_answers": [
+        "A channel logo or watermark."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A stamp.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_079",
+      "riddle_type": "altered",
+      "riddle_text": "What can travel around the world while staying in the corner of a digital screen?",
+      "model_answer": "A watermark",
+      "accepted_answers": [
+        "A channel logo or watermark."
+      ],
+      "correct": true,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "A stamp.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_080",
+      "riddle_type": "altered",
+      "riddle_text": "What do you take in when you want to use it and throw out when you don't want to use it?",
+      "model_answer": "Breath",
+      "accepted_answers": [
+        "Breath.",
+        "Air"
+      ],
+      "correct": true,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "An anchor.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_083",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap, and lives in the ocean?",
+      "model_answer": "An octopus",
+      "accepted_answers": [
+        "A starfish."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A clock.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_086",
+      "riddle_type": "altered",
+      "riddle_text": "I have a head and a tail, but no body, and I’m bitten by dogs. What am I?",
+      "model_answer": "A coin",
+      "accepted_answers": [
+        "A dog's tail."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "A coin.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_086",
+      "riddle_type": "altered",
+      "riddle_text": "I have a head and a tail, but no body, and I’m bitten by dogs. What am I?",
+      "model_answer": "A snake",
+      "accepted_answers": [
+        "A dog's tail."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "A coin.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_088",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap, and stores your belongings?",
+      "model_answer": "A handbag",
+      "accepted_answers": [
+        "A handbag."
+      ],
+      "correct": true,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A clock.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_088",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap, and stores your belongings?",
+      "model_answer": "A grandfather clock",
+      "accepted_answers": [
+        "A handbag."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "A clock.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_093",
+      "riddle_type": "altered",
+      "riddle_text": "What has hands but can't clap, and deals them out one by one?",
+      "model_answer": "A clock",
+      "accepted_answers": [
+        "A deck of cards."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "A clock.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_120",
+      "riddle_type": "altered",
+      "riddle_text": "I am taken from a mine and shut up in a wooden case, from which I am never released, and yet I am used by almost every person, but I am not for writing. What am I?",
+      "model_answer": "Pencil lead",
+      "accepted_answers": [
+        "A match."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "Pencil lead (graphite).",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_129",
+      "riddle_type": "altered",
+      "riddle_text": "I have kingdoms, but no kings rule there. I have dragons, but none breathe fire. I have treasure, but you cannot spend it. What am I?",
+      "model_answer": "A map",
+      "accepted_answers": [
+        "A fantasy novel."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "A map.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_133",
+      "riddle_type": "altered",
+      "riddle_text": "I have players, but no one plays. I have a board, but no pieces move. I have rules, but no one follows them. What am I?",
+      "model_answer": "A board game",
+      "accepted_answers": [
+        "A rulebook."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "A map.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_136",
+      "riddle_type": "altered",
+      "riddle_text": "What goes up but never comes down, and is locked in place once it reaches the top?",
+      "model_answer": "Age",
+      "accepted_answers": [
+        "A hot air balloon at its maximum altitude."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": true,
+      "original_answer": "Your age.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_136",
+      "riddle_type": "altered",
+      "riddle_text": "What goes up but never comes down, and is locked in place once it reaches the top?",
+      "model_answer": "Age",
+      "accepted_answers": [
+        "A hot air balloon at its maximum altitude."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "Your age.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_136",
+      "riddle_type": "altered",
+      "riddle_text": "What goes up but never comes down, and is locked in place once it reaches the top?",
+      "model_answer": "Age",
+      "accepted_answers": [
+        "A hot air balloon at its maximum altitude."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "Your age.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_137",
+      "riddle_type": "altered",
+      "riddle_text": "What is more powerful than God, more cruel than the devil, the poor crave it, the rich have it, and if you lose it, you'll die?",
+      "model_answer": "Nothing",
+      "accepted_answers": [
+        "Money."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "Nothing.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_145",
+      "riddle_type": "altered",
+      "riddle_text": "What goes up but never comes down, and is universally understood as a metaphor for progress?",
+      "model_answer": "Age",
+      "accepted_answers": [
+        "Knowledge or education."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "Your age.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_152",
+      "riddle_type": "altered",
+      "riddle_text": "What can travel around the world while staying in a corner, but never leaves the desk?",
+      "model_answer": "A stamp",
+      "accepted_answers": [
+        "A computer mouse."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": true,
+      "original_answer": "A stamp.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_155",
+      "riddle_type": "altered",
+      "riddle_text": "The more of this there is, the less you see, and it falls from the clouds. What is it?",
+      "model_answer": "Rain",
+      "accepted_answers": [
+        "Snow."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "Darkness.",
+      "competing_match": true,
+      "score": 0.5
+    },
+    {
+      "riddle_id": "alt_177",
+      "riddle_type": "altered",
+      "riddle_text": "I am light as a feather, yet the strongest man cannot hold me for long, and I burn the skin upon contact.",
+      "model_answer": "Fire",
+      "accepted_answers": [
+        "A hot ember or piece of coal."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "Breath.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_192",
+      "riddle_type": "altered",
+      "riddle_text": "What gets bigger the more you take away from it, and is made of the very material you removed?",
+      "model_answer": "A pile of dirt",
+      "accepted_answers": [
+        "A pile."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A hole.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_196",
+      "riddle_type": "altered",
+      "riddle_text": "Feed me and I live, yet give me a drink and I die, but I am not hot to the touch. What am I?",
+      "model_answer": "Fire",
+      "accepted_answers": [
+        "An electronic device."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "Fire.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_197",
+      "riddle_type": "altered",
+      "riddle_text": "What can you catch but not throw, and it is something you hear?",
+      "model_answer": "Your breath",
+      "accepted_answers": [
+        "The drift."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A cold.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_197",
+      "riddle_type": "altered",
+      "riddle_text": "What can you catch but not throw, and it is something you hear?",
+      "model_answer": "A word",
+      "accepted_answers": [
+        "The drift."
+      ],
+      "correct": false,
+      "sample_index": 3,
+      "gave_original_answer": false,
+      "original_answer": "A cold.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_208",
+      "riddle_type": "altered",
+      "riddle_text": "What has a tongue but cannot talk, and is found at the front of a trailer?",
+      "model_answer": "A trailer tongue",
+      "accepted_answers": [
+        "A trailer tongue."
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A shoe.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_218",
+      "riddle_type": "altered",
+      "riddle_text": "What has a heart that doesn't beat, and is the central part of a city?",
+      "model_answer": "Downtown",
+      "accepted_answers": [
+        "The city center."
+      ],
+      "correct": true,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "An artichoke.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_237",
+      "riddle_type": "altered",
+      "riddle_text": "What goes through cities and fields but never moves, despite not being a physical path?",
+      "model_answer": "A border",
+      "accepted_answers": [
+        "A political border."
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A road.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_237",
+      "riddle_type": "altered",
+      "riddle_text": "What goes through cities and fields but never moves, despite not being a physical path?",
+      "model_answer": "A border",
+      "accepted_answers": [
+        "A political border."
+      ],
+      "correct": true,
+      "sample_index": 2,
+      "gave_original_answer": false,
+      "original_answer": "A road.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_238",
+      "riddle_type": "altered",
+      "riddle_text": "What goes through cities and fields but never moves, and can be shut down with a switch?",
+      "model_answer": "Electricity",
+      "accepted_answers": [
+        "An electrical grid or power lines."
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A road.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_242",
+      "riddle_type": "altered",
+      "riddle_text": "I have a thousand needles but I don't sew, and I help a pilot navigate. What am I?",
+      "model_answer": "An instrument panel",
+      "accepted_answers": [
+        "An instrument panel.",
+        "cockpit dashboard"
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A porcupine.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_245",
+      "riddle_type": "altered",
+      "riddle_text": "What has a mouth but cannot speak, and runs but has no legs, and is made of metal?",
+      "model_answer": "A car",
+      "accepted_answers": [
+        "A faucet."
+      ],
+      "correct": false,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "A river.",
+      "competing_match": false,
+      "score": 0.0
+    },
+    {
+      "riddle_id": "alt_246",
+      "riddle_type": "altered",
+      "riddle_text": "A father and son are in a terrible accident. The father dies, and the son is rushed to the hospital. The surgeon, who is the boy's stepfather, says 'I cannot operate on this boy, he's my son!' Who is the surgeon to the boy?",
+      "model_answer": "The stepfather",
+      "accepted_answers": [
+        "The surgeon is the boy's stepfather."
+      ],
+      "correct": true,
+      "sample_index": 1,
+      "gave_original_answer": false,
+      "original_answer": "The surgeon is the boy's mother.",
+      "score": 1.0
+    },
+    {
+      "riddle_id": "alt_246",
+      "riddle_type": "altered",
+      "riddle_text": "A father and son are in a terrible accident. The father dies, and the son is rushed to the hospital. The surgeon, who is the boy's stepfather, says 'I cannot operate on this boy, he's my son!' Who is the surgeon to the boy?",
+      "model_answer": "his mother",
+      "accepted_answers": [
+        "The surgeon is the boy's stepfather."
+      ],
+      "correct": false,
+      "sample_index": 2,
+      "gave_original_answer": true,
+      "original_answer": "The surgeon is the boy's mother.",
+      "competing_match": false,
+      "score": 0.0
     }
   ]
 }

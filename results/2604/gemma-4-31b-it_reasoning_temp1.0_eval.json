@@ -4,20 +4,20 @@
   "quantization": "UD-Q6_K_XL",
   "summary": {
     "original_total": 87,
-    "original_correct": 74,
-    "original_accuracy": 0.851,
+    "original_correct": 82,
+    "original_accuracy": 0.943,
     "altered_total": 250,
-    "altered_correct": 120,
-    "altered_competing": 21,
-    "altered_accuracy": 0.493,
-    "altered_weighted_accuracy": 0.522,
-    "pattern_override_rate": 0.232,
-    "conditioned_override_rate": 0.23,
-    "average_accuracy": 0.538,
-    "total_score": 0.538,
+    "altered_correct": 135,
+    "altered_competing": 22,
+    "altered_accuracy": 0.557,
+    "altered_weighted_accuracy": 0.584,
+    "pattern_override_rate": 0.264,
+    "conditioned_override_rate": 0.232,
+    "average_accuracy": 0.601,
+    "total_score": 0.601,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.656,
-    "majority_vote_accuracy": 0.536,
+    "best_of_n_accuracy": 0.716,
+    "majority_vote_accuracy": 0.608,
     "original_input_tokens": 6822,
     "original_output_tokens": 18584,
     "altered_input_tokens": 20192,
@@ -70,12 +70,11 @@
       "accepted_answers": [
         "A nose."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A river.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_001",
@@ -85,12 +84,11 @@
       "accepted_answers": [
         "A nose."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A river.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_001",
@@ -100,12 +98,11 @@
       "accepted_answers": [
         "A nose."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A river.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_002",
@@ -652,12 +649,11 @@
       "accepted_answers": [
         "A blotter or blotting paper."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A towel.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_009",
@@ -667,12 +663,11 @@
       "accepted_answers": [
         "A blotter or blotting paper."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A towel.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_009",
@@ -682,12 +677,11 @@
       "accepted_answers": [
         "A blotter or blotting paper."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A towel.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_010",
@@ -729,7 +723,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A fence.",
       "competing_match": false,
       "score": 0.0
@@ -742,7 +736,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -753,7 +747,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -764,7 +758,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -775,12 +769,11 @@
       "accepted_answers": [
         "The surgeon is the boy's father"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "The surgeon is the boy's mother",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_011",
@@ -790,12 +783,11 @@
       "accepted_answers": [
         "The surgeon is the boy's father"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "The surgeon is the boy's mother",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_011",
@@ -805,12 +797,11 @@
       "accepted_answers": [
         "The surgeon is the boy's father"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "The surgeon is the boy's mother",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_012",
@@ -862,7 +853,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -873,7 +864,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -884,7 +875,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -895,12 +886,11 @@
       "accepted_answers": [
         "The boy has two fathers."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "The surgeon is the boy's mother.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_013",
@@ -910,12 +900,11 @@
       "accepted_answers": [
         "The boy has two fathers."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "The surgeon is the boy's mother.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_013",
@@ -925,12 +914,11 @@
       "accepted_answers": [
         "The boy has two fathers."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "The surgeon is the boy's mother.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_014",
@@ -940,12 +928,11 @@
       "accepted_answers": [
         "A story."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A road.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_014",
@@ -969,12 +956,11 @@
       "accepted_answers": [
         "A story."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A road.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_015",
@@ -1305,11 +1291,12 @@
       "accepted_answers": [
         "A river."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A road.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_020",
@@ -1424,7 +1411,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A fence.",
       "competing_match": false,
       "score": 0.0
@@ -1437,12 +1424,11 @@
       "accepted_answers": [
         "A boundary line or property line."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A fence.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_022",
@@ -1452,12 +1438,11 @@
       "accepted_answers": [
         "A boundary line or property line."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A fence.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_023",
@@ -1615,11 +1600,12 @@
       "accepted_answers": [
         "A target"
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A teapot",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_026",
@@ -1676,12 +1662,11 @@
       "accepted_answers": [
         "A computer keyboard."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A piano.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_026",
@@ -1755,12 +1740,11 @@
         "The ocean or a body of water.",
         "like a lake"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A piano.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_027",
@@ -1773,7 +1757,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A piano.",
       "competing_match": false,
       "score": 0.0
@@ -2421,12 +2405,11 @@
       "accepted_answers": [
         "A soap bubble."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "Silence.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_039",
@@ -2436,12 +2419,11 @@
       "accepted_answers": [
         "A soap bubble."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Silence.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_039",
@@ -2451,12 +2433,11 @@
       "accepted_answers": [
         "A soap bubble."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Silence.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_040",
@@ -3283,11 +3264,12 @@
       "accepted_answers": [
         "An arrow."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A coin.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_055",
@@ -3297,11 +3279,12 @@
       "accepted_answers": [
         "An arrow."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A coin.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_055",
@@ -3311,11 +3294,12 @@
       "accepted_answers": [
         "An arrow."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A coin.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_056",
@@ -4106,7 +4090,7 @@
       "accepted_answers": [
         "This was possible because there were only three people: a grandfather, a father (his son), and a son (the father's son)."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -4117,7 +4101,7 @@
       "accepted_answers": [
         "This was possible because there were only three people: a grandfather, a father (his son), and a son (the father's son)."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -4128,7 +4112,7 @@
       "accepted_answers": [
         "This was possible because there were only three people: a grandfather, a father (his son), and a son (the father's son)."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -4139,12 +4123,11 @@
       "accepted_answers": [
         "The family structure included a grandfather, his son (the father), and his grandson (the son). The youngest person is the grandson, who took two fish."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "This was possible because there were only three people: a grandfather, a father (his son), and a son (the father's son).",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_069",
@@ -4169,12 +4152,11 @@
       "accepted_answers": [
         "The family structure included a grandfather, his son (the father), and his grandson (the son). The youngest person is the grandson, who took two fish."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "This was possible because there were only three people: a grandfather, a father (his son), and a son (the father's son).",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_070",
@@ -4486,12 +4468,11 @@
         "A river.",
         "specifically, a river with 'keys' or islands"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A piano.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_076",
@@ -4502,12 +4483,11 @@
         "A river.",
         "specifically, a river with 'keys' or islands"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A piano.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_076",
@@ -4533,7 +4513,7 @@
       "accepted_answers": [
         "Your shadow"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -4544,7 +4524,7 @@
       "accepted_answers": [
         "Your shadow"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -4555,7 +4535,7 @@
       "accepted_answers": [
         "Your shadow"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -4568,7 +4548,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Your shadow",
       "competing_match": false,
       "score": 0.0
@@ -4583,7 +4563,7 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Your shadow",
       "competing_match": false,
       "score": 0.0
@@ -4598,7 +4578,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Your shadow",
       "competing_match": false,
       "score": 0.0
@@ -4782,7 +4762,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A coin.",
       "competing_match": false,
       "score": 0.0
@@ -4797,7 +4777,7 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A coin.",
       "competing_match": false,
       "score": 0.0
@@ -5217,11 +5197,12 @@
       "accepted_answers": [
         "A handbag."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A clock.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_089",
@@ -5309,12 +5290,11 @@
       "accepted_answers": [
         "A tree."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "Your age.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_090",
@@ -5338,12 +5318,11 @@
       "accepted_answers": [
         "A tree."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Your age.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_091",
@@ -5353,7 +5332,7 @@
       "accepted_answers": [
         "A phone."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -5364,7 +5343,7 @@
       "accepted_answers": [
         "A phone."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -5375,7 +5354,7 @@
       "accepted_answers": [
         "A phone."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -5464,11 +5443,12 @@
       "accepted_answers": [
         "A mushroom."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "An umbrella.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_092",
@@ -5935,7 +5915,7 @@
       "accepted_answers": [
         "The man's son."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -5946,7 +5926,7 @@
       "accepted_answers": [
         "The man's son."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -5957,7 +5937,7 @@
       "accepted_answers": [
         "The man's son."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -5968,11 +5948,12 @@
       "accepted_answers": [
         "The man himself."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "The man's son.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_099",
@@ -5982,11 +5963,12 @@
       "accepted_answers": [
         "The man himself."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "The man's son.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_099",
@@ -5996,11 +5978,12 @@
       "accepted_answers": [
         "The man himself."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "The man's son.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_100",
@@ -6382,12 +6365,11 @@
       "accepted_answers": [
         "The man's son."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "The man himself.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_106",
@@ -6397,12 +6379,11 @@
       "accepted_answers": [
         "The man's son."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "The man himself.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_106",
@@ -6412,12 +6393,11 @@
       "accepted_answers": [
         "The man's son."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "The man himself.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_107",
@@ -6474,7 +6454,7 @@
       ],
       "correct": true,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A towel.",
       "score": 1.0
     },
@@ -6488,7 +6468,7 @@
       ],
       "correct": true,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A towel.",
       "score": 1.0
     },
@@ -6502,7 +6482,7 @@
       ],
       "correct": true,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A towel.",
       "score": 1.0
     },
@@ -6630,7 +6610,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Footsteps.",
       "competing_match": false,
       "score": 0.0
@@ -7054,11 +7034,12 @@
       "accepted_answers": [
         "A match."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Pencil lead (graphite).",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_121",
@@ -7070,7 +7051,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "Footsteps.",
       "competing_match": false,
       "score": 0.0
@@ -7202,12 +7183,11 @@
       "accepted_answers": [
         "A receding hairline."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Age.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_123",
@@ -7730,12 +7710,11 @@
       "accepted_answers": [
         "A cold virus or pathogen"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A cold",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_132",
@@ -8402,12 +8381,11 @@
       "accepted_answers": [
         "A code."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "An egg.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_146",
@@ -8417,12 +8395,11 @@
       "accepted_answers": [
         "A code."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "An egg.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_146",
@@ -8432,12 +8409,11 @@
       "accepted_answers": [
         "A code."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "An egg.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_147",
@@ -8654,12 +8630,11 @@
       "accepted_answers": [
         "A wax seal."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "An egg.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_151",
@@ -8669,12 +8644,11 @@
       "accepted_answers": [
         "A wax seal."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "An egg.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_151",
@@ -8684,12 +8658,11 @@
       "accepted_answers": [
         "A wax seal."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "An egg.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_152",
@@ -8701,7 +8674,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A stamp.",
       "competing_match": false,
       "score": 0.0
@@ -8786,7 +8759,7 @@
       "accepted_answers": [
         "Your brain (or your wits)."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -8797,7 +8770,7 @@
       "accepted_answers": [
         "Your brain (or your wits)."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -8808,7 +8781,7 @@
       "accepted_answers": [
         "Your brain (or your wits)."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -9141,12 +9114,11 @@
       "accepted_answers": [
         "A straight razor."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "Your brain (or your wits).",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_160",
@@ -9156,12 +9128,11 @@
       "accepted_answers": [
         "A straight razor."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Your brain (or your wits).",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_160",
@@ -9171,12 +9142,11 @@
       "accepted_answers": [
         "A straight razor."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Your brain (or your wits).",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_161",
@@ -9228,12 +9198,11 @@
       "accepted_answers": [
         "An athlete."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "Your brain (or your wits).",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_162",
@@ -9243,12 +9212,11 @@
       "accepted_answers": [
         "An athlete."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Your brain (or your wits).",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_162",
@@ -10058,12 +10026,11 @@
       "accepted_answers": [
         "A hot ember or piece of coal."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "Breath.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_177",
@@ -10073,12 +10040,11 @@
       "accepted_answers": [
         "A hot ember or piece of coal."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Breath.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_177",
@@ -10178,12 +10144,11 @@
       "accepted_answers": [
         "A restaurant menu."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A book.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_179",
@@ -10193,12 +10158,11 @@
       "accepted_answers": [
         "A restaurant menu."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A book.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_179",
@@ -10208,12 +10172,11 @@
       "accepted_answers": [
         "A restaurant menu."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A book.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_180",
@@ -10824,11 +10787,12 @@
       "accepted_answers": [
         "Silence."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A hole.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_190",
@@ -10838,11 +10802,12 @@
       "accepted_answers": [
         "Silence."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A hole.",
-      "score": 1.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_190",
@@ -10866,11 +10831,12 @@
       "accepted_answers": [
         "Bacteria."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "Fire.",
-      "score": 1.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_191",
@@ -10880,11 +10846,12 @@
       "accepted_answers": [
         "Bacteria."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Fire.",
-      "score": 1.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_191",
@@ -10894,11 +10861,12 @@
       "accepted_answers": [
         "Bacteria."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "Fire.",
-      "score": 1.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_192",
@@ -11259,12 +11227,11 @@
       "accepted_answers": [
         "A control panel or dashboard."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A pine tree.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_200",
@@ -11274,12 +11241,11 @@
       "accepted_answers": [
         "A control panel or dashboard."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A pine tree.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_200",
@@ -11289,12 +11255,11 @@
       "accepted_answers": [
         "A control panel or dashboard."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A pine tree.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_201",
@@ -11466,11 +11431,12 @@
       "accepted_answers": [
         "A pen."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A cloud.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_204",
@@ -11480,11 +11446,12 @@
       "accepted_answers": [
         "A pen."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A cloud.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_204",
@@ -11494,11 +11461,12 @@
       "accepted_answers": [
         "A pen."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A cloud.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_205",
@@ -11523,11 +11491,12 @@
       "accepted_answers": [
         "A squid."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A cloud.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_205",
@@ -11595,7 +11564,7 @@
       ],
       "correct": false,
       "sample_index": 1,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A shoe.",
       "competing_match": false,
       "score": 0.0
@@ -11610,7 +11579,7 @@
       ],
       "correct": false,
       "sample_index": 2,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A shoe.",
       "competing_match": false,
       "score": 0.0
@@ -11625,7 +11594,7 @@
       ],
       "correct": false,
       "sample_index": 3,
-      "gave_original_answer": false,
+      "gave_original_answer": true,
       "original_answer": "A shoe.",
       "competing_match": false,
       "score": 0.0
@@ -11771,12 +11740,11 @@
         "A tuxedo.",
         "one with a wing collar and tails"
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "An airplane.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_210",
@@ -11801,11 +11769,12 @@
       "accepted_answers": [
         "A weather vane."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "An airplane.",
-      "score": 1.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_211",
@@ -11843,12 +11812,11 @@
       "accepted_answers": [
         "A pterosaur or dinosaur skeleton."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "An airplane.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_212",
@@ -11858,12 +11826,11 @@
       "accepted_answers": [
         "A pterosaur or dinosaur skeleton."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "An airplane.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_212",
@@ -11873,12 +11840,11 @@
       "accepted_answers": [
         "A pterosaur or dinosaur skeleton."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "An airplane.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_213",
@@ -11950,11 +11916,12 @@
       "accepted_answers": [
         "Eve."
       ],
-      "correct": true,
+      "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "An envelope.",
-      "score": 1.0
+      "competing_match": false,
+      "score": 0.0
     },
     {
       "riddle_id": "alt_214",
@@ -12067,12 +12034,11 @@
       "accepted_answers": [
         "A reflection."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A shadow.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_216",
@@ -12544,12 +12510,11 @@
       "accepted_answers": [
         "The Ace (or any card) of Hearts."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "An artichoke.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_225",
@@ -12592,8 +12557,8 @@
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "Lunch and dinner.",
-      "competing_match": false,
-      "score": 0.0
+      "competing_match": true,
+      "score": 0.5
     },
     {
       "riddle_id": "alt_226",
@@ -12603,12 +12568,11 @@
       "accepted_answers": [
         "A fork and a knife."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "Lunch and dinner.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_226",
@@ -13078,12 +13042,11 @@
       "accepted_answers": [
         "A political border."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A road.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_237",
@@ -13093,12 +13056,11 @@
       "accepted_answers": [
         "A political border."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A road.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_237",
@@ -13108,12 +13070,11 @@
       "accepted_answers": [
         "A political border."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A road.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_238",
@@ -13420,12 +13381,11 @@
       "accepted_answers": [
         "An acupuncture mat."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A porcupine.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_244",
@@ -13435,12 +13395,11 @@
       "accepted_answers": [
         "An acupuncture mat."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A porcupine.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_244",
@@ -13450,12 +13409,11 @@
       "accepted_answers": [
         "An acupuncture mat."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A porcupine.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_245",
@@ -13507,7 +13465,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1
     },
     {
@@ -13518,7 +13476,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2
     },
     {
@@ -13529,7 +13487,7 @@
       "accepted_answers": [
         "The surgeon is the boy's mother."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3
     },
     {
@@ -13540,12 +13498,11 @@
       "accepted_answers": [
         "The surgeon is the boy's stepfather."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "The surgeon is the boy's mother.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_246",
@@ -13555,12 +13512,11 @@
       "accepted_answers": [
         "The surgeon is the boy's stepfather."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "The surgeon is the boy's mother.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_246",
@@ -13570,12 +13526,11 @@
       "accepted_answers": [
         "The surgeon is the boy's stepfather."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "The surgeon is the boy's mother.",
-      "competing_match": false,
-      "score": 0.0
+      "score": 1.0
     },
     {
       "riddle_id": "alt_247",
@@ -13770,12 +13725,11 @@
       "accepted_answers": [
         "A pickup truck."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 1,
       "gave_original_answer": false,
       "original_answer": "A river.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_249",
@@ -13785,12 +13739,11 @@
       "accepted_answers": [
         "A pickup truck."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 2,
       "gave_original_answer": false,
       "original_answer": "A river.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_249",
@@ -13800,12 +13753,11 @@
       "accepted_answers": [
         "A pickup truck."
       ],
-      "correct": false,
+      "correct": true,
       "sample_index": 3,
       "gave_original_answer": false,
       "original_answer": "A river.",
-      "competing_match": true,
-      "score": 0.5
+      "score": 1.0
     },
     {
       "riddle_id": "alt_250",
