@@ -39,12 +39,19 @@ def discover_scripts(this_file: Path) -> List[Path]:
             continue
         if name == "__init__.py":
             continue
+        if name == "theme.py":
+            # skip shared utility module
+            continue
         result.append(p)
     return result
 
 
 def run_script(
-    script_path: Path, cwd: Path, timeout: int, verbose: bool
+    script_path: Path,
+    cwd: Path,
+    timeout: int,
+    verbose: bool,
+    extra_args: List[str] | None = None,
 ) -> Tuple[bool, str]:
     """
     Execute a single script using the current Python interpreter.
@@ -52,6 +59,8 @@ def run_script(
     Returns (success, combined_output).
     """
     cmd = [sys.executable, str(script_path.resolve())]
+    if extra_args:
+        cmd.extend(extra_args)
     if verbose:
         print(f"> Running: {' '.join(cmd)} (cwd={cwd}, timeout={timeout}s)")
     try:
@@ -107,6 +116,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Print more verbose progress information and command lines.",
     )
+    ap.add_argument(
+        "--blog",
+        action="store_true",
+        help="Pass --blog flag to each chart script.",
+    )
     return ap.parse_args()
 
 
@@ -154,10 +168,16 @@ def main() -> int:
         print("  -", p.name)
     print("Starting execution...\n")
 
+    extra_args = ["--blog"] if args.blog else []
+
     for script in scripts_to_run:
         print(f"--- Running {script.name} ---")
         ok, output = run_script(
-            script, cwd=repo_root, timeout=args.timeout, verbose=args.verbose
+            script,
+            cwd=repo_root,
+            timeout=args.timeout,
+            verbose=args.verbose,
+            extra_args=extra_args or None,
         )
         if output:
             print(output.rstrip())

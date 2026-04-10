@@ -90,9 +90,11 @@ My investigation suggests **overfitting to the original pattern**. Models—espe
 This HuggingFace repository contains the full benchmark release for version `2604` (April 2026):
 
 - **`benchmark.jsonl`** — The benchmark dataset (fixed + auxiliary riddle sets)  
-- **`leaderboard.json`** — Aggregated leaderboard across all evaluated models  
+- **`leaderboard.json`** — Aggregated leaderboard across all evaluated models (includes 95% confidence intervals)  
+- **`riddle_difficulty.json`** — Per-riddle difficulty scores  
 - **`model_outputs/2604/`** — Raw per-model answer files  
 - **`results/2604/`** — Detailed per-model evaluation results  
+- **`results/LEADERBOARD.md`** — Markdown leaderboard table  
 - **`images/`** — Charts and result visualizations  
 
 ## Dataset Structure
@@ -136,6 +138,11 @@ Evaluation uses **weighted scoring** to distinguish primary answers from competi
 
 The key insight: a competing answer that differs from the original still demonstrates the model is **reasoning about the altered text** rather than recalling a memorised response. It deserves partial credit because the benchmark's primary goal is detecting pattern override, not requiring a single exact phrasing.
 
+The headline metric **`total_score`** equals **`average_accuracy`** — the mean weighted score across all samples. In best-of-N evaluation, competing-only answers also receive partial credit (0.5×).
+
+> [!Important]
+> Models must be tested on at least **250 altered riddles** to appear on the leaderboard. 95% confidence intervals for all metrics are included in [`leaderboard.json`](https://huggingface.co/datasets/marcodsn/altered-riddles/blob/main/leaderboard.json).
+
 ### Key Metrics
 
 | Metric | What it tells you |
@@ -149,7 +156,7 @@ A model with high original accuracy but low altered accuracy is probably exhibit
 
 ### Evaluation Setup
 
-Models are tested using the **temperature recommended by their original creators** when available (e.g., a reasoning model's suggested thinking temperature).
+Models are tested using the **temperature recommended by their original creators** when available (e.g., a reasoning model's suggested thinking temperature). The default `--max-output-tokens` is **16384** for benchmark runs.
 
 When temperature > 0, each riddle is sampled **3 times** (resource-constrained for now) and scores are reported as the **average accuracy** across samples. The leaderboard also shows best-of-3 and majority-vote accuracy for these models.
 
@@ -206,7 +213,7 @@ The base scenarios use common riddles found in LLM knowledge. The core creative 
 2. **Validation:** A second LLM pass (`prompts/validation.j2`) checks answer validity, distinctness, logical soundness, subtlety, and identifies any competing answers.  
 3. **Pool & Promotion:** Valid riddles land in `data/pool.jsonl` before being promoted to the benchmark via `scripts/promote.py`. This decouples generation from benchmark composition.  
 4. **Deduplication:** Exact and fuzzy matching removes near-duplicate entries.  
-5. **Benchmark & Evaluate:** Models are tested with `scripts/benchmark.py` and scored with `scripts/evaluate.py`. Evaluation is fully re-runnable — accepted answers can be edited and scores regenerated without re-running any models.  
+5. **Benchmark & Evaluate:** Models are tested with `scripts/benchmark.py` and scored with `scripts/evaluate.py` (`python -m scripts.evaluate`), which uses an LLM judge. Evaluation is fully re-runnable — accepted answers can be edited and scores regenerated without re-running any models.  
 
 ### Splits  
 The benchmark currently contains a **`train` split** used as the challenge/evaluation set. The fixed core provides a stable longitudinal baseline; the auxiliary set is refreshable per version.  
@@ -252,3 +259,6 @@ This dataset is licensed under the [Apache License 2.0](https://www.apache.org/l
 
 > [!Note]  
 > **[05/04/2026]** Benchmark v2604 published! Repository now includes `benchmark.jsonl` with fixed + auxiliary riddle sets, `leaderboard.json`, per-model outputs under `model_outputs/2604/`, detailed per-model results under `results/2604/`, and result charts. The project has grown from a simple dataset into a full evaluation benchmark with a multi-stage generation, validation, and scoring pipeline.
+
+> [!Note]
+> **[06/04/2026]** Codebase improvements: consolidated evaluation into single `evaluate.py`, added shared chart utilities, per-riddle difficulty scores, confidence intervals in leaderboard, Markdown leaderboard table, minimum coverage requirement (250 riddles), and partial credit in best-of-N scoring.

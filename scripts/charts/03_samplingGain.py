@@ -1,225 +1,225 @@
-import json
+#!/usr/bin/env python3
+"""Sampling gain comparison chart — majority vote and best-of-N gains."""
 
-import pandas as pd
+from __future__ import annotations
+
+import argparse
+import sys
+from pathlib import Path
+
 import plotly.graph_objects as go
 
-leaderboard_path = "results/leaderboard.json"
-with open(leaderboard_path, "r") as f:
-    data = json.load(f)
+# Ensure repo root is importable when running as a standalone script
+_repo_root = str(Path(__file__).resolve().parents[2])
+if _repo_root not in sys.path:
+    sys.path.insert(0, _repo_root)
 
-# Keep top-10 models based on their rank in the original leaderboard
-data = sorted(data, key=lambda x: x["rank"])[:10]
-
-# Remove company name from model for cleaner display (everything before the /)
-for entry in data:
-    model = entry["model"]
-    if "/" in model:
-        entry["model"] = model.split("/")[-1]
-
-df = pd.DataFrame(data)
-df["maj_gain"] = df["majority_vote_accuracy"] - df["average_accuracy"]
-df["bon_gain"] = df["best_of_n_accuracy"] - df["average_accuracy"]
-df = df.sort_values("average_accuracy", ascending=True).reset_index(drop=True)
-
-
-def get_color(model):
-    m = model.lower()
-    if "gemma" in m or "gemini" in m:
-        return "#8ab4e8"
-    if "gpt" in m:
-        return "#82c8b4"
-    if "mistral" in m:
-        return "#f5ae76"
-    if "qwen" in m:
-        return "#b09ddd"
-    if "glm" in m:
-        return "#82bcd8"
-    if "kimi" in m:
-        return "#80c2c6"
-    if "claude" in m:
-        return "#e8a086"
-    if "deepseek" in m:
-        return "#80aed8"
-    if "minimax" in m:
-        return "#d48e8e"
-    if "llama" in m:
-        return "#86b6f2"
-    if "lfm" in m or "liquid" in m:
-        return "#7dcfcf"
-    return "#9e9e9e"
-
-
-df["color"] = df["model"].apply(get_color)
-
-fig = go.Figure()
-y_vals = list(range(len(df)))
-
-# 1) Background grey bar (full width)
-fig.add_trace(
-    go.Bar(
-        y=y_vals,
-        x=[1.0] * len(df),
-        orientation="h",
-        marker=dict(color="#f1efec"),
-        hoverinfo="none",
-        showlegend=False,
-        width=0.35,
-    )
+from scripts.charts.theme import (
+    BG_COLOR,
+    FONT_FAMILY,
+    MUTED_TEXT,
+    TEXT_COLOR,
+    TRACK_COLOR,
+    add_common_args,
+    blog_layout_overrides,
+    load_leaderboard,
+    rank_box_color,
+    save_chart,
 )
 
-# 2) Base bar (average_accuracy)
-fig.add_trace(
-    go.Bar(
-        y=y_vals,
-        x=df["average_accuracy"],
-        orientation="h",
-        name="Avg Accuracy",
-        showlegend=False,
-        marker=dict(color=df["color"], opacity=0.85),
-        width=0.35,
-    )
-)
 
-# 5) Best-of-N gain (always positive, gold segment)
-fig.add_trace(
-    go.Bar(
-        y=y_vals,
-        x=df["bon_gain"],
-        base=df["average_accuracy"],
-        orientation="h",
-        name="Best-of-N Gain",
-        marker=dict(color="#f9d48e", opacity=0.75),
-        width=0.35,
-    )
-)
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Sampling gain comparison chart")
+    add_common_args(parser)
+    args = parser.parse_args()
 
-# 3) Majority vote gain — POSITIVE (green segment extending right)
-pos_mask = df["maj_gain"] >= 0
-fig.add_trace(
-    go.Bar(
-        y=[y_vals[i] for i in df.index[pos_mask]],
-        x=df.loc[pos_mask, "maj_gain"],
-        base=df.loc[pos_mask, "average_accuracy"],
-        orientation="h",
-        name="Majority Vote Gain (+)",
-        marker=dict(color="#a2d9b5", opacity=0.9),
-        width=0.35,
-    )
-)
+    df = load_leaderboard(top_n=args.top, path=args.leaderboard)
+    df["maj_gain"] = df["majority_vote_accuracy"] - df["average_accuracy"]
+    df["bon_gain"] = df["best_of_n_accuracy"] - df["average_accuracy"]
+    df = df.sort_values("average_accuracy", ascending=True).reset_index(drop=True)
 
-# 4) Majority vote gain — NEGATIVE (red segment extending left)
-neg_mask = df["maj_gain"] < 0
-fig.add_trace(
-    go.Bar(
-        y=[y_vals[i] for i in df.index[neg_mask]],
-        x=df.loc[neg_mask, "maj_gain"].abs(),
-        base=df.loc[neg_mask, "majority_vote_accuracy"],  # base is the lower value
-        orientation="h",
-        name="Majority Vote Loss (−)",
-        marker=dict(color="#fca5a5", opacity=0.9),
-        width=0.35,
-    )
-)
+    fig = go.Figure()
+    y_vals = list(range(len(df)))
 
-# Annotations: rank box + model name on top + score on right
-annotations = []
-shapes = []
-for i, row in df.iterrows():
-    # Rank Box
-    box_color = (
-        "#1a1a1a"
-        if row["rank"] <= 3
-        else ("#4a4a4a" if row["rank"] <= 6 else "#a0a0a0")
-    )
-    text_color = "white"
-    shapes.append(
-        dict(
-            type="rect",
-            x0=-0.08,
-            x1=-0.02,
-            y0=i - 0.25,
-            y1=i + 0.25,
-            fillcolor=box_color,
-            line=dict(width=0),
-            xref="x",
-            yref="y",
+    # 1) Background grey bar (full width)
+    fig.add_trace(
+        go.Bar(
+            y=y_vals,
+            x=[1.0] * len(df),
+            orientation="h",
+            marker=dict(color=TRACK_COLOR),
+            hoverinfo="none",
+            showlegend=False,
+            width=0.35,
         )
     )
-    annotations.append(
-        dict(
-            x=-0.05,
-            y=i,
-            text=str(row["rank"]),
-            showarrow=False,
-            font=dict(color=text_color, size=14, family="monospace"),
+
+    # 2) Base bar (average_accuracy)
+    fig.add_trace(
+        go.Bar(
+            y=y_vals,
+            x=df["average_accuracy"],
+            orientation="h",
+            name="Avg Accuracy",
+            showlegend=False,
+            marker=dict(color=df["color"], opacity=0.85),
+            width=0.35,
+        )
+    )
+
+    # 3) Best-of-N gain (always positive, gold segment)
+    fig.add_trace(
+        go.Bar(
+            y=y_vals,
+            x=df["bon_gain"],
+            base=df["average_accuracy"],
+            orientation="h",
+            name="Best-of-N Gain",
+            marker=dict(color="#f9d48e", opacity=0.75),
+            width=0.35,
+        )
+    )
+
+    # 4) Majority vote gain — POSITIVE (green segment extending right)
+    pos_mask = df["maj_gain"] >= 0
+    fig.add_trace(
+        go.Bar(
+            y=[y_vals[i] for i in df.index[pos_mask]],
+            x=df.loc[pos_mask, "maj_gain"],
+            base=df.loc[pos_mask, "average_accuracy"],
+            orientation="h",
+            name="Majority Vote Gain (+)",
+            marker=dict(color="#a2d9b5", opacity=0.9),
+            width=0.35,
+        )
+    )
+
+    # 5) Majority vote gain — NEGATIVE (red segment extending left)
+    neg_mask = df["maj_gain"] < 0
+    fig.add_trace(
+        go.Bar(
+            y=[y_vals[i] for i in df.index[neg_mask]],
+            x=df.loc[neg_mask, "maj_gain"].abs(),
+            base=df.loc[neg_mask, "majority_vote_accuracy"],
+            orientation="h",
+            name="Majority Vote Loss (−)",
+            marker=dict(color="#fca5a5", opacity=0.9),
+            width=0.35,
+        )
+    )
+
+    # Annotations: rank box + model name on top + score on right
+    annotations = []
+    shapes = []
+    for i, row in df.iterrows():
+        box_color = rank_box_color(int(row["rank"]))
+
+        shapes.append(
+            dict(
+                type="rect",
+                x0=-0.08,
+                x1=-0.02,
+                y0=float(i) - 0.25,  # type: ignore[arg-type]
+                y1=float(i) + 0.25,  # type: ignore[arg-type]
+                fillcolor=box_color,
+                line=dict(width=0),
+                xref="x",
+                yref="y",
+            )
+        )
+
+        # Rank Text
+        annotations.append(
+            dict(
+                x=-0.05,
+                y=i,
+                text=str(row["rank"]),
+                showarrow=False,
+                font=dict(color="white", size=14, family=FONT_FAMILY),
+                xanchor="center",
+                yanchor="middle",
+            )
+        )
+
+        # Model Name
+        annotations.append(
+            dict(
+                x=0.0,
+                y=i,
+                text=row["model"],
+                showarrow=False,
+                xanchor="left",
+                yanchor="bottom",
+                yshift=12,
+                font=dict(size=13, family=FONT_FAMILY, color=TEXT_COLOR),
+            )
+        )
+
+        # Score Text
+        bon_pct = row["bon_gain"] * 100
+        maj_pct = row["maj_gain"] * 100
+        avg_pct = row["average_accuracy"] * 100
+        sign = "+" if maj_pct >= 0 else ""
+        txt = f"avg {avg_pct:.1f}%   maj {sign}{maj_pct:.1f}%   bon +{bon_pct:.1f}%"
+        annotations.append(
+            dict(
+                x=1.0,
+                y=i,
+                text=txt,
+                showarrow=False,
+                xanchor="right",
+                yanchor="bottom",
+                yshift=12,
+                font=dict(size=11, family=FONT_FAMILY, color=MUTED_TEXT),
+            )
+        )
+
+    fig.update_layout(
+        font=dict(color=TEXT_COLOR, family=FONT_FAMILY),
+        barmode="overlay",
+        title=dict(
+            text="SAMPLING GAIN COMPARISON<br>"
+            f"<span style='font-size:12px;font-weight:normal;color:{MUTED_TEXT}'>"
+            "Base = avg accuracy | majority gain | majority loss | best-of-N gain"
+            "</span>",
+            font=dict(family=FONT_FAMILY, size=16, color=TEXT_COLOR),
+        ),
+        xaxis=dict(
+            showticklabels=False, showgrid=False, zeroline=False, range=[-0.1, 1.05]
+        ),
+        yaxis=dict(
+            showticklabels=False,
+            showgrid=False,
+            zeroline=False,
+            range=[-0.5, len(df) - 0.1],
+        ),
+        plot_bgcolor=BG_COLOR,
+        paper_bgcolor=BG_COLOR,
+        margin=dict(l=20, r=20, t=100, b=20),
+        annotations=annotations,
+        shapes=shapes,
+        legend=dict(
+            orientation="h",
+            yanchor="top",
+            y=-0.02,
             xanchor="center",
-            yanchor="middle",
-        )
-    )
-    annotations.append(
-        dict(
-            x=0.0,
-            y=i,
-            text=row["model"],
-            showarrow=False,
-            xanchor="left",
-            yanchor="bottom",
-            yshift=12,
-            font=dict(size=13, family="monospace", color="#1a1a1a"),
-        )
-    )
-    bon_pct = row["bon_gain"] * 100
-    maj_pct = row["maj_gain"] * 100
-    avg_pct = row["average_accuracy"] * 100
-    sign = "+" if maj_pct >= 0 else ""
-    txt = f"avg {avg_pct:.1f}%   maj {sign}{maj_pct:.1f}%   bon +{bon_pct:.1f}%"
-    annotations.append(
-        dict(
-            x=1.0,
-            y=i,
-            text=txt,
-            showarrow=False,
-            xanchor="right",
-            yanchor="bottom",
-            yshift=12,
-            font=dict(size=11, family="monospace", color="#6b6b6b"),
-        )
+            x=0.5,
+            font=dict(family=FONT_FAMILY, size=12),
+        ),
+        height=850,
     )
 
-fig.update_layout(
-    font=dict(color="#1a1a1a", family="monospace"),
-    barmode="overlay",
-    title=dict(
-        text="SAMPLING GAIN COMPARISON<br>"
-        "<span style='font-size:12px;font-weight:normal;color:#4a4a4a'>"
-        "Base = avg accuracy | majority gain | majority loss | best-of-N gain"
-        "</span>",
-        font=dict(family="monospace", size=16, color="#1a1a1a"),
-    ),
-    xaxis=dict(
-        showticklabels=False, showgrid=False, zeroline=False, range=[-0.1, 1.05]
-    ),
-    yaxis=dict(
-        showticklabels=False,
-        showgrid=False,
-        zeroline=False,
-        range=[-0.5, len(df) - 0.1],
-    ),
-    plot_bgcolor="#f9f7f4",
-    paper_bgcolor="#f9f7f4",
-    margin=dict(l=20, r=20, t=100, b=20),
-    annotations=annotations,
-    shapes=shapes,
-    legend=dict(
-        orientation="h",
-        yanchor="top",
-        y=-0.02,
-        xanchor="center",
-        x=0.5,
-        font=dict(family="monospace", size=12),
-    ),
-    height=850,
-)
+    if args.blog:
+        fig.update_layout(**blog_layout_overrides())
 
-fig.write_image("data/images/sampling_gain_chart.png", scale=3)
-print("Updated chart created successfully.")
+    output_name = "sampling_gain_chart.png"
+    if args.output:
+        Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+        fig.write_image(args.output, scale=args.scale)
+        print(f"Chart saved: {args.output}")
+    else:
+        save_chart(fig, output_name, blog=args.blog, scale=args.scale)
+
+
+if __name__ == "__main__":
+    main()

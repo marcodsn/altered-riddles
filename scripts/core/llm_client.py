@@ -313,14 +313,15 @@ async def _call_openai_compat_async(
     api_key: str,
     base_url: str | None = None,
     max_output_tokens: int | None = None,
+    client: Any | None = None,
 ) -> LLMResponse:
     from openai import AsyncOpenAI
 
-    client_kwargs: dict[str, Any] = {"api_key": api_key}
-    if base_url:
-        client_kwargs["base_url"] = base_url
-
-    client = AsyncOpenAI(**client_kwargs)
+    if client is None:
+        client_kwargs: dict[str, Any] = {"api_key": api_key}
+        if base_url:
+            client_kwargs["base_url"] = base_url
+        client = AsyncOpenAI(**client_kwargs)
     create_kwargs: dict[str, Any] = dict(
         model=model,
         messages=[{"role": "user", "content": prompt_text}],
@@ -359,10 +360,12 @@ async def _call_mistral_async(
     temperature: float,
     api_key: str,
     max_output_tokens: int | None = None,
+    client: Any | None = None,
 ) -> LLMResponse:
     from mistralai.client import Mistral
 
-    client = Mistral(api_key=api_key)
+    if client is None:
+        client = Mistral(api_key=api_key)
     create_kwargs: dict[str, Any] = dict(
         model=model,
         messages=[{"role": "user", "content": prompt_text}],
@@ -412,6 +415,7 @@ async def _call_provider_async(
     temperature: float,
     api_key: str,
     max_output_tokens: int | None = None,
+    client: Any | None = None,
 ) -> LLMResponse:
     """Single async LLM call dispatched by provider."""
     client_type = get_client_type(provider)
@@ -423,7 +427,12 @@ async def _call_provider_async(
         )
     elif client_type == "mistral":
         return await _call_mistral_async(
-            prompt_text, model, temperature, api_key, max_output_tokens
+            prompt_text,
+            model,
+            temperature,
+            api_key,
+            max_output_tokens,
+            client=client,
         )
     else:
         return await _call_openai_compat_async(
@@ -433,6 +442,7 @@ async def _call_provider_async(
             api_key,
             base_url=base_url,
             max_output_tokens=max_output_tokens,
+            client=client,
         )
 
 
@@ -455,6 +465,24 @@ async def _provider_batch_async(
 ) -> list[LLMResponse | BaseException]:
     semaphore = asyncio.Semaphore(max_concurrency)
 
+    # Create client once for the batch to avoid per-call overhead
+    client_type = get_client_type(provider)
+    base_url = get_base_url(provider)
+    shared_client: Any | None = None
+
+    if client_type == "openai_compat":
+        from openai import AsyncOpenAI
+
+        client_kwargs: dict[str, Any] = {"api_key": api_key}
+        if base_url:
+            client_kwargs["base_url"] = base_url
+        shared_client = AsyncOpenAI(**client_kwargs)
+    elif client_type == "mistral":
+        from mistralai.client import Mistral
+
+        shared_client = Mistral(api_key=api_key)
+    # gemini doesn't need a shared client (google.genai manages connections internally)
+
     async def _guarded(idx: int, prompt: str) -> LLMResponse:
         async with semaphore:
             backoff = INITIAL_BACKOFF_S
@@ -467,6 +495,7 @@ async def _provider_batch_async(
                         temperature=temperature,
                         api_key=api_key,
                         max_output_tokens=max_output_tokens,
+                        client=shared_client,
                     )
                 except Exception as exc:
                     logger.warning(
