@@ -549,8 +549,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--max-output-tokens",
         type=int,
-        default=None,
-        help="Maximum output tokens for the LLM (None = provider default).",
+        default=16384,
+        help="Maximum output tokens for the LLM (default: 16384).",
     )
     parser.add_argument(
         "--num-samples",

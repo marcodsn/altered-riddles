@@ -39,22 +39,30 @@ altered-riddles/
 ├── prompts/
 │   ├── generation.j2               # Jinja2 template for generating altered riddles
 │   ├── validation.j2               # Jinja2 template for validating riddles
-│   └── solve.j2                    # Jinja2 template for solving riddles
+│   ├── solve.j2                    # Jinja2 template for solving riddles
+│   └── judge.j2                    # Jinja2 template for LLM judge evaluation
 ├── scripts/
 │   ├── core/
 │   │   ├── config.py               # Provider registry, defaults, paths
 │   │   ├── io_utils.py             # Shared I/O helpers (JSONL, templates, JSON)
 │   │   └── llm_client.py           # Unified LLM client (sync/async/batched)
+│   ├── charts/
+│   │   ├── theme.py                # Shared chart utilities (colours, layout)
+│   │   ├── generate_all_charts.py  # Generate all charts (use --blog for blog variants)
+│   │   └── *.py                    # Individual chart scripts
 │   ├── generate.py                 # Generate altered riddles via LLM (single provider)
 │   ├── generate_all.py             # Generate riddles from all configured model families
 │   ├── validate.py                 # Validate generated riddles via LLM
 │   ├── deduplicate.py              # Remove duplicate riddles from benchmark
 │   ├── promote.py                  # Pool management: promote riddles to benchmark
 │   ├── benchmark.py                # Run benchmark on a model
-│   └── evaluate.py                 # Score model outputs (re-runnable)
+│   └── evaluate.py                 # Score model outputs using LLM judge (re-runnable)
+├── migrations/                     # One-shot migration scripts (date-prefixed)
 ├── results/                        # Evaluation results and leaderboard
 │   └── {YYMM}/                     # Per-version results
 ├── requirements.txt
+├── CHANGELOG.md
+├── CONTRIBUTING.md
 ├── README.md
 └── REPORT.md                       # Full technical report on the benchmark
 ```
@@ -127,11 +135,11 @@ python -m scripts.benchmark --provider openai --model gpt-5.4 --temperature 0.7 
 # Batched async calls for speed
 python -m scripts.benchmark --provider openai --model gpt-5.4 --batch-size 20
 
-# Limit output tokens (useful for models that get stuck in thinking loops)
+# Limit output tokens (default is 16384; useful for models that get stuck in thinking loops)
 python -m scripts.benchmark --provider local --model my-model --max-output-tokens 4096
 ```
 
-Tests a specific model against all riddles in `data/benchmark.jsonl`. The model receives each altered riddle and its raw answer is stored in `data/model_outputs/{version}/`. Token usage (input/output) is tracked per call and included in evaluation results and the leaderboard. Temperature is set to 0 by default for deterministic, reproducible results. **Already-tested riddles are automatically skipped** — when the benchmark grows with new auxiliary riddles, re-running only tests the new entries.
+Tests a specific model against all riddles in `data/benchmark.jsonl`. The model receives each altered riddle and its raw answer is stored in `data/model_outputs/{version}/`. Token usage (input/output) is tracked per call and included in evaluation results and the leaderboard. Temperature is set to 0 by default for deterministic, reproducible results. Default `--max-output-tokens` is **16384**. **Already-tested riddles are automatically skipped** — when the benchmark grows with new auxiliary riddles, re-running only tests the new entries.
 
 ### 6. Evaluate
 
@@ -139,12 +147,22 @@ Tests a specific model against all riddles in `data/benchmark.jsonl`. The model 
 python -m scripts.evaluate
 ```
 
-Scores all model outputs against the accepted answers in `data/benchmark.jsonl` and generates a leaderboard in `results/{version}/`. This step is fully re-runnable — for example, we can update accepted answers and re-evaluate without re-running any models.
+Scores all model outputs against the accepted answers in `data/benchmark.jsonl` using an LLM judge (see `prompts/judge.j2`) and generates a leaderboard in `results/{version}/`. This step is fully re-runnable — for example, we can update accepted answers and re-evaluate without re-running any models.
+
+Models must be tested on **at least 250 altered riddles** to appear on the leaderboard.
 
 When multi-sample benchmark outputs exist (from `--num-samples`), evaluation reports additional metrics:
-- **best-of-n accuracy**: at least one sample is correct
+- **best-of-n accuracy**: at least one sample is correct (competing-only answers receive 0.5× partial credit, consistent with other metrics)
 - **majority vote accuracy**: score based on the most common answer
-- **average accuracy**: mean per-sample score
+- **average accuracy**: mean per-sample weighted score
+
+## Leaderboard
+
+The leaderboard is stored in `results/leaderboard.json` and includes **95% confidence intervals** for all metrics. A Markdown leaderboard table is auto-generated at `results/LEADERBOARD.md` for easy viewing and embedding.
+
+Per-riddle difficulty scores are published at `results/{version}/riddle_difficulty.json`, showing how challenging each riddle is across all tested models.
+
+Models must be evaluated on at least **250 altered riddles** to qualify for the leaderboard.
 
 ## Key Design Decisions
 
@@ -164,7 +182,7 @@ When multi-sample benchmark outputs exist (from `--num-samples`), evaluation rep
 
 - **YYMM versioning.** Results are stored in `results/{version}/` so historical data is preserved. `promote.py refresh-auxiliary` bumps the version automatically.
 
-- **Max output tokens.** The `--max-output-tokens` flag is available across generate, validate, and benchmark scripts to prevent runaway token generation (e.g., models stuck in thinking loops).
+- **Max output tokens.** The `--max-output-tokens` flag (default: 16384) is available across generate, validate, and benchmark scripts to prevent runaway token generation (e.g., models stuck in thinking loops).
 
 ## Quick Start
 
@@ -244,7 +262,7 @@ Evaluation uses **weighted scoring** to distinguish between primary and competin
 
 The key insight: competing answers that differ from the original still demonstrate the model is **reasoning about the altered text** rather than recalling a memorized response. They deserve partial credit because the benchmark's primary goal is detecting pattern override, not requiring a single exact answer.
 
-The `total_score` on the leaderboard uses `altered_weighted_accuracy`, which accounts for partial credit from competing answers. The leaderboard also shows total output tokens used per model.
+The `total_score` on the leaderboard uses `average_accuracy` — the **mean per-sample weighted score** — which accounts for partial credit from competing answers. When multi-sample outputs exist, `best_of_n` also awards 0.5× partial credit for competing-only answers, consistent with all other metrics. The leaderboard also shows total output tokens used per model and 95% confidence intervals.
 
 ## Updating Evaluation
 

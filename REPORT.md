@@ -107,7 +107,8 @@ Riddles are ideal probes for this failure mode because:
                              ▼
                    ┌────────────────────┐
                    │ scripts.evaluate   │──▶ results/{version}/leaderboard.json
-                   └────────────────────┘        + per-model _eval.json
+                   │ (LLM judge)        │        + per-model _eval.json
+                   └────────────────────┘        + judgments/ cache
 ```
 
 ---
@@ -202,7 +203,10 @@ JSON response is stored in `data/model_outputs/{version}/`.
 python -m scripts.evaluate
 ```
 
-Scores all model outputs against the accepted answers in the benchmark.
+Uses an LLM judge (configurable via `--provider` and `--model`) to
+semantically score model outputs against the accepted answers in the benchmark.
+Judgments are cached in `results/{version}/judgments/` so re-evaluation only
+calls the judge for new outputs.
 **This step is fully re-runnable** — we can update `altered_accepted_answers`
 in `benchmark.jsonl` and re-evaluate without re-running any models.
 
@@ -217,6 +221,9 @@ in `benchmark.jsonl` and re-evaluate without re-running any models.
 | Original answer | **0.0** | Model fell back to the memorised answer |
 | Wrong answer | **0.0** | Unrelated incorrect answer |
 
+The headline ranking metric is **`total_score = average_accuracy`** (the mean
+per-sample score across all altered riddles).
+
 **Why partial credit for competing answers?**
 
 The benchmark's primary goal is detecting pattern override. A competing answer
@@ -226,9 +233,9 @@ partial credit because it proves the model noticed the change.
 
 ### Answer matching
 
-Matching is lenient: lowercase, strip punctuation and articles ("a", "an",
-"the"), then check for substring containment in either direction. This handles
-common variations like "a candle" vs "candle" vs "it's a candle."
+The evaluation step uses an LLM judge to semantically match model outputs
+against accepted answers. This replaces the earlier string-matching approach,
+which was brittle with longer or rephrased answers.
 
 ### Multi-sample metrics
 
@@ -236,9 +243,26 @@ When `--num-samples > 1` (with temperature > 0):
 
 | Metric | Definition |
 |---|---|
-| **Best-of-n accuracy** | At least one sample is correct |
+| **Best-of-n accuracy** | At least one sample scores 1.0, or — if none do — any competing-only answer receives 0.5× partial credit |
 | **Majority vote accuracy** | Most common answer is correct |
 | **Average accuracy** | Mean per-sample score |
+
+### Minimum coverage requirement
+
+Models must be tested on at least **250 altered riddles** to appear on the
+leaderboard. This ensures all reported metrics meet the sample-size thresholds
+discussed in [§6 — Benchmark Split](#6-benchmark-split).
+
+### Confidence intervals
+
+`leaderboard.json` now includes 95% bootstrap confidence intervals for the
+key metrics:
+
+| Field | Description |
+|---|---|
+| `altered_accuracy_ci95` | 95% CI for altered accuracy |
+| `average_accuracy_ci95` | 95% CI for average accuracy (= total score) |
+| `pattern_override_rate_ci95` | 95% CI for pattern override rate |
 
 ---
 
@@ -258,6 +282,13 @@ into two parts:
 - **May be regenerated in the future** via `promote.py refresh-auxiliary`.
 - Tests generalisation and resists overfitting / contamination.
 - Tagged with `"set": "auxiliary"` in `benchmark.jsonl`.
+
+### Conditioned override rate
+
+The `conditioned_override_rate` metric measures how often the model falls back
+to the memorised original answer. This rate is now computed across **all
+samples** (not just sample 1), giving a more robust estimate when multi-sample
+mode is used.
 
 ### Sample size justification
 
@@ -341,20 +372,28 @@ models are used for multi-family riddle generation.
 ```text
 altered-riddles/
 ├── scripts/
-│   ├── config.py              # Provider registry, defaults, paths
-│   ├── llm_client.py          # Unified LLM client (sync/async/batched)
-│   ├── io_utils.py            # Shared I/O (JSONL, templates, JSON)
+│   ├── core/
+│   │   ├── config.py          # Provider registry, defaults, paths
+│   │   ├── llm_client.py      # Unified LLM client (sync/async/batched)
+│   │   └── io_utils.py        # Shared I/O (JSONL, templates, JSON)
+│   ├── charts/
+│   │   ├── theme.py           # Shared chart styling & utilities
+│   │   └── *.py               # Individual chart scripts
 │   ├── generate.py            # Generate riddles (single provider)
 │   ├── generate_all.py        # Generate riddles (all configured models)
 │   ├── validate.py            # Validate generated riddles
 │   ├── deduplicate.py         # Remove duplicate riddles
 │   ├── promote.py             # Pool → benchmark promotion
 │   ├── benchmark.py           # Run benchmark against a model
-│   └── evaluate.py            # Score outputs, build leaderboard
+│   ├── evaluate.py            # Score outputs via LLM judge, build leaderboard
+│   ├── clean_outputs.py       # Clean up model output files
+│   ├── revert_promotion.py    # Revert a benchmark promotion
+│   └── sanitize.py            # Sanitize data files
 ├── prompts/
 │   ├── generation.j2          # Riddle generation prompt
 │   ├── validation.j2          # Riddle validation prompt
-│   └── solve.j2               # Benchmark solve prompt
+│   ├── solve.j2               # Benchmark solve prompt
+│   └── judge.j2               # LLM judge evaluation prompt
 ├── data/
 │   ├── VERSION                # Current benchmark version (YYMM)
 │   ├── benchmark.jsonl        # The benchmark dataset
@@ -364,8 +403,11 @@ altered-riddles/
 │   ├── model_outputs/         # Raw model answers (versioned subdirs)
 │   └── images/                # Example screenshots
 ├── results/                   # Evaluation results (versioned subdirs)
-│   ├── {YYMM}/               # Per-version results
+│   ├── {YYMM}/               # Per-version results (incl. judgments/)
 │   └── leaderboard.json       # Latest leaderboard (convenience copy)
+├── migrations/                # One-off data migration scripts
+├── CHANGELOG.md               # Version history
+├── CONTRIBUTING.md            # Contributor guidelines
 ├── REPORT.md                  # This file
 ├── README.md                  # Project overview
 └── requirements.txt           # Python dependencies
@@ -442,13 +484,13 @@ python -m scripts.deduplicate
 ### Running the benchmark
 
 ```bash
-# Test a model
+# Test a model (default --max-output-tokens 16384)
 python -m scripts.benchmark --provider openai --model gpt-4o
 
 # Test a local model
 python -m scripts.benchmark --provider local --model my-model --batch-size 20
 
-# Evaluate all tested models
+# Evaluate all tested models (uses LLM judge)
 python -m scripts.evaluate
 ```
 
@@ -497,7 +539,9 @@ automatically added but can be promoted to full-credit status after review.
 
 A single deterministic pass per model ensures reproducibility. For RL reasoning
 models that perform better at higher temperatures, `--temperature` and
-`--num-samples` flags are available.
+`--num-samples` flags are available. The default `--max-output-tokens` is
+**16384**, which is generous enough for chain-of-thought reasoning models
+while still bounding cost.
 
 ### Resume support
 
@@ -510,3 +554,12 @@ new entries. This makes iterative development practical.
 Using generators from different model families (Gemini, GPT-5.4, GLM-5)
 ensures no single model's reasoning style dominates the benchmark. The `source`
 field in each entry makes it trivial to stratify results by generator later.
+
+### LLM judge evaluation
+
+The evaluation step uses an LLM judge (configurable via `--provider` and
+`--model`) to semantically match model outputs against accepted answers.
+This replaces the earlier string-matching evaluator, which was brittle with
+longer or rephrased answers. Judgments are cached in
+`results/{version}/judgments/` so re-evaluation only calls the judge for
+new outputs.

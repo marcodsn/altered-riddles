@@ -33,5 +33,11 @@ data/model_outputs/
 data/pool.jsonl
 # results/
 
+# Project - Migrations
+migrations/__pycache__/
+
+# Project - More files
+IMPROVEMENTS.md
+
 # Large files
 *.jsonl.bak
