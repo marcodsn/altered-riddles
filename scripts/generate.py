@@ -16,17 +16,16 @@ import logging
 import random
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
 
 from dotenv import load_dotenv
 
 from scripts.core.config import DEFAULT_BATCH_SIZE, provider_names, resolve_provider
 from scripts.core.io_utils import (
     load_template,
-    strip_markdown_fences,
     write_jsonl_entry,
 )
 from scripts.core.llm_client import call_llm, call_llm_batched
+from scripts.core.parsing import REQUIRED_FIELDS, parse_riddle_array, validate_entry
 
 # ---------------------------------------------------------------------------
 # Logging setup
@@ -48,50 +47,10 @@ def load_source_riddles(path: str) -> list[str]:
     """Load riddles from a text file (one riddle per line, blank lines ignored)."""
     filepath = Path(path)
     if not filepath.exists():
-        logger.warning(
-            "Source file %s not found — will use free generation only.", path
-        )
+        logger.warning("Source file %s not found — will use free generation only.", path)
         return []
     with open(filepath, encoding="utf-8") as fh:
         return [line.strip() for line in fh if line.strip()]
-
-
-def parse_riddle_array(raw_text: str) -> list[dict[str, Any]]:
-    """Parse the LLM response text into a list of riddle-pair dicts.
-
-    The response may be a JSON array directly or a JSON object wrapping one
-    (e.g. ``{"riddles": [...]}``)  — we handle both.
-    """
-    text = strip_markdown_fences(raw_text)
-
-    parsed = json.loads(text)
-
-    if isinstance(parsed, list):
-        return parsed
-
-    # If the model wrapped the array in an object, grab the first list value.
-    if isinstance(parsed, dict):
-        for value in parsed.values():
-            if isinstance(value, list):
-                return value
-
-    raise ValueError(f"Unexpected JSON structure: {type(parsed)}")
-
-
-REQUIRED_FIELDS = {
-    "original_riddle",
-    "original_answer",
-    "original_reasoning",
-    "altered_riddle",
-    "altered_answer",
-    "altered_reasoning",
-    "type",
-}
-
-
-def validate_entry(entry: dict[str, Any]) -> bool:
-    """Return True if the entry has all required fields with non-empty values."""
-    return all(entry.get(f) for f in REQUIRED_FIELDS)
 
 
 # ---------------------------------------------------------------------------
@@ -121,9 +80,7 @@ def generate(args: argparse.Namespace) -> None:
 
     logger.info("Provider    : %s", provider)
     logger.info("Model       : %s", model)
-    logger.info(
-        "Source      : %s (%d riddles loaded)", args.source, len(source_riddles)
-    )
+    logger.info("Source      : %s (%d riddles loaded)", args.source, len(source_riddles))
     logger.info("Output      : %s", output_path)
     logger.info("Calls       : %d × %d variations", args.num_calls, args.num_variations)
     logger.info("Temp        : %.2f", args.temperature)
@@ -146,10 +103,12 @@ def generate(args: argparse.Namespace) -> None:
         source_riddle = None
         if source_riddles and random.random() < 0.7:
             source_riddle = random.choice(source_riddles)
+        target_type = args.type if args.type != "random" else None
         prompt_text = template.render(
             source_riddle=source_riddle,
             num_variations=args.num_variations,
             few_shot_examples=None,
+            target_type=target_type,
         )
         label = (source_riddle[:60] + "…") if source_riddle else "<free generation>"
         call_prompts.append((prompt_text, label))
@@ -200,17 +159,13 @@ def generate(args: argparse.Namespace) -> None:
                     try:
                         entries = parse_riddle_array(raw)
                     except (json.JSONDecodeError, ValueError) as exc:
-                        logger.error(
-                            "  Call %d unparseable JSON: %s — skipping.", rel_idx, exc
-                        )
+                        logger.error("  Call %d unparseable JSON: %s — skipping.", rel_idx, exc)
                         logger.debug("  Raw response:\n%s", raw[:500])
                         continue
 
                     for entry in entries:
                         if not validate_entry(entry):
-                            logger.warning(
-                                "Skipping entry with missing fields: %s", entry
-                            )
+                            logger.warning("Skipping entry with missing fields: %s", entry)
                             total_skipped += 1
                             continue
                         global_index += 1
@@ -244,9 +199,7 @@ def generate(args: argparse.Namespace) -> None:
                     )
                     raw = resp.text
                 except Exception as exc:
-                    logger.error(
-                        "Call %d failed after retries: %s — skipping.", call_idx, exc
-                    )
+                    logger.error("Call %d failed after retries: %s — skipping.", call_idx, exc)
                     continue
 
                 try:
@@ -279,9 +232,7 @@ def generate(args: argparse.Namespace) -> None:
                 )
 
     logger.info("=" * 60)
-    logger.info(
-        "Done. Generated %d entries, skipped %d.", total_generated, total_skipped
-    )
+    logger.info("Done. Generated %d entries, skipped %d.", total_generated, total_skipped)
     logger.info("Output written to %s", output_path)
 
 
@@ -356,6 +307,21 @@ def build_parser() -> argparse.ArgumentParser:
         type=int,
         default=None,
         help="Maximum output tokens for the LLM (None = provider default).",
+    )
+    parser.add_argument(
+        "--type",
+        choices=[
+            "constraint_addition",
+            "meaning_shift",
+            "context_swap",
+            "bias_probe",
+            "random",
+        ],
+        default="random",
+        help=(
+            "Alteration type to generate. When not 'random', instructs the LLM "
+            "to produce only that specific type (default: random)."
+        ),
     )
     return parser
 

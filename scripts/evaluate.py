@@ -127,6 +127,7 @@ def _score_single_output(
     output: dict,
     benchmark_entry: dict | None,
     judgment: dict,
+    competing_weight: float = COMPETING_ANSWER_WEIGHT,
 ) -> dict | None:
     """Score a single model output record using the Judge's assessment."""
     if benchmark_entry is None:
@@ -162,7 +163,7 @@ def _score_single_output(
         else:
             detail["competing_match"] = competing_match
             if competing_match and not gave_original:
-                detail["score"] = COMPETING_ANSWER_WEIGHT
+                detail["score"] = competing_weight
             else:
                 detail["score"] = 0.0
 
@@ -203,6 +204,7 @@ def evaluate_model(
     judgments: dict[tuple[str, str, int], dict],
     benchmark_lookup: dict[str, dict],
     verbose: bool = False,
+    competing_weight: float = COMPETING_ANSWER_WEIGHT,
 ) -> dict:
     """Evaluate a single model's outputs and return a results dict."""
     model_name = ""
@@ -229,7 +231,9 @@ def evaluate_model(
             key, {"correct": False, "gave_original": False, "competing": False}
         )
 
-        detail = _score_single_output(output, benchmark_entry, judgment)
+        detail = _score_single_output(
+            output, benchmark_entry, judgment, competing_weight=competing_weight
+        )
         if detail is None:
             continue
         details.append(detail)
@@ -285,7 +289,7 @@ def evaluate_model(
                 altered_score_s1 += 1.0
             elif rec.get("competing_match") and not rec.get("gave_original_answer"):
                 altered_competing += 1
-                altered_score_s1 += COMPETING_ANSWER_WEIGHT
+                altered_score_s1 += competing_weight
 
     conditioned_override_total = conditioned_override_count = 0
     unique_riddles = {k[0] for k in grouped.keys()}
@@ -360,7 +364,7 @@ def evaluate_model(
                 d.get("competing_match") and not d.get("gave_original_answer")
                 for d in group
             ):
-                best_of_n_correct += COMPETING_ANSWER_WEIGHT
+                best_of_n_correct += competing_weight
 
             # Simple majority norm logic (LLM judge is better, but this suffices for multi-sample consensus)
             answer_counts: Counter[str] = Counter()
@@ -371,7 +375,7 @@ def evaluate_model(
             if rep["correct"]:
                 majority_vote_correct += 1
             elif rep.get("competing_match") and not rep.get("gave_original_answer"):
-                majority_vote_correct += COMPETING_ANSWER_WEIGHT
+                majority_vote_correct += competing_weight
 
         summary["num_samples"] = num_samples
         summary["best_of_n_accuracy"] = (
@@ -393,6 +397,51 @@ def evaluate_model(
     summary["altered_num_riddles"] = len(
         {d["riddle_id"] for d in details if d["riddle_type"] == "altered"}
     )
+
+    # --- Per-type breakdown (altered riddles only, sample_index == 1) ---
+    per_type: dict[str, dict] = {}
+    altered_details_s1 = [
+        d
+        for d in details
+        if d.get("riddle_type") == "altered" and d.get("sample_index", 1) == 1
+    ]
+    type_groups: dict[str, list[dict]] = {}
+    for d in altered_details_s1:
+        entry = benchmark_lookup.get(d["riddle_id"], {})
+        t = entry.get("type", "unknown")
+        type_groups.setdefault(t, []).append(d)
+    for t, grp in sorted(type_groups.items()):
+        count = len(grp)
+        correct = sum(1 for d in grp if d["correct"])
+        score_sum = sum(d.get("score", 0.0) for d in grp)
+        gave_orig = sum(1 for d in grp if d.get("gave_original_answer"))
+        per_type[t] = {
+            "count": count,
+            "accuracy": round(correct / count, 3) if count else 0.0,
+            "weighted_accuracy": round(score_sum / count, 3) if count else 0.0,
+            "pattern_override_rate": round(gave_orig / count, 3) if count else 0.0,
+        }
+    summary["per_type"] = per_type
+
+    # --- Per-source breakdown (altered riddles only, sample_index == 1) ---
+    per_source: dict[str, dict] = {}
+    source_groups: dict[str, list[dict]] = {}
+    for d in altered_details_s1:
+        entry = benchmark_lookup.get(d["riddle_id"], {})
+        src = entry.get("source", "unknown")
+        source_groups.setdefault(src, []).append(d)
+    for src, grp in sorted(source_groups.items()):
+        count = len(grp)
+        correct = sum(1 for d in grp if d["correct"])
+        score_sum = sum(d.get("score", 0.0) for d in grp)
+        gave_orig = sum(1 for d in grp if d.get("gave_original_answer"))
+        per_source[src] = {
+            "count": count,
+            "accuracy": round(correct / count, 3) if count else 0.0,
+            "weighted_accuracy": round(score_sum / count, 3) if count else 0.0,
+            "pattern_override_rate": round(gave_orig / count, 3) if count else 0.0,
+        }
+    summary["per_source"] = per_source
 
     return {
         "model": model_name,
@@ -454,6 +503,10 @@ def build_leaderboard(all_results: list[dict]) -> list[dict]:
             row["num_samples"] = s["num_samples"]
             row["best_of_n_accuracy"] = s["best_of_n_accuracy"]
             row["majority_vote_accuracy"] = s["majority_vote_accuracy"]
+        row["per_type"] = s.get("per_type", {})
+        row["per_source"] = s.get("per_source", {})
+        row["parameter_count_billions"] = None
+        row["estimated_cost_per_mtok_usd"] = None
         rows.append(row)
 
     # Filter out models with insufficient coverage (< 250 altered riddles)
@@ -711,7 +764,11 @@ def run_evaluation(args: argparse.Namespace) -> None:
 
         # Evaluate and Save
         result = evaluate_model(
-            model_outputs, judgments, benchmark_lookup, verbose=args.verbose
+            model_outputs,
+            judgments,
+            benchmark_lookup,
+            verbose=args.verbose,
+            competing_weight=args.competing_weight,
         )
         all_results.append(result)
 
@@ -800,6 +857,24 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         default=False,
         help="Generate and save leaderboard.json incrementally after each model finishes.",
+    )
+    parser.add_argument(
+        "--competing-weight",
+        type=float,
+        default=COMPETING_ANSWER_WEIGHT,
+        help="Weight for competing (non-primary) accepted answers.",
+    )
+    parser.add_argument(
+        "--param-count",
+        type=float,
+        default=None,
+        help="Model parameter count in billions (optional metadata).",
+    )
+    parser.add_argument(
+        "--cost-per-mtok",
+        type=float,
+        default=None,
+        help="Cost per million tokens in USD (optional metadata).",
     )
     parser.add_argument("--verbose", action="store_true", default=False)
     return parser.parse_args()

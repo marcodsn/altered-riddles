@@ -34,10 +34,16 @@ from scripts.core.io_utils import (
     load_jsonl_if_exists,
     load_template,
     sanitize_model_name,
-    strip_markdown_fences,
     write_jsonl_entry,
 )
 from scripts.core.llm_client import call_llm_batched
+from scripts.core.parsing import (
+    REQUIRED_FIELDS,
+    parse_riddle_array,
+    parse_validation_response,
+    to_benchmark_format,
+    validate_entry,
+)
 
 # ---------------------------------------------------------------------------
 # Logging
@@ -47,71 +53,6 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
 )
 logger = logging.getLogger("generate_all")
-
-# ---------------------------------------------------------------------------
-# Parse helpers (copied from generate.py / validate.py — small utilities)
-# ---------------------------------------------------------------------------
-
-REQUIRED_FIELDS = {
-    "original_riddle",
-    "original_answer",
-    "original_reasoning",
-    "altered_riddle",
-    "altered_answer",
-    "altered_reasoning",
-    "type",
-}
-
-
-def parse_riddle_array(raw_text: str) -> list[dict[str, Any]]:
-    """Parse LLM response text into a list of riddle-pair dicts."""
-    text = strip_markdown_fences(raw_text)
-    parsed = json.loads(text)
-    if isinstance(parsed, list):
-        return parsed
-    if isinstance(parsed, dict):
-        for value in parsed.values():
-            if isinstance(value, list):
-                return value
-    raise ValueError(f"Unexpected JSON structure: {type(parsed)}")
-
-
-def validate_entry(entry: dict[str, Any]) -> bool:
-    """Return True if *entry* has all required fields with non-empty values."""
-    return all(entry.get(f) for f in REQUIRED_FIELDS)
-
-
-def parse_validation_response(raw_text: str) -> dict[str, Any]:
-    """Parse an LLM validation response into a dict."""
-    text = strip_markdown_fences(raw_text)
-    parsed = json.loads(text)
-    if not isinstance(parsed, dict):
-        raise ValueError(f"Expected JSON object, got {type(parsed)}")
-    return parsed
-
-
-def to_benchmark_format(entry: dict[str, Any], new_id: str) -> dict[str, Any]:
-    """Convert a validated generation entry to the benchmark JSONL format."""
-    original_answer_lower = entry.get("original_answer", "").strip().lower()
-    competing = [
-        a
-        for a in entry.get("competing_answers", [])
-        if a.strip().lower() != original_answer_lower
-    ]
-    return {
-        "id": new_id,
-        "original_riddle": entry.get("original_riddle", ""),
-        "original_answer": entry.get("original_answer", ""),
-        "original_accepted_answers": [entry.get("original_answer", "")],
-        "original_reasoning": entry.get("original_reasoning", ""),
-        "altered_riddle": entry.get("altered_riddle", ""),
-        "altered_answer": entry.get("altered_answer", ""),
-        "altered_accepted_answers": [entry.get("altered_answer", "")],
-        "altered_competing_answers": competing,
-        "altered_reasoning": entry.get("altered_reasoning", ""),
-        "source": entry.get("source", ""),
-        "type": entry.get("type", "constraint_addition"),
-    }
 
 
 # ---------------------------------------------------------------------------
@@ -139,6 +80,7 @@ def build_generation_prompts(
     source_riddles: list[str],
     num_calls: int,
     num_variations: int,
+    target_type: str | None = None,
 ) -> list[str]:
     """Return *num_calls* rendered generation prompts."""
     prompts: list[str] = []
@@ -150,6 +92,7 @@ def build_generation_prompts(
             source_riddle=source_riddle,
             num_variations=num_variations,
             few_shot_examples=None,
+            target_type=target_type,
         )
         prompts.append(prompt_text)
     return prompts
@@ -193,6 +136,11 @@ def generate_all(args: argparse.Namespace) -> None:  # noqa: C901
 
     source_riddles = load_source_riddles(args.source)
     gen_template = load_template("prompts/generation.j2")
+
+    # Resolve target_type for generation prompts
+    target_type: str | None = None
+    if hasattr(args, "type") and args.type and args.type != "random":
+        target_type = args.type
 
     val_template = None
     val_model = val_api_key = val_provider = None
@@ -242,6 +190,7 @@ def generate_all(args: argparse.Namespace) -> None:  # noqa: C901
             source_riddles,
             args.num_calls,
             args.num_variations,
+            target_type=target_type,
         )
 
         valid_entries: list[dict[str, Any]] = []
@@ -270,17 +219,13 @@ def generate_all(args: argparse.Namespace) -> None:  # noqa: C901
             with open(raw_path, "a", encoding="utf-8") as raw_fh:
                 for rel_idx, result in enumerate(raw_results, start=chunk_start + 1):
                     if isinstance(result, BaseException):
-                        logger.error(
-                            "  Call %d failed: %s — skipping.", rel_idx, result
-                        )
+                        logger.error("  Call %d failed: %s — skipping.", rel_idx, result)
                         continue
 
                     try:
                         entries = parse_riddle_array(result.text)
                     except (json.JSONDecodeError, ValueError) as exc:
-                        logger.error(
-                            "  Call %d unparseable: %s — skipping.", rel_idx, exc
-                        )
+                        logger.error("  Call %d unparseable: %s — skipping.", rel_idx, exc)
                         continue
 
                     model_stats["generated"] += len(entries)
@@ -326,9 +271,7 @@ def generate_all(args: argparse.Namespace) -> None:  # noqa: C901
 
             for vchunk_start in range(0, len(val_prompts), args.batch_size):
                 vchunk = val_prompts[vchunk_start : vchunk_start + args.batch_size]
-                vchunk_entries = valid_entries[
-                    vchunk_start : vchunk_start + len(vchunk)
-                ]
+                vchunk_entries = valid_entries[vchunk_start : vchunk_start + len(vchunk)]
 
                 logger.info(
                     "  Validation batch %d–%d / %d …",
@@ -350,24 +293,18 @@ def generate_all(args: argparse.Namespace) -> None:  # noqa: C901
                 for entry, vres in zip(vchunk_entries, val_results):
                     model_stats["validated"] += 1
                     if isinstance(vres, BaseException):
-                        logger.error(
-                            "  Validation failed for %s: %s", entry.get("id"), vres
-                        )
+                        logger.error("  Validation failed for %s: %s", entry.get("id"), vres)
                         continue
                     try:
                         validation = parse_validation_response(vres.text)
                     except (json.JSONDecodeError, ValueError) as exc:
-                        logger.error(
-                            "  Unparseable validation for %s: %s", entry.get("id"), exc
-                        )
+                        logger.error("  Unparseable validation for %s: %s", entry.get("id"), exc)
                         continue
 
                     overall = bool(validation.get("overall_valid", False))
                     if overall:
                         # Merge competing_answers into entry for pool format
-                        entry["competing_answers"] = validation.get(
-                            "competing_answers", []
-                        )
+                        entry["competing_answers"] = validation.get("competing_answers", [])
                         passing.append(entry)
                         model_stats["passed"] += 1
 
@@ -501,6 +438,22 @@ def build_parser() -> argparse.ArgumentParser:
         type=str,
         default="data/generated",
         help="Directory for raw generation outputs (default: data/generated)",
+    )
+    parser.add_argument(
+        "--type",
+        choices=[
+            "constraint_addition",
+            "meaning_shift",
+            "context_swap",
+            "bias_probe",
+            "random",
+        ],
+        default="random",
+        help=(
+            "Alteration type to generate. 'random' lets the LLM choose freely. "
+            "Any other value instructs the LLM to produce only that type. "
+            "(default: random)"
+        ),
     )
     return parser
 
