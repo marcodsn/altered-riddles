@@ -5,6 +5,7 @@
 {#    few_shot_examples  (str)  — Pre-rendered JSON examples block      #}
 {#    num_variations     (int)  — Number of variations to generate      #}
 {#    source_riddle      (str)  — Optional specific riddle to alter     #}
+{#    target_type        (str)  — Optional alteration type to force     #}
 {#- ------------------------------------------------------------------ #}
 
 {#- Default few-shot examples used when the caller does not supply any -#}
@@ -106,5 +107,9 @@ Respond with a JSON array of objects. Each object must have exactly these seven 
   }
 ]
 ```
+
+{% if target_type %}
+IMPORTANT: Generate ONLY riddles of type "{{ target_type }}".
+{% endif %}
 
 Return ONLY the JSON array — no extra commentary, no markdown fences, no preamble.

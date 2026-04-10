@@ -1,0 +1,45 @@
+[project]
+name = "altered-riddles"
+version = "0.1.0"
+description = "An LLM benchmark testing whether models can override memorized patterns when riddle details are subtly changed."
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+authors = [
+    { name = "Marco De Santis" }
+]
+dependencies = [
+    "google-genai>=1.0.0",
+    "openai>=1.0.0",
+    "jinja2>=3.0.0",
+    "python-dotenv>=1.0.0",
+    "mistralai>=1.0.0",
+]
+
+[project.optional-dependencies]
+charts = [
+    "plotly>=5.0",
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "kaleido>=0.2",
+]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/marcodsn/altered-riddles"
+Repository = "https://github.com/marcodsn/altered-riddles"
+Dataset = "https://huggingface.co/datasets/marcodsn/altered-riddles"
+
+[tool.ruff]
+line-length = 99
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

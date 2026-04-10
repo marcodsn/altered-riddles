@@ -45,10 +45,13 @@ altered-riddles/
 │   ├── core/
 │   │   ├── config.py               # Provider registry, defaults, paths
 │   │   ├── io_utils.py             # Shared I/O helpers (JSONL, templates, JSON)
-│   │   └── llm_client.py           # Unified LLM client (sync/async/batched)
+│   │   ├── llm_client.py           # Unified LLM client (sync/async/batched)
+│   │   └── parsing.py              # Consolidated parsing helpers (riddle array parsing, validation, format conversion)
 │   ├── charts/
 │   │   ├── theme.py                # Shared chart utilities (colours, layout)
 │   │   ├── generate_all_charts.py  # Generate all charts (use --blog for blog variants)
+│   │   ├── 06_perTypeBreakdown.py  # Per-alteration-type accuracy chart
+│   │   ├── 07_riddleHeatmap.py     # Per-riddle results data export
 │   │   └── *.py                    # Individual chart scripts
 │   ├── generate.py                 # Generate altered riddles via LLM (single provider)
 │   ├── generate_all.py             # Generate riddles from all configured model families
@@ -56,16 +59,24 @@ altered-riddles/
 │   ├── deduplicate.py              # Remove duplicate riddles from benchmark
 │   ├── promote.py                  # Pool management: promote riddles to benchmark
 │   ├── benchmark.py                # Run benchmark on a model
-│   └── evaluate.py                 # Score model outputs using LLM judge (re-runnable)
+│   ├── evaluate.py                 # Score model outputs using LLM judge (re-runnable)
+│   ├── validate_schema.py          # Validate benchmark.jsonl schema integrity
+│   ├── contamination_analysis.py   # Analyze contamination effects by model family
+│   └── reproducibility_snapshot.py # Generate reproducibility manifest
+├── tests/                          # Test suite (pytest)
 ├── migrations/                     # One-shot migration scripts (date-prefixed)
 ├── results/                        # Evaluation results and leaderboard
 │   └── {YYMM}/                     # Per-version results
+├── pyproject.toml                  # Project configuration and dependencies
 ├── requirements.txt
 ├── CHANGELOG.md
+├── .github/workflows/ci.yml       # CI pipeline (lint, test, validate)
 ├── CONTRIBUTING.md
 ├── README.md
 └── REPORT.md                       # Full technical report on the benchmark
 ```
+
+`pyproject.toml` is the primary dependency spec (`requirements.txt` is kept for compatibility). Optional dependency groups are available: `pip install -e ".[charts]"` for chart generation, `pip install -e ".[dev]"` for development.
 
 ## How It Works
 
@@ -76,6 +87,9 @@ The benchmark follows a five-stage pipeline:
 ```bash
 # Single provider
 python -m scripts.generate --provider gemini --num-calls 10
+
+# Control alteration type
+python -m scripts.generate --provider gemini --num-calls 10 --type constraint_addition
 
 # All configured generators at once (recommended for diversity)
 python -m scripts.generate_all --num-calls 5 --validate
@@ -92,6 +106,12 @@ python -m scripts.validate --input data/generated/raw_*.jsonl --append-to-pool
 
 # Or append directly to benchmark (legacy)
 python -m scripts.validate --input data/generated/raw_*.jsonl --append-to-benchmark
+
+# Re-validate existing entries
+python -m scripts.validate --re-validate
+
+# Filter entries with no competing answers
+python -m scripts.validate --filter-empty-competing
 
 # Batched async calls for speed
 python -m scripts.validate --input data/generated/raw_*.jsonl --append-to-pool --batch-size 10
@@ -135,6 +155,12 @@ python -m scripts.benchmark --provider openai --model gpt-5.4 --temperature 0.7 
 # Batched async calls for speed
 python -m scripts.benchmark --provider openai --model gpt-5.4 --batch-size 20
 
+# Adaptive sampling: skip extra samples for riddles answered correctly on the first try
+python -m scripts.benchmark --provider openai --model gpt-5.4 --num-samples 5 --adaptive
+
+# Control sample count for original riddles independently (default: 1)
+python -m scripts.benchmark --provider openai --model gpt-5.4 --num-samples 5 --originals-samples 3
+
 # Limit output tokens (default is 16384; useful for models that get stuck in thinking loops)
 python -m scripts.benchmark --provider local --model my-model --max-output-tokens 4096
 ```
@@ -145,9 +171,12 @@ Tests a specific model against all riddles in `data/benchmark.jsonl`. The model 
 
 ```bash
 python -m scripts.evaluate
+
+# Configurable partial-credit weight for competing answers (default: 0.5)
+python -m scripts.evaluate --competing-weight 0.5
 ```
 
-Scores all model outputs against the accepted answers in `data/benchmark.jsonl` using an LLM judge (see `prompts/judge.j2`) and generates a leaderboard in `results/{version}/`. This step is fully re-runnable — for example, we can update accepted answers and re-evaluate without re-running any models.
+Scores all model outputs against the accepted answers in `data/benchmark.jsonl` using an LLM judge (see `prompts/judge.j2`) and generates a leaderboard in `results/{version}/`. Now produces **per-type and per-source breakdowns** in evaluation output. This step is fully re-runnable — for example, we can update accepted answers and re-evaluate without re-running any models.
 
 Models must be tested on **at least 250 altered riddles** to appear on the leaderboard.
 
@@ -184,11 +213,19 @@ Models must be evaluated on at least **250 altered riddles** to qualify for the 
 
 - **Max output tokens.** The `--max-output-tokens` flag (default: 16384) is available across generate, validate, and benchmark scripts to prevent runaway token generation (e.g., models stuck in thinking loops).
 
+- **Configurable partial credit.** The 0.5× competing-answer weight can be overridden via `--competing-weight` to test ranking sensitivity.
+
+- **Per-type and per-source breakdowns.** Evaluation now stratifies accuracy by alteration type and source model, revealing where failures concentrate.
+
+- **Adaptive sampling.** `--adaptive` skips additional samples for riddles answered correctly, cutting multi-sample costs by ~2–3× with minimal information loss.
+
+- **Contamination analysis.** `scripts/contamination_analysis.py` compares model accuracy on self-sourced vs. other-sourced riddles.
+
 ## Quick Start
 
 ```bash
 # Setup
-pip install -r requirements.txt
+pip install -r requirements.txt          # or: pip install -e .  (or: uv pip install -e .)
 cp .env.example .env  # Add your API keys
 
 # Generate altered riddles from multiple model families
@@ -260,6 +297,8 @@ Evaluation uses **weighted scoring** to distinguish between primary and competin
 | Original answer | **0.0** | Model fell back to the memorized answer (counted as pattern override) |
 | Wrong answer | **0.0** | Model gave an unrelated incorrect answer |
 
+The competing-answer weight is configurable via `--competing-weight` (default 0.5), so researchers can test sensitivity of rankings to the partial-credit value.
+
 The key insight: competing answers that differ from the original still demonstrate the model is **reasoning about the altered text** rather than recalling a memorized response. They deserve partial credit because the benchmark's primary goal is detecting pattern override, not requiring a single exact answer.
 
 The `total_score` on the leaderboard uses `average_accuracy` — the **mean per-sample weighted score** — which accounts for partial credit from competing answers. When multi-sample outputs exist, `best_of_n` also awards 0.5× partial credit for competing-only answers, consistent with all other metrics. The leaderboard also shows total output tokens used per model and 95% confidence intervals.
@@ -273,6 +312,22 @@ One of the core design goals is that evaluation is decoupled from model runs. If
 3. Re-run `python -m scripts.evaluate`
 
 Scores and the leaderboard will be regenerated using the updated accepted answers — no need to re-run any models.
+
+## Testing
+
+```bash
+# Run the test suite
+pytest tests/ -v
+
+# Validate benchmark data integrity
+python -m scripts.validate_schema
+
+# Run contamination analysis
+python -m scripts.contamination_analysis
+
+# Generate reproducibility manifest
+python -m scripts.reproducibility_snapshot
+```
 
 ## Links
 

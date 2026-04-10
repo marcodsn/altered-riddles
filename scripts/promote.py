@@ -66,14 +66,36 @@ def _bump_version() -> str:
     return version
 
 
-def _pick_balanced(pool: list[dict], count: int) -> tuple[list[dict], list[dict]]:
+def _normalize_original(text: str) -> str:
+    """Normalize an original riddle string for comparison (strip + lower)."""
+    return text.strip().lower()
+
+
+def _pick_balanced(
+    pool: list[dict],
+    count: int,
+    max_per_original: int | None = None,
+    existing_entries: list[dict] | None = None,
+) -> tuple[list[dict], list[dict]]:
     """Pick *count* entries from *pool* spread evenly across `source` values.
 
     Uses round-robin over source buckets (preserving each bucket's original
     order), so every source contributes as equally as possible.
 
+    When *max_per_original* is set, an entry is skipped if adding it would
+    cause the total number of variants sharing the same ``original_riddle``
+    (across both the selection and *existing_entries*) to exceed the cap.
+
     Returns `(selected, remaining)`.
     """
+    # Build a counter of original-riddle usage from existing benchmark entries.
+    original_counts: dict[str, int] = defaultdict(int)
+    if existing_entries:
+        for entry in existing_entries:
+            key = _normalize_original(entry.get("original_riddle", ""))
+            if key:
+                original_counts[key] += 1
+
     # Group pool indices by source, preserving insertion order.
     buckets: dict[str, list[int]] = defaultdict(list)
     for i, entry in enumerate(pool):
@@ -82,6 +104,7 @@ def _pick_balanced(pool: list[dict], count: int) -> tuple[list[dict], list[dict]
 
     sources = list(buckets.keys())
     selected_indices: list[int] = []
+    skipped_indices: set[int] = set()
 
     # Round-robin until we have enough or all buckets are exhausted.
     while len(selected_indices) < count:
@@ -89,15 +112,45 @@ def _pick_balanced(pool: list[dict], count: int) -> tuple[list[dict], list[dict]
         for src in sources:
             if len(selected_indices) >= count:
                 break
-            if buckets[src]:
-                selected_indices.append(buckets[src].pop(0))
+            # Try entries in this bucket until we find one that passes the cap
+            while buckets[src]:
+                idx = buckets[src].pop(0)
+                entry = pool[idx]
+                orig_key = _normalize_original(entry.get("original_riddle", ""))
+
+                if max_per_original is not None and orig_key:
+                    if original_counts[orig_key] >= max_per_original:
+                        skipped_indices.add(idx)
+                        logger.debug(
+                            "Skipping entry (original reuse cap %d reached): %s",
+                            max_per_original,
+                            orig_key[:80],
+                        )
+                        continue
+
+                # Accept this entry
+                selected_indices.append(idx)
+                if orig_key:
+                    original_counts[orig_key] += 1
                 made_progress = True
+                break
         if not made_progress:
             break
 
+    if skipped_indices:
+        logger.info(
+            "Skipped %d pool entries due to --max-per-original cap (%s).",
+            len(skipped_indices),
+            max_per_original,
+        )
+
     selected_set = set(selected_indices)
     selected = [pool[i] for i in selected_indices]
-    remaining = [pool[i] for i in range(len(pool)) if i not in selected_set]
+    remaining = [
+        pool[i] for i in range(len(pool)) if i not in selected_set and i not in skipped_indices
+    ]
+    # Put skipped-but-not-selected entries back into the remaining pool
+    remaining.extend(pool[i] for i in sorted(skipped_indices))
 
     # Emit a per-source breakdown at DEBUG level.
     if logger.isEnabledFor(logging.DEBUG):
@@ -136,7 +189,15 @@ def cmd_add(args: argparse.Namespace) -> None:
             len(pool),
         )
     count = min(args.count, len(pool))
-    to_promote, remaining = _pick_balanced(pool, min(args.count, len(pool)))
+
+    # Load existing benchmark entries for the max-per-original cap.
+    existing_benchmark = load_jsonl_if_exists(args.benchmark)
+    to_promote, remaining = _pick_balanced(
+        pool,
+        count,
+        max_per_original=args.max_per_original,
+        existing_entries=existing_benchmark,
+    )
 
     max_id = get_max_benchmark_id(args.benchmark)
     version = get_benchmark_version()
@@ -206,6 +267,45 @@ def cmd_status(args: argparse.Namespace) -> None:
     print("╚══════════════════════════════════════╝")
     print()
 
+    # ── Optional: report original-riddle reuse ────────────────────────
+    if args.report_reuse:
+        _report_original_reuse(benchmark)
+
+
+def _report_original_reuse(benchmark: list[dict]) -> None:
+    """Print a summary of how many original riddles appear multiple times."""
+    original_counts: dict[str, int] = defaultdict(int)
+    for entry in benchmark:
+        key = _normalize_original(entry.get("original_riddle", ""))
+        if key:
+            original_counts[key] += 1
+
+    total_originals = len(original_counts)
+    more_than_1 = sum(1 for c in original_counts.values() if c > 1)
+    more_than_2 = sum(1 for c in original_counts.values() if c > 2)
+    more_than_3 = sum(1 for c in original_counts.values() if c > 3)
+
+    print("╔══════════════════════════════════════╗")
+    print("║  Original Riddle Reuse Report        ║")
+    print("╠══════════════════════════════════════╣")
+    print(f"║  Unique originals : {total_originals:<17d}║")
+    print(f"║  Appearing >1 time: {more_than_1:<17d}║")
+    print(f"║  Appearing >2 times: {more_than_2:<16d}║")
+    print(f"║  Appearing >3 times: {more_than_3:<16d}║")
+    print("╚══════════════════════════════════════╝")
+
+    # Show the top reused originals
+    if more_than_1:
+        print()
+        print("  Top reused originals:")
+        sorted_originals = sorted(original_counts.items(), key=lambda x: x[1], reverse=True)
+        for orig, cnt in sorted_originals[:10]:
+            if cnt <= 1:
+                break
+            display = orig[:70] + ("…" if len(orig) > 70 else "")
+            print(f"    [{cnt}x] {display}")
+    print()
+
 
 # ── Subcommand: refresh-auxiliary ─────────────────────────────────────
 
@@ -242,7 +342,14 @@ def cmd_refresh_auxiliary(args: argparse.Namespace) -> None:
             len(pool),
         )
     count = min(args.count, len(pool))
-    to_promote, remaining = _pick_balanced(pool, min(args.count, len(pool)))
+
+    # Load fixed entries for the max-per-original cap context.
+    to_promote, remaining = _pick_balanced(
+        pool,
+        count,
+        max_per_original=args.max_per_original,
+        existing_entries=fixed_entries,
+    )
 
     # Find max ID among fixed entries to continue numbering after them
     max_fixed_id = 0
@@ -293,9 +400,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     # ── add ────────────────────────────────────────────────────────────
     p_add = sub.add_parser("add", help="Move riddles from pool → benchmark")
-    p_add.add_argument(
-        "--count", type=int, required=True, help="Number of riddles to promote"
-    )
+    p_add.add_argument("--count", type=int, required=True, help="Number of riddles to promote")
     p_add.add_argument(
         "--set",
         choices=["fixed", "auxiliary"],
@@ -303,16 +408,31 @@ def build_parser() -> argparse.ArgumentParser:
         help="Which set to assign (default: auxiliary)",
     )
     p_add.add_argument("--pool", default=DEFAULT_POOL, help="Pool file path")
+    p_add.add_argument("--benchmark", default=DEFAULT_BENCHMARK, help="Benchmark file path")
     p_add.add_argument(
-        "--benchmark", default=DEFAULT_BENCHMARK, help="Benchmark file path"
+        "--max-per-original",
+        type=int,
+        default=3,
+        help=(
+            "Maximum number of altered variants per original riddle allowed "
+            "in the benchmark. Entries exceeding this cap are skipped. "
+            "(default: 3)"
+        ),
     )
     p_add.set_defaults(func=cmd_add)
 
     # ── status ─────────────────────────────────────────────────────────
     p_status = sub.add_parser("status", help="Show benchmark / pool composition")
     p_status.add_argument("--pool", default=DEFAULT_POOL, help="Pool file path")
+    p_status.add_argument("--benchmark", default=DEFAULT_BENCHMARK, help="Benchmark file path")
     p_status.add_argument(
-        "--benchmark", default=DEFAULT_BENCHMARK, help="Benchmark file path"
+        "--report-reuse",
+        action="store_true",
+        default=False,
+        help=(
+            "Print a summary of original riddle reuse in the current benchmark "
+            "(how many originals appear >1, >2, >3 times)."
+        ),
     )
     p_status.set_defaults(func=cmd_status)
 
@@ -325,13 +445,21 @@ def build_parser() -> argparse.ArgumentParser:
         "--count", type=int, required=True, help="How many new auxiliary riddles"
     )
     p_refresh.add_argument("--pool", default=DEFAULT_POOL, help="Pool file path")
-    p_refresh.add_argument(
-        "--benchmark", default=DEFAULT_BENCHMARK, help="Benchmark file path"
-    )
+    p_refresh.add_argument("--benchmark", default=DEFAULT_BENCHMARK, help="Benchmark file path")
     p_refresh.add_argument(
         "--backup-dir",
         default="data/backups",
         help="Directory for benchmark backups (default: data/backups)",
+    )
+    p_refresh.add_argument(
+        "--max-per-original",
+        type=int,
+        default=3,
+        help=(
+            "Maximum number of altered variants per original riddle allowed "
+            "in the benchmark. Entries exceeding this cap are skipped. "
+            "(default: 3)"
+        ),
     )
     p_refresh.set_defaults(func=cmd_refresh_auxiliary)
 

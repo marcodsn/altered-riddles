@@ -7,12 +7,21 @@ special files) and executes them from the repository root so that relative
 paths used by the chart scripts (e.g. "results/leaderboard.json" and
 "data/images/...") resolve correctly.
 
+Discovered scripts (auto-discovered via glob, sorted alphabetically):
+    01_performanceChart.py      — Performance comparison (accuracy + CI)
+    02_originalVersusAltered.py — Original vs altered accuracy scatter
+    03_samplingGain.py          — Best-of-N / majority-vote gains
+    04_tokenEfficiency.py       — Token efficiency chart
+    05_conditionedOverride.py   — Conditioned override rate
+    06_perTypeBreakdown.py      — Per-alteration-type grouped bar chart
+    07_riddleHeatmap.py         — Per-riddle heatmap data export (JSON)
+
 Usage:
     python generate_all_charts.py            # run all charts, stop on first error
     python generate_all_charts.py --continue-on-error
     python generate_all_charts.py --timeout 300
     python generate_all_charts.py --list      # show discovered scripts and exit
-    python generate_all_charts.py --scripts 01_performanceChart.py,04_tokenEfficiency.py
+    python generate_all_charts.py --scripts 01_performanceChart.py,06_perTypeBreakdown.py
 """
 
 from __future__ import annotations
@@ -86,9 +95,7 @@ def run_script(
 
 
 def parse_args() -> argparse.Namespace:
-    ap = argparse.ArgumentParser(
-        description="Generate all chart images by running chart scripts."
-    )
+    ap = argparse.ArgumentParser(description="Generate all chart images by running chart scripts.")
     ap.add_argument(
         "--continue-on-error",
         action="store_true",

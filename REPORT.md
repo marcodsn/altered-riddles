@@ -94,6 +94,11 @@ Riddles are ideal probes for this failure mode because:
                                     └─────────┬──────────┘
                                               │
                                               ▼
+                                    ┌─────────────────────────┐
+                                    │ scripts.validate_schema │──▶ (schema check)
+                                    └─────────┬───────────────┘
+                                              │
+                                              ▼
                                     ┌────────────────────┐
   data/benchmark.jsonl ◀────────────│ scripts.promote    │
     (fixed + auxiliary)             └─────────┬──────────┘
@@ -109,6 +114,8 @@ Riddles are ideal probes for this failure mode because:
                    │ scripts.evaluate   │──▶ results/{version}/leaderboard.json
                    │ (LLM judge)        │        + per-model _eval.json
                    └────────────────────┘        + judgments/ cache
+
+  tests/ ──────────────────────────────────── pytest suite (64+ unit tests)
 ```
 
 ---
@@ -120,6 +127,9 @@ Riddles are ideal probes for this failure mode because:
 ```bash
 # Single provider
 python -m scripts.generate --provider gemini --num-calls 10
+
+# Generate only bias_probe riddles
+python -m scripts.generate --provider gemini --num-calls 10 --type bias_probe
 
 # All configured generators at once
 python -m scripts.generate_all --num-calls 5 --validate
@@ -144,6 +154,9 @@ Raw outputs are saved to `data/generated/raw_*.jsonl`.
 
 ```bash
 python -m scripts.validate --input data/generated/raw_*.jsonl --append-to-pool
+
+# Re-validate entries with empty competing answers
+python -m scripts.validate --input data/benchmark.jsonl --re-validate --filter-empty-competing
 ```
 
 A second LLM pass validates each generated riddle, checking:
@@ -173,17 +186,30 @@ with the most accepted answers from each duplicate group.
 python -m scripts.promote add --count 150 --set fixed
 python -m scripts.promote add --count 100 --set auxiliary
 python -m scripts.promote status
+python -m scripts.promote status --report-reuse
 python -m scripts.promote refresh-auxiliary --count 100
+
+# Cap at 3 variants per original riddle
+python -m scripts.promote add --count 150 --set fixed --max-per-original 3
 ```
 
 Moves validated riddles from the pool into the benchmark, tagging them as
 **fixed** or **auxiliary** (see [§6 — Benchmark Split](#6-benchmark-split)).
+The `--max-per-original` flag caps how many altered variants of the same
+source riddle can be promoted, ensuring diversity. The `--report-reuse` flag
+on the `status` subcommand shows how many riddles are shared across versions.
 
 ### Stage 5 — Benchmark a Model
 
 ```bash
 python -m scripts.benchmark --provider openai --model gpt-5.4
 python -m scripts.benchmark --provider local --model my-model --batch-size 20
+
+# Adaptive sampling
+python -m scripts.benchmark --provider openai --model gpt-5.4 --temperature 0.7 --num-samples 5 --adaptive
+
+# Control original riddle samples independently
+python -m scripts.benchmark --provider openai --model gpt-5.4 --originals-samples 1
 ```
 
 Tests a model against all riddles in `data/benchmark.jsonl`. Each riddle is
@@ -195,12 +221,21 @@ JSON response is stored in `data/model_outputs/{version}/`.
   repeat tested riddles when re-running on a new benchmark iteration).
 - **Multi-sample mode** — at temperature > 0, collect multiple samples per
   riddle for best-of-n, majority vote, and average accuracy.
+- **Adaptive sampling** — the `--adaptive` flag runs a first pass with one
+  sample, then only runs additional samples on riddles where the model gave
+  the original (memorised) answer. This typically saves 2–3× on multi-sample
+  costs.
+- **Original-riddle sample control** — `--originals-samples` sets the number
+  of samples for original riddles independently of the altered-riddle count.
 - **Token tracking** — input/output tokens logged per call.
 
 ### Stage 6 — Evaluate
 
 ```bash
 python -m scripts.evaluate
+
+# Configurable competing-answer weight
+python -m scripts.evaluate --competing-weight 0.3
 ```
 
 Uses an LLM judge (configurable via `--provider` and `--model`) to
@@ -210,6 +245,10 @@ calls the judge for new outputs.
 **This step is fully re-runnable** — we can update `altered_accepted_answers`
 in `benchmark.jsonl` and re-evaluate without re-running any models.
 
+Evaluation now outputs `per_type` and `per_source` breakdowns in each
+per-model `_eval.json` file and in `leaderboard.json`, enabling stratified
+analysis by alteration type and generator family.
+
 ---
 
 ## 5. Scoring System
@@ -217,7 +256,7 @@ in `benchmark.jsonl` and re-evaluate without re-running any models.
 | Match type | Score | Description |
 |---|---|---|
 | Primary match (`altered_accepted_answers`) | **1.0** | Model gave the intended altered answer |
-| Competing match (`altered_competing_answers`) | **0.5** | Model gave a valid but non-primary answer |
+| Competing match (`altered_competing_answers`) | **0.5** | Model gave a valid but non-primary answer (weight configurable via `--competing-weight`) |
 | Original answer | **0.0** | Model fell back to the memorised answer |
 | Wrong answer | **0.0** | Unrelated incorrect answer |
 
@@ -230,6 +269,9 @@ The benchmark's primary goal is detecting pattern override. A competing answer
 that differs from the original still demonstrates the model is *reasoning about
 the altered text* rather than recalling a memorised response. It deserves
 partial credit because it proves the model noticed the change.
+
+The competing-answer weight is configurable via `--competing-weight` (default
+0.5). See [§12 — Design Decisions](#12-design-decisions) for robustness notes.
 
 ### Answer matching
 
@@ -252,6 +294,14 @@ When `--num-samples > 1` (with temperature > 0):
 Models must be tested on at least **250 altered riddles** to appear on the
 leaderboard. This ensures all reported metrics meet the sample-size thresholds
 discussed in [§6 — Benchmark Split](#6-benchmark-split).
+
+### Per-type and per-source stratification
+
+Evaluation now groups results by alteration type (`constraint_addition`,
+`meaning_shift`, `context_swap`, `bias_probe`) and by source model. Each
+stratum reports accuracy, weighted accuracy, and pattern override rate.
+These breakdowns are included in the per-model `_eval.json` files and in
+`leaderboard.json`.
 
 ### Confidence intervals
 
@@ -375,7 +425,8 @@ altered-riddles/
 │   ├── core/
 │   │   ├── config.py          # Provider registry, defaults, paths
 │   │   ├── llm_client.py      # Unified LLM client (sync/async/batched)
-│   │   └── io_utils.py        # Shared I/O (JSONL, templates, JSON)
+│   │   ├── io_utils.py        # Shared I/O (JSONL, templates, JSON)
+│   │   └── parsing.py         # Consolidated parsing helpers
 │   ├── charts/
 │   │   ├── theme.py           # Shared chart styling & utilities
 │   │   └── *.py               # Individual chart scripts
@@ -386,6 +437,9 @@ altered-riddles/
 │   ├── promote.py             # Pool → benchmark promotion
 │   ├── benchmark.py           # Run benchmark against a model
 │   ├── evaluate.py            # Score outputs via LLM judge, build leaderboard
+│   ├── validate_schema.py     # Schema validation for benchmark.jsonl
+│   ├── contamination_analysis.py  # Contamination analysis across model families
+│   ├── reproducibility_snapshot.py # Reproducibility manifest
 │   ├── clean_outputs.py       # Clean up model output files
 │   ├── revert_promotion.py    # Revert a benchmark promotion
 │   └── sanitize.py            # Sanitize data files
@@ -406,10 +460,15 @@ altered-riddles/
 │   ├── {YYMM}/               # Per-version results (incl. judgments/)
 │   └── leaderboard.json       # Latest leaderboard (convenience copy)
 ├── migrations/                # One-off data migration scripts
+├── tests/                     # Test suite (pytest, 64+ unit tests)
+├── .github/
+│   └── workflows/
+│       └── ci.yml             # CI pipeline
 ├── CHANGELOG.md               # Version history
 ├── CONTRIBUTING.md            # Contributor guidelines
 ├── REPORT.md                  # This file
 ├── README.md                  # Project overview
+├── pyproject.toml             # Project metadata and dependency groups
 └── requirements.txt           # Python dependencies
 ```
 
@@ -563,3 +622,21 @@ This replaces the earlier string-matching evaluator, which was brittle with
 longer or rephrased answers. Judgments are cached in
 `results/{version}/judgments/` so re-evaluation only calls the judge for
 new outputs.
+
+### Configurable partial credit
+
+The 0.5× weight for competing answers can be overridden with `--competing-weight`.
+Rankings are robust between ~0.3 and ~0.7 — if they shift significantly, that
+sensitivity should be disclosed.
+
+### Adaptive sampling
+
+The `--adaptive` flag runs a first pass with one sample, then only runs
+additional samples on riddles where the model gave the original (memorised)
+answer. This typically saves 2–3× on multi-sample costs.
+
+### Contamination analysis
+
+`scripts/contamination_analysis.py` compares each model's accuracy on riddles
+generated by its own family vs. other families. A significant delta (≥5pp)
+suggests contamination.

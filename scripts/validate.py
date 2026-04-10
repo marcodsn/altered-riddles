@@ -13,6 +13,8 @@ Usage examples:
     python -m scripts.validate --input data/generated/raw.jsonl --append-to-pool
     python -m scripts.validate --input data/generated/raw.jsonl --delay 1.0
     python -m scripts.validate --promote-from-validated --append-to-pool
+    python -m scripts.validate --re-validate --input data/benchmark.jsonl
+    python -m scripts.validate --re-validate --filter-empty-competing --input data/pool.jsonl
 """
 
 from __future__ import annotations
@@ -20,7 +22,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
-import re
+import shutil
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -37,10 +39,14 @@ from scripts.core.io_utils import (
     load_jsonl,
     load_jsonl_if_exists,
     load_template,
-    strip_markdown_fences,
+    write_jsonl,
     write_jsonl_entry,
 )
 from scripts.core.llm_client import call_llm, call_llm_batched
+from scripts.core.parsing import (
+    parse_validation_response,
+    to_benchmark_format,
+)
 
 # ---------------------------------------------------------------------------
 # Logging setup
@@ -70,44 +76,6 @@ VALIDATION_FIELDS = {
 
 
 # ---------------------------------------------------------------------------
-# Parenthetical-answer splitting
-# ---------------------------------------------------------------------------
-
-_PAREN_RE = re.compile(r"^(.*?)\s*\((.+?)\)\.?\s*$", re.DOTALL)
-
-
-def _split_paren_alternatives(text: str) -> tuple[str, list[str]] | None:
-    """Split ``"Answer (or alternative)."`` into ``("Answer.", ["alternative"])``.
-
-    Returns ``None`` when *text* contains no parseable parenthetical section.
-    Handles three patterns:
-
-    * ``"or X"`` / ``"or X/Y"`` — slash-separated alternatives
-    * ``"specifically A, B, or C"`` — comma/or-separated clarifications
-    * Any other prefix — treated as a single alternative
-    """
-    m = _PAREN_RE.match(text.strip())
-    if not m:
-        return None
-    primary = m.group(1).strip()
-    paren = m.group(2).strip()
-    if text.rstrip().endswith(".") and not primary.endswith("."):
-        primary += "."
-    lower = paren.lower()
-    if lower.startswith("or "):
-        parts = [p.strip() for p in paren[3:].split("/")]
-        return primary, [p for p in parts if p]
-    if lower.startswith("specifically "):
-        rest = paren[13:].strip()
-        or_parts = re.split(r"\s+or\s+", rest)
-        parts = []
-        for segment in or_parts:
-            parts.extend(s.strip() for s in segment.split(","))
-        return primary, [p for p in parts if p]
-    return primary, [paren]
-
-
-# ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
 
@@ -117,75 +85,6 @@ def _entry_key(entry: dict[str, Any]) -> tuple[str, str] | None:
     orig = entry.get("original_riddle", "").strip().lower()
     alt = entry.get("altered_riddle", "").strip().lower()
     return (orig, alt) if orig and alt else None
-
-
-def parse_validation_response(raw_text: str) -> dict[str, Any]:
-    """Parse the LLM validation response into a dict.
-
-    The response should be a single JSON object. We handle minor quirks like
-    wrapping markdown fences.
-    """
-    text = strip_markdown_fences(raw_text)
-    parsed = json.loads(text)
-    if not isinstance(parsed, dict):
-        raise ValueError(f"Expected a JSON object, got {type(parsed)}")
-    return parsed
-
-
-def to_benchmark_format(entry: dict[str, Any], new_id: str) -> dict[str, Any]:
-    """Convert a validated generation entry to the benchmark JSONL format."""
-    original_answer_lower = entry.get("original_answer", "").strip().lower()
-
-    # ── Clean up altered_answer ────────────────────────────────────────
-    # Split out any parenthetical alternatives baked into the raw answer
-    # (e.g. "Encryption (or an encryption key)." from the generation LLM).
-    raw_answer = entry.get("altered_answer", "")
-    paren_result = _split_paren_alternatives(raw_answer)
-    if paren_result is not None:
-        primary_answer, paren_alts = paren_result
-    else:
-        primary_answer, paren_alts = raw_answer, []
-
-    # ── Build accepted-answers list ────────────────────────────────────
-    # Prefer the validator LLM's explicit list; fall back to paren-split.
-    llm_accepted: list[str] | None = entry.get("altered_accepted_answers")
-    if llm_accepted and isinstance(llm_accepted, list):
-        seen: set[str] = set()
-        accepted: list[str] = []
-        for ans in [primary_answer, *llm_accepted]:
-            key = ans.strip().lower()
-            if key and key not in seen:
-                seen.add(key)
-                accepted.append(ans)
-    else:
-        seen = set()
-        accepted = []
-        for ans in [primary_answer, *paren_alts]:
-            key = ans.strip().lower()
-            if key and key not in seen:
-                seen.add(key)
-                accepted.append(ans)
-
-    competing = [
-        a
-        for a in entry.get("competing_answers", [])
-        if a.strip().lower() != original_answer_lower
-    ]
-
-    return {
-        "id": new_id,
-        "original_riddle": entry.get("original_riddle", ""),
-        "original_answer": entry.get("original_answer", ""),
-        "original_accepted_answers": [entry.get("original_answer", "")],
-        "original_reasoning": entry.get("original_reasoning", ""),
-        "altered_riddle": entry.get("altered_riddle", ""),
-        "altered_answer": primary_answer,
-        "altered_accepted_answers": accepted,
-        "altered_competing_answers": competing,
-        "altered_reasoning": entry.get("altered_reasoning", ""),
-        "source": entry.get("source", ""),
-        "type": entry.get("type", "constraint_addition"),
-    }
 
 
 def _load_entry_keys(entries: list[dict[str, Any]]) -> set[tuple[str, str]]:
@@ -272,8 +171,7 @@ def promote_from_validated(args: argparse.Namespace, generated_dir: Path) -> Non
     """Promote already-validated passing entries without re-calling the LLM."""
     if not (args.append_to_benchmark or args.append_to_pool):
         logger.error(
-            "--promote-from-validated requires --append-to-benchmark "
-            "and/or --append-to-pool."
+            "--promote-from-validated requires --append-to-benchmark and/or --append-to-pool."
         )
         return
 
@@ -342,12 +240,253 @@ def promote_from_validated(args: argparse.Namespace, generated_dir: Path) -> Non
 # ---------------------------------------------------------------------------
 
 
+# ---------------------------------------------------------------------------
+# Re-validation of existing entries
+# ---------------------------------------------------------------------------
+
+
+def revalidate_entries(args: argparse.Namespace) -> None:
+    """Re-validate existing benchmark or pool entries via LLM.
+
+    Loads entries from *args.input*, optionally filters to those with empty
+    ``altered_competing_answers``, runs each through the validation LLM, and
+    merges any newly discovered competing answers back into the entries.
+    A timestamped backup of the input file is created before any modification.
+    """
+    load_dotenv()
+
+    if not args.input:
+        logger.error("--re-validate requires --input pointing to a JSONL file.")
+        raise SystemExit(1)
+
+    input_path = Path(args.input)
+    if not input_path.exists():
+        logger.error("Input file not found: %s", input_path)
+        raise SystemExit(1)
+
+    provider = args.provider
+    model, api_key = resolve_provider(provider, args.model)
+    template = load_template(args.prompt_template)
+
+    # Load all entries
+    all_entries = load_jsonl(str(input_path))
+    logger.info("Loaded %d entries from %s", len(all_entries), input_path)
+
+    # Decide which entries to re-validate
+    if args.filter_empty_competing:
+        indices_to_validate = [
+            i for i, entry in enumerate(all_entries) if not entry.get("altered_competing_answers")
+        ]
+        logger.info(
+            "Filtered to %d entries with empty altered_competing_answers.",
+            len(indices_to_validate),
+        )
+    else:
+        indices_to_validate = list(range(len(all_entries)))
+
+    if not indices_to_validate:
+        logger.info("No entries to re-validate. Exiting.")
+        return
+
+    # Create a backup before modifying
+    backup_dir = input_path.parent / "backups"
+    backup_dir.mkdir(parents=True, exist_ok=True)
+    backup_ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    backup_path = backup_dir / f"{input_path.stem}_{backup_ts}{input_path.suffix}"
+    shutil.copy2(input_path, backup_path)
+    logger.info("Backup created → %s", backup_path)
+
+    batch_size = args.batch_size
+    use_batching = batch_size > 1
+    max_output_tokens: int | None = args.max_output_tokens
+
+    logger.info("Provider : %s", provider)
+    logger.info("Model    : %s", model)
+    logger.info("Entries to re-validate: %d / %d", len(indices_to_validate), len(all_entries))
+
+    # Build prompts for the entries to re-validate
+    idx_prompt_pairs: list[tuple[int, str]] = []
+    for idx in indices_to_validate:
+        entry = all_entries[idx]
+        try:
+            prompt_text = template.render(
+                original_riddle=entry.get("original_riddle", ""),
+                original_answer=entry.get("original_answer", ""),
+                altered_riddle=entry.get("altered_riddle", ""),
+                altered_answer=entry.get("altered_answer", ""),
+                altered_reasoning=entry.get("altered_reasoning", ""),
+            )
+            idx_prompt_pairs.append((idx, prompt_text))
+        except jinja2.TemplateError as exc:
+            logger.error(
+                "Template render error for entry %s: %s — skipping.",
+                entry.get("id"),
+                exc,
+            )
+
+    total_processed = 0
+    total_updated = 0
+
+    if use_batching:
+        for chunk_start in range(0, len(idx_prompt_pairs), batch_size):
+            chunk = idx_prompt_pairs[chunk_start : chunk_start + batch_size]
+            prompts_only = [p for _, p in chunk]
+
+            logger.info(
+                "Dispatching re-validation batch %d–%d / %d …",
+                chunk_start + 1,
+                chunk_start + len(chunk),
+                len(idx_prompt_pairs),
+            )
+
+            raw_results = call_llm_batched(
+                prompts_only,
+                provider=provider,
+                model=model,
+                temperature=args.temperature,
+                api_key=api_key,
+                max_output_tokens=max_output_tokens,
+                max_concurrency=batch_size,
+            )
+
+            for (entry_idx, _), raw in zip(chunk, raw_results):
+                entry = all_entries[entry_idx]
+                total_processed += 1
+
+                if isinstance(raw, BaseException):
+                    logger.error(
+                        "  Re-validation failed for %s: %s — skipping.",
+                        entry.get("id"),
+                        raw,
+                    )
+                    continue
+
+                raw_text = raw.text
+                try:
+                    validation = parse_validation_response(raw_text)
+                except (json.JSONDecodeError, ValueError) as exc:
+                    logger.error(
+                        "  Unparseable response for %s: %s — skipping.",
+                        entry.get("id"),
+                        exc,
+                    )
+                    continue
+
+                updated = _merge_revalidation(entry, validation)
+                if updated:
+                    total_updated += 1
+
+                logger.info(
+                    "  %s → %s",
+                    entry.get("id", "?"),
+                    "updated" if updated else "no change",
+                )
+    else:
+        for rel_idx, (entry_idx, prompt_text) in enumerate(idx_prompt_pairs, start=1):
+            entry = all_entries[entry_idx]
+            total_processed += 1
+
+            logger.info(
+                "Re-validating %d/%d — id=%s",
+                rel_idx,
+                len(idx_prompt_pairs),
+                entry.get("id", "?"),
+            )
+
+            try:
+                response = call_llm(
+                    prompt_text,
+                    provider=provider,
+                    model=model,
+                    temperature=args.temperature,
+                    api_key=api_key,
+                    max_output_tokens=max_output_tokens,
+                )
+            except Exception as exc:
+                logger.error(
+                    "Re-validation failed for %s: %s — skipping.",
+                    entry.get("id"),
+                    exc,
+                )
+                continue
+
+            raw_text = response.text
+            try:
+                validation = parse_validation_response(raw_text)
+            except (json.JSONDecodeError, ValueError) as exc:
+                logger.error(
+                    "Unparseable response for %s: %s — skipping.",
+                    entry.get("id"),
+                    exc,
+                )
+                continue
+
+            updated = _merge_revalidation(entry, validation)
+            if updated:
+                total_updated += 1
+
+            logger.info(
+                "  %s → %s",
+                entry.get("id", "?"),
+                "updated" if updated else "no change",
+            )
+
+            if rel_idx < len(idx_prompt_pairs) and args.delay > 0:
+                time.sleep(args.delay)
+
+    # Write all entries back (including unmodified ones)
+    write_jsonl(str(input_path), all_entries)
+
+    logger.info("=" * 60)
+    logger.info(
+        "Re-validation complete. Processed %d entries, %d updated.",
+        total_processed,
+        total_updated,
+    )
+    logger.info("Updated file written to %s", input_path)
+    logger.info("Backup at %s", backup_path)
+
+
+def _merge_revalidation(entry: dict[str, Any], validation: dict[str, Any]) -> bool:
+    """Merge newly discovered competing answers into *entry* in-place.
+
+    Returns ``True`` if the entry was actually modified.
+    """
+    new_competing: list[str] = validation.get("competing_answers", [])
+    if not new_competing:
+        return False
+
+    existing: list[str] = entry.get("altered_competing_answers", [])
+    seen: set[str] = {a.strip().lower() for a in existing}
+    added = 0
+    for ans in new_competing:
+        key = ans.strip().lower()
+        if key and key not in seen:
+            seen.add(key)
+            existing.append(ans)
+            added += 1
+
+    if added:
+        entry["altered_competing_answers"] = existing
+        return True
+    return False
+
+
+# ---------------------------------------------------------------------------
+# Main validation loop
+# ---------------------------------------------------------------------------
+
+
 def validate(args: argparse.Namespace) -> None:
     """Run the validation pipeline according to parsed CLI *args*."""
     load_dotenv()
 
     generated_dir = Path(args.generated_dir)
     generated_dir.mkdir(parents=True, exist_ok=True)
+
+    if args.re_validate:
+        revalidate_entries(args)
+        return
 
     if args.promote_from_validated:
         promote_from_validated(args, generated_dir)
@@ -752,6 +891,26 @@ def build_parser() -> argparse.ArgumentParser:
         type=int,
         default=None,
         help="Max output tokens for the LLM. If not specified, no limit is set.",
+    )
+    parser.add_argument(
+        "--re-validate",
+        action="store_true",
+        default=False,
+        help=(
+            "Re-validate existing benchmark or pool entries. Requires --input. "
+            "Runs each entry through the validation LLM again and merges any "
+            "newly discovered competing answers. Creates a backup before "
+            "modifying the file."
+        ),
+    )
+    parser.add_argument(
+        "--filter-empty-competing",
+        action="store_true",
+        default=False,
+        help=(
+            "When used with --re-validate, only re-validate entries whose "
+            "altered_competing_answers field is empty or missing."
+        ),
     )
     return parser
 

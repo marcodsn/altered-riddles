@@ -43,8 +43,10 @@ good candidates for alteration.
 git clone https://github.com/marcodsn/altered-riddles.git
 cd altered-riddles
 
-# Install dependencies
-pip install -r requirements.txt
+# Install dependencies (pick one)
+pip install -e ".[dev]"        # editable install with dev tools (pytest, ruff)
+pip install -e ".[dev,charts]" # include chart dependencies too
+uv pip install -e ".[dev]"     # or use uv
 
 # Copy environment template and add API keys
 cp .env.example .env
@@ -54,12 +56,28 @@ cp .env.example .env
 
 - We use Python 3.10+ with type hints.
 - Format with `ruff format` and lint with `ruff check`.
+- Configuration is in `pyproject.toml` (line-length 99, select E/F/W/I/UP).
 - Keep functions focused and well-documented.
+- Shared parsing helpers live in `scripts/core/parsing.py` — add new shared
+  logic there rather than duplicating across scripts.
+
+### Running Tests
+
+```bash
+# Run the full test suite
+pytest tests/ -v
+
+# Validate benchmark data integrity
+python -m scripts.validate_schema
+```
+
+CI runs automatically on PRs via GitHub Actions (lint → test → validate-data).
 
 ### Pull Request Guidelines
 
 - **One concern per PR.** Don't mix unrelated changes.
-- **Include tests** for new scoring or evaluation logic when possible.
+- **Include tests** for new scoring or evaluation logic. The test suite lives
+  in `tests/` — see existing tests for conventions.
 - **Update documentation** (README, REPORT, CHANGELOG) if your change affects
   user-facing behaviour.
 - **Don't commit** `__pycache__/`, `.env`, or large model output files.
@@ -76,9 +94,25 @@ Understanding the scoring system helps you verify your contributions:
    (counted as a pattern override).
 4. **Wrong answer**: **0.0** — unrelated incorrect answer.
 
+The competing-answer weight (default 0.5×) is configurable via
+`--competing-weight` when running `evaluate.py`.
+
 The leaderboard ranks models by `average_accuracy` (the mean weighted score
 across all samples). Models must be tested on at least 250 altered riddles
-to appear on the leaderboard.
+to appear on the leaderboard. Evaluation also reports per-alteration-type
+and per-source-model accuracy breakdowns.
+
+### Useful CLI flags for contributors
+
+- `python -m scripts.benchmark --adaptive` — skip extra samples for riddles
+  answered correctly (saves cost).
+- `python -m scripts.generate --type bias_probe` — generate a specific
+  alteration type to rebalance the dataset.
+- `python -m scripts.validate --re-validate --filter-empty-competing` —
+  re-validate entries missing competing answers.
+- `python -m scripts.promote status --report-reuse` — check original riddle
+  reuse in the benchmark.
+- `python -m scripts.contamination_analysis` — check for contamination effects.
 
 ## Reporting Issues
 
