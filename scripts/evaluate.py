@@ -19,9 +19,10 @@ import argparse
 import json
 import logging
 import math
+import random
 import sys
 import time
-from collections import Counter
+from collections import Counter, defaultdict
 from itertools import groupby
 from pathlib import Path
 
@@ -172,12 +173,8 @@ def _score_single_output(
 
 def _collect_token_stats(model_outputs: list[dict], num_samples: int = 1) -> dict:
     def _sum_tokens(outputs: list[dict], divisor: int) -> tuple[int, int]:
-        in_toks = [
-            o["input_tokens"] for o in outputs if o.get("input_tokens") is not None
-        ]
-        out_toks = [
-            o["output_tokens"] for o in outputs if o.get("output_tokens") is not None
-        ]
+        in_toks = [o["input_tokens"] for o in outputs if o.get("input_tokens") is not None]
+        out_toks = [o["output_tokens"] for o in outputs if o.get("output_tokens") is not None]
         raw_in = sum(in_toks) if in_toks else 0
         raw_out = sum(out_toks) if out_toks else 0
         return round(raw_in / divisor), round(raw_out / divisor)
@@ -242,9 +239,7 @@ def evaluate_model(
             status = "✓" if detail["correct"] else "✗"
             extra = "  ⚠ gave original" if detail.get("gave_original_answer") else ""
             sample_tag = (
-                f"  [sample {detail['sample_index']}]"
-                if detail.get("sample_index", 1) > 1
-                else ""
+                f"  [sample {detail['sample_index']}]" if detail.get("sample_index", 1) > 1 else ""
             )
             logger.info(
                 "  %s  %s (%s): ans=%r  acc=%r%s%s",
@@ -301,15 +296,11 @@ def evaluate_model(
             orig_correct = any(d["correct"] for d in orig_group)
             if orig_correct:
                 conditioned_override_total += 1
-                alt_gave_original = any(
-                    d.get("gave_original_answer") for d in alt_group
-                )
+                alt_gave_original = any(d.get("gave_original_answer") for d in alt_group)
                 if alt_gave_original:
                     conditioned_override_count += 1
 
-    original_accuracy = (
-        round(original_correct / original_total, 3) if original_total else 0.0
-    )
+    original_accuracy = round(original_correct / original_total, 3) if original_total else 0.0
     altered_weighted_accuracy = (
         round(altered_score_s1 / altered_total, 3) if altered_total else 0.0
     )
@@ -331,9 +322,7 @@ def evaluate_model(
         sample_scores = [d.get("score", 0.0) for d in group]
         avg_acc_sum += sum(sample_scores) / len(sample_scores)
 
-    altered_accuracy = (
-        round(alt_binary_sum / altered_total, 3) if altered_total else 0.0
-    )
+    altered_accuracy = round(alt_binary_sum / altered_total, 3) if altered_total else 0.0
     average_accuracy = round(avg_acc_sum / altered_total, 3) if altered_total else 0.0
     total_score = average_accuracy
 
@@ -361,8 +350,7 @@ def evaluate_model(
             if any(d["correct"] for d in group):
                 best_of_n_correct += 1
             elif any(
-                d.get("competing_match") and not d.get("gave_original_answer")
-                for d in group
+                d.get("competing_match") and not d.get("gave_original_answer") for d in group
             ):
                 best_of_n_correct += competing_weight
 
@@ -379,14 +367,10 @@ def evaluate_model(
 
         summary["num_samples"] = num_samples
         summary["best_of_n_accuracy"] = (
-            round(best_of_n_correct / altered_count_multi, 3)
-            if altered_count_multi
-            else 0.0
+            round(best_of_n_correct / altered_count_multi, 3) if altered_count_multi else 0.0
         )
         summary["majority_vote_accuracy"] = (
-            round(majority_vote_correct / altered_count_multi, 3)
-            if altered_count_multi
-            else 0.0
+            round(majority_vote_correct / altered_count_multi, 3) if altered_count_multi else 0.0
         )
 
     summary.update(_collect_token_stats(model_outputs, num_samples=num_samples))
@@ -401,9 +385,7 @@ def evaluate_model(
     # --- Per-type breakdown (altered riddles only, sample_index == 1) ---
     per_type: dict[str, dict] = {}
     altered_details_s1 = [
-        d
-        for d in details
-        if d.get("riddle_type") == "altered" and d.get("sample_index", 1) == 1
+        d for d in details if d.get("riddle_type") == "altered" and d.get("sample_index", 1) == 1
     ]
     type_groups: dict[str, list[dict]] = {}
     for d in altered_details_s1:
@@ -457,7 +439,60 @@ def evaluate_model(
 # ---------------------------------------------------------------------------
 
 
-def build_leaderboard(all_results: list[dict]) -> list[dict]:
+def _clustered_bootstrap_ci(
+    cluster_scores: list[tuple[str, float]],
+    B: int = 2000,
+    seed: int = 42,
+) -> float:
+    """Compute half-width of a 95% CI via cluster-level bootstrap.
+
+    Parameters
+    ----------
+    cluster_scores : list of (cluster_id, score) tuples
+    B : number of bootstrap iterations
+    seed : random seed for reproducibility
+
+    Returns the half-width: (p97.5 - p2.5) / 2, rounded to 4 decimals.
+    Falls back to Wald CI when fewer than 5 clusters.
+    """
+    # Group scores by cluster
+    clusters: dict[str, list[float]] = defaultdict(list)
+    for cid, score in cluster_scores:
+        clusters[cid].append(score)
+
+    cluster_ids = list(clusters.keys())
+    n_clusters = len(cluster_ids)
+    n_total = len(cluster_scores)
+
+    if n_total == 0:
+        return 0.0
+
+    overall_mean = sum(s for _, s in cluster_scores) / n_total
+
+    # Fall back to Wald CI if too few clusters
+    if n_clusters < 5:
+        return round(1.96 * math.sqrt(overall_mean * (1 - overall_mean) / n_total), 4)
+
+    rng = random.Random(seed)
+    boot_means: list[float] = []
+    for _ in range(B):
+        sampled_ids = rng.choices(cluster_ids, k=n_clusters)
+        values: list[float] = []
+        for cid in sampled_ids:
+            values.extend(clusters[cid])
+        boot_means.append(sum(values) / len(values) if values else 0.0)
+
+    boot_means.sort()
+    lo = boot_means[int(B * 0.025)]
+    hi = boot_means[int(B * 0.975)]
+    return round((hi - lo) / 2, 4)
+
+
+def build_leaderboard(
+    all_results: list[dict],
+    benchmark_lookup: dict[str, dict] | None = None,
+    model_metadata: dict[str, dict] | None = None,
+) -> list[dict]:
     rows: list[dict] = []
     for result in all_results:
         s = result["summary"]
@@ -482,19 +517,40 @@ def build_leaderboard(all_results: list[dict]) -> list[dict]:
             "altered_num_riddles": s.get("altered_num_riddles", 0),
         }
         n = row.get("altered_num_riddles", 0)
-        if n > 0:
+        if n > 0 and benchmark_lookup is not None:
+            # Extract per-riddle altered details for clustered bootstrap
+            altered_details = [
+                d
+                for d in result.get("details", [])
+                if d.get("riddle_type") == "altered" and d.get("sample_index", 1) == 1
+            ]
+
+            acc_scores: list[tuple[str, float]] = []
+            avg_scores: list[tuple[str, float]] = []
+            ovr_scores: list[tuple[str, float]] = []
+            for d in altered_details:
+                entry = benchmark_lookup.get(d["riddle_id"], {})
+                cluster = entry.get("original_riddle", d["riddle_id"])
+                acc = 1.0 if d["correct"] else 0.0
+                acc_scores.append((cluster, acc))
+                avg_scores.append((cluster, d.get("score", 0.0)))
+                ovr = 1.0 if d.get("gave_original_answer") else 0.0
+                ovr_scores.append((cluster, ovr))
+
+            row["altered_accuracy_ci95"] = _clustered_bootstrap_ci(acc_scores)
+            row["average_accuracy_ci95"] = _clustered_bootstrap_ci(avg_scores)
+            row["pattern_override_rate_ci95"] = _clustered_bootstrap_ci(ovr_scores)
+        elif n > 0:
+            # Fallback to Wald CI when no benchmark_lookup provided
             p_acc = row["altered_accuracy"]
-            row["altered_accuracy_ci95"] = round(
-                1.96 * math.sqrt(p_acc * (1 - p_acc) / n), 4
-            )
+            wald_acc = 1.96 * math.sqrt(p_acc * (1 - p_acc) / n)
+            row["altered_accuracy_ci95"] = round(wald_acc, 4)
             p_avg = row["average_accuracy"]
-            row["average_accuracy_ci95"] = round(
-                1.96 * math.sqrt(p_avg * (1 - p_avg) / n), 4
-            )
+            wald_avg = 1.96 * math.sqrt(p_avg * (1 - p_avg) / n)
+            row["average_accuracy_ci95"] = round(wald_avg, 4)
             p_ovr = row["pattern_override_rate"]
-            row["pattern_override_rate_ci95"] = round(
-                1.96 * math.sqrt(p_ovr * (1 - p_ovr) / n), 4
-            )
+            wald_ovr = 1.96 * math.sqrt(p_ovr * (1 - p_ovr) / n)
+            row["pattern_override_rate_ci95"] = round(wald_ovr, 4)
         else:
             row["altered_accuracy_ci95"] = 0.0
             row["average_accuracy_ci95"] = 0.0
@@ -505,8 +561,10 @@ def build_leaderboard(all_results: list[dict]) -> list[dict]:
             row["majority_vote_accuracy"] = s["majority_vote_accuracy"]
         row["per_type"] = s.get("per_type", {})
         row["per_source"] = s.get("per_source", {})
-        row["parameter_count_billions"] = None
-        row["estimated_cost_per_mtok_usd"] = None
+        meta = (model_metadata or {}).get(row["model"], {})
+        row["parameter_count_billions"] = meta.get("parameter_count_billions")
+        row["active_parameter_count_billions"] = meta.get("active_parameter_count_billions")
+        row["estimated_cost_per_mtok_usd"] = meta.get("estimated_cost_per_mtok_usd")
         rows.append(row)
 
     # Filter out models with insufficient coverage (< 250 altered riddles)
@@ -621,6 +679,19 @@ def compute_riddle_difficulty(all_results: list[dict], output_path: Path) -> Non
 def run_evaluation(args: argparse.Namespace) -> None:
     judge_model, judge_api_key = resolve_provider(args.provider, args.model)
 
+    # Load model metadata if available
+    model_metadata: dict[str, dict] | None = None
+    metadata_path = Path(args.model_metadata)
+    if metadata_path.exists():
+        with open(metadata_path, encoding="utf-8") as f:
+            model_metadata = json.load(f)
+        assert model_metadata is not None
+        logger.info(
+            "Loaded model metadata from %s (%d models)", metadata_path, len(model_metadata)
+        )
+    else:
+        logger.debug("No model metadata file at %s", metadata_path)
+
     benchmark_path = Path(args.benchmark)
     if not benchmark_path.exists():
         logger.error("Benchmark not found: %s", benchmark_path)
@@ -664,9 +735,9 @@ def run_evaluation(args: argparse.Namespace) -> None:
         judgments: dict[tuple[str, str, int], dict] = {}
         if judgment_cache_path.exists():
             for j in load_jsonl(judgment_cache_path):
-                judgments[
-                    (j["riddle_id"], j["riddle_type"], j.get("sample_index", 1))
-                ] = j["judgment"]
+                judgments[(j["riddle_id"], j["riddle_type"], j.get("sample_index", 1))] = j[
+                    "judgment"
+                ]
 
         # Identify Pending Tasks
         pending_tasks = []
@@ -784,24 +855,20 @@ def run_evaluation(args: argparse.Namespace) -> None:
         )
 
         if args.live_leaderboard:
-            current_leaderboard = build_leaderboard(all_results)
+            current_leaderboard = build_leaderboard(all_results, benchmark_lookup, model_metadata)
             write_json(results_dir / "leaderboard.json", current_leaderboard)
             logger.info("  [Live Leaderboard updated]")
 
     if not all_results:
         sys.exit(1)
 
-    leaderboard = build_leaderboard(all_results)
+    leaderboard = build_leaderboard(all_results, benchmark_lookup, model_metadata)
     write_json(results_dir_root / "leaderboard.json", leaderboard)
     write_json(results_dir / "leaderboard.json", leaderboard)
     print("\n")
     print_leaderboard(leaderboard)
-    generate_markdown_leaderboard(
-        leaderboard, Path(args.results_dir) / "LEADERBOARD.md"
-    )
-    logger.info(
-        "Markdown leaderboard written to %s", Path(args.results_dir) / "LEADERBOARD.md"
-    )
+    generate_markdown_leaderboard(leaderboard, Path(args.results_dir) / "LEADERBOARD.md")
+    logger.info("Markdown leaderboard written to %s", Path(args.results_dir) / "LEADERBOARD.md")
     compute_riddle_difficulty(all_results, results_dir / "riddle_difficulty.json")
     logger.info(
         "Per-riddle difficulty scores written to %s",
@@ -816,9 +883,7 @@ def run_evaluation(args: argparse.Namespace) -> None:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
-    )
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--benchmark", type=str, default=DEFAULT_BENCHMARK)
     parser.add_argument("--model-outputs", type=str, default=DEFAULT_MODEL_OUTPUTS)
     parser.add_argument("--results-dir", type=str, default=DEFAULT_RESULTS)
@@ -875,6 +940,12 @@ def parse_args() -> argparse.Namespace:
         type=float,
         default=None,
         help="Cost per million tokens in USD (optional metadata).",
+    )
+    parser.add_argument(
+        "--model-metadata",
+        type=str,
+        default="data/model_metadata.json",
+        help="Path to JSON file mapping model names to metadata (parameter counts, costs).",
     )
     parser.add_argument("--verbose", action="store_true", default=False)
     return parser.parse_args()

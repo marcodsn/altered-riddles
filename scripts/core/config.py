@@ -101,7 +101,7 @@ DEFAULT_BATCH_SIZE: int = 10
 
 DEFAULT_BENCHMARK = "data/benchmark.jsonl"
 DEFAULT_POOL = "data/pool.jsonl"
-DEFAULT_SOURCE = "data/riddles_source.txt"
+DEFAULT_SOURCE = "data/riddles_source.csv"
 DEFAULT_MODEL_OUTPUTS = "data/model_outputs"
 DEFAULT_RESULTS = "results"
 DEFAULT_GENERATED = "data/generated"
@@ -129,8 +129,7 @@ def resolve_provider(
     cfg = PROVIDERS.get(provider)
     if cfg is None:
         raise SystemExit(
-            f"Unknown provider '{provider}'. "
-            f"Registered providers: {', '.join(provider_names())}"
+            f"Unknown provider '{provider}'. Registered providers: {', '.join(provider_names())}"
         )
 
     resolved_model = model or cfg["default_model"]

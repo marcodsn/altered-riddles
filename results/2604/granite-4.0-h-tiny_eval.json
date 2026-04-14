@@ -23,7 +23,71 @@
     "total_output_tokens": 2656,
     "num_riddles": 250,
     "original_num_riddles": 87,
-    "altered_num_riddles": 250
+    "altered_num_riddles": 250,
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.143,
+        "weighted_accuracy": 0.196,
+        "pattern_override_rate": 0.607
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.208,
+        "weighted_accuracy": 0.229,
+        "pattern_override_rate": 0.442
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.26,
+        "weighted_accuracy": 0.3,
+        "pattern_override_rate": 0.36
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.135,
+        "weighted_accuracy": 0.163,
+        "pattern_override_rate": 0.346
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.308,
+        "weighted_accuracy": 0.346,
+        "pattern_override_rate": 0.462
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.08,
+        "weighted_accuracy": 0.1,
+        "pattern_override_rate": 0.64
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.275,
+        "weighted_accuracy": 0.312,
+        "pattern_override_rate": 0.248
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.133,
+        "weighted_accuracy": 0.133,
+        "pattern_override_rate": 0.733
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.1,
+        "weighted_accuracy": 0.125,
+        "pattern_override_rate": 0.45
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.132,
+        "weighted_accuracy": 0.17,
+        "pattern_override_rate": 0.491
+      }
+    }
   },
   "details": [
     {
@@ -1173,7 +1237,7 @@
       "riddle_text": "How can you drop a raw egg onto a concrete floor without cracking it?",
       "model_answer": "Concrete floor",
       "accepted_answers": [
-        "You can drop it by holding it at a sufficient height where it doesn’t crack due to the force of impact."
+        "You can drop it by holding it at a sufficient height where it doesn't crack due to the force of impact."
       ],
       "correct": false,
       "sample_index": 1
@@ -1184,12 +1248,15 @@
       "riddle_text": "How can you drop a raw egg onto a concrete floor without cracking it, and without letting it fall from a height?",
       "model_answer": "Concrete floor",
       "accepted_answers": [
-        "You can drop it by placing it gently on the floor, such as by lowering it with your hand or rolling it off a low surface."
+        "place it gently",
+        "lower it gently",
+        "set it down gently",
+        "lay it on the floor"
       ],
       "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
-      "original_answer": "You can drop it by holding it at a sufficient height where it doesn’t crack due to the force of impact.",
+      "original_answer": "You can drop it by holding it at a sufficient height where it doesn't crack due to the force of impact.",
       "competing_match": false,
       "score": 0.0
     },
@@ -1421,7 +1488,10 @@
       "riddle_text": "Two fathers and two sons went fishing. They caught exactly three fish, and the youngest person took home two fish. How is this possible?",
       "model_answer": "Grandfather, father, son",
       "accepted_answers": [
-        "The family structure included a grandfather, his son (the father), and his grandson (the son). The youngest person is the grandson, who took two fish."
+        "the grandson",
+        "grandson took two",
+        "grandson",
+        "the youngest"
       ],
       "correct": true,
       "sample_index": 1,

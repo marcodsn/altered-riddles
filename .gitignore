@@ -26,6 +26,7 @@ env/
 Thumbs.db
 
 # Project - generated data (keep benchmark.jsonl, riddles_source.txt, VERSION)
+v2/
 altered-riddles/
 data/backups/pool*.jsonl
 data/generated/
@@ -41,3 +42,6 @@ IMPROVEMENTS.md
 
 # Large files
 *.jsonl.bak
+
+# Cache
+.*cache/

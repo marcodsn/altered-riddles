@@ -3,7 +3,7 @@
 
 Usage examples:
     python -m scripts.generate --provider gemini --num-calls 20 --batch-size 8
-    python -m scripts.generate --provider openai --model gpt-5.4 --source data/riddles_source.txt
+    python -m scripts.generate --provider openai --model gpt-5.4 --source data/riddles_source.csv
     python -m scripts.generate --provider local --num-calls 40 --batch-size 16
     python -m scripts.generate --num-variations 3 --num-calls 2
 """
@@ -43,14 +43,11 @@ logger = logging.getLogger("generate")
 # ---------------------------------------------------------------------------
 
 
-def load_source_riddles(path: str) -> list[str]:
-    """Load riddles from a text file (one riddle per line, blank lines ignored)."""
-    filepath = Path(path)
-    if not filepath.exists():
-        logger.warning("Source file %s not found — will use free generation only.", path)
-        return []
-    with open(filepath, encoding="utf-8") as fh:
-        return [line.strip() for line in fh if line.strip()]
+def load_source_riddles(path: str) -> list[dict[str, str]]:
+    """Load riddles from a CSV file (riddle + answer per row)."""
+    from scripts.core.io_utils import load_source_riddles_csv
+
+    return load_source_riddles_csv(path)
 
 
 # ---------------------------------------------------------------------------
@@ -101,11 +98,15 @@ def generate(args: argparse.Namespace) -> None:
     call_prompts: list[tuple[str, str]] = []  # (prompt_text, label)
     for _ in range(args.num_calls):
         source_riddle = None
+        source_answer = None
         if source_riddles and random.random() < 0.7:
-            source_riddle = random.choice(source_riddles)
+            source_entry = random.choice(source_riddles)
+            source_riddle = source_entry["riddle"]
+            source_answer = source_entry["answer"]
         target_type = args.type if args.type != "random" else None
         prompt_text = template.render(
             source_riddle=source_riddle,
+            source_answer=source_answer,
             num_variations=args.num_variations,
             few_shot_examples=None,
             target_type=target_type,
@@ -258,8 +259,8 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--source",
-        default="data/riddles_source.txt",
-        help="Path to source riddles file, one per line (default: data/riddles_source.txt)",
+        default="data/riddles_source.csv",
+        help="Path to source riddles CSV file (default: data/riddles_source.csv)",
     )
     parser.add_argument(
         "--output",
