@@ -1,0 +1,1502 @@
+[
+  {
+    "riddle_id": "alt_010",
+    "num_models_tested": 55,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_030",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_058",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_074",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_081",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_099",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_101",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_103",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_107",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_116",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_134",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_139",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_148",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_165",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_167",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_174",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_180",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_192",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_196",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_223",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_229",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_230",
+    "num_models_tested": 52,
+    "avg_score": 0.0,
+    "difficulty": 1.0
+  },
+  {
+    "riddle_id": "alt_064",
+    "num_models_tested": 52,
+    "avg_score": 0.01,
+    "difficulty": 0.99
+  },
+  {
+    "riddle_id": "alt_075",
+    "num_models_tested": 52,
+    "avg_score": 0.01,
+    "difficulty": 0.99
+  },
+  {
+    "riddle_id": "alt_136",
+    "num_models_tested": 52,
+    "avg_score": 0.01,
+    "difficulty": 0.99
+  },
+  {
+    "riddle_id": "alt_024",
+    "num_models_tested": 52,
+    "avg_score": 0.019,
+    "difficulty": 0.981
+  },
+  {
+    "riddle_id": "alt_052",
+    "num_models_tested": 52,
+    "avg_score": 0.019,
+    "difficulty": 0.981
+  },
+  {
+    "riddle_id": "alt_066",
+    "num_models_tested": 52,
+    "avg_score": 0.019,
+    "difficulty": 0.981
+  },
+  {
+    "riddle_id": "alt_086",
+    "num_models_tested": 52,
+    "avg_score": 0.019,
+    "difficulty": 0.981
+  },
+  {
+    "riddle_id": "alt_120",
+    "num_models_tested": 52,
+    "avg_score": 0.019,
+    "difficulty": 0.981
+  },
+  {
+    "riddle_id": "alt_131",
+    "num_models_tested": 52,
+    "avg_score": 0.019,
+    "difficulty": 0.981
+  },
+  {
+    "riddle_id": "alt_145",
+    "num_models_tested": 52,
+    "avg_score": 0.019,
+    "difficulty": 0.981
+  },
+  {
+    "riddle_id": "alt_152",
+    "num_models_tested": 52,
+    "avg_score": 0.019,
+    "difficulty": 0.981
+  },
+  {
+    "riddle_id": "alt_195",
+    "num_models_tested": 52,
+    "avg_score": 0.019,
+    "difficulty": 0.981
+  },
+  {
+    "riddle_id": "alt_207",
+    "num_models_tested": 52,
+    "avg_score": 0.019,
+    "difficulty": 0.981
+  },
+  {
+    "riddle_id": "alt_078",
+    "num_models_tested": 52,
+    "avg_score": 0.029,
+    "difficulty": 0.971
+  },
+  {
+    "riddle_id": "alt_079",
+    "num_models_tested": 52,
+    "avg_score": 0.029,
+    "difficulty": 0.971
+  },
+  {
+    "riddle_id": "alt_095",
+    "num_models_tested": 52,
+    "avg_score": 0.029,
+    "difficulty": 0.971
+  },
+  {
+    "riddle_id": "alt_121",
+    "num_models_tested": 52,
+    "avg_score": 0.029,
+    "difficulty": 0.971
+  },
+  {
+    "riddle_id": "alt_133",
+    "num_models_tested": 52,
+    "avg_score": 0.029,
+    "difficulty": 0.971
+  },
+  {
+    "riddle_id": "alt_067",
+    "num_models_tested": 52,
+    "avg_score": 0.038,
+    "difficulty": 0.962
+  },
+  {
+    "riddle_id": "alt_202",
+    "num_models_tested": 52,
+    "avg_score": 0.038,
+    "difficulty": 0.962
+  },
+  {
+    "riddle_id": "alt_227",
+    "num_models_tested": 52,
+    "avg_score": 0.038,
+    "difficulty": 0.962
+  },
+  {
+    "riddle_id": "alt_003",
+    "num_models_tested": 55,
+    "avg_score": 0.045,
+    "difficulty": 0.955
+  },
+  {
+    "riddle_id": "alt_221",
+    "num_models_tested": 52,
+    "avg_score": 0.048,
+    "difficulty": 0.952
+  },
+  {
+    "riddle_id": "alt_235",
+    "num_models_tested": 52,
+    "avg_score": 0.048,
+    "difficulty": 0.952
+  },
+  {
+    "riddle_id": "alt_077",
+    "num_models_tested": 52,
+    "avg_score": 0.058,
+    "difficulty": 0.942
+  },
+  {
+    "riddle_id": "alt_222",
+    "num_models_tested": 52,
+    "avg_score": 0.058,
+    "difficulty": 0.942
+  },
+  {
+    "riddle_id": "alt_005",
+    "num_models_tested": 55,
+    "avg_score": 0.064,
+    "difficulty": 0.936
+  },
+  {
+    "riddle_id": "alt_061",
+    "num_models_tested": 52,
+    "avg_score": 0.067,
+    "difficulty": 0.933
+  },
+  {
+    "riddle_id": "alt_205",
+    "num_models_tested": 52,
+    "avg_score": 0.067,
+    "difficulty": 0.933
+  },
+  {
+    "riddle_id": "alt_088",
+    "num_models_tested": 52,
+    "avg_score": 0.077,
+    "difficulty": 0.923
+  },
+  {
+    "riddle_id": "alt_097",
+    "num_models_tested": 52,
+    "avg_score": 0.077,
+    "difficulty": 0.923
+  },
+  {
+    "riddle_id": "alt_111",
+    "num_models_tested": 52,
+    "avg_score": 0.077,
+    "difficulty": 0.923
+  },
+  {
+    "riddle_id": "alt_198",
+    "num_models_tested": 52,
+    "avg_score": 0.087,
+    "difficulty": 0.913
+  },
+  {
+    "riddle_id": "alt_039",
+    "num_models_tested": 52,
+    "avg_score": 0.096,
+    "difficulty": 0.904
+  },
+  {
+    "riddle_id": "alt_073",
+    "num_models_tested": 52,
+    "avg_score": 0.115,
+    "difficulty": 0.885
+  },
+  {
+    "riddle_id": "alt_213",
+    "num_models_tested": 52,
+    "avg_score": 0.115,
+    "difficulty": 0.885
+  },
+  {
+    "riddle_id": "alt_204",
+    "num_models_tested": 52,
+    "avg_score": 0.125,
+    "difficulty": 0.875
+  },
+  {
+    "riddle_id": "alt_242",
+    "num_models_tested": 52,
+    "avg_score": 0.125,
+    "difficulty": 0.875
+  },
+  {
+    "riddle_id": "alt_028",
+    "num_models_tested": 52,
+    "avg_score": 0.135,
+    "difficulty": 0.865
+  },
+  {
+    "riddle_id": "alt_048",
+    "num_models_tested": 52,
+    "avg_score": 0.135,
+    "difficulty": 0.865
+  },
+  {
+    "riddle_id": "alt_051",
+    "num_models_tested": 52,
+    "avg_score": 0.135,
+    "difficulty": 0.865
+  },
+  {
+    "riddle_id": "alt_085",
+    "num_models_tested": 52,
+    "avg_score": 0.135,
+    "difficulty": 0.865
+  },
+  {
+    "riddle_id": "alt_236",
+    "num_models_tested": 52,
+    "avg_score": 0.135,
+    "difficulty": 0.865
+  },
+  {
+    "riddle_id": "alt_015",
+    "num_models_tested": 55,
+    "avg_score": 0.136,
+    "difficulty": 0.864
+  },
+  {
+    "riddle_id": "alt_027",
+    "num_models_tested": 52,
+    "avg_score": 0.154,
+    "difficulty": 0.846
+  },
+  {
+    "riddle_id": "alt_098",
+    "num_models_tested": 52,
+    "avg_score": 0.154,
+    "difficulty": 0.846
+  },
+  {
+    "riddle_id": "alt_135",
+    "num_models_tested": 52,
+    "avg_score": 0.154,
+    "difficulty": 0.846
+  },
+  {
+    "riddle_id": "alt_018",
+    "num_models_tested": 55,
+    "avg_score": 0.155,
+    "difficulty": 0.845
+  },
+  {
+    "riddle_id": "alt_076",
+    "num_models_tested": 52,
+    "avg_score": 0.163,
+    "difficulty": 0.837
+  },
+  {
+    "riddle_id": "alt_016",
+    "num_models_tested": 55,
+    "avg_score": 0.164,
+    "difficulty": 0.836
+  },
+  {
+    "riddle_id": "alt_045",
+    "num_models_tested": 52,
+    "avg_score": 0.173,
+    "difficulty": 0.827
+  },
+  {
+    "riddle_id": "alt_137",
+    "num_models_tested": 52,
+    "avg_score": 0.173,
+    "difficulty": 0.827
+  },
+  {
+    "riddle_id": "alt_096",
+    "num_models_tested": 52,
+    "avg_score": 0.183,
+    "difficulty": 0.817
+  },
+  {
+    "riddle_id": "alt_057",
+    "num_models_tested": 52,
+    "avg_score": 0.192,
+    "difficulty": 0.808
+  },
+  {
+    "riddle_id": "alt_100",
+    "num_models_tested": 52,
+    "avg_score": 0.192,
+    "difficulty": 0.808
+  },
+  {
+    "riddle_id": "alt_129",
+    "num_models_tested": 52,
+    "avg_score": 0.192,
+    "difficulty": 0.808
+  },
+  {
+    "riddle_id": "alt_181",
+    "num_models_tested": 52,
+    "avg_score": 0.192,
+    "difficulty": 0.808
+  },
+  {
+    "riddle_id": "alt_071",
+    "num_models_tested": 52,
+    "avg_score": 0.202,
+    "difficulty": 0.798
+  },
+  {
+    "riddle_id": "alt_228",
+    "num_models_tested": 52,
+    "avg_score": 0.202,
+    "difficulty": 0.798
+  },
+  {
+    "riddle_id": "alt_042",
+    "num_models_tested": 52,
+    "avg_score": 0.212,
+    "difficulty": 0.788
+  },
+  {
+    "riddle_id": "alt_102",
+    "num_models_tested": 52,
+    "avg_score": 0.212,
+    "difficulty": 0.788
+  },
+  {
+    "riddle_id": "alt_128",
+    "num_models_tested": 52,
+    "avg_score": 0.212,
+    "difficulty": 0.788
+  },
+  {
+    "riddle_id": "alt_182",
+    "num_models_tested": 52,
+    "avg_score": 0.212,
+    "difficulty": 0.788
+  },
+  {
+    "riddle_id": "alt_220",
+    "num_models_tested": 52,
+    "avg_score": 0.212,
+    "difficulty": 0.788
+  },
+  {
+    "riddle_id": "alt_231",
+    "num_models_tested": 52,
+    "avg_score": 0.212,
+    "difficulty": 0.788
+  },
+  {
+    "riddle_id": "alt_063",
+    "num_models_tested": 52,
+    "avg_score": 0.231,
+    "difficulty": 0.769
+  },
+  {
+    "riddle_id": "alt_124",
+    "num_models_tested": 52,
+    "avg_score": 0.231,
+    "difficulty": 0.769
+  },
+  {
+    "riddle_id": "alt_170",
+    "num_models_tested": 52,
+    "avg_score": 0.231,
+    "difficulty": 0.769
+  },
+  {
+    "riddle_id": "alt_072",
+    "num_models_tested": 52,
+    "avg_score": 0.25,
+    "difficulty": 0.75
+  },
+  {
+    "riddle_id": "alt_200",
+    "num_models_tested": 52,
+    "avg_score": 0.25,
+    "difficulty": 0.75
+  },
+  {
+    "riddle_id": "alt_239",
+    "num_models_tested": 52,
+    "avg_score": 0.25,
+    "difficulty": 0.75
+  },
+  {
+    "riddle_id": "alt_197",
+    "num_models_tested": 52,
+    "avg_score": 0.26,
+    "difficulty": 0.74
+  },
+  {
+    "riddle_id": "alt_070",
+    "num_models_tested": 52,
+    "avg_score": 0.269,
+    "difficulty": 0.731
+  },
+  {
+    "riddle_id": "alt_185",
+    "num_models_tested": 52,
+    "avg_score": 0.269,
+    "difficulty": 0.731
+  },
+  {
+    "riddle_id": "alt_080",
+    "num_models_tested": 52,
+    "avg_score": 0.288,
+    "difficulty": 0.712
+  },
+  {
+    "riddle_id": "alt_089",
+    "num_models_tested": 52,
+    "avg_score": 0.288,
+    "difficulty": 0.712
+  },
+  {
+    "riddle_id": "alt_186",
+    "num_models_tested": 52,
+    "avg_score": 0.288,
+    "difficulty": 0.712
+  },
+  {
+    "riddle_id": "alt_190",
+    "num_models_tested": 52,
+    "avg_score": 0.288,
+    "difficulty": 0.712
+  },
+  {
+    "riddle_id": "alt_247",
+    "num_models_tested": 52,
+    "avg_score": 0.288,
+    "difficulty": 0.712
+  },
+  {
+    "riddle_id": "alt_022",
+    "num_models_tested": 55,
+    "avg_score": 0.291,
+    "difficulty": 0.709
+  },
+  {
+    "riddle_id": "alt_224",
+    "num_models_tested": 52,
+    "avg_score": 0.298,
+    "difficulty": 0.702
+  },
+  {
+    "riddle_id": "alt_237",
+    "num_models_tested": 52,
+    "avg_score": 0.308,
+    "difficulty": 0.692
+  },
+  {
+    "riddle_id": "alt_193",
+    "num_models_tested": 52,
+    "avg_score": 0.317,
+    "difficulty": 0.683
+  },
+  {
+    "riddle_id": "alt_004",
+    "num_models_tested": 55,
+    "avg_score": 0.318,
+    "difficulty": 0.682
+  },
+  {
+    "riddle_id": "alt_029",
+    "num_models_tested": 52,
+    "avg_score": 0.327,
+    "difficulty": 0.673
+  },
+  {
+    "riddle_id": "alt_083",
+    "num_models_tested": 52,
+    "avg_score": 0.327,
+    "difficulty": 0.673
+  },
+  {
+    "riddle_id": "alt_249",
+    "num_models_tested": 52,
+    "avg_score": 0.327,
+    "difficulty": 0.673
+  },
+  {
+    "riddle_id": "alt_012",
+    "num_models_tested": 55,
+    "avg_score": 0.345,
+    "difficulty": 0.655
+  },
+  {
+    "riddle_id": "alt_014",
+    "num_models_tested": 55,
+    "avg_score": 0.345,
+    "difficulty": 0.655
+  },
+  {
+    "riddle_id": "alt_034",
+    "num_models_tested": 52,
+    "avg_score": 0.346,
+    "difficulty": 0.654
+  },
+  {
+    "riddle_id": "alt_184",
+    "num_models_tested": 52,
+    "avg_score": 0.346,
+    "difficulty": 0.654
+  },
+  {
+    "riddle_id": "alt_055",
+    "num_models_tested": 52,
+    "avg_score": 0.356,
+    "difficulty": 0.644
+  },
+  {
+    "riddle_id": "alt_138",
+    "num_models_tested": 52,
+    "avg_score": 0.356,
+    "difficulty": 0.644
+  },
+  {
+    "riddle_id": "alt_245",
+    "num_models_tested": 52,
+    "avg_score": 0.356,
+    "difficulty": 0.644
+  },
+  {
+    "riddle_id": "alt_162",
+    "num_models_tested": 52,
+    "avg_score": 0.365,
+    "difficulty": 0.635
+  },
+  {
+    "riddle_id": "alt_178",
+    "num_models_tested": 52,
+    "avg_score": 0.365,
+    "difficulty": 0.635
+  },
+  {
+    "riddle_id": "alt_044",
+    "num_models_tested": 52,
+    "avg_score": 0.385,
+    "difficulty": 0.615
+  },
+  {
+    "riddle_id": "alt_060",
+    "num_models_tested": 52,
+    "avg_score": 0.385,
+    "difficulty": 0.615
+  },
+  {
+    "riddle_id": "alt_105",
+    "num_models_tested": 52,
+    "avg_score": 0.394,
+    "difficulty": 0.606
+  },
+  {
+    "riddle_id": "alt_117",
+    "num_models_tested": 52,
+    "avg_score": 0.394,
+    "difficulty": 0.606
+  },
+  {
+    "riddle_id": "alt_188",
+    "num_models_tested": 52,
+    "avg_score": 0.394,
+    "difficulty": 0.606
+  },
+  {
+    "riddle_id": "alt_040",
+    "num_models_tested": 52,
+    "avg_score": 0.404,
+    "difficulty": 0.596
+  },
+  {
+    "riddle_id": "alt_123",
+    "num_models_tested": 52,
+    "avg_score": 0.404,
+    "difficulty": 0.596
+  },
+  {
+    "riddle_id": "alt_041",
+    "num_models_tested": 52,
+    "avg_score": 0.413,
+    "difficulty": 0.587
+  },
+  {
+    "riddle_id": "alt_068",
+    "num_models_tested": 52,
+    "avg_score": 0.423,
+    "difficulty": 0.577
+  },
+  {
+    "riddle_id": "alt_191",
+    "num_models_tested": 52,
+    "avg_score": 0.423,
+    "difficulty": 0.577
+  },
+  {
+    "riddle_id": "alt_241",
+    "num_models_tested": 52,
+    "avg_score": 0.423,
+    "difficulty": 0.577
+  },
+  {
+    "riddle_id": "alt_155",
+    "num_models_tested": 52,
+    "avg_score": 0.433,
+    "difficulty": 0.567
+  },
+  {
+    "riddle_id": "alt_113",
+    "num_models_tested": 52,
+    "avg_score": 0.442,
+    "difficulty": 0.558
+  },
+  {
+    "riddle_id": "alt_149",
+    "num_models_tested": 52,
+    "avg_score": 0.442,
+    "difficulty": 0.558
+  },
+  {
+    "riddle_id": "alt_153",
+    "num_models_tested": 52,
+    "avg_score": 0.442,
+    "difficulty": 0.558
+  },
+  {
+    "riddle_id": "alt_201",
+    "num_models_tested": 52,
+    "avg_score": 0.442,
+    "difficulty": 0.558
+  },
+  {
+    "riddle_id": "alt_216",
+    "num_models_tested": 52,
+    "avg_score": 0.442,
+    "difficulty": 0.558
+  },
+  {
+    "riddle_id": "alt_054",
+    "num_models_tested": 52,
+    "avg_score": 0.462,
+    "difficulty": 0.538
+  },
+  {
+    "riddle_id": "alt_142",
+    "num_models_tested": 52,
+    "avg_score": 0.462,
+    "difficulty": 0.538
+  },
+  {
+    "riddle_id": "alt_183",
+    "num_models_tested": 52,
+    "avg_score": 0.462,
+    "difficulty": 0.538
+  },
+  {
+    "riddle_id": "alt_187",
+    "num_models_tested": 52,
+    "avg_score": 0.462,
+    "difficulty": 0.538
+  },
+  {
+    "riddle_id": "alt_114",
+    "num_models_tested": 52,
+    "avg_score": 0.471,
+    "difficulty": 0.529
+  },
+  {
+    "riddle_id": "alt_226",
+    "num_models_tested": 52,
+    "avg_score": 0.471,
+    "difficulty": 0.529
+  },
+  {
+    "riddle_id": "alt_011",
+    "num_models_tested": 55,
+    "avg_score": 0.473,
+    "difficulty": 0.527
+  },
+  {
+    "riddle_id": "alt_025",
+    "num_models_tested": 52,
+    "avg_score": 0.481,
+    "difficulty": 0.519
+  },
+  {
+    "riddle_id": "alt_112",
+    "num_models_tested": 52,
+    "avg_score": 0.481,
+    "difficulty": 0.519
+  },
+  {
+    "riddle_id": "alt_214",
+    "num_models_tested": 52,
+    "avg_score": 0.481,
+    "difficulty": 0.519
+  },
+  {
+    "riddle_id": "alt_248",
+    "num_models_tested": 52,
+    "avg_score": 0.481,
+    "difficulty": 0.519
+  },
+  {
+    "riddle_id": "alt_036",
+    "num_models_tested": 52,
+    "avg_score": 0.49,
+    "difficulty": 0.51
+  },
+  {
+    "riddle_id": "alt_056",
+    "num_models_tested": 52,
+    "avg_score": 0.49,
+    "difficulty": 0.51
+  },
+  {
+    "riddle_id": "alt_091",
+    "num_models_tested": 52,
+    "avg_score": 0.49,
+    "difficulty": 0.51
+  },
+  {
+    "riddle_id": "alt_008",
+    "num_models_tested": 55,
+    "avg_score": 0.5,
+    "difficulty": 0.5
+  },
+  {
+    "riddle_id": "alt_046",
+    "num_models_tested": 52,
+    "avg_score": 0.5,
+    "difficulty": 0.5
+  },
+  {
+    "riddle_id": "alt_158",
+    "num_models_tested": 52,
+    "avg_score": 0.5,
+    "difficulty": 0.5
+  },
+  {
+    "riddle_id": "alt_084",
+    "num_models_tested": 52,
+    "avg_score": 0.519,
+    "difficulty": 0.481
+  },
+  {
+    "riddle_id": "alt_143",
+    "num_models_tested": 52,
+    "avg_score": 0.519,
+    "difficulty": 0.481
+  },
+  {
+    "riddle_id": "alt_203",
+    "num_models_tested": 52,
+    "avg_score": 0.519,
+    "difficulty": 0.481
+  },
+  {
+    "riddle_id": "alt_130",
+    "num_models_tested": 52,
+    "avg_score": 0.538,
+    "difficulty": 0.462
+  },
+  {
+    "riddle_id": "alt_189",
+    "num_models_tested": 52,
+    "avg_score": 0.538,
+    "difficulty": 0.462
+  },
+  {
+    "riddle_id": "alt_211",
+    "num_models_tested": 52,
+    "avg_score": 0.548,
+    "difficulty": 0.452
+  },
+  {
+    "riddle_id": "alt_092",
+    "num_models_tested": 52,
+    "avg_score": 0.558,
+    "difficulty": 0.442
+  },
+  {
+    "riddle_id": "alt_093",
+    "num_models_tested": 52,
+    "avg_score": 0.558,
+    "difficulty": 0.442
+  },
+  {
+    "riddle_id": "alt_173",
+    "num_models_tested": 52,
+    "avg_score": 0.558,
+    "difficulty": 0.442
+  },
+  {
+    "riddle_id": "alt_177",
+    "num_models_tested": 52,
+    "avg_score": 0.558,
+    "difficulty": 0.442
+  },
+  {
+    "riddle_id": "alt_244",
+    "num_models_tested": 52,
+    "avg_score": 0.558,
+    "difficulty": 0.442
+  },
+  {
+    "riddle_id": "alt_172",
+    "num_models_tested": 52,
+    "avg_score": 0.577,
+    "difficulty": 0.423
+  },
+  {
+    "riddle_id": "alt_019",
+    "num_models_tested": 55,
+    "avg_score": 0.582,
+    "difficulty": 0.418
+  },
+  {
+    "riddle_id": "alt_163",
+    "num_models_tested": 52,
+    "avg_score": 0.587,
+    "difficulty": 0.413
+  },
+  {
+    "riddle_id": "alt_020",
+    "num_models_tested": 55,
+    "avg_score": 0.6,
+    "difficulty": 0.4
+  },
+  {
+    "riddle_id": "alt_053",
+    "num_models_tested": 52,
+    "avg_score": 0.635,
+    "difficulty": 0.365
+  },
+  {
+    "riddle_id": "alt_115",
+    "num_models_tested": 52,
+    "avg_score": 0.635,
+    "difficulty": 0.365
+  },
+  {
+    "riddle_id": "alt_154",
+    "num_models_tested": 52,
+    "avg_score": 0.635,
+    "difficulty": 0.365
+  },
+  {
+    "riddle_id": "alt_194",
+    "num_models_tested": 52,
+    "avg_score": 0.635,
+    "difficulty": 0.365
+  },
+  {
+    "riddle_id": "alt_210",
+    "num_models_tested": 52,
+    "avg_score": 0.635,
+    "difficulty": 0.365
+  },
+  {
+    "riddle_id": "alt_233",
+    "num_models_tested": 52,
+    "avg_score": 0.635,
+    "difficulty": 0.365
+  },
+  {
+    "riddle_id": "alt_243",
+    "num_models_tested": 52,
+    "avg_score": 0.635,
+    "difficulty": 0.365
+  },
+  {
+    "riddle_id": "alt_246",
+    "num_models_tested": 52,
+    "avg_score": 0.635,
+    "difficulty": 0.365
+  },
+  {
+    "riddle_id": "alt_146",
+    "num_models_tested": 52,
+    "avg_score": 0.644,
+    "difficulty": 0.356
+  },
+  {
+    "riddle_id": "alt_161",
+    "num_models_tested": 52,
+    "avg_score": 0.654,
+    "difficulty": 0.346
+  },
+  {
+    "riddle_id": "alt_009",
+    "num_models_tested": 55,
+    "avg_score": 0.655,
+    "difficulty": 0.345
+  },
+  {
+    "riddle_id": "alt_062",
+    "num_models_tested": 52,
+    "avg_score": 0.673,
+    "difficulty": 0.327
+  },
+  {
+    "riddle_id": "alt_087",
+    "num_models_tested": 52,
+    "avg_score": 0.673,
+    "difficulty": 0.327
+  },
+  {
+    "riddle_id": "alt_125",
+    "num_models_tested": 52,
+    "avg_score": 0.673,
+    "difficulty": 0.327
+  },
+  {
+    "riddle_id": "alt_140",
+    "num_models_tested": 52,
+    "avg_score": 0.673,
+    "difficulty": 0.327
+  },
+  {
+    "riddle_id": "alt_171",
+    "num_models_tested": 52,
+    "avg_score": 0.673,
+    "difficulty": 0.327
+  },
+  {
+    "riddle_id": "alt_038",
+    "num_models_tested": 52,
+    "avg_score": 0.683,
+    "difficulty": 0.317
+  },
+  {
+    "riddle_id": "alt_006",
+    "num_models_tested": 55,
+    "avg_score": 0.691,
+    "difficulty": 0.309
+  },
+  {
+    "riddle_id": "alt_050",
+    "num_models_tested": 52,
+    "avg_score": 0.692,
+    "difficulty": 0.308
+  },
+  {
+    "riddle_id": "alt_150",
+    "num_models_tested": 52,
+    "avg_score": 0.692,
+    "difficulty": 0.308
+  },
+  {
+    "riddle_id": "alt_218",
+    "num_models_tested": 52,
+    "avg_score": 0.702,
+    "difficulty": 0.298
+  },
+  {
+    "riddle_id": "alt_021",
+    "num_models_tested": 55,
+    "avg_score": 0.709,
+    "difficulty": 0.291
+  },
+  {
+    "riddle_id": "alt_035",
+    "num_models_tested": 52,
+    "avg_score": 0.712,
+    "difficulty": 0.288
+  },
+  {
+    "riddle_id": "alt_013",
+    "num_models_tested": 55,
+    "avg_score": 0.727,
+    "difficulty": 0.273
+  },
+  {
+    "riddle_id": "alt_160",
+    "num_models_tested": 52,
+    "avg_score": 0.74,
+    "difficulty": 0.26
+  },
+  {
+    "riddle_id": "alt_225",
+    "num_models_tested": 52,
+    "avg_score": 0.74,
+    "difficulty": 0.26
+  },
+  {
+    "riddle_id": "alt_059",
+    "num_models_tested": 52,
+    "avg_score": 0.75,
+    "difficulty": 0.25
+  },
+  {
+    "riddle_id": "alt_109",
+    "num_models_tested": 52,
+    "avg_score": 0.75,
+    "difficulty": 0.25
+  },
+  {
+    "riddle_id": "alt_209",
+    "num_models_tested": 52,
+    "avg_score": 0.75,
+    "difficulty": 0.25
+  },
+  {
+    "riddle_id": "alt_250",
+    "num_models_tested": 52,
+    "avg_score": 0.75,
+    "difficulty": 0.25
+  },
+  {
+    "riddle_id": "alt_082",
+    "num_models_tested": 52,
+    "avg_score": 0.76,
+    "difficulty": 0.24
+  },
+  {
+    "riddle_id": "alt_001",
+    "num_models_tested": 55,
+    "avg_score": 0.764,
+    "difficulty": 0.236
+  },
+  {
+    "riddle_id": "alt_002",
+    "num_models_tested": 55,
+    "avg_score": 0.764,
+    "difficulty": 0.236
+  },
+  {
+    "riddle_id": "alt_069",
+    "num_models_tested": 52,
+    "avg_score": 0.769,
+    "difficulty": 0.231
+  },
+  {
+    "riddle_id": "alt_104",
+    "num_models_tested": 52,
+    "avg_score": 0.769,
+    "difficulty": 0.231
+  },
+  {
+    "riddle_id": "alt_166",
+    "num_models_tested": 52,
+    "avg_score": 0.769,
+    "difficulty": 0.231
+  },
+  {
+    "riddle_id": "alt_176",
+    "num_models_tested": 52,
+    "avg_score": 0.769,
+    "difficulty": 0.231
+  },
+  {
+    "riddle_id": "alt_215",
+    "num_models_tested": 52,
+    "avg_score": 0.769,
+    "difficulty": 0.231
+  },
+  {
+    "riddle_id": "alt_144",
+    "num_models_tested": 52,
+    "avg_score": 0.788,
+    "difficulty": 0.212
+  },
+  {
+    "riddle_id": "alt_156",
+    "num_models_tested": 52,
+    "avg_score": 0.788,
+    "difficulty": 0.212
+  },
+  {
+    "riddle_id": "alt_234",
+    "num_models_tested": 52,
+    "avg_score": 0.788,
+    "difficulty": 0.212
+  },
+  {
+    "riddle_id": "alt_240",
+    "num_models_tested": 52,
+    "avg_score": 0.788,
+    "difficulty": 0.212
+  },
+  {
+    "riddle_id": "alt_065",
+    "num_models_tested": 52,
+    "avg_score": 0.798,
+    "difficulty": 0.202
+  },
+  {
+    "riddle_id": "alt_147",
+    "num_models_tested": 52,
+    "avg_score": 0.798,
+    "difficulty": 0.202
+  },
+  {
+    "riddle_id": "alt_232",
+    "num_models_tested": 52,
+    "avg_score": 0.798,
+    "difficulty": 0.202
+  },
+  {
+    "riddle_id": "alt_032",
+    "num_models_tested": 52,
+    "avg_score": 0.808,
+    "difficulty": 0.192
+  },
+  {
+    "riddle_id": "alt_108",
+    "num_models_tested": 52,
+    "avg_score": 0.808,
+    "difficulty": 0.192
+  },
+  {
+    "riddle_id": "alt_238",
+    "num_models_tested": 52,
+    "avg_score": 0.808,
+    "difficulty": 0.192
+  },
+  {
+    "riddle_id": "alt_119",
+    "num_models_tested": 52,
+    "avg_score": 0.817,
+    "difficulty": 0.183
+  },
+  {
+    "riddle_id": "alt_212",
+    "num_models_tested": 52,
+    "avg_score": 0.817,
+    "difficulty": 0.183
+  },
+  {
+    "riddle_id": "alt_033",
+    "num_models_tested": 52,
+    "avg_score": 0.827,
+    "difficulty": 0.173
+  },
+  {
+    "riddle_id": "alt_037",
+    "num_models_tested": 52,
+    "avg_score": 0.827,
+    "difficulty": 0.173
+  },
+  {
+    "riddle_id": "alt_043",
+    "num_models_tested": 52,
+    "avg_score": 0.827,
+    "difficulty": 0.173
+  },
+  {
+    "riddle_id": "alt_127",
+    "num_models_tested": 52,
+    "avg_score": 0.846,
+    "difficulty": 0.154
+  },
+  {
+    "riddle_id": "alt_132",
+    "num_models_tested": 52,
+    "avg_score": 0.846,
+    "difficulty": 0.154
+  },
+  {
+    "riddle_id": "alt_219",
+    "num_models_tested": 52,
+    "avg_score": 0.846,
+    "difficulty": 0.154
+  },
+  {
+    "riddle_id": "alt_007",
+    "num_models_tested": 55,
+    "avg_score": 0.855,
+    "difficulty": 0.145
+  },
+  {
+    "riddle_id": "alt_017",
+    "num_models_tested": 55,
+    "avg_score": 0.855,
+    "difficulty": 0.145
+  },
+  {
+    "riddle_id": "alt_026",
+    "num_models_tested": 52,
+    "avg_score": 0.865,
+    "difficulty": 0.135
+  },
+  {
+    "riddle_id": "alt_159",
+    "num_models_tested": 52,
+    "avg_score": 0.865,
+    "difficulty": 0.135
+  },
+  {
+    "riddle_id": "alt_208",
+    "num_models_tested": 52,
+    "avg_score": 0.865,
+    "difficulty": 0.135
+  },
+  {
+    "riddle_id": "alt_126",
+    "num_models_tested": 52,
+    "avg_score": 0.875,
+    "difficulty": 0.125
+  },
+  {
+    "riddle_id": "alt_031",
+    "num_models_tested": 52,
+    "avg_score": 0.885,
+    "difficulty": 0.115
+  },
+  {
+    "riddle_id": "alt_090",
+    "num_models_tested": 52,
+    "avg_score": 0.885,
+    "difficulty": 0.115
+  },
+  {
+    "riddle_id": "alt_106",
+    "num_models_tested": 52,
+    "avg_score": 0.885,
+    "difficulty": 0.115
+  },
+  {
+    "riddle_id": "alt_151",
+    "num_models_tested": 52,
+    "avg_score": 0.885,
+    "difficulty": 0.115
+  },
+  {
+    "riddle_id": "alt_199",
+    "num_models_tested": 52,
+    "avg_score": 0.885,
+    "difficulty": 0.115
+  },
+  {
+    "riddle_id": "alt_047",
+    "num_models_tested": 52,
+    "avg_score": 0.904,
+    "difficulty": 0.096
+  },
+  {
+    "riddle_id": "alt_110",
+    "num_models_tested": 52,
+    "avg_score": 0.904,
+    "difficulty": 0.096
+  },
+  {
+    "riddle_id": "alt_023",
+    "num_models_tested": 52,
+    "avg_score": 0.923,
+    "difficulty": 0.077
+  },
+  {
+    "riddle_id": "alt_122",
+    "num_models_tested": 52,
+    "avg_score": 0.923,
+    "difficulty": 0.077
+  },
+  {
+    "riddle_id": "alt_168",
+    "num_models_tested": 52,
+    "avg_score": 0.923,
+    "difficulty": 0.077
+  },
+  {
+    "riddle_id": "alt_217",
+    "num_models_tested": 52,
+    "avg_score": 0.923,
+    "difficulty": 0.077
+  },
+  {
+    "riddle_id": "alt_049",
+    "num_models_tested": 52,
+    "avg_score": 0.942,
+    "difficulty": 0.058
+  },
+  {
+    "riddle_id": "alt_094",
+    "num_models_tested": 52,
+    "avg_score": 0.942,
+    "difficulty": 0.058
+  },
+  {
+    "riddle_id": "alt_164",
+    "num_models_tested": 52,
+    "avg_score": 0.942,
+    "difficulty": 0.058
+  },
+  {
+    "riddle_id": "alt_179",
+    "num_models_tested": 52,
+    "avg_score": 0.942,
+    "difficulty": 0.058
+  },
+  {
+    "riddle_id": "alt_175",
+    "num_models_tested": 52,
+    "avg_score": 0.952,
+    "difficulty": 0.048
+  },
+  {
+    "riddle_id": "alt_157",
+    "num_models_tested": 52,
+    "avg_score": 0.962,
+    "difficulty": 0.038
+  },
+  {
+    "riddle_id": "alt_118",
+    "num_models_tested": 52,
+    "avg_score": 0.981,
+    "difficulty": 0.019
+  },
+  {
+    "riddle_id": "alt_141",
+    "num_models_tested": 52,
+    "avg_score": 0.981,
+    "difficulty": 0.019
+  },
+  {
+    "riddle_id": "alt_169",
+    "num_models_tested": 52,
+    "avg_score": 0.981,
+    "difficulty": 0.019
+  },
+  {
+    "riddle_id": "alt_206",
+    "num_models_tested": 52,
+    "avg_score": 1.0,
+    "difficulty": 0.0
+  }
+]

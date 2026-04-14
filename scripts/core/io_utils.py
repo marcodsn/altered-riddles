@@ -114,6 +114,41 @@ def load_template(template_path: str | Path) -> jinja2.Template:
     return env.get_template(tpl_path.name)
 
 
+# ── CSV source loading ────────────────────────────────────────────────
+
+
+def load_source_riddles_csv(path: str | Path) -> list[dict[str, str]]:
+    """Load riddles from a CSV file with ``riddles,answers`` columns.
+
+    The CSV is *not* properly quoted (riddle texts contain commas), so we
+    split each line on the **last** comma — everything before it is the
+    riddle, everything after is the answer.
+
+    Returns a list of ``{"riddle": ..., "answer": ...}`` dicts.
+    """
+    filepath = Path(path)
+    if not filepath.exists():
+        logger.warning("Source CSV %s not found — returning empty list.", path)
+        return []
+
+    entries: list[dict[str, str]] = []
+    with open(filepath, encoding="utf-8") as fh:
+        _header = fh.readline()  # skip header row
+        for line in fh:
+            line = line.strip()
+            if not line:
+                continue
+            last_comma = line.rfind(",")
+            if last_comma == -1:
+                logger.warning("Skipping malformed CSV line (no comma): %s", line[:80])
+                continue
+            riddle = line[:last_comma].strip()
+            answer = line[last_comma + 1 :].strip()
+            if riddle and answer:
+                entries.append({"riddle": riddle, "answer": answer})
+    return entries
+
+
 # ── Text helpers ──────────────────────────────────────────────────────
 
 

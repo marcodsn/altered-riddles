@@ -1,0 +1,97 @@
+{
+  "gemma-4-26b-a4b-it:reasoning": {
+    "parameter_count_billions": 26,
+    "active_parameter_count_billions": 4,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "gemma-4-31b-it:reasoning": {
+    "parameter_count_billions": 31,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "zai-org/glm-5:reasoning": {
+    "parameter_count_billions": null,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "moonshotai/kimi-k2.5:reasoning": {
+    "parameter_count_billions": null,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "openai/gpt-oss-120b:reasoning": {
+    "parameter_count_billions": 120,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "qwen3.5-35b-a3b:reasoning": {
+    "parameter_count_billions": 35,
+    "active_parameter_count_billions": 3,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "gemma-4-31b-it": {
+    "parameter_count_billions": 31,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "gpt-oss-20b:reasoning": {
+    "parameter_count_billions": 20,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "gemma-4-26b-a4b-it": {
+    "parameter_count_billions": 26,
+    "active_parameter_count_billions": 4,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "qwen/qwen3.5-27b": {
+    "parameter_count_billions": 27,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "qwen3.5-35b-a3b": {
+    "parameter_count_billions": 35,
+    "active_parameter_count_billions": 3,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "mistral-small-2603": {
+    "parameter_count_billions": null,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "lfm2-24b-a2b": {
+    "parameter_count_billions": 24,
+    "active_parameter_count_billions": 2,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "coherelabs/c4ai-command-r7b-12-2024": {
+    "parameter_count_billions": 7,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "lfm2-8b-a1b": {
+    "parameter_count_billions": 8,
+    "active_parameter_count_billions": 1,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "coherelabs/tiny-aya-global": {
+    "parameter_count_billions": null,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "granite-4.0-h-tiny": {
+    "parameter_count_billions": null,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "lfm2.5-1.2b-instruct": {
+    "parameter_count_billions": 1.2,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null
+  },
+  "lfm2.5-1.2b-thinking:reasoning": {
+    "parameter_count_billions": 1.2,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null
+  }
+}

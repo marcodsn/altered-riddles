@@ -4,7 +4,21 @@ All notable changes to the Altered Riddles benchmark will be documented in this 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [v2607] — 2026-07
+## [v2604] — 2026-07-10
+
+### Added
+- `scripts/annotate_competing.py` — interactive CLI tool for human annotation of competing answers with defensible/not-defensible/promote labels, resume support, `--report-only`, and `--apply` flags
+- `data/model_metadata.json` — parameter counts (total and active for MoE models) and cost metadata for all evaluated models
+- `--model-metadata` CLI argument in `evaluate.py` for loading model metadata into leaderboard
+- `active_parameter_count_billions` field in leaderboard rows for MoE model tracking
+- `_clustered_bootstrap_ci()` function in `evaluate.py` for cluster-aware confidence intervals
+
+### Changed
+- Confidence intervals in `build_leaderboard` now use **clustered bootstrap** (B=2000, seed=42, clustered by original riddle) instead of Wald CIs; falls back to Wald when fewer than 5 clusters
+- `build_leaderboard()` now accepts optional `benchmark_lookup` and `model_metadata` parameters
+- Leaderboard rows now populated with parameter counts and costs from `model_metadata.json`
+
+## [v2604] — 2026-04-10
 
 ### Added
 - `scripts/core/parsing.py` — consolidated duplicated helpers (`parse_riddle_array`, `validate_entry`, `to_benchmark_format`, `split_paren_alternatives`, `parse_validation_response`)
@@ -36,7 +50,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `_pick_balanced()` in `promote.py` now accepts `max_per_original` and `existing_entries` parameters
 - `_score_single_output()` and `evaluate_model()` now accept `competing_weight` parameter
 
-## [v2604] — 2026-04
+## [v2604] — 2026-04-10
 
 ### Added
 - Full benchmark pipeline: generate → validate → promote → deduplicate → benchmark → evaluate

@@ -86,9 +86,7 @@ def _call_gemini_sync(
     if hasattr(response, "usage_metadata") and response.usage_metadata is not None:
         input_tokens = getattr(response.usage_metadata, "prompt_token_count", None)
         output_tokens = getattr(response.usage_metadata, "candidates_token_count", None)
-        reasoning_tokens = getattr(
-            response.usage_metadata, "thoughts_token_count", None
-        )
+        reasoning_tokens = getattr(response.usage_metadata, "thoughts_token_count", None)
 
     return LLMResponse(
         text=text,
@@ -180,10 +178,7 @@ def _call_mistral_sync(
     thinking_blocks = getattr(message, "thinking_blocks", None)
     if thinking_blocks:
         reasoning = (
-            "\n".join(
-                b.thinking for b in thinking_blocks if getattr(b, "thinking", None)
-            )
-            or None
+            "\n".join(b.thinking for b in thinking_blocks if getattr(b, "thinking", None)) or None
         )
 
     input_tokens: int | None = None
@@ -237,9 +232,7 @@ def call_llm(
                     max_output_tokens=max_output_tokens,
                 )
         except Exception as exc:
-            logger.warning(
-                "API call attempt %d/%d failed: %s", attempt, MAX_RETRIES, exc
-            )
+            logger.warning("API call attempt %d/%d failed: %s", attempt, MAX_RETRIES, exc)
             if attempt == MAX_RETRIES:
                 raise
             logger.info("Retrying in %.1f s …", backoff)
@@ -293,9 +286,7 @@ async def _call_gemini_async(
     if hasattr(response, "usage_metadata") and response.usage_metadata is not None:
         input_tokens = getattr(response.usage_metadata, "prompt_token_count", None)
         output_tokens = getattr(response.usage_metadata, "candidates_token_count", None)
-        reasoning_tokens = getattr(
-            response.usage_metadata, "thoughts_token_count", None
-        )
+        reasoning_tokens = getattr(response.usage_metadata, "thoughts_token_count", None)
 
     return LLMResponse(
         text=text,
@@ -334,9 +325,7 @@ async def _call_openai_compat_async(
     response = await client.chat.completions.create(**create_kwargs)
     message = response.choices[0].message
     result = message.content
-    assert result is not None, (
-        f"OpenAI-compat async ({base_url or 'default'}) returned empty"
-    )
+    assert result is not None, f"OpenAI-compat async ({base_url or 'default'}) returned empty"
 
     reasoning: str | None = getattr(message, "reasoning_content", None)
 
@@ -384,10 +373,7 @@ async def _call_mistral_async(
     thinking_blocks = getattr(message, "thinking_blocks", None)
     if thinking_blocks:
         reasoning = (
-            "\n".join(
-                b.thinking for b in thinking_blocks if getattr(b, "thinking", None)
-            )
-            or None
+            "\n".join(b.thinking for b in thinking_blocks if getattr(b, "thinking", None)) or None
         )
 
     input_tokens: int | None = None
@@ -511,8 +497,19 @@ async def _provider_batch_async(
                     backoff *= 2
             raise RuntimeError("Exhausted retries")
 
-    tasks = [asyncio.create_task(_guarded(i, p)) for i, p in enumerate(prompts)]
-    return await asyncio.gather(*tasks, return_exceptions=True)  # type: ignore[return-value]
+    try:
+        tasks = [asyncio.create_task(_guarded(i, p)) for i, p in enumerate(prompts)]
+        return await asyncio.gather(*tasks, return_exceptions=True)  # type: ignore[return-value]
+    finally:
+        # Explicitly close the shared HTTP client while the event loop is still
+        # running.  Without this, httpx schedules connection-pool teardown as a
+        # background task that fires after asyncio.run() has already closed the
+        # loop, producing "RuntimeError: Event loop is closed" noise.
+        if shared_client is not None:
+            if hasattr(shared_client, "aclose"):
+                await shared_client.aclose()
+            elif hasattr(shared_client, "__aexit__"):
+                await shared_client.__aexit__(None, None, None)
 
 
 def call_llm_batched(

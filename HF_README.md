@@ -95,6 +95,7 @@ This HuggingFace repository contains the full benchmark release for version `260
 - **`model_outputs/2604/`** — Raw per-model answer files  
 - **`results/2604/`** — Detailed per-model evaluation results  
 - **`results/{version}/contamination_report.json`** — Cross-model contamination analysis  
+- **`data/model_metadata.json`** — Model parameter counts (total + active for MoE) and estimated costs  
 - **`results/{version}/reproducibility_manifest.json`** — Frozen benchmark snapshot for reproducibility  
 - **`results/LEADERBOARD.md`** — Markdown leaderboard table  
 - **`images/`** — Charts and result visualizations  
@@ -145,7 +146,7 @@ The headline metric **`total_score`** equals **`average_accuracy`** — the mean
 The partial-credit weight for competing answers (default 0.5×) is configurable via `--competing-weight`, allowing researchers to test how sensitive rankings are to this choice.
 
 > [!Important]
-> Models must be tested on at least **250 altered riddles** to appear on the leaderboard. 95% confidence intervals for all metrics are included in [`leaderboard.json`](https://huggingface.co/datasets/marcodsn/altered-riddles/blob/main/leaderboard.json).
+> Models must be tested on at least **250 altered riddles** to appear on the leaderboard. 95% clustered bootstrap confidence intervals (clustered by original riddle) for all metrics are included in [`leaderboard.json`](https://huggingface.co/datasets/marcodsn/altered-riddles/blob/main/leaderboard.json). Leaderboard rows also include `parameter_count_billions`, `active_parameter_count_billions`, and `estimated_cost_per_mtok_usd` sourced from `data/model_metadata.json`.
 
 ### Key Metrics
 
@@ -220,6 +221,7 @@ The base scenarios use common riddles found in LLM knowledge. The core creative 
 3. **Pool & Promotion:** Valid riddles land in `data/pool.jsonl` before being promoted to the benchmark via `scripts/promote.py`. This decouples generation from benchmark composition.  
 4. **Deduplication:** Exact and fuzzy matching removes near-duplicate entries.  
 5. **Benchmark & Evaluate:** Models are tested with `scripts/benchmark.py` and scored with `scripts/evaluate.py` (`python -m scripts.evaluate`), which uses an LLM judge. Evaluation is fully re-runnable — accepted answers can be edited and scores regenerated without re-running any models.  
+6. **Human Annotation:** `scripts/annotate_competing.py` provides an interactive tool for human review and annotation of competing answers.  
 
 ### Splits  
 The benchmark currently contains a **`train` split** used as the challenge/evaluation set. The fixed core provides a stable longitudinal baseline; the auxiliary set is refreshable per version.  
@@ -271,3 +273,6 @@ This dataset is licensed under the [Apache License 2.0](https://www.apache.org/l
 
 > [!Note]
 > **[08/07/2026]** Major codebase improvements: consolidated duplicated helpers into `core/parsing.py`, added `pyproject.toml` with dependency groups, CI pipeline with GitHub Actions, 64 unit tests, configurable competing-answer weight (`--competing-weight`), per-type and per-source accuracy breakdowns in evaluation output, adaptive sampling (`--adaptive`) and originals-samples control in benchmark runs, type-targeted riddle generation (`--type`), promote reuse caps (`--max-per-original`), re-validation support (`--re-validate`), contamination analysis script, reproducibility manifest, per-type chart, riddle heatmap data export, and schema validation script.
+
+> [!Note]
+> **[10/04/2026]** Leaderboard confidence intervals now use a **clustered bootstrap** (clustering by original riddle) instead of the Wald formula, better accounting for within-riddle correlation across samples. Added `data/model_metadata.json` storing parameter counts (total + active for MoE models) and estimated costs; leaderboard rows now include `parameter_count_billions`, `active_parameter_count_billions`, and `estimated_cost_per_mtok_usd`. New human annotation tool `scripts/annotate_competing.py` for interactive review of competing answers.

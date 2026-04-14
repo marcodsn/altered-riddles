@@ -5,6 +5,7 @@
 {#    few_shot_examples  (str)  — Pre-rendered JSON examples block      #}
 {#    num_variations     (int)  — Number of variations to generate      #}
 {#    source_riddle      (str)  — Optional specific riddle to alter     #}
+{#    source_answer      (str)  — Optional canonical answer to the source riddle #}
 {#    target_type        (str)  — Optional alteration type to force     #}
 {#- ------------------------------------------------------------------ #}
 
@@ -84,6 +85,10 @@ Study these examples carefully. Notice how each alteration is small but decisive
 Generate **{{ num_variations | default(5) }}** altered variations of the following specific riddle:
 
 > {{ source_riddle }}
+
+{% if source_answer %}
+The canonical answer to this riddle is: **{{ source_answer }}**
+{% endif %}
 
 Each variation should introduce a different subtle change that leads to a different altered answer. Try to find diverse, creative alterations.
 {% else %}

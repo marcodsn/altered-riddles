@@ -30,7 +30,8 @@ Even frontier models fall victim to this pattern override:
 altered-riddles/
 ├── data/
 │   ├── VERSION                     # Current benchmark version (YYMM format)
-│   ├── riddles_source.txt          # Pool of source riddles for generation
+│   ├── riddles_source.csv          # Pool of source riddles for generation (credits to https://github.com/crawsome/riddles)
+│   ├── model_metadata.json         # Parameter counts (total/active) and cost info per model
 │   ├── benchmark.jsonl             # The benchmark dataset (fixed + auxiliary sets)
 │   ├── pool.jsonl                  # Validated riddles awaiting promotion
 │   ├── images/                     # Example screenshots
@@ -62,6 +63,7 @@ altered-riddles/
 │   ├── evaluate.py                 # Score model outputs using LLM judge (re-runnable)
 │   ├── validate_schema.py          # Validate benchmark.jsonl schema integrity
 │   ├── contamination_analysis.py   # Analyze contamination effects by model family
+│   ├── annotate_competing.py       # Human annotation of competing answers
 │   └── reproducibility_snapshot.py # Generate reproducibility manifest
 ├── tests/                          # Test suite (pytest)
 ├── migrations/                     # One-shot migration scripts (date-prefixed)
@@ -176,7 +178,7 @@ python -m scripts.evaluate
 python -m scripts.evaluate --competing-weight 0.5
 ```
 
-Scores all model outputs against the accepted answers in `data/benchmark.jsonl` using an LLM judge (see `prompts/judge.j2`) and generates a leaderboard in `results/{version}/`. Now produces **per-type and per-source breakdowns** in evaluation output. This step is fully re-runnable — for example, we can update accepted answers and re-evaluate without re-running any models.
+Scores all model outputs against the accepted answers in `data/benchmark.jsonl` using an LLM judge (see `prompts/judge.j2`) and generates a leaderboard in `results/{version}/`. Now produces **per-type and per-source breakdowns** in evaluation output. Confidence intervals use a **clustered bootstrap** (clustering by original riddle, B=2000) instead of the Wald formula, giving more honest CIs since riddles sharing the same original are correlated. This step is fully re-runnable — for example, we can update accepted answers and re-evaluate without re-running any models.
 
 Models must be tested on **at least 250 altered riddles** to appear on the leaderboard.
 
@@ -187,7 +189,7 @@ When multi-sample benchmark outputs exist (from `--num-samples`), evaluation rep
 
 ## Leaderboard
 
-The leaderboard is stored in `results/leaderboard.json` and includes **95% confidence intervals** for all metrics. A Markdown leaderboard table is auto-generated at `results/LEADERBOARD.md` for easy viewing and embedding.
+The leaderboard is stored in `results/leaderboard.json` and includes **95% clustered bootstrap confidence intervals** (clustering by original riddle, B=2000) for all metrics. A Markdown leaderboard table is auto-generated at `results/LEADERBOARD.md` for easy viewing and embedding. Model parameter counts and cost info are automatically loaded from `data/model_metadata.json` via `--model-metadata`.
 
 Per-riddle difficulty scores are published at `results/{version}/riddle_difficulty.json`, showing how challenging each riddle is across all tested models.
 
@@ -220,6 +222,12 @@ Models must be evaluated on at least **250 altered riddles** to qualify for the 
 - **Adaptive sampling.** `--adaptive` skips additional samples for riddles answered correctly, cutting multi-sample costs by ~2–3× with minimal information loss.
 
 - **Contamination analysis.** `scripts/contamination_analysis.py` compares model accuracy on self-sourced vs. other-sourced riddles.
+
+- **Model metadata.** `data/model_metadata.json` stores parameter counts (total and active for MoE models) and cost info for all models. The leaderboard automatically loads this via `--model-metadata`.
+
+- **Clustered bootstrap CIs.** Confidence intervals use a clustered bootstrap (clustering by original riddle, B=2000) instead of the Wald formula, giving more honest intervals since riddles sharing the same original are correlated.
+
+- **Human annotation of competing answers.** `scripts/annotate_competing.py` provides an interactive workflow for reviewing competing answers (defensible / not-defensible / promote), with resume support, `--report-only` for summary, and `--apply` for batch promotions.
 
 ## Quick Start
 
@@ -327,6 +335,13 @@ python -m scripts.contamination_analysis
 
 # Generate reproducibility manifest
 python -m scripts.reproducibility_snapshot
+
+# Annotate competing answers (interactive)
+python -m scripts.annotate_competing
+# Summary only
+python -m scripts.annotate_competing --report-only
+# Apply batch promotions
+python -m scripts.annotate_competing --apply
 ```
 
 ## Links

@@ -12,11 +12,11 @@
     "altered_accuracy": 0.452,
     "altered_weighted_accuracy": 0.494,
     "pattern_override_rate": 0.416,
-    "conditioned_override_rate": 0.44,
+    "conditioned_override_rate": 0.464,
     "average_accuracy": 0.477,
     "total_score": 0.477,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.54,
+    "best_of_n_accuracy": 0.518,
     "majority_vote_accuracy": 0.476,
     "original_input_tokens": 6648,
     "original_output_tokens": 706,
@@ -26,7 +26,71 @@
     "total_output_tokens": 2770,
     "num_riddles": 250,
     "original_num_riddles": 87,
-    "altered_num_riddles": 250
+    "altered_num_riddles": 250,
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.393,
+        "weighted_accuracy": 0.429,
+        "pattern_override_rate": 0.464
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.5,
+        "weighted_accuracy": 0.525,
+        "pattern_override_rate": 0.417
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.56,
+        "weighted_accuracy": 0.58,
+        "pattern_override_rate": 0.32
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.327,
+        "weighted_accuracy": 0.375,
+        "pattern_override_rate": 0.481
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.692,
+        "weighted_accuracy": 0.731,
+        "pattern_override_rate": 0.231
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.44,
+        "weighted_accuracy": 0.46,
+        "pattern_override_rate": 0.56
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.523,
+        "weighted_accuracy": 0.555,
+        "pattern_override_rate": 0.303
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.2,
+        "weighted_accuracy": 0.233,
+        "pattern_override_rate": 0.767
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.25,
+        "weighted_accuracy": 0.25,
+        "pattern_override_rate": 0.45
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.528,
+        "weighted_accuracy": 0.566,
+        "pattern_override_rate": 0.415
+      }
+    }
   },
   "details": [
     {
@@ -3396,7 +3460,7 @@
       "riddle_text": "How can you drop a raw egg onto a concrete floor without cracking it?",
       "model_answer": "Concrete floors are hard",
       "accepted_answers": [
-        "You can drop it by holding it at a sufficient height where it doesn’t crack due to the force of impact."
+        "You can drop it by holding it at a sufficient height where it doesn't crack due to the force of impact."
       ],
       "correct": false,
       "sample_index": 1
@@ -3407,7 +3471,7 @@
       "riddle_text": "How can you drop a raw egg onto a concrete floor without cracking it?",
       "model_answer": "Concrete floors are hard",
       "accepted_answers": [
-        "You can drop it by holding it at a sufficient height where it doesn’t crack due to the force of impact."
+        "You can drop it by holding it at a sufficient height where it doesn't crack due to the force of impact."
       ],
       "correct": false,
       "sample_index": 2
@@ -3418,7 +3482,7 @@
       "riddle_text": "How can you drop a raw egg onto a concrete floor without cracking it?",
       "model_answer": "Concrete is very hard",
       "accepted_answers": [
-        "You can drop it by holding it at a sufficient height where it doesn’t crack due to the force of impact."
+        "You can drop it by holding it at a sufficient height where it doesn't crack due to the force of impact."
       ],
       "correct": false,
       "sample_index": 3
@@ -3429,12 +3493,15 @@
       "riddle_text": "How can you drop a raw egg onto a concrete floor without cracking it, and without letting it fall from a height?",
       "model_answer": "The floor won't crack",
       "accepted_answers": [
-        "You can drop it by placing it gently on the floor, such as by lowering it with your hand or rolling it off a low surface."
+        "place it gently",
+        "lower it gently",
+        "set it down gently",
+        "lay it on the floor"
       ],
       "correct": false,
       "sample_index": 1,
       "gave_original_answer": false,
-      "original_answer": "You can drop it by holding it at a sufficient height where it doesn’t crack due to the force of impact.",
+      "original_answer": "You can drop it by holding it at a sufficient height where it doesn't crack due to the force of impact.",
       "competing_match": false,
       "score": 0.0
     },
@@ -3444,12 +3511,15 @@
       "riddle_text": "How can you drop a raw egg onto a concrete floor without cracking it, and without letting it fall from a height?",
       "model_answer": "Concrete floors are hard",
       "accepted_answers": [
-        "You can drop it by placing it gently on the floor, such as by lowering it with your hand or rolling it off a low surface."
+        "place it gently",
+        "lower it gently",
+        "set it down gently",
+        "lay it on the floor"
       ],
       "correct": false,
       "sample_index": 2,
       "gave_original_answer": false,
-      "original_answer": "You can drop it by holding it at a sufficient height where it doesn’t crack due to the force of impact.",
+      "original_answer": "You can drop it by holding it at a sufficient height where it doesn't crack due to the force of impact.",
       "competing_match": false,
       "score": 0.0
     },
@@ -3459,12 +3529,15 @@
       "riddle_text": "How can you drop a raw egg onto a concrete floor without cracking it, and without letting it fall from a height?",
       "model_answer": "Concrete floors are hard",
       "accepted_answers": [
-        "You can drop it by placing it gently on the floor, such as by lowering it with your hand or rolling it off a low surface."
+        "place it gently",
+        "lower it gently",
+        "set it down gently",
+        "lay it on the floor"
       ],
       "correct": false,
       "sample_index": 3,
       "gave_original_answer": false,
-      "original_answer": "You can drop it by holding it at a sufficient height where it doesn’t crack due to the force of impact.",
+      "original_answer": "You can drop it by holding it at a sufficient height where it doesn't crack due to the force of impact.",
       "competing_match": false,
       "score": 0.0
     },
@@ -4131,7 +4204,10 @@
       "riddle_text": "Two fathers and two sons went fishing. They caught exactly three fish, and the youngest person took home two fish. How is this possible?",
       "model_answer": "Only three people fishing",
       "accepted_answers": [
-        "The family structure included a grandfather, his son (the father), and his grandson (the son). The youngest person is the grandson, who took two fish."
+        "the grandson",
+        "grandson took two",
+        "grandson",
+        "the youngest"
       ],
       "correct": true,
       "sample_index": 1,
@@ -4145,7 +4221,10 @@
       "riddle_text": "Two fathers and two sons went fishing. They caught exactly three fish, and the youngest person took home two fish. How is this possible?",
       "model_answer": "Three people: grandfather, father, son",
       "accepted_answers": [
-        "The family structure included a grandfather, his son (the father), and his grandson (the son). The youngest person is the grandson, who took two fish."
+        "the grandson",
+        "grandson took two",
+        "grandson",
+        "the youngest"
       ],
       "correct": true,
       "sample_index": 2,
@@ -4159,7 +4238,10 @@
       "riddle_text": "Two fathers and two sons went fishing. They caught exactly three fish, and the youngest person took home two fish. How is this possible?",
       "model_answer": "Three people total",
       "accepted_answers": [
-        "The family structure included a grandfather, his son (the father), and his grandson (the son). The youngest person is the grandson, who took two fish."
+        "the grandson",
+        "grandson took two",
+        "grandson",
+        "the youngest"
       ],
       "correct": false,
       "sample_index": 3,

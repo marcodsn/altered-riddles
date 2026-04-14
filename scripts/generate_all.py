@@ -60,14 +60,11 @@ logger = logging.getLogger("generate_all")
 # ---------------------------------------------------------------------------
 
 
-def load_source_riddles(path: str) -> list[str]:
-    """Load riddles from a text file (one per line, blanks ignored)."""
-    filepath = Path(path)
-    if not filepath.exists():
-        logger.warning("Source file %s not found — free generation only.", path)
-        return []
-    with open(filepath, encoding="utf-8") as fh:
-        return [line.strip() for line in fh if line.strip()]
+def load_source_riddles(path: str) -> list[dict[str, str]]:
+    """Load riddles from a CSV file (riddle + answer per row)."""
+    from scripts.core.io_utils import load_source_riddles_csv
+
+    return load_source_riddles_csv(path)
 
 
 # ---------------------------------------------------------------------------
@@ -77,7 +74,7 @@ def load_source_riddles(path: str) -> list[str]:
 
 def build_generation_prompts(
     template,
-    source_riddles: list[str],
+    source_riddles: list[dict[str, str]],
     num_calls: int,
     num_variations: int,
     target_type: str | None = None,
@@ -86,10 +83,14 @@ def build_generation_prompts(
     prompts: list[str] = []
     for _ in range(num_calls):
         source_riddle = None
+        source_answer = None
         if source_riddles and random.random() < 0.7:
-            source_riddle = random.choice(source_riddles)
+            source_entry = random.choice(source_riddles)
+            source_riddle = source_entry["riddle"]
+            source_answer = source_entry["answer"]
         prompt_text = template.render(
             source_riddle=source_riddle,
+            source_answer=source_answer,
             num_variations=num_variations,
             few_shot_examples=None,
             target_type=target_type,

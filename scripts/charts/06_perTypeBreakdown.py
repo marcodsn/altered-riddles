@@ -81,10 +81,17 @@ def _load_per_type_from_leaderboard(path: str, top_n: int) -> list[dict] | None:
         model = entry["model"]
         if "/" in model:
             model = model.split("/")[-1]
+        # Normalize: values may be plain floats or nested dicts with an
+        # "accuracy" key (e.g. {"count": 28, "accuracy": 0.536, ...})
+        raw_per_type = entry["per_type"]
+        per_type = {
+            k: (v.get("accuracy", 0.0) if isinstance(v, dict) else float(v))
+            for k, v in raw_per_type.items()
+        }
         entries.append(
             {
                 "model": model,
-                "per_type": entry["per_type"],
+                "per_type": per_type,
                 "rank": entry["rank"],
             }
         )

@@ -7,7 +7,7 @@
     "altered_accuracy": 0.571,
     "altered_weighted_accuracy": 0.626,
     "pattern_override_rate": 0.184,
-    "conditioned_override_rate": 0.181,
+    "conditioned_override_rate": 0.205,
     "average_accuracy": 0.615,
     "total_score": 0.615,
     "total_input_tokens": 27014,
@@ -18,9 +18,79 @@
     "altered_output_tokens": 581477,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0841,
+    "average_accuracy_ci95": 0.078,
+    "pattern_override_rate_ci95": 0.0651,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.728,
+    "best_of_n_accuracy": 0.676,
     "majority_vote_accuracy": 0.62,
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.536,
+        "weighted_accuracy": 0.554,
+        "pattern_override_rate": 0.25
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.625,
+        "weighted_accuracy": 0.65,
+        "pattern_override_rate": 0.192
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.54,
+        "weighted_accuracy": 0.61,
+        "pattern_override_rate": 0.16
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.558,
+        "weighted_accuracy": 0.625,
+        "pattern_override_rate": 0.154
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.692,
+        "weighted_accuracy": 0.692,
+        "pattern_override_rate": 0.231
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.36,
+        "weighted_accuracy": 0.5,
+        "pattern_override_rate": 0.16
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.642,
+        "weighted_accuracy": 0.67,
+        "pattern_override_rate": 0.156
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.4,
+        "weighted_accuracy": 0.45,
+        "pattern_override_rate": 0.367
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.35,
+        "weighted_accuracy": 0.4,
+        "pattern_override_rate": 0.1
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.736,
+        "weighted_accuracy": 0.764,
+        "pattern_override_rate": 0.17
+      }
+    },
+    "parameter_count_billions": 26,
+    "active_parameter_count_billions": 4,
+    "estimated_cost_per_mtok_usd": null,
     "rank": 1
   },
   {
@@ -31,7 +101,7 @@
     "altered_accuracy": 0.557,
     "altered_weighted_accuracy": 0.584,
     "pattern_override_rate": 0.264,
-    "conditioned_override_rate": 0.232,
+    "conditioned_override_rate": 0.25,
     "average_accuracy": 0.601,
     "total_score": 0.601,
     "total_input_tokens": 27014,
@@ -42,9 +112,79 @@
     "altered_output_tokens": 307017,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0945,
+    "average_accuracy_ci95": 0.0887,
+    "pattern_override_rate_ci95": 0.089,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.716,
+    "best_of_n_accuracy": 0.668,
     "majority_vote_accuracy": 0.608,
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.393,
+        "weighted_accuracy": 0.464,
+        "pattern_override_rate": 0.25
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.583,
+        "weighted_accuracy": 0.617,
+        "pattern_override_rate": 0.242
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.54,
+        "weighted_accuracy": 0.6,
+        "pattern_override_rate": 0.3
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.519,
+        "weighted_accuracy": 0.558,
+        "pattern_override_rate": 0.288
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.692,
+        "weighted_accuracy": 0.731,
+        "pattern_override_rate": 0.231
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.32,
+        "weighted_accuracy": 0.44,
+        "pattern_override_rate": 0.28
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.606,
+        "weighted_accuracy": 0.642,
+        "pattern_override_rate": 0.22
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.3,
+        "weighted_accuracy": 0.333,
+        "pattern_override_rate": 0.567
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.4,
+        "weighted_accuracy": 0.425,
+        "pattern_override_rate": 0.25
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.66,
+        "weighted_accuracy": 0.698,
+        "pattern_override_rate": 0.189
+      }
+    },
+    "parameter_count_billions": 31,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null,
     "rank": 2
   },
   {
@@ -55,7 +195,7 @@
     "altered_accuracy": 0.559,
     "altered_weighted_accuracy": 0.618,
     "pattern_override_rate": 0.212,
-    "conditioned_override_rate": 0.205,
+    "conditioned_override_rate": 0.25,
     "average_accuracy": 0.594,
     "total_score": 0.594,
     "total_input_tokens": 23598,
@@ -66,9 +206,79 @@
     "altered_output_tokens": 570331,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0838,
+    "average_accuracy_ci95": 0.0769,
+    "pattern_override_rate_ci95": 0.0655,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.732,
+    "best_of_n_accuracy": 0.69,
     "majority_vote_accuracy": 0.618,
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.536,
+        "weighted_accuracy": 0.589,
+        "pattern_override_rate": 0.25
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.6,
+        "weighted_accuracy": 0.629,
+        "pattern_override_rate": 0.225
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.62,
+        "weighted_accuracy": 0.67,
+        "pattern_override_rate": 0.12
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.519,
+        "weighted_accuracy": 0.558,
+        "pattern_override_rate": 0.25
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.846,
+        "weighted_accuracy": 0.846,
+        "pattern_override_rate": 0.154
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.36,
+        "weighted_accuracy": 0.44,
+        "pattern_override_rate": 0.32
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.633,
+        "weighted_accuracy": 0.679,
+        "pattern_override_rate": 0.156
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.367,
+        "weighted_accuracy": 0.4,
+        "pattern_override_rate": 0.467
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.4,
+        "weighted_accuracy": 0.45,
+        "pattern_override_rate": 0.2
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.698,
+        "weighted_accuracy": 0.708,
+        "pattern_override_rate": 0.151
+      }
+    },
+    "parameter_count_billions": null,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null,
     "rank": 3
   },
   {
@@ -79,7 +289,7 @@
     "altered_accuracy": 0.489,
     "altered_weighted_accuracy": 0.524,
     "pattern_override_rate": 0.308,
-    "conditioned_override_rate": 0.317,
+    "conditioned_override_rate": 0.381,
     "average_accuracy": 0.524,
     "total_score": 0.524,
     "total_input_tokens": 30280,
@@ -90,9 +300,79 @@
     "altered_output_tokens": 461807,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0766,
+    "average_accuracy_ci95": 0.076,
+    "pattern_override_rate_ci95": 0.0757,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.648,
+    "best_of_n_accuracy": 0.61,
     "majority_vote_accuracy": 0.518,
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.393,
+        "weighted_accuracy": 0.446,
+        "pattern_override_rate": 0.25
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.558,
+        "weighted_accuracy": 0.588,
+        "pattern_override_rate": 0.283
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.48,
+        "weighted_accuracy": 0.5,
+        "pattern_override_rate": 0.34
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.404,
+        "weighted_accuracy": 0.442,
+        "pattern_override_rate": 0.365
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.692,
+        "weighted_accuracy": 0.692,
+        "pattern_override_rate": 0.231
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.36,
+        "weighted_accuracy": 0.4,
+        "pattern_override_rate": 0.36
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.56,
+        "weighted_accuracy": 0.592,
+        "pattern_override_rate": 0.22
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.3,
+        "weighted_accuracy": 0.35,
+        "pattern_override_rate": 0.6
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.25,
+        "weighted_accuracy": 0.3,
+        "pattern_override_rate": 0.45
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.566,
+        "weighted_accuracy": 0.585,
+        "pattern_override_rate": 0.264
+      }
+    },
+    "parameter_count_billions": null,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null,
     "rank": 4
   },
   {
@@ -103,7 +383,7 @@
     "altered_accuracy": 0.479,
     "altered_weighted_accuracy": 0.526,
     "pattern_override_rate": 0.256,
-    "conditioned_override_rate": 0.268,
+    "conditioned_override_rate": 0.354,
     "average_accuracy": 0.522,
     "total_score": 0.522,
     "total_input_tokens": 44068,
@@ -114,9 +394,79 @@
     "altered_output_tokens": 92714,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0801,
+    "average_accuracy_ci95": 0.0772,
+    "pattern_override_rate_ci95": 0.0669,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.664,
+    "best_of_n_accuracy": 0.62,
     "majority_vote_accuracy": 0.528,
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.286,
+        "weighted_accuracy": 0.357,
+        "pattern_override_rate": 0.429
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.558,
+        "weighted_accuracy": 0.588,
+        "pattern_override_rate": 0.208
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.46,
+        "weighted_accuracy": 0.51,
+        "pattern_override_rate": 0.26
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.442,
+        "weighted_accuracy": 0.49,
+        "pattern_override_rate": 0.269
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.615,
+        "weighted_accuracy": 0.654,
+        "pattern_override_rate": 0.231
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.32,
+        "weighted_accuracy": 0.36,
+        "pattern_override_rate": 0.32
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.514,
+        "weighted_accuracy": 0.573,
+        "pattern_override_rate": 0.211
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.3,
+        "weighted_accuracy": 0.333,
+        "pattern_override_rate": 0.467
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.45,
+        "weighted_accuracy": 0.45,
+        "pattern_override_rate": 0.25
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.585,
+        "weighted_accuracy": 0.613,
+        "pattern_override_rate": 0.208
+      }
+    },
+    "parameter_count_billions": 120,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null,
     "rank": 5
   },
   {
@@ -127,7 +477,7 @@
     "altered_accuracy": 0.483,
     "altered_weighted_accuracy": 0.526,
     "pattern_override_rate": 0.26,
-    "conditioned_override_rate": 0.269,
+    "conditioned_override_rate": 0.329,
     "average_accuracy": 0.519,
     "total_score": 0.519,
     "total_input_tokens": 25961,
@@ -138,9 +488,79 @@
     "altered_output_tokens": 979746,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0918,
+    "average_accuracy_ci95": 0.0858,
+    "pattern_override_rate_ci95": 0.0724,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.676,
+    "best_of_n_accuracy": 0.63,
     "majority_vote_accuracy": 0.524,
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.393,
+        "weighted_accuracy": 0.446,
+        "pattern_override_rate": 0.357
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.525,
+        "weighted_accuracy": 0.558,
+        "pattern_override_rate": 0.233
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.5,
+        "weighted_accuracy": 0.55,
+        "pattern_override_rate": 0.28
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.442,
+        "weighted_accuracy": 0.471,
+        "pattern_override_rate": 0.25
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.692,
+        "weighted_accuracy": 0.692,
+        "pattern_override_rate": 0.308
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.36,
+        "weighted_accuracy": 0.38,
+        "pattern_override_rate": 0.4
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.578,
+        "weighted_accuracy": 0.638,
+        "pattern_override_rate": 0.165
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.233,
+        "weighted_accuracy": 0.25,
+        "pattern_override_rate": 0.467
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.2,
+        "weighted_accuracy": 0.225,
+        "pattern_override_rate": 0.35
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.566,
+        "weighted_accuracy": 0.594,
+        "pattern_override_rate": 0.226
+      }
+    },
+    "parameter_count_billions": 35,
+    "active_parameter_count_billions": 3,
+    "estimated_cost_per_mtok_usd": null,
     "rank": 6
   },
   {
@@ -151,7 +571,7 @@
     "altered_accuracy": 0.488,
     "altered_weighted_accuracy": 0.518,
     "pattern_override_rate": 0.332,
-    "conditioned_override_rate": 0.262,
+    "conditioned_override_rate": 0.31,
     "average_accuracy": 0.517,
     "total_score": 0.517,
     "total_input_tokens": 26340,
@@ -162,9 +582,79 @@
     "altered_output_tokens": 4400,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0967,
+    "average_accuracy_ci95": 0.0918,
+    "pattern_override_rate_ci95": 0.0866,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.556,
+    "best_of_n_accuracy": 0.53,
     "majority_vote_accuracy": 0.516,
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.321,
+        "weighted_accuracy": 0.375,
+        "pattern_override_rate": 0.393
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.558,
+        "weighted_accuracy": 0.583,
+        "pattern_override_rate": 0.317
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.5,
+        "weighted_accuracy": 0.51,
+        "pattern_override_rate": 0.32
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.404,
+        "weighted_accuracy": 0.452,
+        "pattern_override_rate": 0.346
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.615,
+        "weighted_accuracy": 0.615,
+        "pattern_override_rate": 0.231
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.2,
+        "weighted_accuracy": 0.26,
+        "pattern_override_rate": 0.4
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.569,
+        "weighted_accuracy": 0.587,
+        "pattern_override_rate": 0.294
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.233,
+        "weighted_accuracy": 0.283,
+        "pattern_override_rate": 0.6
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.3,
+        "weighted_accuracy": 0.325,
+        "pattern_override_rate": 0.4
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.642,
+        "weighted_accuracy": 0.679,
+        "pattern_override_rate": 0.226
+      }
+    },
+    "parameter_count_billions": 31,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null,
     "rank": 7
   },
   {
@@ -175,7 +665,7 @@
     "altered_accuracy": 0.463,
     "altered_weighted_accuracy": 0.508,
     "pattern_override_rate": 0.236,
-    "conditioned_override_rate": 0.282,
+    "conditioned_override_rate": 0.37,
     "average_accuracy": 0.501,
     "total_score": 0.501,
     "total_input_tokens": 48786,
@@ -186,9 +676,79 @@
     "altered_output_tokens": 310901,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0799,
+    "average_accuracy_ci95": 0.0772,
+    "pattern_override_rate_ci95": 0.0601,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.628,
+    "best_of_n_accuracy": 0.588,
     "majority_vote_accuracy": 0.52,
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.321,
+        "weighted_accuracy": 0.375,
+        "pattern_override_rate": 0.357
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.533,
+        "weighted_accuracy": 0.571,
+        "pattern_override_rate": 0.217
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.44,
+        "weighted_accuracy": 0.49,
+        "pattern_override_rate": 0.26
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.423,
+        "weighted_accuracy": 0.452,
+        "pattern_override_rate": 0.192
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.615,
+        "weighted_accuracy": 0.615,
+        "pattern_override_rate": 0.231
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.28,
+        "weighted_accuracy": 0.36,
+        "pattern_override_rate": 0.2
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.505,
+        "weighted_accuracy": 0.55,
+        "pattern_override_rate": 0.202
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.3,
+        "weighted_accuracy": 0.333,
+        "pattern_override_rate": 0.433
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.3,
+        "weighted_accuracy": 0.325,
+        "pattern_override_rate": 0.3
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.604,
+        "weighted_accuracy": 0.632,
+        "pattern_override_rate": 0.189
+      }
+    },
+    "parameter_count_billions": 20,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null,
     "rank": 8
   },
   {
@@ -199,7 +759,7 @@
     "altered_accuracy": 0.452,
     "altered_weighted_accuracy": 0.494,
     "pattern_override_rate": 0.416,
-    "conditioned_override_rate": 0.44,
+    "conditioned_override_rate": 0.464,
     "average_accuracy": 0.477,
     "total_score": 0.477,
     "total_input_tokens": 26340,
@@ -210,9 +770,79 @@
     "altered_output_tokens": 2064,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0787,
+    "average_accuracy_ci95": 0.0767,
+    "pattern_override_rate_ci95": 0.085,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.54,
+    "best_of_n_accuracy": 0.518,
     "majority_vote_accuracy": 0.476,
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.393,
+        "weighted_accuracy": 0.429,
+        "pattern_override_rate": 0.464
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.5,
+        "weighted_accuracy": 0.525,
+        "pattern_override_rate": 0.417
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.56,
+        "weighted_accuracy": 0.58,
+        "pattern_override_rate": 0.32
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.327,
+        "weighted_accuracy": 0.375,
+        "pattern_override_rate": 0.481
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.692,
+        "weighted_accuracy": 0.731,
+        "pattern_override_rate": 0.231
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.44,
+        "weighted_accuracy": 0.46,
+        "pattern_override_rate": 0.56
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.523,
+        "weighted_accuracy": 0.555,
+        "pattern_override_rate": 0.303
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.2,
+        "weighted_accuracy": 0.233,
+        "pattern_override_rate": 0.767
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.25,
+        "weighted_accuracy": 0.25,
+        "pattern_override_rate": 0.45
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.528,
+        "weighted_accuracy": 0.566,
+        "pattern_override_rate": 0.415
+      }
+    },
+    "parameter_count_billions": 26,
+    "active_parameter_count_billions": 4,
+    "estimated_cost_per_mtok_usd": null,
     "rank": 9
   },
   {
@@ -223,7 +853,7 @@
     "altered_accuracy": 0.396,
     "altered_weighted_accuracy": 0.402,
     "pattern_override_rate": 0.332,
-    "conditioned_override_rate": 0.395,
+    "conditioned_override_rate": 0.481,
     "average_accuracy": 0.427,
     "total_score": 0.427,
     "total_input_tokens": 26635,
@@ -234,9 +864,79 @@
     "altered_output_tokens": 2100,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0732,
+    "average_accuracy_ci95": 0.0742,
+    "pattern_override_rate_ci95": 0.0751,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.576,
+    "best_of_n_accuracy": 0.534,
     "majority_vote_accuracy": 0.418,
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.286,
+        "weighted_accuracy": 0.304,
+        "pattern_override_rate": 0.5
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.383,
+        "weighted_accuracy": 0.408,
+        "pattern_override_rate": 0.342
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.42,
+        "weighted_accuracy": 0.45,
+        "pattern_override_rate": 0.24
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.365,
+        "weighted_accuracy": 0.394,
+        "pattern_override_rate": 0.308
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.462,
+        "weighted_accuracy": 0.462,
+        "pattern_override_rate": 0.385
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.24,
+        "weighted_accuracy": 0.26,
+        "pattern_override_rate": 0.36
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.431,
+        "weighted_accuracy": 0.45,
+        "pattern_override_rate": 0.257
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.167,
+        "weighted_accuracy": 0.2,
+        "pattern_override_rate": 0.667
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.2,
+        "weighted_accuracy": 0.25,
+        "pattern_override_rate": 0.2
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.491,
+        "weighted_accuracy": 0.528,
+        "pattern_override_rate": 0.321
+      }
+    },
+    "parameter_count_billions": 27,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null,
     "rank": 10
   },
   {
@@ -247,7 +947,7 @@
     "altered_accuracy": 0.351,
     "altered_weighted_accuracy": 0.388,
     "pattern_override_rate": 0.448,
-    "conditioned_override_rate": 0.55,
+    "conditioned_override_rate": 0.622,
     "average_accuracy": 0.373,
     "total_score": 0.373,
     "total_input_tokens": 26635,
@@ -258,34 +958,80 @@
     "altered_output_tokens": 2098,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0936,
+    "average_accuracy_ci95": 0.0933,
+    "pattern_override_rate_ci95": 0.087,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.496,
+    "best_of_n_accuracy": 0.472,
     "majority_vote_accuracy": 0.392,
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.25,
+        "weighted_accuracy": 0.286,
+        "pattern_override_rate": 0.571
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.383,
+        "weighted_accuracy": 0.404,
+        "pattern_override_rate": 0.45
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.5,
+        "weighted_accuracy": 0.52,
+        "pattern_override_rate": 0.32
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.25,
+        "weighted_accuracy": 0.279,
+        "pattern_override_rate": 0.5
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.538,
+        "weighted_accuracy": 0.577,
+        "pattern_override_rate": 0.462
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.16,
+        "weighted_accuracy": 0.18,
+        "pattern_override_rate": 0.48
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.404,
+        "weighted_accuracy": 0.431,
+        "pattern_override_rate": 0.404
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.167,
+        "weighted_accuracy": 0.167,
+        "pattern_override_rate": 0.733
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.2,
+        "weighted_accuracy": 0.225,
+        "pattern_override_rate": 0.5
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.509,
+        "weighted_accuracy": 0.538,
+        "pattern_override_rate": 0.34
+      }
+    },
+    "parameter_count_billions": 35,
+    "active_parameter_count_billions": 3,
+    "estimated_cost_per_mtok_usd": null,
     "rank": 11
-  },
-  {
-    "model": "mistral-small-2603",
-    "provider": "mistral",
-    "quantization": "",
-    "original_accuracy": 0.933,
-    "altered_accuracy": 0.364,
-    "altered_weighted_accuracy": 0.364,
-    "pattern_override_rate": 0.591,
-    "conditioned_override_rate": 0.538,
-    "average_accuracy": 0.364,
-    "total_score": 0.364,
-    "total_input_tokens": 2980,
-    "total_output_tokens": 295,
-    "original_input_tokens": 1185,
-    "original_output_tokens": 119,
-    "altered_input_tokens": 1795,
-    "altered_output_tokens": 176,
-    "original_num_riddles": 15,
-    "altered_num_riddles": 22,
-    "num_samples": 3,
-    "best_of_n_accuracy": 0.364,
-    "majority_vote_accuracy": 0.364,
-    "rank": 12
   },
   {
     "model": "lfm2-24b-a2b",
@@ -295,7 +1041,7 @@
     "altered_accuracy": 0.295,
     "altered_weighted_accuracy": 0.334,
     "pattern_override_rate": 0.344,
-    "conditioned_override_rate": 0.453,
+    "conditioned_override_rate": 0.446,
     "average_accuracy": 0.335,
     "total_score": 0.335,
     "total_input_tokens": 26349,
@@ -306,10 +1052,80 @@
     "altered_output_tokens": 2285,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0706,
+    "average_accuracy_ci95": 0.0693,
+    "pattern_override_rate_ci95": 0.0822,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.408,
+    "best_of_n_accuracy": 0.368,
     "majority_vote_accuracy": 0.332,
-    "rank": 13
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.179,
+        "weighted_accuracy": 0.214,
+        "pattern_override_rate": 0.536
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.333,
+        "weighted_accuracy": 0.371,
+        "pattern_override_rate": 0.308
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.4,
+        "weighted_accuracy": 0.44,
+        "pattern_override_rate": 0.26
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.173,
+        "weighted_accuracy": 0.212,
+        "pattern_override_rate": 0.404
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.385,
+        "weighted_accuracy": 0.385,
+        "pattern_override_rate": 0.462
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.12,
+        "weighted_accuracy": 0.16,
+        "pattern_override_rate": 0.52
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.376,
+        "weighted_accuracy": 0.422,
+        "pattern_override_rate": 0.229
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.233,
+        "weighted_accuracy": 0.25,
+        "pattern_override_rate": 0.567
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.05,
+        "weighted_accuracy": 0.1,
+        "pattern_override_rate": 0.45
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.321,
+        "weighted_accuracy": 0.358,
+        "pattern_override_rate": 0.302
+      }
+    },
+    "parameter_count_billions": 24,
+    "active_parameter_count_billions": 2,
+    "estimated_cost_per_mtok_usd": null,
+    "rank": 12
   },
   {
     "model": "coherelabs/c4ai-command-r7b-12-2024",
@@ -319,7 +1135,7 @@
     "altered_accuracy": 0.285,
     "altered_weighted_accuracy": 0.32,
     "pattern_override_rate": 0.212,
-    "conditioned_override_rate": 0.237,
+    "conditioned_override_rate": 0.25,
     "average_accuracy": 0.309,
     "total_score": 0.309,
     "total_input_tokens": 26277,
@@ -330,10 +1146,80 @@
     "altered_output_tokens": 2329,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0669,
+    "average_accuracy_ci95": 0.067,
+    "pattern_override_rate_ci95": 0.0679,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.388,
+    "best_of_n_accuracy": 0.36,
     "majority_vote_accuracy": 0.314,
-    "rank": 14
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.214,
+        "weighted_accuracy": 0.214,
+        "pattern_override_rate": 0.393
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.3,
+        "weighted_accuracy": 0.321,
+        "pattern_override_rate": 0.175
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.38,
+        "weighted_accuracy": 0.42,
+        "pattern_override_rate": 0.2
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.25,
+        "weighted_accuracy": 0.279,
+        "pattern_override_rate": 0.212
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.538,
+        "weighted_accuracy": 0.538,
+        "pattern_override_rate": 0.154
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.12,
+        "weighted_accuracy": 0.14,
+        "pattern_override_rate": 0.4
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.358,
+        "weighted_accuracy": 0.39,
+        "pattern_override_rate": 0.128
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.133,
+        "weighted_accuracy": 0.133,
+        "pattern_override_rate": 0.4
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.25,
+        "weighted_accuracy": 0.275,
+        "pattern_override_rate": 0.25
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.302,
+        "weighted_accuracy": 0.33,
+        "pattern_override_rate": 0.189
+      }
+    },
+    "parameter_count_billions": 7,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null,
+    "rank": 13
   },
   {
     "model": "lfm2-8b-a1b",
@@ -343,7 +1229,7 @@
     "altered_accuracy": 0.261,
     "altered_weighted_accuracy": 0.296,
     "pattern_override_rate": 0.212,
-    "conditioned_override_rate": 0.451,
+    "conditioned_override_rate": 0.472,
     "average_accuracy": 0.295,
     "total_score": 0.295,
     "total_input_tokens": 26349,
@@ -354,10 +1240,80 @@
     "altered_output_tokens": 2327,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0618,
+    "average_accuracy_ci95": 0.0573,
+    "pattern_override_rate_ci95": 0.0685,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.38,
+    "best_of_n_accuracy": 0.34,
     "majority_vote_accuracy": 0.306,
-    "rank": 15
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.25,
+        "weighted_accuracy": 0.25,
+        "pattern_override_rate": 0.321
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.275,
+        "weighted_accuracy": 0.325,
+        "pattern_override_rate": 0.217
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.36,
+        "weighted_accuracy": 0.39,
+        "pattern_override_rate": 0.16
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.135,
+        "weighted_accuracy": 0.163,
+        "pattern_override_rate": 0.192
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.231,
+        "weighted_accuracy": 0.269,
+        "pattern_override_rate": 0.462
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.04,
+        "weighted_accuracy": 0.1,
+        "pattern_override_rate": 0.4
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.303,
+        "weighted_accuracy": 0.349,
+        "pattern_override_rate": 0.128
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.233,
+        "weighted_accuracy": 0.267,
+        "pattern_override_rate": 0.333
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.2,
+        "weighted_accuracy": 0.2,
+        "pattern_override_rate": 0.15
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.321,
+        "weighted_accuracy": 0.34,
+        "pattern_override_rate": 0.189
+      }
+    },
+    "parameter_count_billions": 8,
+    "active_parameter_count_billions": 1,
+    "estimated_cost_per_mtok_usd": null,
+    "rank": 14
   },
   {
     "model": "coherelabs/tiny-aya-global",
@@ -367,7 +1323,7 @@
     "altered_accuracy": 0.232,
     "altered_weighted_accuracy": 0.244,
     "pattern_override_rate": 0.204,
-    "conditioned_override_rate": 0.467,
+    "conditioned_override_rate": 0.5,
     "average_accuracy": 0.258,
     "total_score": 0.258,
     "total_input_tokens": 144859,
@@ -378,10 +1334,80 @@
     "altered_output_tokens": 2350,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0503,
+    "average_accuracy_ci95": 0.0521,
+    "pattern_override_rate_ci95": 0.0737,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.324,
+    "best_of_n_accuracy": 0.298,
     "majority_vote_accuracy": 0.25,
-    "rank": 16
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.107,
+        "weighted_accuracy": 0.125,
+        "pattern_override_rate": 0.357
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.233,
+        "weighted_accuracy": 0.258,
+        "pattern_override_rate": 0.183
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.3,
+        "weighted_accuracy": 0.34,
+        "pattern_override_rate": 0.16
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.154,
+        "weighted_accuracy": 0.183,
+        "pattern_override_rate": 0.212
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.308,
+        "weighted_accuracy": 0.385,
+        "pattern_override_rate": 0.154
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.16,
+        "weighted_accuracy": 0.18,
+        "pattern_override_rate": 0.64
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.257,
+        "weighted_accuracy": 0.289,
+        "pattern_override_rate": 0.119
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.167,
+        "weighted_accuracy": 0.167,
+        "pattern_override_rate": 0.267
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.05,
+        "weighted_accuracy": 0.075,
+        "pattern_override_rate": 0.1
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.226,
+        "weighted_accuracy": 0.255,
+        "pattern_override_rate": 0.189
+      }
+    },
+    "parameter_count_billions": null,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null,
+    "rank": 15
   },
   {
     "model": "granite-4.0-h-tiny",
@@ -402,7 +1428,77 @@
     "altered_output_tokens": 1970,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
-    "rank": 17
+    "altered_accuracy_ci95": 0.0574,
+    "average_accuracy_ci95": 0.0579,
+    "pattern_override_rate_ci95": 0.0892,
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.143,
+        "weighted_accuracy": 0.196,
+        "pattern_override_rate": 0.607
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.208,
+        "weighted_accuracy": 0.229,
+        "pattern_override_rate": 0.442
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.26,
+        "weighted_accuracy": 0.3,
+        "pattern_override_rate": 0.36
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.135,
+        "weighted_accuracy": 0.163,
+        "pattern_override_rate": 0.346
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.308,
+        "weighted_accuracy": 0.346,
+        "pattern_override_rate": 0.462
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.08,
+        "weighted_accuracy": 0.1,
+        "pattern_override_rate": 0.64
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.275,
+        "weighted_accuracy": 0.312,
+        "pattern_override_rate": 0.248
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.133,
+        "weighted_accuracy": 0.133,
+        "pattern_override_rate": 0.733
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.1,
+        "weighted_accuracy": 0.125,
+        "pattern_override_rate": 0.45
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.132,
+        "weighted_accuracy": 0.17,
+        "pattern_override_rate": 0.491
+      }
+    },
+    "parameter_count_billions": null,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null,
+    "rank": 16
   },
   {
     "model": "lfm2.5-1.2b-instruct",
@@ -412,7 +1508,7 @@
     "altered_accuracy": 0.181,
     "altered_weighted_accuracy": 0.212,
     "pattern_override_rate": 0.096,
-    "conditioned_override_rate": 0.412,
+    "conditioned_override_rate": 0.471,
     "average_accuracy": 0.212,
     "total_score": 0.212,
     "total_input_tokens": 26349,
@@ -423,10 +1519,80 @@
     "altered_output_tokens": 2168,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.0614,
+    "average_accuracy_ci95": 0.0617,
+    "pattern_override_rate_ci95": 0.0481,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.264,
+    "best_of_n_accuracy": 0.228,
     "majority_vote_accuracy": 0.208,
-    "rank": 18
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.107,
+        "weighted_accuracy": 0.107,
+        "pattern_override_rate": 0.179
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.208,
+        "weighted_accuracy": 0.237,
+        "pattern_override_rate": 0.075
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.24,
+        "weighted_accuracy": 0.26,
+        "pattern_override_rate": 0.12
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.115,
+        "weighted_accuracy": 0.163,
+        "pattern_override_rate": 0.077
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.385,
+        "weighted_accuracy": 0.462,
+        "pattern_override_rate": 0.077
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.12,
+        "weighted_accuracy": 0.16,
+        "pattern_override_rate": 0.28
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.211,
+        "weighted_accuracy": 0.239,
+        "pattern_override_rate": 0.064
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.133,
+        "weighted_accuracy": 0.133,
+        "pattern_override_rate": 0.067
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.1,
+        "weighted_accuracy": 0.125,
+        "pattern_override_rate": 0.1
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.17,
+        "weighted_accuracy": 0.198,
+        "pattern_override_rate": 0.094
+      }
+    },
+    "parameter_count_billions": 1.2,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null,
+    "rank": 17
   },
   {
     "model": "lfm2.5-1.2b-thinking:reasoning",
@@ -436,7 +1602,7 @@
     "altered_accuracy": 0.14,
     "altered_weighted_accuracy": 0.144,
     "pattern_override_rate": 0.06,
-    "conditioned_override_rate": 0.429,
+    "conditioned_override_rate": 0.364,
     "average_accuracy": 0.163,
     "total_score": 0.163,
     "total_input_tokens": 26349,
@@ -447,9 +1613,79 @@
     "altered_output_tokens": 300802,
     "original_num_riddles": 87,
     "altered_num_riddles": 250,
+    "altered_accuracy_ci95": 0.042,
+    "average_accuracy_ci95": 0.043,
+    "pattern_override_rate_ci95": 0.0365,
     "num_samples": 3,
-    "best_of_n_accuracy": 0.28,
+    "best_of_n_accuracy": 0.242,
     "majority_vote_accuracy": 0.154,
-    "rank": 19
+    "per_type": {
+      "bias_probe": {
+        "count": 28,
+        "accuracy": 0.179,
+        "weighted_accuracy": 0.196,
+        "pattern_override_rate": 0.143
+      },
+      "constraint_addition": {
+        "count": 120,
+        "accuracy": 0.108,
+        "weighted_accuracy": 0.125,
+        "pattern_override_rate": 0.058
+      },
+      "context_swap": {
+        "count": 50,
+        "accuracy": 0.14,
+        "weighted_accuracy": 0.16,
+        "pattern_override_rate": 0.06
+      },
+      "meaning_shift": {
+        "count": 52,
+        "accuracy": 0.096,
+        "weighted_accuracy": 0.144,
+        "pattern_override_rate": 0.019
+      }
+    },
+    "per_source": {
+      "claude-opus-4-6": {
+        "count": 13,
+        "accuracy": 0.154,
+        "weighted_accuracy": 0.154,
+        "pattern_override_rate": 0.077
+      },
+      "claude-sonnet-4-6": {
+        "count": 25,
+        "accuracy": 0.08,
+        "weighted_accuracy": 0.08,
+        "pattern_override_rate": 0.2
+      },
+      "gemma-4-31b-it": {
+        "count": 109,
+        "accuracy": 0.138,
+        "weighted_accuracy": 0.161,
+        "pattern_override_rate": 0.018
+      },
+      "mistral-small-2603": {
+        "count": 30,
+        "accuracy": 0.1,
+        "weighted_accuracy": 0.117,
+        "pattern_override_rate": 0.033
+      },
+      "qwen3.5-27b": {
+        "count": 20,
+        "accuracy": 0.0,
+        "weighted_accuracy": 0.025,
+        "pattern_override_rate": 0.0
+      },
+      "zai-org/GLM-5": {
+        "count": 53,
+        "accuracy": 0.151,
+        "weighted_accuracy": 0.198,
+        "pattern_override_rate": 0.113
+      }
+    },
+    "parameter_count_billions": 1.2,
+    "active_parameter_count_billions": null,
+    "estimated_cost_per_mtok_usd": null,
+    "rank": 18
   }
 ]
