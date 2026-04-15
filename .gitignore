@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Environment
+.env
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+
+# Project — private data
+data/generated/
+data/pool.jsonl
+data/sanity/
+data/model_outputs/
+data/benchmark_fixed.jsonl
+
+# Cache
+.*cache/

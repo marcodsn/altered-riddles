@@ -1,0 +1,35 @@
+{#- ------------------------------------------------------------------ #}
+{#  judge.j2 — Prompt for the LLM-as-a-judge evaluator                 #}
+{#                                                                     #}
+{#  Variables:                                                         #}
+{#    riddle        (str)  — The text of the riddle being evaluated    #}
+{#    model_answer  (str)  — The model's generated answer              #}
+{#    accepted      (list) — The primary correct answers               #}
+{#    original      (list) — The answers to the original riddle        #}
+{#    competing     (list) — Other competing but incorrect answers     #}
+{#- ------------------------------------------------------------------ #}
+You are an expert evaluator assessing an AI model's answer to a riddle.
+
+RIDDLE: {{ riddle }}
+MODEL'S ANSWER: {{ model_answer }}
+
+PRIMARY ACCEPTED TARGETS: {{ accepted | tojson }}
+ORIGINAL TARGETS (for context): {{ original | tojson }}
+COMPETING TARGETS (for context): {{ competing | tojson }}
+
+Your task is to classify the model's answer based on semantic equivalence to the provided target lists.
+Respond with ONLY a JSON object containing these boolean keys:
+- "correct": true if the model's answer semantically matches the PRIMARY ACCEPTED TARGETS.
+- "gave_original": true if the model's answer semantically matches the ORIGINAL TARGETS.
+- "competing": true if the model's answer semantically matches the COMPETING TARGETS.
+
+Example Output:
+```json
+{
+  "correct": true,
+  "gave_original": false,
+  "competing": false
+}
+```
+
+Respond strictly in JSON format. Do not include any reasoning or markdown outside the JSON block.

@@ -1,0 +1,120 @@
+{#- ------------------------------------------------------------------ #}
+{#  generation.j2 — Prompt for generating altered-riddle pairs          #}
+{#                                                                      #}
+{#  Variables:                                                          #}
+{#    few_shot_examples  (str)  — Pre-rendered JSON examples block      #}
+{#    num_variations     (int)  — Number of variations to generate      #}
+{#    source_riddle      (str)  — Optional specific riddle to alter     #}
+{#    source_answer      (str)  — Optional canonical answer to the source riddle #}
+{#    target_type        (str)  — Optional alteration type to force     #}
+{#- ------------------------------------------------------------------ #}
+
+{#- Default few-shot examples used when the caller does not supply any -#}
+{% set default_examples %}
+[
+  {
+    "original_riddle": "A man and his son are in a terrible accident and are rushed to the hospital in critical condition. The doctor looks at the boy and exclaims, 'I can't operate on this boy; he's my son!' How could this be?",
+    "original_answer": "The doctor is the boy's mother.",
+    "original_reasoning": "The riddle plays on the assumption that doctors are male. The surgeon is the boy's mother.",
+    "altered_riddle": "The surgeon, who is the boy's father, says 'I cannot operate on this boy, he's my son!'. Who is the surgeon to the boy?",
+    "altered_answer": "The surgeon is the boy's father.",
+    "altered_reasoning": "The altered riddle explicitly states the surgeon is the boy's father. The question asks for this relationship, making the answer directly stated in the text."
+  },
+  {
+    "original_riddle": "I'm tall when I'm young, and I'm short when I'm old. What am I?",
+    "original_answer": "A candle.",
+    "original_reasoning": "A candle starts tall and becomes shorter as it burns down.",
+    "altered_riddle": "I'm tall when I'm young, and I'm short when I'm old, and I grow from the ground. What am I?",
+    "altered_answer": "A plant.",
+    "altered_reasoning": "Adding 'grows from the ground' eliminates candle. Plants grow tall from the ground when young and become shorter when they wither in old age."
+  },
+  {
+    "original_riddle": "What has a head and a tail but no body?",
+    "original_answer": "A coin.",
+    "original_reasoning": "Coins have 'heads' and 'tails' sides but no body.",
+    "altered_riddle": "What has a head and a tail but no body, yet swims?",
+    "altered_answer": "A sperm cell.",
+    "altered_reasoning": "Adding 'yet swims' disqualifies coin. Sperm cells and tadpoles have distinct head and tail sections, lack a body in the typical sense, and swim."
+  }
+]
+{% endset %}
+
+{#- Choose caller-provided examples or fall back to defaults -#}
+{% set examples_block = (few_shot_examples if (few_shot_examples is defined and few_shot_examples) else default_examples) %}
+
+You are an expert riddle designer for an LLM benchmark called "Altered Riddles."
+
+## Your Task
+
+Generate pairs of (original riddle, altered riddle) where a **subtle change** to a well-known riddle causes the correct answer to become **completely different**.
+
+The purpose is to test whether language models can reason about the specific wording of a riddle rather than simply recalling a memorized answer.
+
+## Rules & Constraints
+
+1. **Start from well-known, common riddles.** The original riddle should be one that most people (and most LLMs) would recognize. Avoid obscure or niche riddles.
+2. **Alterations must be SUBTLE.** Change or add only a few words — just enough to invalidate the original answer and point to a new one. The altered riddle should still *look* very similar to the original at a glance.
+3. **The altered answer must be LOGICALLY SOUND.** It must satisfy every clause of the altered riddle. A reader who thinks carefully should be able to arrive at it through reasoning alone.
+4. **The original answer must NOT work for the altered version.** The whole point is that the small change breaks the original answer.
+5. **Do NOT produce nonsensical, contrived, or "trick" riddles** that have no defensible logical answer. Every altered riddle must have a clear, defensible solution.
+6. **Do NOT produce riddles whose answers depend on obscure knowledge, puns that only work in certain dialects, or subjective interpretation.**
+7. **Classify your alteration type.** Each altered riddle must be tagged with one of four types:
+   - `constraint_addition` — A new physical, material, size, or functional constraint is added that rules out the original answer (e.g., "and it grows from the ground", "made of metal", "fits in your pocket").
+   - `meaning_shift` — A key word is changed so that it takes on a different meaning in the new context, leading to a different answer (e.g., changing "bucket" to "room" so "lighter" shifts from weight to brightness).
+   - `context_swap` — The context or setting is swapped in a way that changes the logical answer (e.g., the question's perspective is redirected, or the entity is placed in a different domain).
+   - `bias_probe` — The riddle is specifically designed to test a known model bias or memorized pattern. The alteration explicitly states information that contradicts the expected (biased) answer (e.g., stating the surgeon IS the father, directly countering the gender-bias assumption).
+8. **Use a single canonical answer form.** The `altered_answer` field must
+   contain exactly one clean answer string — no parenthetical alternatives or
+   qualifiers (e.g. do NOT write `"Encryption (or an encryption key)."` or
+   `"A die (or dice)."`). If multiple phrasings are valid, pick the most
+   natural one as the primary answer; other forms will be captured later.
+
+## Few-Shot Examples
+
+Here are examples of well-crafted altered-riddle pairs:
+
+```json
+{{ examples_block }}
+```
+
+Study these examples carefully. Notice how each alteration is small but decisive.
+
+## What to Generate
+
+{% if source_riddle %}
+Generate **{{ num_variations | default(5) }}** altered variations of the following specific riddle:
+
+> {{ source_riddle }}
+
+{% if source_answer %}
+The canonical answer to this riddle is: **{{ source_answer }}**
+{% endif %}
+
+Each variation should introduce a different subtle change that leads to a different altered answer. Try to find diverse, creative alterations.
+{% else %}
+Generate **{{ num_variations | default(5) }}** new altered-riddle pairs. Use well-known, commonly recognized riddles as your starting points. Choose a diverse set of source riddles — do not reuse the same original riddle more than once.
+{% endif %}
+
+## Output Format
+
+Respond with a JSON array of objects. Each object must have exactly these seven fields:
+
+```json
+[
+  {
+    "original_riddle": "The original, well-known riddle text.",
+    "original_answer": "The classic answer to the original riddle.",
+    "original_reasoning": "Why the original answer is correct for the original riddle.",
+    "altered_riddle": "The subtly modified riddle text.",
+    "altered_answer": "The new correct answer for the altered riddle.",
+    "altered_reasoning": "Step-by-step reasoning for why the new answer is correct and the original answer no longer works.",
+    "type": "constraint_addition | meaning_shift | context_swap | bias_probe"
+  }
+]
+```
+
+{% if target_type %}
+IMPORTANT: Generate ONLY riddles of type "{{ target_type }}".
+{% endif %}
+
+Return ONLY the JSON array — no extra commentary, no markdown fences, no preamble.

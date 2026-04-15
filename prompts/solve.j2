@@ -1,0 +1,29 @@
+{# ───────────────────────────────────────────────────────────────────────────
+   solve.j2 — Benchmark prompt: ask a model to solve a single riddle.
+
+   Variables:
+     {{ riddle }}            — the riddle text to solve
+     {{ chain_of_thought }}  — (optional, default false) request reasoning
+
+   Design notes:
+     • Keep it simple and neutral — no hints about alterations.
+     • Do NOT prime the model toward any particular answer.
+     • Request structured JSON output for easy automated scoring.
+     • When chain-of-thought is enabled, reasoning comes BEFORE the
+       answer so non-thinking models reason before committing.
+   ─────────────────────────────────────────────────────────────────────────── #}
+{% if chain_of_thought %}
+Solve the following riddle. Provide your answer in 1–5 words along with a brief reasoning that explains why your answer is correct.
+
+Riddle: {{ riddle }}
+
+Respond with ONLY a JSON object in the following format (no additional text):
+{"reasoning": "brief explanation of why this answer is correct", "answer": "your short answer here"}
+{% else %}
+Solve the following riddle. Provide your answer in 1–5 words.
+
+Riddle: {{ riddle }}
+
+Respond with ONLY a JSON object in the following format (no additional text):
+{"answer": "your short answer here"}
+{% endif %}

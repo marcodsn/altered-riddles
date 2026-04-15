@@ -1,0 +1,128 @@
+{#- ==========================================================================
+    validation.j2  –  Altered-Riddles Benchmark
+    Prompt template for validating a generated altered riddle.
+
+    Expected variables:
+      - original_riddle   : str – the original riddle text
+      - original_answer   : str – the canonical answer to the original riddle
+      - altered_riddle    : str – the altered riddle text
+      - altered_answer    : str – the proposed answer to the altered riddle
+      - altered_reasoning : str – the reasoning behind the altered answer
+    ========================================================================== -#}
+You are an expert riddle analyst. Your job is to rigorously evaluate whether an
+"altered riddle" is a valid benchmark item for testing language-model reasoning.
+
+**About this benchmark:** The Altered-Riddles benchmark tests whether LLMs can
+override memorized patterns when riddle details change. An altered riddle is
+created by modifying a well-known riddle so that the original answer no longer
+applies and a NEW answer becomes correct. The key metric is whether the model
+gives the ORIGINAL (memorized) answer to the ALTERED riddle instead of reasoning
+through the changed details. Therefore, competing answers that are NOT the
+original answer are acceptable — they still demonstrate the model is reasoning
+rather than recalling. Such competing answers will be captured and given partial
+credit during scoring.
+
+Below is the item to evaluate.
+
+─────────────────────────────────
+ORIGINAL RIDDLE:
+{{ original_riddle }}
+
+ORIGINAL ANSWER:
+{{ original_answer }}
+─────────────────────────────────
+ALTERED RIDDLE:
+{{ altered_riddle }}
+
+PROPOSED ALTERED ANSWER:
+{{ altered_answer }}
+
+NOTE: If the proposed altered answer above presents alternatives — e.g.
+"Encryption (or an encryption key)." or "A playing card (specifically a King,
+Queen, or Jack)." — you must split it: put only the single canonical primary
+form in `altered_answer` (without parentheses) and list all equivalent forms
+(including the primary) in `altered_accepted_answers`.
+
+PROVIDED REASONING:
+{{ altered_reasoning }}
+─────────────────────────────────
+
+Evaluate this altered riddle on ALL of the following criteria:
+
+1. **Answer validity** – Does the proposed altered answer ("{{ altered_answer }}")
+   satisfy EVERY clause and constraint in the altered riddle? Go through the
+   riddle sentence by sentence and verify each condition.
+
+2. **Distinctness** – Is the altered answer clearly and meaningfully different
+   from the original answer ("{{ original_answer }}")? Trivial rewordings or
+   synonyms of the original answer do NOT count as distinct.
+
+3. **Uniqueness** – Are there other answers that could also validly satisfy the
+   altered riddle? Thoroughly list any competing answers you find — but note
+   that competing answers are NOT necessarily disqualifying for this benchmark.
+   The benchmark's purpose is to test whether models give the *original*
+   memorized answer instead of reasoning. Other valid answers (that differ from
+   the original) still show the model is reasoning, and they will be added to
+   the accepted answer set for scoring. Only flag this as a real problem if one
+   of the competing answers IS the original answer ("{{ original_answer }}"),
+   because that would mean the alteration didn't actually invalidate the
+   original. List any competing answers that are valid but different from BOTH
+   the proposed altered answer ("{{ altered_answer }}") and the original answer
+   ("{{ original_answer }}").
+
+4. **Subtlety** – Is the alteration restrained enough that someone who knows
+   the original riddle might plausibly overlook the change and blurt out the
+   original answer? Small-to-moderate changes are perfectly fine — only flag
+   `is_subtle` as false for massive rewrites or completely different riddles
+   that bear little resemblance to the original.
+
+5. **Logical soundness** – Is the altered riddle logically coherent? It must
+   not contain contradictions, nonsensical clauses, or conditions that no
+   real-world or well-understood concept can satisfy.
+
+6. **Clarity** – Does the altered riddle have at least one clearly defensible
+   answer? Multiple valid answers are acceptable for this benchmark (see
+   criterion 3), but the riddle should not be so vague or incoherent that no
+   answer stands out as well-supported. Only flag `is_clear` as false if the
+   riddle is too muddled to reason about meaningfully.
+
+Think step-by-step through each criterion, then produce your evaluation as a
+single JSON object with EXACTLY this structure (no extra keys, no markdown
+fencing):
+
+{
+  "answer_valid": true or false,
+  "is_distinct": true or false,
+  "has_competing_answers": true or false,
+  "is_subtle": true or false,
+  "is_logical": true or false,
+  "is_clear": true or false,
+  "competing_answers": ["list", "of", "alternative", "answers", "if any"],
+  "altered_accepted_answers": ["canonical primary answer", "any equivalent alternative phrasing"],
+  "overall_valid": true or false,
+  "reasoning": "Brief explanation covering all six criteria and your overall verdict."
+}
+
+`overall_valid` must be true when ALL of the following hard requirements hold:
+  • answer_valid is true
+  • is_distinct is true
+  • is_logical is true
+
+The remaining fields are soft quality signals that are recorded but do NOT
+block `overall_valid`:
+  • has_competing_answers – Reported for information. Competing answers that
+    differ from the original will be added to the accepted answer set during
+    scoring. Only note concern if the original answer is among the competing
+    answers.
+  • is_subtle – A quality indicator. Moderate alterations are acceptable.
+  • is_clear – A quality indicator. Multiple valid answers are fine for this
+    benchmark as long as at least one answer is clearly defensible.
+  • altered_accepted_answers – Always include at least the canonical primary
+    answer. If the proposed altered_answer contained alternatives
+    (e.g. "X (or Y)"), list each alternative as a separate entry here. Any
+    phrasing that a lenient judge would score as equivalent to the primary
+    answer should also be listed.
+
+If ANY of the three hard requirements fails, `overall_valid` must be false.
+
+Respond with ONLY the JSON object. Do not include any text before or after it.
