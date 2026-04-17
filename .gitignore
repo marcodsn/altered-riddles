@@ -27,5 +27,9 @@ data/sanity/
 data/model_outputs/
 data/benchmark_fixed.jsonl
 
+# Project - quality of life scripts
+scripts/source_ratio.py
+scripts/validated_source_counts.py
+
 # Cache
 .*cache/

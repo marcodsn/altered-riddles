@@ -39,6 +39,12 @@ PROVIDERS: dict[str, dict] = {
         "client_type": "openai_compat",
         "base_url": "https://api.together.xyz/v1",
     },
+    "nous": {
+        "default_model": "xiaomi/mimo-v2-pro",
+        "env_key": "NOUS_API_KEY",
+        "client_type": "openai_compat",
+        "base_url": "https://inference-api.nousresearch.com/v1",
+    },
 }
 
 # Retry / batching defaults
@@ -52,6 +58,7 @@ DEFAULT_SANITY_RESULTS = "data/sanity/results.json"
 DEFAULT_RAW = "data/generated/raw.jsonl"
 DEFAULT_VALIDATED = "data/generated/validated.jsonl"
 DEFAULT_REJECTED = "data/generated/rejected.jsonl"
+DEFAULT_HUMAN_REJECTED = "data/generated/human_rejected.jsonl"
 DEFAULT_POOL = "data/pool.jsonl"
 DEFAULT_BENCHMARK = "data/benchmark.jsonl"
 DEFAULT_BENCHMARK_FIXED = "data/benchmark_fixed.jsonl"

@@ -33,7 +33,9 @@ from scripts.core.io_utils import (
 )
 from scripts.core.llm_client import call_llm_batched
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+)
 logger = logging.getLogger("validate")
 
 
@@ -72,7 +74,9 @@ def to_validated_format(entry: dict, new_id: str, validation: dict) -> dict:
     # Build competing answers (exclude original answer)
     orig_lower = original_answer.strip().lower()
     competing = [
-        a for a in validation.get("competing_answers", []) if a.strip().lower() != orig_lower
+        a
+        for a in validation.get("competing_answers", [])
+        if a.strip().lower() != orig_lower
     ]
 
     return {
@@ -95,6 +99,8 @@ def to_validated_format(entry: dict, new_id: str, validation: dict) -> dict:
         "is_subtle": bool(validation.get("is_subtle", False)),
         "is_logical": bool(validation.get("is_logical", False)),
         "is_clear": bool(validation.get("is_clear", False)),
+        "needs_review": bool(validation.get("needs_review", False)),
+        "review_reason": validation.get("review_reason", ""),
         "validation_reasoning": validation.get("reasoning", ""),
     }
 
@@ -181,13 +187,17 @@ def validate(args):
 
         for (entry, _), result in zip(chunk, results):
             if isinstance(result, BaseException):
-                logger.error("Validation failed for %s: %s", entry.get("id", "?"), result)
+                logger.error(
+                    "Validation failed for %s: %s", entry.get("id", "?"), result
+                )
                 continue
 
             try:
                 validation = parse_validation_response(result.text)
             except (json.JSONDecodeError, ValueError) as exc:
-                logger.error("Unparseable response for %s: %s", entry.get("id", "?"), exc)
+                logger.error(
+                    "Unparseable response for %s: %s", entry.get("id", "?"), exc
+                )
                 continue
 
             passed = bool(validation.get("overall_valid", False))
@@ -216,16 +226,22 @@ def validate(args):
                     # Validation quality signals
                     "answer_valid": bool(validation.get("answer_valid", False)),
                     "is_distinct": bool(validation.get("is_distinct", False)),
-                    "has_competing_answers": bool(validation.get("has_competing_answers", False)),
+                    "has_competing_answers": bool(
+                        validation.get("has_competing_answers", False)
+                    ),
                     "is_subtle": bool(validation.get("is_subtle", False)),
                     "is_logical": bool(validation.get("is_logical", False)),
                     "is_clear": bool(validation.get("is_clear", False)),
+                    "needs_review": bool(validation.get("needs_review", False)),
+                    "review_reason": validation.get("review_reason", ""),
                     "validation_reasoning": validation.get("reasoning", ""),
                 }
                 append_jsonl(args.rejected, rejection_record)
                 total_failed += 1
 
-            logger.info("  %s -> %s", entry.get("id", "?"), "PASS" if passed else "FAIL")
+            logger.info(
+                "  %s -> %s", entry.get("id", "?"), "PASS" if passed else "FAIL"
+            )
 
     logger.info("=" * 60)
     logger.info(
@@ -237,7 +253,9 @@ def validate(args):
 
 
 def build_parser():
-    parser = argparse.ArgumentParser(description="Validate raw altered riddles using an LLM.")
+    parser = argparse.ArgumentParser(
+        description="Validate raw altered riddles using an LLM."
+    )
     parser.add_argument("--provider", choices=provider_names(), default="local")
     parser.add_argument("--model", default=None)
     parser.add_argument("--input", default=DEFAULT_RAW)

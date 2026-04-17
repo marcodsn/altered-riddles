@@ -1,0 +1,47 @@
+[
+  {
+    "model": "xiaomi/mimo-v2-pro",
+    "provider": "nous",
+    "quantization": null,
+    "original_accuracy": 0.9615,
+    "altered_accuracy": 0.4448,
+    "pattern_override_rate": 0.3023,
+    "conditioned_override_rate": 0.3102,
+    "conditioned_override_total": 332,
+    "total_input_tokens": 160333,
+    "total_output_tokens": 703202,
+    "conditioned_override_ci95": 0.0571,
+    "altered_accuracy_ci95": 0.0599,
+    "rank": 1
+  },
+  {
+    "model": "xiaomi/mimo-v2-omni",
+    "provider": "nous",
+    "quantization": null,
+    "original_accuracy": 0.9365,
+    "altered_accuracy": 0.3794,
+    "pattern_override_rate": 0.341,
+    "conditioned_override_rate": 0.3503,
+    "conditioned_override_total": 608,
+    "total_input_tokens": 270801,
+    "total_output_tokens": 1221241,
+    "conditioned_override_ci95": 0.042,
+    "altered_accuracy_ci95": 0.0433,
+    "rank": 2
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "local",
+    "quantization": "UD-Q6_K_XL",
+    "original_accuracy": 0.8591,
+    "altered_accuracy": 0.307,
+    "pattern_override_rate": 0.43,
+    "conditioned_override_rate": 0.4762,
+    "conditioned_override_total": 861,
+    "total_input_tokens": 105824,
+    "total_output_tokens": 9759,
+    "conditioned_override_ci95": 0.0421,
+    "altered_accuracy_ci95": 0.0327,
+    "rank": 3
+  }
+]

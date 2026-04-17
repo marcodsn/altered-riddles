@@ -29,11 +29,31 @@ from scripts.core.config import DEFAULT_BENCHMARK, DEFAULT_BENCHMARK_FIXED, DEFA
 from scripts.core.io_utils import append_jsonl, load_jsonl_if_exists, write_jsonl
 
 logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s", datefmt="%H:%M:%S"
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%H:%M:%S",
 )
 logger = logging.getLogger(__name__)
 
 FIXED_PATH = DEFAULT_BENCHMARK_FIXED
+
+MODEL_FAMILY_MAP: dict[str, str] = {
+    "gpt": "gpt",
+    "claude": "claude",
+    "gemini": "gemini",
+    "gemma": "gemma",
+    "llama": "llama",
+    "mistral": "mistral",
+    "command": "cohere",
+    "qwen": "qwen",
+    "deepseek": "deepseek",
+    "glm": "glm",
+    "mimo": "mimo",
+    "lfm": "lfm",
+    "minimax": "minimax",
+    "kimi": "kimi",
+    "grok": "grok",
+}
 
 
 def _make_id(n: int) -> str:
@@ -53,13 +73,28 @@ def _get_max_id(entries: list[dict]) -> int:
     return max_id
 
 
+def _model_to_family(model_id: str) -> str:
+    """Return the family name for a given model id, or the id itself as fallback."""
+    raw = model_id.strip().lower()
+    if not raw:
+        return "__unknown__"
+    key = raw.split("/", 1)[1] if "/" in raw else raw
+    for prefix, family in MODEL_FAMILY_MAP.items():
+        if key.startswith(prefix):
+            return family
+    return key  # unknown model stays as-is
+
+
 def _pick_balanced(
     pool: list[dict],
     count: int,
     max_per_original: int | None = None,
     existing_entries: list[dict] | None = None,
 ) -> tuple[list[dict], list[dict]]:
-    """Pick count entries using round-robin over source values.
+    """Pick count entries using round-robin over model families.
+
+    If round-robin stalls because some families run out of eligible entries,
+    fall back to any remaining eligible entries across the whole pool.
     Returns (selected, remaining).
     """
     original_counts: dict[str, int] = defaultdict(int)
@@ -71,45 +106,136 @@ def _pick_balanced(
 
     buckets: dict[str, list[int]] = defaultdict(list)
     for i, entry in enumerate(pool):
-        buckets[entry.get("source", "__unknown__")].append(i)
+        if entry.get("used_in_set"):
+            continue
+        family = _model_to_family(entry.get("source", "__unknown__"))
+        buckets[family].append(i)
 
-    sources = list(buckets.keys())
+    families = list(buckets.keys())
     selected_indices: list[int] = []
+    selected_set: set[int] = set()
     skipped: set[int] = set()
+
+    def is_eligible(idx: int) -> bool:
+        entry = pool[idx]
+        orig_key = _normalize(entry.get("original_riddle", ""))
+        return not (
+            max_per_original
+            and orig_key
+            and original_counts[orig_key] >= max_per_original
+        )
+
+    def select_idx(idx: int) -> None:
+        entry = pool[idx]
+        orig_key = _normalize(entry.get("original_riddle", ""))
+        selected_indices.append(idx)
+        selected_set.add(idx)
+        if orig_key:
+            original_counts[orig_key] += 1
 
     while len(selected_indices) < count:
         made_progress = False
-        for src in sources:
+        for family in families:
             if len(selected_indices) >= count:
                 break
-            while buckets[src]:
-                idx = buckets[src].pop(0)
-                entry = pool[idx]
-                orig_key = _normalize(entry.get("original_riddle", ""))
-                if max_per_original and orig_key and original_counts[orig_key] >= max_per_original:
+            while buckets[family]:
+                idx = buckets[family].pop(0)
+                if idx in selected_set:
+                    continue
+                if not is_eligible(idx):
                     skipped.add(idx)
                     continue
-                selected_indices.append(idx)
-                if orig_key:
-                    original_counts[orig_key] += 1
+                select_idx(idx)
                 made_progress = True
                 break
+        if made_progress:
+            continue
+
+        for i, entry in enumerate(pool):
+            if len(selected_indices) >= count:
+                break
+            if entry.get("used_in_set") or i in selected_set:
+                continue
+            if not is_eligible(i):
+                skipped.add(i)
+                continue
+            select_idx(i)
+            made_progress = True
+
         if not made_progress:
             break
 
-    selected_set = set(selected_indices)
     selected = [pool[i] for i in selected_indices]
-    remaining = [pool[i] for i in range(len(pool)) if i not in selected_set and i not in skipped]
-    remaining.extend(pool[i] for i in sorted(skipped))
+    remaining = []
+    for i, entry in enumerate(pool):
+        if i in selected_set:
+            updated = dict(entry)
+            updated["used_in_set"] = True
+            updated["used_set"] = updated.get("set") or "benchmark"
+            remaining.append(updated)
+        elif i in skipped:
+            remaining.append(entry)
+        else:
+            remaining.append(entry)
     return selected, remaining
 
 
-def _source_breakdown(entries: list[dict], label: str):
+def _family_breakdown(entries: list[dict], label: str):
     counts: dict[str, int] = defaultdict(int)
     for e in entries:
-        counts[e.get("source", "?")] += 1
-    breakdown = ", ".join(f"{s}={n}" for s, n in sorted(counts.items()))
-    logger.info("%s source breakdown: %s", label, breakdown)
+        family = _model_to_family(e.get("source", "__unknown__"))
+        counts[family] += 1
+    breakdown = ", ".join(f"{family}={n}" for family, n in sorted(counts.items()))
+    logger.info("%s model-family breakdown: %s", label, breakdown)
+
+
+def _log_promotion_eligibility(
+    pool: list[dict],
+    existing_entries: list[dict],
+    max_per_original: int | None,
+) -> None:
+    pending_pool = [e for e in pool if not e.get("used_in_set")]
+    if not pending_pool:
+        logger.info("No pending pool entries remain.")
+        return
+
+    original_counts: dict[str, int] = defaultdict(int)
+    for e in existing_entries:
+        key = _normalize(e.get("original_riddle", ""))
+        if key:
+            original_counts[key] += 1
+
+    eligible_count = 0
+    blocked_count = 0
+    blocked_originals: dict[str, int] = defaultdict(int)
+
+    for entry in pending_pool:
+        orig_key = _normalize(entry.get("original_riddle", ""))
+        if (
+            max_per_original
+            and orig_key
+            and original_counts[orig_key] >= max_per_original
+        ):
+            blocked_count += 1
+            blocked_originals[orig_key] += 1
+        else:
+            eligible_count += 1
+
+    logger.info(
+        "Promotion eligibility: %d pending, %d eligible, %d blocked by max-per-original=%s.",
+        len(pending_pool),
+        eligible_count,
+        blocked_count,
+        max_per_original,
+    )
+
+    if blocked_originals:
+        top_blocked = sorted(
+            blocked_originals.items(),
+            key=lambda item: (-item[1], item[0]),
+        )[:5]
+        summary = ", ".join(f"{orig}={n}" for orig, n in top_blocked)
+        logger.info("Top blocked originals in pending pool: %s", summary)
 
 
 # ── Subcommands ───────────────────────────────────────────────────────
@@ -126,7 +252,9 @@ def cmd_add(args):
     existing_fixed = load_jsonl_if_exists(FIXED_PATH)
     all_existing = existing + existing_fixed
 
-    to_promote, remaining = _pick_balanced(pool, count, args.max_per_original, all_existing)
+    to_promote, remaining = _pick_balanced(
+        pool, count, args.max_per_original, all_existing
+    )
     max_id = max(_get_max_id(existing), _get_max_id(existing_fixed))
 
     for i, entry in enumerate(to_promote, start=max_id + 1):
@@ -138,14 +266,20 @@ def cmd_add(args):
         append_jsonl(target, entry)
     write_jsonl(args.pool, remaining)
 
+    used_count = sum(1 for e in remaining if e.get("used_in_set"))
+    pending_count = len(remaining) - used_count
+
     logger.info(
-        "Promoted %d riddles -> %s (set=%s). Pool: %d remaining.",
+        "Promoted %d riddles -> %s (set=%s). Pool: %d pending, %d used.",
         len(to_promote),
         target,
         args.set,
-        len(remaining),
+        pending_count,
+        used_count,
     )
-    _source_breakdown(to_promote, "Promoted")
+    if not to_promote:
+        _log_promotion_eligibility(pool, all_existing, args.max_per_original)
+    _family_breakdown(to_promote, "Promoted")
 
 
 def cmd_status(args):
@@ -153,9 +287,15 @@ def cmd_status(args):
     fixed = load_jsonl_if_exists(FIXED_PATH)
     pool = load_jsonl_if_exists(args.pool)
 
-    pool_sources: dict[str, int] = defaultdict(int)
-    for e in pool:
-        pool_sources[e.get("source", "?")] += 1
+    pending_pool = [e for e in pool if not e.get("used_in_set")]
+    used_pool = [e for e in pool if e.get("used_in_set")]
+
+    pending_families: dict[str, int] = defaultdict(int)
+    used_families: dict[str, int] = defaultdict(int)
+    for e in pending_pool:
+        pending_families[_model_to_family(e.get("source", "__unknown__"))] += 1
+    for e in used_pool:
+        used_families[_model_to_family(e.get("source", "__unknown__"))] += 1
 
     print()
     print("+" + "-" * 40 + "+")
@@ -164,12 +304,19 @@ def cmd_status(args):
     print(f"|  Benchmark (auxiliary) : {len(benchmark):<14d}|")
     print(f"|  Benchmark (fixed)     : {len(fixed):<14d}|")
     print(f"|  Total benchmark       : {len(benchmark) + len(fixed):<14d}|")
-    print(f"|  Pool (pending)        : {len(pool):<14d}|")
-    if pool_sources:
+    print(f"|  Pool (total)          : {len(pool):<14d}|")
+    print(f"|  Pool (pending)        : {len(pending_pool):<14d}|")
+    print(f"|  Pool (used)           : {len(used_pool):<14d}|")
+    if pending_families:
         print("+" + "-" * 40 + "+")
-        print("|  Pool by source                        |")
-        for src, n in sorted(pool_sources.items()):
-            print(f"|    {src:<22s}: {n:<12d}|")
+        print("|  Pending pool by family               |")
+        for family, n in sorted(pending_families.items()):
+            print(f"|    {family:<22s}: {n:<12d}|")
+    if used_families:
+        print("+" + "-" * 40 + "+")
+        print("|  Used pool by family                  |")
+        for family, n in sorted(used_families.items()):
+            print(f"|    {family:<22s}: {n:<12d}|")
     print("+" + "-" * 40 + "+")
     print()
 
@@ -191,7 +338,9 @@ def cmd_refresh_auxiliary(args):
     fixed_entries = load_jsonl_if_exists(FIXED_PATH)
     count = min(args.count, len(pool))
 
-    to_promote, remaining = _pick_balanced(pool, count, args.max_per_original, fixed_entries)
+    to_promote, remaining = _pick_balanced(
+        pool, count, args.max_per_original, fixed_entries
+    )
 
     max_id = _get_max_id(fixed_entries)
     for i, entry in enumerate(to_promote, start=max_id + 1):
@@ -201,10 +350,18 @@ def cmd_refresh_auxiliary(args):
     write_jsonl(args.benchmark, to_promote)
     write_jsonl(args.pool, remaining)
 
+    used_count = sum(1 for e in remaining if e.get("used_in_set"))
+    pending_count = len(remaining) - used_count
+
     logger.info(
-        "Refreshed auxiliary: %d entries. Pool: %d remaining.", len(to_promote), len(remaining)
+        "Refreshed auxiliary: %d entries. Pool: %d pending, %d used.",
+        len(to_promote),
+        pending_count,
+        used_count,
     )
-    _source_breakdown(to_promote, "New auxiliary")
+    if not to_promote:
+        _log_promotion_eligibility(pool, fixed_entries, args.max_per_original)
+    _family_breakdown(to_promote, "New auxiliary")
 
 
 def cmd_split(args):
@@ -218,7 +375,9 @@ def cmd_split(args):
     total_needed = fixed_count + aux_count
 
     if total_needed > len(pool):
-        logger.warning("Requested %d but pool has %d. Adjusting.", total_needed, len(pool))
+        logger.warning(
+            "Requested %d but pool has %d. Adjusting.", total_needed, len(pool)
+        )
         ratio = fixed_count / total_needed
         fixed_count = int(len(pool) * ratio)
         aux_count = len(pool) - fixed_count
@@ -245,21 +404,27 @@ def cmd_split(args):
     write_jsonl(args.benchmark, aux_entries)
     write_jsonl(args.pool, final_remaining)
 
+    used_count = sum(1 for e in final_remaining if e.get("used_in_set"))
+    pending_count = len(final_remaining) - used_count
+
     logger.info(
-        "Split complete: %d fixed, %d auxiliary. Pool: %d remaining.",
+        "Split complete: %d fixed, %d auxiliary. Pool: %d pending, %d used.",
         len(fixed_entries),
         len(aux_entries),
-        len(final_remaining),
+        pending_count,
+        used_count,
     )
-    _source_breakdown(fixed_entries, "Fixed")
-    _source_breakdown(aux_entries, "Auxiliary")
+    _family_breakdown(fixed_entries, "Fixed")
+    _family_breakdown(aux_entries, "Auxiliary")
 
 
 # ── CLI ───────────────────────────────────────────────────────────────
 
 
 def build_parser():
-    parser = argparse.ArgumentParser(description="Promote riddles from pool to benchmark.")
+    parser = argparse.ArgumentParser(
+        description="Promote riddles from pool to benchmark."
+    )
     sub = parser.add_subparsers(dest="command", required=True)
 
     p_add = sub.add_parser("add", help="Move riddles from pool -> benchmark")

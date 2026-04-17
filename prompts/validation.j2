@@ -43,6 +43,17 @@ Queen, or Jack)." — you must split it: put only the single canonical primary
 form in `altered_answer` (without parentheses) and list all equivalent forms
 (including the primary) in `altered_accepted_answers`.
 
+Also assess whether this item should be sent for manual human review. Use this
+sparingly and only when there is genuine uncertainty that cannot be resolved
+confidently from the text alone. Do NOT use manual review just because a riddle
+is metaphorical, has more than one non-original valid answer, or requires some
+interpretation. Do use it when, after careful analysis, you are still materially
+uncertain about whether the proposed answer truly satisfies all lines, whether
+the altered riddle is logically coherent, or whether the item is too ambiguous
+to judge reliably. The goal is to avoid both overconfidence and over-flagging.
+If review is needed, still provide your best judgment on all fields, set
+`needs_review` to true, and give a short concrete `review_reason`.
+
 PROVIDED REASONING:
 {{ altered_reasoning }}
 ─────────────────────────────────
@@ -51,22 +62,26 @@ Evaluate this altered riddle on ALL of the following criteria:
 
 1. **Answer validity** – Does the proposed altered answer ("{{ altered_answer }}")
    satisfy EVERY clause and constraint in the altered riddle? Go through the
-   riddle sentence by sentence and verify each condition.
+   riddle line by line and verify each condition against the proposed answer.
+   This includes both literal constraints (physical, spatial, temporal) AND
+   metaphorical or imagistic lines — every line must find a plausible mapping
+   onto the proposed answer. If any line is left unmapped or unaddressed by the
+   proposed answer, flag `answer_valid` as false.
 
 2. **Distinctness** – Is the altered answer clearly and meaningfully different
    from the original answer ("{{ original_answer }}")? Trivial rewordings or
    synonyms of the original answer do NOT count as distinct.
 
-3. **Uniqueness** – Are there other answers that could also validly satisfy the
-   altered riddle? Thoroughly list any competing answers you find — but note
-   that competing answers are NOT necessarily disqualifying for this benchmark.
-   The benchmark's purpose is to test whether models give the *original*
-   memorized answer instead of reasoning. Other valid answers (that differ from
-   the original) still show the model is reasoning, and they will be added to
-   the accepted answer set for scoring. Only flag this as a real problem if one
-   of the competing answers IS the original answer ("{{ original_answer }}"),
-   because that would mean the alteration didn't actually invalidate the
-   original. List any competing answers that are valid but different from BOTH
+3. **Uniqueness** – Are there other answers that could also validly satisfy ALL
+   lines of the altered riddle? List any such competing answers, but note two
+   important rules:
+   - Competing answers that differ from the original answer ("{{ original_answer }}")
+     are NOT disqualifying — they will be added to the accepted answer set for
+     scoring and still demonstrate the model is reasoning rather than recalling.
+   - Competing answers ARE a real problem only if one of them IS the original
+     answer ("{{ original_answer }}"), because that would mean the alteration
+     failed to invalidate the original.
+   In `competing_answers`, list only answers that are valid but differ from BOTH
    the proposed altered answer ("{{ altered_answer }}") and the original answer
    ("{{ original_answer }}").
 
@@ -76,15 +91,25 @@ Evaluate this altered riddle on ALL of the following criteria:
    `is_subtle` as false for massive rewrites or completely different riddles
    that bear little resemblance to the original.
 
-5. **Logical soundness** – Is the altered riddle logically coherent? It must
-   not contain contradictions, nonsensical clauses, or conditions that no
-   real-world or well-understood concept can satisfy.
+5. **Logical soundness** – Is the altered riddle internally consistent,
+   independent of any proposed answer? It must not contain contradictions,
+   nonsensical clauses, or conditions that no real-world or well-understood
+   concept can satisfy. Note: this criterion concerns the riddle's internal
+   coherence, not whether the proposed answer fits — that is covered by
+   criterion 1.
 
 6. **Clarity** – Does the altered riddle have at least one clearly defensible
    answer? Multiple valid answers are acceptable for this benchmark (see
    criterion 3), but the riddle should not be so vague or incoherent that no
    answer stands out as well-supported. Only flag `is_clear` as false if the
    riddle is too muddled to reason about meaningfully.
+
+7. **Manual review** – Decide whether this item needs later human verification.
+   Set `needs_review` to true only for borderline cases with real residual
+   uncertainty after careful reasoning. Do not flag routine cases. Do not flag
+   merely because there are competing non-original answers. If you can make a
+   well-supported judgment, set `needs_review` to false. If you set it to true,
+   `review_reason` must briefly name the specific uncertainty.
 
 Think step-by-step through each criterion, then produce your evaluation as a
 single JSON object with EXACTLY this structure (no extra keys, no markdown
@@ -97,10 +122,12 @@ fencing):
   "is_subtle": true or false,
   "is_logical": true or false,
   "is_clear": true or false,
+  "needs_review": true or false,
+  "review_reason": "short specific reason, or empty string if no review needed",
   "competing_answers": ["list", "of", "alternative", "answers", "if any"],
   "altered_accepted_answers": ["canonical primary answer", "any equivalent alternative phrasing"],
   "overall_valid": true or false,
-  "reasoning": "Brief explanation covering all six criteria and your overall verdict."
+  "reasoning": "Brief explanation covering all seven criteria and your overall verdict."
 }
 
 `overall_valid` must be true when ALL of the following hard requirements hold:
@@ -122,6 +149,21 @@ block `overall_valid`:
     (e.g. "X (or Y)"), list each alternative as a separate entry here. Any
     phrasing that a lenient judge would score as equivalent to the primary
     answer should also be listed.
+  • needs_review / review_reason – A confidence signal for human spot-checking.
+    Set `needs_review` to true ONLY when you have genuine, non-trivial
+    uncertainty about your own assessment — for example: an unusual metaphor
+    you cannot confidently map, a borderline answer fit where the riddle’s line
+    could go either way, or a competing answer you cannot rule out with
+    confidence. Do NOT set it to true out of generic caution, for clear-cut
+    cases (even borderline ones where you lean confidently), or for every entry.
+    The vast majority of entries should have `needs_review: false`. Do NOT set
+    `needs_review` to true simply because the riddle is creative or
+    unconventional — only flag genuine uncertainty about your own evaluation.
+    When `needs_review` is true, `review_reason` must be a concise one-sentence
+    explanation of the specific uncertainty (e.g. "Uncertain whether line 3
+    maps onto the proposed answer."). When `needs_review` is false,
+    `review_reason` must be an empty string "". Note that `needs_review` is
+    purely a quality/confidence signal and does NOT affect `overall_valid`.
 
 If ANY of the three hard requirements fails, `overall_valid` must be false.
 
