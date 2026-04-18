@@ -247,6 +247,8 @@ def build_leaderboard(
             "model": result["model"],
             "provider": result.get("provider", ""),
             "quantization": result.get("quantization", ""),
+            "reasoning_enabled": bool(result.get("reasoning_enabled", False)),
+            "reasoning_effort": result.get("reasoning_effort"),
             "original_accuracy": s["original_accuracy"],
             "altered_accuracy": altered_accuracy,
             "pattern_override_rate": pattern_override_rate,
@@ -308,26 +310,35 @@ def print_leaderboard(leaderboard):
     def ci(v):
         return f"+/-{v * 100:.1f}%"
 
+    def reasoning_status(row):
+        return "on" if row.get("reasoning_enabled") else "off"
+
+    def reasoning_effort(row):
+        return row.get("reasoning_effort") or "-"
+
+    width = 136
     print()
-    print("=" * 110)
+    print("=" * width)
     print("ALTERED RIDDLES LEADERBOARD")
-    print("=" * 110)
+    print("=" * width)
     print(
-        f"{'Rank':<5} {'Rank Spread':<14} {'Model':<25} {'Orig Acc':>10} {'Alt Acc':>10} "
-        f"{'Cond Override':>15} {'Override':>10} {'Tok/riddle':>12} {'Samp/riddle':>12}"
+        f"{'Rank':<5} {'Rank Spread':<14} {'Model':<28} {'Reasoning':<9} {'Effort':<8} "
+        f"{'Orig Acc':>10} {'Alt Acc':>10} {'Cond Override':>15} {'Override':>10} "
+        f"{'Tok/riddle':>12} {'Samp/riddle':>12}"
     )
-    print("-" * 110)
+    print("-" * width)
     for r in leaderboard:
         co = pct(r["conditioned_override_rate"])
         co_ci = ci(r.get("conditioned_override_ci95", 0))
         rank_spread = f"[{r['rank_best']}–{r['rank_worst']}]"
         print(
-            f"{r['rank']:<5} {rank_spread:<14} {r['model']:<25} {pct(r['original_accuracy']):>10} "
+            f"{r['rank']:<5} {rank_spread:<14} {r['model']:<28} "
+            f"{reasoning_status(r):<9} {reasoning_effort(r):<8} {pct(r['original_accuracy']):>10} "
             f"{pct(r['altered_accuracy']):>10} {co + ' ' + co_ci:>15} "
             f"{pct(r['pattern_override_rate']):>10} {r.get('avg_output_tokens_per_riddle', 0):>12.1f} "
             f"{r.get('avg_samples_per_riddle', 0):>12.2f}"
         )
-    print("=" * 110)
+    print("=" * width)
     print()
 
 
@@ -338,19 +349,22 @@ def generate_markdown(leaderboard, output_path):
         f"> {len(leaderboard)} models evaluated. "
         "Main metric: **Conditioned Override Rate** (lower = better).",
         "",
-        "| Rank | Rank Spread | Model | Orig Acc ↑ | Alt Acc ↑ | Cond Override ↓ | CI95 | Override Rate ↓ | Tok/riddle |",
-        "|------|-------------|-------|-----------|----------|-----------------|------|-----------------|------------|",
+        "| Rank | Rank Spread | Model | Reasoning | Effort | Orig Acc ↑ | Alt Acc ↑ | Cond Override ↓ | CI95 | Override Rate ↓ | Tok/riddle | Samp/riddle |",
+        "|------|-------------|-------|-----------|--------|-----------|----------|-----------------|------|-----------------|------------|-------------|",
     ]
     for r in leaderboard:
         rank_spread = f"[{r['rank_best']}–{r['rank_worst']}]"
         lines.append(
             f"| {r['rank']} | {rank_spread} | {r['model']} "
+            f"| {'on' if r.get('reasoning_enabled') else 'off'} "
+            f"| {r.get('reasoning_effort') or '-'} "
             f"| {r['original_accuracy'] * 100:.1f}% "
             f"| {r['altered_accuracy'] * 100:.1f}% "
             f"| {r['conditioned_override_rate'] * 100:.1f}% "
             f"| +/-{r.get('conditioned_override_ci95', 0) * 100:.1f}% "
             f"| {r['pattern_override_rate'] * 100:.1f}% "
-            f"| {r.get('avg_output_tokens_per_riddle', 0):.1f} |"
+            f"| {r.get('avg_output_tokens_per_riddle', 0):.1f} "
+            f"| {r.get('avg_samples_per_riddle', 0):.2f} |"
         )
     lines.append("")
     Path(output_path).write_text("\n".join(lines), encoding="utf-8")

@@ -2,6 +2,8 @@
   "model": "google/gemma-4-26b-a4b-it",
   "provider": "local",
   "quantization": "UD-Q6_K_XL",
+  "reasoning_enabled": false,
+  "reasoning_effort": null,
   "summary": {
     "original_total": 220,
     "original_correct": 189,

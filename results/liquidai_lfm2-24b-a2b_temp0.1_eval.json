@@ -2,6 +2,8 @@
   "model": "liquidai/lfm2-24b-a2b",
   "provider": "local",
   "quantization": "Q8_0",
+  "reasoning_enabled": false,
+  "reasoning_effort": null,
   "summary": {
     "original_total": 220,
     "original_correct": 108,

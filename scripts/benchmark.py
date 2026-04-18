@@ -6,6 +6,7 @@ Usage:
     python -m scripts.benchmark --provider openai --model gpt-5.4
     python -m scripts.benchmark --temperature 0.7 --num-samples 5
     python -m scripts.benchmark --only altered --batch-size 20
+    python -m scripts.benchmark --provider openai --reasoning --one-entry-test
 """
 
 from __future__ import annotations
@@ -179,6 +180,15 @@ def run_benchmark(args: argparse.Namespace) -> None:
         logger.info("Reasoning DISABLED for %s/%s", args.provider, model_name)
 
     num_samples = args.num_samples
+    batch_size = args.batch_size
+    if args.one_entry_test:
+        if num_samples != 1:
+            logger.info("One-entry test mode: forcing num_samples=1.")
+        if batch_size != 1:
+            logger.info("One-entry test mode: forcing batch_size=1.")
+        num_samples = 1
+        batch_size = 1
+
     if num_samples > 1 and args.temperature == 0.0:
         logger.warning("Multiple samples at temp=0 are redundant. Forcing num_samples=1.")
         num_samples = 1
@@ -204,15 +214,22 @@ def run_benchmark(args: argparse.Namespace) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     safe_name = sanitize_model_name(model_name).lower()
     temp_suffix = f"_temp{args.temperature}" if args.temperature > 0 else ""
-    output_path = output_dir / f"{safe_name}{temp_suffix}{reasoning_plan.tag}.jsonl"
+    test_suffix = "_one_entry_test" if args.one_entry_test else ""
+    output_path = output_dir / f"{safe_name}{temp_suffix}{reasoning_plan.tag}{test_suffix}.jsonl"
 
     # Resume support
-    done = already_answered(output_path)
+    done = set() if args.one_entry_test else already_answered(output_path)
     if done:
         logger.info("Resuming: %d records already in %s", len(done), output_path)
 
     tasks = build_tasks(entries, args.only, num_samples)
     pending = [(e, rt, si) for e, rt, si in tasks if (e.get("id", ""), rt, si) not in done]
+    if args.one_entry_test and pending:
+        pending = [
+            task
+            for task in pending
+            if task[0].get("original_riddle" if task[1] == "original" else "altered_riddle", "")
+        ][:1]
 
     logger.info(
         "Tasks: %d total, %d pending (model=%s, temp=%.2f, samples=%d)",
@@ -224,11 +241,22 @@ def run_benchmark(args: argparse.Namespace) -> None:
     )
 
     if not pending:
+        if args.one_entry_test:
+            logger.info("One-entry test mode: no pending riddle with prompt text was found.")
+            return
         logger.info("All riddles already answered.")
         return
 
-    batch_size = args.batch_size
     total = len(pending)
+    if args.one_entry_test:
+        entry, rtype, si = pending[0]
+        logger.info(
+            "One-entry test mode: running %s (%s, s%d) and writing to %s",
+            entry.get("id", "unknown"),
+            rtype,
+            si,
+            output_path,
+        )
 
     for chunk_start in range(0, total, batch_size):
         chunk = pending[chunk_start : chunk_start + batch_size]
@@ -349,6 +377,15 @@ def parse_args() -> argparse.Namespace:
         help="Samples per riddle (for temp > 0)",
     )
     parser.add_argument("--batch-size", type=int, default=DEFAULT_BATCH_SIZE)
+    parser.add_argument(
+        "--one-entry-test",
+        action="store_true",
+        default=False,
+        help=(
+            "Run exactly one pending benchmark task, forcing batch size 1 and a "
+            "single sample, and write to a dedicated *_one_entry_test.jsonl file."
+        ),
+    )
     parser.add_argument("--chain-of-thought", action="store_true", default=False)
     parser.add_argument("--quantization", type=str, default=None)
     parser.add_argument(

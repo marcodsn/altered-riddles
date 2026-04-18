@@ -2,6 +2,8 @@
   "model": "qwen/qwen3.5-27b",
   "provider": "local",
   "quantization": "UD-Q4_K_XL",
+  "reasoning_enabled": false,
+  "reasoning_effort": null,
   "summary": {
     "original_total": 220,
     "original_correct": 185,

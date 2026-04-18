@@ -155,6 +155,9 @@ python -m scripts.benchmark --provider openai --temperature 0.7 --num-samples 5
 
 # Only altered riddles, batched
 python -m scripts.benchmark --provider local --only altered --batch-size 20
+
+# Single API-call smoke test for reasoning/settings
+python -m scripts.benchmark --provider openai --reasoning --one-entry-test
 ```
 
 ### 8. Evaluate

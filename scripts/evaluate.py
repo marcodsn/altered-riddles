@@ -59,9 +59,44 @@ def parse_judge_response(raw_text: str) -> dict:
         return {"correct": False, "gave_original": False, "competing": False}
 
 
+def extract_run_metadata(model_outputs: list[dict]) -> dict:
+    """Validate and return run-level metadata stored on benchmark outputs."""
+    reasoning_enabled = False
+    reasoning_effort = None
+    seen = False
+
+    for output in model_outputs:
+        output_reasoning_enabled = bool(output.get("reasoning_enabled", False))
+        output_reasoning_effort = output.get("reasoning_effort")
+        if not output_reasoning_enabled:
+            output_reasoning_effort = None
+
+        if not seen:
+            reasoning_enabled = output_reasoning_enabled
+            reasoning_effort = output_reasoning_effort
+            seen = True
+            continue
+
+        if (
+            output_reasoning_enabled != reasoning_enabled
+            or output_reasoning_effort != reasoning_effort
+        ):
+            raise ValueError(
+                "Inconsistent reasoning settings in benchmark output file: "
+                f"expected enabled={reasoning_enabled}, effort={reasoning_effort!r}; "
+                f"got enabled={output_reasoning_enabled}, effort={output_reasoning_effort!r}."
+            )
+
+    return {
+        "reasoning_enabled": reasoning_enabled,
+        "reasoning_effort": reasoning_effort,
+    }
+
+
 def evaluate_model(model_outputs, judgments, benchmark_lookup):
     """Score a single model's outputs. Returns results dict."""
     model_name = provider = quantization = ""
+    run_metadata = extract_run_metadata(model_outputs)
     details = []
 
     for output in model_outputs:
@@ -167,6 +202,8 @@ def evaluate_model(model_outputs, judgments, benchmark_lookup):
         "model": model_name,
         "provider": provider,
         "quantization": quantization,
+        "reasoning_enabled": run_metadata["reasoning_enabled"],
+        "reasoning_effort": run_metadata["reasoning_effort"],
         "summary": summary,
         "details": details,
     }
