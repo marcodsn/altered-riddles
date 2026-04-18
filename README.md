@@ -67,7 +67,7 @@ Each altered riddle falls into one of four categories:
 The benchmark follows a 10-step pipeline:
 
 ```
-riddles_source.csv
+riddles_source.csv (credits to https://github.com/crawsome/riddles)
     │
     ▼
 1. sanity_check.py     ──▶  Filter to "common" riddles (≥60% model accuracy)
@@ -222,11 +222,11 @@ The benchmark supports multiple LLM providers out of the box. See `scripts/core/
 ## Citation
 
 ```bibtex
-@misc{marcodsn_2026_alteredriddles,
-  title = {Altered Riddles Benchmark},
-  author = {Marco De Santis},
-  year = {2026},
-  url = {https://github.com/marcodsn/altered-riddles}
+@misc{marcodsn_2025_alteredriddles,  
+  title = {Altered Riddles Benchmark},  
+  author = {Marco De Santis},  
+  year = {2026},  
+  url = {https://marcodsn.me/altered-riddles} 
 }
 ```
 
