@@ -38,6 +38,68 @@ logger = logging.getLogger(__name__)
 FIXED_PATH = DEFAULT_BENCHMARK_FIXED
 
 
+def _expected_coverage(benchmark_entries: list[dict]) -> tuple[set[str], set[str]]:
+    """Return expected altered IDs and deduplicated original IDs for a full run."""
+    expected_altered_ids: set[str] = set()
+    expected_original_ids: set[str] = set()
+    seen_originals: set[str] = set()
+
+    for entry in benchmark_entries:
+        riddle_id = entry.get("id", "")
+        if not riddle_id:
+            continue
+
+        expected_altered_ids.add(riddle_id)
+
+        original_riddle = entry.get("original_riddle", "")
+        if original_riddle and original_riddle not in seen_originals:
+            seen_originals.add(original_riddle)
+            expected_original_ids.add(riddle_id)
+
+    return expected_altered_ids, expected_original_ids
+
+
+def _filter_complete_results(
+    all_results: list[dict],
+    expected_altered_ids: set[str],
+    expected_original_ids: set[str],
+) -> list[dict]:
+    """Keep only models with at least one evaluated result for every benchmark riddle."""
+    if not expected_altered_ids and not expected_original_ids:
+        return all_results
+
+    filtered_results = []
+    for result in all_results:
+        details = result.get("details", [])
+        altered_ids = {
+            d.get("riddle_id", "")
+            for d in details
+            if d.get("riddle_type") == "altered" and d.get("riddle_id")
+        }
+        original_ids = {
+            d.get("riddle_id", "")
+            for d in details
+            if d.get("riddle_type") == "original" and d.get("riddle_id")
+        }
+
+        missing_altered = expected_altered_ids - altered_ids
+        missing_original = expected_original_ids - original_ids
+        if missing_altered or missing_original:
+            logger.warning(
+                "Skipping incomplete leaderboard entry for %s: missing %d/%d altered and %d/%d original riddles.",
+                result.get("model", "unknown"),
+                len(missing_altered),
+                len(expected_altered_ids),
+                len(missing_original),
+                len(expected_original_ids),
+            )
+            continue
+
+        filtered_results.append(result)
+
+    return filtered_results
+
+
 def _bootstrap_ci95(scores: list[float], B: int = 2000, seed: int = 42) -> float:
     """Compute half-width of 95% CI via bootstrap."""
     n = len(scores)
@@ -394,6 +456,18 @@ def run_leaderboard(args):
     fixed = load_jsonl_if_exists(FIXED_PATH)
     all_bench = bench + fixed
     benchmark_lookup = {e.get("id", ""): e for e in all_bench} if all_bench else None
+    expected_altered_ids, expected_original_ids = _expected_coverage(all_bench)
+    all_results = _filter_complete_results(
+        all_results,
+        expected_altered_ids,
+        expected_original_ids,
+    )
+    if not all_results:
+        logger.error(
+            "No complete evaluation results found in %s; every model is missing at least one benchmark riddle.",
+            results_dir,
+        )
+        raise SystemExit(1)
 
     leaderboard = build_leaderboard(all_results, benchmark_lookup)
 

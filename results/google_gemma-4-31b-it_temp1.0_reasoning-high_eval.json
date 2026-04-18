@@ -1,0 +1,603 @@
+{
+  "model": "google/gemma-4-31b-it",
+  "provider": "together",
+  "quantization": "FP8",
+  "reasoning_enabled": true,
+  "reasoning_effort": "high",
+  "summary": {
+    "original_total": 25,
+    "original_correct": 25,
+    "original_accuracy": 1.0,
+    "altered_total": 45,
+    "altered_correct": 20,
+    "altered_accuracy": 0.4444,
+    "pattern_override_rate": 0.2222,
+    "conditioned_override_total": 45,
+    "conditioned_override_count": 10,
+    "conditioned_override_rate": 0.2222,
+    "total_input_tokens": 5946,
+    "total_output_tokens": 74482
+  },
+  "details": [
+    {
+      "riddle_id": "alt_0301",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "bridge",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0301",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "rainbow",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "bridge"
+    },
+    {
+      "riddle_id": "alt_0302",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "An egg",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0302",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "a record",
+      "correct": false,
+      "gave_original_answer": false,
+      "original_answer": "An egg."
+    },
+    {
+      "riddle_id": "alt_0303",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "a deck of cards",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0303",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "a pencil",
+      "correct": false,
+      "gave_original_answer": false,
+      "original_answer": "deck"
+    },
+    {
+      "riddle_id": "alt_0304",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "scissors",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0304",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "pocket knife",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "Scissors"
+    },
+    {
+      "riddle_id": "alt_0305",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "A towel",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0305",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "a towel",
+      "correct": false,
+      "gave_original_answer": true,
+      "original_answer": "A towel"
+    },
+    {
+      "riddle_id": "alt_0306",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "Light",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0306",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "Light",
+      "correct": false,
+      "gave_original_answer": true,
+      "original_answer": "light"
+    },
+    {
+      "riddle_id": "alt_0307",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "a hole",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0307",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "time",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "A hole"
+    },
+    {
+      "riddle_id": "alt_0308",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "a lie",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0308",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "a lie",
+      "correct": false,
+      "gave_original_answer": true,
+      "original_answer": "lie"
+    },
+    {
+      "riddle_id": "alt_0309",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "violin",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0309",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "double bass",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "violin"
+    },
+    {
+      "riddle_id": "alt_0310",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "a rainbow",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "bridge"
+    },
+    {
+      "riddle_id": "alt_0311",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "a cold",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0311",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "a bus",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "A cold."
+    },
+    {
+      "riddle_id": "alt_0312",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "an anchor",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0312",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "picnic blanket",
+      "correct": false,
+      "gave_original_answer": false,
+      "original_answer": "anchor"
+    },
+    {
+      "riddle_id": "alt_0313",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "paper cutter",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "Scissors"
+    },
+    {
+      "riddle_id": "alt_0314",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "Leaves",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0314",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "shells",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "Leaves"
+    },
+    {
+      "riddle_id": "alt_0315",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "darkness",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "light"
+    },
+    {
+      "riddle_id": "alt_0316",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "margin of error",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "A hole"
+    },
+    {
+      "riddle_id": "alt_0317",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "seven",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0317",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "eleven",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "seven"
+    },
+    {
+      "riddle_id": "alt_0318",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "Hair",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0318",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "A hat",
+      "correct": false,
+      "gave_original_answer": false,
+      "original_answer": "Hair"
+    },
+    {
+      "riddle_id": "alt_0319",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "A wheel",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0319",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "drill",
+      "correct": false,
+      "gave_original_answer": false,
+      "original_answer": "wheel"
+    },
+    {
+      "riddle_id": "alt_0320",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "a glimpse",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "A cold."
+    },
+    {
+      "riddle_id": "alt_0321",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "fishing net",
+      "correct": false,
+      "gave_original_answer": false,
+      "original_answer": "anchor"
+    },
+    {
+      "riddle_id": "alt_0322",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "Scissors",
+      "correct": false,
+      "gave_original_answer": true,
+      "original_answer": "Scissors"
+    },
+    {
+      "riddle_id": "alt_0323",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "Sand",
+      "correct": false,
+      "gave_original_answer": false,
+      "original_answer": "Leaves"
+    },
+    {
+      "riddle_id": "alt_0324",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "a secret",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0324",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "a secret",
+      "correct": false,
+      "gave_original_answer": true,
+      "original_answer": "A secret."
+    },
+    {
+      "riddle_id": "alt_0325",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "grudges",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0325",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "ships",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "grudges"
+    },
+    {
+      "riddle_id": "alt_0326",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "IX",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "seven"
+    },
+    {
+      "riddle_id": "alt_0327",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "The head",
+      "correct": false,
+      "gave_original_answer": false,
+      "original_answer": "Hair"
+    },
+    {
+      "riddle_id": "alt_0328",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "a screw",
+      "correct": false,
+      "gave_original_answer": false,
+      "original_answer": "wheel"
+    },
+    {
+      "riddle_id": "alt_0329",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "a cold",
+      "correct": false,
+      "gave_original_answer": true,
+      "original_answer": "A cold."
+    },
+    {
+      "riddle_id": "alt_0330",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "a bat",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0330",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "a moth",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "bat"
+    },
+    {
+      "riddle_id": "alt_0331",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "air",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0331",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "blood",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "Air"
+    },
+    {
+      "riddle_id": "alt_0332",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "leaves",
+      "correct": false,
+      "gave_original_answer": true,
+      "original_answer": "Leaves"
+    },
+    {
+      "riddle_id": "alt_0333",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "a secret",
+      "correct": false,
+      "gave_original_answer": true,
+      "original_answer": "A secret."
+    },
+    {
+      "riddle_id": "alt_0334",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "plants",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "grudges"
+    },
+    {
+      "riddle_id": "alt_0335",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "Advice",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0335",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "Advice",
+      "correct": false,
+      "gave_original_answer": true,
+      "original_answer": "Advice."
+    },
+    {
+      "riddle_id": "alt_0336",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "A snail",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0336",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "A train",
+      "correct": false,
+      "gave_original_answer": false,
+      "original_answer": "A snail."
+    },
+    {
+      "riddle_id": "alt_0337",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "Snail",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "wheel"
+    },
+    {
+      "riddle_id": "alt_0338",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "a keyhole",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0338",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "a doorknob",
+      "correct": false,
+      "gave_original_answer": false,
+      "original_answer": "keyhole"
+    },
+    {
+      "riddle_id": "alt_0339",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "Shooting star",
+      "correct": false,
+      "gave_original_answer": false,
+      "original_answer": "bat"
+    },
+    {
+      "riddle_id": "alt_0340",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "gravity",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "Air"
+    },
+    {
+      "riddle_id": "alt_0341",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "Your future",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0341",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "your future",
+      "correct": false,
+      "gave_original_answer": false,
+      "original_answer": "Fate"
+    },
+    {
+      "riddle_id": "alt_0342",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "A key",
+      "correct": true
+    },
+    {
+      "riddle_id": "alt_0342",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "doorknob",
+      "correct": false,
+      "gave_original_answer": false,
+      "original_answer": "key"
+    },
+    {
+      "riddle_id": "alt_0343",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "lawsuits",
+      "correct": true,
+      "gave_original_answer": false,
+      "original_answer": "grudges"
+    },
+    {
+      "riddle_id": "alt_0344",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "Feedback",
+      "correct": false,
+      "gave_original_answer": false,
+      "original_answer": "Advice."
+    },
+    {
+      "riddle_id": "alt_0345",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "A snail",
+      "correct": false,
+      "gave_original_answer": true,
+      "original_answer": "A snail."
+    },
+    {
+      "riddle_id": "alt_0346",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "snowflake",
+      "correct": true
+    }
+  ]
+}
