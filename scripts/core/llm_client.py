@@ -18,6 +18,7 @@ from scripts.core.config import (
     get_base_url,
     get_client_type,
 )
+from scripts.core.reasoning import ReasoningPlan
 
 logger = logging.getLogger(__name__)
 
@@ -36,15 +37,29 @@ class LLMResponse:
 # ── Sync helpers ──────────────────────────────────────────────────────
 
 
+def _gemini_thinking_config(plan: ReasoningPlan | None):
+    from google.genai import types
+
+    if plan is None:
+        return types.ThinkingConfig(include_thoughts=True)
+    if not plan.enabled:
+        return types.ThinkingConfig(include_thoughts=False, thinking_budget=0)
+    budget = plan.gemini_thinking_budget
+    return types.ThinkingConfig(
+        include_thoughts=True,
+        thinking_budget=budget if budget is not None else -1,
+    )
+
+
 def _call_gemini_sync(
     prompt_text: str,
     model: str,
     temperature: float,
     api_key: str,
     max_output_tokens: int | None = None,
+    reasoning_plan: ReasoningPlan | None = None,
 ) -> LLMResponse:
     from google import genai
-    from google.genai import types
     from google.genai.types import GenerateContentConfig
 
     client = genai.Client(api_key=api_key)
@@ -52,7 +67,7 @@ def _call_gemini_sync(
         temperature=temperature,
         response_mime_type="application/json",
         max_output_tokens=max_output_tokens,
-        thinking_config=types.ThinkingConfig(include_thoughts=True),
+        thinking_config=_gemini_thinking_config(reasoning_plan),
     )
     response = client.models.generate_content(model=model, contents=prompt_text, config=config)
 
@@ -88,6 +103,8 @@ def _call_openai_compat_sync(
     api_key: str,
     base_url: str | None = None,
     max_output_tokens: int | None = None,
+    reasoning_plan: ReasoningPlan | None = None,
+    is_direct_openai: bool = False,
 ) -> LLMResponse:
     from openai import OpenAI
 
@@ -103,6 +120,11 @@ def _call_openai_compat_sync(
     )
     if max_output_tokens is not None:
         create_kwargs["max_completion_tokens"] = max_output_tokens
+    if reasoning_plan is not None:
+        if is_direct_openai and reasoning_plan.openai_direct_kwargs:
+            create_kwargs.update(reasoning_plan.openai_direct_kwargs)
+        elif not is_direct_openai and reasoning_plan.openai_compat_extra:
+            create_kwargs["extra_body"] = reasoning_plan.openai_compat_extra
 
     response = client.chat.completions.create(**create_kwargs)
     message = response.choices[0].message
@@ -171,6 +193,7 @@ def call_llm(
     temperature: float,
     api_key: str,
     max_output_tokens: int | None = None,
+    reasoning_plan: ReasoningPlan | None = None,
 ) -> LLMResponse:
     """Call an LLM with retries + exponential backoff."""
     client_type = get_client_type(provider)
@@ -181,7 +204,8 @@ def call_llm(
         try:
             if client_type == "gemini":
                 return _call_gemini_sync(
-                    prompt_text, model, temperature, api_key, max_output_tokens
+                    prompt_text, model, temperature, api_key, max_output_tokens,
+                    reasoning_plan=reasoning_plan,
                 )
             elif client_type == "mistral":
                 return _call_mistral_sync(
@@ -195,6 +219,8 @@ def call_llm(
                     api_key,
                     base_url=base_url,
                     max_output_tokens=max_output_tokens,
+                    reasoning_plan=reasoning_plan,
+                    is_direct_openai=(provider == "openai"),
                 )
         except Exception as exc:
             logger.warning("Attempt %d/%d failed: %s", attempt, MAX_RETRIES, exc)
@@ -215,9 +241,9 @@ async def _call_gemini_async(
     temperature: float,
     api_key: str,
     max_output_tokens: int | None = None,
+    reasoning_plan: ReasoningPlan | None = None,
 ) -> LLMResponse:
     from google import genai
-    from google.genai import types
     from google.genai.types import GenerateContentConfig
 
     client = genai.Client(api_key=api_key)
@@ -225,7 +251,7 @@ async def _call_gemini_async(
         temperature=temperature,
         response_mime_type="application/json",
         max_output_tokens=max_output_tokens,
-        thinking_config=types.ThinkingConfig(include_thoughts=True),
+        thinking_config=_gemini_thinking_config(reasoning_plan),
     )
     response = await client.aio.models.generate_content(
         model=model, contents=prompt_text, config=config
@@ -264,6 +290,8 @@ async def _call_openai_compat_async(
     base_url: str | None = None,
     max_output_tokens: int | None = None,
     client: Any | None = None,
+    reasoning_plan: ReasoningPlan | None = None,
+    is_direct_openai: bool = False,
 ) -> LLMResponse:
     from openai import AsyncOpenAI
 
@@ -280,6 +308,11 @@ async def _call_openai_compat_async(
     )
     if max_output_tokens is not None:
         create_kwargs["max_completion_tokens"] = max_output_tokens
+    if reasoning_plan is not None:
+        if is_direct_openai and reasoning_plan.openai_direct_kwargs:
+            create_kwargs.update(reasoning_plan.openai_direct_kwargs)
+        elif not is_direct_openai and reasoning_plan.openai_compat_extra:
+            create_kwargs["extra_body"] = reasoning_plan.openai_compat_extra
 
     response = await client.chat.completions.create(**create_kwargs)
     message = response.choices[0].message
@@ -369,13 +402,15 @@ async def _call_provider_async(
     api_key: str,
     max_output_tokens: int | None = None,
     client: Any | None = None,
+    reasoning_plan: ReasoningPlan | None = None,
 ) -> LLMResponse:
     client_type = get_client_type(provider)
     base_url = get_base_url(provider)
 
     if client_type == "gemini":
         return await _call_gemini_async(
-            prompt_text, model, temperature, api_key, max_output_tokens
+            prompt_text, model, temperature, api_key, max_output_tokens,
+            reasoning_plan=reasoning_plan,
         )
     elif client_type == "mistral":
         return await _call_mistral_async(
@@ -395,6 +430,8 @@ async def _call_provider_async(
             base_url=base_url,
             max_output_tokens=max_output_tokens,
             client=client,
+            reasoning_plan=reasoning_plan,
+            is_direct_openai=(provider == "openai"),
         )
 
 
@@ -407,6 +444,7 @@ async def _provider_batch_async(
     api_key: str,
     max_output_tokens: int | None = None,
     max_concurrency: int = 10,
+    reasoning_plan: ReasoningPlan | None = None,
 ) -> list[LLMResponse | BaseException]:
     semaphore = asyncio.Semaphore(max_concurrency)
 
@@ -439,6 +477,7 @@ async def _provider_batch_async(
                         api_key=api_key,
                         max_output_tokens=max_output_tokens,
                         client=shared_client,
+                        reasoning_plan=reasoning_plan,
                     )
                 except Exception as exc:
                     logger.warning(
@@ -470,6 +509,7 @@ def call_llm_batched(
     api_key: str,
     max_output_tokens: int | None = None,
     max_concurrency: int = 10,
+    reasoning_plan: ReasoningPlan | None = None,
 ) -> list[LLMResponse | BaseException]:
     """Batch-call an LLM with async concurrency. Returns list of results."""
     return asyncio.run(
@@ -481,5 +521,6 @@ def call_llm_batched(
             api_key=api_key,
             max_output_tokens=max_output_tokens,
             max_concurrency=max_concurrency,
+            reasoning_plan=reasoning_plan,
         )
     )

@@ -36,6 +36,7 @@ from scripts.core.io_utils import (
     strip_markdown_fences,
 )
 from scripts.core.llm_client import LLMResponse, call_llm, call_llm_batched
+from scripts.core.reasoning import DEFAULT_EFFORT, EFFORTS, build_plan
 
 logging.basicConfig(
     level=logging.INFO,
@@ -129,6 +130,8 @@ def make_record(
     quantization: str | None,
     input_tokens: int | None,
     output_tokens: int | None,
+    reasoning_enabled: bool,
+    reasoning_effort: str | None,
 ) -> dict:
     return {
         "riddle_id": riddle_id,
@@ -142,6 +145,8 @@ def make_record(
         "provider": provider,
         "quantization": quantization,
         "temperature": temperature,
+        "reasoning_enabled": reasoning_enabled,
+        "reasoning_effort": reasoning_effort,
         "input_tokens": input_tokens,
         "output_tokens": output_tokens,
         "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S"),
@@ -156,6 +161,22 @@ def make_record(
 def run_benchmark(args: argparse.Namespace) -> None:
     load_dotenv()
     model_name, api_key = resolve_provider(args.provider, args.model)
+
+    reasoning_plan = build_plan(
+        provider=args.provider,
+        model=model_name,
+        reasoning=args.reasoning,
+        effort=args.reasoning_effort,
+    )
+    if reasoning_plan.enabled:
+        logger.info(
+            "Reasoning ENABLED (effort=%s) for %s/%s",
+            reasoning_plan.effort,
+            args.provider,
+            model_name,
+        )
+    else:
+        logger.info("Reasoning DISABLED for %s/%s", args.provider, model_name)
 
     num_samples = args.num_samples
     if num_samples > 1 and args.temperature == 0.0:
@@ -182,10 +203,8 @@ def run_benchmark(args: argparse.Namespace) -> None:
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     safe_name = sanitize_model_name(model_name).lower()
-    if args.temperature > 0:
-        output_path = output_dir / f"{safe_name}_temp{args.temperature}.jsonl"
-    else:
-        output_path = output_dir / f"{safe_name}.jsonl"
+    temp_suffix = f"_temp{args.temperature}" if args.temperature > 0 else ""
+    output_path = output_dir / f"{safe_name}{temp_suffix}{reasoning_plan.tag}.jsonl"
 
     # Resume support
     done = already_answered(output_path)
@@ -247,6 +266,7 @@ def run_benchmark(args: argparse.Namespace) -> None:
                             temperature=args.temperature,
                             api_key=api_key,
                             max_output_tokens=args.max_output_tokens,
+                            reasoning_plan=reasoning_plan,
                         )
                     )
                 except Exception as exc:
@@ -261,6 +281,7 @@ def run_benchmark(args: argparse.Namespace) -> None:
                 api_key=api_key,
                 max_output_tokens=args.max_output_tokens,
                 max_concurrency=batch_size,
+                reasoning_plan=reasoning_plan,
             )
 
         # Process results
@@ -290,6 +311,8 @@ def run_benchmark(args: argparse.Namespace) -> None:
                 args.quantization,
                 in_tok,
                 out_tok,
+                reasoning_plan.enabled,
+                reasoning_plan.effort,
             )
             append_jsonl(output_path, record)
             logger.info("  %s (%s, s%d) -> %s", rid, rtype, si, answer[:60])
@@ -328,6 +351,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--batch-size", type=int, default=DEFAULT_BATCH_SIZE)
     parser.add_argument("--chain-of-thought", action="store_true", default=False)
     parser.add_argument("--quantization", type=str, default=None)
+    parser.add_argument(
+        "--reasoning",
+        action="store_true",
+        default=False,
+        help="Enable reasoning/thinking mode for the target model.",
+    )
+    parser.add_argument(
+        "--reasoning-effort",
+        choices=list(EFFORTS),
+        default=DEFAULT_EFFORT,
+        help="Effort level when --reasoning is set (ignored otherwise).",
+    )
     return parser.parse_args()
 
 

@@ -44,7 +44,7 @@
     "rank_worst": 3
   },
   {
-    "model": "qwen3.5-27b",
+    "model": "qwen/qwen3.5-27b",
     "provider": "local",
     "quantization": "UD-Q4_K_XL",
     "original_accuracy": 0.8409,
@@ -66,7 +66,7 @@
     "rank_worst": 6
   },
   {
-    "model": "gemma-4-31b-it",
+    "model": "google/gemma-4-31b-it",
     "provider": "local",
     "quantization": "UD-Q6_K_XL",
     "original_accuracy": 0.9455,
@@ -88,7 +88,7 @@
     "rank_worst": 6
   },
   {
-    "model": "gemma-4-26b-a4b-it",
+    "model": "google/gemma-4-26b-a4b-it",
     "provider": "local",
     "quantization": "UD-Q6_K_XL",
     "original_accuracy": 0.8591,
@@ -110,7 +110,7 @@
     "rank_worst": 6
   },
   {
-    "model": "lfm2-24b-a2b",
+    "model": "liquidai/lfm2-24b-a2b",
     "provider": "local",
     "quantization": "Q8_0",
     "original_accuracy": 0.4909,
