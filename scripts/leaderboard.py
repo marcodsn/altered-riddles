@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """leaderboard.py — Generate the benchmark leaderboard.
 
-Main metric: conditioned override rate (lower is better).
+Main metric: conditioned override rate (lower is better),
+computed only over altered riddles whose original variant the model solves.
 Also reports original accuracy as a knowledge metric.
 
 Usage:
@@ -147,14 +148,21 @@ def build_leaderboard(
     rows = []
     for result in all_results:
         s = result["summary"]
-        altered_details = [
-            d for d in result.get("details", []) if d.get("riddle_type") == "altered"
-        ]
+        details = result.get("details", [])
+        altered_details = [d for d in details if d.get("riddle_type") == "altered"]
+        original_details = [d for d in details if d.get("riddle_type") == "original"]
+
         altered_by_riddle: dict[str, list[dict]] = defaultdict(list)
         for d in altered_details:
             riddle_id = d.get("riddle_id")
             if riddle_id:
                 altered_by_riddle[riddle_id].append(d)
+
+        original_by_riddle: dict[str, list[dict]] = defaultdict(list)
+        for d in original_details:
+            riddle_id = d.get("riddle_id")
+            if riddle_id:
+                original_by_riddle[riddle_id].append(d)
 
         per_riddle = []
 
@@ -164,6 +172,19 @@ def build_leaderboard(
             )
             accuracy_mean = mean(
                 1.0 if sample.get("correct") else 0.0 for sample in samples
+            )
+
+            original_samples = original_by_riddle.get(riddle_id, [])
+            original_accuracy_mean = (
+                mean(
+                    1.0 if sample.get("correct") else 0.0 for sample in original_samples
+                )
+                if original_samples
+                else None
+            )
+            original_solved = bool(
+                original_samples
+                and any(sample.get("correct") for sample in original_samples)
             )
 
             if benchmark_lookup:
@@ -179,13 +200,16 @@ def build_leaderboard(
                     "override_mean": override_mean,
                     "accuracy_mean": accuracy_mean,
                     "sample_count": len(samples),
+                    "original_accuracy_mean": original_accuracy_mean,
+                    "original_solved": original_solved,
                 }
             )
+
+        conditioned_per_riddle = [r for r in per_riddle if r["original_solved"]]
 
         n_riddles = len(per_riddle)
         if n_riddles > 0:
             altered_accuracy = mean(r["accuracy_mean"] for r in per_riddle)
-            conditioned_override_rate = mean(r["override_mean"] for r in per_riddle)
             pattern_override_rate = s["pattern_override_rate"]
             avg_samples_per_riddle = mean(r["sample_count"] for r in per_riddle)
             avg_output_tokens_per_riddle = s.get("total_output_tokens", 0) / (
@@ -194,10 +218,22 @@ def build_leaderboard(
             avg_input_tokens_per_riddle = s.get("total_input_tokens", 0) / (
                 avg_samples_per_riddle * n_riddles
             )
-            conditioned_override_total = sum(
-                sum(1 for sample in samples if sample.get("gave_original_answer"))
-                for samples in altered_by_riddle.values()
-            )
+
+            if conditioned_per_riddle:
+                conditioned_override_rate = mean(
+                    r["override_mean"] for r in conditioned_per_riddle
+                )
+                conditioned_override_total = sum(
+                    sum(
+                        1
+                        for sample in altered_by_riddle[r["riddle_id"]]
+                        if sample.get("gave_original_answer")
+                    )
+                    for r in conditioned_per_riddle
+                )
+            else:
+                conditioned_override_rate = 0.0
+                conditioned_override_total = 0
         else:
             altered_accuracy = s["altered_accuracy"]
             conditioned_override_rate = s["conditioned_override_rate"]
@@ -222,13 +258,20 @@ def build_leaderboard(
             "avg_output_tokens_per_riddle": avg_output_tokens_per_riddle,
             "avg_samples_per_riddle": avg_samples_per_riddle,
             "unique_altered_riddles": n_riddles,
+            "conditioned_unique_altered_riddles": len(conditioned_per_riddle),
         }
 
         # CI95 for conditioned override and altered accuracy using per-riddle means
-        if per_riddle:
-            co_scores = [(r["cluster"], r["override_mean"]) for r in per_riddle]
-            acc_scores = [(r["cluster"], r["accuracy_mean"]) for r in per_riddle]
+        if conditioned_per_riddle:
+            co_scores = [
+                (r["cluster"], r["override_mean"]) for r in conditioned_per_riddle
+            ]
             row["conditioned_override_ci95"] = _clustered_bootstrap_ci95(co_scores)
+        else:
+            row["conditioned_override_ci95"] = 0.0
+
+        if per_riddle:
+            acc_scores = [(r["cluster"], r["accuracy_mean"]) for r in per_riddle]
             row["altered_accuracy_ci95"] = _clustered_bootstrap_ci95(acc_scores)
         else:
             n = s.get("altered_total", 0)
