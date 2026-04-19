@@ -21,7 +21,7 @@
     "altered_accuracy_ci95": 0.0348,
     "rank": 1,
     "rank_best": 1,
-    "rank_worst": 4
+    "rank_worst": 6
   },
   {
     "model": "openai/gpt-5.4-mini",
@@ -45,7 +45,31 @@
     "altered_accuracy_ci95": 0.0374,
     "rank": 2,
     "rank_best": 1,
-    "rank_worst": 5
+    "rank_worst": 7
+  },
+  {
+    "model": "minimaxai/minimax-m2.7",
+    "provider": "together",
+    "quantization": "FP4",
+    "reasoning_enabled": true,
+    "reasoning_effort": "high",
+    "original_accuracy": 0.8864,
+    "altered_accuracy": 0.363,
+    "pattern_override_rate": 0.321,
+    "conditioned_override_rate": 0.3230769230769231,
+    "conditioned_override_total": 63,
+    "total_input_tokens": 131954,
+    "total_output_tokens": 4991738,
+    "avg_input_tokens_per_riddle": 131.954,
+    "avg_output_tokens_per_riddle": 4991.738,
+    "avg_samples_per_riddle": 1,
+    "unique_altered_riddles": 1000,
+    "conditioned_unique_altered_riddles": 195,
+    "conditioned_override_ci95": 0.0667,
+    "altered_accuracy_ci95": 0.0363,
+    "rank": 3,
+    "rank_best": 1,
+    "rank_worst": 7
   },
   {
     "model": "xiaomi/mimo-v2-omni",
@@ -67,9 +91,33 @@
     "conditioned_unique_altered_riddles": 206,
     "conditioned_override_ci95": 0.0566,
     "altered_accuracy_ci95": 0.0339,
-    "rank": 3,
+    "rank": 4,
     "rank_best": 1,
-    "rank_worst": 5
+    "rank_worst": 7
+  },
+  {
+    "model": "google/gemma-4-31b-it",
+    "provider": "together",
+    "quantization": "FP8",
+    "reasoning_enabled": true,
+    "reasoning_effort": "high",
+    "original_accuracy": 0.9545,
+    "altered_accuracy": 0.402,
+    "pattern_override_rate": 0.342,
+    "conditioned_override_rate": 0.3619047619047619,
+    "conditioned_override_total": 76,
+    "total_input_tokens": 108264,
+    "total_output_tokens": 1597477,
+    "avg_input_tokens_per_riddle": 108.264,
+    "avg_output_tokens_per_riddle": 1597.477,
+    "avg_samples_per_riddle": 1,
+    "unique_altered_riddles": 1000,
+    "conditioned_unique_altered_riddles": 210,
+    "conditioned_override_ci95": 0.0643,
+    "altered_accuracy_ci95": 0.0393,
+    "rank": 5,
+    "rank_best": 1,
+    "rank_worst": 10
   },
   {
     "model": "openai/gpt-5.4-mini",
@@ -91,9 +139,9 @@
     "conditioned_unique_altered_riddles": 192,
     "conditioned_override_ci95": 0.0703,
     "altered_accuracy_ci95": 0.0336,
-    "rank": 4,
+    "rank": 6,
     "rank_best": 1,
-    "rank_worst": 10
+    "rank_worst": 12
   },
   {
     "model": "qwen/qwen3.5-27b",
@@ -115,9 +163,9 @@
     "conditioned_unique_altered_riddles": 185,
     "conditioned_override_ci95": 0.0649,
     "altered_accuracy_ci95": 0.0296,
-    "rank": 5,
+    "rank": 7,
     "rank_best": 2,
-    "rank_worst": 10
+    "rank_worst": 12
   },
   {
     "model": "google/gemma-4-31b-it",
@@ -139,9 +187,9 @@
     "conditioned_unique_altered_riddles": 208,
     "conditioned_override_ci95": 0.0657,
     "altered_accuracy_ci95": 0.0338,
-    "rank": 6,
-    "rank_best": 4,
-    "rank_worst": 10
+    "rank": 8,
+    "rank_best": 5,
+    "rank_worst": 12
   },
   {
     "model": "anthropic/claude-sonnet-4.6",
@@ -163,9 +211,9 @@
     "conditioned_unique_altered_riddles": 215,
     "conditioned_override_ci95": 0.0674,
     "altered_accuracy_ci95": 0.0366,
-    "rank": 7,
-    "rank_best": 4,
-    "rank_worst": 10
+    "rank": 9,
+    "rank_best": 5,
+    "rank_worst": 12
   },
   {
     "model": "google/gemma-4-26b-a4b-it",
@@ -187,9 +235,9 @@
     "conditioned_unique_altered_riddles": 189,
     "conditioned_override_ci95": 0.067,
     "altered_accuracy_ci95": 0.0326,
-    "rank": 8,
-    "rank_best": 4,
-    "rank_worst": 10
+    "rank": 10,
+    "rank_best": 5,
+    "rank_worst": 12
   },
   {
     "model": "anthropic/claude-opus-4.7",
@@ -211,9 +259,9 @@
     "conditioned_unique_altered_riddles": 214,
     "conditioned_override_ci95": 0.0678,
     "altered_accuracy_ci95": 0.0328,
-    "rank": 9,
-    "rank_best": 4,
-    "rank_worst": 10
+    "rank": 11,
+    "rank_best": 6,
+    "rank_worst": 12
   },
   {
     "model": "liquidai/lfm2-24b-a2b",
@@ -235,8 +283,8 @@
     "conditioned_unique_altered_riddles": 108,
     "conditioned_override_ci95": 0.0926,
     "altered_accuracy_ci95": 0.0273,
-    "rank": 10,
-    "rank_best": 4,
-    "rank_worst": 10
+    "rank": 12,
+    "rank_best": 6,
+    "rank_worst": 12
   }
 ]

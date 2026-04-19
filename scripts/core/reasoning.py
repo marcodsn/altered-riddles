@@ -48,7 +48,12 @@ def _model_family(model: str) -> str:
         return "anthropic"
     if m.startswith("google/") or m.startswith("gemini") or m.startswith("gemma"):
         return "google"
-    if m.startswith("openai/") or m.startswith("gpt") or m.startswith("o1") or m.startswith("o3"):
+    if (
+        m.startswith("openai/")
+        or m.startswith("gpt")
+        or m.startswith("o1")
+        or m.startswith("o3")
+    ):
         return "openai"
     if m.startswith("qwen/") or m.startswith("qwen") or m.startswith("alibaba/"):
         return "qwen"
@@ -90,7 +95,9 @@ def build_plan(
             )
         eff_mapped = "high" if eff == "xhigh" else eff  # 'xhigh' unsupported here
         return ReasoningPlan(
-            enabled=True, effort=eff, openai_direct_kwargs={"reasoning_effort": eff_mapped}
+            enabled=True,
+            effort=eff,
+            openai_direct_kwargs={"reasoning_effort": eff_mapped},
         )
 
     # Local: reasoning is toggled via the model tag (e.g. `:reasoning`).
@@ -107,12 +114,12 @@ def build_plan(
     reasoning_block: dict
     if family in ("anthropic", "google"):
         if not reasoning:
-            reasoning_block = {"max_tokens": 0, "exclude": False}
+            reasoning_block = {"enabled": False, "max_tokens": 1, "exclude": False}
         else:
             reasoning_block = {"max_tokens": _EFFORT_TO_TOKENS[eff], "exclude": False}
     elif family == "openai":
         if not reasoning:
-            reasoning_block = {"effort": "none", "exclude": False}
+            reasoning_block = {"enabled": False, "effort": "none", "exclude": False}
         else:
             eff_mapped = "high" if eff == "xhigh" else eff
             reasoning_block = {"effort": eff_mapped, "exclude": False}

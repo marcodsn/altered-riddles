@@ -39,7 +39,9 @@ from scripts.core.io_utils import (
 from scripts.core.llm_client import call_llm_batched
 
 logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s", datefmt="%H:%M:%S"
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%H:%M:%S",
 )
 logger = logging.getLogger(__name__)
 
@@ -180,8 +182,12 @@ def evaluate_model(model_outputs, judgments, benchmark_lookup):
                 co_count += 1
 
     # Token stats
-    in_toks = [o["input_tokens"] for o in model_outputs if o.get("input_tokens") is not None]
-    out_toks = [o["output_tokens"] for o in model_outputs if o.get("output_tokens") is not None]
+    in_toks = [
+        o["input_tokens"] for o in model_outputs if o.get("input_tokens") is not None
+    ]
+    out_toks = [
+        o["output_tokens"] for o in model_outputs if o.get("output_tokens") is not None
+    ]
 
     summary = {
         "original_total": orig_total,
@@ -190,7 +196,9 @@ def evaluate_model(model_outputs, judgments, benchmark_lookup):
         "altered_total": alt_total,
         "altered_correct": alt_correct,
         "altered_accuracy": round(alt_correct / alt_total, 4) if alt_total else 0.0,
-        "pattern_override_rate": round(alt_gave_orig / alt_total, 4) if alt_total else 0.0,
+        "pattern_override_rate": round(alt_gave_orig / alt_total, 4)
+        if alt_total
+        else 0.0,
         "conditioned_override_total": co_total,
         "conditioned_override_count": co_count,
         "conditioned_override_rate": round(co_count / co_total, 4) if co_total else 0.0,
@@ -222,8 +230,12 @@ def run_evaluation(args):
     # Find model output files
     outputs_path = Path(args.model_outputs)
     output_files = (
-        sorted(outputs_path.glob("*.jsonl")) if outputs_path.is_dir() else [outputs_path]
+        sorted(outputs_path.glob("*.jsonl"))
+        if outputs_path.is_dir()
+        else [outputs_path]
     )
+    # Remove entries that containt "one_entry_test" in the filename, which are used for testing.
+    output_files = [f for f in output_files if "one_entry_test" not in f.name]
     if not output_files:
         logger.error("No output files found in %s", outputs_path)
         sys.exit(1)
@@ -247,17 +259,25 @@ def run_evaluation(args):
         # Load cached judgments
         judgments = {}
         for j in load_jsonl_if_exists(cache_path):
-            judgments[(j["riddle_id"], j["riddle_type"], j.get("sample_index", 1))] = j["judgment"]
+            judgments[(j["riddle_id"], j["riddle_type"], j.get("sample_index", 1))] = j[
+                "judgment"
+            ]
 
         # Find pending
         pending = []
         for o in model_outputs:
-            key = (o.get("riddle_id", ""), o.get("riddle_type", ""), o.get("sample_index", 1))
+            key = (
+                o.get("riddle_id", ""),
+                o.get("riddle_type", ""),
+                o.get("sample_index", 1),
+            )
             if key not in judgments:
                 pending.append(o)
 
         if pending:
-            logger.info("Judging %d pending outputs for %s...", len(pending), model_safe)
+            logger.info(
+                "Judging %d pending outputs for %s...", len(pending), model_safe
+            )
 
             for chunk_start in range(0, len(pending), args.batch_size):
                 chunk = pending[chunk_start : chunk_start + args.batch_size]
@@ -271,11 +291,13 @@ def run_evaluation(args):
 
                     if rtype == "original":
                         accepted = entry.get(
-                            "original_accepted_answers", [entry.get("original_answer", "")]
+                            "original_accepted_answers",
+                            [entry.get("original_answer", "")],
                         )
                     else:
                         accepted = entry.get(
-                            "altered_accepted_answers", [entry.get("altered_answer", "")]
+                            "altered_accepted_answers",
+                            [entry.get("altered_answer", "")],
                         )
                     original = entry.get(
                         "original_accepted_answers", [entry.get("original_answer", "")]
@@ -296,7 +318,9 @@ def run_evaluation(args):
                 if not prompts:
                     continue
 
-                logger.info("  Judge batch [%d-%d]", chunk_start + 1, chunk_start + len(chunk))
+                logger.info(
+                    "  Judge batch [%d-%d]", chunk_start + 1, chunk_start + len(chunk)
+                )
                 results = call_llm_batched(
                     prompts,
                     provider=args.provider,
@@ -315,7 +339,11 @@ def run_evaluation(args):
                     parsed = (
                         parse_judge_response(res.text)
                         if not isinstance(res, BaseException)
-                        else {"correct": False, "gave_original": False, "competing": False}
+                        else {
+                            "correct": False,
+                            "gave_original": False,
+                            "competing": False,
+                        }
                     )
                     judgments[key] = parsed
                     append_jsonl(
