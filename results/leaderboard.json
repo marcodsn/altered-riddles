@@ -117,7 +117,7 @@
     "altered_accuracy_ci95": 0.0378,
     "rank": 5,
     "rank_best": 1,
-    "rank_worst": 11
+    "rank_worst": 10
   },
   {
     "model": "openai/gpt-oss-120b",
@@ -141,7 +141,7 @@
     "altered_accuracy_ci95": 0.0353,
     "rank": 6,
     "rank_best": 1,
-    "rank_worst": 9
+    "rank_worst": 10
   },
   {
     "model": "xiaomi/mimo-v2-omni",
@@ -236,7 +236,7 @@
     "conditioned_override_ci95": 0.0703,
     "altered_accuracy_ci95": 0.0336,
     "rank": 10,
-    "rank_best": 6,
+    "rank_best": 7,
     "rank_worst": 12
   },
   {
@@ -261,7 +261,7 @@
     "altered_accuracy_ci95": 0.0296,
     "rank": 11,
     "rank_best": 10,
-    "rank_worst": 13
+    "rank_worst": 12
   },
   {
     "model": "google/gemma-4-31b-it",
@@ -284,7 +284,7 @@
     "conditioned_override_ci95": 0.0657,
     "altered_accuracy_ci95": 0.0338,
     "rank": 12,
-    "rank_best": 11,
+    "rank_best": 12,
     "rank_worst": 16
   },
   {
@@ -309,7 +309,7 @@
     "altered_accuracy_ci95": 0.0366,
     "rank": 13,
     "rank_best": 12,
-    "rank_worst": 17
+    "rank_worst": 18
   },
   {
     "model": "google/gemma-4-26b-a4b-it",
@@ -357,7 +357,7 @@
     "altered_accuracy_ci95": 0.0285,
     "rank": 15,
     "rank_best": 13,
-    "rank_worst": 17
+    "rank_worst": 18
   },
   {
     "model": "anthropic/claude-opus-4.7",
@@ -381,7 +381,7 @@
     "altered_accuracy_ci95": 0.0328,
     "rank": 16,
     "rank_best": 13,
-    "rank_worst": 17
+    "rank_worst": 18
   },
   {
     "model": "liquidai/lfm2-24b-a2b",
@@ -404,7 +404,31 @@
     "conditioned_override_ci95": 0.0926,
     "altered_accuracy_ci95": 0.0273,
     "rank": 17,
-    "rank_best": 5,
+    "rank_best": 4,
     "rank_worst": 16
+  },
+  {
+    "model": "moonshotai/kimi-k2.5",
+    "provider": "together",
+    "quantization": null,
+    "reasoning_enabled": false,
+    "reasoning_effort": null,
+    "original_accuracy": 0.9727,
+    "altered_accuracy": 0.23,
+    "pattern_override_rate": 0.548,
+    "conditioned_override_rate": 0.5373831775700935,
+    "conditioned_override_total": 115,
+    "total_input_tokens": 121279,
+    "total_output_tokens": 19462,
+    "avg_input_tokens_per_riddle": 121.279,
+    "avg_output_tokens_per_riddle": 19.462,
+    "avg_samples_per_riddle": 1,
+    "unique_altered_riddles": 1000,
+    "conditioned_unique_altered_riddles": 214,
+    "conditioned_override_ci95": 0.0654,
+    "altered_accuracy_ci95": 0.0306,
+    "rank": 18,
+    "rank_best": 15,
+    "rank_worst": 18
   }
 ]
