@@ -170,12 +170,8 @@ def _paired_diff_sig(
         -1 if B is significantly better than A,
          0 if inconclusive.
     """
-    a_by_id = {
-        r["riddle_id"]: r for r in per_riddle_a if r.get("original_solved")
-    }
-    b_by_id = {
-        r["riddle_id"]: r for r in per_riddle_b if r.get("original_solved")
-    }
+    a_by_id = {r["riddle_id"]: r for r in per_riddle_a if r.get("original_solved")}
+    b_by_id = {r["riddle_id"]: r for r in per_riddle_b if r.get("original_solved")}
     shared_ids = sorted(set(a_by_id.keys()) & set(b_by_id.keys()))
 
     diffs_by_cluster: dict[str, list[float]] = defaultdict(list)
@@ -451,12 +447,14 @@ def build_alteration_type_stats(
         if t:
             n_riddles_by_type[t] += 1
 
-    per_type: dict[str, dict] = {
-        t: {"per_model": {}} for t in n_riddles_by_type
-    }
+    per_type: dict[str, dict] = {t: {"per_model": {}} for t in n_riddles_by_type}
 
     for result in all_results:
         model = result["model"]
+        reasoning_tag = result.get("reasoning_effort") or (
+            "on" if result.get("reasoning_enabled") else "off"
+        )
+        model_key = f"{model}|{reasoning_tag}"  # e.g. "openai/gpt-5.4-mini|high" or "openai/gpt-5.4-mini|off"
         details = result.get("details", [])
 
         altered_by_riddle: dict[str, list[dict]] = defaultdict(list)
@@ -492,7 +490,10 @@ def build_alteration_type_stats(
         for t in per_type:
             alt_acc = mean(acc_by_type[t]) if acc_by_type[t] else None
             cor = mean(cor_by_type[t]) if cor_by_type[t] else None
-            per_type[t]["per_model"][model] = {
+            per_type[t]["per_model"][model_key] = {  # <-- use model_key
+                "model": model,  # <-- keep original name for display
+                "reasoning_enabled": bool(result.get("reasoning_enabled", False)),
+                "reasoning_effort": result.get("reasoning_effort"),
                 "cor": round(cor, 4) if cor is not None else None,
                 "alt_acc": round(alt_acc, 4) if alt_acc is not None else None,
             }
@@ -503,7 +504,9 @@ def build_alteration_type_stats(
             continue
         entries = per_type[t]["per_model"]
         cor_values = [v["cor"] for v in entries.values() if v["cor"] is not None]
-        alt_values = [v["alt_acc"] for v in entries.values() if v["alt_acc"] is not None]
+        alt_values = [
+            v["alt_acc"] for v in entries.values() if v["alt_acc"] is not None
+        ]
         types_out.append(
             {
                 "type": t,

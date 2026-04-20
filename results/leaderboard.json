@@ -117,7 +117,7 @@
     "altered_accuracy_ci95": 0.0378,
     "rank": 5,
     "rank_best": 1,
-    "rank_worst": 10
+    "rank_worst": 11
   },
   {
     "model": "openai/gpt-oss-120b",
@@ -213,7 +213,7 @@
     "altered_accuracy_ci95": 0.0393,
     "rank": 9,
     "rank_best": 3,
-    "rank_worst": 12
+    "rank_worst": 11
   },
   {
     "model": "openai/gpt-5.4-mini",
@@ -236,7 +236,7 @@
     "conditioned_override_ci95": 0.0703,
     "altered_accuracy_ci95": 0.0336,
     "rank": 10,
-    "rank_best": 7,
+    "rank_best": 6,
     "rank_worst": 12
   },
   {
@@ -260,7 +260,7 @@
     "conditioned_override_ci95": 0.0649,
     "altered_accuracy_ci95": 0.0296,
     "rank": 11,
-    "rank_best": 9,
+    "rank_best": 10,
     "rank_worst": 13
   },
   {
