@@ -18,6 +18,7 @@ import logging
 import math
 import random
 from collections import defaultdict
+from datetime import datetime, timezone
 from pathlib import Path
 from statistics import mean
 
@@ -154,52 +155,118 @@ def _clustered_bootstrap_ci95(
     return round((hi - lo) / 2, 4)
 
 
+def _paired_diff_sig(
+    per_riddle_a: list[dict],
+    per_riddle_b: list[dict],
+    B: int = 2000,
+    seed: int = 42,
+) -> int:
+    """
+    Paired clustered bootstrap on the COR difference (A - B) restricted to
+    riddles where *both* models solved the original.
+
+    Returns:
+        +1 if A is significantly better than B (A's COR significantly lower),
+        -1 if B is significantly better than A,
+         0 if inconclusive.
+    """
+    a_by_id = {
+        r["riddle_id"]: r for r in per_riddle_a if r.get("original_solved")
+    }
+    b_by_id = {
+        r["riddle_id"]: r for r in per_riddle_b if r.get("original_solved")
+    }
+    shared_ids = sorted(set(a_by_id.keys()) & set(b_by_id.keys()))
+
+    diffs_by_cluster: dict[str, list[float]] = defaultdict(list)
+    for rid in shared_ids:
+        ra = a_by_id[rid]
+        rb = b_by_id[rid]
+        diff = ra["override_mean"] - rb["override_mean"]
+        cluster = ra.get("cluster", rid)
+        diffs_by_cluster[cluster].append(diff)
+
+    cluster_ids = list(diffs_by_cluster.keys())
+    n_clusters = len(cluster_ids)
+    n_total = sum(len(v) for v in diffs_by_cluster.values())
+
+    if n_clusters < 5 or n_total == 0:
+        return 0
+
+    rng = random.Random(seed)
+    means = []
+    for _ in range(B):
+        sampled = rng.choices(cluster_ids, k=n_clusters)
+        values = []
+        for cid in sampled:
+            values.extend(diffs_by_cluster[cid])
+        if values:
+            means.append(sum(values) / len(values))
+    if not means:
+        return 0
+    means.sort()
+    lo = means[int(B * 0.025)]
+    hi = means[int(B * 0.975)]
+
+    if hi < 0:
+        return +1  # A significantly lower -> A better
+    if lo > 0:
+        return -1  # A significantly higher -> B better
+    return 0
+
+
 def _compute_rank_spread(leaderboard: list[dict]) -> list[dict]:
     """
-    Compute plausible rank range from COR confidence intervals.
+    Compute plausible rank range from paired bootstrap tests on COR.
 
     Lower conditioned_override_rate is better.
 
+    For each pair (A, B), the paired clustered bootstrap tests whether
+    A's COR is significantly lower (or higher) than B's, using only the
+    riddles where both models solved the original. This cancels per-riddle
+    difficulty and yields tighter rank spreads than independent CIs.
+
     rank_best:
-        1 + number of models whose *worst plausible* COR is still
-        better than our *best plausible* COR.
+        1 + number of models that are significantly better than me.
 
     rank_worst:
-        1 + number of models whose *best plausible* COR could still
-        beat our *worst plausible* COR.
-
-    This is a simple interval-based heuristic for presentation.
+        1 + number of models that are NOT significantly worse than me
+        (i.e., could still be better).
     """
-    intervals = []
-    for row in leaderboard:
-        cor = row["conditioned_override_rate"]
-        ci = row.get("conditioned_override_ci95", 0.0)
-        lo = max(0.0, cor - ci)
-        hi = min(1.0, cor + ci)
-        intervals.append((lo, hi))
+    n = len(leaderboard)
+    # Symmetric cache: sig[(i, j)] = +1 if i better than j, -1 if j better, 0 inconclusive.
+    sig: dict[tuple[int, int], int] = {}
+
+    def model_key(row: dict) -> str:
+        return f"{row.get('model', '')}|{row.get('reasoning_effort') or ''}"
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            a = leaderboard[i]
+            b = leaderboard[j]
+            pair_seed = hash((model_key(a), model_key(b))) & 0xFFFFFFFF
+            s = _paired_diff_sig(
+                a.get("_conditioned", []),
+                b.get("_conditioned", []),
+                seed=pair_seed,
+            )
+            sig[(i, j)] = s
+            sig[(j, i)] = -s
 
     for i, row in enumerate(leaderboard):
-        lo, hi = intervals[i]
-
         definitely_better = 0
-        could_be_better = 0
-
-        for j, other in enumerate(leaderboard):
+        not_significantly_worse = 0
+        for j in range(n):
             if i == j:
                 continue
-
-            o_lo, o_hi = intervals[j]
-
-            # Other is definitely better than us
-            if o_hi < lo:
+            s_ji = sig[(j, i)]  # +1 if j better than i
+            if s_ji > 0:
                 definitely_better += 1
-
-            # Other could be better than us
-            if o_lo < hi:
-                could_be_better += 1
-
+            if s_ji >= 0:
+                # j is either better than i, or inconclusive -> j could be better
+                not_significantly_worse += 1
         row["rank_best"] = 1 + definitely_better
-        row["rank_worst"] = 1 + could_be_better
+        row["rank_worst"] = 1 + not_significantly_worse
 
     return leaderboard
 
@@ -323,6 +390,7 @@ def build_leaderboard(
             "avg_samples_per_riddle": avg_samples_per_riddle,
             "unique_altered_riddles": n_riddles,
             "conditioned_unique_altered_riddles": len(conditioned_per_riddle),
+            "_conditioned": per_riddle,
         }
 
         # CI95 for conditioned override and altered accuracy using per-riddle means
@@ -359,10 +427,99 @@ def build_leaderboard(
     for rank, row in enumerate(rows, 1):
         row["rank"] = rank
 
-    # Compute rank spread based on CI overlap
+    # Compute rank spread via paired clustered bootstrap on COR differences.
     rows = _compute_rank_spread(rows)
 
+    # Strip internal per-riddle data before returning (not part of the public schema).
+    for row in rows:
+        row.pop("_conditioned", None)
+
     return rows
+
+
+TYPE_ORDER = ["constraint_addition", "meaning_shift", "context_swap", "bias_probe"]
+
+
+def build_alteration_type_stats(
+    all_results: list[dict], benchmark_lookup: dict
+) -> dict:
+    """Aggregate per-alteration-type COR and altered accuracy across models."""
+    # Count unique altered riddles of each type in the benchmark.
+    n_riddles_by_type: dict[str, int] = defaultdict(int)
+    for riddle_id, entry in benchmark_lookup.items():
+        t = entry.get("type")
+        if t:
+            n_riddles_by_type[t] += 1
+
+    per_type: dict[str, dict] = {
+        t: {"per_model": {}} for t in n_riddles_by_type
+    }
+
+    for result in all_results:
+        model = result["model"]
+        details = result.get("details", [])
+
+        altered_by_riddle: dict[str, list[dict]] = defaultdict(list)
+        original_by_riddle: dict[str, list[dict]] = defaultdict(list)
+        for d in details:
+            rid = d.get("riddle_id")
+            if not rid:
+                continue
+            if d.get("riddle_type") == "altered":
+                altered_by_riddle[rid].append(d)
+            elif d.get("riddle_type") == "original":
+                original_by_riddle[rid].append(d)
+
+        # Bucket per-riddle stats by type.
+        acc_by_type: dict[str, list[float]] = defaultdict(list)
+        cor_by_type: dict[str, list[float]] = defaultdict(list)
+        for rid, samples in altered_by_riddle.items():
+            entry = benchmark_lookup.get(rid, {})
+            t = entry.get("type")
+            if not t:
+                continue
+            acc = mean(1.0 if s.get("correct") else 0.0 for s in samples)
+            acc_by_type[t].append(acc)
+
+            originals = original_by_riddle.get(rid, [])
+            original_solved = any(s.get("correct") for s in originals)
+            if original_solved:
+                override = mean(
+                    1.0 if s.get("gave_original_answer") else 0.0 for s in samples
+                )
+                cor_by_type[t].append(override)
+
+        for t in per_type:
+            alt_acc = mean(acc_by_type[t]) if acc_by_type[t] else None
+            cor = mean(cor_by_type[t]) if cor_by_type[t] else None
+            per_type[t]["per_model"][model] = {
+                "cor": round(cor, 4) if cor is not None else None,
+                "alt_acc": round(alt_acc, 4) if alt_acc is not None else None,
+            }
+
+    types_out = []
+    for t in TYPE_ORDER:
+        if t not in per_type:
+            continue
+        entries = per_type[t]["per_model"]
+        cor_values = [v["cor"] for v in entries.values() if v["cor"] is not None]
+        alt_values = [v["alt_acc"] for v in entries.values() if v["alt_acc"] is not None]
+        types_out.append(
+            {
+                "type": t,
+                "mean_cor": round(mean(cor_values), 4) if cor_values else None,
+                "mean_alt_acc": round(mean(alt_values), 4) if alt_values else None,
+                "n_riddles": n_riddles_by_type[t],
+                "per_model": entries,
+            }
+        )
+
+    return {
+        "generated_at": datetime.now(timezone.utc)
+        .isoformat(timespec="seconds")
+        .replace("+00:00", "Z"),
+        "types": types_out,
+    }
 
 
 def print_leaderboard(leaderboard):
@@ -478,6 +635,11 @@ def run_leaderboard(args):
     generate_markdown(leaderboard, md_path)
     logger.info("Leaderboard JSON: %s", results_dir / "leaderboard.json")
     logger.info("Leaderboard MD:   %s", md_path)
+
+    type_stats = build_alteration_type_stats(all_results, benchmark_lookup or {})
+    type_stats_path = results_dir / "alteration_type_stats.json"
+    write_json(type_stats_path, type_stats)
+    logger.info("Alteration type stats: %s", type_stats_path)
 
 
 def parse_args():
