@@ -22,6 +22,28 @@ _EFFORT_TO_TOKENS: dict[str, int] = {
     "xhigh": 32768,
 }
 
+# effort → verbosity label for models using adaptive-only thinking.
+# "minimal" has no direct verbosity equivalent, so it falls back to "low".
+_EFFORT_TO_VERBOSITY: dict[str, str] = {
+    "minimal": "low",
+    "low": "low",
+    "medium": "medium",
+    "high": "high",
+    "xhigh": "xhigh",
+}
+
+
+def _is_adaptive_only(model: str) -> bool:
+    """Return True for models that use adaptive thinking exclusively.
+
+    Claude 4.7 Opus ignores reasoning.max_tokens / reasoning.effort and
+    requires verbosity to control response effort instead.
+    """
+    m = model.lower()
+    # Match both raw and OpenRouter-prefixed forms:
+    #   "claude-4.7-opus", "anthropic/claude-4.7-opus", etc.
+    return "4.7" in m and "opus" in m
+
 
 @dataclass
 class ReasoningPlan:
@@ -112,17 +134,56 @@ def build_plan(
     # OpenAI-compatible aggregators (nous, together, hf): use OpenRouter-style
     # `reasoning` block in extra_body, routed by model family.
     reasoning_block: dict
-    if family in ("anthropic", "google"):
+    extra: dict
+
+    if family == "anthropic":
+        if _is_adaptive_only(model):
+            # Claude 4.7 Opus: adaptive thinking only — reasoning.max_tokens
+            # and reasoning.effort are ignored. Use verbosity to set effort,
+            # and only pass reasoning.enabled to toggle thinking on/off.
+            if not reasoning:
+                extra = {"reasoning": {"enabled": False}}
+            else:
+                extra = {
+                    "reasoning": {"enabled": True},
+                    "verbosity": _EFFORT_TO_VERBOSITY[eff],
+                }
+        else:
+            # Older Anthropic models (4.5 and below): budget-based thinking.
+            if not reasoning:
+                extra = {
+                    "reasoning": {"enabled": False, "max_tokens": 1, "exclude": False}
+                }
+            else:
+                extra = {
+                    "reasoning": {
+                        "enabled": True,
+                        "max_tokens": _EFFORT_TO_TOKENS[eff],
+                        "exclude": False,
+                    }
+                }
+
+        return ReasoningPlan(
+            enabled=reasoning,
+            effort=eff if reasoning else None,
+            openai_compat_extra=extra,
+        )
+
+    elif family == "google":
         if not reasoning:
             reasoning_block = {"enabled": False, "max_tokens": 1, "exclude": False}
         else:
-            reasoning_block = {"max_tokens": _EFFORT_TO_TOKENS[eff], "exclude": False}
+            reasoning_block = {
+                "enabled": True,
+                "max_tokens": _EFFORT_TO_TOKENS[eff],
+                "exclude": False,
+            }
     elif family == "openai":
         if not reasoning:
             reasoning_block = {"enabled": False, "effort": "none", "exclude": False}
         else:
             eff_mapped = "high" if eff == "xhigh" else eff
-            reasoning_block = {"effort": eff_mapped, "exclude": False}
+            reasoning_block = {"enabled": True, "effort": eff_mapped, "exclude": False}
     elif family == "qwen":
         if not reasoning:
             reasoning_block = {"enabled": False, "exclude": False}

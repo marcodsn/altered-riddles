@@ -28,6 +28,7 @@ data/model_outputs/
 data/benchmark_fixed.jsonl
 
 # Project - quality of life scripts
+scripts/clean_errors.py
 scripts/source_ratio.py
 scripts/validated_source_counts.py
 
