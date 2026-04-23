@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-04-21T13:04:34Z",
+  "generated_at": "2026-04-23T13:07:09Z",
   "types": [
     {
       "type": "constraint_addition",
-      "mean_cor": 0.3887,
-      "mean_alt_acc": 0.3787,
+      "mean_cor": 0.3901,
+      "mean_alt_acc": 0.3807,
       "n_riddles": 351,
       "per_model": {
         "anthropic/claude-opus-4.7|high": {
@@ -69,6 +69,13 @@
           "reasoning_effort": "high",
           "cor": 0.4237,
           "alt_acc": 0.416
+        },
+        "moonshotai/kimi-k2.6|high": {
+          "model": "moonshotai/kimi-k2.6",
+          "reasoning_enabled": true,
+          "reasoning_effort": "high",
+          "cor": 0.4167,
+          "alt_acc": 0.4188
         },
         "openai/gpt-5.4-mini|off": {
           "model": "openai/gpt-5.4-mini",
@@ -144,8 +151,8 @@
     },
     {
       "type": "meaning_shift",
-      "mean_cor": 0.3751,
-      "mean_alt_acc": 0.2804,
+      "mean_cor": 0.3775,
+      "mean_alt_acc": 0.2811,
       "n_riddles": 265,
       "per_model": {
         "anthropic/claude-opus-4.7|high": {
@@ -210,6 +217,13 @@
           "reasoning_effort": "high",
           "cor": 0.4375,
           "alt_acc": 0.317
+        },
+        "moonshotai/kimi-k2.6|high": {
+          "model": "moonshotai/kimi-k2.6",
+          "reasoning_enabled": true,
+          "reasoning_effort": "high",
+          "cor": 0.4222,
+          "alt_acc": 0.2943
         },
         "openai/gpt-5.4-mini|off": {
           "model": "openai/gpt-5.4-mini",
@@ -285,8 +299,8 @@
     },
     {
       "type": "context_swap",
-      "mean_cor": 0.444,
-      "mean_alt_acc": 0.3558,
+      "mean_cor": 0.4496,
+      "mean_alt_acc": 0.3552,
       "n_riddles": 204,
       "per_model": {
         "anthropic/claude-opus-4.7|high": {
@@ -351,6 +365,13 @@
           "reasoning_effort": "high",
           "cor": 0.4737,
           "alt_acc": 0.3333
+        },
+        "moonshotai/kimi-k2.6|high": {
+          "model": "moonshotai/kimi-k2.6",
+          "reasoning_enabled": true,
+          "reasoning_effort": "high",
+          "cor": 0.5556,
+          "alt_acc": 0.3431
         },
         "openai/gpt-5.4-mini|off": {
           "model": "openai/gpt-5.4-mini",
@@ -426,8 +447,8 @@
     },
     {
       "type": "bias_probe",
-      "mean_cor": 0.5032,
-      "mean_alt_acc": 0.273,
+      "mean_cor": 0.5031,
+      "mean_alt_acc": 0.2752,
       "n_riddles": 180,
       "per_model": {
         "anthropic/claude-opus-4.7|high": {
@@ -492,6 +513,13 @@
           "reasoning_effort": "high",
           "cor": 0.4286,
           "alt_acc": 0.2889
+        },
+        "moonshotai/kimi-k2.6|high": {
+          "model": "moonshotai/kimi-k2.6",
+          "reasoning_enabled": true,
+          "reasoning_effort": "high",
+          "cor": 0.5,
+          "alt_acc": 0.3167
         },
         "openai/gpt-5.4-mini|off": {
           "model": "openai/gpt-5.4-mini",

@@ -79,6 +79,8 @@ def _model_family(model: str) -> str:
         return "openai"
     if m.startswith("qwen/") or m.startswith("qwen") or m.startswith("alibaba/"):
         return "qwen"
+    if "kimi" in m or m.startswith("moonshotai/"):
+        return "kimi"
     return "other"
 
 
@@ -184,6 +186,12 @@ def build_plan(
         else:
             eff_mapped = "high" if eff == "xhigh" else eff
             reasoning_block = {"enabled": True, "effort": eff_mapped, "exclude": False}
+    # elif family == "kimi":
+    #     if not reasoning:
+    #         reasoning_block = {"enabled": False}
+    #     else:
+    #         eff_mapped = "high" if eff == "xhigh" else eff
+    #         reasoning_block = {"enabled": True, "effort": eff_mapped, "exclude": False}
     elif family == "qwen":
         if not reasoning:
             reasoning_block = {"enabled": False, "exclude": False}

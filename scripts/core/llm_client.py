@@ -10,7 +10,7 @@ import asyncio
 import logging
 import time
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Callable
 
 from scripts.core.config import (
     INITIAL_BACKOFF_S,
@@ -519,6 +519,111 @@ def call_llm_batched(
             model=model,
             temperature=temperature,
             api_key=api_key,
+            max_output_tokens=max_output_tokens,
+            max_concurrency=max_concurrency,
+            reasoning_plan=reasoning_plan,
+        )
+    )
+
+
+async def _provider_batch_streaming_async(
+    prompts: list[str],
+    *,
+    provider: str,
+    model: str,
+    temperature: float,
+    api_key: str,
+    on_result: Callable[[int, LLMResponse | BaseException], None],
+    max_output_tokens: int | None = None,
+    max_concurrency: int = 10,
+    reasoning_plan: ReasoningPlan | None = None,
+) -> None:
+    semaphore = asyncio.Semaphore(max_concurrency)
+
+    client_type = get_client_type(provider)
+    base_url = get_base_url(provider)
+    shared_client: Any | None = None
+
+    if client_type == "openai_compat":
+        from openai import AsyncOpenAI
+
+        client_kwargs: dict[str, Any] = {"api_key": api_key}
+        if base_url:
+            client_kwargs["base_url"] = base_url
+        shared_client = AsyncOpenAI(**client_kwargs)
+    elif client_type == "mistral":
+        from mistralai.client import Mistral
+
+        shared_client = Mistral(api_key=api_key)
+
+    async def _guarded(idx: int, prompt: str) -> tuple[int, LLMResponse | BaseException]:
+        async with semaphore:
+            backoff = INITIAL_BACKOFF_S
+            for attempt in range(1, MAX_RETRIES + 1):
+                try:
+                    resp = await _call_provider_async(
+                        prompt,
+                        provider=provider,
+                        model=model,
+                        temperature=temperature,
+                        api_key=api_key,
+                        max_output_tokens=max_output_tokens,
+                        client=shared_client,
+                        reasoning_plan=reasoning_plan,
+                    )
+                    return idx, resp
+                except Exception as exc:
+                    logger.warning(
+                        "Prompt %d attempt %d/%d failed: %s", idx, attempt, MAX_RETRIES, exc
+                    )
+                    if attempt == MAX_RETRIES:
+                        return idx, exc
+                    await asyncio.sleep(backoff)
+                    backoff *= 2
+            return idx, RuntimeError("Exhausted retries")
+
+    try:
+        tasks = [asyncio.create_task(_guarded(i, p)) for i, p in enumerate(prompts)]
+        for coro in asyncio.as_completed(tasks):
+            idx, result = await coro
+            try:
+                on_result(idx, result)
+            except Exception:
+                logger.exception("on_result callback failed for idx=%d", idx)
+    finally:
+        if shared_client is not None:
+            if hasattr(shared_client, "aclose"):
+                await shared_client.aclose()
+            elif hasattr(shared_client, "__aexit__"):
+                await shared_client.__aexit__(None, None, None)
+
+
+def call_llm_batched_streaming(
+    prompts: list[str],
+    *,
+    provider: str,
+    model: str,
+    temperature: float,
+    api_key: str,
+    on_result: Callable[[int, LLMResponse | BaseException], None],
+    max_output_tokens: int | None = None,
+    max_concurrency: int = 10,
+    reasoning_plan: ReasoningPlan | None = None,
+) -> None:
+    """Batch-call an LLM with async concurrency, streaming results.
+
+    ``on_result(idx, result)`` is invoked as each prompt finishes, in the order
+    tasks complete (not submission order). ``idx`` is the original index into
+    ``prompts``. Slow prompts no longer block faster ones from being delivered.
+    """
+    asyncio.run(
+        _provider_batch_streaming_async(
+            prompts,
+            provider=provider,
+            model=model,
+            temperature=temperature,
+            api_key=api_key,
+            on_result=on_result,
             max_output_tokens=max_output_tokens,
             max_concurrency=max_concurrency,
             reasoning_plan=reasoning_plan,

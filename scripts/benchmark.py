@@ -36,7 +36,7 @@ from scripts.core.io_utils import (
     sanitize_model_name,
     strip_markdown_fences,
 )
-from scripts.core.llm_client import LLMResponse, call_llm, call_llm_batched
+from scripts.core.llm_client import LLMResponse, call_llm, call_llm_batched_streaming
 from scripts.core.reasoning import DEFAULT_EFFORT, EFFORTS, build_plan
 
 logging.basicConfig(
@@ -258,96 +258,99 @@ def run_benchmark(args: argparse.Namespace) -> None:
             output_path,
         )
 
-    for chunk_start in range(0, total, batch_size):
-        chunk = pending[chunk_start : chunk_start + batch_size]
+    # Build prompts + meta for the full pending set; results stream to disk as
+    # each completes, so a single slow/stuck generation can no longer block the
+    # rest of the batch from being persisted.
+    prompts: list[str] = []
+    meta: list[tuple[str, str, int, str]] = []
+    for entry, rtype, si in pending:
+        rid = entry.get("id", "unknown")
+        text = entry.get("original_riddle" if rtype == "original" else "altered_riddle", "")
+        if not text:
+            continue
+        prompts.append(template.render(riddle=text, chain_of_thought=args.chain_of_thought))
+        meta.append((rid, rtype, si, text))
+
+    if not prompts:
+        logger.info("No prompts to run.")
+        return
+
+    completed = 0
+    total_prompts = len(prompts)
+
+    def handle_result(idx: int, result: LLMResponse | BaseException) -> None:
+        nonlocal completed
+        rid, rtype, si, text = meta[idx]
+        if isinstance(result, BaseException):
+            answer, reasoning, raw = "ERROR", str(result), ""
+            in_tok = out_tok = None
+        else:
+            raw = result.text
+            in_tok, out_tok = result.input_tokens, result.output_tokens
+            if raw:
+                answer, reasoning = parse_model_response(raw)
+            else:
+                answer, reasoning = "ERROR", "Empty response"
+
+        record = make_record(
+            rid,
+            rtype,
+            si,
+            text,
+            answer,
+            reasoning,
+            raw,
+            model_name,
+            args.provider,
+            args.temperature,
+            args.quantization,
+            in_tok,
+            out_tok,
+            reasoning_plan.enabled,
+            reasoning_plan.effort,
+        )
+        append_jsonl(output_path, record)
+        completed += 1
         logger.info(
-            "Batch [%d-%d] / %d",
-            chunk_start + 1,
-            chunk_start + len(chunk),
-            total,
+            "  [%d/%d] %s (%s, s%d) -> %s",
+            completed,
+            total_prompts,
+            rid,
+            rtype,
+            si,
+            answer[:60],
         )
 
-        prompts: list[str] = []
-        meta: list[tuple[str, str, int, str]] = []
-
-        for entry, rtype, si in chunk:
-            rid = entry.get("id", "unknown")
-            text = entry.get("original_riddle" if rtype == "original" else "altered_riddle", "")
-            if not text:
-                continue
-            prompts.append(template.render(riddle=text, chain_of_thought=args.chain_of_thought))
-            meta.append((rid, rtype, si, text))
-
-        if not prompts:
-            continue
-
-        # Sequential or batched execution
-        if batch_size <= 1:
-            results: list[LLMResponse | BaseException] = []
-            for prompt in prompts:
-                try:
-                    results.append(
-                        call_llm(
-                            prompt,
-                            provider=args.provider,
-                            model=model_name,
-                            temperature=args.temperature,
-                            api_key=api_key,
-                            max_output_tokens=args.max_output_tokens,
-                            reasoning_plan=reasoning_plan,
-                        )
-                    )
-                except Exception as exc:
-                    results.append(exc)
+    if batch_size <= 1:
+        # Sequential path — keep the per-call delay for rate-limit friendliness.
+        for idx, prompt in enumerate(prompts):
+            try:
+                result: LLMResponse | BaseException = call_llm(
+                    prompt,
+                    provider=args.provider,
+                    model=model_name,
+                    temperature=args.temperature,
+                    api_key=api_key,
+                    max_output_tokens=args.max_output_tokens,
+                    reasoning_plan=reasoning_plan,
+                )
+            except Exception as exc:
+                result = exc
+            handle_result(idx, result)
+            if idx + 1 < total_prompts:
                 time.sleep(args.delay)
-        else:
-            results = call_llm_batched(
-                prompts,
-                provider=args.provider,
-                model=model_name,
-                temperature=args.temperature,
-                api_key=api_key,
-                max_output_tokens=args.max_output_tokens,
-                max_concurrency=batch_size,
-                reasoning_plan=reasoning_plan,
-            )
-
-        # Process results
-        for (rid, rtype, si, text), result in zip(meta, results):
-            if isinstance(result, BaseException):
-                answer, reasoning, raw = "ERROR", str(result), ""
-                in_tok = out_tok = None
-            else:
-                raw = result.text
-                in_tok, out_tok = result.input_tokens, result.output_tokens
-                if raw:
-                    answer, reasoning = parse_model_response(raw)
-                else:
-                    answer, reasoning = "ERROR", "Empty response"
-
-            record = make_record(
-                rid,
-                rtype,
-                si,
-                text,
-                answer,
-                reasoning,
-                raw,
-                model_name,
-                args.provider,
-                args.temperature,
-                args.quantization,
-                in_tok,
-                out_tok,
-                reasoning_plan.enabled,
-                reasoning_plan.effort,
-            )
-            append_jsonl(output_path, record)
-            logger.info("  %s (%s, s%d) -> %s", rid, rtype, si, answer[:60])
-
-        # Delay between batches
-        if chunk_start + len(chunk) < total:
-            time.sleep(args.delay)
+    else:
+        call_llm_batched_streaming(
+            prompts,
+            provider=args.provider,
+            model=model_name,
+            temperature=args.temperature,
+            api_key=api_key,
+            max_output_tokens=args.max_output_tokens,
+            max_concurrency=batch_size,
+            reasoning_plan=reasoning_plan,
+            on_result=handle_result,
+        )
 
     logger.info("Benchmark complete. Results: %s", output_path)
 
