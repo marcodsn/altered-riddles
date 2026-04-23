@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-04-23T13:07:09Z",
+  "generated_at": "2026-04-23T15:26:36Z",
   "types": [
     {
       "type": "constraint_addition",
-      "mean_cor": 0.3901,
-      "mean_alt_acc": 0.3807,
+      "mean_cor": 0.3948,
+      "mean_alt_acc": 0.3775,
       "n_riddles": 351,
       "per_model": {
         "anthropic/claude-opus-4.7|high": {
@@ -112,6 +112,13 @@
           "cor": 0.4434,
           "alt_acc": 0.3172
         },
+        "qwen/qwen3.6-27b|off": {
+          "model": "qwen/qwen3.6-27b",
+          "reasoning_enabled": false,
+          "reasoning_effort": null,
+          "cor": 0.4884,
+          "alt_acc": 0.3134
+        },
         "qwen/qwen3.6-35b-a3b|off": {
           "model": "qwen/qwen3.6-35b-a3b",
           "reasoning_enabled": false,
@@ -151,8 +158,8 @@
     },
     {
       "type": "meaning_shift",
-      "mean_cor": 0.3775,
-      "mean_alt_acc": 0.2811,
+      "mean_cor": 0.3777,
+      "mean_alt_acc": 0.2779,
       "n_riddles": 265,
       "per_model": {
         "anthropic/claude-opus-4.7|high": {
@@ -260,6 +267,13 @@
           "cor": 0.3417,
           "alt_acc": 0.2327
         },
+        "qwen/qwen3.6-27b|off": {
+          "model": "qwen/qwen3.6-27b",
+          "reasoning_enabled": false,
+          "reasoning_effort": null,
+          "cor": 0.3821,
+          "alt_acc": 0.2138
+        },
         "qwen/qwen3.6-35b-a3b|off": {
           "model": "qwen/qwen3.6-35b-a3b",
           "reasoning_enabled": false,
@@ -299,8 +313,8 @@
     },
     {
       "type": "context_swap",
-      "mean_cor": 0.4496,
-      "mean_alt_acc": 0.3552,
+      "mean_cor": 0.455,
+      "mean_alt_acc": 0.3507,
       "n_riddles": 204,
       "per_model": {
         "anthropic/claude-opus-4.7|high": {
@@ -408,6 +422,13 @@
           "cor": 0.3333,
           "alt_acc": 0.3007
         },
+        "qwen/qwen3.6-27b|off": {
+          "model": "qwen/qwen3.6-27b",
+          "reasoning_enabled": false,
+          "reasoning_effort": null,
+          "cor": 0.5625,
+          "alt_acc": 0.2614
+        },
         "qwen/qwen3.6-35b-a3b|off": {
           "model": "qwen/qwen3.6-35b-a3b",
           "reasoning_enabled": false,
@@ -447,8 +468,8 @@
     },
     {
       "type": "bias_probe",
-      "mean_cor": 0.5031,
-      "mean_alt_acc": 0.2752,
+      "mean_cor": 0.504,
+      "mean_alt_acc": 0.2725,
       "n_riddles": 180,
       "per_model": {
         "anthropic/claude-opus-4.7|high": {
@@ -555,6 +576,13 @@
           "reasoning_effort": null,
           "cor": 0.5417,
           "alt_acc": 0.2315
+        },
+        "qwen/qwen3.6-27b|off": {
+          "model": "qwen/qwen3.6-27b",
+          "reasoning_enabled": false,
+          "reasoning_effort": null,
+          "cor": 0.5217,
+          "alt_acc": 0.2185
         },
         "qwen/qwen3.6-35b-a3b|off": {
           "model": "qwen/qwen3.6-35b-a3b",
