@@ -1,5 +1,5 @@
 {
-  "model": "mistral-small-2603",
+  "model": "mistralai/mistral-small-2603",
   "provider": "mistral",
   "quantization": null,
   "reasoning_enabled": false,
