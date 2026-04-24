@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-04-24T09:35:21Z",
+  "generated_at": "2026-04-24T21:40:46Z",
   "types": [
     {
       "type": "constraint_addition",
-      "mean_cor": 0.3948,
-      "mean_alt_acc": 0.3775,
+      "mean_cor": 0.3974,
+      "mean_alt_acc": 0.3718,
       "n_riddles": 351,
       "per_model": {
         "anthropic/claude-opus-4.7|high": {
@@ -55,6 +55,20 @@
           "reasoning_effort": "high",
           "cor": 0.2963,
           "alt_acc": 0.4245
+        },
+        "mistral-small-2603|off": {
+          "model": "mistral-small-2603",
+          "reasoning_enabled": false,
+          "reasoning_effort": null,
+          "cor": 0.5091,
+          "alt_acc": 0.1966
+        },
+        "mistralai/mistral-small-2603|high": {
+          "model": "mistralai/mistral-small-2603",
+          "reasoning_enabled": true,
+          "reasoning_effort": "high",
+          "cor": 0.3396,
+          "alt_acc": 0.4274
         },
         "moonshotai/kimi-k2.5|off": {
           "model": "moonshotai/kimi-k2.5",
@@ -158,8 +172,8 @@
     },
     {
       "type": "meaning_shift",
-      "mean_cor": 0.3777,
-      "mean_alt_acc": 0.2779,
+      "mean_cor": 0.3807,
+      "mean_alt_acc": 0.2748,
       "n_riddles": 265,
       "per_model": {
         "anthropic/claude-opus-4.7|high": {
@@ -210,6 +224,20 @@
           "reasoning_effort": "high",
           "cor": 0.2889,
           "alt_acc": 0.2943
+        },
+        "mistral-small-2603|off": {
+          "model": "mistral-small-2603",
+          "reasoning_enabled": false,
+          "reasoning_effort": null,
+          "cor": 0.4762,
+          "alt_acc": 0.1811
+        },
+        "mistralai/mistral-small-2603|high": {
+          "model": "mistralai/mistral-small-2603",
+          "reasoning_enabled": true,
+          "reasoning_effort": "high",
+          "cor": 0.3478,
+          "alt_acc": 0.3019
         },
         "moonshotai/kimi-k2.5|off": {
           "model": "moonshotai/kimi-k2.5",
@@ -313,8 +341,8 @@
     },
     {
       "type": "context_swap",
-      "mean_cor": 0.455,
-      "mean_alt_acc": 0.3507,
+      "mean_cor": 0.4657,
+      "mean_alt_acc": 0.3464,
       "n_riddles": 204,
       "per_model": {
         "anthropic/claude-opus-4.7|high": {
@@ -365,6 +393,20 @@
           "reasoning_effort": "high",
           "cor": 0.3529,
           "alt_acc": 0.3873
+        },
+        "mistral-small-2603|off": {
+          "model": "mistral-small-2603",
+          "reasoning_enabled": false,
+          "reasoning_effort": null,
+          "cor": 0.6875,
+          "alt_acc": 0.2598
+        },
+        "mistralai/mistral-small-2603|high": {
+          "model": "mistralai/mistral-small-2603",
+          "reasoning_enabled": true,
+          "reasoning_effort": "high",
+          "cor": 0.4706,
+          "alt_acc": 0.3431
         },
         "moonshotai/kimi-k2.5|off": {
           "model": "moonshotai/kimi-k2.5",
@@ -468,8 +510,8 @@
     },
     {
       "type": "bias_probe",
-      "mean_cor": 0.504,
-      "mean_alt_acc": 0.2725,
+      "mean_cor": 0.4986,
+      "mean_alt_acc": 0.2701,
       "n_riddles": 180,
       "per_model": {
         "anthropic/claude-opus-4.7|high": {
@@ -520,6 +562,20 @@
           "reasoning_effort": "high",
           "cor": 0.48,
           "alt_acc": 0.3167
+        },
+        "mistral-small-2603|off": {
+          "model": "mistral-small-2603",
+          "reasoning_enabled": false,
+          "reasoning_effort": null,
+          "cor": 0.5769,
+          "alt_acc": 0.1833
+        },
+        "mistralai/mistral-small-2603|high": {
+          "model": "mistralai/mistral-small-2603",
+          "reasoning_enabled": true,
+          "reasoning_effort": "high",
+          "cor": 0.3077,
+          "alt_acc": 0.3056
         },
         "moonshotai/kimi-k2.5|off": {
           "model": "moonshotai/kimi-k2.5",

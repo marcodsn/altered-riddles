@@ -18,10 +18,10 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 210,
     "conditioned_override_ci95": 0.054,
-    "altered_accuracy_ci95": 0.0348,
+    "altered_accuracy_ci95": 0.035,
     "rank": 1,
     "rank_best": 1,
-    "rank_worst": 6
+    "rank_worst": 7
   },
   {
     "model": "openai/gpt-oss-20b",
@@ -45,7 +45,7 @@
     "altered_accuracy_ci95": 0.0357,
     "rank": 2,
     "rank_best": 1,
-    "rank_worst": 7
+    "rank_worst": 8
   },
   {
     "model": "openai/gpt-5.4-mini",
@@ -66,10 +66,10 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 206,
     "conditioned_override_ci95": 0.0631,
-    "altered_accuracy_ci95": 0.0374,
+    "altered_accuracy_ci95": 0.0377,
     "rank": 3,
     "rank_best": 1,
-    "rank_worst": 10
+    "rank_worst": 11
   },
   {
     "model": "minimaxai/minimax-m2.7",
@@ -93,7 +93,7 @@
     "altered_accuracy_ci95": 0.0363,
     "rank": 4,
     "rank_best": 1,
-    "rank_worst": 11
+    "rank_worst": 12
   },
   {
     "model": "zai-org/glm-5.1",
@@ -114,10 +114,10 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 213,
     "conditioned_override_ci95": 0.0634,
-    "altered_accuracy_ci95": 0.0378,
+    "altered_accuracy_ci95": 0.0373,
     "rank": 5,
     "rank_best": 1,
-    "rank_worst": 10
+    "rank_worst": 12
   },
   {
     "model": "openai/gpt-oss-120b",
@@ -138,10 +138,10 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 196,
     "conditioned_override_ci95": 0.0663,
-    "altered_accuracy_ci95": 0.0353,
+    "altered_accuracy_ci95": 0.035,
     "rank": 6,
     "rank_best": 1,
-    "rank_worst": 9
+    "rank_worst": 10
   },
   {
     "model": "xiaomi/mimo-v2-omni",
@@ -162,10 +162,10 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 206,
     "conditioned_override_ci95": 0.0566,
-    "altered_accuracy_ci95": 0.0339,
+    "altered_accuracy_ci95": 0.0342,
     "rank": 7,
     "rank_best": 2,
-    "rank_worst": 9
+    "rank_worst": 10
   },
   {
     "model": "zai-org/glm-5",
@@ -186,10 +186,34 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 211,
     "conditioned_override_ci95": 0.064,
-    "altered_accuracy_ci95": 0.0369,
+    "altered_accuracy_ci95": 0.0367,
     "rank": 8,
     "rank_best": 3,
-    "rank_worst": 11
+    "rank_worst": 12
+  },
+  {
+    "model": "mistralai/mistral-small-2603",
+    "provider": "mistral",
+    "quantization": null,
+    "reasoning_enabled": true,
+    "reasoning_effort": "high",
+    "original_accuracy": 0.8824,
+    "altered_accuracy": 0.355,
+    "pattern_override_rate": 0.323,
+    "conditioned_override_rate": 0.3487179487179487,
+    "conditioned_override_total": 68,
+    "total_input_tokens": 109514,
+    "total_output_tokens": 1924520,
+    "avg_input_tokens_per_riddle": 109.514,
+    "avg_output_tokens_per_riddle": 1924.52,
+    "avg_samples_per_riddle": 1,
+    "unique_altered_riddles": 1000,
+    "conditioned_unique_altered_riddles": 195,
+    "conditioned_override_ci95": 0.0664,
+    "altered_accuracy_ci95": 0.0351,
+    "rank": 9,
+    "rank_best": 1,
+    "rank_worst": 12
   },
   {
     "model": "google/gemma-4-31b-it",
@@ -210,8 +234,8 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 210,
     "conditioned_override_ci95": 0.0643,
-    "altered_accuracy_ci95": 0.0393,
-    "rank": 9,
+    "altered_accuracy_ci95": 0.0397,
+    "rank": 10,
     "rank_best": 3,
     "rank_worst": 12
   },
@@ -234,10 +258,10 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 192,
     "conditioned_override_ci95": 0.0703,
-    "altered_accuracy_ci95": 0.0336,
-    "rank": 10,
+    "altered_accuracy_ci95": 0.0334,
+    "rank": 11,
     "rank_best": 6,
-    "rank_worst": 15
+    "rank_worst": 16
   },
   {
     "model": "qwen/qwen3.5-27b",
@@ -259,8 +283,8 @@
     "conditioned_unique_altered_riddles": 185,
     "conditioned_override_ci95": 0.0649,
     "altered_accuracy_ci95": 0.0296,
-    "rank": 11,
-    "rank_best": 9,
+    "rank": 12,
+    "rank_best": 11,
     "rank_worst": 16
   },
   {
@@ -282,10 +306,10 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 213,
     "conditioned_override_ci95": 0.0657,
-    "altered_accuracy_ci95": 0.0344,
-    "rank": 12,
-    "rank_best": 10,
-    "rank_worst": 19
+    "altered_accuracy_ci95": 0.0342,
+    "rank": 13,
+    "rank_best": 11,
+    "rank_worst": 20
   },
   {
     "model": "moonshotai/kimi-k2.6",
@@ -298,18 +322,18 @@
     "pattern_override_rate": 0.453,
     "conditioned_override_rate": 0.4413145539906103,
     "conditioned_override_total": 94,
-    "total_input_tokens": 95595,
-    "total_output_tokens": 2850498,
-    "avg_input_tokens_per_riddle": 95.595,
-    "avg_output_tokens_per_riddle": 2850.498,
-    "avg_samples_per_riddle": 1,
+    "total_input_tokens": 95997,
+    "total_output_tokens": 2861383,
+    "avg_input_tokens_per_riddle": 95.80538922155688,
+    "avg_output_tokens_per_riddle": 2855.6716566866266,
+    "avg_samples_per_riddle": 1.002,
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 213,
     "conditioned_override_ci95": 0.0657,
-    "altered_accuracy_ci95": 0.036,
-    "rank": 13,
-    "rank_best": 10,
-    "rank_worst": 19
+    "altered_accuracy_ci95": 0.0362,
+    "rank": 14,
+    "rank_best": 11,
+    "rank_worst": 21
   },
   {
     "model": "google/gemma-4-31b-it",
@@ -330,10 +354,10 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 208,
     "conditioned_override_ci95": 0.0657,
-    "altered_accuracy_ci95": 0.0338,
-    "rank": 14,
-    "rank_best": 11,
-    "rank_worst": 19
+    "altered_accuracy_ci95": 0.0337,
+    "rank": 15,
+    "rank_best": 12,
+    "rank_worst": 21
   },
   {
     "model": "qwen/qwen3.6-27b",
@@ -354,10 +378,10 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 181,
     "conditioned_override_ci95": 0.0663,
-    "altered_accuracy_ci95": 0.031,
-    "rank": 15,
-    "rank_best": 11,
-    "rank_worst": 20
+    "altered_accuracy_ci95": 0.0306,
+    "rank": 16,
+    "rank_best": 12,
+    "rank_worst": 22
   },
   {
     "model": "anthropic/claude-sonnet-4.6",
@@ -378,10 +402,10 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 215,
     "conditioned_override_ci95": 0.0674,
-    "altered_accuracy_ci95": 0.0366,
-    "rank": 16,
-    "rank_best": 11,
-    "rank_worst": 21
+    "altered_accuracy_ci95": 0.0367,
+    "rank": 17,
+    "rank_best": 13,
+    "rank_worst": 23
   },
   {
     "model": "google/gemma-4-26b-a4b-it",
@@ -402,10 +426,10 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 189,
     "conditioned_override_ci95": 0.067,
-    "altered_accuracy_ci95": 0.0326,
-    "rank": 17,
-    "rank_best": 12,
-    "rank_worst": 20
+    "altered_accuracy_ci95": 0.0328,
+    "rank": 18,
+    "rank_best": 13,
+    "rank_worst": 22
   },
   {
     "model": "qwen/qwen3.6-35b-a3b",
@@ -426,10 +450,34 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 168,
     "conditioned_override_ci95": 0.0675,
-    "altered_accuracy_ci95": 0.0285,
-    "rank": 18,
-    "rank_best": 13,
-    "rank_worst": 21
+    "altered_accuracy_ci95": 0.0284,
+    "rank": 19,
+    "rank_best": 14,
+    "rank_worst": 23
+  },
+  {
+    "model": "mistral-small-2603",
+    "provider": "mistral",
+    "quantization": null,
+    "reasoning_enabled": false,
+    "reasoning_effort": null,
+    "original_accuracy": 0.8778,
+    "altered_accuracy": 0.203,
+    "pattern_override_rate": 0.461,
+    "conditioned_override_rate": 0.5257731958762887,
+    "conditioned_override_total": 102,
+    "total_input_tokens": 111086,
+    "total_output_tokens": 9763,
+    "avg_input_tokens_per_riddle": 111.086,
+    "avg_output_tokens_per_riddle": 9.763,
+    "avg_samples_per_riddle": 1,
+    "unique_altered_riddles": 1000,
+    "conditioned_unique_altered_riddles": 194,
+    "conditioned_override_ci95": 0.0696,
+    "altered_accuracy_ci95": 0.0276,
+    "rank": 20,
+    "rank_best": 15,
+    "rank_worst": 23
   },
   {
     "model": "anthropic/claude-opus-4.7",
@@ -450,10 +498,10 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 214,
     "conditioned_override_ci95": 0.0678,
-    "altered_accuracy_ci95": 0.0328,
-    "rank": 19,
-    "rank_best": 15,
-    "rank_worst": 21
+    "altered_accuracy_ci95": 0.0332,
+    "rank": 21,
+    "rank_best": 16,
+    "rank_worst": 23
   },
   {
     "model": "liquidai/lfm2-24b-a2b",
@@ -475,9 +523,9 @@
     "conditioned_unique_altered_riddles": 108,
     "conditioned_override_ci95": 0.0926,
     "altered_accuracy_ci95": 0.0273,
-    "rank": 20,
-    "rank_best": 6,
-    "rank_worst": 19
+    "rank": 22,
+    "rank_best": 5,
+    "rank_worst": 20
   },
   {
     "model": "moonshotai/kimi-k2.5",
@@ -498,9 +546,9 @@
     "unique_altered_riddles": 1000,
     "conditioned_unique_altered_riddles": 214,
     "conditioned_override_ci95": 0.0654,
-    "altered_accuracy_ci95": 0.0306,
-    "rank": 21,
-    "rank_best": 18,
-    "rank_worst": 21
+    "altered_accuracy_ci95": 0.0305,
+    "rank": 23,
+    "rank_best": 19,
+    "rank_worst": 23
   }
 ]

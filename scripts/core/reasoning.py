@@ -55,6 +55,8 @@ class ReasoningPlan:
     openai_compat_extra: dict = field(default_factory=dict)
     # For direct openai provider: kwargs passed to chat.completions.create.
     openai_direct_kwargs: dict = field(default_factory=dict)
+    # For mistral provider: kwargs passed to client.chat.complete(_async).
+    mistral_kwargs: dict = field(default_factory=dict)
 
     @property
     def tag(self) -> str:
@@ -129,9 +131,18 @@ def build_plan(
     if provider == "local":
         return ReasoningPlan(enabled=reasoning, effort=eff if reasoning else None)
 
-    # Mistral: no supported reasoning control; pass through.
+    # Mistral native SDK: reasoning_effort="none" disables, otherwise pass effort level.
     if provider == "mistral":
-        return ReasoningPlan(enabled=reasoning, effort=eff if reasoning else None)
+        if not reasoning:
+            return ReasoningPlan(
+                enabled=False, mistral_kwargs={"reasoning_effort": "none"}
+            )
+        eff_mapped = "high" if eff == "xhigh" else eff
+        return ReasoningPlan(
+            enabled=True,
+            effort=eff,
+            mistral_kwargs={"reasoning_effort": eff_mapped},
+        )
 
     # OpenAI-compatible aggregators (nous, together, hf): use OpenRouter-style
     # `reasoning` block in extra_body, routed by model family.

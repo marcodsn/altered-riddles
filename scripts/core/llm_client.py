@@ -142,12 +142,66 @@ def _call_openai_compat_sync(
     )
 
 
+def _mistral_extract_content(message: Any) -> tuple[str, str | None]:
+    """Return (text, reasoning) from a Mistral message whose content may be
+    a plain string or a list of content chunks (when reasoning is enabled)."""
+    content = message.content
+    text_parts: list[str] = []
+    thinking_parts: list[str] = []
+
+    def _collect_text(chunks: Any) -> str:
+        parts: list[str] = []
+        if isinstance(chunks, str):
+            return chunks
+        if isinstance(chunks, list):
+            for c in chunks:
+                ctype = getattr(c, "type", None) or (c.get("type") if isinstance(c, dict) else None)
+                ctext = getattr(c, "text", None) or (c.get("text") if isinstance(c, dict) else None)
+                if ctype == "text" and ctext:
+                    parts.append(ctext)
+        return "".join(parts)
+
+    if isinstance(content, str):
+        text_parts.append(content)
+    elif isinstance(content, list):
+        for chunk in content:
+            ctype = getattr(chunk, "type", None) or (
+                chunk.get("type") if isinstance(chunk, dict) else None
+            )
+            if ctype == "thinking":
+                inner = getattr(chunk, "thinking", None) or (
+                    chunk.get("thinking") if isinstance(chunk, dict) else None
+                )
+                collected = _collect_text(inner)
+                if collected:
+                    thinking_parts.append(collected)
+            elif ctype == "text":
+                ctext = getattr(chunk, "text", None) or (
+                    chunk.get("text") if isinstance(chunk, dict) else None
+                )
+                if ctext:
+                    text_parts.append(ctext)
+
+    # Fallback: top-level thinking_blocks attribute (older SDK shape).
+    thinking_blocks = getattr(message, "thinking_blocks", None)
+    if thinking_blocks and not thinking_parts:
+        for b in thinking_blocks:
+            t = getattr(b, "thinking", None)
+            if t:
+                thinking_parts.append(_collect_text(t) if not isinstance(t, str) else t)
+
+    text = "".join(text_parts)
+    reasoning = "\n".join(p for p in thinking_parts if p) or None
+    return text, reasoning
+
+
 def _call_mistral_sync(
     prompt_text: str,
     model: str,
     temperature: float,
     api_key: str,
     max_output_tokens: int | None = None,
+    reasoning_plan: ReasoningPlan | None = None,
 ) -> LLMResponse:
     from mistralai.client import Mistral
 
@@ -159,18 +213,13 @@ def _call_mistral_sync(
     )
     if max_output_tokens is not None:
         create_kwargs["max_tokens"] = max_output_tokens
+    if reasoning_plan is not None and reasoning_plan.mistral_kwargs:
+        create_kwargs.update(reasoning_plan.mistral_kwargs)
 
     response = client.chat.complete(**create_kwargs)
     message = response.choices[0].message
-    result = message.content
-    assert result is not None, "Mistral returned an empty response"
-
-    reasoning: str | None = None
-    thinking_blocks = getattr(message, "thinking_blocks", None)
-    if thinking_blocks:
-        reasoning = (
-            "\n".join(b.thinking for b in thinking_blocks if getattr(b, "thinking", None)) or None
-        )
+    result, reasoning = _mistral_extract_content(message)
+    assert result, "Mistral returned an empty response"
 
     input_tokens = output_tokens = None
     if response.usage is not None:
@@ -209,7 +258,8 @@ def call_llm(
                 )
             elif client_type == "mistral":
                 return _call_mistral_sync(
-                    prompt_text, model, temperature, api_key, max_output_tokens
+                    prompt_text, model, temperature, api_key, max_output_tokens,
+                    reasoning_plan=reasoning_plan,
                 )
             else:
                 return _call_openai_compat_sync(
@@ -357,6 +407,7 @@ async def _call_mistral_async(
     api_key: str,
     max_output_tokens: int | None = None,
     client: Any | None = None,
+    reasoning_plan: ReasoningPlan | None = None,
 ) -> LLMResponse:
     from mistralai.client import Mistral
 
@@ -370,18 +421,13 @@ async def _call_mistral_async(
     )
     if max_output_tokens is not None:
         create_kwargs["max_tokens"] = max_output_tokens
+    if reasoning_plan is not None and reasoning_plan.mistral_kwargs:
+        create_kwargs.update(reasoning_plan.mistral_kwargs)
 
     response = await client.chat.complete_async(**create_kwargs)
     message = response.choices[0].message
-    result = message.content
-    assert result is not None, "Mistral async returned an empty response"
-
-    reasoning: str | None = None
-    thinking_blocks = getattr(message, "thinking_blocks", None)
-    if thinking_blocks:
-        reasoning = (
-            "\n".join(b.thinking for b in thinking_blocks if getattr(b, "thinking", None)) or None
-        )
+    result, reasoning = _mistral_extract_content(message)
+    assert result, "Mistral async returned an empty response"
 
     input_tokens = output_tokens = None
     if response.usage is not None:
@@ -420,6 +466,7 @@ async def _call_provider_async(
             api_key,
             max_output_tokens,
             client=client,
+            reasoning_plan=reasoning_plan,
         )
     else:
         return await _call_openai_compat_async(

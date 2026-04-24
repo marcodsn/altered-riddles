@@ -15,8 +15,8 @@
     "conditioned_override_total": 213,
     "conditioned_override_count": 94,
     "conditioned_override_rate": 0.4413,
-    "total_input_tokens": 95595,
-    "total_output_tokens": 2850498
+    "total_input_tokens": 95997,
+    "total_output_tokens": 2861383
   },
   "details": [
     {
@@ -4111,6 +4111,13 @@
       "correct": true,
       "gave_original_answer": false,
       "original_answer": "Air"
+    },
+    {
+      "riddle_id": "alt_0675",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "Trees",
+      "correct": false
     },
     {
       "riddle_id": "alt_0662",
@@ -8371,6 +8378,15 @@
       "original_answer": "Lunch and dinner"
     },
     {
+      "riddle_id": "alt_0175",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "Trees",
+      "correct": false,
+      "gave_original_answer": true,
+      "original_answer": "trees"
+    },
+    {
       "riddle_id": "alt_0215",
       "riddle_type": "altered",
       "sample_index": 1,
@@ -9743,6 +9759,15 @@
       "original_answer": "Breath"
     },
     {
+      "riddle_id": "alt_0175",
+      "riddle_type": "altered",
+      "sample_index": 1,
+      "model_answer": "Trees",
+      "correct": false,
+      "gave_original_answer": true,
+      "original_answer": "trees"
+    },
+    {
       "riddle_id": "alt_0248",
       "riddle_type": "altered",
       "sample_index": 1,
@@ -9831,6 +9856,13 @@
       "correct": false,
       "gave_original_answer": true,
       "original_answer": "A snail."
+    },
+    {
+      "riddle_id": "alt_0675",
+      "riddle_type": "original",
+      "sample_index": 1,
+      "model_answer": "Plants",
+      "correct": false
     },
     {
       "riddle_id": "alt_0011",
