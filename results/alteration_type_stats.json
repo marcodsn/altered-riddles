@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-24T21:47:29Z",
+  "generated_at": "2026-04-24T21:54:39Z",
   "types": [
     {
       "type": "constraint_addition",
@@ -56,8 +56,8 @@
           "cor": 0.2963,
           "alt_acc": 0.4245
         },
-        "mistral-small-2603|off": {
-          "model": "mistral-small-2603",
+        "mistralai/mistral-small-2603|off": {
+          "model": "mistralai/mistral-small-2603",
           "reasoning_enabled": false,
           "reasoning_effort": null,
           "cor": 0.5091,
@@ -225,8 +225,8 @@
           "cor": 0.2889,
           "alt_acc": 0.2943
         },
-        "mistral-small-2603|off": {
-          "model": "mistral-small-2603",
+        "mistralai/mistral-small-2603|off": {
+          "model": "mistralai/mistral-small-2603",
           "reasoning_enabled": false,
           "reasoning_effort": null,
           "cor": 0.4762,
@@ -394,8 +394,8 @@
           "cor": 0.3529,
           "alt_acc": 0.3873
         },
-        "mistral-small-2603|off": {
-          "model": "mistral-small-2603",
+        "mistralai/mistral-small-2603|off": {
+          "model": "mistralai/mistral-small-2603",
           "reasoning_enabled": false,
           "reasoning_effort": null,
           "cor": 0.6875,
@@ -563,8 +563,8 @@
           "cor": 0.48,
           "alt_acc": 0.3167
         },
-        "mistral-small-2603|off": {
-          "model": "mistral-small-2603",
+        "mistralai/mistral-small-2603|off": {
+          "model": "mistralai/mistral-small-2603",
           "reasoning_enabled": false,
           "reasoning_effort": null,
           "cor": 0.5769,
