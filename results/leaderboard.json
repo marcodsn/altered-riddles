@@ -141,7 +141,7 @@
     "altered_accuracy_ci95": 0.035,
     "rank": 6,
     "rank_best": 1,
-    "rank_worst": 10
+    "rank_worst": 11
   },
   {
     "model": "xiaomi/mimo-v2-omni",
@@ -524,7 +524,7 @@
     "conditioned_override_ci95": 0.0926,
     "altered_accuracy_ci95": 0.0273,
     "rank": 22,
-    "rank_best": 5,
+    "rank_best": 4,
     "rank_worst": 20
   },
   {
