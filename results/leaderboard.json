@@ -309,7 +309,7 @@
     "altered_accuracy_ci95": 0.036,
     "rank": 13,
     "rank_best": 10,
-    "rank_worst": 18
+    "rank_worst": 19
   },
   {
     "model": "google/gemma-4-31b-it",
@@ -428,7 +428,7 @@
     "conditioned_override_ci95": 0.0675,
     "altered_accuracy_ci95": 0.0285,
     "rank": 18,
-    "rank_best": 14,
+    "rank_best": 13,
     "rank_worst": 21
   },
   {

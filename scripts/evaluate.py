@@ -158,28 +158,31 @@ def evaluate_model(model_outputs, judgments, benchmark_lookup):
             if rec.get("gave_original_answer"):
                 alt_gave_orig += 1
 
-    # Conditioned override — match by original riddle TEXT, not by riddle_id,
-    # because benchmark.py deduplicates original riddles by text.
-    orig_text_correct: dict[str, bool] = {}
+    # Conditioned override — match originals by riddle_id (as leaderboard does),
+    # and average per-riddle override fractions across samples, then across riddles.
+    original_solved_by_id: dict[str, bool] = {}
     for (rid, rtype), group in grouped.items():
         if rtype == "original":
-            entry = benchmark_lookup.get(rid, {})
-            orig_text = entry.get("original_riddle", "").strip().lower()
-            if orig_text:
-                orig_text_correct[orig_text] = any(d["correct"] for d in group)
+            original_solved_by_id[rid] = any(d["correct"] for d in group)
 
-    co_total = co_count = 0
+    co_per_riddle_means: list[float] = []
+    co_sample_count = 0
     for (rid, rtype), group in grouped.items():
         if rtype != "altered":
             continue
-        entry = benchmark_lookup.get(rid, {})
-        orig_text = entry.get("original_riddle", "").strip().lower()
-        if not orig_text or orig_text not in orig_text_correct:
+        if not original_solved_by_id.get(rid, False):
             continue
-        if orig_text_correct[orig_text]:
-            co_total += 1
-            if any(d.get("gave_original_answer") for d in group):
-                co_count += 1
+        n = len(group)
+        if n == 0:
+            continue
+        k = sum(1 for d in group if d.get("gave_original_answer"))
+        co_per_riddle_means.append(k / n)
+        co_sample_count += k
+
+    co_total = len(co_per_riddle_means)
+    conditioned_override_rate = (
+        sum(co_per_riddle_means) / co_total if co_total else 0.0
+    )
 
     # Token stats
     in_toks = [
@@ -200,8 +203,8 @@ def evaluate_model(model_outputs, judgments, benchmark_lookup):
         if alt_total
         else 0.0,
         "conditioned_override_total": co_total,
-        "conditioned_override_count": co_count,
-        "conditioned_override_rate": round(co_count / co_total, 4) if co_total else 0.0,
+        "conditioned_override_count": co_sample_count,
+        "conditioned_override_rate": round(conditioned_override_rate, 4),
         "total_input_tokens": sum(in_toks) if in_toks else 0,
         "total_output_tokens": sum(out_toks) if out_toks else 0,
     }

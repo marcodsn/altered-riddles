@@ -12,9 +12,9 @@
     "altered_correct": 279,
     "altered_accuracy": 0.279,
     "pattern_override_rate": 0.497,
-    "conditioned_override_total": 965,
-    "conditioned_override_count": 493,
-    "conditioned_override_rate": 0.5109,
+    "conditioned_override_total": 214,
+    "conditioned_override_count": 113,
+    "conditioned_override_rate": 0.528,
     "total_input_tokens": 139993,
     "total_output_tokens": 39862
   },

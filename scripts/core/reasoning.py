@@ -199,7 +199,12 @@ def build_plan(
             eff_mapped = "high" if eff == "xhigh" else eff
             reasoning_block = {"enabled": True, "effort": eff_mapped, "exclude": False}
     else:
-        reasoning_block = {"enabled": bool(reasoning), "exclude": False}
+        eff_mapped = "high" if eff == "xhigh" else eff
+        reasoning_block = {
+            "enabled": bool(reasoning),
+            "effort": eff_mapped,
+            "exclude": False,
+        }
 
     return ReasoningPlan(
         enabled=reasoning,
