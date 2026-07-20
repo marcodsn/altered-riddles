@@ -133,6 +133,7 @@ def make_record(
     output_tokens: int | None,
     reasoning_enabled: bool,
     reasoning_effort: str | None,
+    reasoning_trace: str | None = None,
 ) -> dict:
     return {
         "riddle_id": riddle_id,
@@ -141,6 +142,7 @@ def make_record(
         "riddle_text": riddle_text,
         "model_answer": answer,
         "model_reasoning": reasoning,
+        "reasoning_trace": reasoning_trace,
         "raw_response": raw_response,
         "model": model_name.lower(),
         "provider": provider,
@@ -284,9 +286,11 @@ def run_benchmark(args: argparse.Namespace) -> None:
         if isinstance(result, BaseException):
             answer, reasoning, raw = "ERROR", str(result), ""
             in_tok = out_tok = None
+            native_trace = None
         else:
             raw = result.text
             in_tok, out_tok = result.input_tokens, result.output_tokens
+            native_trace = result.reasoning
             if raw:
                 answer, reasoning = parse_model_response(raw)
             else:
@@ -308,6 +312,7 @@ def run_benchmark(args: argparse.Namespace) -> None:
             out_tok,
             reasoning_plan.enabled,
             reasoning_plan.effort,
+            reasoning_trace=native_trace,
         )
         append_jsonl(output_path, record)
         completed += 1

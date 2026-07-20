@@ -141,7 +141,7 @@
     "altered_accuracy_ci95": 0.035,
     "rank": 6,
     "rank_best": 1,
-    "rank_worst": 10
+    "rank_worst": 11
   },
   {
     "model": "xiaomi/mimo-v2-omni",
@@ -260,8 +260,8 @@
     "conditioned_override_ci95": 0.0703,
     "altered_accuracy_ci95": 0.0334,
     "rank": 11,
-    "rank_best": 7,
-    "rank_worst": 17
+    "rank_best": 5,
+    "rank_worst": 16
   },
   {
     "model": "qwen/qwen3.5-27b",
@@ -309,7 +309,7 @@
     "altered_accuracy_ci95": 0.0342,
     "rank": 13,
     "rank_best": 11,
-    "rank_worst": 21
+    "rank_worst": 20
   },
   {
     "model": "moonshotai/kimi-k2.6",
@@ -404,7 +404,7 @@
     "conditioned_override_ci95": 0.0674,
     "altered_accuracy_ci95": 0.0367,
     "rank": 17,
-    "rank_best": 12,
+    "rank_best": 13,
     "rank_worst": 23
   },
   {
@@ -476,7 +476,7 @@
     "conditioned_override_ci95": 0.0696,
     "altered_accuracy_ci95": 0.0276,
     "rank": 20,
-    "rank_best": 14,
+    "rank_best": 15,
     "rank_worst": 23
   },
   {
@@ -524,7 +524,7 @@
     "conditioned_override_ci95": 0.0926,
     "altered_accuracy_ci95": 0.0273,
     "rank": 22,
-    "rank_best": 5,
+    "rank_best": 6,
     "rank_worst": 20
   },
   {
