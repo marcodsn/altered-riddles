@@ -69,7 +69,7 @@
     "altered_accuracy_ci95": 0.041,
     "rank": 3,
     "rank_best": 1,
-    "rank_worst": 9
+    "rank_worst": 10
   },
   {
     "model": "zai-org/glm-5.1",
@@ -141,7 +141,7 @@
     "altered_accuracy_ci95": 0.0396,
     "rank": 6,
     "rank_best": 1,
-    "rank_worst": 11
+    "rank_worst": 10
   },
   {
     "model": "google/gemma-4-31b-it",
@@ -164,7 +164,7 @@
     "conditioned_override_ci95": 0.0519,
     "altered_accuracy_ci95": 0.0439,
     "rank": 7,
-    "rank_best": 2,
+    "rank_best": 1,
     "rank_worst": 11
   },
   {
@@ -260,7 +260,7 @@
     "conditioned_override_ci95": 0.0488,
     "altered_accuracy_ci95": 0.0355,
     "rank": 11,
-    "rank_best": 6,
+    "rank_best": 7,
     "rank_worst": 13
   },
   {
@@ -285,7 +285,7 @@
     "altered_accuracy_ci95": 0.0399,
     "rank": 12,
     "rank_best": 10,
-    "rank_worst": 17
+    "rank_worst": 18
   },
   {
     "model": "moonshotai/kimi-k2.5",
@@ -428,7 +428,7 @@
     "conditioned_override_ci95": 0.0508,
     "altered_accuracy_ci95": 0.037,
     "rank": 18,
-    "rank_best": 13,
+    "rank_best": 12,
     "rank_worst": 21
   },
   {
@@ -525,7 +525,7 @@
     "altered_accuracy_ci95": 0.0404,
     "rank": 22,
     "rank_best": 20,
-    "rank_worst": 23
+    "rank_worst": 22
   },
   {
     "model": "moonshotai/kimi-k2.5",
@@ -548,7 +548,7 @@
     "conditioned_override_ci95": 0.048,
     "altered_accuracy_ci95": 0.036,
     "rank": 23,
-    "rank_best": 22,
+    "rank_best": 23,
     "rank_worst": 23
   }
 ]

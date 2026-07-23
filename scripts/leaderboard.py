@@ -601,6 +601,12 @@ def generate_markdown(leaderboard, output_path, set_name="fixed"):
         "Main metric: **Conditioned Override Rate** (lower = better), conditioned "
         "on solving the original riddle text.",
         "",
+        "> _Judge provenance:_ verdicts are from the original run's judge "
+        "(qwen3.5-27b @ local; identity not recorded in source runs). A fresh "
+        "re-judge of 500 sampled answers (nous laguna-s-2.1) agrees **96.8%** on "
+        "`correct` and **87.8%** on `gave_original` — so COR carries a ~12% "
+        "per-label judge-sensitivity band. See `results/judge_agreement.json`.",
+        "",
         "| Rank | Rank Spread | Model | Reasoning | Effort | Orig Acc ↑ | Alt Acc ↑ | Cond Override ↓ | CI95 | Override Rate ↓ | Tok/riddle | Samp/riddle |",
         "|------|-------------|-------|-----------|--------|-----------|----------|-----------------|------|-----------------|------------|-------------|",
     ]

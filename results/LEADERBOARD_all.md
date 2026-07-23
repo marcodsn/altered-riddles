@@ -2,11 +2,13 @@
 
 > 23 models evaluated on the **all** riddles (fixed + auxiliary pooled). Main metric: **Conditioned Override Rate** (lower = better), conditioned on solving the original riddle text.
 
+> _Judge provenance:_ verdicts are from the original run's judge (qwen3.5-27b @ local; identity not recorded in source runs). A fresh re-judge of 500 sampled answers (nous laguna-s-2.1) agrees **96.8%** on `correct` and **87.8%** on `gave_original` — so COR carries a ~12% per-label judge-sensitivity band. See `results/judge_agreement.json`.
+
 | Rank | Rank Spread | Model | Reasoning | Effort | Orig Acc ↑ | Alt Acc ↑ | Cond Override ↓ | CI95 | Override Rate ↓ | Tok/riddle | Samp/riddle |
 |------|-------------|-------|-----------|--------|-----------|----------|-----------------|------|-----------------|------------|-------------|
 | 1 | [1–9] | openai/gpt-5.4-mini | on | high | 93.6% | 42.8% | 33.3% | +/-4.0% | 32.3% | 1858.2 | 1.00 |
 | 2 | [1–9] | xiaomi/mimo-v2-pro | on | high | 95.5% | 41.6% | 33.8% | +/-3.9% | 33.1% | 1719.9 | 3.00 |
-| 3 | [1–7] | openai/gpt-oss-20b | on | high | 83.2% | 35.5% | 34.1% | +/-4.3% | 30.1% | 3002.7 | 1.00 |
+| 3 | [1–8] | openai/gpt-oss-20b | on | high | 83.2% | 35.5% | 34.1% | +/-4.3% | 30.1% | 3002.7 | 1.00 |
 | 4 | [1–9] | xiaomi/mimo-v2-omni | on | high | 93.6% | 38.7% | 35.0% | +/-3.8% | 33.6% | 1631.1 | 3.00 |
 | 5 | [1–9] | zai-org/glm-5.1 | on | high | 96.8% | 37.2% | 35.0% | +/-4.0% | 34.3% | 4030.6 | 1.00 |
 | 6 | [1–10] | mistralai/mistral-small-2603 | on | high | 88.2% | 35.5% | 35.0% | +/-4.4% | 32.3% | 1924.5 | 1.00 |
@@ -21,8 +23,8 @@
 | 15 | [12–21] | moonshotai/kimi-k2.6 | on | high | 96.8% | 35.2% | 46.3% | +/-4.6% | 45.3% | 2855.7 | 1.00 |
 | 16 | [12–21] | anthropic/claude-sonnet-4.6 | on | high | 97.7% | 33.1% | 46.3% | +/-4.5% | 45.7% | 164.7 | 1.00 |
 | 17 | [13–21] | qwen/qwen3.6-35b-a3b | off | - | 76.4% | 22.3% | 47.2% | +/-4.9% | 41.5% | 8.8 | 3.00 |
-| 18 | [7–19] | liquidai/lfm2-24b-a2b | off | - | 49.1% | 20.9% | 47.2% | +/-5.9% | 25.6% | 9.7 | 3.00 |
-| 19 | [13–20] | qwen/qwen3.6-27b | off | - | 82.3% | 25.9% | 47.4% | +/-4.5% | 41.8% | 8.5 | 3.00 |
+| 18 | [6–20] | liquidai/lfm2-24b-a2b | off | - | 49.1% | 20.9% | 47.2% | +/-5.9% | 25.6% | 9.7 | 3.00 |
+| 19 | [12–20] | qwen/qwen3.6-27b | off | - | 82.3% | 25.9% | 47.4% | +/-4.5% | 41.8% | 8.5 | 3.00 |
 | 20 | [13–22] | google/gemma-4-26b-a4b-it | off | - | 85.9% | 30.6% | 47.7% | +/-4.3% | 42.9% | 8.6 | 3.00 |
 | 21 | [18–22] | anthropic/claude-opus-4.7 | on | high | 97.3% | 27.9% | 51.1% | +/-4.2% | 49.7% | 39.9 | 1.00 |
 | 22 | [18–22] | mistralai/mistral-small-2603 | off | - | 88.0% | 20.3% | 51.1% | +/-4.6% | 46.1% | 9.8 | 1.00 |
