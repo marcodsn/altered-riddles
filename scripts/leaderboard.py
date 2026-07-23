@@ -267,9 +267,30 @@ def _compute_rank_spread(leaderboard: list[dict]) -> list[dict]:
     return leaderboard
 
 
+def _cluster_of(benchmark_lookup: dict | None, riddle_id: str) -> str:
+    """Original-riddle TEXT for a riddle_id (the cluster key). Falls back to id."""
+    if benchmark_lookup:
+        return benchmark_lookup.get(riddle_id, {}).get("original_riddle", riddle_id)
+    return riddle_id
+
+
 def build_leaderboard(
-    all_results: list[dict], benchmark_lookup: dict | None = None
+    all_results: list[dict],
+    benchmark_lookup: dict | None = None,
+    allowed_ids: set[str] | None = None,
 ) -> list[dict]:
+    """Recompute the leaderboard from cached per-sample details.
+
+    Two correctness fixes vs the original:
+      * COR coverage: a riddle is "conditioned" iff the model solved the
+        ORIGINAL TEXT (cluster), joined across ALL original records — not only
+        the ~220 altered ids that happen to carry an original record. This lifts
+        COR coverage from ~220 to the full conditioned set.
+      * Set scoping: `allowed_ids` restricts the altered riddles that count
+        (e.g. the private fixed 300), so public/private are never pooled. The
+        solved-cluster signal still uses ALL originals (both sets), because
+        "did the model solve original text T" is a property of the model.
+    """
     rows = []
     for result in all_results:
         s = result["summary"]
@@ -280,14 +301,23 @@ def build_leaderboard(
         altered_by_riddle: dict[str, list[dict]] = defaultdict(list)
         for d in altered_details:
             riddle_id = d.get("riddle_id")
-            if riddle_id:
+            if riddle_id and (allowed_ids is None or riddle_id in allowed_ids):
                 altered_by_riddle[riddle_id].append(d)
 
-        original_by_riddle: dict[str, list[dict]] = defaultdict(list)
+        # Cluster-level original solved-ness + accuracy, from ALL original records.
+        orig_by_cluster: dict[str, list[dict]] = defaultdict(list)
         for d in original_details:
-            riddle_id = d.get("riddle_id")
-            if riddle_id:
-                original_by_riddle[riddle_id].append(d)
+            rid = d.get("riddle_id")
+            if rid:
+                orig_by_cluster[_cluster_of(benchmark_lookup, rid)].append(d)
+        solved_clusters: set[str] = set()
+        cluster_orig_acc: dict[str, float] = {}
+        for cluster, samps in orig_by_cluster.items():
+            cluster_orig_acc[cluster] = mean(
+                1.0 if x.get("correct") else 0.0 for x in samps
+            )
+            if any(x.get("correct") for x in samps):
+                solved_clusters.add(cluster)
 
         per_riddle = []
 
@@ -299,24 +329,9 @@ def build_leaderboard(
                 1.0 if sample.get("correct") else 0.0 for sample in samples
             )
 
-            original_samples = original_by_riddle.get(riddle_id, [])
-            original_accuracy_mean = (
-                mean(
-                    1.0 if sample.get("correct") else 0.0 for sample in original_samples
-                )
-                if original_samples
-                else None
-            )
-            original_solved = bool(
-                original_samples
-                and any(sample.get("correct") for sample in original_samples)
-            )
-
-            if benchmark_lookup:
-                entry = benchmark_lookup.get(riddle_id, {})
-                cluster = entry.get("original_riddle", riddle_id)
-            else:
-                cluster = riddle_id
+            cluster = _cluster_of(benchmark_lookup, riddle_id)
+            original_accuracy_mean = cluster_orig_acc.get(cluster)
+            original_solved = cluster in solved_clusters
 
             per_riddle.append(
                 {
@@ -330,12 +345,20 @@ def build_leaderboard(
                 }
             )
 
+        # Set-scoped original accuracy = mean over the in-scope clusters that
+        # carry an original record (honest per-set number, not the global one).
+        inscope_clusters = {r["cluster"] for r in per_riddle}
+        set_orig_accs = [cluster_orig_acc[c] for c in inscope_clusters
+                         if c in cluster_orig_acc]
+        set_original_accuracy = mean(set_orig_accs) if set_orig_accs else s["original_accuracy"]
+
         conditioned_per_riddle = [r for r in per_riddle if r["original_solved"]]
 
         n_riddles = len(per_riddle)
         if n_riddles > 0:
             altered_accuracy = mean(r["accuracy_mean"] for r in per_riddle)
-            pattern_override_rate = s["pattern_override_rate"]
+            # set-scoped unconditioned override (over all in-scope altered riddles)
+            pattern_override_rate = mean(r["override_mean"] for r in per_riddle)
             avg_samples_per_riddle = mean(r["sample_count"] for r in per_riddle)
             avg_output_tokens_per_riddle = s.get("total_output_tokens", 0) / (
                 avg_samples_per_riddle * n_riddles
@@ -374,7 +397,7 @@ def build_leaderboard(
             "quantization": result.get("quantization", ""),
             "reasoning_enabled": bool(result.get("reasoning_enabled", False)),
             "reasoning_effort": result.get("reasoning_effort"),
-            "original_accuracy": s["original_accuracy"],
+            "original_accuracy": set_original_accuracy,
             "altered_accuracy": altered_accuracy,
             "pattern_override_rate": pattern_override_rate,
             "conditioned_override_rate": conditioned_override_rate,
@@ -564,12 +587,15 @@ def print_leaderboard(leaderboard):
     print()
 
 
-def generate_markdown(leaderboard, output_path):
+def generate_markdown(leaderboard, output_path, set_name="fixed"):
+    set_label = {"fixed": "private **fixed** set", "auxiliary": "public **auxiliary** set",
+                 "all": "**all** riddles (fixed + auxiliary pooled)"}.get(set_name, set_name)
     lines = [
         "# Altered Riddles Leaderboard",
         "",
-        f"> {len(leaderboard)} models evaluated. "
-        "Main metric: **Conditioned Override Rate** (lower = better).",
+        f"> {len(leaderboard)} models evaluated on the {set_label}. "
+        "Main metric: **Conditioned Override Rate** (lower = better), conditioned "
+        "on solving the original riddle text.",
         "",
         "| Rank | Rank Spread | Model | Reasoning | Effort | Orig Acc ↑ | Alt Acc ↑ | Cond Override ↓ | CI95 | Override Rate ↓ | Tok/riddle | Samp/riddle |",
         "|------|-------------|-------|-----------|--------|-----------|----------|-----------------|------|-----------------|------------|-------------|",
@@ -616,6 +642,8 @@ def run_leaderboard(args):
     fixed = load_jsonl_if_exists(FIXED_PATH)
     all_bench = bench + fixed
     benchmark_lookup = {e.get("id", ""): e for e in all_bench} if all_bench else None
+    # Completeness is still checked over the FULL benchmark, so the solved-cluster
+    # signal is complete regardless of which set drives the headline.
     expected_altered_ids, expected_original_ids = _expected_coverage(all_bench)
     all_results = _filter_complete_results(
         all_results,
@@ -629,13 +657,40 @@ def run_leaderboard(args):
         )
         raise SystemExit(1)
 
-    leaderboard = build_leaderboard(all_results, benchmark_lookup)
+    # Set scoping: default = the private FIXED set drives the headline leaderboard
+    # (the public/auxiliary set is never pooled into it).
+    fixed_ids = {e.get("id") for e in fixed if e.get("id")}
+    aux_ids = {e.get("id") for e in bench if e.get("id")}
+    if args.set == "fixed":
+        allowed_ids: set[str] | None = fixed_ids
+    elif args.set == "auxiliary":
+        allowed_ids = aux_ids
+    else:  # "all"
+        allowed_ids = None
+    logger.info("Leaderboard set=%s (%s altered riddles)", args.set,
+                len(allowed_ids) if allowed_ids is not None else len(fixed_ids | aux_ids))
 
-    # Save
-    write_json(results_dir / "leaderboard.json", leaderboard)
+    leaderboard = build_leaderboard(all_results, benchmark_lookup, allowed_ids)
+
+    # Judge-identity + methodology metadata (the source runs never recorded the
+    # judge; the evaluate.py default was provider `local` = qwen3.5-27b).
+    meta = {
+        "set": args.set,
+        "n_altered_ids": len(allowed_ids) if allowed_ids is not None else len(fixed_ids | aux_ids),
+        "cor_definition": "conditioned on solving the ORIGINAL TEXT (cluster join across all originals)",
+        "judge_historical": "qwen3.5-27b @ local (evaluate.py --provider local default; identity not recorded in source runs)",
+        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
+    }
+    write_json(results_dir / f"leaderboard_meta_{args.set}.json", meta)
+
+    # Save: always a set-suffixed copy; the FIXED set is also the canonical headline.
+    write_json(results_dir / f"leaderboard_{args.set}.json", leaderboard)
+    generate_markdown(leaderboard, results_dir / f"LEADERBOARD_{args.set}.md", set_name=args.set)
+    if args.set == "fixed":
+        write_json(results_dir / "leaderboard.json", leaderboard)
+        write_json(results_dir / "leaderboard_meta.json", meta)
+        generate_markdown(leaderboard, results_dir / "LEADERBOARD.md", set_name=args.set)
     print_leaderboard(leaderboard)
-    md_path = results_dir / "LEADERBOARD.md"
-    generate_markdown(leaderboard, md_path)
     logger.info("Leaderboard JSON: %s", results_dir / "leaderboard.json")
     logger.info("Leaderboard MD:   %s", md_path)
 
@@ -649,6 +704,9 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Generate the benchmark leaderboard.")
     parser.add_argument("--results-dir", default=DEFAULT_RESULTS)
     parser.add_argument("--benchmark", default=DEFAULT_BENCHMARK)
+    parser.add_argument(
+        "--set", choices=["fixed", "auxiliary", "all"], default="fixed",
+        help="which riddle set drives the leaderboard (default: fixed = private headline)")
     return parser.parse_args()
 
 

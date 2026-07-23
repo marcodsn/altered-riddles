@@ -1,0 +1,7 @@
+{
+  "set": "all",
+  "n_altered_ids": 1000,
+  "cor_definition": "conditioned on solving the ORIGINAL TEXT (cluster join across all originals)",
+  "judge_historical": "qwen3.5-27b @ local (evaluate.py --provider local default; identity not recorded in source runs)",
+  "generated_at": "2026-07-23T09:04:35Z"
+}
