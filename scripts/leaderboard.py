@@ -83,16 +83,20 @@ def _filter_complete_results(
             if d.get("riddle_type") == "original" and d.get("riddle_id")
         }
 
+        # "Complete" = ran every expected ALTERED riddle. The original-record
+        # requirement was tied to a deduped *representative id* per original
+        # text, which shifts if the auxiliary set is edited (e.g. leak-row
+        # removal) and would spuriously reject every model. Original solved-ness
+        # is now recomputed by cluster TEXT (build_leaderboard), so the altered
+        # coverage check alone distinguishes complete from partial runs.
         missing_altered = expected_altered_ids - altered_ids
-        missing_original = expected_original_ids - original_ids
-        if missing_altered or missing_original:
+        _ = expected_original_ids  # retained for signature/back-compat
+        if missing_altered:
             logger.warning(
-                "Skipping incomplete leaderboard entry for %s: missing %d/%d altered and %d/%d original riddles.",
+                "Skipping incomplete leaderboard entry for %s: missing %d/%d altered riddles.",
                 result.get("model", "unknown"),
                 len(missing_altered),
                 len(expected_altered_ids),
-                len(missing_original),
-                len(expected_original_ids),
             )
             continue
 
@@ -640,8 +644,14 @@ def run_leaderboard(args):
     # Load benchmark for clustering
     bench = load_jsonl_if_exists(args.benchmark)
     fixed = load_jsonl_if_exists(FIXED_PATH)
+    # Rows removed from the public auxiliary (answer-leak screening) are kept
+    # PRIVATELY for cluster mapping only: eval details were scored on the full
+    # aux set, so their original-riddle TEXT is still needed to join clusters.
+    dropped = load_jsonl_if_exists(Path(args.benchmark).with_name("benchmark_dropped.jsonl"))
     all_bench = bench + fixed
-    benchmark_lookup = {e.get("id", ""): e for e in all_bench} if all_bench else None
+    # lookup must cover EVERY evaluated id (incl. dropped) so clusters map right;
+    # allowed_ids / coverage below use only the current published sets.
+    benchmark_lookup = {e.get("id", ""): e for e in (all_bench + dropped)} if (all_bench or dropped) else None
     # Completeness is still checked over the FULL benchmark, so the solved-cluster
     # signal is complete regardless of which set drives the headline.
     expected_altered_ids, expected_original_ids = _expected_coverage(all_bench)
@@ -691,8 +701,8 @@ def run_leaderboard(args):
         write_json(results_dir / "leaderboard_meta.json", meta)
         generate_markdown(leaderboard, results_dir / "LEADERBOARD.md", set_name=args.set)
     print_leaderboard(leaderboard)
-    logger.info("Leaderboard JSON: %s", results_dir / "leaderboard.json")
-    logger.info("Leaderboard MD:   %s", md_path)
+    logger.info("Leaderboard [%s]: %s", args.set,
+                results_dir / f"leaderboard_{args.set}.json")
 
     type_stats = build_alteration_type_stats(all_results, benchmark_lookup or {})
     type_stats_path = results_dir / "alteration_type_stats.json"

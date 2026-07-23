@@ -69,7 +69,7 @@
     "altered_accuracy_ci95": 0.0357,
     "rank": 3,
     "rank_best": 1,
-    "rank_worst": 8
+    "rank_worst": 7
   },
   {
     "model": "xiaomi/mimo-v2-omni",
@@ -428,8 +428,8 @@
     "conditioned_override_ci95": 0.0586,
     "altered_accuracy_ci95": 0.0273,
     "rank": 18,
-    "rank_best": 6,
-    "rank_worst": 20
+    "rank_best": 7,
+    "rank_worst": 19
   },
   {
     "model": "qwen/qwen3.6-27b",
@@ -452,7 +452,7 @@
     "conditioned_override_ci95": 0.0445,
     "altered_accuracy_ci95": 0.0306,
     "rank": 19,
-    "rank_best": 12,
+    "rank_best": 13,
     "rank_worst": 20
   },
   {

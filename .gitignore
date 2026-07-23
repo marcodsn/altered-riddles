@@ -26,6 +26,7 @@ data/pool.jsonl
 data/sanity/
 data/model_outputs/
 data/benchmark_fixed.jsonl
+data/benchmark_dropped.jsonl
 
 # Project - quality of life scripts
 scripts/clean_errors.py

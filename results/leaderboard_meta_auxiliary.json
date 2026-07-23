@@ -1,7 +1,7 @@
 {
   "set": "auxiliary",
-  "n_altered_ids": 700,
+  "n_altered_ids": 662,
   "cor_definition": "conditioned on solving the ORIGINAL TEXT (cluster join across all originals)",
   "judge_historical": "qwen3.5-27b @ local (evaluate.py --provider local default; identity not recorded in source runs)",
-  "generated_at": "2026-07-23T09:04:44Z"
+  "generated_at": "2026-07-23T09:53:24Z"
 }
