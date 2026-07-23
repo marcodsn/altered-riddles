@@ -1,0 +1,417 @@
+{
+  "judge_model": "poolside/laguna-s-2.1:free",
+  "provider": "nous",
+  "n_scored": 500,
+  "agreement_correct": 0.968,
+  "agreement_gave_original": 0.878,
+  "agreement_both": 0.848,
+  "correct_confusion_vs_cached": {
+    "TP": 183,
+    "TN": 301,
+    "FP": 9,
+    "FN": 7
+  },
+  "seed": 17,
+  "disagreement_examples": [
+    {
+      "eval_file": "zai-org_glm-5.1_temp1.0_reasoning-high_eval",
+      "riddle_id": "alt_0043",
+      "riddle_type": "altered",
+      "model_answer": "Footsteps",
+      "cached_correct": true,
+      "cached_gave_original": true,
+      "new_correct": true,
+      "new_gave_original": false
+    },
+    {
+      "eval_file": "mistralai_mistral-small-2603_temp0.7_eval",
+      "riddle_id": "alt_0174",
+      "riddle_type": "original",
+      "model_answer": "trees",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "moonshotai_kimi-k2.6_temp1.0_reasoning-high_eval",
+      "riddle_id": "alt_0829",
+      "riddle_type": "altered",
+      "model_answer": "saw",
+      "cached_correct": true,
+      "cached_gave_original": true,
+      "new_correct": false,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "qwen_qwen3.5-27b_temp1.0_eval",
+      "riddle_id": "alt_0304",
+      "riddle_type": "original",
+      "model_answer": "Scissors",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "moonshotai_kimi-k2.6_temp1.0_reasoning-high_eval",
+      "riddle_id": "alt_0314",
+      "riddle_type": "original",
+      "model_answer": "Leaves",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "google_gemma-4-31b-it_temp1.0_eval",
+      "riddle_id": "alt_0176",
+      "riddle_type": "altered",
+      "model_answer": "heads or tails",
+      "cached_correct": false,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": false
+    },
+    {
+      "eval_file": "openai_gpt-oss-120b_temp0.9_reasoning-high_eval",
+      "riddle_id": "alt_0660",
+      "riddle_type": "original",
+      "model_answer": "snail",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "google_gemma-4-31b-it_temp1.0_eval",
+      "riddle_id": "alt_0656",
+      "riddle_type": "altered",
+      "model_answer": "corn on the cob",
+      "cached_correct": false,
+      "cached_gave_original": false,
+      "new_correct": false,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "mistralai_mistral-small-2603_temp0.7_reasoning-high_eval",
+      "riddle_id": "alt_0102",
+      "riddle_type": "original",
+      "model_answer": "hole",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "moonshotai_kimi-k2.5_temp0.6_eval",
+      "riddle_id": "alt_0514",
+      "riddle_type": "original",
+      "model_answer": "priest",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "xiaomi_mimo-v2-omni_temp0.8_reasoning-high_eval",
+      "riddle_id": "alt_0615",
+      "riddle_type": "original",
+      "model_answer": "A deck of cards",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "anthropic_claude-opus-4.7_temp1.0_reasoning-high_eval",
+      "riddle_id": "alt_0424",
+      "riddle_type": "original",
+      "model_answer": "A river",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "mistralai_mistral-small-2603_temp0.7_reasoning-high_eval",
+      "riddle_id": "alt_0579",
+      "riddle_type": "original",
+      "model_answer": "memory",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "xiaomi_mimo-v2-omni_temp0.8_reasoning-high_eval",
+      "riddle_id": "alt_0104",
+      "riddle_type": "original",
+      "model_answer": "heart",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "google_gemma-4-31b-it_temp1.0_eval",
+      "riddle_id": "alt_0108",
+      "riddle_type": "altered",
+      "model_answer": "a waterfall",
+      "cached_correct": false,
+      "cached_gave_original": false,
+      "new_correct": false,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "xiaomi_mimo-v2-omni_temp0.8_reasoning-high_eval",
+      "riddle_id": "alt_0045",
+      "riddle_type": "altered",
+      "model_answer": "a light",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": false,
+      "new_gave_original": false
+    },
+    {
+      "eval_file": "liquidai_lfm2-24b-a2b_temp0.1_eval",
+      "riddle_id": "alt_0631",
+      "riddle_type": "original",
+      "model_answer": "age",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "mistralai_mistral-small-2603_temp0.7_eval",
+      "riddle_id": "alt_0187",
+      "riddle_type": "altered",
+      "model_answer": "new moon",
+      "cached_correct": false,
+      "cached_gave_original": false,
+      "new_correct": false,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "mistralai_mistral-small-2603_temp0.7_eval",
+      "riddle_id": "alt_0658",
+      "riddle_type": "original",
+      "model_answer": "Justice",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "qwen_qwen3.5-27b_temp1.0_eval",
+      "riddle_id": "alt_0424",
+      "riddle_type": "original",
+      "model_answer": "A river",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "qwen_qwen3.6-27b_temp0.7_eval",
+      "riddle_id": "alt_0468",
+      "riddle_type": "altered",
+      "model_answer": "Star",
+      "cached_correct": false,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": false
+    },
+    {
+      "eval_file": "qwen_qwen3.6-27b_temp0.7_eval",
+      "riddle_id": "alt_0944",
+      "riddle_type": "altered",
+      "model_answer": "Cornstalks",
+      "cached_correct": false,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": false
+    },
+    {
+      "eval_file": "anthropic_claude-sonnet-4.6_temp1.0_reasoning-high_eval",
+      "riddle_id": "alt_0424",
+      "riddle_type": "original",
+      "model_answer": "a river",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "moonshotai_kimi-k2.5_temp1.0_reasoning-high_eval",
+      "riddle_id": "alt_0514",
+      "riddle_type": "original",
+      "model_answer": "A priest",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "anthropic_claude-opus-4.7_temp1.0_reasoning-high_eval",
+      "riddle_id": "alt_0351",
+      "riddle_type": "altered",
+      "model_answer": "A valve",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": false,
+      "new_gave_original": false
+    },
+    {
+      "eval_file": "qwen_qwen3.6-27b_temp0.7_eval",
+      "riddle_id": "alt_0624",
+      "riddle_type": "original",
+      "model_answer": "A map",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "openai_gpt-5.4-mini_temp1.0_eval",
+      "riddle_id": "alt_0794",
+      "riddle_type": "altered",
+      "model_answer": "Judge Dredd",
+      "cached_correct": false,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": false
+    },
+    {
+      "eval_file": "google_gemma-4-31b-it_temp1.0_eval",
+      "riddle_id": "alt_0305",
+      "riddle_type": "altered",
+      "model_answer": "a towel",
+      "cached_correct": false,
+      "cached_gave_original": true,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "zai-org_glm-5_temp1.0_reasoning-high_eval",
+      "riddle_id": "alt_0364",
+      "riddle_type": "altered",
+      "model_answer": "Snowflake",
+      "cached_correct": false,
+      "cached_gave_original": false,
+      "new_correct": false,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "anthropic_claude-opus-4.7_temp1.0_reasoning-high_eval",
+      "riddle_id": "alt_0670",
+      "riddle_type": "original",
+      "model_answer": "Squirrel",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "anthropic_claude-sonnet-4.6_temp1.0_reasoning-high_eval",
+      "riddle_id": "alt_0386",
+      "riddle_type": "original",
+      "model_answer": "fear",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "xiaomi_mimo-v2-pro_temp0.8_reasoning-high_eval",
+      "riddle_id": "alt_0043",
+      "riddle_type": "altered",
+      "model_answer": "footsteps",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": false,
+      "new_gave_original": false
+    },
+    {
+      "eval_file": "qwen_qwen3.5-27b_temp1.0_eval",
+      "riddle_id": "alt_0821",
+      "riddle_type": "altered",
+      "model_answer": "A mirror image",
+      "cached_correct": false,
+      "cached_gave_original": true,
+      "new_correct": false,
+      "new_gave_original": false
+    },
+    {
+      "eval_file": "google_gemma-4-26b-a4b-it_temp1.0_eval",
+      "riddle_id": "alt_0031",
+      "riddle_type": "altered",
+      "model_answer": "Gemstones",
+      "cached_correct": false,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": false
+    },
+    {
+      "eval_file": "openai_gpt-5.4-mini_temp1.0_reasoning-high_eval",
+      "riddle_id": "alt_0379",
+      "riddle_type": "original",
+      "model_answer": "ton",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "anthropic_claude-opus-4.7_temp1.0_reasoning-high_eval",
+      "riddle_id": "alt_0317",
+      "riddle_type": "original",
+      "model_answer": "Seven",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "openai_gpt-5.4-mini_temp1.0_eval",
+      "riddle_id": "alt_0635",
+      "riddle_type": "original",
+      "model_answer": "Flower bouquet",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": false,
+      "new_gave_original": false
+    },
+    {
+      "eval_file": "google_gemma-4-31b-it_temp1.0_eval",
+      "riddle_id": "alt_0814",
+      "riddle_type": "altered",
+      "model_answer": "the letter m",
+      "cached_correct": false,
+      "cached_gave_original": true,
+      "new_correct": true,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "google_gemma-4-26b-a4b-it_temp1.0_eval",
+      "riddle_id": "alt_0656",
+      "riddle_type": "altered",
+      "model_answer": "corn on the cob",
+      "cached_correct": false,
+      "cached_gave_original": false,
+      "new_correct": false,
+      "new_gave_original": true
+    },
+    {
+      "eval_file": "openai_gpt-oss-120b_temp0.9_reasoning-high_eval",
+      "riddle_id": "alt_0362",
+      "riddle_type": "original",
+      "model_answer": "the letter M",
+      "cached_correct": true,
+      "cached_gave_original": false,
+      "new_correct": true,
+      "new_gave_original": true
+    }
+  ]
+}
