@@ -53,7 +53,7 @@ PROMPTS = {
         "Reply with a single line of the form:\nAnswer: <your answer in a few words>"
     ),
 }
-MAX_TOKENS = {"original": 16, "off": 200, "on": 16000}
+MAX_TOKENS = {"original": 16, "original_thinking": 4000, "off": 200, "on": 16000}
 GUARD_MIN_MEDIAN_REASONING = 50
 GUARD_MAX_LEAK_RATE = 0.05
 GUARD_MAX_ERROR_RATE = 0.05
@@ -89,13 +89,14 @@ async def run(args: argparse.Namespace) -> None:
         items = items[: args.limit]
     thinking_on = args.thinking == "on"
     if args.condition == "original":
-        thinking_on = False
-        # one call per SOURCE, not per item
+        # Familiarity probe: thinking OFF by default. Thinking-only models
+        # (GLM-5.3-Flash on Jalapeno) may run it with --thinking on; the row
+        # then records familiarity_mode = "thinking" and the board says so.
         seen: dict[str, dict[str, Any]] = {}
         for it in items:
             seen.setdefault(it["source"], {"id": it["source"], "text": it["original_text"]})
         units = list(seen.values())
-        max_tokens = MAX_TOKENS["original"]
+        max_tokens = MAX_TOKENS["original"] if not thinking_on else MAX_TOKENS["original_thinking"]
     else:
         units = [{"id": it["id"], "text": it["text"]} for it in items]
         max_tokens = MAX_TOKENS["on" if thinking_on else "off"]
@@ -116,6 +117,7 @@ async def run(args: argparse.Namespace) -> None:
     config = {
         "provider": provider, "model": model, "condition": args.condition,
         "thinking": "on" if thinking_on else "off", "thinking_request_params": thinking_extra(model, thinking_on),
+        "familiarity_mode": (None if args.condition != "original" else ("thinking" if thinking_on else "direct")),
         "samples": args.samples, "temperature": args.temperature, "max_tokens": max_tokens,
         "prompt": PROMPTS[args.condition], "items_file": str(items_path), "items_sha256": sha256_file(items_path),
         "n_units": len(units), "passed_only": args.passed_only, "git_commit": git_commit(),
