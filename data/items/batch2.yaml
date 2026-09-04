@@ -9,14 +9,6 @@
   aliases: ["quarter", "the quarter", "25 cents", "a 25-cent coin"]
   why_original_fails: "The question asks only for the coin that is not the nickel, which is the quarter; naming both coins answers a different question."
 
-- id: leap-year-1
-  source: leap-year
-  type: question_swap
-  text: "A man died of old age on his 25th birthday. He was born on February 29th. Roughly how many years did he live?"
-  answer: "about 100 years"
-  aliases: ["100", "100 years", "one hundred", "around 100", "a hundred", "roughly 100"]
-  why_original_fails: "The leap-day explanation is given in the text; the question now asks for his age, which is 25 leap days, about 100 years."
-
 - id: greenhouse-2
   source: greenhouse
   type: stated
@@ -64,22 +56,6 @@
   answer: "yellow"
   aliases: []
   why_original_fails: "The question is about the roof, which exists and, like everything else, is yellow; 'there are no stairs' answers a question that was not asked."
-
-- id: letter-e-1
-  source: letter-e
-  type: hard_constraint
-  text: "I am the beginning of night, the end of noon, and I appear twice in nineteen. What am I?"
-  answer: "the letter N"
-  aliases: ["n", "letter n"]
-  why_original_fails: "'Night' starts with N, 'noon' ends with N, and 'nineteen' has two N's; E fits none of those clues."
-
-- id: letter-g-1
-  source: letter-g
-  type: question_swap
-  text: "What is at the beginning of everything?"
-  answer: "the letter E"
-  aliases: ["e", "letter e"]
-  why_original_fails: "The word 'everything' begins with E; G is its last letter."
 
 - id: forty-1
   source: forty

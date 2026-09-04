@@ -2,14 +2,6 @@
 # Same rule: altered answer entailed, original answer excluded. Sources
 # whose only alterations would be "new metaphor riddles" were skipped.
 
-- id: craw-0004-1
-  source: craw-0004
-  type: hard_constraint
-  text: "I cost no money to use, or conscious effort to take part of. As far as you can see, there is nothing to me. Without me, you are dead, and you drink me. What am I?"
-  answer: "water"
-  aliases: []
-  why_original_fails: "Air is not drunk; water is, and it is likewise free and invisible in a glass."
-
 - id: craw-0008-1
   source: craw-0008
   type: hard_constraint
@@ -33,14 +25,6 @@
   answer: "an owl"
   aliases: ["owl", "owls", "a nightjar"]
   why_original_fails: "A bat has no feathers; a nocturnal flier with feathers is an owl."
-
-- id: craw-0025-1
-  source: craw-0025
-  type: hard_constraint
-  text: "I am seen in the grass. If seen in the sky, I am in the rainbow. I am in an emerald, a frog, and a jade. What am I?"
-  answer: "green"
-  aliases: ["the color green"]
-  why_original_fails: "Grass, emeralds, frogs and jade are green, not blue."
 
 - id: craw-0052-1
   source: craw-0052
@@ -90,14 +74,6 @@
   aliases: ["your hands", "a hand", "hand"]
   why_original_fails: "Gloves have no flesh or bone; hands have both and end the arms."
 
-- id: craw-0139-1
-  source: craw-0139
-  type: hard_constraint
-  text: "How far will a blind dog walk into a forest that is one mile wide?"
-  answer: "half a mile"
-  aliases: ["half mile", "0.5 miles", "a half mile", "half a mile, then it walks out"]
-  why_original_fails: "Halfway across one mile is half a mile; the question now has a number."
-
 - id: craw-0159-1
   source: craw-0159
   type: negated_premise
@@ -105,14 +81,6 @@
   answer: "a lobster"
   aliases: ["lobster", "a crab", "crab", "shrimp", "a prawn"]
   why_original_fails: "Iron goes in red and comes out dark; a lobster goes in dark and comes out red."
-
-- id: craw-0203-1
-  source: craw-0203
-  type: hard_constraint
-  text: "What is it that was given to you, belongs only to you, your friends use it more than you do, and it has an @ in it?"
-  answer: "your email address"
-  aliases: ["email address", "an email address", "email", "your email"]
-  why_original_fails: "A name has no @ in it; an email address does."
 
 - id: craw-0204-1
   source: craw-0204

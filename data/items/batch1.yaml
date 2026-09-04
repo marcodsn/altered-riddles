@@ -161,15 +161,6 @@
   why_original_fails: "Three plus four is seven; nine was the sum of four and five."
 
 # ---------------------------------------------------------------- lunch-dinner
-- id: lunch-dinner-1
-  source: lunch-dinner
-  type: question_swap
-  text: "What can you never eat for lunch?"
-  answer: "breakfast and dinner"
-  aliases: ["breakfast or dinner", "breakfast", "dinner", "breakfast and supper"]
-  why_original_fails: "The meal in the question is lunch, so the meals you cannot eat for it are breakfast and dinner."
-
-# ---------------------------------------------------------------- that-mans-father
 - id: that-mans-father-1
   source: that-mans-father
   type: hard_constraint

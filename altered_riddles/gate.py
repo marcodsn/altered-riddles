@@ -92,6 +92,9 @@ async def run(args: argparse.Namespace) -> None:
         return f"G|{item['id']}|{h}|{prov}:{model}"
 
     todo = [(it, p, m) for it in items for p, m in specs if cache.get_ok(key_of(it, p, m)) is None]
+    if args.cached_only:
+        print(f"--cached-only: {len(todo)} missing replies will count as errors", file=sys.stderr)
+        todo = []
     print(f"items={len(items)} models={len(specs)} calls={len(items)*len(specs)} todo={len(todo)}", file=sys.stderr)
 
     async def one(job):
@@ -179,6 +182,7 @@ def main() -> None:
     ap.add_argument("--rpm", type=int, default=None, help="cap requests per minute per provider")
     ap.add_argument("--timeout", type=float, default=600.0, help="seconds per request; slow reasoning models need 1800+")
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--cached-only", action="store_true", help="no API calls: report from the cache, missing replies count as errors")
     ap.add_argument("--cache", default="data/probe/gate_cache.jsonl")
     ap.add_argument("--out", default="data/gated.jsonl")
     asyncio.run(run(ap.parse_args()))

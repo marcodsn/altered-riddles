@@ -250,5 +250,5 @@
   type: negated_premise
   text: "By day I come without being fetched. At night I am lost without being stolen. What am I?"
   answer: "the sun"
-  aliases: ["sun", "daylight", "the day", "sunlight"]
+  aliases: ["sun", "daylight", "the day", "sunlight", "a shadow", "shadow", "your shadow"]
   why_original_fails: "Night and day are swapped, so the thing that comes by day and is lost at night is the sun, not the stars."
