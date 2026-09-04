@@ -1,0 +1,170 @@
+# Batch 2 — more items for hand-curated sources. Same rule: altered answer
+# entailed, original answer excluded. See README.md.
+
+- id: two-coins-2
+  source: two-coins
+  type: question_swap
+  text: "I have two coins that add up to 30 cents, and one of them is not a nickel. What is the coin that is not a nickel?"
+  answer: "a quarter"
+  aliases: ["quarter", "the quarter", "25 cents", "a 25-cent coin"]
+  why_original_fails: "The question asks only for the coin that is not the nickel, which is the quarter; naming both coins answers a different question."
+
+- id: leap-year-1
+  source: leap-year
+  type: question_swap
+  text: "A man died of old age on his 25th birthday. He was born on February 29th. Roughly how many years did he live?"
+  answer: "about 100 years"
+  aliases: ["100", "100 years", "one hundred", "around 100", "a hundred", "roughly 100"]
+  why_original_fails: "The leap-day explanation is given in the text; the question now asks for his age, which is 25 leap days, about 100 years."
+
+- id: greenhouse-2
+  source: greenhouse
+  type: stated
+  text: "If a red house is made of red bricks and a blue house is made of blue bricks, what is a red house made of?"
+  answer: "red bricks"
+  aliases: ["red brick"]
+  why_original_fails: "The text says a red house is made of red bricks; 'glass' answers the greenhouse pun that is no longer asked."
+
+- id: months-28-days-3
+  source: months-28-days
+  type: hard_constraint
+  text: "In a leap year, how many months have exactly 28 days?"
+  answer: "none"
+  aliases: ["zero", "0", "no months", "not one"]
+  why_original_fails: "In a leap year February has 29 days, so no month has exactly 28."
+
+- id: overtake-second-2
+  source: overtake-second
+  type: question_swap
+  text: "If you overtake the person in second place in a race, what place is the person you just overtook in now?"
+  answer: "third place"
+  aliases: ["third", "3rd"]
+  why_original_fails: "The question is about the runner overtaken, who drops from second to third."
+
+- id: three-apples-2
+  source: three-apples
+  type: hard_constraint
+  text: "If there are three apples and you take away three, how many apples do you have?"
+  answer: "three"
+  aliases: ["3", "all three"]
+  why_original_fails: "You took all three, so you have three; 'two' answers the version where two are taken."
+
+- id: mustard-family-2
+  source: mustard-family
+  type: question_swap
+  text: "Mr. and Mrs. Mustard have six daughters, and each daughter has one brother. How many children do Mr. and Mrs. Mustard have?"
+  answer: "seven"
+  aliases: ["7"]
+  why_original_fails: "The question counts children, not the whole family: six daughters plus one shared brother is seven."
+
+- id: one-story-house-2
+  source: one-story-house
+  type: question_swap
+  text: "There is a one-story house in which everything is yellow. The walls are yellow, the doors are yellow, the furniture is yellow. What color is the roof?"
+  answer: "yellow"
+  aliases: []
+  why_original_fails: "The question is about the roof, which exists and, like everything else, is yellow; 'there are no stairs' answers a question that was not asked."
+
+- id: letter-e-1
+  source: letter-e
+  type: hard_constraint
+  text: "I am the beginning of night, the end of noon, and I appear twice in nineteen. What am I?"
+  answer: "the letter N"
+  aliases: ["n", "letter n"]
+  why_original_fails: "'Night' starts with N, 'noon' ends with N, and 'nineteen' has two N's; E fits none of those clues."
+
+- id: letter-g-1
+  source: letter-g
+  type: question_swap
+  text: "What is at the beginning of everything?"
+  answer: "the letter E"
+  aliases: ["e", "letter e"]
+  why_original_fails: "The word 'everything' begins with E; G is its last letter."
+
+- id: forty-1
+  source: forty
+  type: hard_constraint
+  text: "What is the only number whose letters are in reverse alphabetical order?"
+  answer: "one"
+  aliases: ["1", "the number one"]
+  why_original_fails: "O, N, E run backwards through the alphabet; 'forty' runs forwards."
+
+- id: nine-2
+  source: nine
+  type: question_swap
+  text: "If two's company and three's a crowd, what are two and three?"
+  answer: "five"
+  aliases: ["5"]
+  why_original_fails: "Two plus three is five; nine was four plus five."
+
+- id: widgets-3
+  source: widgets
+  type: question_swap
+  text: "If it takes 5 machines 5 minutes to make 5 widgets, how many widgets does one machine make in 5 minutes?"
+  answer: "one"
+  aliases: ["1", "one widget"]
+  why_original_fails: "The question asks for widgets per machine, which is one; '5 minutes' answers a time question."
+
+- id: lily-pads-3
+  source: lily-pads
+  type: stated
+  text: "In a lake, there is a patch of lily pads. Every day, the patch doubles in size. It takes 48 days for the patch to cover the entire lake. How many days does it take for the patch to cover the entire lake?"
+  answer: "48 days"
+  aliases: ["48"]
+  why_original_fails: "The question asks for the whole lake, and the text states 48; 47 is the half-lake answer."
+
+- id: divide-by-half-3
+  source: divide-by-half
+  type: hard_constraint
+  text: "Divide 40 by half and add ten. What do you get?"
+  answer: "90"
+  aliases: ["ninety"]
+  why_original_fails: "40 divided by one half is 80, plus ten is 90; 70 belongs to the version with 30."
+
+- id: electric-train-2
+  source: electric-train
+  type: question_swap
+  text: "An electric train is travelling north at 100 miles per hour. The wind is blowing from the east. In which direction is the train travelling?"
+  answer: "north"
+  aliases: ["northward", "to the north"]
+  why_original_fails: "The question asks the train's direction, stated as north; the smoke answer is to a different question."
+
+- id: widows-sister-2
+  source: widows-sister
+  type: trivialized
+  text: "Is it legal for a widow to marry her late husband's brother?"
+  answer: "yes"
+  aliases: ["yes, generally", "yes, in most places", "it is legal", "legal"]
+  why_original_fails: "The widow is alive, so the 'he is dead' trick does not apply; nothing in the situation prevents the marriage."
+
+- id: marys-father-3
+  source: marys-father
+  type: stated
+  text: "Mary's father has five daughters: Nana, Nene, Nini, Nono. How many daughters does Mary's father have?"
+  answer: "five"
+  aliases: ["5"]
+  why_original_fails: "The count is given in the text; the question asks how many, not who."
+
+- id: comb-2
+  source: comb
+  type: hard_constraint
+  text: "What has teeth but cannot bite, and closes your jacket?"
+  answer: "a zipper"
+  aliases: ["zipper", "a zip", "zip"]
+  why_original_fails: "A comb does not close a jacket; a zipper has teeth and does."
+
+- id: wrong-1
+  source: wrong
+  type: hard_constraint
+  text: "What word is spelled incorrectly in every dictionary?"
+  answer: "incorrectly"
+  aliases: ["the word incorrectly"]
+  why_original_fails: "The pun now hinges on the word 'incorrectly', which is the only word the sentence says is spelled that way; 'wrong' is not in the sentence."
+
+- id: ton-1
+  source: ton
+  type: hard_constraint
+  text: "Forward I am a cooking vessel, backward I am the highest point. What am I?"
+  answer: "pot"
+  aliases: ["a pot", "pot (top backwards)", "pot, which is top backwards"]
+  why_original_fails: "'Ton' is neither a cooking vessel nor 'top' reversed; 'pot' reversed is 'top'."
