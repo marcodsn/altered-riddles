@@ -38,7 +38,7 @@ These are pre-registered here: the gates are frozen by the dated commit of this 
 - **H2 — override gap.** Warned accuracy minus unwarned accuracy ≥ 15 points, mean over models. If true, the failure is attention, not ability, which is the paper's claim.
 - **H3 — thinking gap.** Thinking-on lowers COR versus thinking-off for the same model on ≥ 4 of 5 paired models, by a median ≥ 8 points.
 - **H4 — scoring validity.** Deterministic alias matching resolves ≥ 70% of answers; judge-vs-Marco agreement on the remainder ≥ 95% on a 300-answer labeled sample.
-- **H5 — clean items.** On gate models' *unwarned* answers, the "neither" share ≤ 10% (v1: 29%), 0 items are unsolved by every warned gate model (v1: 23%), and no released item's altered text is recalled by any probe model at release time (D7, layer 1).
+- **H5 — clean items.** On gate models' *unwarned* answers, the "neither" share ≤ 10% (v1: 29%), and 0 items are unsolved by every warned gate model (v1: 23%).
 
 The writeup leads with H2 and H3 and the per-type table, not with the leaderboard.
 
@@ -46,14 +46,12 @@ The writeup leads with H2 and H3 and the per-type table, not with the leaderboar
 
 ## 2. Constraints (the honest budget)
 
-- **Zero money.** No paid API call without Marco's explicit go-ahead. The rule is stated in `README.md` and `CLAUDE.md`, and every credit-funded row on the board says where the credits came from.
-- **Compute we have or can plausibly get, in order of certainty:**
-  1. **Chinese API provider** (Marco has access; name and model list to fill in — see open decision 2). Presumably DeepSeek, Qwen, GLM, Kimi, MiniMax lines. This is the backbone of the roster.
-  2. **Nous Portal free tier.** `poolside/laguna-s-2.1:free`, `tencent/hy3:free`, `stepfun/step-3.7-flash:free` responded in B2 and in other lab projects. Rate-limited; wall-clock cost, not money.
-  3. **Local GPUs.** The RTX 3090 + RTX PRO used by remora/flint, when free: a ≤32B judge and the small open models (qwen3.6-27b, gemma-4-31b, gpt-oss-20b) under vLLM. The old `10.8.0.5:8083` box is down (duologue log), so `local` in `config.py` must be re-pointed.
-  4. **Vendor free tiers, verify before counting on them:** Google AI Studio (Gemini Flash), GitHub Models, OpenRouter `:free` routes. Rate limits decide feasibility, not price.
-  5. **Research-credit programs.** OpenAI Researcher Access, Anthropic academic credits, Google for Research. One afternoon of forms; the only realistic path to GPT-5.4 / Opus 4.7 / Gemini 3.1 Pro rows. Apply in M0 so credits land by M4.
-  6. **Community runs.** `inspect_ai` task + a results PR contract. Anyone with credits adds a row; committed raw outputs make it verifiable.
+- **Money: about $90 of credit on magikcloud (`api.jalapeno-cloud.ai`), and Marco can ask for more.** Nothing else is paid for. Any spend beyond that credit is Marco's explicit decision, and every credit-funded row on the board says where the credits came from.
+- **magikcloud, verified 2026-09-04 with one-riddle smoke calls** (provider `magik` in `config.py`; `MAGIK_API_KEY` / `MAGIK_BASE_URL` in `.env`, same names as the other lab projects):
+  - 21 models listed, `MiniMax-M3` returns 404, so 20 usable. Pricing is only on the per-model cards in the logged-in marketplace, not in the API or the public docs; Marco pastes the numbers for the Tier 1 models.
+  - Thinking switches differ per family and none of them is OpenAI's `reasoning_effort` (DeepSeek ignores it). Table in section 5. The D6 guardrail is what makes this safe: a row is scored only if the reasoning-token count in `usage` matches the requested mode.
+  - Terms of service (MAGIK COMPUTE PTE. LTD., Singapore) do not say whether API inputs are used for training. Assume they may be.
+- **Other compute, in order of certainty:** Nous Portal free tier (`poolside/laguna-s-2.1:free`, `tencent/hy3:free`, `stepfun/step-3.7-flash:free`; rate-limited); local GPUs (the RTX 3090 + RTX PRO used by remora/flint, when free) for a judge and the small open models under vLLM, since the old `10.8.0.5:8083` box is down; vendor free tiers (Google AI Studio, GitHub Models, OpenRouter `:free`), to verify before counting on them; research-credit programs (OpenAI, Anthropic, Google), applied for in M0; community runs through the `inspect_ai` task for anything we cannot fund.
 - **Time.** Marco part-time. Human review of ~400 items is 1–2 days. Item authoring is the dominant human cost; LLM drafting helps, humans commit.
 
 ---
@@ -67,12 +65,11 @@ The writeup leads with H2 and H3 and the per-type table, not with the leaderboar
 - Targets: ≥ 120 sources, ≤ 3 variants per source, 300–400 items + 50 canary. Breadth across sources is what shrinks the clustered CI.
 - `data/sources.yaml`: text, canonical answer, aliases, family, provenance URL. Hand-written.
 
-**D2 — Recall probe: memorization proven by construction, and per model.**
-- Probe A (answer): thinking off, `max_tokens=8`, 5 samples. Pass at ≥ 4/5 canonical.
-- Probe B (completion): prefix = first ~60% of the riddle, ask to continue; normalized token overlap ≥ 0.8. Recorded as evidence, not gated on.
-- A source is **admitted** if Probe A passes on ≥ 3 of 4 probe models (Tier 0 roster).
+**D2 — Recall probe: familiarity per model, verbatim recall per source.**
+- Probe A (familiarity): thinking off, `max_tokens=8`, 5 samples on the *original* riddle. Pass at ≥ 4/5 canonical. This does not prove recall, since a model can reason its way to a famous answer in a few tokens, and that is fine: what COR needs is that the model produces the original answer when asked the original riddle, and Probe A is exactly that, cheaply.
+- Probe B (verbatim recall): prefix = the first ~60% of the original text, ask the model to continue; pass at normalized token overlap ≥ 0.8. Completing the exact wording cannot come from reasoning, so this is the memorization evidence. Recorded per source and per model.
+- A source is **admitted** if Probe A passes on ≥ 3 of 4 probe models and Probe B passes on ≥ 1. Hand-picked famous riddles pass trivially; the gate exists for crawsome items and the trick puzzles.
 - COR for a given model conditions on **that model's** Probe A pass for the source. This replaces v1's "solved the original" and is ~free (8 tokens, no thinking).
-- The same two probes run on every candidate's **altered** text. An altered item that is itself recalled is already contaminated and is not released (D7, layer 1).
 
 **D3 — Alteration types: entailed, not suggested. Four checkable types only.**
 
@@ -84,8 +81,6 @@ The writeup leads with H2 and H3 and the per-type table, not with the leaderboar
 | `trivialized` | the famous complication is removed | bat-and-ball where the ball is stated to cost $0.10 |
 
 Every item carries `why_original_fails` (one checkable sentence) and `aliases`. `meaning_shift` and `context_swap` are dropped: they generate new metaphor riddles with LLM-chosen answers, which is the 29% bucket.
-
-**Items are templates where the alteration has a natural slot.** The stated relation (father / uncle / grandfather), the numeric constraint, the letter count, the amounts in a trivialized puzzle. A template carries a validated pool per slot; every value must keep `why_original_fails` true, and the warned gate runs on the canonical instance plus two random ones. Verse riddles mostly stay fixed; `stated` and `trivialized` items mostly become templates. Expected coverage: half to two thirds of items. This is the prevention half of the contamination story (D7, layer 2).
 
 **D4 — Validation: warned gate, then a human, every item.**
 - Warned prompt: "This is a modified version of a well-known riddle. Read every word; the usual answer may be wrong."
@@ -103,17 +98,16 @@ Every item carries `why_original_fails` (one checkable sentence) and `aliases`. 
 - **Guardrail:** a run fails and is not scored if reasoning is enabled and the median reasoning-token count is < 50 or the API reports none. This is the rule that would have caught the Opus 4.7 row. Frontier rows go through the vendor's own API, never a router that may strip thinking.
 - Raw outputs are committed under `runs/`; a row without raw outputs is not on the board.
 
-**D7 — Release and contamination: prevent where we can, detect everywhere, and never pretend.**
+**D7 — Release and contamination: the cheap, standard things only.**
 
-Contamination of the *originals* is the premise, not a problem. The risk is the *altered* items: once public, a model trained after release can answer them by lookup, and its low COR means nothing. Two facts shape the answer. Fifty held-out items give a CI of roughly ±10 points on COR, so a small canary catches only gross contamination. And some famous alterations are already memes (the surgeon-who-is-the-father version has been quoted in blogs and papers since 2023), so an item can be contaminated *before* release. Layers, cheapest and strongest first:
+Contamination of the *originals* is the premise, not a problem. The risk is the altered items being looked up by a model trained after release. Almost no benchmark does more than the following, and neither will we:
 
-1. **Fresh-at-release filter (prevention, free).** The D2 probes run on every candidate's altered text. An item whose altered text a probe model completes verbatim, or answers correctly with thinking off in 8 tokens at ≥ 4/5, is already memorized and is not released. It is tagged `famous_variant` and kept for a separate table, because those items are interesting in their own right. This is what makes "the altered version is not recalled" true by construction on day one.
-2. **Parametric items (prevention, authoring cost).** Templates per D3. A run renders instances from a seed; the release publishes the templates plus the canonical instance; a suspected-contamination re-run uses a fresh seed and reports the gap. Verbatim lookup of a published instance buys nothing. Generalizing across slot values *is* the skill being measured, so that kind of "contamination" is not a threat.
-3. **Held-out canary (detection).** 80–100 fixed items, not 50, from the same distribution, kept out of git, run only through providers whose terms say they do not train on API inputs. The board reports public-minus-canary COR per model with its own CI. Each release refreshes the canary and retires the old one into the public set.
-4. **Altered-recall on the board (detection, free).** The probe rates on the *released* altered items, re-run for every new model. A model whose altered-recall rate sits well above its peers gets a contamination flag on its row instead of a rank. The same number, tracked release over release, shows when the public set has gone stale and needs a refresh.
-5. **Temporal tag and canary string (hygiene, free).** Every row records the model's release date against the benchmark's release date; rows for models released after the data went public are marked as such. Every data file and the README carry a BIG-bench-style canary GUID so that decontamination pipelines that honor it can filter the data out of training corpora. That is a norm, not enforcement, and the plan says so.
+- **Everything public except ~50 canary items**, same distribution, kept out of git. The board carries one column, public-minus-canary COR. With 50 items that column detects only gross contamination (the canary's own CI is around ±15 points on COR), and the README says so. The canary runs through magikcloud like everything else; if a canary leaks, the next release rotates it into the public set and draws a new one.
+- **At authoring, do not use alterations that are themselves famous.** The surgeon-who-is-the-father version has been quoted in blogs and papers since 2023. This is a human judgment while writing, helped by Probe B on the altered text: if a model completes the altered wording verbatim, it is a meme, not a test item. Answering it correctly in a few tokens proves nothing, so that is not a criterion.
+- **A release date on the benchmark and a release date on every model row.** Rows for models released after the data went public are marked. Free.
+- **A BIG-bench-style canary GUID** in every data file and the README, so decontamination pipelines that honor it can filter the data out. A norm, not enforcement.
 
-What we do not do: keep the answers private, or run a submission server. Both kill reproducibility, and neither is affordable.
+Not doing: parametric items, per-model contamination flags, a private answer set, a submission server. If a later release shows a real public-versus-canary gap, that is the moment to revisit.
 
 Versioned `v2.0-<date>`; HF mirror; `inspect_ai` task so the whole thing runs in one command.
 
@@ -129,7 +123,7 @@ Versioned `v2.0-<date>`; HF mirror; `inspect_ai` task so the whole thing runs in
 
 ## 4. Pipeline v2 — keep / drop / new
 
-**Keep (from `scripts/`, moved to `code/`):** `core/llm_client.py` (retry, reasoning plumbing), `core/config.py` provider registry (add the Chinese provider, OpenRouter, GitHub Models, a re-pointed `local`), `core/io_utils.py`, `core/reasoning.py` (+ the D6 guardrail), the clustered bootstrap and pairwise rank-group code in `leaderboard.py`.
+**Keep (from `scripts/`, moved to `code/`):** `core/llm_client.py` (retry, reasoning plumbing), `core/config.py` provider registry (`magik` added 2026-09-04; add OpenRouter, GitHub Models, a re-pointed `local`), `core/io_utils.py`, `core/reasoning.py` (+ the D6 guardrail), the clustered bootstrap and pairwise rank-group code in `leaderboard.py`.
 
 **Drop:** `sanity_check.py` (→ recall probe), `generate.py` on crawsome (→ hand authoring, LLM-drafted at most), `validate.py` (→ warned gate), `promote.py` split logic (→ canary sampling), `human_review.py` auto-promote path. `judge.j2` is rewritten for four labels.
 
@@ -155,10 +149,8 @@ Versioned `v2.0-<date>`; HF mirror; `inspect_ai` task so the whole thing runs in
   "source_id": "surgeon", "family": "riddle", "type": "stated",
   "original": "...", "original_answer": "the mother", "original_aliases": ["his mother", "mother"],
   "altered": "...", "answer": "the father", "aliases": ["his father", "the boy's father", "father"],
-  "template": "The surgeon, who is the boy's {relation}, says ...", "slots": {"relation": ["father", "uncle", "grandfather"]},
-  "why_original_fails": "The text states the surgeon is the boy's {relation}.",
-  "recall_probe": {"<model>": 1.0, "<model>": 0.8},
-  "altered_recall": {"<model>": 0.0, "<model>": 0.2},
+  "why_original_fails": "The text states the surgeon is the boy's father.",
+  "recall_probe": {"<model>": {"familiar": 1.0, "verbatim": true}, "<model>": {"familiar": 0.8, "verbatim": false}},
   "warned_gate": {"passed": true, "solvers": 4, "models": ["..."]},
   "reviewed_by": "marco", "reviewed_at": "2026-09-..",
   "split": "public"
@@ -167,12 +159,28 @@ Versioned `v2.0-<date>`; HF mirror; `inspect_ai` task so the whole thing runs in
 
 ---
 
-## 5. Model roster by cost tier
+## 5. Model roster
+
+**magikcloud thinking switches, verified 2026-09-04** (one riddle each; reasoning tokens read from `usage.completion_tokens_details.reasoning_tokens`):
+
+| model | thinks by default | switch that worked | note |
+|---|---|---|---|
+| DeepSeek-V4-Flash | off | on: `reasoning: {"enabled": true}` or `chat_template_kwargs: {"thinking": true}` | `reasoning_effort` ignored |
+| DeepSeek-V4-Pro | on | off: `chat_template_kwargs: {"enable_thinking": false}` | |
+| GLM-5.3 | on | off: `thinking: {"type": "disabled"}` | docs list `enable_thinking`; GLM-5.3-Flash gave a 400 on the off-switch once, retry |
+| Kimi-K3 | on | off: `thinking: {"type": "disabled"}` | `chat_template_kwargs` did not switch it off |
+| Qwen3.5-397B-A17B, 122B-A10B, 35B-A3B, 27B | on | off: `chat_template_kwargs: {"enable_thinking": false}` | |
+| Hy4 | on | untested | needs `max_tokens` ≥ ~1000 or `content` comes back null |
+| Kimi-K2.5, GLM-5.1 / 5.2 / 5.3-Flash, Hy3, Qwen3-Next, Qwen3-VL | untested | | |
+| MiniMax-M3 | listed, 404 | | not actually served |
+
+`core/reasoning.py` grows one dispatch entry per family above, and the D6 guardrail checks every run against `usage`.
 
 | tier | models | cost | role |
 |---|---|---|---|
-| 0 — free, run first | Chinese provider (fill in), Nous free (laguna-s-2.1, hy3, step-3.7-flash), local vLLM (qwen3.6-27b, gemma-4-31b, gpt-oss-20b/120b if VRAM allows), Gemini Flash free tier | 0 | probe models, gate models, judge, first 8–12 board rows |
-| 1 — credits or community | GPT-5.4, Opus 4.7 (real thinking, Anthropic API direct), Gemini 3.1 Pro, Grok 4.20, DeepSeek/Qwen/Kimi large if not on the Chinese provider | credits | the rows readers look for; each must pass the D6 guardrail |
+| 0 — free | Nous free (laguna-s-2.1, hy3, step-3.7-flash); local vLLM (qwen3.6-27b, gemma-4-31b, gpt-oss-20b) if the GPUs are free; Gemini Flash free tier if it answers | 0 | probe and gate models, local judge, first rows |
+| 1 — the $90 | DeepSeek-V4-Pro, DeepSeek-V4-Flash, GLM-5.3, Kimi-K3, Qwen3.5-397B-A17B, Hy4, plus Qwen3.5-27B for the size axis | credits | the board's core, thinking on and off |
+| 2 — credits or community | GPT-5.4, Opus 4.7 (Anthropic API direct), Gemini 3.1 Pro, Grok 4.20 | not ours | the rows readers look for; each must pass the D6 guardrail |
 
 Rule: **v1 rows are not carried over.** Different dataset, no raw outputs, unverifiable settings.
 
@@ -190,15 +198,17 @@ Per model, 350 items. Recall probe is negligible (120 sources × 5 × 8 tokens, 
 
 Free and local models run `full`. Credit-funded models run `lean` and the profile is printed on their row. Judge cost is ~30% of answers × ~100 tokens, and zero on the local judge.
 
+Once Marco pastes the marketplace prices, the $90 is allocated in `NOTES.md`: `lean` on every Tier 1 model first, then `full` on whichever is cheapest, and the remainder held for re-runs.
+
 ---
 
 ## 7. Milestones and acceptance checks
 
 | # | milestone | acceptance | est. |
 |---|---|---|---|
-| M0 | Branch, PLAN, open decisions taken; provider inventory verified (which free routes actually answer; which providers train on inputs; local GPU availability); credit applications sent | inventory table in `NOTES.md` | this week |
+| M0 | Branch, PLAN, open decisions taken; provider inventory verified (which free routes actually answer; local GPU availability); magikcloud prices pasted and the $90 allocated; credit applications sent | inventory table in `NOTES.md` | this week |
 | M1 | `sources.yaml` ≥ 150 candidates; recall probe on Tier 0 | ≥ 100 sources admitted, else widen candidates | 1 week |
-| M2 | ≥ 450 candidate items, templates where possible; altered-recall filter; warned gate; human review | ≥ 350 public + 80–100 canary; H5 holds on gate models | 2 weeks (authoring-bound) |
+| M2 | ≥ 400 candidate items; famous-variant check; warned gate; human review | ≥ 350 public + ~50 canary; H5 holds on gate models | 2 weeks (authoring-bound) |
 | M3 | 40-item pilot on 4 Tier-0 models | alias coverage ≥ 70%; guardrail trips on a thinking-off run labeled "on"; judge–human agreement ≥ 95% on 100 answers | 3 days |
 | M4 | Full runs: Tier 0 `full`; Tier 1 `lean` as credits land | every row has raw outputs + passing guardrail | 2 weeks, rate-limit-bound |
 | M5 | H1–H5 verdicts; writeup with 2–3 findings; canary GUID in every file; `entries.ts` entry + piece on nullsilver.com; HF mirror; `inspect_ai` task; tag `v2.0` | piece live, every row re-derivable from `runs/` | 1 week |
@@ -207,16 +217,14 @@ Free and local models run `full`. Credit-funded models run `lean` and the profil
 
 ## 8. Open decisions (Marco)
 
-Decided 2026-09-04: no lab template (D9).
+Decided 2026-09-04: no lab template (D9); contamination stays at the D7 minimum; the provider is magikcloud with ~$90 of credit.
 
-1. **Chinese provider**: which one, which models, rate limits, whether thinking can be toggled per call, and whether its terms allow training on API inputs (decides if the canary can go through it).
+1. **Prices**: paste input/output prices for the Tier 1 models from the marketplace cards so the $90 can be allocated.
 2. **Local GPU**: is the 3090 / RTX PRO box available for a judge and small models during M3–M4?
 3. **Credits**: which programs to apply to; I can draft the applications from this plan.
 4. **Licenses**: MIT code + CC BY 4.0 data?
 5. **v1 in the new repo**: recommendation is `git tag v1-final eval-fixes`, keep `results/` frozen under `v1/` with a short README for the "what changed" section, and delete nothing.
 6. **Naming**: keep `altered-riddles` as repo name and site slug?
-7. **Canary size**: 80–100 held-out items means ~350 public out of ~450 authored. Fine, or push authoring to 500?
-8. **Parametric items**: worth the extra authoring? My take: yes for `stated` and `trivialized`, where the slot is obvious; not for verse riddles.
 
 ---
 
@@ -226,8 +234,8 @@ Decided 2026-09-04: no lab template (D9).
 code/                     # pipeline (from scripts/), one module per stage
 data/sources.yaml         # hand-curated sources
 data/items/<source>.yaml  # ≤ 3 variants each, reviewed
-data/release/v2.0/        # public.jsonl, templates.jsonl, recall_probe.json, CANARY.txt (GUID)
-data/canary/              # 80–100 held-out items, out of git
+data/release/v2.0/        # public.jsonl, recall_probe.json, CANARY.txt (GUID)
+data/canary/              # ~50 held-out items, out of git
 runs/<model>/<config>/    # raw.jsonl, scored.jsonl, config.json — committed
 results/                  # leaderboard.json, LEADERBOARD.md, judge_agreement.json
 inspect/                  # inspect_ai task

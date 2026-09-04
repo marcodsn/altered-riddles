@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 pip install -r requirements.txt
-cp .env.example .env  # Add API keys: OPENAI_API_KEY, GEMINI_API_KEY, MISTRAL_API_KEY, HF_API_KEY, TOGETHER_API_KEY, NOUS_API_KEY
+cp .env.example .env  # Add API keys: MAGIK_API_KEY (+ MAGIK_BASE_URL), OPENAI_API_KEY, GEMINI_API_KEY, MISTRAL_API_KEY, HF_API_KEY, TOGETHER_API_KEY, NOUS_API_KEY
 ```
 
 ## Pipeline Commands
@@ -64,7 +64,7 @@ data/riddles_source.csv
 ```
 
 ### Core Infrastructure (`scripts/core/`)
-- **config.py** — Provider registry mapping provider names (gemini, openai, local, mistral, huggingface, together, nous) to API keys and client types
+- **config.py** — Provider registry mapping provider names (magik, gemini, openai, local, mistral, huggingface, together, nous) to API keys and client types
 - **llm_client.py** — Unified async/sync LLM interface with retry/backoff; returns `LLMResponse(text, reasoning, input_tokens, output_tokens)`; supports Gemini (with thinking), OpenAI-compatible, and Mistral APIs
 - **io_utils.py** — JSONL/JSON/CSV I/O; Jinja2 template loader from `prompts/`; `sanitize_model_name()` for output filenames
 

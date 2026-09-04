@@ -45,6 +45,14 @@ PROVIDERS: dict[str, dict] = {
         "client_type": "openai_compat",
         "base_url": "https://inference-api.nousresearch.com/v1",
     },
+    # magikcloud (api.jalapeno-cloud.ai): DeepSeek / GLM / Kimi / Qwen / MiniMax / Hy.
+    # Same MAGIK_* names as the other lab projects. Paid credits: the v2 budget.
+    "magik": {
+        "default_model": "DeepSeek-V4-Flash",
+        "env_key": "MAGIK_API_KEY",
+        "client_type": "openai_compat",
+        "base_url": "https://api.jalapeno-cloud.ai/v1",
+    },
 }
 
 # Retry / batching defaults
