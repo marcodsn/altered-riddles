@@ -1,0 +1,18 @@
+{
+ "config": "unwarned-thinkon-k3",
+ "n_expected": 120,
+ "n_rows": 120,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 146.0,
+ "mean_reasoning_tokens": 383.8,
+ "mean_completion_tokens": 391.5,
+ "reasoning_leak_rate": 1.0,
+ "truncated": 0,
+ "total_prompt_tokens": 6228,
+ "total_completion_tokens": 46984,
+ "elapsed_s_this_invocation": 223.3,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-04T22:10:03Z"
+}

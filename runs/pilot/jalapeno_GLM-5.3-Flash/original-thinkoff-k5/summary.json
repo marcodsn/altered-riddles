@@ -1,0 +1,20 @@
+{
+ "config": "original-thinkoff-k5",
+ "n_expected": 185,
+ "n_rows": 185,
+ "errors": 185,
+ "error_rate": 1.0,
+ "median_reasoning_tokens": 0,
+ "mean_reasoning_tokens": null,
+ "mean_completion_tokens": null,
+ "reasoning_leak_rate": 0.0,
+ "truncated": 0,
+ "total_prompt_tokens": 0,
+ "total_completion_tokens": 0,
+ "elapsed_s_this_invocation": 1048.2,
+ "guardrail": "FAIL",
+ "guardrail_reasons": [
+  "error rate 100.0%"
+ ],
+ "finished_at": "2026-09-04T22:18:55Z"
+}

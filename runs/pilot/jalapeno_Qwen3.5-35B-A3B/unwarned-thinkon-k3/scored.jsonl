@@ -1,0 +1,120 @@
+{"unit_id": "craw-0007-1", "sample": 0, "final": "Anchor", "det": "original", "label": "original", "reasoning_tokens": 279, "finish_reason": "stop"}
+{"unit_id": "craw-0241-1", "sample": 1, "final": "A judge", "det": "correct", "label": "correct", "reasoning_tokens": 625, "finish_reason": "stop"}
+{"unit_id": "craw-0388-1", "sample": 0, "final": "the letter u", "det": "correct", "label": "correct", "reasoning_tokens": 792, "finish_reason": "stop"}
+{"unit_id": "craw-0388-1", "sample": 2, "final": "The letter u", "det": "correct", "label": "correct", "reasoning_tokens": 931, "finish_reason": "stop"}
+{"unit_id": "craw-0007-1", "sample": 1, "final": "An anchor", "det": "original", "label": "original", "reasoning_tokens": 814, "finish_reason": "stop"}
+{"unit_id": "craw-0241-1", "sample": 2, "final": "A judge", "det": "correct", "label": "correct", "reasoning_tokens": 1649, "finish_reason": "stop"}
+{"unit_id": "craw-0241-1", "sample": 0, "final": "Judge", "det": "correct", "label": "correct", "reasoning_tokens": 1257, "finish_reason": "stop"}
+{"unit_id": "craw-0388-1", "sample": 1, "final": "The letter U", "det": "correct", "label": "correct", "reasoning_tokens": 795, "finish_reason": "stop"}
+{"unit_id": "craw-0030-1", "sample": 0, "final": "A guitar", "det": "correct", "label": "correct", "reasoning_tokens": 535, "finish_reason": "stop"}
+{"unit_id": "craw-0030-1", "sample": 1, "final": "A guitar", "det": "correct", "label": "correct", "reasoning_tokens": 411, "finish_reason": "stop"}
+{"unit_id": "craw-0030-1", "sample": 2, "final": "Guitar", "det": "correct", "label": "correct", "reasoning_tokens": 383, "finish_reason": "stop"}
+{"unit_id": "craw-0098-1", "sample": 1, "final": "Tea", "det": "correct", "label": "correct", "reasoning_tokens": 327, "finish_reason": "stop"}
+{"unit_id": "craw-0098-1", "sample": 0, "final": "Tea", "det": "correct", "label": "correct", "reasoning_tokens": 662, "finish_reason": "stop"}
+{"unit_id": "craw-0098-1", "sample": 2, "final": "tea", "det": "correct", "label": "correct", "reasoning_tokens": 274, "finish_reason": "stop"}
+{"unit_id": "egg-1", "sample": 1, "final": "A coconut", "det": "correct", "label": "correct", "reasoning_tokens": 393, "finish_reason": "stop"}
+{"unit_id": "egg-1", "sample": 0, "final": "A coconut", "det": "correct", "label": "correct", "reasoning_tokens": 735, "finish_reason": "stop"}
+{"unit_id": "egg-1", "sample": 2, "final": "A coconut", "det": "correct", "label": "correct", "reasoning_tokens": 622, "finish_reason": "stop"}
+{"unit_id": "short-1", "sample": 0, "final": "The word is Long", "det": "correct", "label": "correct", "reasoning_tokens": 3942, "finish_reason": "stop"}
+{"unit_id": "short-1", "sample": 2, "final": "Long", "det": "correct", "label": "correct", "reasoning_tokens": 3538, "finish_reason": "stop"}
+{"unit_id": "mustard-family-1", "sample": 1, "final": "10", "det": "correct", "label": "correct", "reasoning_tokens": 373, "finish_reason": "stop"}
+{"unit_id": "cold-1", "sample": 1, "final": "A fish", "det": "correct", "label": "correct", "reasoning_tokens": 1786, "finish_reason": "stop"}
+{"unit_id": "short-1", "sample": 1, "final": "The word \"Long\"", "det": "correct", "label": "correct", "reasoning_tokens": 2840, "finish_reason": "stop"}
+{"unit_id": "mustard-family-1", "sample": 0, "final": "10 people", "det": "correct", "label": "correct", "reasoning_tokens": 371, "finish_reason": "stop"}
+{"unit_id": "mustard-family-1", "sample": 2, "final": "10 people", "det": "correct", "label": "correct", "reasoning_tokens": 315, "finish_reason": "stop"}
+{"unit_id": "marys-father-2", "sample": 0, "final": "Lucy", "det": "correct", "label": "correct", "reasoning_tokens": 346, "finish_reason": "stop"}
+{"unit_id": "marys-father-2", "sample": 1, "final": "Lucy", "det": "correct", "label": "correct", "reasoning_tokens": 263, "finish_reason": "stop"}
+{"unit_id": "cold-1", "sample": 2, "final": "A fish", "det": "correct", "label": "correct", "reasoning_tokens": 1180, "finish_reason": "stop"}
+{"unit_id": "marys-father-2", "sample": 2, "final": "Lucy", "det": "correct", "label": "correct", "reasoning_tokens": 304, "finish_reason": "stop"}
+{"unit_id": "keyboard-1", "sample": 0, "final": "A piano", "det": "correct", "label": "correct", "reasoning_tokens": 396, "finish_reason": "stop"}
+{"unit_id": "craw-0007-1", "sample": 2, "final": "Anchor", "det": "original", "label": "original", "reasoning_tokens": 4528, "finish_reason": "stop"}
+{"unit_id": "cold-1", "sample": 0, "final": "A fish", "det": "correct", "label": "correct", "reasoning_tokens": 2955, "finish_reason": "stop"}
+{"unit_id": "bottle-1", "sample": 0, "final": "A shirt", "det": "correct", "label": "correct", "reasoning_tokens": 389, "finish_reason": "stop"}
+{"unit_id": "time-flies-1", "sample": 0, "final": "a kite", "det": "correct", "label": "correct", "reasoning_tokens": 227, "finish_reason": "stop"}
+{"unit_id": "time-flies-1", "sample": 1, "final": "A kite", "det": "correct", "label": "correct", "reasoning_tokens": 350, "finish_reason": "stop"}
+{"unit_id": "bottle-1", "sample": 2, "final": "A shirt", "det": "correct", "label": "correct", "reasoning_tokens": 757, "finish_reason": "stop"}
+{"unit_id": "bottle-1", "sample": 1, "final": "A shirt", "det": "correct", "label": "correct", "reasoning_tokens": 849, "finish_reason": "stop"}
+{"unit_id": "time-flies-1", "sample": 2, "final": "A kite", "det": "correct", "label": "correct", "reasoning_tokens": 313, "finish_reason": "stop"}
+{"unit_id": "bat-and-ball-3", "sample": 1, "final": "$0.10", "det": "correct", "label": "correct", "reasoning_tokens": 499, "finish_reason": "stop"}
+{"unit_id": "keyboard-1", "sample": 1, "final": "A piano", "det": "correct", "label": "correct", "reasoning_tokens": 566, "finish_reason": "stop"}
+{"unit_id": "candle-1", "sample": 0, "final": "A pencil", "det": "correct", "label": "correct", "reasoning_tokens": 298, "finish_reason": "stop"}
+{"unit_id": "bat-and-ball-3", "sample": 2, "final": "$0.10", "det": "correct", "label": "correct", "reasoning_tokens": 490, "finish_reason": "stop"}
+{"unit_id": "candle-1", "sample": 1, "final": "A pencil", "det": "correct", "label": "correct", "reasoning_tokens": 353, "finish_reason": "stop"}
+{"unit_id": "candle-1", "sample": 2, "final": "A pencil", "det": "correct", "label": "correct", "reasoning_tokens": 272, "finish_reason": "stop"}
+{"unit_id": "umbrella-1", "sample": 0, "final": "A river", "det": "correct", "label": "correct", "reasoning_tokens": 356, "finish_reason": "stop"}
+{"unit_id": "bat-and-ball-3", "sample": 0, "final": "$0.10", "det": "correct", "label": "correct", "reasoning_tokens": 993, "finish_reason": "stop"}
+{"unit_id": "umbrella-1", "sample": 2, "final": "A river", "det": "correct", "label": "correct", "reasoning_tokens": 789, "finish_reason": "stop"}
+{"unit_id": "keyboard-1", "sample": 2, "final": "A piano", "det": "correct", "label": "correct", "reasoning_tokens": 1222, "finish_reason": "stop"}
+{"unit_id": "craw-0220-1", "sample": 0, "final": "A banana", "det": "correct", "label": "correct", "reasoning_tokens": 336, "finish_reason": "stop"}
+{"unit_id": "craw-0220-1", "sample": 2, "final": "A banana", "det": "correct", "label": "correct", "reasoning_tokens": 443, "finish_reason": "stop"}
+{"unit_id": "widgets-1", "sample": 0, "final": "10 minutes", "det": "correct", "label": "correct", "reasoning_tokens": 1020, "finish_reason": "stop"}
+{"unit_id": "widgets-1", "sample": 2, "final": "10 minutes", "det": "correct", "label": "correct", "reasoning_tokens": 857, "finish_reason": "stop"}
+{"unit_id": "umbrella-1", "sample": 1, "final": "A river", "det": "correct", "label": "correct", "reasoning_tokens": 1185, "finish_reason": "stop"}
+{"unit_id": "craw-0220-1", "sample": 1, "final": "Banana", "det": "correct", "label": "correct", "reasoning_tokens": 840, "finish_reason": "stop"}
+{"unit_id": "craw-0379-1", "sample": 0, "final": "An airplane", "det": "correct", "label": "correct", "reasoning_tokens": 610, "finish_reason": "stop"}
+{"unit_id": "craw-0379-1", "sample": 1, "final": "An airplane", "det": "correct", "label": "correct", "reasoning_tokens": 448, "finish_reason": "stop"}
+{"unit_id": "craw-0379-1", "sample": 2, "final": "An airplane", "det": "correct", "label": "correct", "reasoning_tokens": 501, "finish_reason": "stop"}
+{"unit_id": "craw-0014-1", "sample": 0, "final": "An owl", "det": "correct", "label": "correct", "reasoning_tokens": 268, "finish_reason": "stop"}
+{"unit_id": "craw-0014-1", "sample": 2, "final": "An owl", "det": "correct", "label": "correct", "reasoning_tokens": 501, "finish_reason": "stop"}
+{"unit_id": "craw-0014-1", "sample": 1, "final": "An owl", "det": "correct", "label": "correct", "reasoning_tokens": 502, "finish_reason": "stop"}
+{"unit_id": "widgets-1", "sample": 1, "final": "10 minutes", "det": "correct", "label": "correct", "reasoning_tokens": 2418, "finish_reason": "stop"}
+{"unit_id": "craw-0125-1", "sample": 0, "final": "Hands", "det": "correct", "label": "correct", "reasoning_tokens": 672, "finish_reason": "stop"}
+{"unit_id": "craw-0125-1", "sample": 1, "final": "Hands", "det": "correct", "label": "correct", "reasoning_tokens": 335, "finish_reason": "stop"}
+{"unit_id": "craw-0125-1", "sample": 2, "final": "Hands", "det": "correct", "label": "correct", "reasoning_tokens": 348, "finish_reason": "stop"}
+{"unit_id": "craw-0137-1", "sample": 2, "final": "Nothing", "det": "correct", "label": "correct", "reasoning_tokens": 3577, "finish_reason": "stop"}
+{"unit_id": "craw-0137-1", "sample": 0, "final": "Nothing", "det": "correct", "label": "correct", "reasoning_tokens": 2550, "finish_reason": "stop"}
+{"unit_id": "craw-0137-1", "sample": 1, "final": "Nothing", "det": "correct", "label": "correct", "reasoning_tokens": 4883, "finish_reason": "stop"}
+{"unit_id": "craw-0010-1", "sample": 2, "final": "An arrow", "det": "original", "label": "original", "reasoning_tokens": 2044, "finish_reason": "stop"}
+{"unit_id": "tree-bark-1", "sample": 1, "final": "A dog", "det": "correct", "label": "correct", "reasoning_tokens": 290, "finish_reason": "stop"}
+{"unit_id": "tree-bark-1", "sample": 0, "final": "A dog", "det": "correct", "label": "correct", "reasoning_tokens": 299, "finish_reason": "stop"}
+{"unit_id": "craw-0010-1", "sample": 0, "final": "A Dart", "det": "correct", "label": "correct", "reasoning_tokens": 1656, "finish_reason": "stop"}
+{"unit_id": "craw-0010-1", "sample": 1, "final": "An arrow", "det": "original", "label": "original", "reasoning_tokens": 3355, "finish_reason": "stop"}
+{"unit_id": "tree-bark-1", "sample": 2, "final": "A dog", "det": "correct", "label": "correct", "reasoning_tokens": 282, "finish_reason": "stop"}
+{"unit_id": "three-apples-1", "sample": 0, "final": "One apple", "det": "correct", "label": "correct", "reasoning_tokens": 993, "finish_reason": "stop"}
+{"unit_id": "surgeon-2", "sample": 0, "final": "The surgeon is the boy's father.", "det": "correct", "label": "correct", "reasoning_tokens": 1650, "finish_reason": "stop"}
+{"unit_id": "divide-by-half-2", "sample": 0, "final": "50", "det": "correct", "label": "correct", "reasoning_tokens": 550, "finish_reason": "stop"}
+{"unit_id": "divide-by-half-2", "sample": 1, "final": "50", "det": "correct", "label": "correct", "reasoning_tokens": 472, "finish_reason": "stop"}
+{"unit_id": "lily-pads-1", "sample": 0, "final": "46 days", "det": "correct", "label": "correct", "reasoning_tokens": 304, "finish_reason": "stop"}
+{"unit_id": "divide-by-half-2", "sample": 2, "final": "50", "det": "correct", "label": "correct", "reasoning_tokens": 576, "finish_reason": "stop"}
+{"unit_id": "three-apples-1", "sample": 2, "final": "One apple", "det": "correct", "label": "correct", "reasoning_tokens": 1229, "finish_reason": "stop"}
+{"unit_id": "lily-pads-1", "sample": 1, "final": "46 days", "det": "correct", "label": "correct", "reasoning_tokens": 386, "finish_reason": "stop"}
+{"unit_id": "left-hand-1", "sample": 2, "final": "Your right hand", "det": "correct", "label": "correct", "reasoning_tokens": 278, "finish_reason": "stop"}
+{"unit_id": "lily-pads-1", "sample": 2, "final": "46 days", "det": "correct", "label": "correct", "reasoning_tokens": 460, "finish_reason": "stop"}
+{"unit_id": "left-hand-1", "sample": 0, "final": "Your right elbow", "det": "correct", "label": "correct", "reasoning_tokens": 463, "finish_reason": "stop"}
+{"unit_id": "left-hand-1", "sample": 1, "final": "Your right elbow", "det": "correct", "label": "correct", "reasoning_tokens": 538, "finish_reason": "stop"}
+{"unit_id": "overtake-second-2", "sample": 0, "final": "Third place", "det": "correct", "label": "correct", "reasoning_tokens": 623, "finish_reason": "stop"}
+{"unit_id": "surgeon-2", "sample": 1, "final": "The surgeon is his father.", "det": "correct", "label": "correct", "reasoning_tokens": 2991, "finish_reason": "stop"}
+{"unit_id": "electric-train-2", "sample": 0, "final": "North", "det": "correct", "label": "correct", "reasoning_tokens": 435, "finish_reason": "stop"}
+{"unit_id": "surgeon-2", "sample": 2, "final": "The surgeon is his father.", "det": "correct", "label": "correct", "reasoning_tokens": 3111, "finish_reason": "stop"}
+{"unit_id": "overtake-second-2", "sample": 1, "final": "Third place", "det": "correct", "label": "correct", "reasoning_tokens": 962, "finish_reason": "stop"}
+{"unit_id": "electric-train-2", "sample": 2, "final": "North", "det": "correct", "label": "correct", "reasoning_tokens": 484, "finish_reason": "stop"}
+{"unit_id": "electric-train-2", "sample": 1, "final": "North", "det": "correct", "label": "correct", "reasoning_tokens": 426, "finish_reason": "stop"}
+{"unit_id": "sheep-1", "sample": 0, "final": "8", "det": "correct", "label": "correct", "reasoning_tokens": 637, "finish_reason": "stop"}
+{"unit_id": "sheep-1", "sample": 1, "final": "8 sheep died", "det": "correct", "label": "correct", "reasoning_tokens": 281, "finish_reason": "stop"}
+{"unit_id": "sheep-1", "sample": 2, "final": "8", "det": "correct", "label": "correct", "reasoning_tokens": 925, "finish_reason": "stop"}
+{"unit_id": "three-apples-1", "sample": 1, "final": "1", "det": "correct", "label": "correct", "reasoning_tokens": 4127, "finish_reason": "stop"}
+{"unit_id": "overtake-second-2", "sample": 2, "final": "Third place", "det": "correct", "label": "correct", "reasoning_tokens": 2147, "finish_reason": "stop"}
+{"unit_id": "craw-0069-1", "sample": 2, "final": "The corn cob", "det": "correct", "label": "correct", "reasoning_tokens": 4061, "finish_reason": "stop"}
+{"unit_id": "craw-0069-1", "sample": 0, "final": "the corn cob", "det": "correct", "label": "correct", "reasoning_tokens": 5022, "finish_reason": "stop"}
+{"unit_id": "greenhouse-2", "sample": 0, "final": "red bricks", "det": "correct", "label": "correct", "reasoning_tokens": 393, "finish_reason": "stop"}
+{"unit_id": "greenhouse-2", "sample": 1, "final": "red bricks", "det": "correct", "label": "correct", "reasoning_tokens": 313, "finish_reason": "stop"}
+{"unit_id": "greenhouse-2", "sample": 2, "final": "red bricks", "det": "correct", "label": "correct", "reasoning_tokens": 478, "finish_reason": "stop"}
+{"unit_id": "johnnys-mother-1", "sample": 0, "final": "June", "det": "correct", "label": "correct", "reasoning_tokens": 4302, "finish_reason": "stop"}
+{"unit_id": "johnnys-mother-1", "sample": 2, "final": "June", "det": "correct", "label": "correct", "reasoning_tokens": 3607, "finish_reason": "stop"}
+{"unit_id": "bat-and-ball-1", "sample": 1, "final": "10 cents", "det": "correct", "label": "correct", "reasoning_tokens": 832, "finish_reason": "stop"}
+{"unit_id": "bat-and-ball-1", "sample": 2, "final": "10 cents", "det": "correct", "label": "correct", "reasoning_tokens": 657, "finish_reason": "stop"}
+{"unit_id": "johnnys-mother-1", "sample": 1, "final": "June", "det": "correct", "label": "correct", "reasoning_tokens": 3072, "finish_reason": "stop"}
+{"unit_id": "marys-father-1", "sample": 1, "final": "Mary", "det": "original", "label": "original", "reasoning_tokens": 4687, "finish_reason": "stop"}
+{"unit_id": "marys-father-1", "sample": 0, "final": "Mary", "det": "original", "label": "original", "reasoning_tokens": 6352, "finish_reason": "stop"}
+{"unit_id": "greenhouse-1", "sample": 0, "final": "Yellow bricks", "det": "correct", "label": "correct", "reasoning_tokens": 1734, "finish_reason": "stop"}
+{"unit_id": "bat-and-ball-1", "sample": 0, "final": "10 cents", "det": "correct", "label": "correct", "reasoning_tokens": 2094, "finish_reason": "stop"}
+{"unit_id": "greenhouse-1", "sample": 2, "final": "Yellow bricks", "det": "correct", "label": "correct", "reasoning_tokens": 2762, "finish_reason": "stop"}
+{"unit_id": "two-fathers-two-sons-1", "sample": 1, "final": "4 people", "det": "correct", "label": "correct", "reasoning_tokens": 1948, "finish_reason": "stop"}
+{"unit_id": "moses-ark-1", "sample": 1, "final": "Two of unclean, seven of clean.", "det": "correct", "label": "correct", "reasoning_tokens": 3623, "finish_reason": "stop"}
+{"unit_id": "moses-ark-1", "sample": 0, "final": "Two or seven of each kind.", "det": "correct", "label": "correct", "reasoning_tokens": 3999, "finish_reason": "stop"}
+{"unit_id": "moses-ark-1", "sample": 2, "final": "Seven clean, two unclean", "det": "correct", "label": "correct", "reasoning_tokens": 2526, "finish_reason": "stop"}
+{"unit_id": "craw-0069-1", "sample": 1, "final": "An Artichoke", "det": "unmatched", "label": "other", "reasoning_tokens": 8329, "finish_reason": "stop", "judge": "other"}
+{"unit_id": "two-fathers-two-sons-1", "sample": 0, "final": "Four people", "det": "correct", "label": "correct", "reasoning_tokens": 4730, "finish_reason": "stop"}
+{"unit_id": "marys-father-1", "sample": 2, "final": "Mary", "det": "original", "label": "original", "reasoning_tokens": 6421, "finish_reason": "stop"}
+{"unit_id": "greenhouse-1", "sample": 1, "final": "Yellow bricks", "det": "correct", "label": "correct", "reasoning_tokens": 5319, "finish_reason": "stop"}
+{"unit_id": "two-fathers-two-sons-1", "sample": 2, "final": "Three", "det": "unmatched", "label": "correct", "reasoning_tokens": 6422, "finish_reason": "stop", "judge": "correct"}

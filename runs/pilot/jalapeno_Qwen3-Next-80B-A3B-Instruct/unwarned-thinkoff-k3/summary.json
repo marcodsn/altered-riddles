@@ -1,0 +1,18 @@
+{
+ "config": "unwarned-thinkoff-k3",
+ "n_expected": 120,
+ "n_rows": 120,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 0.0,
+ "mean_reasoning_tokens": 0,
+ "mean_completion_tokens": 5.4,
+ "reasoning_leak_rate": 0.0,
+ "truncated": 0,
+ "total_prompt_tokens": 6351,
+ "total_completion_tokens": 645,
+ "elapsed_s_this_invocation": 80.3,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-04T22:04:52Z"
+}

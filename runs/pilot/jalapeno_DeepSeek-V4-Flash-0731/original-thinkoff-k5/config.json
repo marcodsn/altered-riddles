@@ -1,0 +1,21 @@
+{
+ "provider": "jalapeno",
+ "model": "DeepSeek-V4-Flash-0731",
+ "condition": "original",
+ "thinking": "off",
+ "thinking_request_params": {
+  "chat_template_kwargs": {
+   "enable_thinking": false
+  }
+ },
+ "samples": 5,
+ "temperature": null,
+ "max_tokens": 16,
+ "prompt": "Solve this riddle. Reply with only the answer, in a few words, and nothing else.\n\n{text}",
+ "items_file": "data/pilot_items.jsonl",
+ "items_sha256": "8bc9244d5363b1209a9db202f80bea973768003f952edce45735dbdd43ecf3c3",
+ "n_units": 37,
+ "passed_only": false,
+ "git_commit": "08a2005ee47d3ab038d4ec193365ba1f91eb81e7",
+ "started_at": "2026-09-04T22:01:27Z"
+}

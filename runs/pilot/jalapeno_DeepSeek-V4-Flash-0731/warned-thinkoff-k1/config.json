@@ -1,0 +1,21 @@
+{
+ "provider": "jalapeno",
+ "model": "DeepSeek-V4-Flash-0731",
+ "condition": "warned",
+ "thinking": "off",
+ "thinking_request_params": {
+  "chat_template_kwargs": {
+   "enable_thinking": false
+  }
+ },
+ "samples": 1,
+ "temperature": null,
+ "max_tokens": 200,
+ "prompt": "This is a modified version of a well-known riddle or puzzle. The usual answer may be wrong here. Read every word and answer the question exactly as written.\n\n{text}\n\nReply with a single line of the form:\nAnswer: <your answer in a few words>",
+ "items_file": "data/pilot_items.jsonl",
+ "items_sha256": "8bc9244d5363b1209a9db202f80bea973768003f952edce45735dbdd43ecf3c3",
+ "n_units": 40,
+ "passed_only": false,
+ "git_commit": "00fd1182e3014d214536476be74fc6673eb221ff",
+ "started_at": "2026-09-04T22:04:53Z"
+}
