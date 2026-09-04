@@ -169,7 +169,7 @@ Versioned `v2.0-<date>`; HF mirror; `inspect_ai` task so the whole thing runs in
 
 | model | thinks by default | switch that worked | note |
 |---|---|---|---|
-| DeepSeek-V4-Flash | off | on: `reasoning: {"enabled": true}` or `chat_template_kwargs: {"thinking": true}` | `reasoning_effort` ignored |
+| DeepSeek-V4-Flash | off | on: `reasoning: {"enabled": true}` or `chat_template_kwargs: {"thinking": true}` | `reasoning_effort` ignored; **Reasoning mode streams at ~10 tok/s on Jalapeno** (2–8k reasoning tokens per riddle, minutes per call): run it in its own process with high concurrency, or its long calls starve every model sharing the slots. Its cost is wall-clock, not money. |
 | DeepSeek-V4-Pro | on | off: `chat_template_kwargs: {"enable_thinking": false}` | |
 | GLM-5.3 | on | off: `thinking: {"type": "disabled"}` | docs list `enable_thinking`; GLM-5.3-Flash gave a 400 on the off-switch once, retry |
 | Kimi-K3 | on | off: `thinking: {"type": "disabled"}` | `chat_template_kwargs` did not switch it off |
