@@ -254,6 +254,17 @@ Waiting list, in order, if the pilot comes in cheap or Marco gets more credit:
 
 Judge cost is ~30% of answers × ~350 tokens on Flash-0731, well under $1 in total. Free and local models run `on-full` regardless. Every row prints its profile.
 
+**Measured in the pilot (2026-09-04, 40 items, mean completion tokens per call).** Unwarned thinking is far shorter than the 2,500 assumed; the warned prompt makes models think 2–4× longer; deterministic matching resolved 82–100% of answers so the judge is ~5% of rows.
+
+| model | thinking on, unwarned | thinking on, warned | thinking off |
+|---|---:|---:|---:|
+| DeepSeek-V4-Flash-0731 | 680 | ~1,500 (one call dropped by the provider) | 8 |
+| GLM-5.3-Flash | 160 | 330 | — |
+| Qwen3.5-35B-A3B | 1,530 | 4,700 | 5 |
+| meituan/longcat-2.0 (free) | 390 | 1,550 | 7 |
+
+Re-priced `on-full` (1,750 unwarned + 1,750 warned calls): GLM-5.3-Flash ≈ $0.2, DeepSeek-Flash-0731 ≈ $1, Qwen3.5-35B-A3B ≈ $22, so the two discounted models are effectively free at any profile and the Qwen3.5 family is where the credit goes. The allocation table above stands; the k=1 warned condition in `on-lean` is what keeps verbose thinkers affordable. DeepSeek-Flash-0731's cost is wall-clock: ~10 tok/s and connections dropped on very long calls.
+
 ---
 
 ## 7. Milestones and acceptance checks
