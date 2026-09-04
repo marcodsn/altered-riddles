@@ -120,7 +120,7 @@ def _usage_field(usage: Any, *path: str) -> int | None:
 
 
 class Client:
-    def __init__(self, provider: str, *, concurrency: int = 8, timeout: float = 600.0, retries: int = 5):
+    def __init__(self, provider: str, *, concurrency: int = 8, timeout: float = 600.0, retries: int = 5, rpm: int | None = None):
         if provider not in PROVIDERS:
             raise SystemExit(f"Unknown provider {provider!r}; known: {', '.join(PROVIDERS)}")
         cfg = PROVIDERS[provider]
@@ -131,6 +131,19 @@ class Client:
         self._client = AsyncOpenAI(base_url=cfg["base_url"], api_key=key, timeout=timeout, max_retries=0)
         self._sem = asyncio.Semaphore(concurrency)
         self.retries = retries
+        # Optional requests-per-minute cap: a minimum spacing between request starts.
+        self._min_interval = 60.0 / rpm if rpm else 0.0
+        self._last_start = 0.0
+        self._pace = asyncio.Lock()
+
+    async def _paced(self) -> None:
+        if not self._min_interval:
+            return
+        async with self._pace:
+            wait = self._last_start + self._min_interval - time.monotonic()
+            if wait > 0:
+                await asyncio.sleep(wait)
+            self._last_start = time.monotonic()
 
     async def chat(
         self,
@@ -156,6 +169,7 @@ class Client:
         rate_limited = False
         for attempt in range(1, self.retries + 1):
             async with self._sem:
+                await self._paced()
                 try:
                     resp = await self._client.chat.completions.create(**kwargs)
                     choice = resp.choices[0] if resp.choices else None
