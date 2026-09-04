@@ -120,7 +120,7 @@ def _usage_field(usage: Any, *path: str) -> int | None:
 
 
 class Client:
-    def __init__(self, provider: str, *, concurrency: int = 8, timeout: float = 180.0, retries: int = 5):
+    def __init__(self, provider: str, *, concurrency: int = 8, timeout: float = 600.0, retries: int = 5):
         if provider not in PROVIDERS:
             raise SystemExit(f"Unknown provider {provider!r}; known: {', '.join(PROVIDERS)}")
         cfg = PROVIDERS[provider]
@@ -153,6 +153,7 @@ class Client:
 
         t0 = time.monotonic()
         last_err = "no attempts"
+        rate_limited = False
         for attempt in range(1, self.retries + 1):
             async with self._sem:
                 try:
@@ -180,10 +181,15 @@ class Client:
                         latency_s=time.monotonic() - t0,
                         attempts=attempt,
                     )
-                except (RateLimitError, APITimeoutError, APIConnectionError) as e:
+                except RateLimitError as e:
                     last_err = f"{type(e).__name__}: {e}"
+                    rate_limited = True
+                except (APITimeoutError, APIConnectionError) as e:
+                    last_err = f"{type(e).__name__}: {e}"
+                    rate_limited = False
                 except APIError as e:
                     last_err = f"{type(e).__name__}: {e}"
+                    rate_limited = False
                     status = getattr(e, "status_code", None)
                     transient = (status is not None and status >= 500) or any(
                         marker in str(e).lower() for marker in _TRANSIENT_MARKERS
@@ -192,7 +198,12 @@ class Client:
                         break
                 except Exception as e:  # noqa: BLE001 — record, then retry
                     last_err = f"{type(e).__name__}: {e}"
-            await asyncio.sleep(min(60.0, (2 ** attempt) + random.uniform(0, 1)))
+                    rate_limited = False
+            # A per-tenant RPM limit needs a real pause, not exponential jitter.
+            if rate_limited:
+                await asyncio.sleep(min(120.0, 15.0 * attempt) + random.uniform(0, 5))
+            else:
+                await asyncio.sleep(min(60.0, (2 ** attempt) + random.uniform(0, 1)))
         return Reply(
             model=model, text="", reasoning=None, prompt_tokens=None, completion_tokens=None,
             reasoning_tokens=None, finish_reason=None, latency_s=time.monotonic() - t0,
