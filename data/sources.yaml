@@ -724,7 +724,7 @@
   family: riddle
   text: "What can you never eat for breakfast?"
   answer: "lunch and dinner"
-  aliases: ["lunch or dinner", "dinner", "lunch", "supper"]
+  aliases: ["lunch or dinner", "dinner and lunch", "lunch and supper", "supper and lunch"]
 
 - id: pocket-hole
   family: riddle
