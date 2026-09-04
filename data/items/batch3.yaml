@@ -35,14 +35,6 @@
   aliases: ["pocket watch", "a watch", "watch"]
   why_original_fails: "A clock does not hang from a chain in a pocket; a pocket watch does."
 
-- id: age-1
-  source: age
-  type: question_swap
-  text: "What goes up but never comes down, and what comes down but never goes up?"
-  answer: "your age, and rain"
-  aliases: ["age and rain", "your age and rain", "age; rain"]
-  why_original_fails: "Two things are asked for; 'your age' alone answers only half the question."
-
 - id: secret-1
   source: secret
   type: negated_premise
@@ -96,7 +88,7 @@
   type: hard_constraint
   text: "What comes down but never goes up, and lands as white flakes?"
   answer: "snow"
-  aliases: ["snowflakes", "snow flakes"]
+  aliases: ["snowflakes", "snow flakes", "dandruff"]
   why_original_fails: "Rain does not land as white flakes; snow does."
 
 - id: umbrella-1
@@ -104,7 +96,7 @@
   type: hard_constraint
   text: "What goes up when the rain comes down, and flows between two banks?"
   answer: "a river"
-  aliases: ["river", "the river", "the river level", "river level", "the water level"]
+  aliases: ["river", "the river", "the river level", "river level", "the water level", "water", "the water"]
   why_original_fails: "An umbrella does not flow between banks; a river rises when it rains."
 
 - id: time-flies-1
@@ -112,8 +104,8 @@
   type: hard_constraint
   text: "What flies without wings and is held by a string?"
   answer: "a kite"
-  aliases: ["kite"]
-  why_original_fails: "Time is not held by a string; a kite flies without wings on one."
+  aliases: ["kite", "a balloon", "balloon"]
+  why_original_fails: "Time is not held by a string; a kite (or a balloon) flies without wings on one."
 
 - id: fence-1
   source: fence
@@ -144,7 +136,7 @@
   type: hard_constraint
   text: "What kind of band never plays music, and holds your watch on your wrist?"
   answer: "a watch band"
-  aliases: ["watch band", "a watch strap", "watch strap", "a wristband", "a strap"]
+  aliases: ["watch band", "watchband", "a watchband", "a watch strap", "watch strap", "a wristband", "a strap"]
   why_original_fails: "A rubber band does not hold a watch; a watch band does."
 
 - id: sphinx-1
@@ -194,7 +186,7 @@
   type: hard_constraint
   text: "What do you throw out to use and take in when you're done, and it has a hook at the end?"
   answer: "a fishing line"
-  aliases: ["fishing line", "a fishing rod", "a line", "fishing rod", "a fishing hook and line"]
+  aliases: ["fishing line", "a fishing rod", "a line", "fishing rod", "a fishing hook and line", "a lure", "fishing lure", "a fishing lure", "a grappling hook", "grappling hook"]
   why_original_fails: "An anchor has no hook at the end; a fishing line does and is cast out and reeled in."
 
 - id: craw-0030-1
@@ -218,7 +210,7 @@
   type: question_swap
   text: "You throw away the outside and cook the inside. Then you eat the outside and throw away the inside. What did you throw away last?"
   answer: "the cob"
-  aliases: ["cob", "the corn cob", "corn cob", "the core"]
+  aliases: ["cob", "the corn cob", "corn cob", "the core", "the inside", "inside"]
   why_original_fails: "The question asks what was thrown away last, the cob; 'corn' is what was eaten."
 
 - id: craw-0079-1

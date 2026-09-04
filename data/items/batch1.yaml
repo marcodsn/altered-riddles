@@ -98,21 +98,12 @@
   why_original_fails: "'Year' has one E, 'week' has two, 'day' has none; the letter M appears in none of them."
 
 # ---------------------------------------------------------------- letter-w
-- id: letter-w-1
-  source: letter-w
-  type: question_swap
-  text: "What is at the beginning of a rainbow?"
-  answer: "the letter R"
-  aliases: ["r", "letter r", "the letter r"]
-  why_original_fails: "The question asks for the beginning of the word 'rainbow', which is R, not the W at its end."
-
-# ---------------------------------------------------------------- glove
 - id: glove-1
   source: glove
   type: negated_premise
   text: "What has a thumb and four fingers and is alive?"
   answer: "a hand"
-  aliases: ["hand", "your hand", "a human hand"]
+  aliases: ["hand", "your hand", "a human hand", "a person", "a human", "person"]
   why_original_fails: "A glove is not alive; a living thing with a thumb and four fingers is a hand."
 
 # ---------------------------------------------------------------- cold
@@ -258,10 +249,10 @@
 - id: sheep-2
   source: sheep
   type: trivialized
-  text: "A farmer has 17 sheep and 9 of them die. How many sheep are left?"
+  text: "A farmer has 17 sheep and 9 of them die. How many sheep are still alive?"
   answer: "8"
   aliases: ["eight"]
-  why_original_fails: "'9 of them die' is plain subtraction: 17 minus 9 is 8, not 9."
+  why_original_fails: "'9 of them die' is plain subtraction: 17 minus 9 leaves 8 alive, not 9."
 
 # ---------------------------------------------------------------- months-28-days
 - id: months-28-days-1
@@ -290,15 +281,6 @@
   why_original_fails: "The name is Noah, so the trick is gone and the story's answer, two of each, applies."
 
 # ---------------------------------------------------------------- widows-sister
-- id: widows-sister-1
-  source: widows-sister
-  type: trivialized
-  text: "Is it legal for a man to marry his wife's sister?"
-  answer: "no, he is already married"
-  aliases: ["no", "not while he is married", "no, he already has a wife", "bigamy", "not without divorcing"]
-  why_original_fails: "The man has a living wife, so the memorized reason ('he is dead') does not apply; the answer is no because he is married."
-
-# ---------------------------------------------------------------- dirt-in-hole
 - id: dirt-in-hole-1
   source: dirt-in-hole
   type: question_swap
@@ -345,7 +327,7 @@
 - id: subtract-five-1
   source: subtract-five
   type: trivialized
-  text: "Starting from 25, how many times can you subtract 5 before you reach zero?"
+  text: "Starting from 25, subtract 5 again and again until you reach exactly zero. How many subtractions do you make?"
   answer: "five"
   aliases: ["5", "five times"]
   why_original_fails: "The question is now about repeated subtraction down to zero: 25, 20, 15, 10, 5, 0 is five subtractions."
@@ -365,7 +347,7 @@
   type: trivialized
   text: "If a red house is made of red bricks and a blue house is made of blue bricks, what is a yellow house made of?"
   answer: "yellow bricks"
-  aliases: ["yellow brick"]
+  aliases: ["yellow brick", "bricks", "brick"]
   why_original_fails: "'Yellow house' has no pun; by the stated pattern it is made of yellow bricks, not glass."
 
 # ---------------------------------------------------------------- overtake-second

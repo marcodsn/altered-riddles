@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import glob
+import hashlib
 import json
 import sys
 import time
@@ -40,7 +41,7 @@ WARNED_PROMPT = (
     "here. Read every word and answer the question exactly as written.\n\n{text}\n\n"
     "End your reply with one line of the form:\nAnswer: <your answer in a few words>"
 )
-MAX_TOKENS = 6000
+MAX_TOKENS = 16000  # 6000 truncated 45 of 440 replies inside the reasoning (2026-09-04)
 TYPES = ("stated", "hard_constraint", "negated_premise", "trivialized", "question_swap")
 
 
@@ -86,7 +87,9 @@ async def run(args: argparse.Namespace) -> None:
     cache = Cache(Path(args.cache))
 
     def key_of(item, prov, model):
-        return f"G|{item['id']}|{prov}:{model}"
+        # the text hash makes an edited item invalidate its cached verdicts
+        h = hashlib.sha256(item["text"].encode()).hexdigest()[:8]
+        return f"G|{item['id']}|{h}|{prov}:{model}"
 
     todo = [(it, p, m) for it in items for p, m in specs if cache.get_ok(key_of(it, p, m)) is None]
     print(f"items={len(items)} models={len(specs)} calls={len(items)*len(specs)} todo={len(todo)}", file=sys.stderr)
