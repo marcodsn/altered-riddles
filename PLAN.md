@@ -32,13 +32,13 @@ v2 keeps the metric idea and the plumbing, and rebuilds the dataset around two t
 
 **Goal.** Measure recall override in a way where recall is proven per item and per model, the original answer is provably invalid, and every leaderboard row is re-derivable from committed raw outputs.
 
-These become the hypotheses in `PROTOCOL.md` (see D9) with numeric gates frozen before any full run:
+These are pre-registered here: the gates are frozen by the dated commit of this file, before any full run, and the writeup reports against them as written:
 
 - **H1 — separation.** With n ≈ 350 items over ≥ 120 sources, CI95 half-width on COR ≤ ±4 points, and the pairwise-bootstrap rank groups contain ≥ 3 disjoint groups among ≥ 10 models. (v1: ±6–7, one group.)
 - **H2 — override gap.** Warned accuracy minus unwarned accuracy ≥ 15 points, mean over models. If true, the failure is attention, not ability, which is the paper's claim.
 - **H3 — thinking gap.** Thinking-on lowers COR versus thinking-off for the same model on ≥ 4 of 5 paired models, by a median ≥ 8 points.
 - **H4 — scoring validity.** Deterministic alias matching resolves ≥ 70% of answers; judge-vs-Marco agreement on the remainder ≥ 95% on a 300-answer labeled sample.
-- **H5 — clean items.** On gate models' *unwarned* answers, the "neither" share ≤ 10% (v1: 29%), and 0 items are unsolved by every warned gate model (v1: 23%).
+- **H5 — clean items.** On gate models' *unwarned* answers, the "neither" share ≤ 10% (v1: 29%), 0 items are unsolved by every warned gate model (v1: 23%), and no released item's altered text is recalled by any probe model at release time (D7, layer 1).
 
 The writeup leads with H2 and H3 and the per-type table, not with the leaderboard.
 
@@ -46,7 +46,7 @@ The writeup leads with H2 and H3 and the per-type table, not with the leaderboar
 
 ## 2. Constraints (the honest budget)
 
-- **`money_usd: 0`.** No paid API call without an explicit decision. If we adopt the lab template this is a mechanical gate, not a promise.
+- **Zero money.** No paid API call without Marco's explicit go-ahead. The rule is stated in `README.md` and `CLAUDE.md`, and every credit-funded row on the board says where the credits came from.
 - **Compute we have or can plausibly get, in order of certainty:**
   1. **Chinese API provider** (Marco has access; name and model list to fill in — see open decision 2). Presumably DeepSeek, Qwen, GLM, Kimi, MiniMax lines. This is the backbone of the roster.
   2. **Nous Portal free tier.** `poolside/laguna-s-2.1:free`, `tencent/hy3:free`, `stepfun/step-3.7-flash:free` responded in B2 and in other lab projects. Rate-limited; wall-clock cost, not money.
@@ -72,6 +72,7 @@ The writeup leads with H2 and H3 and the per-type table, not with the leaderboar
 - Probe B (completion): prefix = first ~60% of the riddle, ask to continue; normalized token overlap ≥ 0.8. Recorded as evidence, not gated on.
 - A source is **admitted** if Probe A passes on ≥ 3 of 4 probe models (Tier 0 roster).
 - COR for a given model conditions on **that model's** Probe A pass for the source. This replaces v1's "solved the original" and is ~free (8 tokens, no thinking).
+- The same two probes run on every candidate's **altered** text. An altered item that is itself recalled is already contaminated and is not released (D7, layer 1).
 
 **D3 — Alteration types: entailed, not suggested. Four checkable types only.**
 
@@ -83,6 +84,8 @@ The writeup leads with H2 and H3 and the per-type table, not with the leaderboar
 | `trivialized` | the famous complication is removed | bat-and-ball where the ball is stated to cost $0.10 |
 
 Every item carries `why_original_fails` (one checkable sentence) and `aliases`. `meaning_shift` and `context_swap` are dropped: they generate new metaphor riddles with LLM-chosen answers, which is the 29% bucket.
+
+**Items are templates where the alteration has a natural slot.** The stated relation (father / uncle / grandfather), the numeric constraint, the letter count, the amounts in a trivialized puzzle. A template carries a validated pool per slot; every value must keep `why_original_fails` true, and the warned gate runs on the canonical instance plus two random ones. Verse riddles mostly stay fixed; `stated` and `trivialized` items mostly become templates. Expected coverage: half to two thirds of items. This is the prevention half of the contamination story (D7, layer 2).
 
 **D4 — Validation: warned gate, then a human, every item.**
 - Warned prompt: "This is a modified version of a well-known riddle. Read every word; the usual answer may be wrong."
@@ -100,17 +103,27 @@ Every item carries `why_original_fails` (one checkable sentence) and `aliases`. 
 - **Guardrail:** a run fails and is not scored if reasoning is enabled and the median reasoning-token count is < 50 or the API reports none. This is the rule that would have caught the Opus 4.7 row. Frontier rows go through the vendor's own API, never a router that may strip thinking.
 - Raw outputs are committed under `runs/`; a row without raw outputs is not on the board.
 
-**D7 — Release: public, plus a small canary.**
-- Everything public except ~50 canary items drawn from the same distribution. Contamination check = public COR minus canary COR per model, reported on the board.
-- Versioned `v2.0-<date>`; HF mirror; `inspect_ai` task so the whole thing runs in one command.
+**D7 — Release and contamination: prevent where we can, detect everywhere, and never pretend.**
+
+Contamination of the *originals* is the premise, not a problem. The risk is the *altered* items: once public, a model trained after release can answer them by lookup, and its low COR means nothing. Two facts shape the answer. Fifty held-out items give a CI of roughly ±10 points on COR, so a small canary catches only gross contamination. And some famous alterations are already memes (the surgeon-who-is-the-father version has been quoted in blogs and papers since 2023), so an item can be contaminated *before* release. Layers, cheapest and strongest first:
+
+1. **Fresh-at-release filter (prevention, free).** The D2 probes run on every candidate's altered text. An item whose altered text a probe model completes verbatim, or answers correctly with thinking off in 8 tokens at ≥ 4/5, is already memorized and is not released. It is tagged `famous_variant` and kept for a separate table, because those items are interesting in their own right. This is what makes "the altered version is not recalled" true by construction on day one.
+2. **Parametric items (prevention, authoring cost).** Templates per D3. A run renders instances from a seed; the release publishes the templates plus the canonical instance; a suspected-contamination re-run uses a fresh seed and reports the gap. Verbatim lookup of a published instance buys nothing. Generalizing across slot values *is* the skill being measured, so that kind of "contamination" is not a threat.
+3. **Held-out canary (detection).** 80–100 fixed items, not 50, from the same distribution, kept out of git, run only through providers whose terms say they do not train on API inputs. The board reports public-minus-canary COR per model with its own CI. Each release refreshes the canary and retires the old one into the public set.
+4. **Altered-recall on the board (detection, free).** The probe rates on the *released* altered items, re-run for every new model. A model whose altered-recall rate sits well above its peers gets a contamination flag on its row instead of a rank. The same number, tracked release over release, shows when the public set has gone stale and needs a refresh.
+5. **Temporal tag and canary string (hygiene, free).** Every row records the model's release date against the benchmark's release date; rows for models released after the data went public are marked as such. Every data file and the README carry a BIG-bench-style canary GUID so that decontamination pipelines that honor it can filter the data out of training corpora. That is a norm, not enforcement, and the plan says so.
+
+What we do not do: keep the answers private, or run a submission server. Both kill reproducibility, and neither is affordable.
+
+Versioned `v2.0-<date>`; HF mirror; `inspect_ai` task so the whole thing runs in one command.
 
 **D8 — Reported metrics.** COR (primary, clustered bootstrap by source, pairwise-bootstrap rank groups); override gap; thinking gap; per-type and per-family COR; abstain rate; public-minus-canary. Ranks are shown as groups, not integers.
 
-**D9 — Repo shape: nullsilver lab template. (Recommendation, see open decision 1.)**
-- Adopt `labloop`: `PROTOCOL.md` with H1–H5 as gates, `tools/lab`, `state.json` + `events.jsonl` so the project is live on nullsilver.com via the index, `money_usd: 0` enforced. `kind: research` (it has hypotheses), the dataset is the artifact it produces.
-- Phase mapping: `build` = sources + items + gate + review (human gates inside it); `pilot` = M3; `execute` = M4; `analyze` = H1–H5 verdicts; `conclude` = REPORT.md = the writeup.
-- Alternative: plain repo + a hand-authored Artifact entry on the site. Cheaper to set up, no live feed, no mechanical money gate. I'd take the template.
-- Licenses: MIT for code (matches siblings), CC BY 4.0 for data. v1 had no LICENSE file.
+**D9 — Repo shape: plain repository, no lab template.** (Marco's call, 2026-09-04.)
+- A normal benchmark repo under `nullsilver-labs`: `README.md`, `code/`, `data/`, `runs/`, `results/`, `inspect/`. H1–H5 are pre-registered by the dated commit of this file, and the writeup reports verdicts against them as written.
+- The zero-money rule lives in `CLAUDE.md` and `README.md` as a project rule.
+- On nullsilver.com the project is a hand-authored entry in `entries.ts` with the writeup as a Markdown piece and the leaderboard table embedded at release time. A live table that reads `results/leaderboard.json` from the repo is site work, out of scope until v2.0 ships.
+- Licenses: MIT for code (matches the sibling repos), CC BY 4.0 for data. v1 had no LICENSE file.
 
 ---
 
@@ -142,8 +155,10 @@ Every item carries `why_original_fails` (one checkable sentence) and `aliases`. 
   "source_id": "surgeon", "family": "riddle", "type": "stated",
   "original": "...", "original_answer": "the mother", "original_aliases": ["his mother", "mother"],
   "altered": "...", "answer": "the father", "aliases": ["his father", "the boy's father", "father"],
-  "why_original_fails": "The text states the surgeon is the boy's father.",
+  "template": "The surgeon, who is the boy's {relation}, says ...", "slots": {"relation": ["father", "uncle", "grandfather"]},
+  "why_original_fails": "The text states the surgeon is the boy's {relation}.",
   "recall_probe": {"<model>": 1.0, "<model>": 0.8},
+  "altered_recall": {"<model>": 0.0, "<model>": 0.2},
   "warned_gate": {"passed": true, "solvers": 4, "models": ["..."]},
   "reviewed_by": "marco", "reviewed_at": "2026-09-..",
   "split": "public"
@@ -181,35 +196,38 @@ Free and local models run `full`. Credit-funded models run `lean` and the profil
 
 | # | milestone | acceptance | est. |
 |---|---|---|---|
-| M0 | Branch, PLAN, decisions 1–7 taken; provider inventory verified (which free routes actually answer; local GPU availability); credit applications sent; `PROTOCOL.md` drafted if D9 | inventory table in `NOTES.md` | this week |
+| M0 | Branch, PLAN, open decisions taken; provider inventory verified (which free routes actually answer; which providers train on inputs; local GPU availability); credit applications sent | inventory table in `NOTES.md` | this week |
 | M1 | `sources.yaml` ≥ 150 candidates; recall probe on Tier 0 | ≥ 100 sources admitted, else widen candidates | 1 week |
-| M2 | ≥ 400 candidate items; warned gate; human review | ≥ 350 public + 50 canary; H5 holds on gate models | 2 weeks (authoring-bound) |
+| M2 | ≥ 450 candidate items, templates where possible; altered-recall filter; warned gate; human review | ≥ 350 public + 80–100 canary; H5 holds on gate models | 2 weeks (authoring-bound) |
 | M3 | 40-item pilot on 4 Tier-0 models | alias coverage ≥ 70%; guardrail trips on a thinking-off run labeled "on"; judge–human agreement ≥ 95% on 100 answers | 3 days |
 | M4 | Full runs: Tier 0 `full`; Tier 1 `lean` as credits land | every row has raw outputs + passing guardrail | 2 weeks, rate-limit-bound |
-| M5 | H1–H5 verdicts; `REPORT.md` with 2–3 findings; site page; HF mirror; `inspect_ai` task; tag `v2.0` | index entry live on nullsilver.com | 1 week |
+| M5 | H1–H5 verdicts; writeup with 2–3 findings; canary GUID in every file; `entries.ts` entry + piece on nullsilver.com; HF mirror; `inspect_ai` task; tag `v2.0` | piece live, every row re-derivable from `runs/` | 1 week |
 
 ---
 
 ## 8. Open decisions (Marco)
 
-1. **D9**: lab template, or plain repo + authored site entry? (Recommendation: template.)
-2. **Chinese provider**: which one, which models, rate limits, whether thinking can be toggled per call.
-3. **Local GPU**: is the 3090 / RTX PRO box available for a judge and small models during M3–M4?
-4. **Credits**: which programs to apply to; I can draft the applications from this plan.
-5. **Licenses**: MIT code + CC BY 4.0 data?
-6. **v1 in the new repo**: recommendation is `git tag v1-final eval-fixes`, keep `results/` frozen under `v1/` with a short README for the "what changed" section, and delete nothing.
-7. **Naming**: keep `altered-riddles` as repo name and site slug?
+Decided 2026-09-04: no lab template (D9).
+
+1. **Chinese provider**: which one, which models, rate limits, whether thinking can be toggled per call, and whether its terms allow training on API inputs (decides if the canary can go through it).
+2. **Local GPU**: is the 3090 / RTX PRO box available for a judge and small models during M3–M4?
+3. **Credits**: which programs to apply to; I can draft the applications from this plan.
+4. **Licenses**: MIT code + CC BY 4.0 data?
+5. **v1 in the new repo**: recommendation is `git tag v1-final eval-fixes`, keep `results/` frozen under `v1/` with a short README for the "what changed" section, and delete nothing.
+6. **Naming**: keep `altered-riddles` as repo name and site slug?
+7. **Canary size**: 80–100 held-out items means ~350 public out of ~450 authored. Fine, or push authoring to 500?
+8. **Parametric items**: worth the extra authoring? My take: yes for `stated` and `trivialized`, where the slot is obvious; not for verse riddles.
 
 ---
 
 ## 9. Target layout
 
 ```
-PROTOCOL.md  LAB.md  tools/lab  state.json  events.jsonl  FORMAT.json   # if D9
 code/                     # pipeline (from scripts/), one module per stage
 data/sources.yaml         # hand-curated sources
 data/items/<source>.yaml  # ≤ 3 variants each, reviewed
-data/release/v2.0/        # public.jsonl, recall_probe.json (canary stays out of git)
+data/release/v2.0/        # public.jsonl, templates.jsonl, recall_probe.json, CANARY.txt (GUID)
+data/canary/              # 80–100 held-out items, out of git
 runs/<model>/<config>/    # raw.jsonl, scored.jsonl, config.json — committed
 results/                  # leaderboard.json, LEADERBOARD.md, judge_agreement.json
 inspect/                  # inspect_ai task
