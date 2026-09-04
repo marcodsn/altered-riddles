@@ -46,9 +46,9 @@ The writeup leads with H2 and H3 and the per-type table, not with the leaderboar
 
 ## 2. Constraints (the honest budget)
 
-- **Money: about $90 of credit on magikcloud (`api.jalapeno-cloud.ai`), and Marco can ask for more.** Nothing else is paid for. Any spend beyond that credit is Marco's explicit decision, and every credit-funded row on the board says where the credits came from.
-- **magikcloud, verified 2026-09-04 with one-riddle smoke calls** (provider `magik` in `config.py`; `MAGIK_API_KEY` / `MAGIK_BASE_URL` in `.env`, same names as the other lab projects):
-  - 21 models listed, `MiniMax-M3` returns 404, so 20 usable. Pricing is only on the per-model cards in the logged-in marketplace, not in the API or the public docs; Marco pastes the numbers for the Tier 1 models.
+- **Money: about $90 of credit on Jalapeno Cloud (`api.jalapeno-cloud.ai`), and Marco can ask for more.** Nothing else is paid for. Any spend beyond that credit is Marco's explicit decision, and every credit-funded row on the board says where the credits came from.
+- **Jalapeno Cloud, verified 2026-09-04 with one-riddle smoke calls** (provider `jalapeno` in `config.py`; `JALAPENO_API_KEY` in `.env`):
+  - 21 models listed, `MiniMax-M3` returns 404, so 20 usable. Prices are in section 6 (pasted by Marco from the marketplace). **The provider is in beta and Marco is beta-testing it:** some listed models error, and availability changes. Every run checkpoints per item, retries with backoff, records its error rate, and a row with > 5% unrecoverable errors is not scored (v1's Opus row had 92 errors and was).
   - Thinking switches differ per family and none of them is OpenAI's `reasoning_effort` (DeepSeek ignores it). Table in section 5. The D6 guardrail is what makes this safe: a row is scored only if the reasoning-token count in `usage` matches the requested mode.
   - Terms of service (MAGIK COMPUTE PTE. LTD., Singapore) do not say whether API inputs are used for training. Assume they may be.
 - **Other compute, in order of certainty:** Nous Portal free tier (`poolside/laguna-s-2.1:free`, `tencent/hy3:free`, `stepfun/step-3.7-flash:free`; rate-limited); local GPUs (the RTX 3090 + RTX PRO used by remora/flint, when free) for a judge and the small open models under vLLM, since the old `10.8.0.5:8083` box is down; vendor free tiers (Google AI Studio, GitHub Models, OpenRouter `:free`), to verify before counting on them; research-credit programs (OpenAI, Anthropic, Google), applied for in M0; community runs through the `inspect_ai` task for anything we cannot fund.
@@ -102,7 +102,7 @@ Every item carries `why_original_fails` (one checkable sentence) and `aliases`. 
 
 Contamination of the *originals* is the premise, not a problem. The risk is the altered items being looked up by a model trained after release. Almost no benchmark does more than the following, and neither will we:
 
-- **Everything public except ~50 canary items**, same distribution, kept out of git. The board carries one column, public-minus-canary COR. With 50 items that column detects only gross contamination (the canary's own CI is around ±15 points on COR), and the README says so. The canary runs through magikcloud like everything else; if a canary leaks, the next release rotates it into the public set and draws a new one.
+- **Everything public except ~50 canary items**, same distribution, kept out of git. The board carries one column, public-minus-canary COR. With 50 items that column detects only gross contamination (the canary's own CI is around ±15 points on COR), and the README says so. The canary runs through Jalapeno like everything else; if a canary leaks, the next release rotates it into the public set and draws a new one.
 - **At authoring, do not use alterations that are themselves famous.** The surgeon-who-is-the-father version has been quoted in blogs and papers since 2023. This is a human judgment while writing, helped by Probe B on the altered text: if a model completes the altered wording verbatim, it is a meme, not a test item. Answering it correctly in a few tokens proves nothing, so that is not a criterion.
 - **A release date on the benchmark and a release date on every model row.** Rows for models released after the data went public are marked. Free.
 - **A BIG-bench-style canary GUID** in every data file and the README, so decontamination pipelines that honor it can filter the data out. A norm, not enforcement.
@@ -123,7 +123,7 @@ Versioned `v2.0-<date>`; HF mirror; `inspect_ai` task so the whole thing runs in
 
 ## 4. Pipeline v2 — keep / drop / new
 
-**Keep (from `scripts/`, moved to `code/`):** `core/llm_client.py` (retry, reasoning plumbing), `core/config.py` provider registry (`magik` added 2026-09-04; add OpenRouter, GitHub Models, a re-pointed `local`), `core/io_utils.py`, `core/reasoning.py` (+ the D6 guardrail), the clustered bootstrap and pairwise rank-group code in `leaderboard.py`.
+**Keep (from `scripts/`, moved to `code/`):** `core/llm_client.py` (retry, reasoning plumbing), `core/config.py` provider registry (`jalapeno` added 2026-09-04; add OpenRouter, GitHub Models, a re-pointed `local`), `core/io_utils.py`, `core/reasoning.py` (+ the D6 guardrail), the clustered bootstrap and pairwise rank-group code in `leaderboard.py`.
 
 **Drop:** `sanity_check.py` (→ recall probe), `generate.py` on crawsome (→ hand authoring, LLM-drafted at most), `validate.py` (→ warned gate), `promote.py` split logic (→ canary sampling), `human_review.py` auto-promote path. `judge.j2` is rewritten for four labels.
 
@@ -161,7 +161,7 @@ Versioned `v2.0-<date>`; HF mirror; `inspect_ai` task so the whole thing runs in
 
 ## 5. Model roster
 
-**magikcloud thinking switches, verified 2026-09-04** (one riddle each; reasoning tokens read from `usage.completion_tokens_details.reasoning_tokens`):
+**Jalapeno Cloud thinking switches, verified 2026-09-04** (one riddle each; reasoning tokens read from `usage.completion_tokens_details.reasoning_tokens`):
 
 | model | thinks by default | switch that worked | note |
 |---|---|---|---|
@@ -178,27 +178,76 @@ Versioned `v2.0-<date>`; HF mirror; `inspect_ai` task so the whole thing runs in
 
 | tier | models | cost | role |
 |---|---|---|---|
-| 0 — free | Nous free (laguna-s-2.1, hy3, step-3.7-flash); local vLLM (qwen3.6-27b, gemma-4-31b, gpt-oss-20b) if the GPUs are free; Gemini Flash free tier if it answers | 0 | probe and gate models, local judge, first rows |
-| 1 — the $90 | DeepSeek-V4-Pro, DeepSeek-V4-Flash, GLM-5.3, Kimi-K3, Qwen3.5-397B-A17B, Hy4, plus Qwen3.5-27B for the size axis | credits | the board's core, thinking on and off |
+| 0 — free or near-free | Nous free (laguna-s-2.1, hy3, step-3.7-flash); local vLLM (qwen3.6-27b, gemma-4-31b, gpt-oss-20b) if the GPUs are free; Gemini Flash free tier if it answers; DeepSeek-V4-Flash-0731 and GLM-5.3-Flash at cents per pass | ≈ 0 | probe and gate models, judge, drafting |
+| 1 — the $90 | thinking off: every Jalapeno model that answers; thinking on: DeepSeek-V4-Flash-0731, GLM-5.3-Flash, Qwen3-Next-80B-Thinking, Qwen3.5-35B-A3B, Qwen3.5-397B-A17B, DeepSeek-V4-Pro, GLM-5.3 (allocation in section 6) | credits | the board's core |
 | 2 — credits or community | GPT-5.4, Opus 4.7 (Anthropic API direct), Gemini 3.1 Pro, Grok 4.20 | not ours | the rows readers look for; each must pass the D6 guardrail |
 
 Rule: **v1 rows are not carried over.** Different dataset, no raw outputs, unverifiable settings.
 
 ---
 
-## 6. Cost model (multiply by the provider's price yourself)
+## 6. Cost model and the $90
 
-Per model, 350 items. Recall probe is negligible (120 sources × 5 × 8 tokens, no thinking). v1 measured ~1.6k–5k output tokens per thinking response; assume 2,500. Input ≈ 150 tokens per call.
+Assumptions: 350 items; ~150 input tokens per call; ~2,500 output tokens per thinking response (v1 measured 1.6k–5k across models); ~30 without thinking. Three run profiles:
 
-| profile | calls | thinking calls | ≈ output tokens |
-|---|---|---|---|
-| **full** (k=5, think on+off, unwarned+warned) | 7,000 | 3,500 | ~9M |
-| **lean** (k=3 unwarned think on+off; k=1 warned think on) | 2,450 | 1,400 | ~3.6M |
-| **minimal** (k=3, unwarned, think on only) | 1,050 | 1,050 | ~2.6M |
+| profile | what | calls | ≈ M tokens in / out |
+|---|---|---:|---:|
+| `off-full` | thinking off, k=5, unwarned + warned | 3,500 | 0.53 / 0.10 |
+| `on-lean` | thinking on, k=3 unwarned + k=1 warned | 1,400 | 0.21 / 3.50 |
+| `on-full` | thinking on, k=5, unwarned + warned | 3,500 | 0.53 / 8.75 |
 
-Free and local models run `full`. Credit-funded models run `lean` and the profile is printed on their row. Judge cost is ~30% of answers × ~100 tokens, and zero on the local judge.
+The whole cost is thinking output. **Thinking-off rows are nearly free for every model, Kimi-K3 included**, so the thinking-off board can be complete; the credit goes to thinking-on rows. Jalapeno prices (2026-09-04, from Marco; the two discounted models are the workhorses for probes, gate, judge and drafting):
 
-Once Marco pastes the marketplace prices, the $90 is allocated in `NOTES.md`: `lean` on every Tier 1 model first, then `full` on whichever is cheapest, and the remainder held for re-runs.
+| model | $/M in | $/M out | off-full | on-lean | on-full | note |
+|---|---:|---:|---:|---:|---:|---|
+| DeepSeek-V4-Flash-0731 | 0.088 | 0.264 | $0.07 | $0.9 | $2.4 |  |
+| GLM-5.3-Flash | 0.075 | 0.250 | $0.07 | $0.9 | $2.2 |  |
+| DeepSeek-V4-Flash | 0.140 | 0.280 | $0.10 | $1.0 | $2.5 | same family as 0731, skip |
+| Qwen3-Next-80B-A3B-Thinking | 0.150 | 1.500 | $0.24 | $5.3 | $13.2 |  |
+| Qwen3-Next-80B-A3B-Instruct | 0.150 | 1.500 | $0.24 | $5.3 | $13.2 | no thinking mode |
+| Qwen3-VL-235B-A22B-Instruct | 0.300 | 1.500 | $0.32 | $5.3 | $13.3 | VL, skip |
+| Qwen3.5-35B-A3B | 0.250 | 2.000 | $0.34 | $7.1 | $17.6 |  |
+| Qwen3.5-27B | 0.300 | 2.400 | $0.41 | $8.5 | $21.2 |  |
+| Qwen3.5-122B-A10B | 0.400 | 3.200 | $0.55 | $11.3 | $28.2 |  |
+| Qwen3.5-397B-A17B | 0.600 | 3.600 | $0.69 | $12.7 | $31.8 |  |
+| MiniMax-M3 | 0.300 | 1.200 | $0.28 | $4.3 | $10.7 | 404 today |
+| Kimi-K2.5 | 0.600 | 3.000 | $0.63 | $10.6 | $26.6 |  |
+| Kimi-K2.7-Code | 0.950 | 4.000 | $0.92 | $14.2 | $35.5 | code model, skip |
+| Hy4 | 0.834 | 2.501 | $0.70 | $8.9 | $22.3 | content null unless max_tokens large |
+| DeepSeek-V4-Pro | 1.600 | 3.380 | $1.19 | $12.2 | $30.4 |  |
+| GLM-5.1 | 1.380 | 4.400 | $1.19 | $15.7 | $39.2 |  |
+| GLM-5.2 | 1.400 | 4.400 | $1.20 | $15.7 | $39.2 |  |
+| GLM-5.3 | 1.400 | 4.400 | $1.20 | $15.7 | $39.2 |  |
+| Qwen3-VL-235B-A22B-Thinking | 0.980 | 3.950 | $0.93 | $14.0 | $35.1 | VL, skip |
+| Kimi-K3 | 3.000 | 15.000 | $3.15 | $53.1 | $132.8 |  |
+
+**Provisional allocation of the $90** (re-done after the M3 pilot measures each model's real thinking length on 40 items):
+
+| what | profile | ≈ $ | note |
+|---|---|---:|---|
+| every model that answers (≈15) | off-full | 12.0 | sum of the off-full column, skipping VL and code models |
+| DeepSeek-V4-Flash-0731 | on-full | 2.4 |  |
+| GLM-5.3-Flash | on-full | 2.2 |  |
+| Qwen3-Next-80B-A3B-Thinking | on-lean | 5.3 |  |
+| Qwen3.5-35B-A3B | on-lean | 7.1 |  |
+| Qwen3.5-397B-A17B | on-lean | 12.7 |  |
+| DeepSeek-V4-Pro | on-lean | 12.2 |  |
+| GLM-5.3 | on-lean | 15.7 |  |
+| authoring: warned gate, probes, judge | — | 5.0 | gate = 4 models × 400 candidates with thinking; judge on non-matches only, on Flash-0731 |
+| **total** | | **75** | reserve ≈ $15 for retries on a beta provider |
+
+Waiting list, in order, if the pilot comes in cheap or Marco gets more credit:
+
+| model | profile | ≈ $ |
+|---|---|---:|
+| Hy4 | on-lean | 8.9 |
+| Kimi-K2.5 | on-lean | 10.6 |
+| Qwen3.5-122B-A10B | on-lean | 11.3 |
+| Qwen3-Next-80B-A3B-Thinking | on-full | 13.2 |
+| MiniMax-M3 | on-lean | 4.3 |
+| Kimi-K3 | on, k=1, unwarned only | 13.3 |
+
+Judge cost is ~30% of answers × ~350 tokens on Flash-0731, well under $1 in total. Free and local models run `on-full` regardless. Every row prints its profile.
 
 ---
 
@@ -206,7 +255,7 @@ Once Marco pastes the marketplace prices, the $90 is allocated in `NOTES.md`: `l
 
 | # | milestone | acceptance | est. |
 |---|---|---|---|
-| M0 | Branch, PLAN, open decisions taken; provider inventory verified (which free routes actually answer; local GPU availability); magikcloud prices pasted and the $90 allocated; credit applications sent | inventory table in `NOTES.md` | this week |
+| M0 | Branch, PLAN, open decisions taken; provider inventory verified (which free routes actually answer; local GPU availability); the $90 allocation confirmed; credit applications sent | inventory table in `NOTES.md` | this week |
 | M1 | `sources.yaml` ≥ 150 candidates; recall probe on Tier 0 | ≥ 100 sources admitted, else widen candidates | 1 week |
 | M2 | ≥ 400 candidate items; famous-variant check; warned gate; human review | ≥ 350 public + ~50 canary; H5 holds on gate models | 2 weeks (authoring-bound) |
 | M3 | 40-item pilot on 4 Tier-0 models | alias coverage ≥ 70%; guardrail trips on a thinking-off run labeled "on"; judge–human agreement ≥ 95% on 100 answers | 3 days |
@@ -217,9 +266,9 @@ Once Marco pastes the marketplace prices, the $90 is allocated in `NOTES.md`: `l
 
 ## 8. Open decisions (Marco)
 
-Decided 2026-09-04: no lab template (D9); contamination stays at the D7 minimum; the provider is magikcloud with ~$90 of credit.
+Decided 2026-09-04: no lab template (D9); contamination stays at the D7 minimum; the provider is Jalapeno Cloud with ~$90 of credit.
 
-1. **Prices**: paste input/output prices for the Tier 1 models from the marketplace cards so the $90 can be allocated.
+1. **Allocation**: OK with section 6's split (Kimi-K3 thinking-on and Hy4 wait for more credit)?
 2. **Local GPU**: is the 3090 / RTX PRO box available for a judge and small models during M3–M4?
 3. **Credits**: which programs to apply to; I can draft the applications from this plan.
 4. **Licenses**: MIT code + CC BY 4.0 data?
