@@ -151,9 +151,10 @@ def score_altered(run_dir: Path, items: dict[str, dict[str, Any]], judge_spec: s
 
     # ------------------------------------------------------------ metrics
     familiar: dict[str, float] = {}
-    fam_path = run_dir.parent / "original-thinkoff-k5" / "scored.json"
-    if fam_path.exists():
-        familiar = json.load(fam_path.open())["familiar"]
+    fam_candidates = sorted(run_dir.parent.glob("original-thinkoff-k*/scored.json"),
+                            key=lambda p: int(p.parent.name.rsplit("k", 1)[1]))
+    if fam_candidates:
+        familiar = json.load(fam_candidates[-1].open())["familiar"]
     counts = Counter(s["label"] for s in scored)
     n = sum(v for k, v in counts.items() if k != "error")
     cond = [s for s in scored if s["label"] != "error" and familiar.get(items[s["unit_id"]]["source"], 0) >= FAMILIAR_THRESHOLD]
