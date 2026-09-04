@@ -776,7 +776,7 @@
   family: puzzle
   text: "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost?"
   answer: "5 cents"
-  aliases: ["$0.05", "0.05", "five cents", "a nickel", ".05"]
+  aliases: ["$0.05", "0.05", "five cents", "a nickel", "5c"]
   note: CRT
 
 - id: lily-pads

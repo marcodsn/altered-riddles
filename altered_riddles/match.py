@@ -67,10 +67,19 @@ def extract_final_answer(text: str) -> str:
 
 def label(reply_answer: str, *, correct: list[str], original: list[str]) -> str:
     """'correct' | 'original' | 'both' | 'unmatched'. 'both' means the reply
-    matched both lists (e.g. it listed several answers) and needs the judge."""
+    matched both lists (e.g. it listed several answers) and needs the judge.
+    An exact match of the whole normalized reply against one list wins over
+    a substring overlap with the other ("$1.05" vs the original alias ".05")."""
     c = matches(reply_answer, correct)
     o = matches(reply_answer, original)
     if c and o:
+        r = norm(reply_answer)
+        exact_c = any(norm(a) == r for a in correct)
+        exact_o = any(norm(a) == r for a in original)
+        if exact_c and not exact_o:
+            return "correct"
+        if exact_o and not exact_c:
+            return "original"
         return "both"
     if c:
         return "correct"
