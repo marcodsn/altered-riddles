@@ -137,12 +137,17 @@ def verbatim_score(text: str, prefix: str, continuation: str) -> float:
     pred = _words_num(continuation)
     if not true_rem or not pred:
         return 0.0
-    prefix_w = _words_num(prefix)
-    pred_rem = pred[len(prefix_w):] if pred[: len(prefix_w)] == prefix_w else pred
+    # No credit for repeating the given prefix: the remainder is matched
+    # against the best-aligned window of the continuation, whatever the
+    # model put before it. Window length = remainder length, or one more.
     full = _strip_tail(_words_num(text))
-    r1 = difflib.SequenceMatcher(None, true_rem, pred_rem[: len(true_rem) + 1]).ratio()
-    r2 = difflib.SequenceMatcher(None, full, pred[: len(full) + 1]).ratio()
-    return max(r1, r2)
+    pred = pred[: 2 * len(full) + 5]
+    n = len(true_rem)
+    best = 0.0
+    for k in range(len(pred)):
+        for w in (n, n + 1):
+            best = max(best, difflib.SequenceMatcher(None, true_rem, pred[k:k + w]).ratio())
+    return best
 
 
 # ----------------------------------------------------------------- sources
@@ -170,14 +175,20 @@ def load_sources(path: Path) -> list[dict[str, Any]]:
 
 
 def load_crawsome(path: Path) -> list[dict[str, Any]]:
+    """crawsome CSV: unquoted `riddle,answer` lines where the riddle itself may
+    contain commas, so split on the LAST comma (as v1 did). Ids are the
+    physical data-line numbers, craw-NNNN."""
     out = []
-    with path.open(newline="") as f:
-        for i, row in enumerate(csv.DictReader(f), start=1):
-            text = (row.get("riddles") or "").strip()
-            ans = (row.get("answers") or "").strip()
-            if not text or not ans:
+    with path.open(encoding="utf-8") as f:
+        f.readline()  # header
+        for i, line in enumerate(f, start=1):
+            line = line.strip()
+            k = line.rfind(",")
+            if not line or k == -1:
                 continue
-            out.append({"id": f"craw-{i:04d}", "family": "crawsome", "text": text, "answer": ans, "aliases": [], "note": None})
+            text, ans = line[:k].strip(), line[k + 1:].strip()
+            if text and ans:
+                out.append({"id": f"craw-{i:04d}", "family": "crawsome", "text": text, "answer": ans, "aliases": [], "note": None})
     return out
 
 
@@ -230,6 +241,8 @@ async def run(args: argparse.Namespace) -> None:
     if args.min_models is None:
         # Pre-registered rule: familiar on at least three quarters of the probe models.
         args.min_models = max(3, -(-3 * len(specs) // 4))
+    if args.verbatim_min_models is None:
+        args.verbatim_min_models = max(3, -(-3 * len(specs) // 4))
     cache = Cache(Path(args.cache))
 
     jobs: list[tuple[str, dict[str, Any], str, str, int]] = []  # (probe, source, provider, model, sample)
@@ -312,10 +325,16 @@ async def run(args: argparse.Namespace) -> None:
             st["b_pass"] += 1 if vpass else 0
         a_pass = sum(1 for v in per_model.values() if v["familiar"] is not None and v["familiar"] >= A_THRESHOLD)
         b_pass = sum(1 for v in per_model.values() if v["verbatim_pass"])
+        # Admission: familiar on >= min_models AND recited by >= 1, OR recited
+        # verbatim by >= verbatim_min_models (added 2026-09-04: for puzzles,
+        # Probe A conflates familiarity with instant computability; near-
+        # unanimous recitation is the stronger memorization evidence).
+        primary = a_pass >= args.min_models and b_pass >= 1
+        verbatim_only = b_pass >= args.verbatim_min_models
         per_source[src["id"]] = {
             "family": src["family"], "text": src["text"], "answer": src["answer"],
             "per_model": per_model, "a_pass_models": a_pass, "b_pass_models": b_pass,
-            "admitted": a_pass >= args.min_models and b_pass >= 1,
+            "admitted": primary or verbatim_only, "admitted_by": "primary" if primary else ("verbatim" if verbatim_only else None),
         }
 
     by_family: dict[str, dict[str, int]] = defaultdict(lambda: {"candidates": 0, "admitted": 0, "a_only": 0})
@@ -323,6 +342,7 @@ async def run(args: argparse.Namespace) -> None:
         f = by_family[s["family"]]
         f["candidates"] += 1
         f["admitted"] += int(s["admitted"])
+        f["admitted_by_verbatim_only"] = f.get("admitted_by_verbatim_only", 0) + int(s.get("admitted_by") == "verbatim")
         f["a_only"] += int(s["a_pass_models"] >= args.min_models and s["b_pass_models"] == 0)
     per_model_summary = {}
     for m, st in model_stats.items():
@@ -335,7 +355,7 @@ async def run(args: argparse.Namespace) -> None:
         }
     out = {
         "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "params": {"samples": args.samples, "min_models": args.min_models, "a_threshold": A_THRESHOLD,
+        "params": {"samples": args.samples, "min_models": args.min_models, "verbatim_min_models": args.verbatim_min_models, "a_threshold": A_THRESHOLD,
                    "b_threshold": B_THRESHOLD, "prefix_fraction": PREFIX_FRACTION, "models": model_names,
                    "a_max_tokens": A_MAX_TOKENS, "b_max_tokens": B_MAX_TOKENS},
         "summary": {"by_family": dict(by_family), "per_model": per_model_summary},
@@ -347,7 +367,7 @@ async def run(args: argparse.Namespace) -> None:
     # ------------------------------------------------------------- report
     print("\nby family:")
     for fam, c in by_family.items():
-        print(f"  {fam:9s} candidates={c['candidates']:4d} admitted={c['admitted']:4d} familiar-but-no-verbatim={c['a_only']}")
+        print(f"  {fam:9s} candidates={c['candidates']:4d} admitted={c['admitted']:4d} (by verbatim alone: {c.get('admitted_by_verbatim_only', 0)}) familiar-but-no-verbatim={c['a_only']}")
     print("\nper model:")
     for m, s in per_model_summary.items():
         print(f"  {m:45s} familiar={s['mean_familiar']} A-pass={s['a_pass_rate']} B-pass={s['b_pass_rate']} leaks={s['leak_calls']} errors={s['error_calls']}")
@@ -369,6 +389,7 @@ def main() -> None:
     ap.add_argument("--crawsome", default=None, help="also probe this crawsome-style CSV (riddles,answers)")
     ap.add_argument("--samples", type=int, default=5)
     ap.add_argument("--min-models", type=int, default=None, help="default: ceil(3/4 of the probe models), at least 3")
+    ap.add_argument("--verbatim-min-models", type=int, default=None, help="alternative admission: verbatim on this many models (default: same as --min-models)")
     ap.add_argument("--concurrency", type=int, default=8)
     ap.add_argument("--rpm", type=int, default=None, help="cap requests per minute per provider")
     ap.add_argument("--limit", type=int, default=0, help="only the first N sources (smoke test)")
