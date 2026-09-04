@@ -165,13 +165,16 @@ class Client:
             kwargs["extra_body"] = body
 
         t0 = time.monotonic()
+        spent = 0.0  # seconds inside requests, excluding time waiting for a slot
         last_err = "no attempts"
         rate_limited = False
         for attempt in range(1, self.retries + 1):
             async with self._sem:
                 await self._paced()
+                t_req = time.monotonic()
                 try:
                     resp = await self._client.chat.completions.create(**kwargs)
+                    spent += time.monotonic() - t_req
                     choice = resp.choices[0] if resp.choices else None
                     msg = choice.message if choice is not None else None
                     if msg is None:
@@ -192,16 +195,19 @@ class Client:
                         completion_tokens=_usage_field(usage, "completion_tokens"),
                         reasoning_tokens=rt,
                         finish_reason=getattr(choice, "finish_reason", None),
-                        latency_s=time.monotonic() - t0,
+                        latency_s=spent,
                         attempts=attempt,
                     )
                 except RateLimitError as e:
+                    spent += time.monotonic() - t_req
                     last_err = f"{type(e).__name__}: {e}"
                     rate_limited = True
                 except (APITimeoutError, APIConnectionError) as e:
+                    spent += time.monotonic() - t_req
                     last_err = f"{type(e).__name__}: {e}"
                     rate_limited = False
                 except APIError as e:
+                    spent += time.monotonic() - t_req
                     last_err = f"{type(e).__name__}: {e}"
                     rate_limited = False
                     status = getattr(e, "status_code", None)
@@ -211,6 +217,7 @@ class Client:
                     if not transient:
                         break
                 except Exception as e:  # noqa: BLE001 — record, then retry
+                    spent += time.monotonic() - t_req
                     last_err = f"{type(e).__name__}: {e}"
                     rate_limited = False
             # A per-tenant RPM limit needs a real pause, not exponential jitter.
@@ -220,7 +227,7 @@ class Client:
                 await asyncio.sleep(min(60.0, (2 ** attempt) + random.uniform(0, 1)))
         return Reply(
             model=model, text="", reasoning=None, prompt_tokens=None, completion_tokens=None,
-            reasoning_tokens=None, finish_reason=None, latency_s=time.monotonic() - t0,
+            reasoning_tokens=None, finish_reason=None, latency_s=spent,
             attempts=self.retries, error=last_err[:500],
         )
 
