@@ -33,7 +33,7 @@ EOF
 
 run() { # model thinking condition samples
   $PY -m altered_riddles.run --model "$1" --thinking "$2" --condition "$3" --samples "$4" \
-      --items $ITEMS --runs-dir $RUNS --concurrency 8 --rpm $RPM
+      --items $ITEMS --runs-dir $RUNS --concurrency 8 --rpm $RPM --timeout 1800
 }
 score() { $PY -m altered_riddles.score --run "$1" --items $ITEMS --judge $JUDGE; }
 
