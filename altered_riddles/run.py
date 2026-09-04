@@ -125,7 +125,7 @@ async def run(args: argparse.Namespace) -> None:
     }
     (out_dir / "config.json").write_text(json.dumps(config, indent=1))
 
-    client = Client(provider, concurrency=args.concurrency, retries=8, rpm=args.rpm, timeout=args.timeout)
+    client = Client(provider, concurrency=args.concurrency, retries=args.retries, rpm=args.rpm, timeout=args.timeout)
     jobs = [(u, s) for u in units for s in range(args.samples) if (u["id"], s) not in done]
     print(f"{provider}:{model} {cfg_name}: units={len(units)} calls={len(units)*args.samples} done={len(done)} todo={len(jobs)}", file=sys.stderr)
     fh = raw_path.open("a")
@@ -197,6 +197,7 @@ def main() -> None:
     ap.add_argument("--concurrency", type=int, default=8)
     ap.add_argument("--rpm", type=int, default=None, help="cap requests per minute per provider")
     ap.add_argument("--timeout", type=float, default=600.0, help="seconds per request; slow reasoning models need 1800+")
+    ap.add_argument("--retries", type=int, default=8, help="attempts per call before recording an error")
     ap.add_argument("--runs-dir", default="runs")
     asyncio.run(run(ap.parse_args()))
 
