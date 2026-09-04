@@ -129,20 +129,20 @@ Versioned `v2.0-<date>`; HF mirror; `inspect_ai` task so the whole thing runs in
 
 **Drop:** `sanity_check.py` (→ recall probe), `generate.py` on crawsome (→ hand authoring, LLM-drafted at most), `validate.py` (→ warned gate), `promote.py` split logic (→ canary sampling), `human_review.py` auto-promote path. `judge.j2` is rewritten for four labels.
 
-**Stages:**
+**Stages (as built, 2026-09-04; every module is `python -m altered_riddles.<stage>` from the repo root, `.venv/bin/python`):**
 
-| # | command | in → out | note |
+| # | stage | in → out | note |
 |---|---|---|---|
-| 1 | hand-edit | `data/sources.yaml` | ≥ 150 candidates |
-| 2 | `probe recall` | sources → `data/recall_probe.json` | admits sources (D2) |
-| 3 | `author` | YAML lists in `data/items/` | LLM may draft; a human commits; ≤ 3 per source; rules in `data/items/README.md` |
-| 4 | `gate warned` | items → `data/gated.jsonl` | 3-of-4 (D4) |
-| 5 | `review` | TUI; approve / edit aliases / drop | stamps reviewer + date |
-| 6 | `freeze` | → `data/release/v2.0/{public.jsonl, canary.jsonl(private), recall_probe.json}` | tag |
-| 7 | `run` | model × {think on/off} × {unwarned, warned} × k → `runs/<model>/<config>/raw.jsonl` | committed |
-| 8 | `score` | raw → `scored.jsonl` | alias match → judge remainder (D5) |
-| 9 | `board` | → `results/leaderboard.json`, `LEADERBOARD.md`, per-type/family | rank groups |
-| 10 | `inspect/` | `inspect_ai` task + `CONTRIBUTING.md` PR contract | community rows |
+| 1 | hand-edit | `data/sources.yaml` | 148 famous riddles and trick puzzles with canonical answers and aliases |
+| 2 | `probe` | sources (+ crawsome CSV) → `data/recall_probe.json` | Probe A familiarity (thinking off, 16 tokens, k=5), Probe B verbatim continuation; admission = A on ≥ 3/4 of 8 probe models and B on ≥ 1; cached per call |
+| 3 | hand-edit | `data/items/*.yaml` | authored items, ≤ 3 per source, five types; rules in `data/items/README.md`; LLM may draft, a human commits |
+| 4 | `gate` | items → `data/gated.jsonl` | warned prompt, thinking on, 4 gate models, pass = ≥ 3 correct; prints failures and alias candidates |
+| 5 | review | edit YAML, re-run `gate` | add defensible aliases or drop; stamps come at freeze |
+| 6 | freeze | → `data/release/v2.0/` | public items + `recall_probe.json` + `CANARY.txt`; canary out of git |
+| 7 | `run` | model × thinking × condition × k → `runs/<model>/<config>/{config,summary}.json`, `raw.jsonl` | conditions `original` (familiarity), `unwarned`, `warned`; guardrails in `summary.json`; resumable |
+| 8 | `score` | run dir → `scored.jsonl`, `scored_summary.json` | alias match first; four-way judge (`correct/original/other/abstain`) on the rest, cached; COR conditioned on the model's own familiarity ≥ 0.8 |
+| 9 | `board` | all runs → `results/leaderboard.json`, `LEADERBOARD.md` | clustered bootstrap CI95 (clusters = source), pairwise-bootstrap rank groups, override gap, thinking gap; a row needs passed guardrails and committed raw outputs |
+| 10 | `inspect/` | `inspect_ai` task + `CONTRIBUTING.md` PR contract | community rows (not built yet) |
 
 **Item schema v2:**
 ```json
