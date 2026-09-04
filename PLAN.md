@@ -72,14 +72,15 @@ The writeup leads with H2 and H3 and the per-type table, not with the leaderboar
 - Probe models, fixed 2026-09-04 before the first full run: DeepSeek-V4-Flash-0731, Qwen3-Next-80B-A3B-Instruct, Qwen3.5-35B-A3B, Kimi-K2.5 on Jalapeno, and the four Nous free models whose thinking switches off cleanly (`poolside/laguna-s-2.1`, `poolside/laguna-xs-2.1`, `inclusionai/ling-3.0-flash-fin`, `meituan/longcat-2.0`). Eight models, so admission is 6 of 8. GLM-5.3 is excluded because it talks past a 16-token budget; `stepfun/step-3.7-flash:free` and `upstage/solar-pro4:free` reject thinking-off requests.
 - COR for a given model conditions on **that model's** Probe A pass for the source. This replaces v1's "solved the original" and is ~free (8 tokens, no thinking).
 
-**D3 — Alteration types: entailed, not suggested. Four checkable types only.**
+**D3 — Alteration types: entailed, not suggested. Five checkable types only** (a fifth, `question_swap`, was added while authoring batch 1 on 2026-09-04: it is the cleanest type for numeric puzzles and was missing from the review's four).
 
 | type | definition | example |
 |---|---|---|
 | `stated` | the answer is written in the text (includes v1's bias probes) | "The surgeon, who is the boy's father, ..." |
 | `hard_constraint` | a numeric or lexical constraint excludes the original | "What five-letter word ... and is a fruit" |
 | `negated_premise` | a premise the original answer needs is negated | "What has keys but does not open locks, and has no music" |
-| `trivialized` | the famous complication is removed | bat-and-ball where the ball is stated to cost $0.10 |
+| `trivialized` | the famous complication is removed | bat-and-ball where the bat is stated to cost $1.00 |
+| `question_swap` | same premises, a different question, so the memorized answer answers the wrong question | "...How much does the bat cost?" |
 
 Every item carries `why_original_fails` (one checkable sentence) and `aliases`. `meaning_shift` and `context_swap` are dropped: they generate new metaphor riddles with LLM-chosen answers, which is the 29% bucket.
 
@@ -134,7 +135,7 @@ Versioned `v2.0-<date>`; HF mirror; `inspect_ai` task so the whole thing runs in
 |---|---|---|---|
 | 1 | hand-edit | `data/sources.yaml` | ≥ 150 candidates |
 | 2 | `probe recall` | sources → `data/recall_probe.json` | admits sources (D2) |
-| 3 | `author` | one YAML per source in `data/items/` | LLM may draft; a human commits; ≤ 3 variants |
+| 3 | `author` | YAML lists in `data/items/` | LLM may draft; a human commits; ≤ 3 per source; rules in `data/items/README.md` |
 | 4 | `gate warned` | items → `data/gated.jsonl` | 3-of-4 (D4) |
 | 5 | `review` | TUI; approve / edit aliases / drop | stamps reviewer + date |
 | 6 | `freeze` | → `data/release/v2.0/{public.jsonl, canary.jsonl(private), recall_probe.json}` | tag |
@@ -283,7 +284,7 @@ Decided 2026-09-04: no lab template (D9); contamination stays at the D7 minimum;
 ```
 altered_riddles/          # v2 pipeline package (`code/` would shadow the stdlib module); v1 stays in scripts/ until the freeze
 data/sources.yaml         # hand-curated sources
-data/items/<source>.yaml  # ≤ 3 variants each, reviewed
+data/items/*.yaml         # authored items, any grouping, ≤ 3 per source; README.md holds the rules
 data/release/v2.0/        # public.jsonl, recall_probe.json, CANARY.txt (GUID)
 data/canary/              # ~50 held-out items, out of git
 runs/<model>/<config>/    # raw.jsonl, scored.jsonl, config.json — committed

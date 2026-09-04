@@ -1,0 +1,501 @@
+# Batch 1 — first authored items for sources that are certain to be admitted.
+# Rule: altered answer entailed, original answer excluded. See README.md.
+
+# ---------------------------------------------------------------- surgeon
+- id: surgeon-1
+  source: surgeon
+  type: stated
+  text: "A father and his son are in a car accident. The father dies at the scene and the son is rushed to the hospital. At the hospital the surgeon, who is the boy's grandfather, looks at the boy and says, \"I cannot operate on this boy, he is my grandson.\" Who is the surgeon to the boy?"
+  answer: "his grandfather"
+  aliases: ["grandfather", "the boy's grandfather", "the grandfather", "his grandpa"]
+  why_original_fails: "The text states the surgeon is the boy's grandfather; 'mother' contradicts it."
+
+- id: surgeon-2
+  source: surgeon
+  type: negated_premise
+  text: "A mother and her son are in a car accident. The mother dies at the scene and the son is rushed to the hospital. At the hospital the surgeon looks at the boy and says, \"I cannot operate on this boy, he is my son.\" How is this possible?"
+  answer: "the surgeon is the boy's father"
+  aliases: ["father", "his father", "the boy's father", "the surgeon is his father", "the surgeon is the father", "the father"]
+  why_original_fails: "The mother is dead, so the surgeon cannot be the mother; a parent who is alive and calls him 'my son' is the father."
+
+- id: surgeon-3
+  source: surgeon
+  type: stated
+  text: "A father and his son are in a car accident. The father dies at the scene and the son is rushed to the hospital. At the hospital the surgeon, who is the boy's uncle, says, \"I cannot operate on this boy, he is my nephew.\" Who is the surgeon to the boy?"
+  answer: "his uncle"
+  aliases: ["uncle", "the boy's uncle", "the uncle"]
+  why_original_fails: "The text states the surgeon is the boy's uncle and calls him 'my nephew'."
+
+# ---------------------------------------------------------------- candle
+- id: candle-1
+  source: candle
+  type: hard_constraint
+  text: "I'm tall when I'm young, and I'm short when I'm old, and you sharpen me to write. What am I?"
+  answer: "a pencil"
+  aliases: ["pencil"]
+  why_original_fails: "A candle is not sharpened to write; the clause pins pencil, which also shortens with use."
+
+- id: candle-2
+  source: candle
+  type: negated_premise
+  text: "I'm short when I'm young, and I'm tall when I'm old, and I have leaves. What am I?"
+  answer: "a tree"
+  aliases: ["tree"]
+  why_original_fails: "The height relation is reversed and the thing has leaves; a candle shrinks with age and has no leaves."
+
+# ---------------------------------------------------------------- keyboard
+- id: keyboard-1
+  source: keyboard
+  type: hard_constraint
+  text: "I have keys but no locks. I have space but no room. You can enter, but you can't go outside. I have 88 keys and I make music. What am I?"
+  answer: "a piano"
+  aliases: ["piano"]
+  why_original_fails: "A computer keyboard has more than 88 keys and makes no music; 88 keys that make music is a piano."
+
+# ---------------------------------------------------------------- needle
+- id: needle-1
+  source: needle
+  type: hard_constraint
+  text: "What has one eye but can't see, and can tear the roof off a house?"
+  answer: "a hurricane"
+  aliases: ["hurricane", "a cyclone", "cyclone", "a typhoon", "typhoon", "a tornado", "tornado", "a storm"]
+  why_original_fails: "A needle cannot tear a roof off; a storm with an eye can."
+
+# ---------------------------------------------------------------- comb
+- id: comb-1
+  source: comb
+  type: hard_constraint
+  text: "What has teeth but cannot bite, and cuts wood?"
+  answer: "a saw"
+  aliases: ["saw", "a chainsaw"]
+  why_original_fails: "A comb does not cut wood; a saw has teeth and does."
+
+# ---------------------------------------------------------------- stairs
+- id: stairs-1
+  source: stairs
+  type: hard_constraint
+  text: "What goes up and down but doesn't move, and tells you how hot it is?"
+  answer: "a thermometer"
+  aliases: ["thermometer", "the temperature", "temperature", "mercury in a thermometer"]
+  why_original_fails: "Stairs do not tell you how hot it is; a thermometer reading goes up and down."
+
+# ---------------------------------------------------------------- short
+- id: short-1
+  source: short
+  type: hard_constraint
+  text: "What four-letter word becomes longer when you add two letters to it?"
+  answer: "long"
+  aliases: ["the word long", "longer"]
+  why_original_fails: "'Short' has five letters and adding 'er' makes 'shorter', not 'longer'; 'long' plus 'er' is 'longer'."
+
+# ---------------------------------------------------------------- letter-m
+- id: letter-m-1
+  source: letter-m
+  type: hard_constraint
+  text: "What comes once in a year, twice in a week, but never in a day?"
+  answer: "the letter E"
+  aliases: ["e", "letter e", "the letter e"]
+  why_original_fails: "'Year' has one E, 'week' has two, 'day' has none; the letter M appears in none of them."
+
+# ---------------------------------------------------------------- letter-w
+- id: letter-w-1
+  source: letter-w
+  type: question_swap
+  text: "What is at the beginning of a rainbow?"
+  answer: "the letter R"
+  aliases: ["r", "letter r", "the letter r"]
+  why_original_fails: "The question asks for the beginning of the word 'rainbow', which is R, not the W at its end."
+
+# ---------------------------------------------------------------- glove
+- id: glove-1
+  source: glove
+  type: negated_premise
+  text: "What has a thumb and four fingers and is alive?"
+  answer: "a hand"
+  aliases: ["hand", "your hand", "a human hand"]
+  why_original_fails: "A glove is not alive; a living thing with a thumb and four fingers is a hand."
+
+# ---------------------------------------------------------------- cold
+- id: cold-1
+  source: cold
+  type: hard_constraint
+  text: "What can you catch but not throw, and has fins and scales?"
+  answer: "a fish"
+  aliases: ["fish"]
+  why_original_fails: "A cold has no fins or scales; a fish does and is caught, not thrown."
+
+# ---------------------------------------------------------------- tree-bark
+- id: tree-bark-1
+  source: tree-bark
+  type: negated_premise
+  text: "What has bark and bites?"
+  answer: "a dog"
+  aliases: ["dog"]
+  why_original_fails: "A tree does not bite; a dog barks and bites."
+
+# ---------------------------------------------------------------- telephone
+- id: telephone-1
+  source: telephone
+  type: hard_constraint
+  text: "What has a ring but no finger, and is the sixth planet from the Sun?"
+  answer: "Saturn"
+  aliases: ["the planet saturn"]
+  why_original_fails: "A telephone is not a planet; the sixth planet with rings is Saturn."
+
+# ---------------------------------------------------------------- left-hand
+- id: left-hand-1
+  source: left-hand
+  type: question_swap
+  text: "What can you hold in your left hand but never in your right hand?"
+  answer: "your right hand"
+  aliases: ["right hand", "your right elbow", "right elbow", "the right hand"]
+  why_original_fails: "The hands are swapped in the question, so the answer is the right hand, not the left."
+
+# ---------------------------------------------------------------- nose-foot
+- id: nose-foot-1
+  source: nose-foot
+  type: hard_constraint
+  text: "Why can't a nose be 24 inches long?"
+  answer: "because then it would be two feet"
+  aliases: ["two feet", "it would be two feet", "2 feet"]
+  why_original_fails: "24 inches is two feet, not one foot."
+
+# ---------------------------------------------------------------- nine
+- id: nine-1
+  source: nine
+  type: hard_constraint
+  text: "If two's company and three's a crowd, what are three and four?"
+  answer: "seven"
+  aliases: ["7"]
+  why_original_fails: "Three plus four is seven; nine was the sum of four and five."
+
+# ---------------------------------------------------------------- lunch-dinner
+- id: lunch-dinner-1
+  source: lunch-dinner
+  type: question_swap
+  text: "What can you never eat for lunch?"
+  answer: "breakfast and dinner"
+  aliases: ["breakfast or dinner", "breakfast", "dinner", "breakfast and supper"]
+  why_original_fails: "The meal in the question is lunch, so the meals you cannot eat for it are breakfast and dinner."
+
+# ---------------------------------------------------------------- that-mans-father
+- id: that-mans-father-1
+  source: that-mans-father
+  type: hard_constraint
+  text: "Brothers and sisters I have none, but that man's father is my father's brother. Who is that man?"
+  answer: "my cousin"
+  aliases: ["cousin", "his cousin", "the speaker's cousin", "a cousin"]
+  why_original_fails: "'My father's brother' is my uncle, so his son is my cousin, not my son."
+
+# ---------------------------------------------------------------- bat-and-ball
+- id: bat-and-ball-1
+  source: bat-and-ball
+  type: trivialized
+  text: "A bat and a ball cost $1.10 in total. The bat costs $1.00. How much does the ball cost?"
+  answer: "10 cents"
+  aliases: ["$0.10", "0.10", ".10", "ten cents", "a dime", "0.1"]
+  why_original_fails: "The bat's price is given outright as $1.00, so the ball is $1.10 minus $1.00, which is 10 cents."
+
+- id: bat-and-ball-2
+  source: bat-and-ball
+  type: question_swap
+  text: "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the bat cost?"
+  answer: "$1.05"
+  aliases: ["1.05", "one dollar and five cents", "105 cents", "a dollar five"]
+  why_original_fails: "The question asks for the bat: the ball is 5 cents, so the bat is $1.05."
+
+- id: bat-and-ball-3
+  source: bat-and-ball
+  type: hard_constraint
+  text: "A bat and a ball cost $1.20 in total. The bat costs $1.00 more than the ball. How much does the ball cost?"
+  answer: "10 cents"
+  aliases: ["$0.10", "0.10", ".10", "ten cents", "a dime", "0.1"]
+  why_original_fails: "With a $1.20 total, ball + (ball + 1.00) = 1.20 gives 10 cents, not 5."
+
+# ---------------------------------------------------------------- lily-pads
+- id: lily-pads-1
+  source: lily-pads
+  type: question_swap
+  text: "In a lake, there is a patch of lily pads. Every day, the patch doubles in size. If it takes 48 days for the patch to cover the entire lake, how long would it take for the patch to cover a quarter of the lake?"
+  answer: "46 days"
+  aliases: ["46"]
+  why_original_fails: "Two doublings before day 48 is a quarter, so day 46, not 47."
+
+- id: lily-pads-2
+  source: lily-pads
+  type: hard_constraint
+  text: "In a lake, there is a patch of lily pads. Every two days, the patch doubles in size. If it takes 48 days for the patch to cover the entire lake, how long would it take for the patch to cover half of the lake?"
+  answer: "46 days"
+  aliases: ["46"]
+  why_original_fails: "Doubling takes two days, so half the lake is at day 46, not 47."
+
+# ---------------------------------------------------------------- widgets
+- id: widgets-1
+  source: widgets
+  type: hard_constraint
+  text: "If it takes 5 machines 5 minutes to make 5 widgets, how long would it take 100 machines to make 200 widgets?"
+  answer: "10 minutes"
+  aliases: ["10", "ten minutes"]
+  why_original_fails: "Each machine makes one widget per 5 minutes; 100 machines make 100 widgets per 5 minutes, so 200 take 10 minutes."
+
+- id: widgets-2
+  source: widgets
+  type: question_swap
+  text: "If it takes 5 machines 5 minutes to make 5 widgets, how long would it take 1 machine to make 100 widgets?"
+  answer: "500 minutes"
+  aliases: ["500", "five hundred minutes", "8 hours and 20 minutes", "8h20m"]
+  why_original_fails: "One machine makes a widget every 5 minutes, so 100 widgets take 500 minutes."
+
+# ---------------------------------------------------------------- sheep
+- id: sheep-1
+  source: sheep
+  type: question_swap
+  text: "A farmer has 17 sheep and all but 9 die. How many sheep died?"
+  answer: "8"
+  aliases: ["eight"]
+  why_original_fails: "The question asks how many died: 17 minus the 9 survivors is 8."
+
+- id: sheep-2
+  source: sheep
+  type: trivialized
+  text: "A farmer has 17 sheep and 9 of them die. How many sheep are left?"
+  answer: "8"
+  aliases: ["eight"]
+  why_original_fails: "'9 of them die' is plain subtraction: 17 minus 9 is 8, not 9."
+
+# ---------------------------------------------------------------- months-28-days
+- id: months-28-days-1
+  source: months-28-days
+  type: hard_constraint
+  text: "Some months have 30 days, some have 31. How many months have exactly 28 days?"
+  answer: "one, February"
+  aliases: ["one", "1", "february", "only february", "one in a common year"]
+  why_original_fails: "'Exactly 28' excludes every month with more days; only February (in a common year) has exactly 28."
+
+- id: months-28-days-2
+  source: months-28-days
+  type: question_swap
+  text: "Some months have 30 days, some have 31. How many months have 31 days?"
+  answer: "seven"
+  aliases: ["7"]
+  why_original_fails: "The question is about 31-day months, of which there are seven; 'all of them' answers the 28-day question."
+
+# ---------------------------------------------------------------- moses-ark
+- id: moses-ark-1
+  source: moses-ark
+  type: trivialized
+  text: "How many animals of each kind did Noah take on the ark?"
+  answer: "two"
+  aliases: ["2", "two of each", "a pair", "pairs", "two of each kind"]
+  why_original_fails: "The name is Noah, so the trick is gone and the story's answer, two of each, applies."
+
+# ---------------------------------------------------------------- widows-sister
+- id: widows-sister-1
+  source: widows-sister
+  type: trivialized
+  text: "Is it legal for a man to marry his wife's sister?"
+  answer: "no, he is already married"
+  aliases: ["no", "not while he is married", "no, he already has a wife", "bigamy", "not without divorcing"]
+  why_original_fails: "The man has a living wife, so the memorized reason ('he is dead') does not apply; the answer is no because he is married."
+
+# ---------------------------------------------------------------- dirt-in-hole
+- id: dirt-in-hole-1
+  source: dirt-in-hole
+  type: question_swap
+  text: "How much dirt was removed to dig a hole that is 3 feet deep, 3 feet wide, and 3 feet long?"
+  answer: "27 cubic feet"
+  aliases: ["27", "twenty-seven cubic feet", "27 cubic ft", "27 ft3"]
+  why_original_fails: "The question asks about the dirt removed, which is the hole's volume, 3 x 3 x 3 = 27 cubic feet."
+
+# ---------------------------------------------------------------- feathers-bricks
+- id: feathers-bricks-1
+  source: feathers-bricks
+  type: hard_constraint
+  text: "Which weighs more, a pound of feathers or two pounds of bricks?"
+  answer: "the bricks"
+  aliases: ["bricks", "two pounds of bricks", "the two pounds of bricks"]
+  why_original_fails: "Two pounds is more than one pound; the weights are no longer equal."
+
+- id: feathers-bricks-2
+  source: feathers-bricks
+  type: hard_constraint
+  text: "Which weighs more, a kilogram of feathers or a pound of bricks?"
+  answer: "the feathers"
+  aliases: ["feathers", "the kilogram of feathers", "a kilogram of feathers", "kilogram of feathers"]
+  why_original_fails: "A kilogram is about 2.2 pounds, so the feathers weigh more."
+
+# ---------------------------------------------------------------- divide-by-half
+- id: divide-by-half-1
+  source: divide-by-half
+  type: trivialized
+  text: "Divide 30 by two and add ten. What do you get?"
+  answer: "25"
+  aliases: ["twenty-five", "twenty five"]
+  why_original_fails: "Dividing by two gives 15, plus ten is 25; 70 came from dividing by one half."
+
+- id: divide-by-half-2
+  source: divide-by-half
+  type: question_swap
+  text: "Divide 30 by half and subtract ten. What do you get?"
+  answer: "50"
+  aliases: ["fifty"]
+  why_original_fails: "30 divided by one half is 60; subtracting ten gives 50, not 70."
+
+# ---------------------------------------------------------------- subtract-five
+- id: subtract-five-1
+  source: subtract-five
+  type: trivialized
+  text: "Starting from 25, how many times can you subtract 5 before you reach zero?"
+  answer: "five"
+  aliases: ["5", "five times"]
+  why_original_fails: "The question is now about repeated subtraction down to zero: 25, 20, 15, 10, 5, 0 is five subtractions."
+
+# ---------------------------------------------------------------- two-coins
+- id: two-coins-1
+  source: two-coins
+  type: hard_constraint
+  text: "I have two coins that add up to 35 cents, and one of them is not a dime. What are the two coins?"
+  answer: "a quarter and a dime"
+  aliases: ["quarter and dime", "a quarter and a dime, the other one is the dime", "25 cents and 10 cents"]
+  why_original_fails: "35 cents from two US coins is only a quarter and a dime; the memorized quarter and nickel makes 30."
+
+# ---------------------------------------------------------------- greenhouse
+- id: greenhouse-1
+  source: greenhouse
+  type: trivialized
+  text: "If a red house is made of red bricks and a blue house is made of blue bricks, what is a yellow house made of?"
+  answer: "yellow bricks"
+  aliases: ["yellow brick"]
+  why_original_fails: "'Yellow house' has no pun; by the stated pattern it is made of yellow bricks, not glass."
+
+# ---------------------------------------------------------------- overtake-second
+- id: overtake-second-1
+  source: overtake-second
+  type: hard_constraint
+  text: "If you overtake the person in third place in a race, what place are you in?"
+  answer: "third place"
+  aliases: ["third", "3rd"]
+  why_original_fails: "Passing the third-place runner puts you in third, not second."
+
+# ---------------------------------------------------------------- electric-train
+- id: electric-train-1
+  source: electric-train
+  type: trivialized
+  text: "A steam train is travelling north at 100 miles per hour. The wind is blowing from the east. Which way does the smoke blow?"
+  answer: "west"
+  aliases: ["to the west", "westward", "towards the west", "south-west", "southwest", "west and behind the train"]
+  why_original_fails: "A steam train does produce smoke; wind from the east carries it toward the west."
+
+# ---------------------------------------------------------------- two-fathers-two-sons
+- id: two-fathers-two-sons-1
+  source: two-fathers-two-sons
+  type: trivialized
+  text: "Two fathers and two sons go fishing. Each of them catches one fish, and they bring home four fish. How many people went fishing?"
+  answer: "four"
+  aliases: ["4", "four people"]
+  why_original_fails: "Four fish, one each, means four people; the three-person trick no longer fits."
+
+# ---------------------------------------------------------------- marys-father
+- id: marys-father-1
+  source: marys-father
+  type: stated
+  text: "Mary's father has five daughters: Nana, Nene, Nini, Nono, and Nunu. What is the name of the fifth daughter?"
+  answer: "Nunu"
+  aliases: []
+  why_original_fails: "All five daughters are named in the text; the fifth is Nunu, and Mary would be a sixth."
+
+- id: marys-father-2
+  source: marys-father
+  type: hard_constraint
+  text: "Lucy's father has five daughters: Nana, Nene, Nini, Nono. What is the name of the fifth daughter?"
+  answer: "Lucy"
+  aliases: []
+  why_original_fails: "The father in the text is Lucy's, so the unnamed daughter is Lucy, not Mary."
+
+# ---------------------------------------------------------------- johnnys-mother
+- id: johnnys-mother-1
+  source: johnnys-mother
+  type: stated
+  text: "Johnny's mother had three children. The first child was named April. The second child was named May. The third child was named June. What was the name of the third child?"
+  answer: "June"
+  aliases: []
+  why_original_fails: "The third child's name is given in the text as June; Johnny would be a fourth child."
+
+- id: johnnys-mother-2
+  source: johnnys-mother
+  type: hard_constraint
+  text: "Sam's mother had three children. The first child was named April. The second child was named May. What was the third child's name?"
+  answer: "Sam"
+  aliases: []
+  why_original_fails: "The mother is Sam's, so the third child is Sam, not Johnny."
+
+# ---------------------------------------------------------------- three-apples
+- id: three-apples-1
+  source: three-apples
+  type: question_swap
+  text: "If there are three apples and you take away two, how many apples are left?"
+  answer: "one"
+  aliases: ["1"]
+  why_original_fails: "The question asks what is left, not what you have: three minus two is one."
+
+# ---------------------------------------------------------------- dog-woods
+- id: dog-woods-1
+  source: dog-woods
+  type: hard_constraint
+  text: "How far can a dog run into a wood that is two miles across?"
+  answer: "one mile"
+  aliases: ["1 mile", "a mile", "one mile, then it is running out"]
+  why_original_fails: "Halfway across two miles is one mile; the question now has a number."
+
+# ---------------------------------------------------------------- mustard-family
+- id: mustard-family-1
+  source: mustard-family
+  type: hard_constraint
+  text: "Mr. and Mrs. Mustard have six daughters, and each daughter has two brothers. How many people are in the Mustard family?"
+  answer: "ten"
+  aliases: ["10"]
+  why_original_fails: "Two shared brothers plus six daughters plus two parents is ten, not nine."
+
+# ---------------------------------------------------------------- last-brick
+- id: last-brick-1
+  source: last-brick
+  type: trivialized
+  text: "How many bricks does it take to build a wall that is 10 bricks long and 10 bricks high?"
+  answer: "100"
+  aliases: ["one hundred", "a hundred"]
+  why_original_fails: "The wall's size is given, so the count is 10 x 10 = 100; 'one, the last one' answers a different question."
+
+# ---------------------------------------------------------------- one-story-house
+- id: one-story-house-1
+  source: one-story-house
+  type: trivialized
+  text: "There is a two-story house in which everything is yellow. The walls are yellow, the doors are yellow, the furniture is yellow. What color are the stairs?"
+  answer: "yellow"
+  aliases: []
+  why_original_fails: "A two-story house has stairs, and everything in it is yellow."
+
+# ---------------------------------------------------------------- monty-hall
+- id: monty-hall-1
+  source: monty-hall
+  type: stated
+  text: "You are on a game show and asked to choose one of three doors. Behind one door is a car; behind the others, goats. You pick door number 1. The host opens door number 3, and behind it is the car. He then asks whether you want to switch to door number 3. Should you switch?"
+  answer: "yes, switch to door 3"
+  aliases: ["yes", "switch to door 3", "switch to door three", "yes, door 3 has the car", "switch"]
+  why_original_fails: "The car is visible behind door 3, so switching to it wins with certainty; the 2/3 argument for door 2 does not apply."
+
+- id: monty-hall-2
+  source: monty-hall
+  type: negated_premise
+  text: "You are on a game show and asked to choose one of three doors. Behind one door is a car; behind the others, goats. You pick door number 1. The host does not open any door, and asks whether you want to switch to door number 2. Should you switch?"
+  answer: "it makes no difference"
+  aliases: ["no difference", "it doesn't matter", "either way", "no advantage", "the odds are the same", "1/3 either way", "no"]
+  why_original_fails: "Without a door being opened there is no new information; every door is still 1/3, so switching gains nothing."
+
+# ---------------------------------------------------------------- yellow-hat
+- id: yellow-hat-1
+  source: yellow-hat
+  type: question_swap
+  text: "If you drop a yellow hat into the Red Sea, what color is it when you pull it out?"
+  answer: "yellow"
+  aliases: ["still yellow", "yellow, and wet"]
+  why_original_fails: "The question asks for the color, which does not change; 'wet' answers what it becomes."
