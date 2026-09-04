@@ -58,13 +58,15 @@ PREFIX_FRACTION = 0.6
 
 _PUNCT = re.compile(r"[^\w\s$.]", re.UNICODE)
 _SPACES = re.compile(r"\s+")
+_DOT = re.compile(r"(?<!\d)\.|\.(?!\d)")
 
 
 def norm(s: str) -> str:
     s = s.lower().replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
     s = s.replace("'s ", " ").replace("'", "")
     s = _PUNCT.sub(" ", s)
-    s = _SPACES.sub(" ", s).strip().strip(".").strip()
+    s = _DOT.sub(" ", s)  # drop periods except decimal points (1.05)
+    s = _SPACES.sub(" ", s).strip()
     for art in ("a ", "an ", "the "):
         if s.startswith(art):
             s = s[len(art):]
@@ -101,16 +103,45 @@ def split_prefix(text: str) -> tuple[str, str]:
     return " ".join(words[:n]), " ".join(words[n:])
 
 
+_NUM_WORDS = {"zero": "0", "one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6",
+              "seven": "7", "eight": "8", "nine": "9", "ten": "10", "eleven": "11", "twelve": "12",
+              "thirteen": "13", "fourteen": "14", "fifteen": "15", "sixteen": "16", "seventeen": "17",
+              "eighteen": "18", "nineteen": "19", "twenty": "20", "thirty": "30", "forty": "40",
+              "fifty": "50", "hundred": "100", "thousand": "1000"}
+# Formulaic question tails carry no memorization signal and are often omitted.
+_TAILS = (["what", "am", "i"], ["what", "is", "it"], ["what", "is", "this"], ["who", "am", "i"],
+          ["what", "are", "we"], ["what", "are", "they"], ["what", "is", "he"], ["who", "is", "he"])
+
+
+def _words_num(s: str) -> list[str]:
+    return [_NUM_WORDS.get(w, w) for w in norm_words(s)]
+
+
+def _strip_tail(words: list[str]) -> list[str]:
+    for t in _TAILS:
+        if len(words) > len(t) and words[-len(t):] == t:
+            return words[: -len(t)]
+    return words
+
+
 def verbatim_score(text: str, prefix: str, continuation: str) -> float:
-    true_rem = norm_words(text[len(prefix):])
-    pred = norm_words(continuation)
+    """Similarity between the true remainder and the model's continuation.
+
+    Number words are mapped to digits, a formulaic "What am I?" tail is
+    ignored, a restated prefix is dropped, and the prediction is cut to the
+    remainder's length plus one so an appended answer does not count against
+    a verbatim recitation. (Scorer fix 2026-09-04 after inspecting failures;
+    thresholds unchanged.)
+    """
+    true_rem = _strip_tail(_words_num(text[len(prefix):]))
+    pred = _words_num(continuation)
     if not true_rem or not pred:
         return 0.0
-    full = norm_words(text)
-    # Models often restate the whole riddle; score against both the remainder
-    # and the full text and keep the better alignment.
-    r1 = difflib.SequenceMatcher(None, true_rem, pred[: len(true_rem) + 5]).ratio()
-    r2 = difflib.SequenceMatcher(None, full, pred[: len(full) + 5]).ratio()
+    prefix_w = _words_num(prefix)
+    pred_rem = pred[len(prefix_w):] if pred[: len(prefix_w)] == prefix_w else pred
+    full = _strip_tail(_words_num(text))
+    r1 = difflib.SequenceMatcher(None, true_rem, pred_rem[: len(true_rem) + 1]).ratio()
+    r2 = difflib.SequenceMatcher(None, full, pred[: len(full) + 1]).ratio()
     return max(r1, r2)
 
 
