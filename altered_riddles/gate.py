@@ -83,7 +83,7 @@ async def run(args: argparse.Namespace) -> None:
     if args.limit:
         items = items[: args.limit]
     specs = [parse_model_spec(m, args.provider) for m in args.models]
-    clients = {p: Client(p, concurrency=args.concurrency, retries=8, rpm=args.rpm) for p in {p for p, _ in specs}}
+    clients = {p: Client(p, concurrency=args.concurrency, retries=8, rpm=args.rpm, timeout=args.timeout) for p in {p for p, _ in specs}}
     cache = Cache(Path(args.cache))
 
     def key_of(item, prov, model):
@@ -177,6 +177,7 @@ def main() -> None:
     ap.add_argument("--items", default="data/items/*.yaml")
     ap.add_argument("--concurrency", type=int, default=8)
     ap.add_argument("--rpm", type=int, default=None, help="cap requests per minute per provider")
+    ap.add_argument("--timeout", type=float, default=600.0, help="seconds per request; slow reasoning models need 1800+")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--cache", default="data/probe/gate_cache.jsonl")
     ap.add_argument("--out", default="data/gated.jsonl")
