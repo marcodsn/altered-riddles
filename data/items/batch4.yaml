@@ -1,0 +1,179 @@
+# Batch 4 — newly admitted crawsome sources (correct texts after the CSV fix).
+# Same rule: altered answer entailed, original answer excluded. Sources
+# whose only alterations would be "new metaphor riddles" were skipped.
+
+- id: craw-0004-1
+  source: craw-0004
+  type: hard_constraint
+  text: "I cost no money to use, or conscious effort to take part of. As far as you can see, there is nothing to me. Without me, you are dead, and you drink me. What am I?"
+  answer: "water"
+  aliases: []
+  why_original_fails: "Air is not drunk; water is, and it is likewise free and invisible in a glass."
+
+- id: craw-0008-1
+  source: craw-0008
+  type: hard_constraint
+  text: "I'm very tempting, so it's said. I have a shiny coat of red, and my flesh is white beneath. I am a root, pulled from the ground. What am I?"
+  answer: "a radish"
+  aliases: ["radish", "radishes"]
+  why_original_fails: "An apple grows on a tree; a red-skinned, white-fleshed root pulled from the ground is a radish."
+
+- id: craw-0010-1
+  source: craw-0010
+  type: negated_premise
+  text: "I have feathers to help me fly. I have a body and head, but I'm not alive. It is your strength which determines how far I go. You hold me in your hand, and then you throw me. What am I?"
+  answer: "a dart"
+  aliases: ["dart", "darts"]
+  why_original_fails: "An arrow is never thrown, it is shot; a feathered thing thrown by hand is a dart."
+
+- id: craw-0014-1
+  source: craw-0014
+  type: negated_premise
+  text: "I sleep by day, I fly by night. I have feathers to aid my flight. What am I?"
+  answer: "an owl"
+  aliases: ["owl", "owls", "a nightjar"]
+  why_original_fails: "A bat has no feathers; a nocturnal flier with feathers is an owl."
+
+- id: craw-0025-1
+  source: craw-0025
+  type: hard_constraint
+  text: "I am seen in the grass. If seen in the sky, I am in the rainbow. I am in an emerald, a frog, and a jade. What am I?"
+  answer: "green"
+  aliases: ["the color green"]
+  why_original_fails: "Grass, emeralds, frogs and jade are green, not blue."
+
+- id: craw-0052-1
+  source: craw-0052
+  type: question_swap
+  text: "Charcoal is black when you get it, red when you use it, and white when you're all through with it. What color is it while you are using it?"
+  answer: "red"
+  aliases: ["red hot", "glowing red"]
+  why_original_fails: "The question asks for a color during use, which the text gives as red; 'charcoal' is stated, not asked."
+
+- id: craw-0055-1
+  source: craw-0055
+  type: hard_constraint
+  text: "A slow, solemn square-dance of warriors feinting. One by one they fall, warriors fainting, twenty-four on sixty-four. What is it?"
+  answer: "checkers"
+  aliases: ["draughts", "a game of checkers", "a game of draughts"]
+  why_original_fails: "Chess has thirty-two pieces; twenty-four pieces on sixty-four squares is checkers."
+
+- id: craw-0058-1
+  source: craw-0058
+  type: hard_constraint
+  text: "This thing runs but cannot walk, sometimes sings but never talks. Lacks arms, has hands; lacks a head but has a face; and it is strapped to your wrist. What is it?"
+  answer: "a watch"
+  aliases: ["watch", "a wristwatch", "wristwatch"]
+  why_original_fails: "A clock is not strapped to a wrist; a watch is."
+
+- id: craw-0091-1
+  source: craw-0091
+  type: negated_premise
+  text: "A box with hinges, lock and key, and golden treasure lies within. What is it?"
+  answer: "a treasure chest"
+  aliases: ["treasure chest", "a chest", "chest", "a strongbox", "a safe", "a jewelry box", "a jewellery box"]
+  why_original_fails: "An egg has no hinges, lock or key; a box that has all three and holds treasure is a treasure chest."
+
+- id: craw-0098-1
+  source: craw-0098
+  type: hard_constraint
+  text: "What is pronounced like one letter, written with three letters, and is a hot drink?"
+  answer: "tea"
+  aliases: []
+  why_original_fails: "'Eye' is not a drink; 'tea' is pronounced like the letter T, has three letters, and is a hot drink."
+
+- id: craw-0125-1
+  source: craw-0125
+  type: negated_premise
+  text: "They have flesh and bone, and skin of their own. They have fingers and thumbs, and are on the ends of your arms. What are they?"
+  answer: "hands"
+  aliases: ["your hands", "a hand", "hand"]
+  why_original_fails: "Gloves have no flesh or bone; hands have both and end the arms."
+
+- id: craw-0139-1
+  source: craw-0139
+  type: hard_constraint
+  text: "How far will a blind dog walk into a forest that is one mile wide?"
+  answer: "half a mile"
+  aliases: ["half mile", "0.5 miles", "a half mile", "half a mile, then it walks out"]
+  why_original_fails: "Halfway across one mile is half a mile; the question now has a number."
+
+- id: craw-0159-1
+  source: craw-0159
+  type: negated_premise
+  text: "What goes into the boiling water dark and comes out red?"
+  answer: "a lobster"
+  aliases: ["lobster", "a crab", "crab", "shrimp", "a prawn"]
+  why_original_fails: "Iron goes in red and comes out dark; a lobster goes in dark and comes out red."
+
+- id: craw-0203-1
+  source: craw-0203
+  type: hard_constraint
+  text: "What is it that was given to you, belongs only to you, your friends use it more than you do, and it has an @ in it?"
+  answer: "your email address"
+  aliases: ["email address", "an email address", "email", "your email"]
+  why_original_fails: "A name has no @ in it; an email address does."
+
+- id: craw-0204-1
+  source: craw-0204
+  type: question_swap
+  text: "An iron horse with a flaxen tail. The faster the horse runs, the shorter his tail becomes. What is the tail?"
+  answer: "the thread"
+  aliases: ["thread", "a thread", "the yarn"]
+  why_original_fails: "The question asks about the tail, which is the thread; 'needle' is the horse."
+
+- id: craw-0220-1
+  source: craw-0220
+  type: hard_constraint
+  text: "Take off my skin, I won't cry, and neither will you. I am yellow and curved. What am I?"
+  answer: "a banana"
+  aliases: ["banana"]
+  why_original_fails: "Peeling an onion makes you cry; a yellow, curved fruit peeled without tears is a banana."
+
+- id: craw-0241-1
+  source: craw-0241
+  type: hard_constraint
+  text: "He has married many couples but has never married himself. He wears a robe and presides over a courtroom. Who is he?"
+  answer: "a judge"
+  aliases: ["judge", "a magistrate", "magistrate"]
+  why_original_fails: "A priest does not preside over a courtroom; a judge does and can officiate marriages."
+
+- id: craw-0283-1
+  source: craw-0283
+  type: negated_premise
+  text: "A beggar's sister went out to sea and drowned. But the woman who drowned had no sister. Who was the beggar to the woman who drowned?"
+  answer: "her brother"
+  aliases: ["brother", "the brother", "the beggar was her brother"]
+  why_original_fails: "The sexes are swapped: the drowned woman had no sister, so the beggar is her brother."
+
+- id: craw-0328-1
+  source: craw-0328
+  type: hard_constraint
+  text: "Eighty-eight horses, black and white, on a wooden hill. First they sound, then they sing, then they stand still. What are they?"
+  answer: "piano keys"
+  aliases: ["the keys of a piano", "a piano", "piano"]
+  why_original_fails: "Teeth are thirty-two and white on a red hill; eighty-eight black and white keys on wood are a piano's."
+
+- id: craw-0370-1
+  source: craw-0370
+  type: negated_premise
+  text: "The cloud is my mother. The wind is my father. I have a million brothers. I die when I reach the ground. What am I?"
+  answer: "a raindrop"
+  aliases: ["raindrop", "rain", "a drop of rain", "a snowflake", "snowflake", "a drop of water"]
+  why_original_fails: "A wave is born of the sea and dies on land; something born of a cloud that dies on the ground is a raindrop."
+
+- id: craw-0379-1
+  source: craw-0379
+  type: negated_premise
+  text: "I have two wings and I do fly. I never laugh and never cry. I carry people through the sky. What am I?"
+  answer: "an airplane"
+  aliases: ["airplane", "a plane", "plane", "an aeroplane", "aeroplane", "aircraft"]
+  why_original_fails: "A windmill has four wings and cannot fly; a two-winged flier that carries people is an airplane."
+
+- id: craw-0388-1
+  source: craw-0388
+  type: hard_constraint
+  text: "You see me once in July, twice in August, and not at all in May. What am I?"
+  answer: "the letter U"
+  aliases: ["u", "letter u"]
+  why_original_fails: "'July' has one U, 'August' two, 'May' none; N appears in none of these months."
