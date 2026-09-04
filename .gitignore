@@ -38,3 +38,6 @@ scripts/validated_source_counts.py
 
 # v2 probe cache (large; the summary data/recall_probe.json is committed)
 data/probe/
+
+# held-out canary items (never committed)
+data/canary/
