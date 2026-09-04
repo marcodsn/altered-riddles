@@ -37,16 +37,32 @@ run() { # model thinking condition samples
 }
 score() { $PY -m altered_riddles.score --run "$1" --items $ITEMS --judge $JUDGE; }
 
-# 2. models and modes (GLM-5.3-Flash cannot switch thinking off; Qwen3-Next-Instruct has none)
-for M in jalapeno:DeepSeek-V4-Flash-0731 jalapeno:Qwen3.5-35B-A3B nous:meituan/longcat-2.0:free; do
-  run $M off original 5
-  run $M off unwarned 3;  run $M off warned 1
-  run $M on  unwarned 3;  run $M on  warned 1
-done
-run jalapeno:GLM-5.3-Flash off original 5
-run jalapeno:GLM-5.3-Flash on unwarned 3; run jalapeno:GLM-5.3-Flash on warned 1
-run jalapeno:Qwen3-Next-80B-A3B-Instruct off original 5
-run jalapeno:Qwen3-Next-80B-A3B-Instruct off unwarned 3; run jalapeno:Qwen3-Next-80B-A3B-Instruct off warned 1
+# 2. models and modes, one pipeline per model, all in parallel (the provider
+#    limit is requests per minute, and thinking calls are few per minute;
+#    DeepSeek-V4-Flash-0731 reasons at ~10 tok/s so it gets k=1 when thinking).
+#    GLM-5.3-Flash cannot switch thinking off; Qwen3-Next-Instruct has none.
+mkdir -p data/probe/pilot_logs
+pipeline() { # model  on_k  (thinking-off runs always k=3 unwarned / k=1 warned)
+  local M=$1 ONK=$2 LOG=data/probe/pilot_logs/$(echo "$1" | tr '/:' '__').log
+  {
+    run $M off original 5
+    run $M off unwarned 3;  run $M off warned 1
+    if [ "$ONK" != "0" ]; then run $M on unwarned $ONK; run $M on warned 1; fi
+  } > "$LOG" 2>&1
+  echo "pipeline done: $M (exit $?)"
+}
+pipeline_on_only() { # model on_k : thinking-only models (no off mode)
+  local M=$1 ONK=$2 LOG=data/probe/pilot_logs/$(echo "$1" | tr '/:' '__').log
+  { run $M off original 5; run $M on unwarned $ONK; run $M on warned 1; } > "$LOG" 2>&1
+  echo "pipeline done: $M (exit $?)"
+}
+pipeline jalapeno:DeepSeek-V4-Flash-0731 1 &
+pipeline jalapeno:Qwen3.5-35B-A3B 3 &
+pipeline nous:meituan/longcat-2.0:free 3 &
+pipeline_on_only jalapeno:GLM-5.3-Flash 3 &
+pipeline jalapeno:Qwen3-Next-80B-A3B-Instruct 0 &
+wait
+echo "all pipelines finished"
 
 # 3. score every run (familiarity first so COR conditioning is available)
 for d in $RUNS/*/original-*; do score "$d"; done
