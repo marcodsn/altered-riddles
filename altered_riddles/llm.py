@@ -57,7 +57,11 @@ def thinking_extra(model: str, on: bool | None) -> dict[str, Any]:
         if on:
             return {"reasoning": {"enabled": True}}
         return {"chat_template_kwargs": {"enable_thinking": False}}
-    if "glm" in m or "kimi" in m or "moonshot" in m:
+    if "glm" in m:
+        # Thinking is on by default for GLM; GLM-5.3-Flash returns 400 on any
+        # explicit switch, so "on" sends nothing and only "off" sends a switch.
+        return {} if on else {"thinking": {"type": "disabled"}}
+    if "kimi" in m or "moonshot" in m:
         return {"thinking": {"type": "enabled" if on else "disabled"}}
     if "qwen" in m:
         if "instruct" in m:
