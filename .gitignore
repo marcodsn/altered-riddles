@@ -35,3 +35,6 @@ scripts/validated_source_counts.py
 
 # Cache
 .*cache/
+
+# v2 probe cache (large; the summary data/recall_probe.json is committed)
+data/probe/

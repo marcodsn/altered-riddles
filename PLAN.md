@@ -51,7 +51,7 @@ The writeup leads with H2 and H3 and the per-type table, not with the leaderboar
   - 21 models listed, `MiniMax-M3` returns 404, so 20 usable. Prices are in section 6 (pasted by Marco from the marketplace). **The provider is in beta and Marco is beta-testing it:** some listed models error, and availability changes. Every run checkpoints per item, retries with backoff, records its error rate, and a row with > 5% unrecoverable errors is not scored (v1's Opus row had 92 errors and was).
   - Thinking switches differ per family and none of them is OpenAI's `reasoning_effort` (DeepSeek ignores it). Table in section 5. The D6 guardrail is what makes this safe: a row is scored only if the reasoning-token count in `usage` matches the requested mode.
   - Terms of service (MAGIK COMPUTE PTE. LTD., Singapore) do not say whether API inputs are used for training. Assume they may be.
-- **Other compute, in order of certainty:** Nous Portal free tier (`poolside/laguna-s-2.1:free`, `tencent/hy3:free`, `stepfun/step-3.7-flash:free`; rate-limited); local GPUs (the RTX 3090 + RTX PRO used by remora/flint, when free) for a judge and the small open models under vLLM, since the old `10.8.0.5:8083` box is down; vendor free tiers (Google AI Studio, GitHub Models, OpenRouter `:free`), to verify before counting on them; research-credit programs (OpenAI, Anthropic, Google), applied for in M0; community runs through the `inspect_ai` task for anything we cannot fund.
+- **Other compute, in order of certainty:** Nous Portal free tier, six models on 2026-09-04 (`poolside/laguna-s-2.1`, `poolside/laguna-xs-2.1`, `inclusionai/ling-3.0-flash-fin`, `meituan/longcat-2.0`, `stepfun/step-3.7-flash`, `upstage/solar-pro4`, all `:free`; rate limits unpublished); local GPUs (the RTX 3090 + RTX PRO used by remora/flint, when free) for a judge and the small open models under vLLM, since the old `10.8.0.5:8083` box is down; vendor free tiers (Google AI Studio, GitHub Models, OpenRouter `:free`), to verify before counting on them; research-credit programs (OpenAI, Anthropic, Google), applied for in M0; community runs through the `inspect_ai` task for anything we cannot fund.
 - **Time.** Marco part-time. Human review of ~400 items is 1–2 days. Item authoring is the dominant human cost; LLM drafting helps, humans commit.
 
 ---
@@ -68,7 +68,8 @@ The writeup leads with H2 and H3 and the per-type table, not with the leaderboar
 **D2 — Recall probe: familiarity per model, verbatim recall per source.**
 - Probe A (familiarity): thinking off, `max_tokens=8`, 5 samples on the *original* riddle. Pass at ≥ 4/5 canonical. This does not prove recall, since a model can reason its way to a famous answer in a few tokens, and that is fine: what COR needs is that the model produces the original answer when asked the original riddle, and Probe A is exactly that, cheaply.
 - Probe B (verbatim recall): prefix = the first ~60% of the original text, ask the model to continue; pass at normalized token overlap ≥ 0.8. Completing the exact wording cannot come from reasoning, so this is the memorization evidence. Recorded per source and per model.
-- A source is **admitted** if Probe A passes on ≥ 3 of 4 probe models and Probe B passes on ≥ 1. Hand-picked famous riddles pass trivially; the gate exists for crawsome items and the trick puzzles.
+- A source is **admitted** if Probe A passes on at least three quarters of the probe models and Probe B passes on at least one. Hand-picked famous riddles should pass trivially; the gate exists for crawsome items and the trick puzzles.
+- Probe models, fixed 2026-09-04 before the first full run: DeepSeek-V4-Flash-0731, Qwen3-Next-80B-A3B-Instruct, Qwen3.5-35B-A3B, Kimi-K2.5 on Jalapeno, and the four Nous free models whose thinking switches off cleanly (`poolside/laguna-s-2.1`, `poolside/laguna-xs-2.1`, `inclusionai/ling-3.0-flash-fin`, `meituan/longcat-2.0`). Eight models, so admission is 6 of 8. GLM-5.3 is excluded because it talks past a 16-token budget; `stepfun/step-3.7-flash:free` and `upstage/solar-pro4:free` reject thinking-off requests.
 - COR for a given model conditions on **that model's** Probe A pass for the source. This replaces v1's "solved the original" and is ~free (8 tokens, no thinking).
 
 **D3 — Alteration types: entailed, not suggested. Four checkable types only.**
@@ -178,7 +179,7 @@ Versioned `v2.0-<date>`; HF mirror; `inspect_ai` task so the whole thing runs in
 
 | tier | models | cost | role |
 |---|---|---|---|
-| 0 — free or near-free | Nous free (laguna-s-2.1, hy3, step-3.7-flash); local vLLM (qwen3.6-27b, gemma-4-31b, gpt-oss-20b) if the GPUs are free; Gemini Flash free tier if it answers; DeepSeek-V4-Flash-0731 and GLM-5.3-Flash at cents per pass | ≈ 0 | probe and gate models, judge, drafting |
+| 0 — free or near-free | Nous free (laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash-fin, longcat-2.0, step-3.7-flash, solar-pro4); local vLLM (qwen3.6-27b, gemma-4-31b, gpt-oss-20b) if the GPUs are free; Gemini Flash free tier if it answers; DeepSeek-V4-Flash-0731 and GLM-5.3-Flash at cents per pass | ≈ 0 | probe and gate models, judge, drafting |
 | 1 — the $90 | thinking off: every Jalapeno model that answers; thinking on: DeepSeek-V4-Flash-0731, GLM-5.3-Flash, Qwen3-Next-80B-Thinking, Qwen3.5-35B-A3B, Qwen3.5-397B-A17B, DeepSeek-V4-Pro, GLM-5.3 (allocation in section 6) | credits | the board's core |
 | 2 — credits or community | GPT-5.4, Opus 4.7 (Anthropic API direct), Gemini 3.1 Pro, Grok 4.20 | not ours | the rows readers look for; each must pass the D6 guardrail |
 
@@ -280,7 +281,7 @@ Decided 2026-09-04: no lab template (D9); contamination stays at the D7 minimum;
 ## 9. Target layout
 
 ```
-code/                     # pipeline (from scripts/), one module per stage
+altered_riddles/          # v2 pipeline package (`code/` would shadow the stdlib module); v1 stays in scripts/ until the freeze
 data/sources.yaml         # hand-curated sources
 data/items/<source>.yaml  # ≤ 3 variants each, reviewed
 data/release/v2.0/        # public.jsonl, recall_probe.json, CANARY.txt (GUID)
