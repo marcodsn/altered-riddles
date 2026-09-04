@@ -65,9 +65,13 @@ def collect_runs(runs_dir: Path, items: dict[str, dict[str, Any]]) -> dict[tuple
     # the original condition belongs to the model, not the thinking mode: share it across rows,
     # preferring a direct (thinking-off) familiarity run when both exist
     by_model: dict[str, dict[str, Any]] = {}
+
+    def _rank(o: dict[str, Any]) -> tuple[int, int]:  # passing runs first, then direct over thinking
+        return (int(o["guardrail"] == "PASS"), int(o["config"].get("familiarity_mode", "direct") == "direct"))
+
     for (m, th), e in rows.items():
         o = e["runs"].get("original")
-        if o and (m not in by_model or (o["config"].get("familiarity_mode") == "direct" and by_model[m]["config"].get("familiarity_mode") != "direct")):
+        if o and (m not in by_model or _rank(o) > _rank(by_model[m])):
             by_model[m] = o
     for (m, th), e in rows.items():
         if m in by_model:
