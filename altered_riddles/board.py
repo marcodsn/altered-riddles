@@ -58,14 +58,20 @@ def collect_runs(runs_dir: Path, items: dict[str, dict[str, Any]]) -> dict[tuple
         if not cfg_p.exists() or not sum_p.exists():
             continue
         cfg, summ = json.load(cfg_p.open()), json.load(sum_p.open())
-        key = (f"{cfg['provider']}:{cfg['model']}", cfg["thinking"] if cfg["condition"] != "original" else "off")
+        key = (f"{cfg['provider']}:{cfg['model']}", cfg["thinking"])
         entry = rows.setdefault(key, {"model": cfg["model"], "provider": cfg["provider"], "thinking": key[1], "runs": {}})
         entry["runs"][cfg["condition"]] = {"dir": str(run_dir), "guardrail": summ.get("guardrail"),
                                            "reasons": summ.get("guardrail_reasons", []), "summary": summ, "config": cfg}
-    # the original condition belongs to the model, not the thinking mode: copy it to the 'on' row
-    for (m, th), e in list(rows.items()):
-        if th == "off" and "original" in e["runs"] and (m, "on") in rows and "original" not in rows[(m, "on")]["runs"]:
-            rows[(m, "on")]["runs"]["original"] = e["runs"]["original"]
+    # the original condition belongs to the model, not the thinking mode: share it across rows,
+    # preferring a direct (thinking-off) familiarity run when both exist
+    by_model: dict[str, dict[str, Any]] = {}
+    for (m, th), e in rows.items():
+        o = e["runs"].get("original")
+        if o and (m not in by_model or (o["config"].get("familiarity_mode") == "direct" and by_model[m]["config"].get("familiarity_mode") != "direct")):
+            by_model[m] = o
+    for (m, th), e in rows.items():
+        if m in by_model:
+            e["runs"]["original"] = by_model[m]
     return rows
 
 
@@ -128,6 +134,7 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
             "abstain_rate": labels["abstain"] / n if n else None, "pending": pending,
             "warned_acc": warned_acc, "override_gap": (warned_acc - alt_acc) if (warned_acc is not None and alt_acc is not None) else None,
             "median_reasoning_tokens": unw["summary"].get("median_reasoning_tokens"),
+            "familiarity_mode": orig["config"].get("familiarity_mode", "direct"),
             "samples": unw["config"]["samples"], "error_rate": unw["summary"].get("error_rate"),
             "run_dir": unw["dir"],
         })
@@ -182,11 +189,11 @@ def pct(x: float | None) -> str:
 def render_md(b: dict[str, Any]) -> str:
     lines = ["# Altered Riddles v2 — leaderboard", "",
              f"_Generated {b['generated_at']}. Primary metric: **COR** (conditioned override rate, lower is better) with a clustered-bootstrap CI95 (clusters = source riddle, {b['n_boot']} draws). Rows in the same **group** are not distinguishable at 95%. Rows are only listed when every run passed the guardrails and raw outputs are committed under `runs/`._", "",
-             "| group | model | thinking | items | COR ↓ | CI95 | alt acc ↑ | warned acc | override gap | abstain | other | median reasoning tok | k | pending |",
-             "|---|---|---|---:|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
+             "| group | model | thinking | items | COR ↓ | CI95 | alt acc ↑ | warned acc | override gap | abstain | other | median reasoning tok | k | pending | familiarity |",
+             "|---|---|---|---:|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---|"]
     for r in b["rows"]:
         ci = "—" if r["cor_ci95"][0] is None else f"[{100*r['cor_ci95'][0]:.1f}, {100*r['cor_ci95'][1]:.1f}]"
-        lines.append(f"| {r.get('rank_group','—')} | {r['model']} | {r['thinking']} | {r['n_items']} | {pct(r['cor'])} | {ci} | {pct(r['alt_acc'])} | {pct(r['warned_acc'])} | {pct(r['override_gap'])} | {pct(r['abstain_rate'])} | {pct(r['other_rate'])} | {r['median_reasoning_tokens']} | {r['samples']} | {r['pending']} |")
+        lines.append(f"| {r.get('rank_group','—')} | {r['model']} | {r['thinking']} | {r['n_items']} | {pct(r['cor'])} | {ci} | {pct(r['alt_acc'])} | {pct(r['warned_acc'])} | {pct(r['override_gap'])} | {pct(r['abstain_rate'])} | {pct(r['other_rate'])} | {r['median_reasoning_tokens']} | {r['samples']} | {r['pending']} | {r.get('familiarity_mode', 'direct')} |")
     gaps = [r for r in b["rows"] if r.get("thinking_gap") is not None and r["thinking"] == "on"]
     if gaps:
         lines += ["", "## Thinking gap (COR off minus COR on, same model)", "", "| model | COR off | COR on | gap |", "|---|---:|---:|---:|"]
