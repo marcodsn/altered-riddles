@@ -14,6 +14,7 @@ import re
 
 _PUNCT = re.compile(r"[^\w\s$.]", re.UNICODE)
 _SPACES = re.compile(r"\s+")
+_DOT = re.compile(r"(?<!\d)\.|\.(?!\d)")
 _ARTICLES = ("a ", "an ", "the ")
 
 
@@ -21,7 +22,8 @@ def norm(s: str) -> str:
     s = s.lower().replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
     s = s.replace("'s ", " ").replace("'", "")
     s = _PUNCT.sub(" ", s)
-    s = _SPACES.sub(" ", s).strip().strip(".").strip()
+    s = _DOT.sub(" ", s)  # drop periods except decimal points (1.05)
+    s = _SPACES.sub(" ", s).strip()
     for art in _ARTICLES:
         if s.startswith(art):
             s = s[len(art):]
