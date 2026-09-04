@@ -462,7 +462,7 @@
   type: stated
   text: "You are on a game show and asked to choose one of three doors. Behind one door is a car; behind the others, goats. You pick door number 1. The host opens door number 3, and behind it is the car. He then asks whether you want to switch to door number 3. Should you switch?"
   answer: "yes, switch to door 3"
-  aliases: ["yes", "switch to door 3", "switch to door three", "yes, door 3 has the car", "switch"]
+  aliases: ["switch to door 3", "switch to door three", "door 3", "door three", "the car is behind door 3", "yes, door 3 has the car", "switch to the revealed car", "switch to the door with the car", "take door 3"]
   why_original_fails: "The car is visible behind door 3, so switching to it wins with certainty; the 2/3 argument for door 2 does not apply."
 
 - id: monty-hall-2

@@ -89,14 +89,6 @@
   aliases: ["1", "the number one"]
   why_original_fails: "O, N, E run backwards through the alphabet; 'forty' runs forwards."
 
-- id: nine-2
-  source: nine
-  type: question_swap
-  text: "If two's company and three's a crowd, what are two and three?"
-  answer: "five"
-  aliases: ["5"]
-  why_original_fails: "Two plus three is five; nine was four plus five."
-
 - id: widgets-3
   source: widgets
   type: question_swap
@@ -152,14 +144,6 @@
   answer: "a zipper"
   aliases: ["zipper", "a zip", "zip"]
   why_original_fails: "A comb does not close a jacket; a zipper has teeth and does."
-
-- id: wrong-1
-  source: wrong
-  type: hard_constraint
-  text: "What word is spelled incorrectly in every dictionary?"
-  answer: "incorrectly"
-  aliases: ["the word incorrectly"]
-  why_original_fails: "The pun now hinges on the word 'incorrectly', which is the only word the sentence says is spelled that way; 'wrong' is not in the sentence."
 
 - id: ton-1
   source: ton

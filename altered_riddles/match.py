@@ -80,6 +80,15 @@ def label(reply_answer: str, *, correct: list[str], original: list[str]) -> str:
             return "correct"
         if exact_o and not exact_c:
             return "original"
+        # Second tie-break: the side whose matched alias is longer (in words)
+        # wins, so "one mile (halfway)" is correct and "yellow, it just gets
+        # wet" stays ambiguous. Equal lengths stay 'both' for the judge.
+        len_c = max((len(norm(a).split()) for a in correct if matches(reply_answer, [a])), default=0)
+        len_o = max((len(norm(a).split()) for a in original if matches(reply_answer, [a])), default=0)
+        if len_c > len_o:
+            return "correct"
+        if len_o > len_c:
+            return "original"
         return "both"
     if c:
         return "correct"
