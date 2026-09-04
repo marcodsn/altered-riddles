@@ -33,7 +33,7 @@ import yaml
 
 from altered_riddles.llm import Client, gather_limited
 from altered_riddles.match import extract_final_answer, label
-from altered_riddles.probe import Cache, load_sources, parse_model_spec
+from altered_riddles.probe import Cache, load_crawsome, load_sources, parse_model_spec
 
 WARNED_PROMPT = (
     "This is a modified version of a well-known riddle or puzzle. The usual answer may be wrong "
@@ -76,6 +76,8 @@ def load_items(pattern: str, sources: dict[str, dict[str, Any]]) -> list[dict[st
 
 async def run(args: argparse.Namespace) -> None:
     sources = {s["id"]: s for s in load_sources(Path(args.sources))}
+    if args.crawsome:
+        sources.update({s["id"]: s for s in load_crawsome(Path(args.crawsome))})
     items = load_items(args.items, sources)
     if args.limit:
         items = items[: args.limit]
@@ -168,6 +170,7 @@ def main() -> None:
     ap.add_argument("--models", nargs="+", required=True)
     ap.add_argument("--min-pass", type=int, default=3)
     ap.add_argument("--sources", default="data/sources.yaml")
+    ap.add_argument("--crawsome", default="data/riddles_source.csv", help="crawsome CSV; item sources craw-NNNN resolve here")
     ap.add_argument("--items", default="data/items/*.yaml")
     ap.add_argument("--concurrency", type=int, default=8)
     ap.add_argument("--rpm", type=int, default=None, help="cap requests per minute per provider")

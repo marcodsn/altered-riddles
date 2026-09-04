@@ -195,7 +195,7 @@ async def run(args: argparse.Namespace) -> None:
     if args.limit:
         sources = sources[: args.limit]
     specs = [parse_model_spec(m, args.provider) for m in args.models]
-    clients = {p: Client(p, concurrency=args.concurrency, retries=8) for p in {p for p, _ in specs}}
+    clients = {p: Client(p, concurrency=args.concurrency, retries=8, rpm=args.rpm) for p in {p for p, _ in specs}}
     if args.min_models is None:
         # Pre-registered rule: familiar on at least three quarters of the probe models.
         args.min_models = max(3, -(-3 * len(specs) // 4))
@@ -339,6 +339,7 @@ def main() -> None:
     ap.add_argument("--samples", type=int, default=5)
     ap.add_argument("--min-models", type=int, default=None, help="default: ceil(3/4 of the probe models), at least 3")
     ap.add_argument("--concurrency", type=int, default=8)
+    ap.add_argument("--rpm", type=int, default=None, help="cap requests per minute per provider")
     ap.add_argument("--limit", type=int, default=0, help="only the first N sources (smoke test)")
     ap.add_argument("--cache", default="data/probe/cache.jsonl")
     ap.add_argument("--out", default="data/recall_probe.json")

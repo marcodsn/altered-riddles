@@ -1,0 +1,262 @@
+# Batch 3 — admitted sources that had no items, plus the newly admitted
+# crawsome sources (ids craw-NNNN come from data/riddles_source.csv via the
+# probe). Same rule: altered answer entailed, original answer excluded.
+
+# ---------------------------------------------------------------- hand riddles
+- id: map-1
+  source: map
+  type: hard_constraint
+  text: "I have cities, but no houses. I have mountains, but no trees. I have water, but no fish. I am a sphere that spins on a stand. What am I?"
+  answer: "a globe"
+  aliases: ["globe"]
+  why_original_fails: "A map is flat and does not spin on a stand; a globe does."
+
+- id: coin-1
+  source: coin
+  type: question_swap
+  text: "A coin has a head and a tail but no body. What has a head, a tail, and a body, and hisses?"
+  answer: "a snake"
+  aliases: ["snake"]
+  why_original_fails: "The question asks for something with a body that hisses; a coin has no body and does not hiss."
+
+- id: clock-hands-1
+  source: clock-hands
+  type: hard_constraint
+  text: "What has hands but can't clap, and is worn on your wrist?"
+  answer: "a watch"
+  aliases: ["watch", "a wristwatch", "wristwatch"]
+  why_original_fails: "A clock is not worn on the wrist; a watch is."
+
+- id: clock-face-1
+  source: clock-face
+  type: hard_constraint
+  text: "What has a face and two hands but no arms or legs, and hangs from a chain in your pocket?"
+  answer: "a pocket watch"
+  aliases: ["pocket watch", "a watch", "watch"]
+  why_original_fails: "A clock does not hang from a chain in a pocket; a pocket watch does."
+
+- id: age-1
+  source: age
+  type: question_swap
+  text: "What goes up but never comes down, and what comes down but never goes up?"
+  answer: "your age, and rain"
+  aliases: ["age and rain", "your age and rain", "age; rain"]
+  why_original_fails: "Two things are asked for; 'your age' alone answers only half the question."
+
+- id: secret-1
+  source: secret
+  type: negated_premise
+  text: "If you have me, you want to share me. If you share me, you still have me, and people laugh. What am I?"
+  answer: "a joke"
+  aliases: ["joke"]
+  why_original_fails: "A secret is gone once shared; something you keep after sharing that makes people laugh is a joke."
+
+- id: promise-1
+  source: promise
+  type: hard_constraint
+  text: "What can be broken but never held, and is made every New Year's Eve?"
+  answer: "a New Year's resolution"
+  aliases: ["resolution", "a resolution", "new year resolution", "new year's resolution"]
+  why_original_fails: "The thing made every New Year's Eve is a resolution; 'promise' does not satisfy the added clause."
+
+- id: darkness-1
+  source: darkness
+  type: negated_premise
+  text: "The more of this there is, the more you see. What is it?"
+  answer: "light"
+  aliases: []
+  why_original_fails: "The relation is reversed: more of it means you see more, which is light, not darkness."
+
+- id: shadow-1
+  source: shadow
+  type: hard_constraint
+  text: "I follow you all the time and copy your every move, but you can't touch me or catch me, and I only appear in a mirror. What am I?"
+  answer: "your reflection"
+  aliases: ["reflection", "a reflection", "mirror image", "your mirror image"]
+  why_original_fails: "A shadow does not appear only in a mirror; a reflection does."
+
+- id: egg-1
+  source: egg
+  type: hard_constraint
+  text: "What has to be broken before you can use it, and grows on a palm tree?"
+  answer: "a coconut"
+  aliases: ["coconut"]
+  why_original_fails: "Eggs do not grow on palm trees; coconuts do and must be broken open."
+
+- id: bottle-1
+  source: bottle
+  type: hard_constraint
+  text: "What has a neck but no head, and you wear it?"
+  answer: "a shirt"
+  aliases: ["shirt", "a sweater", "sweater", "a t-shirt", "t-shirt", "a jumper", "a sweatshirt"]
+  why_original_fails: "A bottle is not worn; a shirt has a neck and is."
+
+- id: rain-1
+  source: rain
+  type: hard_constraint
+  text: "What comes down but never goes up, and lands as white flakes?"
+  answer: "snow"
+  aliases: ["snowflakes", "snow flakes"]
+  why_original_fails: "Rain does not land as white flakes; snow does."
+
+- id: umbrella-1
+  source: umbrella
+  type: hard_constraint
+  text: "What goes up when the rain comes down, and flows between two banks?"
+  answer: "a river"
+  aliases: ["river", "the river", "the river level", "river level", "the water level"]
+  why_original_fails: "An umbrella does not flow between banks; a river rises when it rains."
+
+- id: time-flies-1
+  source: time-flies
+  type: hard_constraint
+  text: "What flies without wings and is held by a string?"
+  answer: "a kite"
+  aliases: ["kite"]
+  why_original_fails: "Time is not held by a string; a kite flies without wings on one."
+
+- id: fence-1
+  source: fence
+  type: hard_constraint
+  text: "What runs around the whole yard without moving, and is alive?"
+  answer: "a hedge"
+  aliases: ["hedge", "bushes", "a hedgerow"]
+  why_original_fails: "A fence is not alive; a hedge is and surrounds a yard."
+
+- id: light-1
+  source: light
+  type: hard_constraint
+  text: "What can fill a room but takes up no space, and you hear it?"
+  answer: "sound"
+  aliases: ["music", "noise", "a sound", "a voice", "singing"]
+  why_original_fails: "Light is seen, not heard; sound fills a room and takes no space."
+
+- id: road-1
+  source: road
+  type: hard_constraint
+  text: "What goes through cities and fields, never moves, and carries electricity?"
+  answer: "power lines"
+  aliases: ["a power line", "power line", "electric cables", "cables", "electricity lines", "transmission lines", "a power cable", "wires"]
+  why_original_fails: "A road carries no electricity; power lines cross cities and fields and do."
+
+- id: rubber-band-1
+  source: rubber-band
+  type: hard_constraint
+  text: "What kind of band never plays music, and holds your watch on your wrist?"
+  answer: "a watch band"
+  aliases: ["watch band", "a watch strap", "watch strap", "a wristband", "a strap"]
+  why_original_fails: "A rubber band does not hold a watch; a watch band does."
+
+- id: sphinx-1
+  source: sphinx
+  type: question_swap
+  text: "Something walks on four legs in the morning, two legs at noon, and three legs in the evening. What is the third leg in the evening?"
+  answer: "a cane"
+  aliases: ["cane", "a walking stick", "walking stick", "a staff", "a walking cane"]
+  why_original_fails: "The question asks about the third leg, the old person's cane, not what the creature is."
+
+- id: piano-1
+  source: piano
+  type: question_swap
+  text: "A piano has keys but can't open locks. What has locks but no keys, and grows on your head?"
+  answer: "hair"
+  aliases: ["your hair", "locks of hair"]
+  why_original_fails: "The question asks for something with locks that grows on your head, which is hair; 'piano' is stated as the thing with keys."
+
+# ---------------------------------------------------------------- hand puzzles
+- id: rooster-egg-1
+  source: rooster-egg
+  type: trivialized
+  text: "If a hen lays an egg on top of a barn roof that slopes down to the west, which way does the egg roll?"
+  answer: "west"
+  aliases: ["to the west", "down the slope", "downhill", "down the west slope", "westward"]
+  why_original_fails: "A hen does lay eggs, so the trick is gone; the egg rolls down the stated slope, to the west."
+
+- id: two-mothers-two-daughters-1
+  source: two-mothers-two-daughters
+  type: trivialized
+  text: "Two mothers and two daughters went out to eat. Everyone ate one burger, and four burgers were eaten in total. How many people went out to eat?"
+  answer: "four"
+  aliases: ["4", "four people"]
+  why_original_fails: "Four burgers, one each, means four people; the three-generation trick applies to three burgers."
+
+- id: egg-yolk-1
+  source: egg-yolk
+  type: trivialized
+  text: "Which is grammatically correct: \"the yolk of the egg is yellow\" or \"the yolk of the egg are yellow\"?"
+  answer: "the yolk of the egg is yellow"
+  aliases: ["is yellow", "the first", "the first one", "is"]
+  why_original_fails: "Yolks are yellow, so the color trap is gone; only the grammar question remains, and 'is' is correct."
+
+# ---------------------------------------------------------------- crawsome
+- id: craw-0007-1
+  source: craw-0007
+  type: hard_constraint
+  text: "What do you throw out to use and take in when you're done, and it has a hook at the end?"
+  answer: "a fishing line"
+  aliases: ["fishing line", "a fishing rod", "a line", "fishing rod", "a fishing hook and line"]
+  why_original_fails: "An anchor has no hook at the end; a fishing line does and is cast out and reeled in."
+
+- id: craw-0030-1
+  source: craw-0030
+  type: hard_constraint
+  text: "I have a neck but no head. I have a body but no arms. I have a bottom but no legs. I make music when my strings are plucked. What am I?"
+  answer: "a guitar"
+  aliases: ["guitar", "a violin", "a cello", "a bass guitar", "a lute", "a ukulele"]
+  why_original_fails: "A bottle has no strings; a guitar has a neck, a body, a bottom and strings."
+
+- id: craw-0068-1
+  source: craw-0068
+  type: hard_constraint
+  text: "I am so simple that I can only point, yet I guide people all over the world, and I am part of your hand. What am I?"
+  answer: "a finger"
+  aliases: ["finger", "the index finger", "index finger", "your finger", "a pointer finger"]
+  why_original_fails: "A compass is not part of a hand; a finger is and points."
+
+- id: craw-0069-1
+  source: craw-0069
+  type: question_swap
+  text: "You throw away the outside and cook the inside. Then you eat the outside and throw away the inside. What did you throw away last?"
+  answer: "the cob"
+  aliases: ["cob", "the corn cob", "corn cob", "the core"]
+  why_original_fails: "The question asks what was thrown away last, the cob; 'corn' is what was eaten."
+
+- id: craw-0079-1
+  source: craw-0079
+  type: negated_premise
+  text: "What has six faces but no eyes, and every face is a square?"
+  answer: "a cube"
+  aliases: ["cube"]
+  why_original_fails: "A die has twenty-one 'eyes'; a plain cube has six square faces and none."
+
+- id: craw-0137-1
+  source: craw-0137
+  type: hard_constraint
+  text: "What is that over the head and under the hat, on a completely bald man?"
+  answer: "nothing"
+  aliases: ["skin", "his scalp", "scalp", "bare skin", "nothing but skin", "no hair"]
+  why_original_fails: "A bald man has no hair; what is under his hat is bare scalp, or nothing."
+
+- id: craw-0187-1
+  source: craw-0187
+  type: negated_premise
+  text: "If you drop me I'm sure to crack, but give me a smile and I'll never smile back. I hold your photograph. What am I?"
+  answer: "a picture frame"
+  aliases: ["picture frame", "a photo frame", "photo frame", "a frame", "frame"]
+  why_original_fails: "A mirror smiles back; the thing that never smiles back and holds a photograph is a picture frame."
+
+- id: craw-0226-1
+  source: craw-0226
+  type: question_swap
+  text: "The eight of us move forth and back, to protect our king from the foe's attack. Which piece do we protect?"
+  answer: "the king"
+  aliases: ["king"]
+  why_original_fails: "The question asks which piece is protected, the king; 'pawns' are the speakers."
+
+- id: craw-0313-1
+  source: craw-0313
+  type: negated_premise
+  text: "By day I come without being fetched. At night I am lost without being stolen. What am I?"
+  answer: "the sun"
+  aliases: ["sun", "daylight", "the day", "sunlight"]
+  why_original_fails: "Night and day are swapped, so the thing that comes by day and is lost at night is the sun, not the stars."
