@@ -1003,3 +1003,106 @@
   answer: "Ankara"
   aliases: []
   note: "control item, not a riddle: models answer Istanbul by association; the probe decides whether it stays"
+
+# ---------------------------------------------------------------- added 2026-09-05 (second pass)
+- id: brain
+  family: riddle
+  text: "What gets sharper the more you use it?"
+  answer: "your brain"
+  aliases: ["brain", "the brain", "your mind", "the mind", "mind"]
+
+- id: lid
+  family: riddle
+  text: "What can't be put in a saucepan?"
+  answer: "its lid"
+  aliases: ["the lid", "a lid", "lid", "its own lid", "the saucepan's lid"]
+
+- id: letter-v
+  family: riddle
+  text: "What is at the center of gravity?"
+  answer: "the letter V"
+  aliases: ["V", "v", "letter V"]
+
+- id: post-office
+  family: riddle
+  text: "What starts with P, ends with E, and has thousands of letters?"
+  answer: "the post office"
+  aliases: ["post office", "a post office", "postoffice"]
+
+- id: december-letter
+  family: riddle
+  text: "What is found in December that isn't in any other month?"
+  answer: "the letter D"
+  aliases: ["D", "d", "letter D"]
+
+- id: red-stone
+  family: riddle
+  text: "If you throw a red stone into the blue sea, what will it become?"
+  answer: "wet"
+  aliases: ["it will get wet", "it becomes wet", "wet"]
+
+- id: bear-house
+  family: puzzle
+  text: "A man builds a house with all four sides facing south. A bear walks by. What colour is the bear?"
+  answer: "white"
+  aliases: ["a polar bear", "polar bear", "it is a polar bear", "white, it's a polar bear", "white (polar bear)"]
+
+- id: eight-days
+  family: puzzle
+  text: "How can a man go eight days without sleep?"
+  answer: "he sleeps at night"
+  aliases: ["by sleeping at night", "sleeps at night", "he sleeps during the night", "sleep at night", "he only sleeps at night"]
+
+- id: birds-wire
+  family: puzzle
+  text: "Ten birds are sitting on a wire. A hunter shoots one. How many are left?"
+  answer: "none"
+  aliases: ["zero", "0", "none, the rest flew away", "no birds", "none are left", "the rest fly away", "0, they all fly away"]
+
+- id: hiccups
+  family: puzzle
+  text: "A man walks into a bar and asks the bartender for a glass of water. The bartender pulls out a gun and points it at the man. The man says \"thank you\" and leaves. Why?"
+  answer: "the man had hiccups"
+  aliases: ["hiccups", "he had hiccups", "he had the hiccups", "to cure his hiccups", "the scare cured his hiccups", "hiccoughs"]
+
+- id: parachute
+  family: puzzle
+  text: "A man is found dead in a field. Next to him is an unopened package. How did he die?"
+  answer: "his parachute didn't open"
+  aliases: ["parachute", "the package was his parachute", "his parachute failed to open", "parachute failure", "his parachute did not open", "skydiving accident"]
+
+- id: romeo-juliet
+  family: puzzle
+  text: "Romeo and Juliet are found dead on the floor. Around them are broken glass and a puddle of water. How did they die?"
+  answer: "they were goldfish whose bowl broke"
+  aliases: ["goldfish", "they were goldfish", "they were fish", "their fishbowl broke", "they are fish", "the fish bowl fell and broke", "they were fish and their bowl broke"]
+
+- id: seconds-year
+  family: puzzle
+  text: "How many seconds are there in a year?"
+  answer: "twelve"
+  aliases: ["12", "12 (January 2nd, February 2nd, ...)", "twelve seconds", "12 seconds", "twelve, the 2nd of each month"]
+
+- id: half-of-two
+  family: puzzle
+  text: "What is half of two plus two?"
+  answer: "three"
+  aliases: ["3", "three"]
+
+- id: black-dog
+  family: puzzle
+  text: "A black dog is standing in the middle of a black road. None of the street lights are on and there is no moon. A car with its headlights off comes down the road but stops in time. How did the driver see the dog?"
+  answer: "it was daytime"
+  aliases: ["it was day", "daytime", "it was during the day", "broad daylight", "it was daylight", "it was the middle of the day"]
+
+- id: six-seven
+  family: puzzle
+  text: "Why is six afraid of seven?"
+  answer: "because seven eight nine"
+  aliases: ["seven ate nine", "because seven ate nine", "7 8 9", "seven eight nine", "because 7 8 9", "because 7 ate 9"]
+
+- id: cows-drink
+  family: puzzle
+  text: "What do cows drink?"
+  answer: "water"
+  aliases: ["water"]

@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import hashlib
 import json
 import sys
 import time
@@ -97,19 +98,25 @@ async def judge_rows(rows: list[dict[str, Any]], items: dict[str, dict[str, Any]
                 c = json.loads(line)
                 cache[c["key"]] = c
     fh = cache_path.open("a")
-    todo = [r for r in rows if f"{r['unit_id']}|{r['sample']}" not in cache]
-    print(f"judge {provider}:{model}: {len(rows)} rows, {len(todo)} to call", file=sys.stderr)
-
-    async def one(r):
+    def judge_prompt(r: dict[str, Any]) -> str:
         it = items[r["unit_id"]]
-        prompt = JUDGE_PROMPT.format(
+        return JUDGE_PROMPT.format(
             text=it["text"], accepted=json.dumps([it["answer"], *it.get("aliases", [])]),
             original=json.dumps([it["original_answer"], *it.get("original_aliases", [])]), answer=r["final"],
         )
+
+    def cache_key(r: dict[str, Any]) -> str:  # a rephrased item or alias edit invalidates the cached verdict
+        return f"{r['unit_id']}|{r['sample']}|{hashlib.sha256(judge_prompt(r).encode()).hexdigest()[:16]}"
+
+    todo = [r for r in rows if cache_key(r) not in cache]
+    print(f"judge {provider}:{model}: {len(rows)} rows, {len(todo)} to call", file=sys.stderr)
+
+    async def one(r):
+        prompt = judge_prompt(r)
         reply = await client.chat(model, [{"role": "user", "content": prompt}], max_tokens=8, thinking=False, temperature=0.0)
         word = (reply.text or "").strip().lower().strip(".").split()
         verdict = word[0] if word and word[0] in JUDGE_LABELS else ("error" if reply.error else "other")
-        row = {"key": f"{r['unit_id']}|{r['sample']}", "verdict": verdict, "raw": reply.text, "error": reply.error, "judge": f"{provider}:{model}"}
+        row = {"key": cache_key(r), "verdict": verdict, "raw": reply.text, "error": reply.error, "judge": f"{provider}:{model}"}
         cache[row["key"]] = row
         fh.write(json.dumps(row, ensure_ascii=False) + "\n")
         fh.flush()
@@ -117,7 +124,7 @@ async def judge_rows(rows: list[dict[str, Any]], items: dict[str, dict[str, Any]
     if todo:
         await gather_limited([one(r) for r in todo], progress_every=100, label="judge ")
     fh.close()
-    return {k: v["verdict"] for k, v in cache.items()}
+    return {f"{r['unit_id']}|{r['sample']}": cache[cache_key(r)]["verdict"] for r in rows if cache_key(r) in cache}
 
 
 def score_altered(run_dir: Path, items: dict[str, dict[str, Any]], judge_spec: str | None, concurrency: int) -> None:

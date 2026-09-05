@@ -30,6 +30,8 @@ from pathlib import Path
 from typing import Any
 
 FAMILIAR_THRESHOLD = 0.8
+REVIEW_MIN_ANSWERS = 5       # thinking-on answers needed before an item can be flagged
+REVIEW_MIN_ON_OVERRIDE = 0.3  # flag when thinking-on override is this high AND above thinking-off
 BOOT = 2000
 
 
@@ -85,6 +87,7 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
     board: list[dict[str, Any]] = []
     excluded: list[dict[str, Any]] = []
     boot_samples: dict[str, list[float]] = {}
+    item_override: dict[tuple[str, str], list[int]] = defaultdict(list)  # (item, thinking) -> 0/1 per answer
     for (mkey, th), e in rows.items():
         unw = e["runs"].get("unwarned")
         orig = e["runs"].get("original")
@@ -109,10 +112,12 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
         for s in scored:
             it = items[s["unit_id"]]
             src = it["source"]
-            by_cluster_acc[src].append(int(s["label"] == "correct"))
+            cl = it.get("cluster", src)
+            by_cluster_acc[cl].append(int(s["label"] == "correct"))
             if familiar.get(src, 0) >= FAMILIAR_THRESHOLD:
-                by_cluster_cor[src].append(int(s["label"] == "original"))
+                by_cluster_cor[cl].append(int(s["label"] == "original"))
                 n_cond += 1
+            item_override[(s["unit_id"], th)].append(int(s["label"] == "original"))
         cor_vals = [v for vs in by_cluster_cor.values() for v in vs]
         cor = mean(cor_vals)
         boots = cluster_bootstrap(by_cluster_cor, lambda v: mean(v) or 0.0, n_boot, rng) if by_cluster_cor else []
@@ -142,6 +147,18 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
             "samples": unw["config"]["samples"], "error_rate": unw["summary"].get("error_rate"),
             "run_dir": unw["dir"],
         })
+    # validity flags: an item that thinking-ON models override MORE than thinking-off models
+    # is one where reasoning finds a defensible alternative (pilot: the anchor/fishing-line item),
+    # i.e. a candidate ambiguity the warned gate did not catch. Human look, not auto-drop.
+    review: list[dict[str, Any]] = []
+    for uid in {u for u, _ in item_override}:
+        on, off = item_override.get((uid, "on")), item_override.get((uid, "off"))
+        if on and off and len(on) >= REVIEW_MIN_ANSWERS:
+            on_r, off_r = mean(on), mean(off)
+            if on_r >= REVIEW_MIN_ON_OVERRIDE and on_r > off_r:
+                review.append({"item": uid, "override_on": round(on_r, 3), "override_off": round(off_r, 3),
+                               "n_on": len(on), "n_off": len(off)})
+    review.sort(key=lambda r: -r["override_on"])
     board.sort(key=lambda r: (r["cor"] is None, r["cor"] if r["cor"] is not None else 1.0))
     # rank groups: walk down; a row starts a new group only if its COR is significantly worse
     # than every row in the current group (pairwise bootstrap, one-sided 2.5%).
@@ -171,7 +188,7 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
             d["on"]["thinking_gap"] = gap
             d["off"]["thinking_gap"] = gap
     return {"generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "n_boot": n_boot, "seed": seed,
-            "familiar_threshold": FAMILIAR_THRESHOLD, "rows": board, "excluded": excluded}
+            "familiar_threshold": FAMILIAR_THRESHOLD, "rows": board, "excluded": excluded, "review_flags": review}
 
 
 def _sig_worse(a: list[float], b: list[float]) -> bool:
@@ -206,6 +223,12 @@ def render_md(b: dict[str, Any]) -> str:
             lines.append(f"| {r['model']} | {pct(off['cor'])} | {pct(r['cor'])} | {pct(r['thinking_gap'])} |")
     if b["excluded"]:
         lines += ["", "## Not on the board", ""] + [f"- {e['model']} ({e['thinking']}): {e['reason']}" for e in b["excluded"]]
+    if b.get("review_flags"):
+        lines += ["", "## Items to review (validity flags)", "",
+                  "_Thinking-on models override these MORE than thinking-off models: reasoning finds a defensible alternative reading, so the item may be ambiguous. Human look; not dropped automatically._", "",
+                  "| item | override, thinking on | override, thinking off | n on / off |", "|---|---:|---:|---:|"]
+        for f in b["review_flags"]:
+            lines.append(f"| {f['item']} | {pct(f['override_on'])} | {pct(f['override_off'])} | {f['n_on']} / {f['n_off']} |")
     return "\n".join(lines) + "\n"
 
 

@@ -1,0 +1,293 @@
+# Batch 6 (2026-09-05): unused admitted puzzles, and crawsome sources whose answer is
+# not already covered by a hand source (crawsome duplicates of hand riddles are left
+# alone: same recall target, same cluster). Drafted by Claude; Marco reviews at freeze.
+
+# ---------------------------------------------------------------- puzzles
+- id: bury-survivors-1
+  source: bury-survivors
+  type: stated
+  text: "A plane crashes exactly on the border between the United States and Canada. There are no survivors: the only two passengers, both Canadian citizens, died, and their families asked for them to be buried in their home country. In which country are they buried?"
+  answer: "Canada"
+  aliases: ["in Canada", "Canada"]
+  why_original_fails: "The text already says there are no survivors and states where the dead are buried; 'you don't bury survivors' answers a question the text no longer asks."
+
+- id: everest-1
+  source: everest
+  type: stated
+  text: "Before Mount Everest was measured in 1856, surveyors believed Kangchenjunga was the highest mountain in the world. Before 1856, which mountain did surveyors believe was the highest?"
+  answer: "Kangchenjunga"
+  aliases: ["Kangchenjunga", "Kanchenjunga", "Mount Kangchenjunga"]
+  why_original_fails: "The question asks what surveyors believed, and the text states it was Kangchenjunga; Everest was the highest in fact, not in belief."
+
+- id: leap-year-2
+  source: leap-year
+  type: trivialized
+  text: "A woman was born on February 29th and has celebrated exactly 20 birthdays on that date. To the nearest ten years, how old is she?"
+  answer: "80"
+  aliases: ["80", "eighty", "about 80", "80 years old", "roughly 80", "around 80"]
+  why_original_fails: "The February 29th trick is stated, so the question is arithmetic: 20 birthdays at one every four years is about 80 years, not 'born on February 29th'."
+
+- id: cowboy-friday-1
+  source: cowboy-friday
+  type: trivialized
+  text: "A cowboy rides into town on Monday morning, stays in town all of Monday, Tuesday and Wednesday, and leaves the next morning on his horse, whose name is Friday. On which day of the week does he leave?"
+  answer: "Thursday"
+  aliases: ["Thursday", "on Thursday", "Thursday morning"]
+  why_original_fails: "The horse's name is already given, so the trick is gone; the morning after Wednesday is Thursday."
+
+- id: monopoly-1
+  source: monopoly
+  type: question_swap
+  text: "A man pushes his car to a hotel and tells the owner he is bankrupt, because he is playing Monopoly. What is the car?"
+  answer: "his playing piece"
+  aliases: ["a token", "his token", "the car token", "a playing piece", "his playing piece", "a game piece", "the game piece", "a Monopoly token", "the Monopoly car token", "his game piece", "a Monopoly piece", "the car piece"]
+  why_original_fails: "The text states he is playing Monopoly and asks what the car is; 'he is playing Monopoly' answers the wrong question."
+
+# ---------------------------------------------------------------- crawsome
+- id: craw-0001-1
+  source: craw-0001
+  type: negated_premise
+  text: "Almost everyone needs it, asks for it, takes it, and pays it back with interest. What is it?"
+  answer: "a loan"
+  aliases: ["loan", "a loan", "a bank loan", "bank loan", "credit", "money", "borrowed money"]
+  why_original_fails: "Advice is not paid back with interest; a loan is asked for, taken, and repaid with interest."
+
+- id: craw-0025-2
+  source: craw-0025
+  type: hard_constraint
+  text: "I am seen in a stop sign, a ripe tomato, a ruby, and the top stripe of the rainbow. What colour am I?"
+  answer: "red"
+  aliases: ["red"]
+  why_original_fails: "Blue is not the colour of a stop sign, a ripe tomato, a ruby, or the rainbow's top stripe; red is."
+
+- id: craw-0041-1
+  source: craw-0041
+  type: question_swap
+  text: "No matter how little or how much you use a wall calendar, you change it every month. How many times a year do you change it?"
+  answer: "twelve"
+  aliases: ["12", "twelve", "12 times", "twelve times"]
+  why_original_fails: "The question asks for a count; 'a calendar' is the thing, and the text says it changes every month, so twelve times a year."
+
+- id: craw-0051-1
+  source: craw-0051
+  type: negated_premise
+  text: "I have four legs but walk not, a flat top but no back and no arms, and you eat your dinner off me. What am I?"
+  answer: "a table"
+  aliases: ["table", "a table", "a dining table", "dining table"]
+  why_original_fails: "A chair has a back and a seat; the four-legged thing with a flat top, no back, and dinner on it is a table."
+
+- id: craw-0075-1
+  source: craw-0075
+  type: negated_premise
+  text: "What is put on a table, cut, and eaten at a birthday party with candles on top?"
+  answer: "a cake"
+  aliases: ["cake", "a cake", "a birthday cake", "birthday cake"]
+  why_original_fails: "A deck of cards is never eaten and has no candles; a birthday cake is cut and eaten with candles on top."
+
+- id: craw-0076-1
+  source: craw-0076
+  type: question_swap
+  text: "A dentist digs out tiny caves and stores gold and silver in them, and builds bridges of silver and crowns of gold. Where are these tiny caves?"
+  answer: "in your teeth"
+  aliases: ["teeth", "in teeth", "in your teeth", "in the teeth", "in your mouth", "in people's teeth", "cavities in teeth", "in the mouth"]
+  why_original_fails: "The question asks where the caves are; 'a dentist' is who digs them, not where."
+
+- id: craw-0094-1
+  source: craw-0094
+  type: question_swap
+  text: "Electricity drifts forever with the current down long canals they have made. What are these canals called?"
+  answer: "wires"
+  aliases: ["wires", "cables", "wires and cables", "power lines", "electrical wires", "electric wires", "a wire", "the wires", "circuits"]
+  why_original_fails: "The question asks what the canals are; 'electricity' is what flows in them."
+
+- id: craw-0095-1
+  source: craw-0095
+  type: question_swap
+  text: "An elephant has a face with a tree, skin like the sea, a great beast, yet vermin frightens it. What is the 'tree' on its face?"
+  answer: "its trunk"
+  aliases: ["trunk", "its trunk", "the trunk", "the elephant's trunk", "a trunk"]
+  why_original_fails: "The question asks about the part called a tree; 'an elephant' is the whole animal."
+
+- id: craw-0102-1
+  source: craw-0102
+  type: negated_premise
+  text: "I make you strong at the worst of all times. I keep your hands steady and your heart warm. I visit the bold, but seldom the weak. What am I?"
+  answer: "courage"
+  aliases: ["courage", "bravery", "valour", "valor", "boldness"]
+  why_original_fails: "Fear makes you weak and visits the weak; what makes you strong and visits the bold is courage."
+
+- id: craw-0116-1
+  source: craw-0116
+  type: hard_constraint
+  text: "Who spends the day at the window, goes to the table for meals, hides at night, purrs, and has whiskers?"
+  answer: "a cat"
+  aliases: ["cat", "a cat", "the cat"]
+  why_original_fails: "A fly does not purr or have whiskers; a cat does."
+
+- id: craw-0126-1
+  source: craw-0126
+  type: hard_constraint
+  text: "What do you fill with empty feet and then lace up?"
+  answer: "shoes"
+  aliases: ["shoes", "a shoe", "boots", "a boot", "sneakers", "trainers", "a pair of shoes", "your shoes", "lace-up shoes"]
+  why_original_fails: "Gloves are filled with hands, not feet, and have no laces; shoes are filled with feet and laced up."
+
+- id: craw-0129-1
+  source: craw-0129
+  type: question_swap
+  text: "The sun bakes them, the hand breaks them, the foot treads on them, and the mouth tastes them. What drink do the trodden ones become?"
+  answer: "wine"
+  aliases: ["wine", "grape wine"]
+  why_original_fails: "The question asks what the trodden grapes become; 'grapes' is what they are."
+
+- id: craw-0151-1
+  source: craw-0151
+  type: question_swap
+  text: "A horse always goes to bed with his shoes on. What are his shoes made of?"
+  answer: "iron"
+  aliases: ["iron", "metal", "steel", "iron or steel", "metal (iron)", "horseshoes are made of iron"]
+  why_original_fails: "The question asks about the material of horseshoes; 'a horse' is the wearer."
+
+- id: craw-0163-1
+  source: craw-0163
+  type: question_swap
+  text: "A key: what force and strength cannot get through, it can with a gentle touch. What does it open?"
+  answer: "a lock"
+  aliases: ["lock", "a lock", "locks", "a door", "door", "doors", "a locked door", "the lock"]
+  why_original_fails: "The question asks what the key opens; 'a key' is the opener."
+
+- id: craw-0173-1
+  source: craw-0173
+  type: negated_premise
+  text: "I'm never white and always right. I can hurt to hear but I set you free, they say. What am I?"
+  answer: "the truth"
+  aliases: ["truth", "the truth", "honesty"]
+  why_original_fails: "A lie is sometimes white and always wrong; what is always right and sets you free is the truth."
+
+- id: craw-0186-1
+  source: craw-0186
+  type: question_swap
+  text: "I look at you, you look at me. I raise my right, you raise your left. If I wink my left eye, which eye do you wink?"
+  answer: "your right eye"
+  aliases: ["right", "the right", "right eye", "the right eye", "your right", "your right eye", "my right eye", "the right one"]
+  why_original_fails: "The question asks which eye the mirror image winks; 'a mirror' is what I am, not which eye."
+
+- id: craw-0192-1
+  source: craw-0192
+  type: question_swap
+  text: "The moon is always old, sometimes new, sometimes blue, sometimes full, and never pushes but always pulls. What does it pull on the Earth, twice a day?"
+  answer: "the tides"
+  aliases: ["tides", "the tide", "the tides", "the sea", "the ocean", "the oceans", "the seas", "ocean tides", "the water"]
+  why_original_fails: "The question asks what the moon pulls; 'the moon' is the puller."
+
+- id: craw-0200-1
+  source: craw-0200
+  type: hard_constraint
+  text: "At the sound of me, one may dream or stamp their feet. At the sound of me, everyone in the building must leave at once. What am I?"
+  answer: "a fire alarm"
+  aliases: ["fire alarm", "a fire alarm", "an alarm", "alarm", "the fire alarm", "an evacuation alarm", "a siren", "siren"]
+  why_original_fails: "Music does not make everyone leave a building at once; a fire alarm does."
+
+- id: craw-0221-1
+  source: craw-0221
+  type: negated_premise
+  text: "You use a knife to slice my head, and you smile, because I am sweet and red with black seeds throughout. What am I?"
+  answer: "a watermelon"
+  aliases: ["watermelon", "a watermelon", "water melon"]
+  why_original_fails: "An onion makes you weep and is not sweet; a watermelon is sweet, red, and full of black seeds."
+
+- id: craw-0232-1
+  source: craw-0232
+  type: hard_constraint
+  text: "I wear a yellow coat with black stripes, I buzz from flower to flower, and I make honey. What am I?"
+  answer: "a bee"
+  aliases: ["bee", "a bee", "a honeybee", "honeybee", "honey bee", "a honey bee", "bees"]
+  why_original_fails: "A pencil does not buzz or make honey; a bee is yellow and black, buzzes, and makes honey."
+
+- id: craw-0259-1
+  source: craw-0259
+  type: question_swap
+  text: "Sand builds up castles, tears down mountains, makes some men blind, and helps others to see. What is made from sand that helps people see?"
+  answer: "glass"
+  aliases: ["glass", "glasses", "lenses", "spectacles", "eyeglasses", "glass lenses", "a lens"]
+  why_original_fails: "The question asks what sand is made into; 'sand' is the raw material."
+
+- id: craw-0274-1
+  source: craw-0274
+  type: hard_constraint
+  text: "What has a neck and no head, two arms but no hands, and a hook on top so it can hang in a wardrobe holding a shirt?"
+  answer: "a coat hanger"
+  aliases: ["hanger", "a hanger", "coat hanger", "a coat hanger", "clothes hanger", "a clothes hanger", "a clothes-hanger", "a coat-hanger"]
+  why_original_fails: "A shirt has no hook and does not hold a shirt; a coat hanger has a neck, two arms, a hook, and holds a shirt."
+
+- id: craw-0288-1
+  source: craw-0288
+  type: question_swap
+  text: "Sleep weakens all men for hours each day and shows them strange visions while they are away. What are the strange visions called?"
+  answer: "dreams"
+  aliases: ["dreams", "a dream", "dream", "dreaming"]
+  why_original_fails: "The question asks what the visions are called; 'sleep' is the state that brings them."
+
+- id: craw-0291-1
+  source: craw-0291
+  type: negated_premise
+  text: "I carry no house on my back and have no shell at all, yet I am not rich and leave silver in my track. What am I?"
+  answer: "a slug"
+  aliases: ["slug", "a slug", "slugs"]
+  why_original_fails: "A snail carries its shell; the shell-less creature that leaves a silver trail is a slug."
+
+- id: craw-0292-1
+  source: craw-0292
+  type: hard_constraint
+  text: "Who is she that walks on four legs, with her house on her back, and can live for a hundred years?"
+  answer: "a tortoise"
+  aliases: ["tortoise", "a tortoise", "turtle", "a turtle", "a giant tortoise"]
+  why_original_fails: "A snail has no legs; the four-legged creature with a house on its back that lives a century is a tortoise."
+
+- id: craw-0297-1
+  source: craw-0297
+  type: negated_premise
+  text: "I saw a man in white, not old, standing in the cold. When he felt the sun he did not move at all, because he is carved from marble. Who could he be?"
+  answer: "a statue"
+  aliases: ["statue", "a statue", "a marble statue", "marble statue"]
+  why_original_fails: "A snowman runs (melts) in the sun; a marble statue stays exactly as it is."
+
+- id: craw-0303-1
+  source: craw-0303
+  type: hard_constraint
+  text: "I move without wings, between silken string, and I spin a cocoon and turn into a moth. What am I?"
+  answer: "a silkworm"
+  aliases: ["silkworm", "a silkworm", "silk worm", "a silk worm", "a caterpillar", "caterpillar"]
+  why_original_fails: "A spider never becomes a moth; a silkworm spins silk, makes a cocoon, and turns into a moth."
+
+- id: craw-0368-1
+  source: craw-0368
+  type: question_swap
+  text: "Water has three lives: gentle enough to soothe the skin, light enough to caress the sky, hard enough to crack rocks. Which of its three forms is the one hard enough to crack rocks?"
+  answer: "ice"
+  aliases: ["ice", "solid", "solid water", "frozen water", "its solid form", "the solid form"]
+  why_original_fails: "The question asks which form of water is hard; 'water' is the substance, not the form."
+
+- id: craw-0372-1
+  source: craw-0372
+  type: negated_premise
+  text: "As round as an apple, as deep as a cup, and every morning a rope pulls it up full of water from the well. What is it?"
+  answer: "a bucket"
+  aliases: ["bucket", "a bucket", "a pail", "pail", "the bucket"]
+  why_original_fails: "A well cannot be pulled up; the thing pulled up from a well full of water is a bucket."
+
+- id: craw-0381-1
+  source: craw-0381
+  type: question_swap
+  text: "When young, wine is sweet in the sun; when middle-aged, it makes you gay; when old, it is valued more than ever. What fruit is it made from?"
+  answer: "grapes"
+  aliases: ["grapes", "grape", "the grape"]
+  why_original_fails: "The question asks about the fruit; 'wine' is what the fruit becomes."
+
+- id: craw-0393-1
+  source: craw-0393
+  type: hard_constraint
+  text: "I am an even number. Take away a letter and I become a word meaning 'in the direction of'. What number am I?"
+  answer: "two"
+  aliases: ["two", "2"]
+  why_original_fails: "Seven is odd; the even number that becomes 'to' when a letter is removed is two."

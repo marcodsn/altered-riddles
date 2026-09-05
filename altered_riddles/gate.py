@@ -24,6 +24,7 @@ import asyncio
 import glob
 import hashlib
 import json
+import re
 import sys
 import time
 from collections import Counter, defaultdict
@@ -45,6 +46,15 @@ MAX_TOKENS = 16000  # 6000 truncated 45 of 440 replies inside the reasoning (202
 TYPES = ("stated", "hard_constraint", "negated_premise", "trivialized", "question_swap")
 
 
+def answer_cluster(answer: str) -> str:
+    """Cluster id for the clustered bootstrap: the memorized answer, not the wording.
+    Two sources that share an original answer (the clock riddles, a crawsome
+    duplicate of a hand riddle) are one recall target and one cluster."""
+    a = answer.lower().strip().rstrip(".!?")
+    a = re.sub(r"^(a|an|the|your|his|her|my|in the|it is|it's)\s+", "", a)
+    return re.sub(r"[^a-z0-9]+", "-", a).strip("-")
+
+
 def load_items(pattern: str, sources: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
     items: list[dict[str, Any]] = []
     for path in sorted(glob.glob(pattern)):
@@ -61,6 +71,8 @@ def load_items(pattern: str, sources: dict[str, dict[str, Any]]) -> list[dict[st
             items.append(
                 {
                     "id": it["id"], "source": it["source"], "family": src["family"], "type": it["type"],
+                    # puzzles cluster by source (a shared number is not a shared memory); riddles by answer
+                    "cluster": str(it.get("cluster") or (it["source"] if src["family"] == "puzzle" else answer_cluster(src["answer"]))),
                     "text": it["text"].strip(), "answer": str(it["answer"]).strip(),
                     "aliases": [str(a) for a in (it.get("aliases") or [])],
                     "why_original_fails": it["why_original_fails"].strip(),

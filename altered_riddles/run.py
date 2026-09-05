@@ -106,13 +106,26 @@ async def run(args: argparse.Namespace) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     raw_path = out_dir / "raw.jsonl"
 
+    # A stored reply is reusable only while the unit's text is unchanged: rows
+    # whose text_sha no longer matches (item rephrased or removed) are dropped.
+    text_sha = {u["id"]: hashlib.sha256(u["text"].encode()).hexdigest()[:16] for u in units}
     done: set[tuple[str, int]] = set()
     if raw_path.exists():
+        kept: list[str] = []
+        stale = 0
         for line in raw_path.read_text().splitlines():
-            if line.strip():
-                row = json.loads(line)
-                if not row["reply"].get("error"):
-                    done.add((row["unit_id"], row["sample"]))
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            if row.get("text_sha") != text_sha.get(row["unit_id"]):
+                stale += 1
+                continue
+            kept.append(line)
+            if not row["reply"].get("error"):
+                done.add((row["unit_id"], row["sample"]))
+        if stale:
+            raw_path.write_text("".join(l + "\n" for l in kept))
+            print(f"dropped {stale} stale rows whose unit text changed or unit was removed", file=sys.stderr)
 
     config = {
         "provider": provider, "model": model, "condition": args.condition,
@@ -135,7 +148,8 @@ async def run(args: argparse.Namespace) -> None:
         prompt = PROMPTS[args.condition].format(text=unit["text"])
         reply = await client.chat(model, [{"role": "user", "content": prompt}], max_tokens=max_tokens,
                                   thinking=thinking_on, temperature=args.temperature)
-        fh.write(json.dumps({"unit_id": unit["id"], "sample": sample, "reply": reply.as_dict()}, ensure_ascii=False) + "\n")
+        fh.write(json.dumps({"unit_id": unit["id"], "sample": sample, "text_sha": text_sha[unit["id"]],
+                             "reply": reply.as_dict()}, ensure_ascii=False) + "\n")
         fh.flush()
         return reply
 

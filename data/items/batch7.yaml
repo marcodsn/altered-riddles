@@ -1,0 +1,155 @@
+# Batch 7 (2026-09-05): items for the sources added in the second pass. These sources
+# are not admitted until the recall probe has run on them; freeze drops items whose
+# source is not admitted. Drafted by Claude; Marco reviews at freeze.
+
+- id: brain-1
+  source: brain
+  type: negated_premise
+  text: "What gets duller the more you use it, is made of steel, and has a handle?"
+  answer: "a knife"
+  aliases: ["knife", "a knife", "a blade", "blade", "a kitchen knife", "kitchen knife"]
+  why_original_fails: "A brain gets sharper with use and is not steel; a steel knife with a handle gets duller with use."
+
+- id: lid-1
+  source: lid
+  type: question_swap
+  text: "A saucepan's lid can't be put in the saucepan. Where does the lid go instead?"
+  answer: "on top of the saucepan"
+  aliases: ["on top", "on top of the pan", "on the pan", "on the saucepan", "on top of the saucepan", "on top of it", "on the top", "over the pan"]
+  why_original_fails: "The question asks where the lid goes; 'its lid' is the thing, not the place."
+
+- id: bear-house-1
+  source: bear-house
+  type: stated
+  text: "A man builds a house with all four sides facing south. A brown bear walks by. What colour is the bear?"
+  answer: "brown"
+  aliases: ["brown", "it is brown", "brown, as stated"]
+  why_original_fails: "The text states the bear is brown; 'white' is the memorized polar-bear answer, contradicted by the text."
+
+- id: bear-house-2
+  source: bear-house
+  type: negated_premise
+  text: "A man builds a house with all four sides facing north. Where must the house be?"
+  answer: "the South Pole"
+  aliases: ["South Pole", "the South Pole", "at the South Pole", "Antarctica", "in Antarctica", "the geographic South Pole"]
+  why_original_fails: "All sides facing north puts the house at the South Pole, and the question asks where, not what colour a bear is."
+
+- id: red-stone-1
+  source: red-stone
+  type: hard_constraint
+  text: "If you drop a red stone into a bucket of white paint, what colour will it be when you pull it out?"
+  answer: "white"
+  aliases: ["white", "white, covered in paint", "painted white"]
+  why_original_fails: "The stone is coated in white paint, so the answer is a colour; 'wet' is the sea-riddle pun the text no longer supports."
+
+- id: eight-days-1
+  source: eight-days
+  type: question_swap
+  text: "A man can go eight days without sleep by sleeping at night. How can a night-shift worker go eight nights without sleeping at night?"
+  answer: "by sleeping during the day"
+  aliases: ["he sleeps during the day", "sleeps in the daytime", "by day", "during the day", "he sleeps by day", "sleeping in the day", "he sleeps in the daytime", "by sleeping in the day"]
+  why_original_fails: "The question is the mirror of the original; 'he sleeps at night' is the case the question rules out."
+
+- id: letter-v-1
+  source: letter-v
+  type: hard_constraint
+  text: "What letter is at the center of the word 'water'?"
+  answer: "the letter T"
+  aliases: ["T", "t", "letter T", "the letter t"]
+  why_original_fails: "V is at the center of 'gravity'; the middle letter of 'water' is T."
+
+- id: post-office-1
+  source: post-office
+  type: hard_constraint
+  text: "What starts with A, ends with T, and has 26 letters?"
+  answer: "the alphabet"
+  aliases: ["alphabet", "the alphabet"]
+  why_original_fails: "The post office starts with P and ends with E; what starts with A, ends with T, and has 26 letters is the alphabet."
+
+- id: birds-wire-1
+  source: birds-wire
+  type: trivialized
+  text: "Ten stone statues of birds sit on a wire. A hunter shoots one and it shatters. How many statues are left on the wire?"
+  answer: "nine"
+  aliases: ["9", "nine", "nine statues", "9 statues"]
+  why_original_fails: "Stone statues cannot fly away, so nine remain; 'none' is the memorized answer for live birds."
+
+- id: birds-wire-2
+  source: birds-wire
+  type: question_swap
+  text: "Ten birds are sitting on a wire. A hunter shoots one and the rest fly away. How many birds flew away?"
+  answer: "nine"
+  aliases: ["9", "nine", "nine birds", "9 birds"]
+  why_original_fails: "The question asks how many flew away (ten minus the one shot), not how many are left."
+
+- id: hiccups-1
+  source: hiccups
+  type: trivialized
+  text: "A man walks into a bar and asks the bartender for a glass of water. The bartender hands him a glass of water. The man drinks it, says \"thank you\", and leaves. Why did he say thank you?"
+  answer: "because he got the water he asked for"
+  aliases: ["he got his water", "because the bartender gave him water", "for the water", "he was given the water", "out of politeness for the water", "he received the water he asked for", "he was thirsty and got water", "he was being polite", "politeness", "gratitude for the water"]
+  why_original_fails: "There is no gun and no scare in this text; the man thanks the bartender for the water, and 'hiccups' has nothing to attach to."
+
+- id: parachute-1
+  source: parachute
+  type: stated
+  text: "A man is found dead in a desert. Next to him is an unopened package of sandwiches, and his water bottle is empty. What killed him?"
+  answer: "thirst"
+  aliases: ["dehydration", "thirst", "lack of water", "he died of thirst", "he died of dehydration", "no water", "he ran out of water"]
+  why_original_fails: "The package is sandwiches, not a parachute, and the empty bottle in a desert points to dehydration."
+
+- id: romeo-juliet-1
+  source: romeo-juliet
+  type: stated
+  text: "Romeo and Juliet, two goldfish, are found dead on the floor beside broken glass and a puddle of water. The cat knocked their bowl off the table. Who is responsible for their deaths?"
+  answer: "the cat"
+  aliases: ["the cat", "a cat", "the family cat"]
+  why_original_fails: "The text already says they were goldfish and asks who is responsible; 'they were goldfish' answers the wrong question."
+
+- id: seconds-year-1
+  source: seconds-year
+  type: hard_constraint
+  text: "How many seconds, the unit of time, are there in one day?"
+  answer: "86,400"
+  aliases: ["86400", "86,400", "86 400", "eighty-six thousand four hundred", "86,400 seconds", "86400 seconds"]
+  why_original_fails: "The text pins seconds as the unit of time and asks about a day; 'twelve' is the second-of-the-month pun for a year."
+
+- id: december-letter-1
+  source: december-letter
+  type: hard_constraint
+  text: "What letter is found in August but in no other month?"
+  answer: "the letter G"
+  aliases: ["G", "g", "letter G", "the letter g"]
+  why_original_fails: "D is the letter unique to December; the letter unique to August is G."
+
+- id: half-of-two-1
+  source: half-of-two
+  type: trivialized
+  text: "What is half of (two plus two)?"
+  answer: "two"
+  aliases: ["2", "two"]
+  why_original_fails: "The parentheses fix the order of operations: half of four is two, not three."
+
+- id: black-dog-1
+  source: black-dog
+  type: stated
+  text: "A black dog is standing in the middle of a black road at night. None of the street lights are on and there is no moon. A car with its headlights off comes down the road, and the driver, who is wearing night-vision goggles, stops in time. How did the driver see the dog?"
+  answer: "with night-vision goggles"
+  aliases: ["night-vision goggles", "night vision goggles", "he wore night-vision goggles", "through the goggles", "the goggles", "with his night-vision goggles", "night vision"]
+  why_original_fails: "The text says it is night and that the driver wears night-vision goggles; 'it was daytime' contradicts the text."
+
+- id: six-seven-1
+  source: six-seven
+  type: question_swap
+  text: "Six is afraid of seven because seven ate nine. Which number did seven eat?"
+  answer: "nine"
+  aliases: ["9", "nine"]
+  why_original_fails: "The question asks which number was eaten, which the text states; 'because seven eight nine' answers why six is afraid."
+
+- id: cows-drink-1
+  source: cows-drink
+  type: hard_constraint
+  text: "What do newborn calves drink from their mothers?"
+  answer: "milk"
+  aliases: ["milk", "their mother's milk", "cow's milk", "cows' milk", "mother's milk"]
+  why_original_fails: "Adult cows drink water; newborn calves drink milk from their mothers."

@@ -184,10 +184,11 @@
 - id: craw-0007-1
   source: craw-0007
   type: hard_constraint
-  text: "What do you throw out to use and take in when you're done, and it has a hook at the end?"
+  text: "What do you throw out to use and take in when you're done, and it has a baited hook at the end?"
   answer: "a fishing line"
-  aliases: ["fishing line", "a fishing rod", "a line", "fishing rod", "a fishing hook and line", "a lure", "fishing lure", "a fishing lure", "a grappling hook", "grappling hook"]
-  why_original_fails: "An anchor has no hook at the end; a fishing line does and is cast out and reeled in."
+  aliases: ["fishing line", "a fishing rod", "a line", "fishing rod", "a fishing hook and line", "a lure", "fishing lure", "a fishing lure", "a fishing rod and line", "rod and line"]
+  why_original_fails: "An anchor carries no baited hook; a fishing line is cast out, reeled in, and ends in a baited hook."
+  note: "re-pinned 2026-09-05: thinking-on models overrode 6/10 arguing an anchor's flukes are hooks (a fair reading of 'has a hook'); 'baited' excludes it"
 
 - id: craw-0030-1
   source: craw-0030
