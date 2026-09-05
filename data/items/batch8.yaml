@@ -1,0 +1,186 @@
+# Batch 8 (2026-09-05): "minimal insertion" items for puzzle sources, the construction that
+# still catches thinking models at n=119 (Mary's fifth daughter, "exactly 28 days", "what
+# colour is it"): the famous question is kept word for word, the joke answer stays
+# superficially available, and one small insertion into the premises, which reads like the
+# asker's own slip, makes the plain-reading answer entailed and the joke answer wrong.
+# Drafted by Claude; Marco reviews at freeze.
+
+- id: monty-hall-3
+  source: monty-hall
+  type: negated_premise
+  text: "You are on a game show and asked to choose one of three doors. Behind one door is a car; behind the others, goats. You pick door number 1. The host, who does not know what is behind the doors, opens door number 3 at random, and it happens to have a goat. He then asks whether you want to switch to door number 2. Is it to your advantage to switch?"
+  answer: "no, it makes no difference"
+  aliases: ["no", "it makes no difference", "no difference", "it doesn't matter", "no advantage", "50/50", "50-50", "fifty-fifty", "either door is equally likely", "switching does not help", "it is a coin flip", "no, the odds are even"]
+  why_original_fails: "With a host who opens a door at random and happens to reveal a goat, the two remaining doors are equally likely (1/2 each); the 2/3 advantage of switching needs a host who knowingly avoids the car."
+  note: "minimal insertion: 'does not know', 'at random'"
+
+- id: moses-ark-2
+  source: moses-ark
+  type: stated
+  text: "How many animals of each kind did Moses's friend Noah take on the ark?"
+  answer: "two"
+  aliases: ["two", "2", "two of each", "two of each kind", "a pair", "a pair of each", "a male and a female", "two, a male and a female", "two (seven pairs of the clean ones)"]
+  why_original_fails: "The text says Noah took them; 'none, it was Noah' is the joke answer to a question that named Moses."
+  note: "minimal insertion: 'Moses's friend Noah'; the trigger word Moses stays"
+
+- id: rooster-egg-2
+  source: rooster-egg
+  type: trivialized
+  text: "If a hen lays an egg on top of a barn roof, which way does the egg roll?"
+  answer: "down the slope"
+  aliases: ["down the slope", "downhill", "down the roof", "down whichever side is lower", "whichever way the roof slopes", "it depends on the slope", "toward the lower side", "down", "it rolls down the roof"]
+  why_original_fails: "Hens lay eggs, so the joke premise is gone; the egg rolls down whichever way the roof slopes."
+  note: "minimal insertion: rooster -> hen, nothing else"
+
+- id: dirt-in-hole-2
+  source: dirt-in-hole
+  type: negated_premise
+  text: "How much dirt is in a hole that is 3 feet deep, 3 feet wide, and 3 feet long, after it has been filled back in with the dirt that was dug out?"
+  answer: "27 cubic feet"
+  aliases: ["27 cubic feet", "27 cubic ft", "27", "twenty-seven cubic feet", "27 ft³", "3 x 3 x 3 = 27 cubic feet", "27 cu ft", "all of it, 27 cubic feet"]
+  why_original_fails: "A filled-in hole contains its full volume of dirt, 3 × 3 × 3 = 27 cubic feet; 'none' is the answer for an empty hole."
+  note: "minimal insertion: 'after it has been filled back in'"
+
+- id: subtract-five-2
+  source: subtract-five
+  type: hard_constraint
+  text: "How many times can you subtract 5 from 25 before you reach zero?"
+  answer: "five"
+  aliases: ["five", "5", "five times", "5 times"]
+  why_original_fails: "'Before you reach zero' asks for the count of subtractions 25 → 20 → 15 → 10 → 5 → 0, which is five; 'once' is the joke about 25 no longer being 25."
+  note: "minimal insertion: 'before you reach zero'"
+
+- id: two-coins-3
+  source: two-coins
+  type: negated_premise
+  text: "I have two US coins that add up to 30 cents, and neither of them is a nickel. What are the two coins?"
+  answer: "there are no such coins"
+  aliases: ["impossible", "there are no such coins", "no such coins", "it is impossible", "it can't be done", "no two US coins add up to 30 cents without a nickel", "none", "no combination works", "not possible", "there is no answer"]
+  why_original_fails: "'Neither' removes the nickel, and no two US coins other than a quarter and a nickel make 30 cents; 'a quarter and a nickel' is the joke for 'one of them'."
+  note: "minimal insertion: 'one of them' -> 'neither of them'"
+
+- id: greenhouse-3
+  source: greenhouse
+  type: hard_constraint
+  text: "If a red house is made of red bricks and a blue house is made of blue bricks, what is a green house made of?"
+  answer: "green bricks"
+  aliases: ["green bricks", "green brick", "bricks, green ones", "green-coloured bricks", "green colored bricks"]
+  why_original_fails: "'Green house', two words, is a house that is green, and by the stated pattern it is made of green bricks; 'glass' answers the one-word greenhouse."
+  note: "minimal insertion: 'greenhouse' -> 'green house'"
+
+- id: two-fathers-two-sons-2
+  source: two-fathers-two-sons
+  type: stated
+  text: "Two fathers and two sons go fishing. Each of them catches one fish, but they bring home only three fish, because one fish is thrown back into the water. How is this possible?"
+  answer: "one fish was thrown back"
+  aliases: ["one fish was thrown back", "they threw one fish back", "one was thrown back into the water", "because a fish was thrown back", "one fish was released", "they released one fish", "a fish was thrown back"]
+  why_original_fails: "The text gives the reason (a fish was thrown back), so there is no need for the grandfather-father-son reading, which does not explain the stated fourth fish."
+  note: "minimal insertion: 'because one fish is thrown back'"
+
+- id: johnnys-mother-3
+  source: johnnys-mother
+  type: question_swap
+  text: "Johnny's mother had three children. The first child was named April. The second child was named May. The third child was named Johnny. What was the name of the second child?"
+  answer: "May"
+  aliases: ["May"]
+  why_original_fails: "The question asks for the second child, named May in the text; Johnny is the third."
+  note: "minimal insertion: third named, question moved to the second"
+
+- id: three-apples-3
+  source: three-apples
+  type: hard_constraint
+  text: "If there are three apples and you take away two, how many apples do you have, given that you already had one apple in your pocket?"
+  answer: "three"
+  aliases: ["three", "3", "three apples", "3 apples"]
+  why_original_fails: "The two you took plus the one already in your pocket make three; 'two' ignores the stated pocket."
+  note: "minimal insertion: 'given that you already had one apple in your pocket'"
+
+- id: yellow-hat-2
+  source: yellow-hat
+  type: question_swap
+  text: "If you drop a yellow hat into the Red Sea, does it change colour?"
+  answer: "no"
+  aliases: ["no", "no, it stays yellow", "it stays yellow", "no, it does not", "it does not change colour", "no, it just gets wet", "no, it is still yellow"]
+  why_original_fails: "The question is yes/no about colour; 'wet' is the joke answer to 'what does it become'."
+  note: "minimal insertion: 'what does it become' -> 'does it change colour'"
+
+- id: mustard-family-3
+  source: mustard-family
+  type: hard_constraint
+  text: "Mr. and Mrs. Mustard have six daughters, and each daughter has one brother of her own, so there are six brothers in all. How many people are in the Mustard family?"
+  answer: "fourteen"
+  aliases: ["fourteen", "14", "14 people"]
+  why_original_fails: "The text states six brothers, so 2 + 6 + 6 = 14; 'nine' assumes the one shared brother of the original."
+  note: "minimal insertion: 'of her own, so there are six brothers in all'"
+
+- id: last-brick-2
+  source: last-brick
+  type: hard_constraint
+  text: "How many bricks does it take to complete a brick building that needs 1,000 bricks and already has 998 laid?"
+  answer: "two"
+  aliases: ["two", "2", "two bricks", "2 bricks"]
+  why_original_fails: "1,000 minus 998 is two; 'one, the last one' is the joke that ignores the stated count."
+  note: "minimal insertion: 'that needs 1,000 bricks and already has 998 laid'"
+
+- id: cowboy-friday-2
+  source: cowboy-friday
+  type: trivialized
+  text: "A cowboy rides into town on Friday, stays for seven days, and leaves on Friday. How is that possible?"
+  answer: "seven days later is Friday again"
+  aliases: ["a week later is also a Friday", "seven days later is Friday", "seven days is one week", "he stayed exactly a week", "it is the next Friday", "seven days after a Friday is a Friday", "a week is seven days", "the following Friday", "he left the next Friday"]
+  why_original_fails: "Seven days after a Friday is the next Friday, so the calendar alone explains it; the horse named Friday explains the three-day version, not this one."
+  note: "minimal insertion: 'three days' -> 'seven days'"
+
+- id: egg-yolk-2
+  source: egg-yolk
+  type: hard_constraint
+  text: "Which is grammatically correct: \"the yolk of the egg is white\" or \"the yolk of the egg are white\"?"
+  answer: "the yolk of the egg is white"
+  aliases: ["is", "\"is\"", "the first", "the first one", "the first one, 'is'", "'the yolk of the egg is white'", "the one with 'is'", "is white", "the singular, 'is'"]
+  why_original_fails: "'Grammatically' asks about agreement, and 'yolk is' is correct; 'neither, yolks are yellow' answers a question about colour that was not asked."
+  note: "minimal insertion: 'grammatically'"
+
+- id: one-story-house-3
+  source: one-story-house
+  type: stated
+  text: "There is a one-story house in which everything is yellow. The walls are yellow, the doors are yellow, the furniture is yellow, and the stairs down to the basement are yellow. What color are the stairs?"
+  answer: "yellow"
+  aliases: ["yellow"]
+  why_original_fails: "The text states there are stairs to the basement and that they are yellow; 'there are no stairs' contradicts the text."
+  note: "minimal insertion: 'and the stairs down to the basement are yellow'"
+
+- id: bald-rain-1
+  source: bald-rain
+  type: stated
+  text: "A man with a full head of hair went out for a walk in the rain without an umbrella or a hat, walking the whole way under the covered arcade, and not a single hair on his head got wet. How?"
+  answer: "he walked under the covered arcade"
+  aliases: ["he was under cover", "the arcade covered him", "he walked under a roof", "under the covered arcade", "he stayed under cover", "the arcade kept the rain off", "he was under the arcade", "the covered arcade", "he walked under cover the whole way"]
+  why_original_fails: "The text says he has a full head of hair and walked under cover; 'he is bald' contradicts it."
+  note: "minimal insertion: 'with a full head of hair', 'under the covered arcade'"
+
+- id: seconds-year-2
+  source: seconds-year
+  type: hard_constraint
+  text: "How many seconds, counting the unit of time and not calendar dates, are there in a year of 365 days?"
+  answer: "31,536,000"
+  aliases: ["31536000", "31,536,000", "31 536 000", "about 31.5 million", "31.5 million", "roughly 31.5 million", "31,536,000 seconds", "365 x 86,400 = 31,536,000"]
+  why_original_fails: "The text pins seconds as the unit and the year as 365 days, so 365 × 86,400 = 31,536,000; 'twelve' is the second-of-each-month pun."
+  note: "minimal insertion: 'counting the unit of time and not calendar dates'"
+
+- id: that-mans-father-2
+  source: that-mans-father
+  type: question_swap
+  text: "Brothers and sisters I have none, but that man's father is my father's son. Who is that man's father?"
+  answer: "me"
+  aliases: ["me", "I am", "myself", "the speaker", "the speaker himself", "I", "it is me", "the person speaking"]
+  why_original_fails: "'My father's son' with no siblings is the speaker, and the question asks for the father, not the man; 'my son' answers the original question."
+  note: "minimal insertion: question moved from the man to his father"
+
+- id: birds-wire-3
+  source: birds-wire
+  type: stated
+  text: "Ten birds are sitting on a wire. A hunter shoots one, and the other nine, being deaf and fast asleep, stay exactly where they are. How many are left on the wire?"
+  answer: "nine"
+  aliases: ["nine", "9", "nine birds", "9 birds"]
+  why_original_fails: "The text states the other nine stay put; 'none' is the joke for birds that fly off at the shot."
+  note: "minimal insertion: 'being deaf and fast asleep, stay exactly where they are'"
