@@ -43,6 +43,37 @@ WARNED_PROMPT = (
     "End your reply with one line of the form:\nAnswer: <your answer in a few words>"
 )
 MAX_TOKENS = 16000  # 6000 truncated 45 of 440 replies inside the reasoning (2026-09-04)
+# Original-answer invalidation probe (--invalidation): the mirror of the solvability gate.
+# The same warned, thinking-on models are asked whether the ORIGINAL answer is still
+# correct for the altered text. An item passes at >= --min-pass verdicts of "invalid".
+# Report-only until the rule is adopted (PLAN.md D4).
+INVALIDATION_PROMPT = (
+    "This is a modified version of a well-known riddle or puzzle. Read every word of the text below. "
+    "Then decide: is \"{original}\" a correct answer to this text, exactly as written? It counts as correct only "
+    "if the text itself supports it; being the usual answer to the well-known version does not count.\n\n"
+    "{text}\n\n"
+    "End your reply with two lines:\nVerdict: valid   (or)   Verdict: invalid\nWhy: <one sentence>"
+)
+
+
+def parse_verdict(text: str) -> tuple[str, str]:
+    """('valid' | 'invalid' | 'unknown', why-sentence) from a probe reply."""
+    verdict, why = "unknown", ""
+    for line in (text or "").splitlines():
+        s = line.strip().strip("*").strip()
+        low = s.lower()
+        if low.startswith("verdict:"):
+            v = low.split(":", 1)[1].strip()
+            verdict = "invalid" if v.startswith("invalid") else ("valid" if v.startswith("valid") else "unknown")
+        elif low.startswith("why:"):
+            why = s.split(":", 1)[1].strip()
+    if verdict == "unknown":
+        low = (text or "").lower()
+        if "verdict: invalid" in low or "verdict:** invalid" in low:
+            verdict = "invalid"
+        elif "verdict: valid" in low or "verdict:** valid" in low:
+            verdict = "valid"
+    return verdict, why
 TYPES = ("stated", "hard_constraint", "negated_premise", "trivialized", "question_swap")
 
 
@@ -87,6 +118,17 @@ def load_items(pattern: str, sources: dict[str, dict[str, Any]]) -> list[dict[st
     dupes = sorted({i for i in ids if ids.count(i) > 1})
     if dupes:
         raise SystemExit(f"duplicate item ids: {dupes}")
+    # Hard rule: an accepted alias may never equal an alias of the original answer.
+    # Such an item cannot exclude the original (scale-1 accepted "a map", which the
+    # fish riddle also lists; swims-1 accepted "noon"; die-1 accepted the bare "dice").
+    from altered_riddles.match import norm
+    for it in items:
+        acc = {norm(a) for a in [it["answer"], *it["aliases"]]}
+        orig = {norm(a) for a in [it["original_answer"], *it["original_aliases"]]}
+        clash = sorted(a for a in acc & orig if a)
+        if clash:
+            raise SystemExit(f"{it['file']}: item {it['id']} accepts {clash}, which is also an alias of the original answer; "
+                             f"narrow `aliases` or `original_aliases`")
     return items
 
 
@@ -106,17 +148,29 @@ async def run(args: argparse.Namespace) -> None:
         h = hashlib.sha256(item["text"].encode()).hexdigest()[:8]
         return f"G|{item['id']}|{h}|{prov}:{model}"
 
-    todo = [(it, p, m) for it in items for p, m in specs if cache.get_ok(key_of(it, p, m)) is None]
+    def ikey_of(item, prov, model):
+        h = hashlib.sha256((item["text"] + "\x00" + item["original_answer"]).encode()).hexdigest()[:8]
+        return f"I|{item['id']}|{h}|{prov}:{model}"
+
+    todo = [(it, p, m, "G") for it in items for p, m in specs if cache.get_ok(key_of(it, p, m)) is None]
+    if args.invalidation:
+        todo += [(it, p, m, "I") for it in items for p, m in specs if cache.get_ok(ikey_of(it, p, m)) is None]
     if args.cached_only:
         print(f"--cached-only: {len(todo)} missing replies will count as errors", file=sys.stderr)
         todo = []
-    print(f"items={len(items)} models={len(specs)} calls={len(items)*len(specs)} todo={len(todo)}", file=sys.stderr)
+    n_calls = len(items) * len(specs) * (2 if args.invalidation else 1)
+    print(f"items={len(items)} models={len(specs)} calls={n_calls} todo={len(todo)}", file=sys.stderr)
 
     async def one(job):
-        it, prov, model = job
-        msg = WARNED_PROMPT.format(text=it["text"])
+        it, prov, model, kind = job
+        if kind == "G":
+            msg = WARNED_PROMPT.format(text=it["text"])
+            key = key_of(it, prov, model)
+        else:
+            msg = INVALIDATION_PROMPT.format(text=it["text"], original=it["original_answer"])
+            key = ikey_of(it, prov, model)
         reply = await clients[prov].chat(model, [{"role": "user", "content": msg}], max_tokens=MAX_TOKENS, thinking=True)
-        cache.put(key_of(it, prov, model), item=it["id"], model=f"{prov}:{model}", reply=reply.as_dict())
+        cache.put(key, item=it["id"], model=f"{prov}:{model}", reply=reply.as_dict())
         return reply
 
     t0 = time.monotonic()
@@ -152,7 +206,21 @@ async def run(args: argparse.Namespace) -> None:
             if lab == "correct":
                 n_correct += 1
         passed = n_correct >= args.min_pass
-        out_rows.append({**it, "gate": {"models": answers, "n_correct": n_correct, "passed": passed}})
+        row_out = {**it, "gate": {"models": answers, "n_correct": n_correct, "passed": passed}}
+        if args.invalidation:
+            verdicts: dict[str, Any] = {}
+            n_invalid = 0
+            for prov, model in specs:
+                mname = f"{prov}:{model}"
+                irow = cache.get_ok(ikey_of(it, prov, model))
+                if irow is None:
+                    verdicts[mname] = {"verdict": "error", "why": ""}
+                    continue
+                v, why = parse_verdict(irow["reply"]["text"])
+                verdicts[mname] = {"verdict": v, "why": why[:300], "reasoning_tokens": irow["reply"].get("reasoning_tokens")}
+                n_invalid += int(v == "invalid")
+            row_out["invalidation"] = {"models": verdicts, "n_invalid": n_invalid, "passed": n_invalid >= args.min_pass}
+        out_rows.append(row_out)
 
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     with Path(args.out).open("w") as f:
@@ -182,6 +250,15 @@ async def run(args: argparse.Namespace) -> None:
         print(f"\nunmatched answers on PASSED items ({len(unmatched)}), candidates for aliases:")
         for iid, m, fin in unmatched[:60]:
             print(f"    {iid:22s} {m.split(':',1)[1][:24]:24s} {fin[:80]!r}")
+    if args.invalidation:
+        still_valid = [r for r in out_rows if not r["invalidation"]["passed"]]
+        vc = Counter(v["verdict"] for r in out_rows for v in r["invalidation"]["models"].values())
+        print(f"\ninvalidation probe: verdicts {dict(vc)}; items where the ORIGINAL is still valid per < {args.min_pass} of "
+              f"{len(specs)} models: {len(still_valid)} of {len(out_rows)}")
+        for r in still_valid:
+            print(f"- {r['id']} [{r['type']}] original {r['original_answer']!r} vs answer {r['answer']!r}")
+            for m, v in r["invalidation"]["models"].items():
+                print(f"    {m.split(':',1)[1][:28]:28s} {v['verdict']:8s} {v.get('why','')[:110]!r}")
     print(f"\nwrote {args.out}")
 
 
@@ -198,6 +275,7 @@ def main() -> None:
     ap.add_argument("--timeout", type=float, default=600.0, help="seconds per request; slow reasoning models need 1800+")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--cached-only", action="store_true", help="no API calls: report from the cache, missing replies count as errors")
+    ap.add_argument("--invalidation", action="store_true", help="also run the original-answer invalidation probe (report-only; PLAN.md D4)")
     ap.add_argument("--cache", default="data/probe/gate_cache.jsonl")
     ap.add_argument("--out", default="data/gated.jsonl")
     asyncio.run(run(ap.parse_args()))

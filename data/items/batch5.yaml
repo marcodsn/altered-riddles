@@ -521,7 +521,7 @@
   type: hard_constraint
   text: "What has twelve faces but does not wear makeup, and forty-two eyes but cannot see?"
   answer: "two dice"
-  aliases: ["two dice", "a pair of dice", "pair of dice", "2 dice", "dice"]
+  aliases: ["two dice", "a pair of dice", "pair of dice", "2 dice"]  # not the bare "dice": it is an alias of the original (a die)
   why_original_fails: "One die has six faces and twenty-one eyes; twelve faces and forty-two eyes is two dice."
 
 - id: die-2
