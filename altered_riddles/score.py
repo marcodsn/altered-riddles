@@ -79,7 +79,7 @@ def score_original(run_dir: Path, items: dict[str, dict[str, Any]]) -> None:
         src = r["unit_id"]
         if src not in by_source:
             continue
-        hits[src].append(int(matches(rep["text"], by_source[src]["answers"])))
+        hits[src].append(int(matches(answer_text(rep), by_source[src]["answers"])))
     familiar = {s: round(sum(v) / len(v), 3) for s, v in hits.items() if v}
     out = {"familiar": familiar, "n_sources": len(familiar),
            "familiar_sources": sum(1 for v in familiar.values() if v >= FAMILIAR_THRESHOLD),
@@ -127,6 +127,25 @@ async def judge_rows(rows: list[dict[str, Any]], items: dict[str, dict[str, Any]
     return {f"{r['unit_id']}|{r['sample']}": cache[cache_key(r)]["verdict"] for r in rows if cache_key(r) in cache}
 
 
+REASONING_TAIL = 300  # chars: an "Answer:" line this close to the end of the thinking is the committed answer
+
+
+def answer_text(rep: dict[str, Any]) -> str:
+    """The text to score. DeepSeek sometimes writes its final "Answer: ..." line
+    inside the thinking block and sends nothing on the content channel (about
+    1–2% of thinking-on replies; the completion count exceeds the reasoning count
+    by one token). When the content is empty and the reasoning ends with an
+    "Answer:" line, that line is the answer. Deliberation earlier in the
+    reasoning is never used."""
+    text = (rep.get("text") or "").strip()
+    if text:
+        return text
+    tail = (rep.get("reasoning") or "")[-REASONING_TAIL:]
+    if "answer:" in tail.lower():
+        return extract_final_answer(tail)
+    return ""
+
+
 def score_altered(run_dir: Path, items: dict[str, dict[str, Any]], judge_spec: str | None, concurrency: int) -> None:
     rows = latest_rows(run_dir / "raw.jsonl")
     scored = []
@@ -138,7 +157,7 @@ def score_altered(run_dir: Path, items: dict[str, dict[str, Any]], judge_spec: s
         if rep.get("error"):
             scored.append({"unit_id": r["unit_id"], "sample": r["sample"], "final": "", "det": "error", "label": "error"})
             continue
-        final = extract_final_answer(rep["text"])
+        final = extract_final_answer(answer_text(rep))
         det = det_label(final, correct=[it["answer"], *it.get("aliases", [])], original=[it["original_answer"], *it.get("original_aliases", [])])
         scored.append({"unit_id": r["unit_id"], "sample": r["sample"], "final": final, "det": det,
                        "label": det if det in ("correct", "original") else "pending",
