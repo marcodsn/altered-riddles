@@ -66,7 +66,7 @@ def parse_verdict(text: str) -> tuple[str, str]:
             v = low.split(":", 1)[1].strip()
             verdict = "invalid" if v.startswith("invalid") else ("valid" if v.startswith("valid") else "unknown")
         elif low.startswith("why:"):
-            why = s.split(":", 1)[1].strip()
+            why = s.split(":", 1)[1].strip().strip("*").strip()
     if verdict == "unknown":
         low = (text or "").lower()
         if "verdict: invalid" in low or "verdict:** invalid" in low:
