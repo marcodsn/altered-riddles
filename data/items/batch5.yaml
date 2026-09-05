@@ -24,7 +24,7 @@
 - id: footsteps-1
   source: footsteps
   type: question_swap
-  text: "The more you take, the more you leave behind. Each one is about 75 centimetres long for an adult. Roughly how many do you leave behind walking 750 metres?"
+  text: "The more you take, the more you leave behind. Each one is about 75 centimetres long for an adult. Roughly how many do you leave behind walking 750 metres? Give a number."
   answer: "1,000"
   aliases: ["1000", "one thousand", "a thousand", "about 1,000", "about 1000", "roughly 1,000", "1,000 steps", "1000 steps", "1,000 footsteps"]
   why_original_fails: "The question asks for a count (750 m / 0.75 m = 1,000), not for what the things are."

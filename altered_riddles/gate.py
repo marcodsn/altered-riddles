@@ -205,8 +205,8 @@ async def run(args: argparse.Namespace) -> None:
                 per_model[mname]["no_thinking"] += 1
             if lab == "correct":
                 n_correct += 1
-        passed = n_correct >= args.min_pass
-        row_out = {**it, "gate": {"models": answers, "n_correct": n_correct, "passed": passed}}
+        solvable = n_correct >= args.min_pass
+        row_out = {**it, "gate": {"models": answers, "n_correct": n_correct, "passed": solvable, "solvable": solvable}}
         if args.invalidation:
             verdicts: dict[str, Any] = {}
             n_invalid = 0
@@ -219,7 +219,11 @@ async def run(args: argparse.Namespace) -> None:
                 v, why = parse_verdict(irow["reply"]["text"])
                 verdicts[mname] = {"verdict": v, "why": why[:300], "reasoning_tokens": irow["reply"].get("reasoning_tokens")}
                 n_invalid += int(v == "invalid")
-            row_out["invalidation"] = {"models": verdicts, "n_invalid": n_invalid, "passed": n_invalid >= args.min_pass}
+            inv_ok = n_invalid >= args.min_pass
+            row_out["invalidation"] = {"models": verdicts, "n_invalid": n_invalid, "passed": inv_ok}
+            # D4 amendment (2026-09-05): with the probe on, an item passes only if it is BOTH
+            # solvable when warned AND its original answer is judged invalid by >= min_pass models.
+            row_out["gate"]["passed"] = solvable and inv_ok
         out_rows.append(row_out)
 
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
@@ -229,7 +233,8 @@ async def run(args: argparse.Namespace) -> None:
 
     # ---------------------------------------------------------------- report
     n_pass = sum(1 for r in out_rows if r["gate"]["passed"])
-    print(f"\nitems={len(out_rows)} passed={n_pass} failed={len(out_rows)-n_pass} (rule: >= {args.min_pass} of {len(specs)} correct when warned)")
+    rule = f">= {args.min_pass} of {len(specs)} correct when warned" + (f" AND >= {args.min_pass} of {len(specs)} call the original invalid" if args.invalidation else "")
+    print(f"\nitems={len(out_rows)} passed={n_pass} failed={len(out_rows)-n_pass} (rule: {rule})")
     by_type = Counter((r["type"], r["gate"]["passed"]) for r in out_rows)
     for t in TYPES:
         tot = by_type[(t, True)] + by_type[(t, False)]
@@ -242,7 +247,8 @@ async def run(args: argparse.Namespace) -> None:
     if failed:
         print(f"\nFAILED items ({len(failed)}), each model's final answer:")
         for r in failed:
-            print(f"- {r['id']} [{r['type']}] expected {r['answer']!r}")
+            why = "not solvable when warned" if not r["gate"].get("solvable", True) else "original answer still valid"
+            print(f"- {r['id']} [{r['type']}] expected {r['answer']!r}  ({why})")
             for m, a in r["gate"]["models"].items():
                 print(f"    {m.split(':',1)[1][:28]:28s} {a.get('label','?'):9s} {a.get('final','')[:90]!r}")
     unmatched = [(r["id"], m, a["final"]) for r in out_rows if r["gate"]["passed"] for m, a in r["gate"]["models"].items() if a.get("label") == "unmatched"]
@@ -275,7 +281,7 @@ def main() -> None:
     ap.add_argument("--timeout", type=float, default=600.0, help="seconds per request; slow reasoning models need 1800+")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--cached-only", action="store_true", help="no API calls: report from the cache, missing replies count as errors")
-    ap.add_argument("--invalidation", action="store_true", help="also run the original-answer invalidation probe (report-only; PLAN.md D4)")
+    ap.add_argument("--invalidation", action="store_true", help="also run the original-answer invalidation probe; an item then passes only if it is solvable AND its original is judged invalid (PLAN.md D4, amended 2026-09-05)")
     ap.add_argument("--cache", default="data/probe/gate_cache.jsonl")
     ap.add_argument("--out", default="data/gated.jsonl")
     asyncio.run(run(ap.parse_args()))

@@ -89,7 +89,8 @@ Every item carries `why_original_fails` (one checkable sentence) and `aliases`. 
 
 **D4 — Validation: warned gate, then a human, every item.**
 - Warned prompt: "This is a modified version of a well-known riddle. Read every word; the usual answer may be wrong."
-- Accept only items solved when warned by ≥ 3 of 4 gate models (Tier 0), *and* reviewed by Marco. If a gate model's warned answer is a defensible alternative, either add it to `aliases` or drop the item. Every item gets `reviewed_by`, `reviewed_at`.
+- Accept only items solved when warned by ≥ 3 of 4 gate models (Tier 0), *and* reviewed by Marco.
+- **Amendment, 2026-09-05 (Marco's question; evidence in the construction log):** an item must *also* pass the original-answer invalidation probe: the same four warned, thinking-on models are asked whether the original answer is still correct for the altered text exactly as written, and ≥ 3 of 4 must say it is not. On the full 269-item set the probe returned 1,059 "invalid" / 15 "valid" / 1 unknown verdicts and flagged 5 items, 4 of them real flaws the solvability gate had passed (dog-woods-1, monty-hall-1, promise-1, craw-0079-1); no strong-prior item was flagged (marys-father-1 and bear-house-1 pass). A second, deterministic rule: an accepted alias may never equal an original alias. If a gate model's warned answer is a defensible alternative, either add it to `aliases` or drop the item. Every item gets `reviewed_by`, `reviewed_at`.
 - The warned condition is kept in the benchmark as a second run condition, which is where the **override gap** (H2) comes from.
 
 **D5 — Scoring: deterministic first, judge second, four labels.**
