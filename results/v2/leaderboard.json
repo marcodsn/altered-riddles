@@ -1,0 +1,291 @@
+{
+ "generated_at": "2026-09-05T21:20:28Z",
+ "n_boot": 2000,
+ "seed": 0,
+ "familiar_threshold": 0.8,
+ "rows": [
+  {
+   "checks": [],
+   "truncated_rate": 0.0,
+   "dodge_rate": 0.015,
+   "familiar_share": 0.94,
+   "drift": {
+    "stale": 0,
+    "missing": 0,
+    "unhashed": 0
+   },
+   "id": "jalapeno:DeepSeek-V4-Flash-0731|on",
+   "model": "jalapeno:DeepSeek-V4-Flash-0731",
+   "thinking": "on",
+   "n_items": 266,
+   "n_answers": 798,
+   "familiar_sources": 187,
+   "n_conditioned": 753,
+   "alt_acc": 0.9586466165413534,
+   "cor": 0.027888446215139442,
+   "cor_ci95": [
+    0.011764705882352941,
+    0.046875
+   ],
+   "original_rate": 0.02631578947368421,
+   "other_rate": 0.015037593984962405,
+   "abstain_rate": 0.0,
+   "pending": 0,
+   "warned_acc": 0.9398496240601504,
+   "override_gap": -0.018796992481203034,
+   "median_reasoning_tokens": 136.0,
+   "familiarity_mode": "direct",
+   "samples": 3,
+   "error_rate": 0.0,
+   "run_dir": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+   "rank_group": 1,
+   "thinking_gap": 0.11155378486055775
+  },
+  {
+   "checks": [],
+   "truncated_rate": 0.0,
+   "dodge_rate": 0.009,
+   "familiar_share": 0.99,
+   "drift": {
+    "stale": 0,
+    "missing": 0,
+    "unhashed": 0
+   },
+   "id": "jalapeno:GLM-5.3-Flash|on",
+   "model": "jalapeno:GLM-5.3-Flash",
+   "thinking": "on",
+   "n_items": 266,
+   "n_answers": 1330,
+   "familiar_sources": 197,
+   "n_conditioned": 1320,
+   "alt_acc": 0.9421052631578948,
+   "cor": 0.04924242424242424,
+   "cor_ci95": [
+    0.028244274809160305,
+    0.07011070110701106
+   ],
+   "original_rate": 0.04887218045112782,
+   "other_rate": 0.009022556390977444,
+   "abstain_rate": 0.0,
+   "pending": 0,
+   "warned_acc": 0.9857142857142858,
+   "override_gap": 0.043609022556390986,
+   "median_reasoning_tokens": 100.0,
+   "familiarity_mode": "thinking",
+   "samples": 5,
+   "error_rate": 0.0,
+   "run_dir": "runs/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5",
+   "rank_group": 1
+  },
+  {
+   "checks": [],
+   "truncated_rate": 0.0038,
+   "dodge_rate": 0.018,
+   "familiar_share": 0.97,
+   "drift": {
+    "stale": 0,
+    "missing": 0,
+    "unhashed": 0
+   },
+   "id": "nous:meituan/longcat-2.0:free|on",
+   "model": "nous:meituan/longcat-2.0:free",
+   "thinking": "on",
+   "n_items": 266,
+   "n_answers": 1330,
+   "familiar_sources": 193,
+   "n_conditioned": 1300,
+   "alt_acc": 0.9293233082706767,
+   "cor": 0.05384615384615385,
+   "cor_ci95": [
+    0.03255813953488372,
+    0.07803030303030303
+   ],
+   "original_rate": 0.05263157894736842,
+   "other_rate": 0.01804511278195489,
+   "abstain_rate": 0.0,
+   "pending": 0,
+   "warned_acc": 0.9300751879699248,
+   "override_gap": 0.0007518796992481702,
+   "median_reasoning_tokens": 130.5,
+   "familiarity_mode": "direct",
+   "samples": 5,
+   "error_rate": 0.0,
+   "run_dir": "runs/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+   "rank_group": 1,
+   "thinking_gap": 0.07846153846153847
+  },
+  {
+   "checks": [],
+   "truncated_rate": 0.0023,
+   "dodge_rate": 0.0526,
+   "familiar_share": 0.97,
+   "drift": {
+    "stale": 0,
+    "missing": 0,
+    "unhashed": 0
+   },
+   "id": "nous:meituan/longcat-2.0:free|off",
+   "model": "nous:meituan/longcat-2.0:free",
+   "thinking": "off",
+   "n_items": 266,
+   "n_answers": 1330,
+   "familiar_sources": 193,
+   "n_conditioned": 1300,
+   "alt_acc": 0.8180451127819549,
+   "cor": 0.13230769230769232,
+   "cor_ci95": [
+    0.09457364341085271,
+    0.1708029197080292
+   ],
+   "original_rate": 0.1293233082706767,
+   "other_rate": 0.05263157894736842,
+   "abstain_rate": 0.0,
+   "pending": 0,
+   "warned_acc": 0.7473684210526316,
+   "override_gap": -0.07067669172932334,
+   "median_reasoning_tokens": 0.0,
+   "familiarity_mode": "direct",
+   "samples": 5,
+   "error_rate": 0.0,
+   "run_dir": "runs/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+   "rank_group": 2,
+   "thinking_gap": 0.07846153846153847
+  },
+  {
+   "checks": [],
+   "truncated_rate": 0.0075,
+   "dodge_rate": 0.0647,
+   "familiar_share": 0.94,
+   "drift": {
+    "stale": 0,
+    "missing": 0,
+    "unhashed": 0
+   },
+   "id": "jalapeno:DeepSeek-V4-Flash-0731|off",
+   "model": "jalapeno:DeepSeek-V4-Flash-0731",
+   "thinking": "off",
+   "n_items": 266,
+   "n_answers": 1330,
+   "familiar_sources": 187,
+   "n_conditioned": 1255,
+   "alt_acc": 0.8030075187969925,
+   "cor": 0.1394422310756972,
+   "cor_ci95": [
+    0.09806949806949807,
+    0.18455284552845527
+   ],
+   "original_rate": 0.13233082706766916,
+   "other_rate": 0.06466165413533835,
+   "abstain_rate": 0.0,
+   "pending": 0,
+   "warned_acc": 0.7593984962406015,
+   "override_gap": -0.043609022556390986,
+   "median_reasoning_tokens": 0.0,
+   "familiarity_mode": "direct",
+   "samples": 5,
+   "error_rate": 0.0,
+   "run_dir": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+   "rank_group": 2,
+   "thinking_gap": 0.11155378486055775
+  }
+ ],
+ "excluded": [],
+ "review_flags": [
+  {
+   "item": "cowboy-friday-2",
+   "override_on": 1.0,
+   "override_off": 1.0,
+   "n_on": 13,
+   "n_off": 10,
+   "reason": "overridden by everyone in both modes: very strong prior, or ambiguous"
+  },
+  {
+   "item": "greenhouse-3",
+   "override_on": 1.0,
+   "override_off": 1.0,
+   "n_on": 13,
+   "n_off": 10,
+   "reason": "overridden by everyone in both modes: very strong prior, or ambiguous"
+  },
+  {
+   "item": "mustard-family-3",
+   "override_on": 0.923,
+   "override_off": 0.7,
+   "n_on": 13,
+   "n_off": 10,
+   "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
+  },
+  {
+   "item": "bear-house-1",
+   "override_on": 0.846,
+   "override_off": 1.0,
+   "n_on": 13,
+   "n_off": 10,
+   "reason": "overridden by everyone in both modes: very strong prior, or ambiguous"
+  },
+  {
+   "item": "months-28-days-1",
+   "override_on": 0.769,
+   "override_off": 1.0,
+   "n_on": 13,
+   "n_off": 10,
+   "reason": "overridden by everyone in both modes: very strong prior, or ambiguous"
+  },
+  {
+   "item": "married-boat-1",
+   "override_on": 0.769,
+   "override_off": 0.0,
+   "n_on": 13,
+   "n_off": 10,
+   "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
+  },
+  {
+   "item": "marys-father-1",
+   "override_on": 0.615,
+   "override_off": 0.6,
+   "n_on": 13,
+   "n_off": 10,
+   "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
+  },
+  {
+   "item": "johnnys-mother-1",
+   "override_on": 0.462,
+   "override_off": 0.0,
+   "n_on": 13,
+   "n_off": 10,
+   "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
+  },
+  {
+   "item": "yellow-hat-1",
+   "override_on": 0.385,
+   "override_off": 0.0,
+   "n_on": 13,
+   "n_off": 10,
+   "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
+  },
+  {
+   "item": "hiccups-1",
+   "override_on": 0.385,
+   "override_off": 0.0,
+   "n_on": 13,
+   "n_off": 10,
+   "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
+  },
+  {
+   "item": "parachute-1",
+   "override_on": 0.385,
+   "override_off": 0.0,
+   "n_on": 13,
+   "n_off": 10,
+   "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
+  },
+  {
+   "item": "last-brick-2",
+   "override_on": 0.308,
+   "override_off": 0.0,
+   "n_on": 13,
+   "n_off": 10,
+   "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
+  }
+ ]
+}
