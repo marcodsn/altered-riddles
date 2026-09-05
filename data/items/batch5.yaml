@@ -393,7 +393,7 @@
 - id: deck-of-cards-2
   source: deck-of-cards
   type: question_swap
-  text: "A standard deck of 52 cards has 13 hearts but no other organs. How many cards in the deck are not hearts?"
+  text: "A standard deck of 52 cards has 13 hearts but no other organs. How many cards in the deck are of suits other than hearts?"
   answer: "39"
   aliases: ["thirty-nine", "39", "thirty nine", "39 cards"]
   why_original_fails: "The question asks for a count (52 minus 13); 'a deck of cards' is not a count."
