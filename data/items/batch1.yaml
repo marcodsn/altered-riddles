@@ -412,13 +412,6 @@
   why_original_fails: "The question asks what is left, not what you have: three minus two is one."
 
 # ---------------------------------------------------------------- dog-woods
-- id: dog-woods-1
-  source: dog-woods
-  type: hard_constraint
-  text: "How far can a dog run into a wood that is two miles across?"
-  answer: "one mile"
-  aliases: ["1 mile", "a mile", "one mile, then it is running out"]
-  why_original_fails: "Halfway across two miles is one mile; the question now has a number."
 
 # ---------------------------------------------------------------- mustard-family
 - id: mustard-family-1
@@ -451,10 +444,10 @@
 - id: monty-hall-1
   source: monty-hall
   type: stated
-  text: "You are on a game show and asked to choose one of three doors. Behind one door is a car; behind the others, goats. You pick door number 1. The host opens door number 3, and behind it is the car. He then asks whether you want to switch to door number 3. Should you switch?"
-  answer: "yes, switch to door 3"
-  aliases: ["switch to door 3", "switch to door three", "door 3", "door three", "the car is behind door 3", "yes, door 3 has the car", "switch to the revealed car", "switch to the door with the car", "take door 3"]
-  why_original_fails: "The car is visible behind door 3, so switching to it wins with certainty; the 2/3 argument for door 2 does not apply."
+  text: "You are on a game show and asked to choose one of three doors. Behind one door is a car; behind the others, goats. You pick door number 1. The host opens door number 3, and behind it is a goat. He then also opens door number 2, and behind it is a goat too. He asks whether you want to switch. Should you switch?"
+  answer: "no"
+  aliases: ["no", "no, stay with door 1", "stay", "stay with door 1", "keep door 1", "do not switch", "don't switch", "no, the car is behind door 1", "the car must be behind door 1", "no, door 1 has the car", "there is nothing to switch to", "no, both other doors have goats"]
+  why_original_fails: "Both other doors are shown to have goats, so the car is behind door 1 and switching loses; 'yes, switch' is the answer to the one-goat version (its first version accepted 'yes, switch to door 3', which did not exclude the original: invalidation probe, 2026-09-05)."
 
 - id: monty-hall-2
   source: monty-hall

@@ -43,13 +43,6 @@
   aliases: ["joke"]
   why_original_fails: "A secret is gone once shared; something you keep after sharing that makes people laugh is a joke."
 
-- id: promise-1
-  source: promise
-  type: hard_constraint
-  text: "What can be broken but never held, and is made every New Year's Eve?"
-  answer: "a New Year's resolution"
-  aliases: ["resolution", "a resolution", "new year resolution", "new year's resolution"]
-  why_original_fails: "The thing made every New Year's Eve is a resolution; 'promise' does not satisfy the added clause."
 
 - id: darkness-1
   source: darkness
@@ -217,10 +210,10 @@
 - id: craw-0079-1
   source: craw-0079
   type: negated_premise
-  text: "What has six faces but no eyes, and every face is a square?"
+  text: "What has six faces, every one of them a blank square with nothing printed on it, and no eyes?"
   answer: "a cube"
   aliases: ["cube"]
-  why_original_fails: "A die has twenty-one 'eyes'; a plain cube has six square faces and none."
+  why_original_fails: "A die's faces carry pips, the 'eyes' of the riddle; blank faces with nothing printed leave only a plain cube."
 
 - id: craw-0137-1
   source: craw-0137
