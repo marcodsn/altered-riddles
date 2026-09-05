@@ -22,6 +22,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import random
 import time
@@ -32,6 +33,10 @@ from typing import Any
 FAMILIAR_THRESHOLD = 0.8
 REVIEW_MIN_ANSWERS = 5       # thinking-on answers needed before an item can be flagged
 REVIEW_MIN_ON_OVERRIDE = 0.3  # flag when thinking-on override is this high AND above thinking-off
+REVIEW_ALL_OVERRIDE = 0.7     # flag when BOTH modes override this often: strong prior or ambiguity, human look
+CHECK_MAX_TRUNCATED = 0.05    # pre-publish: share of replies cut off by max_tokens
+CHECK_MAX_DODGE = 0.10        # pre-publish: other + abstain share above which COR is flattered
+CHECK_MIN_FAMILIAR = 0.80     # pre-publish: share of item sources the model is familiar with
 BOOT = 2000
 
 
@@ -81,7 +86,22 @@ def collect_runs(runs_dir: Path, items: dict[str, dict[str, Any]]) -> dict[tuple
     return rows
 
 
+def drift(run_dir: str, items: dict[str, dict[str, Any]], expected: set[str]) -> dict[str, int]:
+    """Item-set drift between a run and the current item file: `stale` = units whose text
+    changed after they were answered (hash mismatch), `missing` = expected items with no
+    reply, `unhashed` = rows from before text hashes were recorded (cannot be verified)."""
+    latest: dict[str, str | None] = {}
+    for r in load_jsonl(Path(run_dir) / "raw.jsonl"):
+        latest[r["unit_id"]] = r.get("text_sha")
+    cur = {u: hashlib.sha256(items[u]["text"].encode()).hexdigest()[:16] for u in expected if u in items}
+    stale = sum(1 for u, h in latest.items() if h is not None and u in cur and h != cur[u])
+    unhashed = sum(1 for h in latest.values() if h is None)
+    missing = sum(1 for u in expected if u not in latest)
+    return {"stale": stale, "missing": missing, "unhashed": unhashed}
+
+
 def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: int) -> dict[str, Any]:
+    expected = {u for u, it in items.items() if it.get("gate", {}).get("passed", True)}
     rng = random.Random(seed)
     rows = collect_runs(runs_dir, items)
     board: list[dict[str, Any]] = []
@@ -135,7 +155,33 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
             ws = [s for s in load_jsonl(Path(warned["dir"]) / "scored.jsonl") if s["label"] != "error"]
             warned_acc = mean([int(s["label"] == "correct") for s in ws])
         alt_acc = mean([int(s["label"] == "correct") for s in scored])
+        # pre-publish checks (automatic part of the release checklist)
+        checks: list[str] = []
+        d = drift(unw["dir"], items, expected)
+        if d["stale"]:
+            checks.append(f"{d['stale']} items edited after this run (re-run to refresh)")
+        if d["missing"]:
+            checks.append(f"{d['missing']} passed items not answered")
+        if d["unhashed"]:
+            checks.append(f"{d['unhashed']} rows predate text hashes (item set unverifiable)")
+        if warned:
+            dw = drift(warned["dir"], items, expected)
+            if dw["stale"] or dw["missing"]:
+                checks.append(f"warned run: {dw['stale']} stale, {dw['missing']} missing")
+        n_rows = unw["summary"].get("n_rows") or n
+        trunc_rate = (unw["summary"].get("truncated") or 0) / n_rows if n_rows else 0.0
+        if trunc_rate > CHECK_MAX_TRUNCATED:
+            checks.append(f"{trunc_rate:.0%} of replies truncated by max_tokens")
+        dodge = ((labels["other"] + labels["abstain"]) / n) if n else 0.0
+        if dodge > CHECK_MAX_DODGE:
+            checks.append(f"other+abstain {dodge:.0%}: COR flattered, rank by accuracy")
+        item_sources = {items[u]["source"] for u in expected if u in items}
+        fam_share = (sum(1 for src in item_sources if familiar.get(src, 0) >= FAMILIAR_THRESHOLD) / len(item_sources)) if item_sources else 0.0
+        if fam_share < CHECK_MIN_FAMILIAR:
+            checks.append(f"familiar with only {fam_share:.0%} of item sources")
         board.append({
+            "checks": checks, "truncated_rate": round(trunc_rate, 4), "dodge_rate": round(dodge, 4), "familiar_share": round(fam_share, 3),
+            "drift": d,
             "id": row_id, "model": mkey, "thinking": th, "n_items": len({s["unit_id"] for s in scored}),
             "n_answers": n, "familiar_sources": sum(1 for v in familiar.values() if v >= FAMILIAR_THRESHOLD),
             "n_conditioned": n_cond, "alt_acc": alt_acc, "cor": cor, "cor_ci95": ci,
@@ -155,9 +201,14 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
         on, off = item_override.get((uid, "on")), item_override.get((uid, "off"))
         if on and off and len(on) >= REVIEW_MIN_ANSWERS:
             on_r, off_r = mean(on), mean(off)
+            reason = None
             if on_r >= REVIEW_MIN_ON_OVERRIDE and on_r > off_r:
+                reason = "thinking-on override above thinking-off: reasoning finds an alternative reading?"
+            elif on_r >= REVIEW_ALL_OVERRIDE and off_r >= REVIEW_ALL_OVERRIDE and len(off) >= REVIEW_MIN_ANSWERS:
+                reason = "overridden by everyone in both modes: very strong prior, or ambiguous"
+            if reason:
                 review.append({"item": uid, "override_on": round(on_r, 3), "override_off": round(off_r, 3),
-                               "n_on": len(on), "n_off": len(off)})
+                               "n_on": len(on), "n_off": len(off), "reason": reason})
     review.sort(key=lambda r: -r["override_on"])
     board.sort(key=lambda r: (r["cor"] is None, r["cor"] if r["cor"] is not None else 1.0))
     # rank groups: walk down; a row starts a new group only if its COR is significantly worse
@@ -210,11 +261,17 @@ def pct(x: float | None) -> str:
 def render_md(b: dict[str, Any]) -> str:
     lines = ["# Altered Riddles v2 — leaderboard", "",
              f"_Generated {b['generated_at']}. Primary metric: **COR** (conditioned override rate, lower is better) with a clustered-bootstrap CI95 (clusters = source riddle, {b['n_boot']} draws). Rows in the same **group** are not distinguishable at 95%. Rows are only listed when every run passed the guardrails and raw outputs are committed under `runs/`._", "",
-             "| group | model | thinking | items | COR ↓ | CI95 | alt acc ↑ | warned acc | override gap | abstain | other | median reasoning tok | k | pending | familiarity |",
-             "|---|---|---|---:|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---|"]
+             "| group | model | thinking | items | COR ↓ | CI95 | alt acc ↑ | warned acc | override gap | abstain | other | median reasoning tok | k | pending | familiarity | checks |",
+             "|---|---|---|---:|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---|---|"]
     for r in b["rows"]:
         ci = "—" if r["cor_ci95"][0] is None else f"[{100*r['cor_ci95'][0]:.1f}, {100*r['cor_ci95'][1]:.1f}]"
-        lines.append(f"| {r.get('rank_group','—')} | {r['model']} | {r['thinking']} | {r['n_items']} | {pct(r['cor'])} | {ci} | {pct(r['alt_acc'])} | {pct(r['warned_acc'])} | {pct(r['override_gap'])} | {pct(r['abstain_rate'])} | {pct(r['other_rate'])} | {r['median_reasoning_tokens']} | {r['samples']} | {r['pending']} | {r.get('familiarity_mode', 'direct')} |")
+        lines.append(f"| {r.get('rank_group','—')} | {r['model']} | {r['thinking']} | {r['n_items']} | {pct(r['cor'])} | {ci} | {pct(r['alt_acc'])} | {pct(r['warned_acc'])} | {pct(r['override_gap'])} | {pct(r['abstain_rate'])} | {pct(r['other_rate'])} | {r['median_reasoning_tokens']} | {r['samples']} | {r['pending']} | {r.get('familiarity_mode', 'direct')} | {'ok' if not r.get('checks') else 'see below'} |")
+    flagged = [r for r in b["rows"] if r.get("checks")]
+    lines += ["", "## Pre-publish checks", ""]
+    if not flagged:
+        lines.append("_All rows pass: item set unchanged since the run, every passed item answered, truncation ≤ 5%, other + abstain ≤ 10%, familiar with ≥ 80% of item sources._")
+    else:
+        lines += [f"- **{r['model']} ({r['thinking']})**: " + "; ".join(r["checks"]) for r in flagged]
     gaps = [r for r in b["rows"] if r.get("thinking_gap") is not None and r["thinking"] == "on"]
     if gaps:
         lines += ["", "## Thinking gap (COR off minus COR on, same model)", "", "| model | COR off | COR on | gap |", "|---|---:|---:|---:|"]
@@ -225,10 +282,10 @@ def render_md(b: dict[str, Any]) -> str:
         lines += ["", "## Not on the board", ""] + [f"- {e['model']} ({e['thinking']}): {e['reason']}" for e in b["excluded"]]
     if b.get("review_flags"):
         lines += ["", "## Items to review (validity flags)", "",
-                  "_Thinking-on models override these MORE than thinking-off models: reasoning finds a defensible alternative reading, so the item may be ambiguous. Human look; not dropped automatically._", "",
-                  "| item | override, thinking on | override, thinking off | n on / off |", "|---|---:|---:|---:|"]
+                  "_Human look before publishing; nothing is dropped automatically. Read the traces: a defensible alternative reading means re-pin or drop; a genuine override stays._", "",
+                  "| item | override, thinking on | override, thinking off | n on / off | why flagged |", "|---|---:|---:|---:|---|"]
         for f in b["review_flags"]:
-            lines.append(f"| {f['item']} | {pct(f['override_on'])} | {pct(f['override_off'])} | {f['n_on']} / {f['n_off']} |")
+            lines.append(f"| {f['item']} | {pct(f['override_on'])} | {pct(f['override_off'])} | {f['n_on']} / {f['n_off']} | {f.get('reason', '')} |")
     return "\n".join(lines) + "\n"
 
 
