@@ -207,13 +207,6 @@
   aliases: ["cob", "the corn cob", "corn cob", "the core", "the inside", "inside"]
   why_original_fails: "The question asks what was thrown away last, the cob; 'corn' is what was eaten."
 
-- id: craw-0079-1
-  source: craw-0079
-  type: negated_premise
-  text: "What has six faces, every one of them a blank square with nothing printed on it, and no eyes?"
-  answer: "a cube"
-  aliases: ["cube"]
-  why_original_fails: "A die's faces carry pips, the 'eyes' of the riddle; blank faces with nothing printed leave only a plain cube."
 
 - id: craw-0137-1
   source: craw-0137
