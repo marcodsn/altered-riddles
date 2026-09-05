@@ -512,6 +512,7 @@
   text: "Which can jump higher: a flea or a building?"
   answer: "a flea"
   aliases: ["flea", "a flea", "the flea"]
+  original_aliases: ["anything, buildings can't jump", "anything", "everything", "nothing, buildings can't jump"]  # not the bare justification "buildings can't jump", which correct answers include
   why_original_fails: "The question offers two choices; the joke answer 'anything, buildings can't jump' is not one of them, and the flea is the one that jumps."
 
 # ---------------------------------------------------------------- die
