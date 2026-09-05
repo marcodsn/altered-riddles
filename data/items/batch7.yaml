@@ -87,7 +87,7 @@
   type: trivialized
   text: "A man walks into a bar and asks the bartender for a glass of water. The bartender hands him a glass of water. The man drinks it, says \"thank you\", and leaves. Why did he say thank you?"
   answer: "because he got the water he asked for"
-  aliases: ["he got his water", "because the bartender gave him water", "for the water", "he was given the water", "out of politeness for the water", "he received the water he asked for", "he was thirsty and got water", "he was being polite", "politeness", "gratitude for the water"]
+  aliases: ["he got his water", "because the bartender gave him water", "for the water", "he was given the water", "out of politeness for the water", "he received the water he asked for", "he was thirsty and got water", "he was being polite", "politeness", "gratitude for the water", "good manners", "for good manners", "manners", "he was polite", "gratitude", "he was grateful", "he was grateful for the water", "to thank the bartender", "thanking the bartender"]
   why_original_fails: "There is no gun and no scare in this text; the man thanks the bartender for the water, and 'hiccups' has nothing to attach to."
 
 - id: parachute-1
@@ -151,5 +151,5 @@
   type: hard_constraint
   text: "What do newborn calves drink from their mothers?"
   answer: "milk"
-  aliases: ["milk", "their mother's milk", "cow's milk", "cows' milk", "mother's milk"]
+  aliases: ["milk", "their mother's milk", "cow's milk", "cows' milk", "mother's milk", "colostrum", "colostrum (first milk)", "first milk"]
   why_original_fails: "Adult cows drink water; newborn calves drink milk from their mothers."

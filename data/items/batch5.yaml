@@ -68,10 +68,10 @@
 - id: age-1
   source: age
   type: negated_premise
-  text: "What goes up in the east and comes down in the west every day?"
+  text: "What goes up in the east and comes down in the west every day, and is too bright to look at directly?"
   answer: "the sun"
   aliases: ["sun", "the sun"]
-  why_original_fails: "Your age never comes down; the sun rises in the east and sets in the west daily."
+  why_original_fails: "Your age never comes down; the sun rises in the east, sets in the west daily, and is too bright to look at (the moon is not)."
 
 # ---------------------------------------------------------------- silence
 - id: silence-1
@@ -86,10 +86,10 @@
 - id: future-1
   source: future
   type: negated_premise
-  text: "What is always behind you but can't be seen?"
+  text: "What is always behind you, can never be seen again, and grows longer every day you live?"
   answer: "the past"
   aliases: ["past", "the past", "your past", "history"]
-  why_original_fails: "The future is in front of you, not behind; what is always behind you and unseen is the past."
+  why_original_fails: "The future is in front of you, not behind; what is behind you, never seen again, and grows every day is the past (your back does not grow)."
 
 - id: future-2
   source: future
@@ -218,10 +218,10 @@
 - id: tomorrow-1
   source: tomorrow
   type: negated_premise
-  text: "What has already arrived and is never coming again?"
+  text: "What arrived exactly one day ago and is never coming again?"
   answer: "yesterday"
-  aliases: ["yesterday", "the past", "past"]
-  why_original_fails: "Tomorrow never arrives; what has arrived and will never come again is yesterday."
+  aliases: ["yesterday"]
+  why_original_fails: "Tomorrow never arrives; what arrived exactly a day ago and will never come again is yesterday."
 
 # ---------------------------------------------------------------- corn
 - id: corn-1
@@ -253,10 +253,10 @@
 - id: your-word-1
   source: your-word
   type: hard_constraint
-  text: "What can you keep after giving it to someone, and it makes both of you sneeze?"
+  text: "What can you keep after giving it to someone, and it makes both of you sneeze and cough for a week?"
   answer: "a cold"
   aliases: ["cold", "a cold", "the common cold", "a virus", "the flu", "flu", "a cold virus"]
-  why_original_fails: "Your word does not make anyone sneeze; a cold is kept after being passed on and makes both people sneeze."
+  why_original_fails: "Your word does not make anyone sneeze; a cold is kept after being passed on and makes both people sneeze and cough for a week (pepper does not last a week)."
 
 # ---------------------------------------------------------------- dictionary
 - id: dictionary-1
@@ -268,13 +268,6 @@
   why_original_fails: "The question asks which day comes first in time; 'in the dictionary' answers where, not which."
 
 # ---------------------------------------------------------------- nothing
-- id: nothing-1
-  source: nothing
-  type: negated_premise
-  text: "What is not greater than God and not more evil than the devil; the poor lack it, the rich have plenty of it, and if you eat it you will not die?"
-  answer: "money"
-  aliases: ["money", "wealth", "cash", "riches"]
-  why_original_fails: "The poor have nothing and the rich need nothing; what the poor lack and the rich have plenty of is money."
 
 # ---------------------------------------------------------------- coffin
 - id: coffin-1
@@ -299,8 +292,8 @@
   type: negated_premise
   text: "What has a spine and bones, no legs, and breathes through gills?"
   answer: "a fish"
-  aliases: ["fish", "a fish"]
-  why_original_fails: "A book has no bones and no gills; a fish has a spine, bones, no legs, and gills."
+  aliases: ["fish", "a fish", "a tadpole", "tadpole"]
+  why_original_fails: "A book has no bones and no gills; a fish (or a tadpole) has a spine, bones, no legs, and gills."
 
 # ---------------------------------------------------------------- reflection
 - id: reflection-1
@@ -314,10 +307,10 @@
 - id: reflection-2
   source: reflection
   type: negated_premise
-  text: "You can see me in water, I am always wet, and I breathe through gills. What am I?"
+  text: "You can see me in water, I am always wet, I have fins and scales, and I breathe through gills. What am I?"
   answer: "a fish"
   aliases: ["fish", "a fish"]
-  why_original_fails: "A reflection never gets wet and has no gills; a fish is always wet and breathes through gills."
+  why_original_fails: "A reflection never gets wet and has no fins, scales or gills; a fish has all three and is always wet."
 
 # ---------------------------------------------------------------- charcoal
 - id: charcoal-1
@@ -464,7 +457,7 @@
   type: hard_constraint
   text: "What goes up and down stairs without moving, and is the rail you hold on to?"
   answer: "a banister"
-  aliases: ["banister", "a banister", "a handrail", "handrail", "the railing", "railing", "a railing", "a stair rail", "stair rail", "the banister", "bannister", "a bannister"]
+  aliases: ["banister", "a banister", "a handrail", "handrail", "the railing", "railing", "a railing", "a stair rail", "stair rail", "the banister", "bannister", "a bannister", "rail", "the rail", "a rail"]
   why_original_fails: "A carpet is not held; the rail you hold that runs up and down the stairs is the banister."
 
 # ---------------------------------------------------------------- alphabet
@@ -500,7 +493,7 @@
   type: question_swap
   text: "A bear with no teeth is called a gummy bear. What do you call a bear that is white and lives in the Arctic?"
   answer: "a polar bear"
-  aliases: ["polar bear", "a polar bear"]
+  aliases: ["polar bear", "a polar bear", "an arctic bear", "arctic bear", "an Arctic bear"]
   why_original_fails: "The question asks about the white Arctic bear, which is a polar bear; the gummy bear is only mentioned."
 
 # ---------------------------------------------------------------- cat-fur
@@ -582,13 +575,6 @@
   why_original_fails: "The question asks for the white sticky thing in a bottle for paper: glue; the stick is only mentioned."
 
 # ---------------------------------------------------------------- swims
-- id: swims-1
-  source: swims
-  type: hard_constraint
-  text: "What four-letter word meaning midday reads the same backwards and upside down?"
-  answer: "NOON"
-  aliases: ["noon", "NOON", "the word noon"]
-  why_original_fails: "SWIMS has five letters and does not mean midday; NOON has four, means midday, and reads the same both ways."
 
 # ---------------------------------------------------------------- barber
 - id: barber-1
@@ -604,7 +590,7 @@
   type: question_swap
   text: "A barber shaves every day, but his beard stays the same. Whose beards does he shave?"
   answer: "his customers'"
-  aliases: ["his customers", "customers", "his clients", "other people's", "other people", "other men's", "other men", "the customers'", "his customers' beards"]
+  aliases: ["his customers", "customers", "his clients", "other people's", "other people", "other men's", "other men", "the customers'", "his customers' beards", "others'", "others", "other people's beards", "everyone else's"]
   why_original_fails: "The question asks whose beards; 'a barber' is who, not whose."
 
 # ---------------------------------------------------------------- married-boat
@@ -620,7 +606,7 @@
 - id: joke-1
   source: joke
   type: hard_constraint
-  text: "What can be cracked, scrambled, boiled, and fried?"
+  text: "What can be cracked, scrambled, boiled, and fried, and is laid by a hen?"
   answer: "an egg"
   aliases: ["egg", "an egg", "eggs"]
   why_original_fails: "A joke cannot be scrambled, boiled, or fried; an egg can be cracked and all three."
@@ -669,13 +655,6 @@
   why_original_fails: "The question asks which letter remains; 'queue' is the word, not the remaining letter."
 
 # ---------------------------------------------------------------- pillow
-- id: pillow-1
-  source: pillow
-  type: question_swap
-  text: "A pillow loses its head in the morning and gets it back at night. Whose head is it?"
-  answer: "the sleeper's"
-  aliases: ["the sleeper's", "the sleeper", "yours", "your head", "the person sleeping on it", "the person who sleeps on it", "the person's head", "the head of the person sleeping on it", "the owner's head"]
-  why_original_fails: "The question asks whose head rests on it; 'a pillow' is the thing, not the head's owner."
 
 # ---------------------------------------------------------------- battery
 - id: battery-1
@@ -748,10 +727,3 @@
   why_original_fails: "A newspaper has no keys; a piano is black and white and has 88 keys."
 
 # ---------------------------------------------------------------- scale
-- id: scale-1
-  source: scale
-  type: hard_constraint
-  text: "What has a scale but no weight, and shows one centimetre for every ten kilometres?"
-  answer: "a map"
-  aliases: ["map", "a map"]
-  why_original_fails: "A fish has scales, not a scale of one centimetre to ten kilometres; a map does."

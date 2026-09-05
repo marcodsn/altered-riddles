@@ -60,13 +60,6 @@
   aliases: ["red"]
   why_original_fails: "Blue is not the colour of a stop sign, a ripe tomato, a ruby, or the rainbow's top stripe; red is."
 
-- id: craw-0041-1
-  source: craw-0041
-  type: question_swap
-  text: "No matter how little or how much you use a wall calendar, you change it every month. How many times a year do you change it?"
-  answer: "twelve"
-  aliases: ["12", "twelve", "12 times", "twelve times"]
-  why_original_fails: "The question asks for a count; 'a calendar' is the thing, and the text says it changes every month, so twelve times a year."
 
 - id: craw-0051-1
   source: craw-0051
@@ -89,16 +82,9 @@
   type: question_swap
   text: "A dentist digs out tiny caves and stores gold and silver in them, and builds bridges of silver and crowns of gold. Where are these tiny caves?"
   answer: "in your teeth"
-  aliases: ["teeth", "in teeth", "in your teeth", "in the teeth", "in your mouth", "in people's teeth", "cavities in teeth", "in the mouth"]
+  aliases: ["teeth", "in teeth", "in your teeth", "in the teeth", "in your mouth", "in people's teeth", "cavities in teeth", "in the mouth", "cavities", "in cavities", "tooth cavities", "cavities in your teeth"]
   why_original_fails: "The question asks where the caves are; 'a dentist' is who digs them, not where."
 
-- id: craw-0094-1
-  source: craw-0094
-  type: question_swap
-  text: "Electricity drifts forever with the current down long canals they have made. What are these canals called?"
-  answer: "wires"
-  aliases: ["wires", "cables", "wires and cables", "power lines", "electrical wires", "electric wires", "a wire", "the wires", "circuits"]
-  why_original_fails: "The question asks what the canals are; 'electricity' is what flows in them."
 
 - id: craw-0095-1
   source: craw-0095
@@ -140,13 +126,6 @@
   aliases: ["wine", "grape wine"]
   why_original_fails: "The question asks what the trodden grapes become; 'grapes' is what they are."
 
-- id: craw-0151-1
-  source: craw-0151
-  type: question_swap
-  text: "A horse always goes to bed with his shoes on. What are his shoes made of?"
-  answer: "iron"
-  aliases: ["iron", "metal", "steel", "iron or steel", "metal (iron)", "horseshoes are made of iron"]
-  why_original_fails: "The question asks about the material of horseshoes; 'a horse' is the wearer."
 
 - id: craw-0163-1
   source: craw-0163
@@ -164,13 +143,6 @@
   aliases: ["truth", "the truth", "honesty"]
   why_original_fails: "A lie is sometimes white and always wrong; what is always right and sets you free is the truth."
 
-- id: craw-0186-1
-  source: craw-0186
-  type: question_swap
-  text: "I look at you, you look at me. I raise my right, you raise your left. If I wink my left eye, which eye do you wink?"
-  answer: "your right eye"
-  aliases: ["right", "the right", "right eye", "the right eye", "your right", "your right eye", "my right eye", "the right one"]
-  why_original_fails: "The question asks which eye the mirror image winks; 'a mirror' is what I am, not which eye."
 
 - id: craw-0192-1
   source: craw-0192
