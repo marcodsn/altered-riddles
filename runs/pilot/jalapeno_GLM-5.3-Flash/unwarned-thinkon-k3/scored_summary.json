@@ -1,7 +1,7 @@
 {
- "deterministic_resolved": 0.9583,
+ "deterministic_resolved": 0.95,
  "judge": "jalapeno:DeepSeek-V4-Flash-0731",
- "judged_rows": 5,
+ "judged_rows": 6,
  "overall": {
   "n": 120,
   "correct": 0.925,
@@ -88,5 +88,5 @@
    "pending": 0.0
   }
  },
- "scored_at": "2026-09-04T23:00:40Z"
+ "scored_at": "2026-09-05T09:41:57Z"
 }

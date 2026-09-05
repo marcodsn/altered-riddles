@@ -6,3 +6,11 @@
 {"key": "craw-0010-1|0", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
 {"key": "tree-bark-1|0", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
 {"key": "tree-bark-1|2", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "tree-bark-1|2|28ac597f7beda939", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "tree-bark-1|0|c849b3b80c5a0bcf", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "craw-0010-1|2|157bf6255f0268e4", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "widgets-1|1|6ba3907d95744cbd", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "cold-1|0|6e9074cf1fe06d87", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "tree-bark-1|1|e7b33b1da62db152", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "craw-0010-1|0|157bf6255f0268e4", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "widgets-1|0|6ba3907d95744cbd", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}

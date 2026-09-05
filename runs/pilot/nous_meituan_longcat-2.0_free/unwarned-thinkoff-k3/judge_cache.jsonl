@@ -4,3 +4,9 @@
 {"key": "craw-0010-1|0", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
 {"key": "craw-0137-1|0", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
 {"key": "craw-0137-1|1", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "craw-0010-1|0|60d53c6259712362", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "craw-0137-1|1|68000f9a7ee3229c", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "craw-0030-1|0|03b71f9c7a473cb3", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "craw-0137-1|0|68000f9a7ee3229c", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "craw-0137-1|2|68000f9a7ee3229c", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "two-fathers-two-sons-1|0|f25d80db60328b0f", "verdict": "original", "raw": "original", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}

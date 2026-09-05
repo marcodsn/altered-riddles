@@ -7,3 +7,12 @@
 {"key": "craw-0007-1|0", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
 {"key": "mustard-family-1|1", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
 {"key": "divide-by-half-2|2", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "craw-0388-1|1|466bf2ff0db1f24a", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "mustard-family-1|1|2006f32fe4f152d2", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "mustard-family-1|0|2006f32fe4f152d2", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "craw-0007-1|0|4e6a8d3a4fd60ad2", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "craw-0388-1|2|466bf2ff0db1f24a", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "mustard-family-1|2|2006f32fe4f152d2", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "divide-by-half-2|0|f002bff13fc20f15", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "craw-0388-1|0|3be698ab56904a8e", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "divide-by-half-2|2|e355318bce243b12", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}

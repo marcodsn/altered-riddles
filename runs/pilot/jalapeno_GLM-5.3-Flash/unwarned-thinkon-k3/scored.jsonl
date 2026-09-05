@@ -85,7 +85,7 @@
 {"unit_id": "left-hand-1", "sample": 0, "final": "Your right hand", "det": "correct", "label": "correct", "reasoning_tokens": 125, "finish_reason": "stop"}
 {"unit_id": "left-hand-1", "sample": 1, "final": "Your right hand", "det": "correct", "label": "correct", "reasoning_tokens": 88, "finish_reason": "stop"}
 {"unit_id": "left-hand-1", "sample": 2, "final": "your right hand", "det": "correct", "label": "correct", "reasoning_tokens": 94, "finish_reason": "stop"}
-{"unit_id": "craw-0069-1", "sample": 0, "final": "The cob (the inside of the corn)", "det": "correct", "label": "correct", "reasoning_tokens": 51, "finish_reason": "stop"}
+{"unit_id": "craw-0069-1", "sample": 0, "final": "The cob (the inside of the corn)", "det": "both", "label": "correct", "reasoning_tokens": 51, "finish_reason": "stop", "judge": "correct"}
 {"unit_id": "craw-0069-1", "sample": 1, "final": "The inside — the cob of corn.", "det": "correct", "label": "correct", "reasoning_tokens": 68, "finish_reason": "stop"}
 {"unit_id": "craw-0069-1", "sample": 2, "final": "The cob (the corn's inside)", "det": "correct", "label": "correct", "reasoning_tokens": 64, "finish_reason": "stop"}
 {"unit_id": "overtake-second-2", "sample": 0, "final": "Third place", "det": "correct", "label": "correct", "reasoning_tokens": 102, "finish_reason": "stop"}
