@@ -12,7 +12,7 @@ Judge: DeepSeek-V4-Flash-0731, thinking off. Raw outputs under `runs/pilot/`.
 | deterministic alias coverage | ≥ 70% | 82–100% per run; the judge saw 0–9 rows per run |
 | guardrail trips on a fake thinking run | must FAIL | "thinking on" on Qwen3-Next-Instruct (no thinking mode) → FAIL, median reasoning tokens 0 |
 | error rate | ≤ 5% | 0% on every scored run; GLM-5.3-Flash's thinking-off familiarity run failed 100% because the switch is unsupported, redone in thinking mode and labelled `familiarity: thinking` |
-| judge vs human agreement | ≥ 95% on 100 answers | **pending Marco**: `results/pilot/labeling_sheet.jsonl` (fill `human_label`) |
+| judge vs human agreement | ≥ 95% on 100 answers | **pending Marco**: `results/pilot/labeling_sheet_judge_only.jsonl`, the 61 answers the judge actually decided, blind (machine labels in the `.key.jsonl`); the earlier 100-row sheet was 92% alias matches |
 | "neither" (other) share, H5 | ≤ 10% | 0–7% (v1: 29%) |
 | thinking length for pricing | measured | see PLAN.md section 6; unwarned thinking is 100–700 tokens median, warned 2–4× longer |
 
