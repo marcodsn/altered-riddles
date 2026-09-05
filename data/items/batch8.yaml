@@ -43,14 +43,6 @@
   note: "minimal insertion: 'until nothing is left' (first try 'before you reach zero' was read as 4 by one model)"
 
 
-- id: greenhouse-3
-  source: greenhouse
-  type: hard_constraint
-  text: "If a red house is made of red bricks and a blue house is made of blue bricks, what is a green house made of?"
-  answer: "green bricks"
-  aliases: ["green bricks", "green brick", "bricks, green ones", "green-coloured bricks", "green colored bricks"]
-  why_original_fails: "'Green house', two words, is a house that is green, and by the stated pattern it is made of green bricks; 'glass' answers the one-word greenhouse."
-  note: "minimal insertion: 'greenhouse' -> 'green house'"
 
 - id: two-fathers-two-sons-2
   source: two-fathers-two-sons
@@ -106,14 +98,6 @@
   why_original_fails: "1,000 minus 998 is two; 'one, the last one' is the joke that ignores the stated count."
   note: "minimal insertion: 'that needs 1,000 bricks and already has 998 laid'"
 
-- id: cowboy-friday-2
-  source: cowboy-friday
-  type: trivialized
-  text: "A cowboy rides into town on Friday, stays for seven days, and leaves on Friday. How is that possible?"
-  answer: "seven days later is Friday again"
-  aliases: ["a week later is also a Friday", "seven days later is Friday", "seven days is one week", "he stayed exactly a week", "it is the next Friday", "seven days after a Friday is a Friday", "a week is seven days", "the following Friday", "he left the next Friday", "next Friday", "the next Friday", "one week", "a week", "exactly one week", "a full week", "one full week", "a week later", "seven days later", "Friday is the day of the week", "the day of the week", "he stayed for a week", "he stayed for exactly one week", "he left a week later"]
-  why_original_fails: "Seven days after a Friday is the next Friday, so the calendar alone explains it; the horse named Friday explains the three-day version, not this one."
-  note: "minimal insertion: 'three days' -> 'seven days'"
 
 - id: egg-yolk-2
   source: egg-yolk

@@ -1,0 +1,92 @@
+{
+ "deterministic_resolved": 0.9504,
+ "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+ "judged_rows": 66,
+ "overall": {
+  "n": 1330,
+  "correct": 0.9421,
+  "original": 0.0489,
+  "other": 0.009,
+  "abstain": 0.0,
+  "pending": 0.0
+ },
+ "conditioned_on_familiar": {
+  "n": 1320,
+  "correct": 0.9417,
+  "original": 0.0492,
+  "other": 0.0091,
+  "abstain": 0.0,
+  "pending": 0.0,
+  "familiar_sources_known": true,
+  "cor": 0.0492
+ },
+ "by_type": {
+  "stated": {
+   "n": 105,
+   "correct": 0.8,
+   "original": 0.1905,
+   "other": 0.0095,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "negated_premise": {
+   "n": 240,
+   "correct": 0.9667,
+   "original": 0.0167,
+   "other": 0.0167,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "hard_constraint": {
+   "n": 565,
+   "correct": 0.9345,
+   "original": 0.0549,
+   "other": 0.0106,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "question_swap": {
+   "n": 315,
+   "correct": 0.9968,
+   "original": 0.0032,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "trivialized": {
+   "n": 105,
+   "correct": 0.9048,
+   "original": 0.0857,
+   "other": 0.0095,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "by_family": {
+  "riddle": {
+   "n": 645,
+   "correct": 0.9674,
+   "original": 0.0186,
+   "other": 0.014,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "puzzle": {
+   "n": 425,
+   "correct": 0.8776,
+   "original": 0.12,
+   "other": 0.0024,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "crawsome": {
+   "n": 260,
+   "correct": 0.9846,
+   "original": 0.0077,
+   "other": 0.0077,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "scored_at": "2026-09-05T21:17:45Z"
+}

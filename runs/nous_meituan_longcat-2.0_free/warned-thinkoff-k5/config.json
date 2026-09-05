@@ -1,0 +1,22 @@
+{
+ "provider": "nous",
+ "model": "meituan/longcat-2.0:free",
+ "condition": "warned",
+ "thinking": "off",
+ "thinking_request_params": {
+  "reasoning": {
+   "enabled": false
+  }
+ },
+ "familiarity_mode": null,
+ "samples": 5,
+ "temperature": null,
+ "max_tokens": 200,
+ "prompt": "This is a modified version of a well-known riddle or puzzle. The usual answer may be wrong here. Read every word and answer the question exactly as written.\n\n{text}\n\nReply with a single line of the form:\nAnswer: <your answer in a few words>",
+ "items_file": "data/gated.jsonl",
+ "items_sha256": "1e1fbe58518807710616783871e9f51d67bab1fd23981dd41218d86567adb273",
+ "n_units": 266,
+ "passed_only": true,
+ "git_commit": "1cdc23e84e1cd14dba067c00655f2cd4c422a607",
+ "started_at": "2026-09-05T20:27:11Z"
+}

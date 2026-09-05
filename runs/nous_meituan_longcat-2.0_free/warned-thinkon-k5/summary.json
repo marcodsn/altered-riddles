@@ -1,0 +1,18 @@
+{
+ "config": "warned-thinkon-k5",
+ "n_expected": 1330,
+ "n_rows": 1330,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 1172.0,
+ "mean_reasoning_tokens": 3419.3,
+ "mean_completion_tokens": 3426.5,
+ "reasoning_leak_rate": 1.0,
+ "truncated": 151,
+ "total_prompt_tokens": 113795,
+ "total_completion_tokens": 4557186,
+ "elapsed_s_this_invocation": 1050.2,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-05T20:56:31Z"
+}
