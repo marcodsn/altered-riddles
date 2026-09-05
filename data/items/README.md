@@ -13,6 +13,7 @@ One YAML list per file, any grouping; every item names its `source` from
   why_original_fails: "A candle is never sharpened to write; the clause pins pencil."
   note: optional
   cluster: optional     # bootstrap cluster; default = normalized original answer (riddles) or source (puzzles)
+  original_aliases: optional  # narrows the source's aliases for scoring this item (drop a justification phrase)
 ```
 
 ## The rule that every item must satisfy

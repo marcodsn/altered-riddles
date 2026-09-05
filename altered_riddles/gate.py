@@ -77,7 +77,10 @@ def load_items(pattern: str, sources: dict[str, dict[str, Any]]) -> list[dict[st
                     "aliases": [str(a) for a in (it.get("aliases") or [])],
                     "why_original_fails": it["why_original_fails"].strip(),
                     "original_text": src["text"], "original_answer": src["answer"],
-                    "original_aliases": src["aliases"], "note": it.get("note"), "file": path,
+                    # an item may narrow the original aliases used to score it (a source alias that is a
+                    # justification phrase, e.g. "buildings can't jump", would otherwise mark correct answers)
+                    "original_aliases": [str(a) for a in (it.get("original_aliases") or src["aliases"])],
+                    "note": it.get("note"), "file": path,
                 }
             )
     ids = [i["id"] for i in items]

@@ -90,6 +90,10 @@ def label(reply_answer: str, *, correct: list[str], original: list[str]) -> str:
         # Second tie-break: the side whose matched alias is longer (in words)
         # wins, so "one mile (halfway)" is correct and "yellow, it just gets
         # wet" stays ambiguous. Equal lengths stay 'both' for the judge.
+        # (A positional rule, "the alias that appears first wins", was tried on
+        # 2026-09-05 and agreed with the judge on only 155 of 263 mixed replies:
+        # it mislabels self-corrections and restatements. Mixed replies go to
+        # the judge; item-level `original_aliases` handles justification phrases.)
         len_c = max((len(norm(a).split()) for a in correct if matches(reply_answer, [a])), default=0)
         len_o = max((len(norm(a).split()) for a in original if matches(reply_answer, [a])), default=0)
         if len_c > len_o:
@@ -102,3 +106,4 @@ def label(reply_answer: str, *, correct: list[str], original: list[str]) -> str:
     if o:
         return "original"
     return "unmatched"
+
