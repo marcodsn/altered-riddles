@@ -10,7 +10,8 @@ RPM=90
 LOGS=data/probe/full_logs; mkdir -p $LOGS
 
 # 0. gate every item: cached replies are reused, only new or rephrased items cost calls
-$PY -m altered_riddles.gate --models DeepSeek-V4-Flash-0731 GLM-5.3-Flash Qwen3-Next-80B-A3B-Thinking Qwen3.5-35B-A3B \
+#    (SKIP_GATE=1 starts the runs on the current data/gated.jsonl while a gate runs elsewhere)
+[ "${SKIP_GATE:-0}" = "1" ] || $PY -m altered_riddles.gate --models DeepSeek-V4-Flash-0731 GLM-5.3-Flash Qwen3-Next-80B-A3B-Thinking Qwen3.5-35B-A3B \
     --rpm $RPM --timeout 1800 --concurrency 8 > $LOGS/gate.log 2>&1 || { echo "gate failed, see $LOGS/gate.log"; exit 1; }
 tail -3 $LOGS/gate.log
 

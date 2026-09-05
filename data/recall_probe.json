@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-04T19:32:13Z",
+ "generated_at": "2026-09-05T09:26:35Z",
  "params": {
   "samples": 5,
   "min_models": 6,
@@ -23,16 +23,16 @@
  "summary": {
   "by_family": {
    "riddle": {
-    "candidates": 126,
-    "admitted": 105,
+    "candidates": 132,
+    "admitted": 110,
     "a_only": 5,
-    "admitted_by_verbatim_only": 4
+    "admitted_by_verbatim_only": 5
    },
    "puzzle": {
-    "candidates": 38,
-    "admitted": 32,
-    "a_only": 2,
-    "admitted_by_verbatim_only": 1
+    "candidates": 49,
+    "admitted": 40,
+    "a_only": 4,
+    "admitted_by_verbatim_only": 2
    },
    "crawsome": {
     "candidates": 395,
@@ -43,58 +43,58 @@
   },
   "per_model": {
    "jalapeno:DeepSeek-V4-Flash-0731": {
-    "mean_familiar": 0.659,
-    "a_pass_rate": 0.619,
-    "b_pass_rate": 0.37,
+    "mean_familiar": 0.667,
+    "a_pass_rate": 0.628,
+    "b_pass_rate": 0.378,
     "leak_calls": 0,
     "error_calls": 0
    },
    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
-    "mean_familiar": 0.733,
-    "a_pass_rate": 0.732,
-    "b_pass_rate": 0.485,
+    "mean_familiar": 0.737,
+    "a_pass_rate": 0.736,
+    "b_pass_rate": 0.488,
     "leak_calls": 0,
     "error_calls": 6
    },
    "jalapeno:Qwen3.5-35B-A3B": {
-    "mean_familiar": 0.571,
-    "a_pass_rate": 0.526,
-    "b_pass_rate": 0.25,
+    "mean_familiar": 0.582,
+    "a_pass_rate": 0.538,
+    "b_pass_rate": 0.259,
     "leak_calls": 0,
     "error_calls": 0
    },
    "jalapeno:Kimi-K2.5": {
-    "mean_familiar": 0.845,
-    "a_pass_rate": 0.816,
-    "b_pass_rate": 0.589,
+    "mean_familiar": 0.849,
+    "a_pass_rate": 0.819,
+    "b_pass_rate": 0.592,
     "leak_calls": 0,
     "error_calls": 6
    },
    "nous:poolside/laguna-s-2.1:free": {
-    "mean_familiar": 0.591,
-    "a_pass_rate": 0.535,
-    "b_pass_rate": 0.209,
+    "mean_familiar": 0.594,
+    "a_pass_rate": 0.538,
+    "b_pass_rate": 0.214,
     "leak_calls": 0,
     "error_calls": 0
    },
    "nous:poolside/laguna-xs-2.1:free": {
-    "mean_familiar": 0.462,
-    "a_pass_rate": 0.39,
-    "b_pass_rate": 0.127,
+    "mean_familiar": 0.464,
+    "a_pass_rate": 0.391,
+    "b_pass_rate": 0.13,
     "leak_calls": 0,
     "error_calls": 0
    },
    "nous:inclusionai/ling-3.0-flash-fin:free": {
-    "mean_familiar": 0.618,
-    "a_pass_rate": 0.578,
-    "b_pass_rate": 0.326,
+    "mean_familiar": 0.624,
+    "a_pass_rate": 0.585,
+    "b_pass_rate": 0.328,
     "leak_calls": 0,
     "error_calls": 0
    },
    "nous:meituan/longcat-2.0:free": {
-    "mean_familiar": 0.825,
-    "a_pass_rate": 0.801,
-    "b_pass_rate": 0.472,
+    "mean_familiar": 0.826,
+    "a_pass_rate": 0.804,
+    "b_pass_rate": 0.476,
     "leak_calls": 0,
     "error_calls": 0
    }
@@ -8957,7 +8957,7 @@
    "answer": "lunch and dinner",
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731": {
-     "familiar": 1.0,
+     "familiar": 0.8,
      "n": 5,
      "leaks": 0,
      "errors": 0,
@@ -8989,7 +8989,7 @@
      "verbatim_pass": true
     },
     "nous:poolside/laguna-s-2.1:free": {
-     "familiar": 1.0,
+     "familiar": 0.8,
      "n": 5,
      "leaks": 0,
      "errors": 0,
@@ -8997,7 +8997,7 @@
      "verbatim_pass": true
     },
     "nous:poolside/laguna-xs-2.1:free": {
-     "familiar": 1.0,
+     "familiar": 0.8,
      "n": 5,
      "leaks": 0,
      "errors": 0,
@@ -12400,6 +12400,1281 @@
    "b_pass_models": 0,
    "admitted": false,
    "admitted_by": null
+  },
+  "brain": {
+   "family": "riddle",
+   "text": "What gets sharper the more you use it?",
+   "answer": "your brain",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 0.6,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 0.4,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.333,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 0.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.333,
+     "verbatim_pass": false
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 0.2,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    }
+   },
+   "a_pass_models": 4,
+   "b_pass_models": 6,
+   "admitted": true,
+   "admitted_by": "verbatim"
+  },
+  "lid": {
+   "family": "riddle",
+   "text": "What can't be put in a saucepan?",
+   "answer": "its lid",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.667,
+     "verbatim_pass": false
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 0.8,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.667,
+     "verbatim_pass": false
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.857,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 0.8,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.0,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 0.4,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.333,
+     "verbatim_pass": false
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.667,
+     "verbatim_pass": false
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    }
+   },
+   "a_pass_models": 7,
+   "b_pass_models": 3,
+   "admitted": true,
+   "admitted_by": "primary"
+  },
+  "letter-v": {
+   "family": "riddle",
+   "text": "What is at the center of gravity?",
+   "answer": "the letter V",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.333,
+     "verbatim_pass": false
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.333,
+     "verbatim_pass": false
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.333,
+     "verbatim_pass": false
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.333,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 0.2,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.333,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 0.2,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.333,
+     "verbatim_pass": false
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 0.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.333,
+     "verbatim_pass": false
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.333,
+     "verbatim_pass": false
+    }
+   },
+   "a_pass_models": 5,
+   "b_pass_models": 0,
+   "admitted": false,
+   "admitted_by": null
+  },
+  "post-office": {
+   "family": "riddle",
+   "text": "What starts with P, ends with E, and has thousands of letters?",
+   "answer": "the post office",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 0.4,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.2,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 0.8,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.4,
+     "verbatim_pass": false
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.6,
+     "verbatim_pass": false
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    }
+   },
+   "a_pass_models": 7,
+   "b_pass_models": 5,
+   "admitted": true,
+   "admitted_by": "primary"
+  },
+  "december-letter": {
+   "family": "riddle",
+   "text": "What is found in December that isn't in any other month?",
+   "answer": "the letter D",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.25,
+     "verbatim_pass": false
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 0.2,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    }
+   },
+   "a_pass_models": 7,
+   "b_pass_models": 7,
+   "admitted": true,
+   "admitted_by": "primary"
+  },
+  "red-stone": {
+   "family": "riddle",
+   "text": "If you throw a red stone into the blue sea, what will it become?",
+   "answer": "wet",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.833,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.833,
+     "verbatim_pass": true
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.4,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 0.2,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.667,
+     "verbatim_pass": false
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    }
+   },
+   "a_pass_models": 7,
+   "b_pass_models": 6,
+   "admitted": true,
+   "admitted_by": "primary"
+  },
+  "bear-house": {
+   "family": "puzzle",
+   "text": "A man builds a house with all four sides facing south. A bear walks by. What colour is the bear?",
+   "answer": "white",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.875,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.875,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.875,
+     "verbatim_pass": true
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.706,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.875,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.875,
+     "verbatim_pass": true
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.875,
+     "verbatim_pass": true
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.875,
+     "verbatim_pass": true
+    }
+   },
+   "a_pass_models": 8,
+   "b_pass_models": 7,
+   "admitted": true,
+   "admitted_by": "primary"
+  },
+  "eight-days": {
+   "family": "puzzle",
+   "text": "How can a man go eight days without sleep?",
+   "answer": "he sleeps at night",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 0.8,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.0,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.0,
+     "verbatim_pass": false
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.75,
+     "verbatim_pass": false
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    }
+   },
+   "a_pass_models": 8,
+   "b_pass_models": 5,
+   "admitted": true,
+   "admitted_by": "primary"
+  },
+  "birds-wire": {
+   "family": "puzzle",
+   "text": "Ten birds are sitting on a wire. A hunter shoots one. How many are left?",
+   "answer": "none",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.727,
+     "verbatim_pass": false
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.8,
+     "verbatim_pass": true
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.8,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.667,
+     "verbatim_pass": false
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 0.8,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.923,
+     "verbatim_pass": true
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    }
+   },
+   "a_pass_models": 8,
+   "b_pass_models": 6,
+   "admitted": true,
+   "admitted_by": "primary"
+  },
+  "hiccups": {
+   "family": "puzzle",
+   "text": "A man walks into a bar and asks the bartender for a glass of water. The bartender pulls out a gun and points it at the man. The man says \"thank you\" and leaves. Why?",
+   "answer": "the man had hiccups",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.897,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.741,
+     "verbatim_pass": false
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.552,
+     "verbatim_pass": false
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.846,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.897,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.222,
+     "verbatim_pass": false
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.741,
+     "verbatim_pass": false
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.609,
+     "verbatim_pass": false
+    }
+   },
+   "a_pass_models": 8,
+   "b_pass_models": 3,
+   "admitted": true,
+   "admitted_by": "primary"
+  },
+  "parachute": {
+   "family": "puzzle",
+   "text": "A man is found dead in a field. Next to him is an unopened package. How did he die?",
+   "answer": "his parachute didn't open",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.667,
+     "verbatim_pass": false
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.667,
+     "verbatim_pass": false
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.5,
+     "verbatim_pass": false
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.667,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 0.8,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.167,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.125,
+     "verbatim_pass": false
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 0.8,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.667,
+     "verbatim_pass": false
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.667,
+     "verbatim_pass": false
+    }
+   },
+   "a_pass_models": 8,
+   "b_pass_models": 0,
+   "admitted": false,
+   "admitted_by": null
+  },
+  "romeo-juliet": {
+   "family": "puzzle",
+   "text": "Romeo and Juliet are found dead on the floor. Around them are broken glass and a puddle of water. How did they die?",
+   "answer": "they were goldfish whose bowl broke",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 0.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.4,
+     "verbatim_pass": false
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 0.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.625,
+     "verbatim_pass": false
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 0.2,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.8,
+     "verbatim_pass": true
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.615,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 0.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.75,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 0.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.222,
+     "verbatim_pass": false
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.556,
+     "verbatim_pass": false
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 0.8,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.667,
+     "verbatim_pass": false
+    }
+   },
+   "a_pass_models": 3,
+   "b_pass_models": 1,
+   "admitted": false,
+   "admitted_by": null
+  },
+  "seconds-year": {
+   "family": "puzzle",
+   "text": "How many seconds are there in a year?",
+   "answer": "twelve",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 0.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 0.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 0.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 0.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.333,
+     "verbatim_pass": false
+    }
+   },
+   "a_pass_models": 4,
+   "b_pass_models": 7,
+   "admitted": true,
+   "admitted_by": "verbatim"
+  },
+  "half-of-two": {
+   "family": "puzzle",
+   "text": "What is half of two plus two?",
+   "answer": "three",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 0.8,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.8,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.0,
+     "verbatim_pass": false
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.0,
+     "verbatim_pass": false
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.8,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.0,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 0.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.0,
+     "verbatim_pass": false
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.0,
+     "verbatim_pass": false
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 0.2,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.0,
+     "verbatim_pass": false
+    }
+   },
+   "a_pass_models": 6,
+   "b_pass_models": 2,
+   "admitted": true,
+   "admitted_by": "primary"
+  },
+  "black-dog": {
+   "family": "puzzle",
+   "text": "A black dog is standing in the middle of a black road. None of the street lights are on and there is no moon. A car with its headlights off comes down the road but stops in time. How did the driver see the dog?",
+   "answer": "it was daytime",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.593,
+     "verbatim_pass": false
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.5,
+     "verbatim_pass": false
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.5,
+     "verbatim_pass": false
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.722,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 0.4,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.483,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 0.4,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.286,
+     "verbatim_pass": false
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.444,
+     "verbatim_pass": false
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.6,
+     "verbatim_pass": false
+    }
+   },
+   "a_pass_models": 6,
+   "b_pass_models": 0,
+   "admitted": false,
+   "admitted_by": null
+  },
+  "six-seven": {
+   "family": "puzzle",
+   "text": "Why is six afraid of seven?",
+   "answer": "because seven eight nine",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 0.6,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    }
+   },
+   "a_pass_models": 7,
+   "b_pass_models": 8,
+   "admitted": true,
+   "admitted_by": "primary"
+  },
+  "cows-drink": {
+   "family": "puzzle",
+   "text": "What do cows drink?",
+   "answer": "water",
+   "per_model": {
+    "jalapeno:DeepSeek-V4-Flash-0731": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "jalapeno:Qwen3-Next-80B-A3B-Instruct": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.0,
+     "verbatim_pass": false
+    },
+    "jalapeno:Qwen3.5-35B-A3B": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.0,
+     "verbatim_pass": false
+    },
+    "jalapeno:Kimi-K2.5": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    },
+    "nous:poolside/laguna-s-2.1:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.0,
+     "verbatim_pass": false
+    },
+    "nous:poolside/laguna-xs-2.1:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.0,
+     "verbatim_pass": false
+    },
+    "nous:inclusionai/ling-3.0-flash-fin:free": {
+     "familiar": 1.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 0.0,
+     "verbatim_pass": false
+    },
+    "nous:meituan/longcat-2.0:free": {
+     "familiar": 0.0,
+     "n": 5,
+     "leaks": 0,
+     "errors": 0,
+     "verbatim": 1.0,
+     "verbatim_pass": true
+    }
+   },
+   "a_pass_models": 7,
+   "b_pass_models": 3,
+   "admitted": true,
+   "admitted_by": "primary"
   },
   "craw-0001": {
    "family": "crawsome",
