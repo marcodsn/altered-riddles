@@ -60,3 +60,19 @@ An item that thinking-on models override *more* than thinking-off models is list
 by `board` under "Items to review": reasoning found a defensible alternative, so
 the item is probably ambiguous. Re-pin or drop; never auto-drop.
 
+## The construction that survives thinking (n = 119, 2026-09-05)
+
+Side by side, the items thinking models still override share one shape, and the
+items they never miss lack it:
+
+- the famous **question is kept word for word**;
+- the joke answer stays **superficially available** (the model must actively reject it);
+- **one small insertion** into the premises, reading like the asker's own slip, makes the
+  plain-reading answer entailed and the joke answer wrong.
+
+Catches: "...Nono, **and Nunu**. What is the name of the fifth daughter?"; "How many months
+have **exactly** 28 days?"; "...**what colour is it** when you pull it out?".
+Misses: changing the question ("How many daughters does Mary's father have?"), removing the
+joke's trigger ("Moses" -> "Noah"), or making the joke answer correct ("Lucy's father").
+Tag such items in `note:` with "minimal insertion" so they can be analysed as a group.
+
