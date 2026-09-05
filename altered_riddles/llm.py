@@ -42,6 +42,10 @@ PROVIDERS: dict[str, dict[str, Any]] = {
 _TRANSIENT_MARKERS = ("try again", "overloaded", "timeout", "temporarily", "502", "503", "504")
 
 
+class IdleTimeout(Exception):
+    """A streamed reply went silent for longer than Client.idle_timeout."""
+
+
 def thinking_extra(model: str, on: bool | None) -> dict[str, Any]:
     """Request parameters that switch thinking on or off for `model`.
 
@@ -120,7 +124,8 @@ def _usage_field(usage: Any, *path: str) -> int | None:
 
 
 class Client:
-    def __init__(self, provider: str, *, concurrency: int = 8, timeout: float = 600.0, retries: int = 5, rpm: int | None = None):
+    def __init__(self, provider: str, *, concurrency: int = 8, timeout: float = 600.0, retries: int = 5, rpm: int | None = None,
+                 stream: bool = True, idle_timeout: float = 300.0):
         if provider not in PROVIDERS:
             raise SystemExit(f"Unknown provider {provider!r}; known: {', '.join(PROVIDERS)}")
         cfg = PROVIDERS[provider]
@@ -131,6 +136,13 @@ class Client:
         self._client = AsyncOpenAI(base_url=cfg["base_url"], api_key=key, timeout=timeout, max_retries=0)
         self._sem = asyncio.Semaphore(concurrency)
         self.retries = retries
+        # Streaming keeps a long generation alive through proxies that drop idle
+        # connections (DeepSeek thinks for 10+ minutes on warned prompts at ~10 tok/s
+        # on Jalapeno; non-streaming calls hung until the wall timeout). `idle_timeout`
+        # is the longest silence between chunks before the attempt is abandoned.
+        self.stream = stream
+        self.idle_timeout = idle_timeout
+        self._stream_options_ok = True  # flipped off if the provider rejects stream_options
         # Optional requests-per-minute cap: a minimum spacing between request starts.
         self._min_interval = 60.0 / rpm if rpm else 0.0
         self._last_start = 0.0
@@ -145,6 +157,50 @@ class Client:
                 await asyncio.sleep(wait)
             self._last_start = time.monotonic()
 
+    async def _stream_once(self, kwargs: dict[str, Any]) -> tuple[str, str | None, Any, str | None]:
+        """One streamed request. Returns (text, reasoning, usage, finish_reason).
+        Raises IdleTimeout if no chunk arrives for `idle_timeout` seconds."""
+        req = dict(kwargs, stream=True)
+        if self._stream_options_ok:
+            req["stream_options"] = {"include_usage": True}
+        try:
+            stream = await self._client.chat.completions.create(**req)
+        except APIError as e:
+            if self._stream_options_ok and "stream_options" in str(e).lower():
+                self._stream_options_ok = False
+                req.pop("stream_options", None)
+                stream = await self._client.chat.completions.create(**req)
+            else:
+                raise
+        text_parts: list[str] = []
+        reasoning_parts: list[str] = []
+        usage: Any = None
+        finish: str | None = None
+        it = stream.__aiter__()
+        while True:
+            try:
+                chunk = await asyncio.wait_for(it.__anext__(), timeout=self.idle_timeout)
+            except StopAsyncIteration:
+                break
+            except asyncio.TimeoutError as e:
+                raise IdleTimeout(f"no chunk for {self.idle_timeout:.0f}s") from e
+            if getattr(chunk, "usage", None):
+                usage = chunk.usage
+            if chunk.choices:
+                ch = chunk.choices[0]
+                d = getattr(ch, "delta", None)
+                if d is not None:
+                    if getattr(d, "content", None):
+                        text_parts.append(d.content)
+                    r = getattr(d, "reasoning_content", None) or getattr(d, "reasoning", None)
+                    if r is None and getattr(d, "model_extra", None):
+                        r = d.model_extra.get("reasoning_content") or d.model_extra.get("reasoning")
+                    if r:
+                        reasoning_parts.append(r)
+                if getattr(ch, "finish_reason", None):
+                    finish = ch.finish_reason
+        return "".join(text_parts), ("".join(reasoning_parts) or None), usage, finish
+
     async def chat(
         self,
         model: str,
@@ -154,6 +210,7 @@ class Client:
         temperature: float | None = None,
         thinking: bool | None = None,
         extra_body: dict[str, Any] | None = None,
+        stream: bool | None = None,
     ) -> Reply:
         body: dict[str, Any] = dict(thinking_extra(model, thinking))
         if extra_body:
@@ -173,17 +230,22 @@ class Client:
                 await self._paced()
                 t_req = time.monotonic()
                 try:
-                    resp = await self._client.chat.completions.create(**kwargs)
-                    spent += time.monotonic() - t_req
-                    choice = resp.choices[0] if resp.choices else None
-                    msg = choice.message if choice is not None else None
-                    if msg is None:
-                        raise APIError("empty choices", request=None, body=None)  # type: ignore[arg-type]
-                    text = msg.content or ""
-                    reasoning = getattr(msg, "reasoning_content", None) or getattr(msg, "reasoning", None)
-                    if reasoning is None and hasattr(msg, "model_extra") and msg.model_extra:
-                        reasoning = msg.model_extra.get("reasoning_content") or msg.model_extra.get("reasoning")
-                    usage = resp.usage
+                    if self.stream if stream is None else stream:
+                        text, reasoning, usage, finish = await self._stream_once(kwargs)
+                        spent += time.monotonic() - t_req
+                    else:
+                        resp = await self._client.chat.completions.create(**kwargs)
+                        spent += time.monotonic() - t_req
+                        choice = resp.choices[0] if resp.choices else None
+                        msg = choice.message if choice is not None else None
+                        if msg is None:
+                            raise APIError("empty choices", request=None, body=None)  # type: ignore[arg-type]
+                        text = msg.content or ""
+                        reasoning = getattr(msg, "reasoning_content", None) or getattr(msg, "reasoning", None)
+                        if reasoning is None and hasattr(msg, "model_extra") and msg.model_extra:
+                            reasoning = msg.model_extra.get("reasoning_content") or msg.model_extra.get("reasoning")
+                        usage = resp.usage
+                        finish = getattr(choice, "finish_reason", None)
                     rt = _usage_field(usage, "completion_tokens_details", "reasoning_tokens")
                     if rt is None:
                         rt = _usage_field(usage, "reasoning_tokens")
@@ -194,7 +256,7 @@ class Client:
                         prompt_tokens=_usage_field(usage, "prompt_tokens"),
                         completion_tokens=_usage_field(usage, "completion_tokens"),
                         reasoning_tokens=rt,
-                        finish_reason=getattr(choice, "finish_reason", None),
+                        finish_reason=finish,
                         latency_s=spent,
                         attempts=attempt,
                     )

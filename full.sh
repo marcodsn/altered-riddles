@@ -41,5 +41,5 @@ wait
 
 for d in runs/*/original-*; do score "$d"; done
 for d in runs/*/unwarned-* runs/*/warned-*; do score "$d"; done
-$PY -m altered_riddles.board --items $ITEMS --runs-dir runs --out-dir results
-echo "full runs done: results/LEADERBOARD.md"
+$PY -m altered_riddles.board --items $ITEMS --runs-dir runs --out-dir results/v2
+echo "full runs done: results/v2/LEADERBOARD.md"
