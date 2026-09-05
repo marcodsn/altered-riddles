@@ -12,6 +12,7 @@ One YAML list per file, any grouping; every item names its `source` from
   aliases: ["pencil"]
   why_original_fails: "A candle is never sharpened to write; the clause pins pencil."
   note: optional
+  cluster: optional     # bootstrap cluster; default = normalized original answer (riddles) or source (puzzles)
 ```
 
 ## The rule that every item must satisfy
@@ -46,3 +47,16 @@ List every phrasing that a correct, careful answer could take. The warned
 gate prints unmatched answers from models that passed; add the defensible
 ones. `aliases` are matched deterministically first; only non-matches go to
 the judge.
+
+## What thinking models still fall for (pilot, 2026-09-05)
+
+Thinking erases override on `trivialized`, `negated_premise`, `hard_constraint` and
+`question_swap` (2–5%) but barely touches `stated` (23%). The traces show models
+reading the correct answer and choosing the famous one anyway because "they might
+think I don't get the joke". Items that keep the famous frame intact and put the
+answer in plain sight are the ones with headroom. Prefer them, still entailed.
+
+An item that thinking-on models override *more* than thinking-off models is listed
+by `board` under "Items to review": reasoning found a defensible alternative, so
+the item is probably ambiguous. Re-pin or drop; never auto-drop.
+
