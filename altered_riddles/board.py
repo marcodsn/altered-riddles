@@ -123,7 +123,8 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
         if not scored_p.exists() or not fam_p.exists():
             excluded.append({"model": mkey, "thinking": th, "reason": "not scored yet"})
             continue
-        scored = [s for s in load_jsonl(scored_p) if s["label"] != "error"]
+        # rows for items dropped since the run are ignored (their raw rows are pruned on the next resume)
+        scored = [s for s in load_jsonl(scored_p) if s["label"] != "error" and s["unit_id"] in items]
         familiar = json.load(fam_p.open())["familiar"]
         pending = sum(1 for s in scored if s["label"] == "pending")
         by_cluster_cor: dict[str, list[int]] = defaultdict(list)
@@ -152,7 +153,7 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
         warned = e["runs"].get("warned")
         warned_acc = None
         if warned and (Path(warned["dir"]) / "scored.jsonl").exists():
-            ws = [s for s in load_jsonl(Path(warned["dir"]) / "scored.jsonl") if s["label"] != "error"]
+            ws = [s for s in load_jsonl(Path(warned["dir"]) / "scored.jsonl") if s["label"] != "error" and s["unit_id"] in items]
             warned_acc = mean([int(s["label"] == "correct") for s in ws])
         alt_acc = mean([int(s["label"] == "correct") for s in scored])
         # pre-publish checks (automatic part of the release checklist)
