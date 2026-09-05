@@ -34,21 +34,28 @@ def norm_words(s: str) -> list[str]:
     return norm(s).split()
 
 
+SUBSET_SLACK = 3  # a reordered reply may have this many words beyond the alias and still match by token subset
+
+
 def matches(reply: str, answers: list[str]) -> bool:
-    """True if `reply` contains any of `answers` after normalization."""
+    """True if `reply` contains any of `answers` after normalization.
+    Multi-word answers must occur contiguously on word boundaries; a token-subset
+    match is allowed only for short replies (a reordering such as "his mother, the
+    surgeon"), never for a sentence that merely contains the words somewhere
+    ("...so the hat just gets wet" must not match "a wet hat")."""
     r = norm(reply)
     if not r:
         return False
-    r_tokens = set(r.split())
+    r_words = r.split()
+    r_set = set(r_words)
     for a in answers:
         n = norm(a)
         if not n:
             continue
         toks = n.split()
-        if len(toks) == 1:
-            if re.search(rf"\b{re.escape(n)}\b", r):
-                return True
-        elif n in r or set(toks) <= r_tokens:
+        if re.search(rf"\b{re.escape(n)}\b", r):
+            return True
+        if len(toks) > 1 and set(toks) <= r_set and len(r_words) <= len(toks) + SUBSET_SLACK:
             return True
     return False
 
