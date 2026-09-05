@@ -7,7 +7,7 @@
   type: negated_premise
   text: "What gets duller the more you use it, is made of steel, and has a handle?"
   answer: "a knife"
-  aliases: ["knife", "a knife", "a blade", "blade", "a kitchen knife", "kitchen knife"]
+  aliases: ["knife", "a knife", "a blade", "blade", "a kitchen knife", "kitchen knife", "a file", "file", "a metal file"]
   why_original_fails: "A brain gets sharper with use and is not steel; a steel knife with a handle gets duller with use."
 
 - id: lid-1
