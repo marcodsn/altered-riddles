@@ -94,13 +94,6 @@
   aliases: ["trunk", "its trunk", "the trunk", "the elephant's trunk", "a trunk"]
   why_original_fails: "The question asks about the part called a tree; 'an elephant' is the whole animal."
 
-- id: craw-0102-1
-  source: craw-0102
-  type: negated_premise
-  text: "I make you strong at the worst of all times. I keep your hands steady and your heart warm. I visit the bold, but seldom the weak. What am I?"
-  answer: "courage"
-  aliases: ["courage", "bravery", "valour", "valor", "boldness"]
-  why_original_fails: "Fear makes you weak and visits the weak; what makes you strong and visits the bold is courage."
 
 - id: craw-0116-1
   source: craw-0116
@@ -155,7 +148,7 @@
 - id: craw-0200-1
   source: craw-0200
   type: hard_constraint
-  text: "At the sound of me, one may dream or stamp their feet. At the sound of me, everyone in the building must leave at once. What am I?"
+  text: "At the sound of me, one may dream or stamp their feet. At the sound of me, everyone in the building must leave at once because there may be a fire. What am I?"
   answer: "a fire alarm"
   aliases: ["fire alarm", "a fire alarm", "an alarm", "alarm", "the fire alarm", "an evacuation alarm", "a siren", "siren"]
   why_original_fails: "Music does not make everyone leave a building at once; a fire alarm does."

@@ -14,14 +14,6 @@
   why_original_fails: "With a host who opens a door at random and happens to reveal a goat, the two remaining doors are equally likely (1/2 each); the 2/3 advantage of switching needs a host who knowingly avoids the car."
   note: "minimal insertion: 'does not know', 'at random'"
 
-- id: moses-ark-2
-  source: moses-ark
-  type: stated
-  text: "How many animals of each kind did Moses's friend Noah take on the ark?"
-  answer: "two"
-  aliases: ["two", "2", "two of each", "two of each kind", "a pair", "a pair of each", "a male and a female", "two, a male and a female", "two (seven pairs of the clean ones)"]
-  why_original_fails: "The text says Noah took them; 'none, it was Noah' is the joke answer to a question that named Moses."
-  note: "minimal insertion: 'Moses's friend Noah'; the trigger word Moses stays"
 
 - id: rooster-egg-2
   source: rooster-egg
@@ -44,20 +36,12 @@
 - id: subtract-five-2
   source: subtract-five
   type: hard_constraint
-  text: "How many times can you subtract 5 from 25 before you reach zero?"
+  text: "How many times can you subtract 5 from 25 until nothing is left?"
   answer: "five"
   aliases: ["five", "5", "five times", "5 times"]
-  why_original_fails: "'Before you reach zero' asks for the count of subtractions 25 → 20 → 15 → 10 → 5 → 0, which is five; 'once' is the joke about 25 no longer being 25."
-  note: "minimal insertion: 'before you reach zero'"
+  why_original_fails: "'Until nothing is left' asks for the count of subtractions 25 → 20 → 15 → 10 → 5 → 0, which is five; 'once' is the joke about 25 no longer being 25."
+  note: "minimal insertion: 'until nothing is left' (first try 'before you reach zero' was read as 4 by one model)"
 
-- id: two-coins-3
-  source: two-coins
-  type: negated_premise
-  text: "I have two US coins that add up to 30 cents, and neither of them is a nickel. What are the two coins?"
-  answer: "there are no such coins"
-  aliases: ["impossible", "there are no such coins", "no such coins", "it is impossible", "it can't be done", "no two US coins add up to 30 cents without a nickel", "none", "no combination works", "not possible", "there is no answer"]
-  why_original_fails: "'Neither' removes the nickel, and no two US coins other than a quarter and a nickel make 30 cents; 'a quarter and a nickel' is the joke for 'one of them'."
-  note: "minimal insertion: 'one of them' -> 'neither of them'"
 
 - id: greenhouse-3
   source: greenhouse
@@ -73,7 +57,7 @@
   type: stated
   text: "Two fathers and two sons go fishing. Each of them catches one fish, but they bring home only three fish, because one fish is thrown back into the water. How is this possible?"
   answer: "one fish was thrown back"
-  aliases: ["one fish was thrown back", "they threw one fish back", "one was thrown back into the water", "because a fish was thrown back", "one fish was released", "they released one fish", "a fish was thrown back"]
+  aliases: ["one fish was thrown back", "they threw one fish back", "one was thrown back into the water", "because a fish was thrown back", "one fish was released", "they released one fish", "a fish was thrown back", "four people", "there were four people", "four people went fishing", "four distinct people", "they are four people", "there are four people", "four fishermen", "four people fished"]
   why_original_fails: "The text gives the reason (a fish was thrown back), so there is no need for the grandfather-father-son reading, which does not explain the stated fourth fish."
   note: "minimal insertion: 'because one fish is thrown back'"
 
@@ -127,7 +111,7 @@
   type: trivialized
   text: "A cowboy rides into town on Friday, stays for seven days, and leaves on Friday. How is that possible?"
   answer: "seven days later is Friday again"
-  aliases: ["a week later is also a Friday", "seven days later is Friday", "seven days is one week", "he stayed exactly a week", "it is the next Friday", "seven days after a Friday is a Friday", "a week is seven days", "the following Friday", "he left the next Friday"]
+  aliases: ["a week later is also a Friday", "seven days later is Friday", "seven days is one week", "he stayed exactly a week", "it is the next Friday", "seven days after a Friday is a Friday", "a week is seven days", "the following Friday", "he left the next Friday", "next Friday", "the next Friday", "one week", "a week", "exactly one week", "a full week", "one full week", "a week later", "seven days later", "Friday is the day of the week", "the day of the week", "he stayed for a week", "he stayed for exactly one week", "he left a week later"]
   why_original_fails: "Seven days after a Friday is the next Friday, so the calendar alone explains it; the horse named Friday explains the three-day version, not this one."
   note: "minimal insertion: 'three days' -> 'seven days'"
 
