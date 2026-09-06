@@ -1,0 +1,278 @@
+# Human adjudication sheet — 11 items (10 flagged + rooster-egg-2).
+# Reviewer: fill `disposition` and `reason` for every item, nothing else.
+#
+# disposition, one of:
+#   keep      the item is valid as written (premises consistent, accepted answer
+#             entailed, original answer wrong AS AN ANSWER to this question)
+#   r1        replace with draft_r1 (only where a draft_r1 block exists); edit the
+#             draft text/answer in place if you want it changed, keep the id
+#   exclude   drop from the release; historical scores stay on file
+#   other     say what in `reason` (e.g. a different rewrite)
+#
+# reason: one line, in your words. Don't copy the AI notes.
+#
+# Standard (approved 2026-09-06): strict entailment under ordinary readings.
+# Plausible is not enough; the original answer must fail as an answer to the
+# altered question, not merely be one of several possibilities.
+#
+# The AI recommendation and its reasoning are in decisions.json in this
+# directory. Make your call first, then read it if you want.
+#
+# When done: tell Claude; the sheet is folded into decisions-v2 with your name,
+# the date and each item's text hash.
+- id: bear-house-1
+  type: stated
+  text_sha16: 83a84e52afc8bfce
+  original_text: A man builds a house with all four sides facing south. A bear walks by. What colour is
+    the bear?
+  original_answer: white
+  altered_text: A man builds a house with all four sides facing south. A brown bear walks by. What colour
+    is the bear?
+  accepted_answer: brown
+  accepted_aliases:
+  - brown
+  - it is brown
+  - brown, as stated
+  why_original_fails: The text states the bear is brown; 'white' is the memorized polar-bear answer, contradicted
+    by the text.
+  disposition: null
+  reason: ''
+- id: married-boat-1
+  type: stated
+  text_sha16: f384f6dc9c52e7c5
+  original_text: You see a boat filled with people. It has not sunk, but when you look again you don't
+    see a single person on the boat. Why?
+  original_answer: everyone on the boat is married
+  altered_text: You see a boat filled with people. It has not sunk. A wave rolls over it and everyone
+    runs below deck for shelter, so when you look again you don't see a single person on the boat. Why
+    can't you see anyone?
+  accepted_answer: they went below deck
+  accepted_aliases:
+  - they are below deck
+  - below deck
+  - everyone went below deck
+  - they went inside
+  - they are inside
+  - they are sheltering below deck
+  - they ran below deck for shelter
+  - they're below deck
+  why_original_fails: The text says everyone went below deck to shelter; 'everyone is married' is the
+    pun the text no longer supports.
+  disposition: null
+  reason: ''
+- id: yellow-hat-1
+  type: question_swap
+  text_sha16: 920f02264eb6facf
+  original_text: If you drop a yellow hat into the Red Sea, what does it become?
+  original_answer: wet
+  altered_text: If you drop a yellow hat into the Red Sea, what color is it when you pull it out?
+  accepted_answer: yellow
+  accepted_aliases:
+  - still yellow
+  - yellow, and wet
+  why_original_fails: The question asks for the color, which does not change; 'wet' answers what it becomes.
+  disposition: null
+  reason: ''
+- id: mustard-family-3
+  type: hard_constraint
+  text_sha16: e6883c820029d047
+  original_text: Mr. and Mrs. Mustard have six daughters, and each daughter has one brother. How many
+    people are in the Mustard family?
+  original_answer: nine
+  altered_text: Mr. and Mrs. Mustard have six daughters, and each daughter has one brother of her own,
+    so there are six brothers in all. How many people are in the Mustard family?
+  accepted_answer: fourteen
+  accepted_aliases:
+  - fourteen
+  - '14'
+  - 14 people
+  why_original_fails: The text states six brothers, so 2 + 6 + 6 = 14; 'nine' assumes the one shared brother
+    of the original.
+  draft_r1:
+    id: mustard-family-3-r1
+    text: Mr. and Mrs. Mustard have six daughters and six sons, all siblings of one another. Counting
+      only Mr. Mustard, Mrs. Mustard, and these children, how many people are in the family?
+    answer: fourteen
+    aliases:
+    - '14'
+    - fourteen people
+  disposition: null
+  reason: ''
+- id: months-28-days-1
+  type: hard_constraint
+  text_sha16: ed0af1d8d7d163a0
+  original_text: Some months have 30 days, some have 31. How many months have 28 days?
+  original_answer: all of them
+  altered_text: Some months have 30 days, some have 31. How many months have exactly 28 days?
+  accepted_answer: one, February
+  accepted_aliases:
+  - one
+  - '1'
+  - february
+  - only february
+  - one in a common year
+  why_original_fails: '''Exactly 28'' excludes every month with more days; only February (in a common
+    year) has exactly 28.'
+  draft_r1:
+    id: months-28-days-1-r1
+    text: In a common (non-leap) year of the Gregorian calendar, some months have 30 days and some have
+      31. How many months have exactly 28 days?
+    answer: one, February
+    aliases:
+    - one
+    - '1'
+    - February
+    - one month
+  disposition: null
+  reason: ''
+- id: marys-father-1
+  type: stated
+  text_sha16: b6a62c174bb1b504
+  original_text: 'Mary''s father has five daughters: Nana, Nene, Nini, Nono. What is the name of the fifth
+    daughter?'
+  original_answer: Mary
+  altered_text: 'Mary''s father has five daughters: Nana, Nene, Nini, Nono, and Nunu. What is the name
+    of the fifth daughter?'
+  accepted_answer: Nunu
+  accepted_aliases: []
+  why_original_fails: All five daughters are named in the text; the fifth is Nunu, and Mary would be a
+    sixth.
+  draft_r1:
+    id: marys-father-1-r1
+    text: Mary's father has five daughters. From oldest to youngest, their only given names are Mary,
+      Nene, Nini, Nono, and Nunu. What is the given name of his fifth (youngest) daughter?
+    answer: Nunu
+    aliases:
+    - Nunu
+  disposition: null
+  reason: ''
+- id: johnnys-mother-1
+  type: stated
+  text_sha16: f3e3ad36bb32e022
+  original_text: Johnny's mother had three children. The first child was named April. The second child
+    was named May. What was the third child's name?
+  original_answer: Johnny
+  altered_text: Johnny's mother had three children. The first child was named April. The second child
+    was named May. The third child was named June. What was the name of the third child?
+  accepted_answer: June
+  accepted_aliases: []
+  why_original_fails: The third child's name is given in the text as June; Johnny would be a fourth child.
+  draft_r1:
+    id: johnnys-mother-1-r1
+    text: Johnny's mother has three children. From oldest to youngest, their only given names are April,
+      Johnny, and June. What is the given name of her third (youngest) child?
+    answer: June
+    aliases:
+    - June
+  disposition: null
+  reason: ''
+- id: hiccups-1
+  type: trivialized
+  text_sha16: 296cff28bea60bae
+  original_text: A man walks into a bar and asks the bartender for a glass of water. The bartender pulls
+    out a gun and points it at the man. The man says "thank you" and leaves. Why?
+  original_answer: the man had hiccups
+  altered_text: A man walks into a bar and asks the bartender for a glass of water. The bartender hands
+    him a glass of water. The man drinks it, says "thank you", and leaves. Why did he say thank you?
+  accepted_answer: because he got the water he asked for
+  accepted_aliases:
+  - he got his water
+  - because the bartender gave him water
+  - for the water
+  - he was given the water
+  - out of politeness for the water
+  - he received the water he asked for
+  - he was thirsty and got water
+  - he was being polite
+  - politeness
+  - gratitude for the water
+  - good manners
+  - for good manners
+  - manners
+  - he was polite
+  - gratitude
+  - he was grateful
+  - he was grateful for the water
+  - to thank the bartender
+  - thanking the bartender
+  why_original_fails: There is no gun and no scare in this text; the man thanks the bartender for the
+    water, and 'hiccups' has nothing to attach to.
+  draft_r1:
+    id: hiccups-1-r1
+    text: A man walks into a bar and asks for a glass of water. He has no hiccups. The bartender hands
+      him the water. The man says, 'Thank you for giving me the water I asked for,' and leaves. What did
+      he explicitly thank the bartender for?
+    answer: giving him the water he asked for
+    aliases:
+    - giving him water
+    - the glass of water
+    - the water
+  disposition: null
+  reason: ''
+- id: parachute-1
+  type: stated
+  text_sha16: 9720345cafcab749
+  original_text: A man is found dead in a field. Next to him is an unopened package. How did he die?
+  original_answer: his parachute didn't open
+  altered_text: A man is found dead in a desert. Next to him is an unopened package of sandwiches, and
+    his water bottle is empty. What killed him?
+  accepted_answer: thirst
+  accepted_aliases:
+  - dehydration
+  - thirst
+  - lack of water
+  - he died of thirst
+  - he died of dehydration
+  - no water
+  - he ran out of water
+  why_original_fails: The package is sandwiches, not a parachute, and the empty bottle in a desert points
+    to dehydration.
+  disposition: null
+  reason: ''
+- id: last-brick-2
+  type: hard_constraint
+  text_sha16: 9b0f065aaad542bb
+  original_text: How many bricks does it take to complete a brick building?
+  original_answer: one, the last one
+  altered_text: How many bricks does it take to complete a brick building that needs 1,000 bricks and
+    already has 998 laid?
+  accepted_answer: two
+  accepted_aliases:
+  - two
+  - '2'
+  - two bricks
+  - 2 bricks
+  why_original_fails: 1,000 minus 998 is two; 'one, the last one' is the joke that ignores the stated
+    count.
+  draft_r1:
+    id: last-brick-2-r1
+    text: A brick building requires exactly 1,000 bricks in total. Exactly 998 bricks have already been
+      laid, and all of them will stay in place. How many additional bricks must be laid to finish the
+      building?
+    answer: two
+    aliases:
+    - '2'
+    - two bricks
+  disposition: null
+  reason: ''
+- id: rooster-egg-2
+  type: trivialized
+  text_sha16: 8930d2a316d2244e
+  original_text: If a rooster lays an egg on top of a barn roof, which way does the egg roll?
+  original_answer: roosters don't lay eggs
+  altered_text: If a hen lays an egg on top of a barn roof, which way does the egg roll?
+  accepted_answer: down the slope
+  accepted_aliases:
+  - down the slope
+  - downhill
+  - down the roof
+  - down whichever side is lower
+  - whichever way the roof slopes
+  - it depends on the slope
+  - toward the lower side
+  - down
+  - it rolls down the roof
+  why_original_fails: Hens lay eggs, so the joke premise is gone; the egg rolls down whichever way the
+    roof slopes.
+  disposition: null
+  reason: ''
