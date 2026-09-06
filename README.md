@@ -1,6 +1,6 @@
 # Altered Riddles
 
-**An LLM benchmark for measuring conditioned override — how often models fall back to memorized answers when a familiar riddle is subtly changed.**
+**Measures how often models repeat a familiar answer after the premises change, alongside altered-answer accuracy and original-riddle familiarity.**
 
 ## Leaderboard
 

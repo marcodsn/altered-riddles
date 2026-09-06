@@ -1,0 +1,19 @@
+{
+  "request_metadata": {
+    "tags": [
+      "marcodsn"
+    ]
+  },
+  "reply": {
+    "model": "upstage/solar-pro4:free",
+    "text": "",
+    "reasoning": null,
+    "prompt_tokens": null,
+    "completion_tokens": null,
+    "reasoning_tokens": null,
+    "finish_reason": null,
+    "latency_s": 1.793,
+    "attempts": 1,
+    "error": "BadRequestError: Error code: 400 - {'status': 400, 'message': 'This request is not valid. Check the model name and other parameters. Additional info: missing user tag'}"
+  }
+}

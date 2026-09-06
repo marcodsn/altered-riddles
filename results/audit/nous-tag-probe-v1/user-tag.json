@@ -1,0 +1,19 @@
+{
+  "request_metadata": {
+    "tags": {
+      "user": "marcodsn"
+    }
+  },
+  "reply": {
+    "model": "upstage/solar-pro4:free",
+    "text": "",
+    "reasoning": null,
+    "prompt_tokens": null,
+    "completion_tokens": null,
+    "reasoning_tokens": null,
+    "finish_reason": null,
+    "latency_s": 0.56,
+    "attempts": 1,
+    "error": "InternalServerError: Error code: 500 - {'status': 500, 'message': 'Something unexpected happened while processing your request.'}"
+  }
+}

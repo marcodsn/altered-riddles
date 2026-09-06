@@ -11,8 +11,8 @@ Per (model, thinking) row:
   ci95           clustered bootstrap on COR, clusters = source riddle
   override_gap   warned accuracy minus unwarned accuracy (same thinking)
   abstain        share of unwarned answers labelled abstain
-  rank_group     models whose COR is not distinguishable by the pairwise
-                 bootstrap share a group; the table shows groups, not ranks
+  point_rank     descriptive COR ordering, not a significance claim
+  comparisons    jointly clustered, shared-familiar-item comparisons
   thinking_gap   COR(off) minus COR(on) for the same model, when both exist
 
 Usage:
@@ -29,6 +29,8 @@ import time
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
+
+from altered_riddles.statistics import pairwise_comparisons
 
 FAMILIAR_THRESHOLD = 0.8
 REVIEW_MIN_ANSWERS = 5       # thinking-on answers needed before an item can be flagged
@@ -64,7 +66,7 @@ def collect_runs(runs_dir: Path, items: dict[str, dict[str, Any]]) -> dict[tuple
         cfg_p, sum_p = run_dir / "config.json", run_dir / "summary.json"
         if not cfg_p.exists() or not sum_p.exists():
             continue
-        cfg, summ = json.load(cfg_p.open()), json.load(sum_p.open())
+        cfg, summ = json.loads(cfg_p.read_text()), json.loads(sum_p.read_text())
         key = (f"{cfg['provider']}:{cfg['model']}", cfg["thinking"])
         entry = rows.setdefault(key, {"model": cfg["model"], "provider": cfg["provider"], "thinking": key[1], "runs": {}})
         entry["runs"][cfg["condition"]] = {"dir": str(run_dir), "guardrail": summ.get("guardrail"),
@@ -90,23 +92,31 @@ def drift(run_dir: str, items: dict[str, dict[str, Any]], expected: set[str]) ->
     """Item-set drift between a run and the current item file: `stale` = units whose text
     changed after they were answered (hash mismatch), `missing` = expected items with no
     reply, `unhashed` = rows from before text hashes were recorded (cannot be verified)."""
-    latest: dict[str, str | None] = {}
+    latest: dict[tuple[str, int], dict[str, Any]] = {}
     for r in load_jsonl(Path(run_dir) / "raw.jsonl"):
-        latest[r["unit_id"]] = r.get("text_sha")
+        if r["unit_id"] not in expected:
+            continue
+        key = (r["unit_id"], r.get("sample", 0))
+        # Match score.latest_rows: retain a prior success over a failed retry.
+        if key not in latest or not r.get("reply", {}).get("error"):
+            latest[key] = r
     cur = {u: hashlib.sha256(items[u]["text"].encode()).hexdigest()[:16] for u in expected if u in items}
-    stale = sum(1 for u, h in latest.items() if h is not None and u in cur and h != cur[u])
-    unhashed = sum(1 for h in latest.values() if h is None)
-    missing = sum(1 for u in expected if u not in latest)
+    stale = sum(1 for (u, _), r in latest.items() if r.get("text_sha") is not None and r["text_sha"] != cur[u])
+    unhashed = sum(1 for r in latest.values() if r.get("text_sha") is None)
+    missing = sum(1 for u in expected if u not in {key[0] for key in latest})
     return {"stale": stale, "missing": missing, "unhashed": unhashed}
 
 
 def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: int) -> dict[str, Any]:
-    expected = {u for u, it in items.items() if it.get("gate", {}).get("passed", True)}
+    if n_boot < 1:
+        raise ValueError("n_boot must be positive")
+    items = {u: it for u, it in items.items() if it.get("gate", {}).get("passed", True)}
+    expected = set(items)
     rng = random.Random(seed)
     rows = collect_runs(runs_dir, items)
     board: list[dict[str, Any]] = []
     excluded: list[dict[str, Any]] = []
-    boot_samples: dict[str, list[float]] = {}
+    item_rates: dict[str, dict[str, float]] = {}
     item_override: dict[tuple[str, str], list[int]] = defaultdict(list)  # (item, thinking) -> 0/1 per answer
     for (mkey, th), e in rows.items():
         unw = e["runs"].get("unwarned")
@@ -124,9 +134,19 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
             excluded.append({"model": mkey, "thinking": th, "reason": "not scored yet"})
             continue
         # rows for items dropped since the run are ignored (their raw rows are pruned on the next resume)
-        scored = [s for s in load_jsonl(scored_p) if s["label"] != "error" and s["unit_id"] in items]
-        familiar = json.load(fam_p.open())["familiar"]
-        pending = sum(1 for s in scored if s["label"] == "pending")
+        scored = [s for s in load_jsonl(scored_p) if s["unit_id"] in items]
+        unresolved = sum(s["label"] not in {"correct", "original", "other", "abstain"} for s in scored)
+        answered = {s["unit_id"] for s in scored}
+        keys = {(s["unit_id"], s["sample"]) for s in scored}
+        expected_keys = {(u, sample) for u in expected for sample in range(unw["config"]["samples"])}
+        if unresolved or answered != expected or keys != expected_keys or len(keys) != len(scored):
+            excluded.append({"model": mkey, "thinking": th,
+                             "reason": f"incomplete/invalid scoring: {unresolved} unresolved, "
+                                       f"{len(expected - answered)} missing items, {len(expected_keys - keys)} missing samples, "
+                                       f"{len(keys - expected_keys)} unexpected samples, {len(scored) - len(keys)} duplicate samples"})
+            continue
+        familiar = json.loads(fam_p.read_text())["familiar"]
+        pending = 0
         by_cluster_cor: dict[str, list[int]] = defaultdict(list)
         by_cluster_acc: dict[str, list[int]] = defaultdict(list)
         n_cond = 0
@@ -145,7 +165,10 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
         boots.sort()
         ci = (boots[int(0.025 * len(boots))], boots[int(0.975 * len(boots)) - 1]) if boots else (None, None)
         row_id = f"{mkey}|{th}"
-        boot_samples[row_id] = boots
+        rates: dict[str, list[int]] = defaultdict(list)
+        for s in scored:
+            if familiar.get(items[s["unit_id"]]["source"], 0) >= FAMILIAR_THRESHOLD:
+                rates[s["unit_id"]].append(int(s["label"] == "original"))
         labels = defaultdict(int)
         for s in scored:
             labels[s["label"]] += 1
@@ -153,14 +176,18 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
         warned = e["runs"].get("warned")
         warned_acc = None
         if warned and (Path(warned["dir"]) / "scored.jsonl").exists():
-            ws = [s for s in load_jsonl(Path(warned["dir"]) / "scored.jsonl") if s["label"] != "error" and s["unit_id"] in items]
-            warned_acc = mean([int(s["label"] == "correct") for s in ws])
+            ws = [s for s in load_jsonl(Path(warned["dir"]) / "scored.jsonl") if s["unit_id"] in items]
+            warned_keys = {(s["unit_id"], s["sample"]) for s in ws}
+            expected_warned = {(u, sample) for u in expected for sample in range(warned["config"]["samples"])}
+            if (warned_keys == expected_warned and len(warned_keys) == len(ws)
+                    and all(s["label"] in {"correct", "original", "other", "abstain"} for s in ws)):
+                warned_acc = mean([int(s["label"] == "correct") for s in ws])
         alt_acc = mean([int(s["label"] == "correct") for s in scored])
         # pre-publish checks (automatic part of the release checklist)
         checks: list[str] = []
         d = drift(unw["dir"], items, expected)
         if d["stale"]:
-            checks.append(f"{d['stale']} items edited after this run (re-run to refresh)")
+            checks.append(f"{d['stale']} raw samples have stale item text (re-run to refresh)")
         if d["missing"]:
             checks.append(f"{d['missing']} passed items not answered")
         if d["unhashed"]:
@@ -168,7 +195,7 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
         if warned:
             dw = drift(warned["dir"], items, expected)
             if dw["stale"] or dw["missing"]:
-                checks.append(f"warned run: {dw['stale']} stale, {dw['missing']} missing")
+                checks.append(f"warned run: {dw['stale']} stale samples, {dw['missing']} missing items")
         n_rows = unw["summary"].get("n_rows") or n
         trunc_rate = (unw["summary"].get("truncated") or 0) / n_rows if n_rows else 0.0
         if trunc_rate > CHECK_MAX_TRUNCATED:
@@ -180,6 +207,10 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
         fam_share = (sum(1 for src in item_sources if familiar.get(src, 0) >= FAMILIAR_THRESHOLD) / len(item_sources)) if item_sources else 0.0
         if fam_share < CHECK_MIN_FAMILIAR:
             checks.append(f"familiar with only {fam_share:.0%} of item sources")
+        if checks:
+            excluded.append({"model": mkey, "thinking": th, "reason": "; ".join(checks)})
+            continue
+        item_rates[row_id] = {u: sum(v) / len(v) for u, v in rates.items()}
         board.append({
             "checks": checks, "truncated_rate": round(trunc_rate, 4), "dodge_rate": round(dodge, 4), "familiar_share": round(fam_share, 3),
             "drift": d,
@@ -212,24 +243,11 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
                                "n_on": len(on), "n_off": len(off), "reason": reason})
     review.sort(key=lambda r: -r["override_on"])
     board.sort(key=lambda r: (r["cor"] is None, r["cor"] if r["cor"] is not None else 1.0))
-    # rank groups: walk down; a row starts a new group only if its COR is significantly worse
-    # than every row in the current group (pairwise bootstrap, one-sided 2.5%).
-    groups: list[list[dict[str, Any]]] = []
-    for r in board:
-        if r["cor"] is None:
-            continue
-        placed = False
-        if groups:
-            cur = groups[-1]
-            worse_than_all = all(_sig_worse(boot_samples[r["id"]], boot_samples[o["id"]]) for o in cur)
-            if not worse_than_all:
-                cur.append(r)
-                placed = True
-        if not placed:
-            groups.append([r])
-    for gi, g in enumerate(groups, start=1):
-        for r in g:
-            r["rank_group"] = gi
+    # Non-significance is not equivalence and is not transitive: do not form tie groups.
+    for rank, r in enumerate(board, 1):
+        r["point_rank"] = rank
+    comparisons = pairwise_comparisons(item_rates, {u: it.get("cluster", it["source"]) for u, it in items.items()},
+                                      n_boot=n_boot, seed=seed)
     # thinking gap
     by_model: dict[str, dict[str, dict[str, Any]]] = defaultdict(dict)
     for r in board:
@@ -240,19 +258,9 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
             d["on"]["thinking_gap"] = gap
             d["off"]["thinking_gap"] = gap
     return {"generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "n_boot": n_boot, "seed": seed,
-            "familiar_threshold": FAMILIAR_THRESHOLD, "rows": board, "excluded": excluded, "review_flags": review}
-
-
-def _sig_worse(a: list[float], b: list[float]) -> bool:
-    """True if COR bootstrap `a` is higher than `b` in >= 97.5% of paired draws."""
-    if not a or not b:
-        return False
-    n = min(len(a), len(b))
-    # samples are sorted; re-pair randomly to avoid spurious correlation
-    ra, rb = list(a[:n]), list(b[:n])
-    random.Random(0).shuffle(ra)
-    random.Random(1).shuffle(rb)
-    return sum(1 for x, y in zip(ra, rb) if x > y) / n >= 0.975
+            "familiar_threshold": FAMILIAR_THRESHOLD, "rows": board, "excluded": excluded, "review_flags": review,
+            "comparisons": comparisons,
+            "comparison_method": "item-balanced COR difference a-b on shared familiar items; jointly resampled clusters; pointwise CI95, no multiplicity adjustment"}
 
 
 def pct(x: float | None) -> str:
@@ -261,12 +269,12 @@ def pct(x: float | None) -> str:
 
 def render_md(b: dict[str, Any]) -> str:
     lines = ["# Altered Riddles v2 — leaderboard", "",
-             f"_Generated {b['generated_at']}. Primary metric: **COR** (conditioned override rate, lower is better) with a clustered-bootstrap CI95 (clusters = source riddle, {b['n_boot']} draws). Rows in the same **group** are not distinguishable at 95%. Rows are only listed when every run passed the guardrails and raw outputs are committed under `runs/`._", "",
-             "| group | model | thinking | items | COR ↓ | CI95 | alt acc ↑ | warned acc | override gap | abstain | other | median reasoning tok | k | pending | familiarity | checks |",
+             f"_Generated {b['generated_at']}. Primary metric: **COR** (conditioned override rate, lower is better) with a clustered-bootstrap CI95 (clusters = source riddle, {b['n_boot']} draws). Ranks are point estimates, not significant differences. Comparisons in the JSON use shared familiar items and jointly resampled clusters (pointwise intervals, not multiplicity-adjusted). Rows must pass scoring and pre-publish checks; Git commitment status is not verified._", "",
+             "| point rank | model | thinking | items | COR ↓ | CI95 | alt acc ↑ | warned acc | override gap | abstain | other | median reasoning tok | k | pending | familiarity | checks |",
              "|---|---|---|---:|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---|---|"]
     for r in b["rows"]:
         ci = "—" if r["cor_ci95"][0] is None else f"[{100*r['cor_ci95'][0]:.1f}, {100*r['cor_ci95'][1]:.1f}]"
-        lines.append(f"| {r.get('rank_group','—')} | {r['model']} | {r['thinking']} | {r['n_items']} | {pct(r['cor'])} | {ci} | {pct(r['alt_acc'])} | {pct(r['warned_acc'])} | {pct(r['override_gap'])} | {pct(r['abstain_rate'])} | {pct(r['other_rate'])} | {r['median_reasoning_tokens']} | {r['samples']} | {r['pending']} | {r.get('familiarity_mode', 'direct')} | {'ok' if not r.get('checks') else 'see below'} |")
+        lines.append(f"| {r.get('point_rank','—')} | {r['model']} | {r['thinking']} | {r['n_items']} | {pct(r['cor'])} | {ci} | {pct(r['alt_acc'])} | {pct(r['warned_acc'])} | {pct(r['override_gap'])} | {pct(r['abstain_rate'])} | {pct(r['other_rate'])} | {r['median_reasoning_tokens']} | {r['samples']} | {r['pending']} | {r.get('familiarity_mode', 'direct')} | {'ok' if not r.get('checks') else 'see below'} |")
     flagged = [r for r in b["rows"] if r.get("checks")]
     lines += ["", "## Pre-publish checks", ""]
     if not flagged:
