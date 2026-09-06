@@ -5,6 +5,8 @@ import unittest
 from pathlib import Path
 
 from altered_riddles.board import build, render_md
+from altered_riddles.match import MATCHER_VERSION
+from altered_riddles.score import familiarity_fingerprint, item_fingerprints
 
 
 class BoardTests(unittest.TestCase):
@@ -12,7 +14,8 @@ class BoardTests(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)
-        self.items = {"a": {"id": "a", "text": "changed", "source": "src", "gate": {"passed": True}}}
+        self.items = {"a": {"id": "a", "text": "changed", "source": "src", "gate": {"passed": True},
+                            "answer": "x", "aliases": [], "original_answer": "o", "original_aliases": []}}
         self.unw = self.root / "model" / "unwarned"
         self.orig = self.root / "model" / "original"
         for condition, path in [("unwarned", self.unw), ("original", self.orig)]:
@@ -20,7 +23,10 @@ class BoardTests(unittest.TestCase):
             (path / "config.json").write_text(json.dumps({"provider": "test", "model": "model", "thinking": "off", "condition": condition, "samples": 1}))
             (path / "summary.json").write_text(json.dumps({"guardrail": "PASS", "n_rows": 1}))
             (path / "raw.jsonl").write_text(json.dumps({"unit_id": "a", "text_sha": hashlib.sha256(b"changed").hexdigest()[:16]}) + "\n")
-        (self.orig / "scored.json").write_text(json.dumps({"familiar": {"src": 1.}}))
+        (self.orig / "scored.json").write_text(json.dumps({"familiar": {"src": 1.},
+                                                           "scoring": {"familiarity_fingerprint": familiarity_fingerprint(self.items)}}))
+        (self.unw / "scored_summary.json").write_text(json.dumps({"scoring": {"matcher_version": MATCHER_VERSION,
+                                                                              "item_fingerprints": item_fingerprints(self.items, {"a"})}}))
         self.scored = {"unit_id": "a", "sample": 0, "label": "correct"}
         self.save()
 
@@ -76,6 +82,43 @@ class BoardTests(unittest.TestCase):
     def test_stale_text_blocks_row(self):
         self.items["a"]["text"] = "edited"
         self.assertEqual(self.board()["rows"], [])
+
+    def test_alias_edit_invalidates_scores(self):
+        # the raw text hash still matches, but the accepted aliases changed after scoring
+        self.items["a"]["aliases"] = ["new alias"]
+        b = self.board()
+        self.assertEqual(b["rows"], [])
+        self.assertIn("changed text/aliases since scoring", b["excluded"][0]["reason"])
+
+    def test_original_alias_edit_invalidates_familiarity(self):
+        self.items["a"]["original_aliases"] = ["another"]
+        b = self.board()
+        self.assertEqual(b["rows"], [])
+        self.assertIn("familiarity", b["excluded"][0]["reason"])
+
+    def test_scores_without_provenance_are_excluded(self):
+        (self.unw / "scored_summary.json").write_text(json.dumps({}))
+        b = self.board()
+        self.assertEqual(b["rows"], [])
+        self.assertIn("no provenance fingerprint", b["excluded"][0]["reason"])
+
+    def test_old_matcher_version_is_excluded(self):
+        (self.unw / "scored_summary.json").write_text(json.dumps({"scoring": {"matcher_version": MATCHER_VERSION - 1,
+                                                                              "item_fingerprints": item_fingerprints(self.items, {"a"})}}))
+        b = self.board()
+        self.assertEqual(b["rows"], [])
+        self.assertIn("matcher v", b["excluded"][0]["reason"])
+
+    def test_two_runs_for_one_slot_need_a_manifest(self):
+        dup = self.root / "model" / "unwarned-again"
+        dup.mkdir()
+        for name in ["config.json", "summary.json", "raw.jsonl", "scored.jsonl", "scored_summary.json"]:
+            (dup / name).write_text((self.unw / name).read_text())
+        with self.assertRaises(SystemExit):
+            self.board()
+        b = build(self.items, self.root, 100, 0, manifest=[str(self.unw), str(self.orig)])
+        self.assertEqual(len(b["rows"]), 1)
+        self.assertEqual(b["run_manifest"], [str(self.unw), str(self.orig)])
 
 
 if __name__ == "__main__":

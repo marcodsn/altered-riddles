@@ -67,7 +67,7 @@ def latest_rows(raw_path: Path) -> list[dict[str, Any]]:
     return list(latest.values())
 
 
-def score_original(run_dir: Path, items: dict[str, dict[str, Any]]) -> None:
+def score_original(run_dir: Path, items: dict[str, dict[str, Any]], items_path: Path) -> None:
     by_source: dict[str, dict[str, Any]] = {}
     for it in items.values():
         by_source.setdefault(it["source"], {"answers": [it["original_answer"], *it.get("original_aliases", [])]})
@@ -83,7 +83,9 @@ def score_original(run_dir: Path, items: dict[str, dict[str, Any]]) -> None:
     familiar = {s: round(sum(v) / len(v), 3) for s, v in hits.items() if v}
     out = {"familiar": familiar, "n_sources": len(familiar),
            "familiar_sources": sum(1 for v in familiar.values() if v >= FAMILIAR_THRESHOLD),
-           "threshold": FAMILIAR_THRESHOLD}
+           "threshold": FAMILIAR_THRESHOLD,
+           "scoring": {**scoring_provenance(items_path, None), "familiarity_fingerprint": familiarity_fingerprint(items),
+                       "scored_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}}
     (run_dir / "scored.json").write_text(json.dumps(out, indent=1))
     print(f"familiar with {out['familiar_sources']}/{out['n_sources']} sources (>= {FAMILIAR_THRESHOLD})")
 
@@ -127,6 +129,38 @@ async def judge_rows(rows: list[dict[str, Any]], items: dict[str, dict[str, Any]
     return {f"{r['unit_id']}|{r['sample']}": cache[cache_key(r)]["verdict"] for r in rows if cache_key(r) in cache}
 
 
+ITEM_FIELDS = ("text", "answer", "aliases", "original_answer", "original_aliases")  # everything a label depends on
+
+
+def _sha16(obj: Any) -> str:
+    return hashlib.sha256(json.dumps(obj, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
+
+
+def item_fingerprints(items: dict[str, dict[str, Any]], unit_ids) -> dict[str, str]:
+    """Per-item hash of the fields a label depends on; the board compares these with the
+    current item file so a text or alias edit invalidates old scores."""
+    return {u: _sha16({k: items[u].get(k) for k in ITEM_FIELDS}) for u in sorted(unit_ids) if u in items}
+
+
+def familiarity_fingerprint(items: dict[str, dict[str, Any]]) -> str:
+    """Hash of the per-source original answer + aliases the familiarity score matched against."""
+    by_source: dict[str, list[str]] = {}
+    for it in items.values():
+        by_source.setdefault(it["source"], [it["original_answer"], *it.get("original_aliases", [])])
+    return _sha16(by_source)
+
+
+def scoring_provenance(items_path: Path, judge_spec: str | None) -> dict[str, Any]:
+    import altered_riddles.match as m
+    return {
+        "items_file": str(items_path), "items_sha256": hashlib.sha256(items_path.read_bytes()).hexdigest(),
+        "matcher_version": m.MATCHER_VERSION,
+        "matcher_sha256": hashlib.sha256(Path(m.__file__).read_bytes()).hexdigest()[:16],
+        "score_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()[:16],
+        "judge": judge_spec, "judge_prompt_sha256": hashlib.sha256(JUDGE_PROMPT.encode()).hexdigest()[:16] if judge_spec else None,
+    }
+
+
 REASONING_TAIL = 300  # chars: an "Answer:" line this close to the end of the thinking is the committed answer
 
 
@@ -146,7 +180,7 @@ def answer_text(rep: dict[str, Any]) -> str:
     return ""
 
 
-def score_altered(run_dir: Path, items: dict[str, dict[str, Any]], judge_spec: str | None, concurrency: int) -> None:
+def score_altered(run_dir: Path, items: dict[str, dict[str, Any]], judge_spec: str | None, concurrency: int, items_path: Path) -> None:
     rows = latest_rows(run_dir / "raw.jsonl")
     scored = []
     for r in rows:
@@ -155,13 +189,15 @@ def score_altered(run_dir: Path, items: dict[str, dict[str, Any]], judge_spec: s
         if it is None:
             continue
         if rep.get("error"):
-            scored.append({"unit_id": r["unit_id"], "sample": r["sample"], "final": "", "det": "error", "label": "error"})
+            scored.append({"unit_id": r["unit_id"], "sample": r["sample"], "final": "", "det": "error", "label": "error",
+                           "text_sha": r.get("text_sha")})
             continue
         final = extract_final_answer(answer_text(rep))
         det = det_label(final, correct=[it["answer"], *it.get("aliases", [])], original=[it["original_answer"], *it.get("original_aliases", [])])
         scored.append({"unit_id": r["unit_id"], "sample": r["sample"], "final": final, "det": det,
                        "label": det if det in ("correct", "original") else "pending",
-                       "reasoning_tokens": rep.get("reasoning_tokens"), "finish_reason": rep.get("finish_reason")})
+                       "reasoning_tokens": rep.get("reasoning_tokens"), "finish_reason": rep.get("finish_reason"),
+                       "text_sha": r.get("text_sha")})  # ties the scored row to the raw sample it came from
     pending = [s for s in scored if s["label"] == "pending"]
     judge_name = None
     if judge_spec and pending:
@@ -205,6 +241,8 @@ def score_altered(run_dir: Path, items: dict[str, dict[str, Any]], judge_spec: s
         "by_type": {t: rates(c) for t, c in by_type.items()},
         "by_family": {f: rates(c) for f, c in by_family.items()},
         "scored_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "scoring": {**scoring_provenance(items_path, judge_spec),
+                    "item_fingerprints": item_fingerprints(items, {s["unit_id"] for s in scored})},
     }
     (run_dir / "scored_summary.json").write_text(json.dumps(summary, indent=1))
     print(json.dumps(summary, indent=1))
@@ -221,9 +259,9 @@ def main() -> None:
     config = json.load((run_dir / "config.json").open())
     items = load_items(Path(args.items))
     if config["condition"] == "original":
-        score_original(run_dir, items)
+        score_original(run_dir, items, Path(args.items))
     else:
-        score_altered(run_dir, items, args.judge, args.concurrency)
+        score_altered(run_dir, items, args.judge, args.concurrency, Path(args.items))
 
 
 if __name__ == "__main__":

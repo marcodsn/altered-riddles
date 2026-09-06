@@ -32,3 +32,8 @@
 {"key": "jump-building-1|1|a6a56ff086a72ab0", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
 {"key": "yellow-hat-2|1|29b76f78800f5d7f", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
 {"key": "rooster-egg-2|2|71ef91e93e0a9ef4", "verdict": "original", "raw": "original", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monopoly-1|4|d290010e608e2c17", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monopoly-1|0|8bc8ee819ed8ffa9", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monopoly-1|1|d290010e608e2c17", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monopoly-1|3|0055c63dfa0a2ecf", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monopoly-1|2|1ddebb0035befa10", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}

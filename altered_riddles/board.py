@@ -60,15 +60,24 @@ def mean(xs: list[float]) -> float | None:
     return sum(xs) / len(xs) if xs else None
 
 
-def collect_runs(runs_dir: Path, items: dict[str, dict[str, Any]]) -> dict[tuple[str, str], dict[str, Any]]:
+def collect_runs(runs_dir: Path, items: dict[str, dict[str, Any]], manifest: list[str] | None = None) -> dict[tuple[str, str], dict[str, Any]]:
+    """One run per (model, thinking, condition). `manifest` is an explicit list of run
+    directories to use; without it every run directory is a candidate, and two candidates
+    for the same slot are an error rather than a silent directory-order choice."""
     rows: dict[tuple[str, str], dict[str, Any]] = {}
-    for run_dir in sorted(runs_dir.glob("*/*")):
+    candidates = [Path(d) for d in manifest] if manifest is not None else sorted(runs_dir.glob("*/*"))
+    for run_dir in candidates:
         cfg_p, sum_p = run_dir / "config.json", run_dir / "summary.json"
         if not cfg_p.exists() or not sum_p.exists():
+            if manifest is not None:
+                raise SystemExit(f"manifest run {run_dir} has no config.json/summary.json")
             continue
         cfg, summ = json.loads(cfg_p.read_text()), json.loads(sum_p.read_text())
         key = (f"{cfg['provider']}:{cfg['model']}", cfg["thinking"])
         entry = rows.setdefault(key, {"model": cfg["model"], "provider": cfg["provider"], "thinking": key[1], "runs": {}})
+        if cfg["condition"] in entry["runs"]:
+            raise SystemExit(f"two runs for {key[0]} thinking={key[1]} condition={cfg['condition']}: "
+                             f"{entry['runs'][cfg['condition']]['dir']} and {run_dir}; pass --manifest listing the run directories to use")
         entry["runs"][cfg["condition"]] = {"dir": str(run_dir), "guardrail": summ.get("guardrail"),
                                            "reasons": summ.get("guardrail_reasons", []), "summary": summ, "config": cfg}
     # the original condition belongs to the model, not the thinking mode: share it across rows,
@@ -107,13 +116,45 @@ def drift(run_dir: str, items: dict[str, dict[str, Any]], expected: set[str]) ->
     return {"stale": stale, "missing": missing, "unhashed": unhashed}
 
 
-def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: int) -> dict[str, Any]:
+def score_staleness(run_dir: str, items: dict[str, dict[str, Any]], expected: set[str]) -> str | None:
+    """A reason the scored file is stale, or None. Scores carry per-item fingerprints of the
+    fields a label depends on (text, answer, aliases, original answer/aliases) and the
+    matcher version; any mismatch with the current item file invalidates them."""
+    from altered_riddles.match import MATCHER_VERSION
+    from altered_riddles.score import item_fingerprints
+    summ_p = Path(run_dir) / "scored_summary.json"
+    if not summ_p.exists():
+        return "no scored_summary.json"
+    prov = json.loads(summ_p.read_text()).get("scoring")
+    if not prov:
+        return "scores carry no provenance fingerprint (re-score)"
+    if prov.get("matcher_version") != MATCHER_VERSION:
+        return f"scored with matcher v{prov.get('matcher_version')}, current v{MATCHER_VERSION} (re-score)"
+    stored = prov.get("item_fingerprints", {})
+    now = item_fingerprints(items, expected)
+    changed = sum(1 for u, h in now.items() if stored.get(u) != h)
+    if changed:
+        return f"{changed} items changed text/aliases since scoring (re-score)"
+    return None
+
+
+def familiarity_staleness(run_dir: str, items: dict[str, dict[str, Any]]) -> str | None:
+    from altered_riddles.score import familiarity_fingerprint
+    prov = json.loads((Path(run_dir) / "scored.json").read_text()).get("scoring")
+    if not prov:
+        return "familiarity scores carry no provenance fingerprint (re-score)"
+    if prov.get("familiarity_fingerprint") != familiarity_fingerprint(items):
+        return "original answers/aliases changed since familiarity scoring (re-score)"
+    return None
+
+
+def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: int, manifest: list[str] | None = None) -> dict[str, Any]:
     if n_boot < 1:
         raise ValueError("n_boot must be positive")
     items = {u: it for u, it in items.items() if it.get("gate", {}).get("passed", True)}
     expected = set(items)
     rng = random.Random(seed)
-    rows = collect_runs(runs_dir, items)
+    rows = collect_runs(runs_dir, items, manifest)
     board: list[dict[str, Any]] = []
     excluded: list[dict[str, Any]] = []
     item_rates: dict[str, dict[str, float]] = {}
@@ -192,6 +233,16 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
             checks.append(f"{d['missing']} passed items not answered")
         if d["unhashed"]:
             checks.append(f"{d['unhashed']} rows predate text hashes (item set unverifiable)")
+        stale = score_staleness(unw["dir"], items, expected)
+        if stale:
+            checks.append(f"unwarned scores: {stale}")
+        stale_fam = familiarity_staleness(orig["dir"], items)
+        if stale_fam:
+            checks.append(stale_fam)
+        if warned and warned_acc is not None:
+            stale_w = score_staleness(warned["dir"], items, expected)
+            if stale_w:
+                checks.append(f"warned scores: {stale_w}")
         if warned:
             dw = drift(warned["dir"], items, expected)
             if dw["stale"] or dw["missing"]:
@@ -258,6 +309,7 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
             d["on"]["thinking_gap"] = gap
             d["off"]["thinking_gap"] = gap
     return {"generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "n_boot": n_boot, "seed": seed,
+            "run_manifest": manifest if manifest is not None else sorted(r["dir"] for e in rows.values() for r in e["runs"].values()),
             "familiar_threshold": FAMILIAR_THRESHOLD, "rows": board, "excluded": excluded, "review_flags": review,
             "comparisons": comparisons,
             "comparison_method": "item-balanced COR difference a-b on shared familiar items; jointly resampled clusters; pointwise CI95, no multiplicity adjustment"}
@@ -305,9 +357,11 @@ def main() -> None:
     ap.add_argument("--out-dir", default="results")
     ap.add_argument("--n-boot", type=int, default=BOOT)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--manifest", default=None, help="JSON file {\"runs\": [run dirs]} naming exactly which runs to use")
     args = ap.parse_args()
     items = {i["id"]: i for i in load_jsonl(Path(args.items))}
-    b = build(items, Path(args.runs_dir), args.n_boot, args.seed)
+    manifest = json.loads(Path(args.manifest).read_text())["runs"] if args.manifest else None
+    b = build(items, Path(args.runs_dir), args.n_boot, args.seed, manifest)
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
     (out / "leaderboard.json").write_text(json.dumps(b, indent=1))

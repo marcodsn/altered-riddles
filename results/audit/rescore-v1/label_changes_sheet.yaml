@@ -1,0 +1,808 @@
+# Blind check of the rows whose label changed in the 2026-09-06 re-score (all judge-decided).
+# Set human_label on each row to one of: correct | original | other | abstain
+#   correct  = the model answer means one of the accepted answers
+#   original = it means the well-known answer to the unmodified riddle
+#   abstain  = refuses, says it is a trick, or gives no committed answer
+#   other    = anything else (a different wrong answer, or several answers at once)
+# Machine labels (old and new) are in label_changes.jsonl; don't look until you're done.
+- n: 0
+  item: surgeon-1
+  riddle: A father and his son are in a car accident. The father dies at the scene and the son is rushed to the
+    hospital. At the hospital the surgeon, who is the boy's grandfather, looks at the boy and says, "I cannot operate
+    on this boy, he is my grandson." Who is the surgeon to the boy?
+  accepted:
+  - his grandfather
+  - grandfather
+  - the boy's grandfather
+  - the grandfather
+  - his grandpa
+  original:
+  - the surgeon is the boy's mother
+  - mother
+  - his mother
+  - the boy's mother
+  - the surgeon is his mother
+  - the doctor is his mother
+  - she is his mother
+  model_answer: His grandfather (the surgeon is the boy's mother's father).
+  human_label: null
+- n: 1
+  item: surgeon-3
+  riddle: A father and his son are in a car accident. The father dies at the scene and the son is rushed to the
+    hospital. At the hospital the surgeon, who is the boy's uncle, says, "I cannot operate on this boy, he is my
+    nephew." Who is the surgeon to the boy?
+  accepted:
+  - his uncle
+  - uncle
+  - the boy's uncle
+  - the uncle
+  original:
+  - the surgeon is the boy's mother
+  - mother
+  - his mother
+  - the boy's mother
+  - the surgeon is his mother
+  - the doctor is his mother
+  - she is his mother
+  model_answer: His mother (the boy’s other uncle’s spouse).
+  human_label: null
+- n: 2
+  item: months-28-days-3
+  riddle: In a leap year, how many months have exactly 28 days?
+  accepted:
+  - none
+  - zero
+  - '0'
+  - no months
+  - not one
+  original:
+  - all of them
+  - all 12
+  - twelve
+  - '12'
+  - every month
+  - all months
+  model_answer: 'All 12 months have at least 28 days, but only February has exactly 28 days (29 in a leap year).
+    Wait—careful: in a leap year, February has 29, so no month has exactly 28. So the answer is 0.'
+  human_label: null
+- n: 3
+  item: elephant-shadow-1
+  riddle: An elephant's shadow is as big as an elephant but weighs nothing. What is exactly as big as that shadow
+    and weighs about five tonnes?
+  accepted:
+  - the elephant
+  - an elephant
+  - elephant
+  - the elephant itself
+  - the elephant casting it
+  original:
+  - an elephant's shadow
+  - its shadow
+  - shadow
+  - the elephant's shadow
+  model_answer: The elephant that casts the shadow.
+  human_label: null
+- n: 4
+  item: bed-2
+  riddle: A bed has one head, one foot, and four legs. How many feet does it have?
+  accepted:
+  - one
+  - '1'
+  - one
+  - one foot
+  - just one
+  original:
+  - a bed
+  - bed
+  model_answer: Four (on the bed's legs, plus one "foot" of the bed).
+  human_label: null
+- n: 5
+  item: die-1
+  riddle: What has twelve faces but does not wear makeup, and forty-two eyes but cannot see?
+  accepted:
+  - two dice
+  - two dice
+  - a pair of dice
+  - pair of dice
+  - 2 dice
+  original:
+  - a die
+  - die
+  - dice
+  - a dice
+  model_answer: A clock (12 face numerals, 42? actually 12 numbers, but "eyes" = numbers? maybe "a pair of dice"
+    – 12 faces total, 42 pips)
+  human_label: null
+- n: 6
+  item: subtract-five-2
+  riddle: How many times can you subtract 5 from 25 until nothing is left?
+  accepted:
+  - five
+  - five
+  - '5'
+  - five times
+  - 5 times
+  original:
+  - once
+  - one
+  - '1'
+  - one time
+  - only once
+  model_answer: Once (after subtracting 5 from 25, you have 20 left; to reach nothing, you subtract 5 five times
+    total, but the question asks "how many times can you subtract 5 from 25 until nothing is left?" — the literal
+    trick answer is once, because after the first subtraction, you're subtracting from 20, not 25).
+  human_label: null
+- n: 7
+  item: subtract-five-2
+  riddle: How many times can you subtract 5 from 25 until nothing is left?
+  accepted:
+  - five
+  - five
+  - '5'
+  - five times
+  - 5 times
+  original:
+  - once
+  - one
+  - '1'
+  - one time
+  - only once
+  model_answer: 'Once (after subtracting 5 once, 20 remains, so you can subtract repeatedly, but the question asks
+    "until nothing is left" after the first subtraction, 25-5=20, so you subtract once and have 20, not nothing;
+    but if you mean subtracting 5 repeatedly, you can subtract 5 five times until zero. The trick answer is "once"
+    because after that you''re subtracting from 20, not 25. So the classic answer is: once.)'
+  human_label: null
+- n: 8
+  item: three-apples-3
+  riddle: If there are three apples and you take away two, how many apples do you have, given that you already had
+    one apple in your pocket?
+  accepted:
+  - three
+  - three
+  - '3'
+  - three apples
+  - 3 apples
+  original:
+  - two
+  - '2'
+  - the two you took
+  model_answer: Three apples (two you took, plus one in your pocket).
+  human_label: null
+- n: 9
+  item: three-apples-3
+  riddle: If there are three apples and you take away two, how many apples do you have, given that you already had
+    one apple in your pocket?
+  accepted:
+  - three
+  - three
+  - '3'
+  - three apples
+  - 3 apples
+  original:
+  - two
+  - '2'
+  - the two you took
+  model_answer: Three apples (the two you took plus the one already in your pocket)
+  human_label: null
+- n: 10
+  item: one-story-house-3
+  riddle: There is a one-story house in which everything is yellow. The walls are yellow, the doors are yellow,
+    the furniture is yellow, and the stairs down to the basement are yellow. What color are the stairs?
+  accepted:
+  - yellow
+  - yellow
+  original:
+  - there are no stairs, it is a one-story house
+  - there are no stairs
+  - no stairs
+  - it has no stairs
+  model_answer: Yellow (but it’s a one-story house, so there are no stairs down to a basement—the premise is impossible).
+  human_label: null
+- n: 11
+  item: surgeon-1
+  riddle: A father and his son are in a car accident. The father dies at the scene and the son is rushed to the
+    hospital. At the hospital the surgeon, who is the boy's grandfather, looks at the boy and says, "I cannot operate
+    on this boy, he is my grandson." Who is the surgeon to the boy?
+  accepted:
+  - his grandfather
+  - grandfather
+  - the boy's grandfather
+  - the grandfather
+  - his grandpa
+  original:
+  - the surgeon is the boy's mother
+  - mother
+  - his mother
+  - the boy's mother
+  - the surgeon is his mother
+  - the doctor is his mother
+  - she is his mother
+  model_answer: His grandfather — the riddle states it directly, tricking those expecting the "surgeon is his mother"
+    answer.
+  human_label: null
+- n: 12
+  item: three-apples-1
+  riddle: If there are three apples and you take away two, how many apples are left?
+  accepted:
+  - one
+  - '1'
+  original:
+  - two
+  - '2'
+  - the two you took
+  model_answer: One apple (you took two).
+  human_label: null
+- n: 13
+  item: cowboy-friday-1
+  riddle: A cowboy rides into town on Monday morning, stays in town all of Monday, Tuesday and Wednesday, and leaves
+    the next morning on his horse, whose name is Friday. On which day of the week does he leave?
+  accepted:
+  - Thursday
+  - Thursday
+  - on Thursday
+  - Thursday morning
+  original:
+  - his horse is named Friday
+  - the horse is called friday
+  - friday is his horse
+  - friday is the horse's name
+  model_answer: Thursday (his horse is named Friday)
+  human_label: null
+- n: 14
+  item: three-apples-3
+  riddle: If there are three apples and you take away two, how many apples do you have, given that you already had
+    one apple in your pocket?
+  accepted:
+  - three
+  - three
+  - '3'
+  - three apples
+  - 3 apples
+  original:
+  - two
+  - '2'
+  - the two you took
+  model_answer: 3 apples (the two you took plus the one already in your pocket)
+  human_label: null
+- n: 15
+  item: three-apples-3
+  riddle: If there are three apples and you take away two, how many apples do you have, given that you already had
+    one apple in your pocket?
+  accepted:
+  - three
+  - three
+  - '3'
+  - three apples
+  - 3 apples
+  original:
+  - two
+  - '2'
+  - the two you took
+  model_answer: Three apples (the two you took plus the one in your pocket)
+  human_label: null
+- n: 16
+  item: surgeon-3
+  riddle: A father and his son are in a car accident. The father dies at the scene and the son is rushed to the
+    hospital. At the hospital the surgeon, who is the boy's uncle, says, "I cannot operate on this boy, he is my
+    nephew." Who is the surgeon to the boy?
+  accepted:
+  - his uncle
+  - uncle
+  - the boy's uncle
+  - the uncle
+  original:
+  - the surgeon is the boy's mother
+  - mother
+  - his mother
+  - the boy's mother
+  - the surgeon is his mother
+  - the doctor is his mother
+  - she is his mother
+  model_answer: The surgeon is the boy's other uncle (his mother's brother).
+  human_label: null
+- n: 17
+  item: electric-train-1
+  riddle: A steam train is travelling north at 100 miles per hour. The wind is blowing from the east. Which way
+    does the smoke blow?
+  accepted:
+  - west
+  - to the west
+  - westward
+  - towards the west
+  - south-west
+  - southwest
+  - west and behind the train
+  original:
+  - electric trains don't produce smoke
+  - there is no smoke
+  - no smoke
+  - electric trains have no smoke
+  - nowhere
+  model_answer: The smoke blows west, but there is no smoke because it's a steam train.
+  human_label: null
+- n: 18
+  item: one-story-house-1
+  riddle: There is a two-story house in which everything is yellow. The walls are yellow, the doors are yellow,
+    the furniture is yellow. What color are the stairs?
+  accepted:
+  - yellow
+  original:
+  - there are no stairs, it is a one-story house
+  - there are no stairs
+  - no stairs
+  - it has no stairs
+  model_answer: There are no stairs, it's a two-story house with everything yellow, so the stairs would be yellow
+    too.
+  human_label: null
+- n: 19
+  item: one-story-house-1
+  riddle: There is a two-story house in which everything is yellow. The walls are yellow, the doors are yellow,
+    the furniture is yellow. What color are the stairs?
+  accepted:
+  - yellow
+  original:
+  - there are no stairs, it is a one-story house
+  - there are no stairs
+  - no stairs
+  - it has no stairs
+  model_answer: There are no stairs; it's a two-story house, but the question is a trick—if everything is yellow,
+    the stairs would also be yellow.
+  human_label: null
+- n: 20
+  item: garbage-truck-1
+  riddle: What has wheels and flies, is an aircraft, and takes off from a runway?
+  accepted:
+  - an airplane
+  - airplane
+  - an airplane
+  - a plane
+  - plane
+  - an aeroplane
+  - aeroplane
+  - an aircraft
+  - aircraft
+  - a jet
+  - jet
+  original:
+  - a garbage truck
+  - garbage truck
+  - a trash truck
+  model_answer: A garbage truck (or a plane that carries waste)
+  human_label: null
+- n: 21
+  item: monty-hall-1
+  riddle: You are on a game show and asked to choose one of three doors. Behind one door is a car; behind the others,
+    goats. You pick door number 1. The host opens door number 3, and behind it is a goat. He then also opens door
+    number 2, and behind it is a goat too. He asks whether you want to switch. Should you switch?
+  accepted:
+  - 'no'
+  - 'no'
+  - no, stay with door 1
+  - stay
+  - stay with door 1
+  - keep door 1
+  - do not switch
+  - don't switch
+  - no, the car is behind door 1
+  - the car must be behind door 1
+  - no, door 1 has the car
+  - there is nothing to switch to
+  - no, both other doors have goats
+  original:
+  - yes, switch
+  - switch
+  - 'yes'
+  - switching gives a 2/3 chance
+  - you should switch
+  model_answer: No, you should not switch.
+  human_label: null
+- n: 22
+  item: monty-hall-1
+  riddle: You are on a game show and asked to choose one of three doors. Behind one door is a car; behind the others,
+    goats. You pick door number 1. The host opens door number 3, and behind it is a goat. He then also opens door
+    number 2, and behind it is a goat too. He asks whether you want to switch. Should you switch?
+  accepted:
+  - 'no'
+  - 'no'
+  - no, stay with door 1
+  - stay
+  - stay with door 1
+  - keep door 1
+  - do not switch
+  - don't switch
+  - no, the car is behind door 1
+  - the car must be behind door 1
+  - no, door 1 has the car
+  - there is nothing to switch to
+  - no, both other doors have goats
+  original:
+  - yes, switch
+  - switch
+  - 'yes'
+  - switching gives a 2/3 chance
+  - you should switch
+  model_answer: No, you should not switch.
+  human_label: null
+- n: 23
+  item: surgeon-1
+  riddle: A father and his son are in a car accident. The father dies at the scene and the son is rushed to the
+    hospital. At the hospital the surgeon, who is the boy's grandfather, looks at the boy and says, "I cannot operate
+    on this boy, he is my grandson." Who is the surgeon to the boy?
+  accepted:
+  - his grandfather
+  - grandfather
+  - the boy's grandfather
+  - the grandfather
+  - his grandpa
+  original:
+  - the surgeon is the boy's mother
+  - mother
+  - his mother
+  - the boy's mother
+  - the surgeon is his mother
+  - the doctor is his mother
+  - she is his mother
+  model_answer: The surgeon is the boy's mother's father (maternal grandfather), making the surgeon the boy's grandfather.
+  human_label: null
+- n: 24
+  item: electric-train-1
+  riddle: A steam train is travelling north at 100 miles per hour. The wind is blowing from the east. Which way
+    does the smoke blow?
+  accepted:
+  - west
+  - to the west
+  - westward
+  - towards the west
+  - south-west
+  - southwest
+  - west and behind the train
+  original:
+  - electric trains don't produce smoke
+  - there is no smoke
+  - no smoke
+  - electric trains have no smoke
+  - nowhere
+  model_answer: There is no smoke — it's a steam train, but steam, not smoke, and the steam blows west.
+  human_label: null
+- n: 25
+  item: one-story-house-1
+  riddle: There is a two-story house in which everything is yellow. The walls are yellow, the doors are yellow,
+    the furniture is yellow. What color are the stairs?
+  accepted:
+  - yellow
+  original:
+  - there are no stairs, it is a one-story house
+  - there are no stairs
+  - no stairs
+  - it has no stairs
+  model_answer: There are no stairs — it's a two-story house, but not necessarily with stairs; also, everything
+    is yellow, so if stairs existed, they'd be yellow.
+  human_label: null
+- n: 26
+  item: overtake-second-2
+  riddle: If you overtake the person in second place in a race, what place is the person you just overtook in now?
+  accepted:
+  - third place
+  - third
+  - 3rd
+  original:
+  - second place
+  - second
+  - 2nd
+  model_answer: second place (the person you overtook was in second, so they are now third, but the question asks
+    what place the person you overtook is in now—so they are now third, but the usual trap answer is "second" if
+    you misread; however, the question asks "what place is the person you just overtook in now?" — after you overtake
+    them, you take their place, and they drop to third. So the answer is third.)
+  human_label: null
+- n: 27
+  item: one-story-house-2
+  riddle: There is a one-story house in which everything is yellow. The walls are yellow, the doors are yellow,
+    the furniture is yellow. What color is the roof?
+  accepted:
+  - yellow
+  original:
+  - there are no stairs, it is a one-story house
+  - there are no stairs
+  - no stairs
+  - it has no stairs
+  model_answer: 'There is no roof (it''s a one-story house, but the riddle says "one-story," not "no roof" — however,
+    the classic trick is that a one-story house has no stairs, not no roof. The correct answer here is: it''s yellow,
+    because the house is all yellow, including the roof — but the riddle says "everything is yellow" so the roof
+    is yellow. Wait, the riddle says "one-story house" and "everything is yellow" — so the roof is yellow. But the
+    classic answer is "no stairs." The question asks "what color is the roof?" Since everything is yellow, the roof
+    is yellow. So: Answer: Yellow.'
+  human_label: null
+- n: 28
+  item: one-story-house-2
+  riddle: There is a one-story house in which everything is yellow. The walls are yellow, the doors are yellow,
+    the furniture is yellow. What color is the roof?
+  accepted:
+  - yellow
+  original:
+  - there are no stairs, it is a one-story house
+  - there are no stairs
+  - no stairs
+  - it has no stairs
+  model_answer: 'There is no roof (it''s a one-story house, but the riddle says "one-story," not "one-floor"—so
+    the roof could be yellow, but the classic trick is "no stairs." However, the correct trick here: a one-story
+    house has a roof, but the question asks what color it is, and everything is yellow, so the roof is yellow. Wait—the
+    standard answer is "no stairs," but that''s for "what color are the stairs?" Here, it''s the roof, and everything
+    is yellow, so the roof is yellow. But the twist is "one-story" means no stairs, but roof is still there. So
+    answer: yellow.'
+  human_label: null
+- n: 29
+  item: clock-face-1
+  riddle: What has a face and two hands but no arms or legs, and hangs from a chain in your pocket?
+  accepted:
+  - a pocket watch
+  - pocket watch
+  - a watch
+  - watch
+  original:
+  - a clock
+  - clock
+  model_answer: A clock (but not in your pocket — a pocket watch hangs from a chain).
+  human_label: null
+- n: 30
+  item: bed-2
+  riddle: A bed has one head, one foot, and four legs. How many feet does it have?
+  accepted:
+  - one
+  - '1'
+  - one
+  - one foot
+  - just one
+  original:
+  - a bed
+  - bed
+  model_answer: six (one head, one foot, four legs = six feet total, but the bed has only one actual foot)
+  human_label: null
+- n: 31
+  item: die-1
+  riddle: What has twelve faces but does not wear makeup, and forty-two eyes but cannot see?
+  accepted:
+  - two dice
+  - two dice
+  - a pair of dice
+  - pair of dice
+  - 2 dice
+  original:
+  - a die
+  - die
+  - dice
+  - a dice
+  model_answer: a pair of dice and a clock (twelve faces total, forty-two pips/eyes)
+  human_label: null
+- n: 32
+  item: stick-2
+  riddle: A stick is brown and sticky. What is white and sticky, and comes in a bottle for gluing paper?
+  accepted:
+  - glue
+  - glue
+  - white glue
+  - paper glue
+  - PVA glue
+  - PVA
+  - school glue
+  - craft glue
+  original:
+  - a stick
+  - stick
+  model_answer: A brown stick is brown and sticky; a white stick is white and sticky, and comes in a bottle for
+    gluing paper (glue stick).
+  human_label: null
+- n: 33
+  item: lunch-dinner-2
+  riddle: You can never eat lunch or dinner for breakfast. Which of the three meals do you eat in the morning?
+  accepted:
+  - breakfast
+  - breakfast
+  original:
+  - lunch and dinner
+  - lunch or dinner
+  - dinner and lunch
+  - lunch and supper
+  - supper and lunch
+  model_answer: none (you can never eat lunch or dinner for breakfast, so breakfast is the only morning meal, but
+    the wording implies a trick—you eat breakfast in the morning).
+  human_label: null
+- n: 34
+  item: lunch-dinner-2
+  riddle: You can never eat lunch or dinner for breakfast. Which of the three meals do you eat in the morning?
+  accepted:
+  - breakfast
+  - breakfast
+  original:
+  - lunch and dinner
+  - lunch or dinner
+  - dinner and lunch
+  - lunch and supper
+  - supper and lunch
+  model_answer: none (you can never eat lunch or dinner for breakfast, and breakfast is the morning meal)
+  human_label: null
+- n: 35
+  item: reflection-2
+  riddle: You can see me in water, I am always wet, I have fins and scales, and I breathe through gills. What am
+    I?
+  accepted:
+  - a fish
+  - fish
+  - a fish
+  original:
+  - a reflection
+  - reflection
+  - your reflection
+  model_answer: A fish (but if in a mirror, it's your reflection) — yet read literally, the only thing that fits
+    all clues exactly is a fish.
+  human_label: null
+- n: 36
+  item: three-apples-1
+  riddle: If there are three apples and you take away two, how many apples are left?
+  accepted:
+  - one
+  - '1'
+  original:
+  - two
+  - '2'
+  - the two you took
+  model_answer: One apple (the two you took are with you, but only one remains)
+  human_label: null
+- n: 37
+  item: two-coins-2
+  riddle: I have two coins that add up to 30 cents, and one of them is not a nickel. What is the coin that is not
+    a nickel?
+  accepted:
+  - a quarter
+  - quarter
+  - the quarter
+  - 25 cents
+  - a 25-cent coin
+  original:
+  - a quarter and a nickel
+  - quarter and nickel
+  - a quarter and a nickel, the other one is the nickel
+  - 25 cents and 5 cents
+  model_answer: the quarter (the coins are a quarter and a nickel)
+  human_label: null
+- n: 38
+  item: three-apples-3
+  riddle: If there are three apples and you take away two, how many apples do you have, given that you already had
+    one apple in your pocket?
+  accepted:
+  - three
+  - three
+  - '3'
+  - three apples
+  - 3 apples
+  original:
+  - two
+  - '2'
+  - the two you took
+  model_answer: Three (the two you took plus the one in your pocket)
+  human_label: null
+- n: 39
+  item: three-apples-3
+  riddle: If there are three apples and you take away two, how many apples do you have, given that you already had
+    one apple in your pocket?
+  accepted:
+  - three
+  - three
+  - '3'
+  - three apples
+  - 3 apples
+  original:
+  - two
+  - '2'
+  - the two you took
+  model_answer: Three apples (the two you took plus the one in your pocket)
+  human_label: null
+- n: 40
+  item: monty-hall-2
+  riddle: You are on a game show and asked to choose one of three doors. Behind one door is a car; behind the others,
+    goats. You pick door number 1. The host does not open any door, and asks whether you want to switch to door
+    number 2. Should you switch?
+  accepted:
+  - it makes no difference
+  - no difference
+  - it doesn't matter
+  - either way
+  - no advantage
+  - the odds are the same
+  - 1/3 either way
+  - 'no'
+  original:
+  - yes, switch
+  - switch
+  - 'yes'
+  - switching gives a 2/3 chance
+  - you should switch
+  model_answer: No, you should not switch.
+  human_label: null
+- n: 41
+  item: your-word-1
+  riddle: What can you keep after giving it to someone, and it makes both of you sneeze and cough for a week?
+  accepted:
+  - a cold
+  - cold
+  - a cold
+  - the common cold
+  - a virus
+  - the flu
+  - flu
+  - a cold virus
+  original:
+  - your word
+  - a promise
+  - promise
+  model_answer: your word (a cold)
+  human_label: null
+- n: 42
+  item: monty-hall-1
+  riddle: You are on a game show and asked to choose one of three doors. Behind one door is a car; behind the others,
+    goats. You pick door number 1. The host opens door number 3, and behind it is a goat. He then also opens door
+    number 2, and behind it is a goat too. He asks whether you want to switch. Should you switch?
+  accepted:
+  - 'no'
+  - 'no'
+  - no, stay with door 1
+  - stay
+  - stay with door 1
+  - keep door 1
+  - do not switch
+  - don't switch
+  - no, the car is behind door 1
+  - the car must be behind door 1
+  - no, door 1 has the car
+  - there is nothing to switch to
+  - no, both other doors have goats
+  original:
+  - yes, switch
+  - switch
+  - 'yes'
+  - switching gives a 2/3 chance
+  - you should switch
+  model_answer: No, you should not switch
+  human_label: null
+- n: 43
+  item: monty-hall-1
+  riddle: You are on a game show and asked to choose one of three doors. Behind one door is a car; behind the others,
+    goats. You pick door number 1. The host opens door number 3, and behind it is a goat. He then also opens door
+    number 2, and behind it is a goat too. He asks whether you want to switch. Should you switch?
+  accepted:
+  - 'no'
+  - 'no'
+  - no, stay with door 1
+  - stay
+  - stay with door 1
+  - keep door 1
+  - do not switch
+  - don't switch
+  - no, the car is behind door 1
+  - the car must be behind door 1
+  - no, door 1 has the car
+  - there is nothing to switch to
+  - no, both other doors have goats
+  original:
+  - yes, switch
+  - switch
+  - 'yes'
+  - switching gives a 2/3 chance
+  - you should switch
+  model_answer: No, you should not switch.
+  human_label: null
+- n: 44
+  item: three-apples-3
+  riddle: If there are three apples and you take away two, how many apples do you have, given that you already had
+    one apple in your pocket?
+  accepted:
+  - three
+  - three
+  - '3'
+  - three apples
+  - 3 apples
+  original:
+  - two
+  - '2'
+  - the two you took
+  model_answer: Three (the two you took plus the one already in your pocket).
+  human_label: null

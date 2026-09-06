@@ -170,3 +170,17 @@
 {"key": "deck-of-cards-2|0|c05452909ffd56d1", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
 {"key": "reflection-2|0|303f94b8617c8d2f", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
 {"key": "rooster-egg-2|4|71ef91e93e0a9ef4", "verdict": "original", "raw": "original", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "your-word-1|3|8b34a37320e1b588", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monty-hall-2|4|65f21244deb806da", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "die-1|2|48f08a8bc04a4322", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "die-1|0|5be36c814cc54cb2", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "die-1|3|5be36c814cc54cb2", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monopoly-1|0|863c7354613973d2", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "die-1|4|48f08a8bc04a4322", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "die-1|1|48f08a8bc04a4322", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monopoly-1|1|dba198eea23b4837", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monopoly-1|4|6b7fa5edb2512176", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monopoly-1|2|863c7354613973d2", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monopoly-1|3|f6b5e76bf252d3fa", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "egg-yolk-2|3|dc3a2575df6cdfe2", "verdict": "original", "raw": "original", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monty-hall-1|3|557917cbddffe5fb", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}

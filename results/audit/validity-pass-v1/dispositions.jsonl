@@ -1,0 +1,253 @@
+{"id": "bald-rain-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "3e59ede84b9081f0"}
+{"id": "cat-fur-1", "disposition": "flag", "concern": "pun not excluded: \"the outside\" still has more fur than the inside even with one side shaved; the alteration adds a left/right contrast but does not make the pun answer false as an answer. 1 override only.", "scoring_note": "", "text_sha16": "f091c398877f03e8"}
+{"id": "cowboy-friday-1", "disposition": "keep", "concern": "", "scoring_note": "SCORING: final \"Thursday (his horse is named Friday)\" labelled original; the answer is Thursday", "text_sha16": "3b0117e3dba1a745"}
+{"id": "craw-0001-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "cdd65b417352c05c"}
+{"id": "craw-0091-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "1955a2298f5f6048"}
+{"id": "craw-0187-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "09bab4263640bf56"}
+{"id": "craw-0200-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "5e2ecb3524e62930"}
+{"id": "darkness-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "538533bb675023d6"}
+{"id": "dirt-in-hole-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "03a5a7f000dc21d6"}
+{"id": "electric-train-1", "disposition": "keep", "concern": "", "scoring_note": "one final says \"west, but there is no smoke\": contradictory reply, original label defensible", "text_sha16": "45b4bfdf9773a588"}
+{"id": "months-28-days-3", "disposition": "keep", "concern": "", "scoring_note": "SCORING: final \"...So the answer is 0.\" labelled original; the answer is 0", "text_sha16": "da9a8849d3cd0985"}
+{"id": "mushroom-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "beb287434a9d549a"}
+{"id": "nine-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "32c712494cb92c49"}
+{"id": "nose-foot-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "3c81f2ebff74209f"}
+{"id": "one-story-house-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "43d44d038580fe72"}
+{"id": "one-story-house-3", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "862b2f93ad8ba78e"}
+{"id": "red-stone-1", "disposition": "keep", "concern": "same standard as yellow-hat-1: wet is not a colour", "scoring_note": "", "text_sha16": "45a17069cad57194"}
+{"id": "rooster-egg-1", "disposition": "keep", "concern": "", "scoring_note": "one final \"eggs don't roll off sloped roofs by themselves\" labelled original; it is a different wrong answer (other), not the rooster trick", "text_sha16": "5dbef203bdf8eaae"}
+{"id": "secret-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "d9df099ea0790e35"}
+{"id": "subtract-five-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "c3fdf4a10ea556f9"}
+{"id": "surgeon-1", "disposition": "keep", "concern": "", "scoring_note": "SCORING: finals \"His grandfather — the riddle states it directly...\" and \"His grandfather (the surgeon is the boy's mother's father)\" labelled original; both are correct", "text_sha16": "a63cff14c60af513"}
+{"id": "three-apples-1", "disposition": "keep", "concern": "", "scoring_note": "SCORING: final \"One apple (you took two).\" labelled original; the answer is one", "text_sha16": "27bf47b58fee5634"}
+{"id": "three-apples-3", "disposition": "keep", "concern": "", "scoring_note": "SCORING: finals \"3 apples (the two you took plus the one already in your pocket)\" and \"Three apples (...)\" labelled original; both correct", "text_sha16": "6c9c10aaf208d08b"}
+{"id": "two-fathers-two-sons-2", "disposition": "keep", "concern": "with one fish thrown back, three people would bring home two fish, so four people is entailed", "scoring_note": "", "text_sha16": "a1522c5cd22ba6d4"}
+{"id": "birds-wire-3", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "976a39bcd6ad10af"}
+{"id": "egg-yolk-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "d51d0117ef8e1619"}
+{"id": "johnnys-mother-3", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "51a6e214543dc6ac"}
+{"id": "monty-hall-3", "disposition": "keep", "concern": "random reveal of a goat gives 1/2 each; entailed", "scoring_note": "", "text_sha16": "cb0f71f866da6bc7"}
+{"id": "seconds-year-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "c260c9106153b345"}
+{"id": "that-mans-father-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "e28fb1cb55789027"}
+{"id": "yellow-hat-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "ae1a71d29078107f"}
+{"id": "age-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "0cc03f4d548c83de"}
+{"id": "alphabet-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "e76286dd87872a1f"}
+{"id": "artichoke-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "caed8ec7eb098e5a"}
+{"id": "barber-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "c3c80194b7f0da23"}
+{"id": "barber-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "bd3a62523772a2f2"}
+{"id": "bat-and-ball-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "2642a05d9082b82b"}
+{"id": "bat-and-ball-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "4f56f7a4bc6e670f"}
+{"id": "bat-and-ball-3", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "f4215506178b75cf"}
+{"id": "battery-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "f592fb1bbcb25f4f"}
+{"id": "battery-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "84c06f6449a973f6"}
+{"id": "bear-house-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "912fd7a80a8ac7c3"}
+{"id": "bed-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "9b8050e3ce7d1e39"}
+{"id": "bed-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "d4d5ce29abb727aa"}
+{"id": "birds-wire-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "f2db8754a19d4080"}
+{"id": "birds-wire-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "27698b29316a2442"}
+{"id": "black-dog-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "6ea9d60b1b83574f"}
+{"id": "book-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "bce2f3def561d5b7"}
+{"id": "bookkeeper-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "a9b58e0a72fa59ab"}
+{"id": "bottle-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "b60a262091004e8f"}
+{"id": "brain-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "ba044ab7c85c9f88"}
+{"id": "breath-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "1ed5d6cf01acdbb8"}
+{"id": "bucket-hole-1", "disposition": "keep", "concern": "alias gap: snow/hail also fall from the sky", "scoring_note": "", "text_sha16": "5ee533fd1bb48fd9"}
+{"id": "bury-survivors-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "cd38084858125a6f"}
+{"id": "candle-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "ed1e12499796ad5a"}
+{"id": "candle-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "6a8afd2b0d7aae2e"}
+{"id": "carpet-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "8a6c3ca570fcdc2b"}
+{"id": "carrot-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "ba606c869a47b72b"}
+{"id": "carrot-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "11d818c0d7ea884d"}
+{"id": "chalkboard-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "00d1a45edefde3e2"}
+{"id": "charcoal-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "55b0be95f9810a1f"}
+{"id": "charcoal-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "e4a26c145c907384"}
+{"id": "clock-face-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "80e8eb7f9b06ecbc"}
+{"id": "clock-hands-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "44f4e1d3bbca29b9"}
+{"id": "coffin-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "902fceff35273306"}
+{"id": "coffin-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "4e2f153ba34c8ea5"}
+{"id": "coin-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "bb6b62f25fed4954"}
+{"id": "cold-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "9a1cb1477f55ed0c"}
+{"id": "comb-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "37341a4108e2e56b"}
+{"id": "comb-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "701d21b02f60a0d4"}
+{"id": "corn-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "d935274ecd0c2026"}
+{"id": "cows-drink-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "ed9ca0aacd90c466"}
+{"id": "craw-0007-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "1b688a67382ff0a3"}
+{"id": "craw-0008-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "e28c838b4ab55175"}
+{"id": "craw-0010-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "895520e925e42fb4"}
+{"id": "craw-0014-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "7d76af32d9325207"}
+{"id": "craw-0025-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "1a80e8cf5ec97659"}
+{"id": "craw-0030-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "1479b2210b9784ce"}
+{"id": "craw-0051-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "5d2d90f079e7abab"}
+{"id": "craw-0052-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "c76a915d1d0e1e4f"}
+{"id": "craw-0055-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "c3a6290b5c985b99"}
+{"id": "craw-0058-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "9c60e06fceb0927f"}
+{"id": "craw-0068-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "0f95ec106f359345"}
+{"id": "craw-0069-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "eee7f33181c20185"}
+{"id": "craw-0075-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "2ed2d26542399c1a"}
+{"id": "craw-0076-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "ef4d05fe364e45aa"}
+{"id": "craw-0095-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "f96baf645c3a7472"}
+{"id": "craw-0098-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "96fbf87a76325632"}
+{"id": "craw-0116-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "611fc638b6f0d417"}
+{"id": "craw-0125-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "7067a4208bf001cd"}
+{"id": "craw-0126-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "8a569a954e69fdc8"}
+{"id": "craw-0129-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "c5c798906f3eb048"}
+{"id": "craw-0137-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "2bed47ba48445d52"}
+{"id": "craw-0159-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "a74ac41812c24c97"}
+{"id": "craw-0163-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "7c57d5f54af42e73"}
+{"id": "craw-0173-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "05ee531937eeaf2b"}
+{"id": "craw-0192-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "b9950d622f94ff12"}
+{"id": "craw-0204-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "08e17befd5ceb656"}
+{"id": "craw-0220-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "a217f578a219db77"}
+{"id": "craw-0221-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "7b215c7f200f22ab"}
+{"id": "craw-0226-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "5890fbd878827bbb"}
+{"id": "craw-0232-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "382c4f1628e48242"}
+{"id": "craw-0241-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "76192e14ae3fe06f"}
+{"id": "craw-0259-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "ee5f0e4e89c3f52e"}
+{"id": "craw-0274-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "27421b0ff291f22e"}
+{"id": "craw-0283-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "6ad23634cf0ee8c4"}
+{"id": "craw-0288-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "0c176bba84c55117"}
+{"id": "craw-0291-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "d7c8666df1c295e5"}
+{"id": "craw-0292-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "0f3a73786fc18b53"}
+{"id": "craw-0297-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "d515733173858697"}
+{"id": "craw-0303-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "06bcdf02317a7472"}
+{"id": "craw-0313-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "c4cc54e5309787b7"}
+{"id": "craw-0328-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "c1970ec4cc80c076"}
+{"id": "craw-0368-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "9cd48f378b8f6b03"}
+{"id": "craw-0370-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "e7d48bbaa72b4629"}
+{"id": "craw-0372-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "4d389b2fe31d5dc9"}
+{"id": "craw-0379-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "ed4ce2bccc4a6e07"}
+{"id": "craw-0381-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "332eaa7c83faa412"}
+{"id": "craw-0388-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "0732a1adc56d618e"}
+{"id": "craw-0393-1", "disposition": "keep", "concern": "", "scoring_note": "one truncated rambling final labelled original; should be other/abstain", "text_sha16": "5fbf21ed49a15330"}
+{"id": "december-letter-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "3425133cb64d303c"}
+{"id": "deck-of-cards-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "0694fd7db210fd8d"}
+{"id": "deck-of-cards-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "36c1dc19fa4a17ac"}
+{"id": "dictionary-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "bc12799d4efc480f"}
+{"id": "die-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "1a6d653d17cd2e0d"}
+{"id": "die-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "792cdfbf2601fec3"}
+{"id": "dirt-in-hole-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "7bc5b0c35eb85281"}
+{"id": "divide-by-half-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "34070a5135c103ff"}
+{"id": "divide-by-half-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "f786f9d30508b1a8"}
+{"id": "divide-by-half-3", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "421b391d790842d8"}
+{"id": "echo-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "8fb34545b0f7c225"}
+{"id": "egg-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "484678bd2566f9cf"}
+{"id": "egg-yolk-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "e7c679f0eed0617d"}
+{"id": "eight-days-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "7504e88ad70c9166"}
+{"id": "electric-train-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "ef98e32fb8108d10"}
+{"id": "elephant-shadow-1", "disposition": "keep", "concern": "", "scoring_note": "SCORING: final \"The elephant that casts the shadow.\" labelled original; it is correct", "text_sha16": "7ec2c79357174f37"}
+{"id": "envelope-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "e09d577a510abdb2"}
+{"id": "everest-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "cf8aded379d5054b"}
+{"id": "feathers-bricks-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "c50234e6f5c1be45"}
+{"id": "feathers-bricks-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "b7d6bfcd7ea0b207"}
+{"id": "fence-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "2715db0a028e71c0"}
+{"id": "fire-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "9d53b36d0d956a27"}
+{"id": "footsteps-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "7e98fa87c76a3ca5"}
+{"id": "forty-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "a251875647d296a4"}
+{"id": "future-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "69cc86dbb41ad1e0"}
+{"id": "future-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "2dbe59076079f19b"}
+{"id": "garbage-truck-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "844011134f75c4b1"}
+{"id": "glove-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "4420acb81c427670"}
+{"id": "gone-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "6c9064425fe40d5c"}
+{"id": "greenhouse-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "df3c4caf660a43a4"}
+{"id": "greenhouse-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "d4f236ec2c6e6f3f"}
+{"id": "gummy-bear-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "3b8b86fa632368f9"}
+{"id": "half-of-two-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "b039d7a94d62beb5"}
+{"id": "ice-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "f3f7fb4c7334f330"}
+{"id": "johnnys-mother-2", "disposition": "keep", "concern": "consistent: the third child is unnamed, so no naming clash", "scoring_note": "", "text_sha16": "953025aa9965e907"}
+{"id": "joke-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "3fcdd1bb0e0768f7"}
+{"id": "joke-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "fa685a8010c88a91"}
+{"id": "jump-building-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "4dc8565f0c8b1b60"}
+{"id": "keyboard-1", "disposition": "keep", "concern": "minor: 'space' and 'enter' are computer-keyboard clues carried into a piano answer; 88 keys pins it", "scoring_note": "", "text_sha16": "4c2659502a5c7d44"}
+{"id": "last-brick-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "d7d4e7640c2a1b18"}
+{"id": "leap-year-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "2fdecf4f733791f4"}
+{"id": "left-hand-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "69e47a7d1d798b50"}
+{"id": "letter-e-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "5103e7e2bd0a14f8"}
+{"id": "letter-e-3", "disposition": "keep", "concern": "", "scoring_note": "SCORING: wrong counts (\"Three times (the letter 'e'...)\") labelled original because the final names the letter; these are other, not overrides", "text_sha16": "8dd6a6aaedbd01b7"}
+{"id": "letter-g-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "491bbb0051c33d69"}
+{"id": "letter-m-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "2db60e0dde2a1a24"}
+{"id": "letter-r-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "a55938a285d3c3c9"}
+{"id": "letter-v-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "8b2543b1286721f7"}
+{"id": "letter-w-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "5222e1b2da96c17c"}
+{"id": "library-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "44452e66ab1bf748"}
+{"id": "library-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "5abb792887b97741"}
+{"id": "lid-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "5bc1f683da39c01d"}
+{"id": "light-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "f9737d34f4bd2e2c"}
+{"id": "lily-pads-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "fd02063ec1ab2687"}
+{"id": "lily-pads-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "ac754a429b92f5c6"}
+{"id": "lily-pads-3", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "c3c0642338620862"}
+{"id": "lunch-dinner-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "a5eeab1e191ae77a"}
+{"id": "map-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "7d497f82fc9b1da0"}
+{"id": "marys-father-2", "disposition": "keep", "concern": "consistent: the fifth daughter is unnamed", "scoring_note": "", "text_sha16": "9dd51931c0a17117"}
+{"id": "marys-father-3", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "3ec597ffe61b4433"}
+{"id": "monopoly-1", "disposition": "keep", "concern": "", "scoring_note": "\"A toy car (from the Monopoly game)\" labelled original; it names the token, judge should decide", "text_sha16": "525421cc7bdb8c67"}
+{"id": "months-28-days-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "6f5bcbba68b6789c"}
+{"id": "monty-hall-1", "disposition": "keep", "concern": "", "scoring_note": "SCORING: \"No, you should not switch.\" labelled original via token-subset match on \"you should switch\" (negation ignored)", "text_sha16": "b60831b96b7e30d6"}
+{"id": "monty-hall-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "a0ec49c17315b299"}
+{"id": "moses-ark-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "8e0bcc594e0b4dcc"}
+{"id": "mushroom-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "124122eb6077409b"}
+{"id": "mustard-family-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "4d3bdffa5f431546"}
+{"id": "mustard-family-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "2e9758784864160d"}
+{"id": "needle-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "9fc4bcc422bc9de4"}
+{"id": "newspaper-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "350b8dac535dafb4"}
+{"id": "newspaper-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "149ca41def9cd4f5"}
+{"id": "one-story-house-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "7dbcb6b14a332efd"}
+{"id": "overtake-second-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "8e6d501e2db51033"}
+{"id": "overtake-second-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "86b9556603aff6cc"}
+{"id": "palm-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "bfb3cb685d889523"}
+{"id": "penny-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "3d6dc5ae428bc68d"}
+{"id": "penny-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "6ba4bcb009fd0bc5"}
+{"id": "piano-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "a982bcd249bd9425"}
+{"id": "post-office-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "5062d79b51be01a5"}
+{"id": "potato-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "5d166ca4c911d605"}
+{"id": "queue-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "cdcd90dd0a8791f7"}
+{"id": "rain-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "be9ca17bc6e00532"}
+{"id": "reflection-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "897dd7eb1caf4c8f"}
+{"id": "reflection-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "4b96ac9db0cca8ee"}
+{"id": "river-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "5c8a4c5167bd43af"}
+{"id": "road-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "6e329701930f8e03"}
+{"id": "romeo-juliet-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "417696eaa14addb1"}
+{"id": "rubber-band-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "a39afdd982a2f0cf"}
+{"id": "seconds-year-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "0b40a46c871d44dd"}
+{"id": "shadow-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "eb66e9175f4c8a92"}
+{"id": "sheep-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "1aba5f1d4b53f2f0"}
+{"id": "sheep-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "5eebc56ea7a2ad0d"}
+{"id": "shoe-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "d3ded4ed84fb83af"}
+{"id": "short-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "951aec5e93f01ae0"}
+{"id": "silence-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "2b0050a4dec6f146"}
+{"id": "six-seven-1", "disposition": "keep", "concern": "", "scoring_note": "\"Seven ate nine.\" labelled original; it contains the asked-for number, judge should decide", "text_sha16": "6ed3811c43220468"}
+{"id": "sphinx-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "d299f867ea100113"}
+{"id": "sponge-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "849aa62ff0edceb4"}
+{"id": "stairs-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "e4d10f0f64405184"}
+{"id": "stamp-1", "disposition": "keep", "concern": "minor: top-right is a postal convention, not a logical entailment", "scoring_note": "", "text_sha16": "3afb589abbf89998"}
+{"id": "stamp-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "35e922407c2b95e5"}
+{"id": "stick-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "74975da11ab8182b"}
+{"id": "stick-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "499dcc11020e3a30"}
+{"id": "subtract-five-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "aea4a9f041973639"}
+{"id": "surgeon-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "8007b0fd36e9af5e"}
+{"id": "surgeon-3", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "3f1db4ebeb0b2c2a"}
+{"id": "teapot-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "4eb0415676030cee"}
+{"id": "teapot-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "30a54a4c28b2a137"}
+{"id": "telephone-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "3789b07f095f5340"}
+{"id": "tennis-ball-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "2661ee81c4406ffd"}
+{"id": "that-mans-father-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "93ccab1a5909ebda"}
+{"id": "three-apples-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "c1d08396eb6991a0"}
+{"id": "time-flies-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "92787598c463df0a"}
+{"id": "tomorrow-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "81e118379fef4035"}
+{"id": "ton-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "496de5667ec847ff"}
+{"id": "towel-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "d54e27999d393678"}
+{"id": "towel-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "f312e5a318bbe739"}
+{"id": "tree-bark-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "a7e8bc76086559db"}
+{"id": "trouble-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "5cd94ea0878fbf43"}
+{"id": "trouble-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "52ef034b80779c1a"}
+{"id": "two-coins-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "a06426fc59460e60"}
+{"id": "two-coins-2", "disposition": "keep", "concern": "", "scoring_note": "\"the quarter (the coins are a quarter and a nickel)\" labelled original; the asked-for coin is named first, judge should decide", "text_sha16": "3055d48d4bd0f8a1"}
+{"id": "two-fathers-two-sons-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "b1b1468a326d0c1b"}
+{"id": "two-mothers-two-daughters-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "63223fe74c5e62b0"}
+{"id": "umbrella-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "c17049b073400d5b"}
+{"id": "widgets-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "e18890bd1b0518ff"}
+{"id": "widgets-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "351827b440a6d9b0"}
+{"id": "widgets-3", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "29210cf50cd1402f"}
+{"id": "widows-sister-2", "disposition": "keep", "concern": "minor: 'yes' is a legal fact that holds in nearly all modern jurisdictions, not a logical entailment; aliases already hedge", "scoring_note": "", "text_sha16": "9d0888cb6ee184b1"}
+{"id": "window-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "6f6ddcbe21ccaf35"}
+{"id": "wrong-2", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "dfc50c5d1a046372"}
+{"id": "your-name-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "e748aef7b94181f2"}
+{"id": "your-word-1", "disposition": "keep", "concern": "", "scoring_note": "", "text_sha16": "5b30a6e212485730"}

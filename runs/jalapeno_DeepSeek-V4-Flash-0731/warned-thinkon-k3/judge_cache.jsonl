@@ -77,3 +77,5 @@
 {"key": "yellow-hat-2|0|5fc9530d4073a10e", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
 {"key": "craw-0200-1|2|1410e654ae83f6bc", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
 {"key": "yellow-hat-2|2|248d45185d70c8d9", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monopoly-1|1|7d8ec6c61c97ca1a", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monopoly-1|0|f9cdb2e35c3cc6eb", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}

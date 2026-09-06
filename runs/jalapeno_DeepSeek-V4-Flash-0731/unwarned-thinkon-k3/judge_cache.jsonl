@@ -17,3 +17,5 @@
 {"key": "yellow-hat-2|1|73ad4bf2454f24f5", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
 {"key": "craw-0200-1|0|daec76d93f299ad6", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
 {"key": "cowboy-friday-2|2|81028a1294887170", "verdict": "original", "raw": "original", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monopoly-1|2|95d1dc75e6422240", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "monopoly-1|0|f044f593fa118762", "verdict": "correct", "raw": "correct", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
