@@ -1,0 +1,67 @@
+{
+  "model": "upstage/solar-pro4:free",
+  "batch": 1,
+  "item_ids": [
+    "johnnys-mother-1",
+    "hiccups-1",
+    "parachute-1",
+    "yellow-hat-1",
+    "last-brick-2"
+  ],
+  "prompt_sha256": "22ebf657c19b70e106753e3fbae6f38c1dae0902b17f2a6ebe38c17b88499e90",
+  "reply": {
+    "model": "upstage/solar-pro4:free",
+    "text": "[\n  {\n    \"id\": \"johnnys-mother-1\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": true,\n    \"contradictory_premises\": false,\n    \"concern\": \"Text explicitly names the third child June, making the familiar answer (Johnny) unsupported by the provided text.\",\n    \"disposition\": \"keep\"\n  },\n  {\n    \"id\": \"hiccups-1\",\n    \"original_excluded\": true,\n    \"accepted_entailed\": false,\n    \"contradictory_premises\": false,\n    \"concern\": \"Text omits the hiccups premise; the proposed answer is a literal interpretation of the altered text, not the original riddle's solution.\",\n    \"disposition\": \"revise\"\n  },\n  {\n    \"id\": \"parachute-1\",\n    \"original_excluded\": true,\n    \"accepted_entailed\": false,\n    \"contradictory_premises\": false,\n    \"concern\": \"Text omits the parachute context; the proposed answer (thirst) is a literal inference from the altered text, not the original solution.\",\n    \"disposition\": \"revise\"\n  },\n  {\n    \"id\": \"yellow-hat-1\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": true,\n    \"contradictory_premises\": false,\n    \"concern\": \"Text asks for color, not state; the proposed answer (yellow) is literally entailed, unlike the familiar answer (wet).\",\n    \"disposition\": \"keep\"\n  },\n  {\n    \"id\": \"last-brick-2\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": true,\n    \"contradictory_premises\": false,\n    \"concern\": \"Text specifies 998 laid out of 1,000 needed; the proposed answer (two) is mathematically entailed, unlike the familiar answer (one).\",\n    \"disposition\": \"keep\"\n  }\n]",
+    "reasoning": null,
+    "prompt_tokens": 520,
+    "completion_tokens": 422,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "latency_s": 4.538,
+    "attempts": 1,
+    "error": null
+  },
+  "reviews": [
+    {
+      "id": "johnnys-mother-1",
+      "original_excluded": false,
+      "accepted_entailed": true,
+      "contradictory_premises": false,
+      "concern": "Text explicitly names the third child June, making the familiar answer (Johnny) unsupported by the provided text.",
+      "disposition": "keep"
+    },
+    {
+      "id": "hiccups-1",
+      "original_excluded": true,
+      "accepted_entailed": false,
+      "contradictory_premises": false,
+      "concern": "Text omits the hiccups premise; the proposed answer is a literal interpretation of the altered text, not the original riddle's solution.",
+      "disposition": "revise"
+    },
+    {
+      "id": "parachute-1",
+      "original_excluded": true,
+      "accepted_entailed": false,
+      "contradictory_premises": false,
+      "concern": "Text omits the parachute context; the proposed answer (thirst) is a literal inference from the altered text, not the original solution.",
+      "disposition": "revise"
+    },
+    {
+      "id": "yellow-hat-1",
+      "original_excluded": false,
+      "accepted_entailed": true,
+      "contradictory_premises": false,
+      "concern": "Text asks for color, not state; the proposed answer (yellow) is literally entailed, unlike the familiar answer (wet).",
+      "disposition": "keep"
+    },
+    {
+      "id": "last-brick-2",
+      "original_excluded": false,
+      "accepted_entailed": true,
+      "contradictory_premises": false,
+      "concern": "Text specifies 998 laid out of 1,000 needed; the proposed answer (two) is mathematically entailed, unlike the familiar answer (one).",
+      "disposition": "keep"
+    }
+  ],
+  "valid": true
+}

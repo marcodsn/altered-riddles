@@ -1,0 +1,26 @@
+{
+  "model": "upstage/solar-pro4:free",
+  "batch": 0,
+  "item_ids": [
+    "mustard-family-3",
+    "bear-house-1",
+    "married-boat-1",
+    "months-28-days-1",
+    "marys-father-1"
+  ],
+  "prompt_sha256": "26a4c00b8e3ea84c72256fa6387bb6e1f55e90f5d511e4fd4759304d6650cf1b",
+  "reply": {
+    "model": "upstage/solar-pro4:free",
+    "text": "",
+    "reasoning": null,
+    "prompt_tokens": null,
+    "completion_tokens": null,
+    "reasoning_tokens": null,
+    "finish_reason": null,
+    "latency_s": 0.378,
+    "attempts": 1,
+    "error": "InternalServerError: Error code: 500 - {'status': 500, 'message': 'Something unexpected happened while processing your request.'}"
+  },
+  "reviews": null,
+  "valid": false
+}

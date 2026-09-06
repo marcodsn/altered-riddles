@@ -1,0 +1,902 @@
+{
+  "core": {
+    "item_ids": [
+      "age-1",
+      "alphabet-1",
+      "artichoke-1",
+      "bald-rain-1",
+      "barber-1",
+      "barber-2",
+      "bat-and-ball-1",
+      "bat-and-ball-2",
+      "bat-and-ball-3",
+      "battery-1",
+      "battery-2",
+      "bear-house-1",
+      "bear-house-2",
+      "bed-1",
+      "bed-2",
+      "birds-wire-1",
+      "birds-wire-2",
+      "birds-wire-3",
+      "black-dog-1",
+      "book-1",
+      "bookkeeper-1",
+      "bottle-1",
+      "brain-1",
+      "breath-1",
+      "bucket-hole-1",
+      "bury-survivors-1",
+      "candle-1",
+      "candle-2",
+      "carpet-1",
+      "carrot-1",
+      "carrot-2",
+      "cat-fur-1",
+      "chalkboard-1",
+      "charcoal-1",
+      "charcoal-2",
+      "clock-face-1",
+      "clock-hands-1",
+      "coffin-1",
+      "coffin-2",
+      "coin-1",
+      "cold-1",
+      "comb-1",
+      "comb-2",
+      "corn-1",
+      "cowboy-friday-1",
+      "cows-drink-1",
+      "craw-0001-1",
+      "craw-0007-1",
+      "craw-0008-1",
+      "craw-0010-1",
+      "craw-0014-1",
+      "craw-0025-2",
+      "craw-0030-1",
+      "craw-0051-1",
+      "craw-0052-1",
+      "craw-0055-1",
+      "craw-0058-1",
+      "craw-0068-1",
+      "craw-0069-1",
+      "craw-0075-1",
+      "craw-0076-1",
+      "craw-0091-1",
+      "craw-0095-1",
+      "craw-0098-1",
+      "craw-0116-1",
+      "craw-0125-1",
+      "craw-0126-1",
+      "craw-0129-1",
+      "craw-0137-1",
+      "craw-0159-1",
+      "craw-0163-1",
+      "craw-0173-1",
+      "craw-0187-1",
+      "craw-0192-1",
+      "craw-0200-1",
+      "craw-0204-1",
+      "craw-0220-1",
+      "craw-0221-1",
+      "craw-0226-1",
+      "craw-0232-1",
+      "craw-0241-1",
+      "craw-0259-1",
+      "craw-0274-1",
+      "craw-0283-1",
+      "craw-0288-1",
+      "craw-0291-1",
+      "craw-0292-1",
+      "craw-0297-1",
+      "craw-0303-1",
+      "craw-0313-1",
+      "craw-0328-1",
+      "craw-0368-1",
+      "craw-0370-1",
+      "craw-0372-1",
+      "craw-0379-1",
+      "craw-0381-1",
+      "craw-0388-1",
+      "craw-0393-1",
+      "darkness-1",
+      "december-letter-1",
+      "deck-of-cards-1",
+      "deck-of-cards-2",
+      "dictionary-1",
+      "die-1",
+      "die-2",
+      "dirt-in-hole-1",
+      "dirt-in-hole-2",
+      "divide-by-half-1",
+      "divide-by-half-2",
+      "divide-by-half-3",
+      "echo-1",
+      "egg-1",
+      "egg-yolk-1",
+      "egg-yolk-2",
+      "eight-days-1",
+      "electric-train-1",
+      "electric-train-2",
+      "elephant-shadow-1",
+      "envelope-1",
+      "everest-1",
+      "feathers-bricks-1",
+      "feathers-bricks-2",
+      "fence-1",
+      "fire-1",
+      "footsteps-1",
+      "forty-1",
+      "future-1",
+      "future-2",
+      "garbage-truck-1",
+      "glove-1",
+      "gone-1",
+      "greenhouse-1",
+      "greenhouse-2",
+      "gummy-bear-1",
+      "half-of-two-1",
+      "hiccups-1",
+      "ice-1",
+      "johnnys-mother-1",
+      "johnnys-mother-2",
+      "johnnys-mother-3",
+      "joke-1",
+      "joke-2",
+      "jump-building-1",
+      "keyboard-1",
+      "last-brick-1",
+      "last-brick-2",
+      "leap-year-2",
+      "left-hand-1",
+      "letter-e-2",
+      "letter-e-3",
+      "letter-g-2",
+      "letter-m-1",
+      "letter-r-1",
+      "letter-v-1",
+      "letter-w-2",
+      "library-1",
+      "library-2",
+      "lid-1",
+      "light-1",
+      "lily-pads-1",
+      "lily-pads-2",
+      "lily-pads-3",
+      "lunch-dinner-2",
+      "map-1",
+      "married-boat-1",
+      "marys-father-1",
+      "marys-father-2",
+      "marys-father-3",
+      "monopoly-1",
+      "months-28-days-1",
+      "months-28-days-2",
+      "months-28-days-3",
+      "monty-hall-1",
+      "monty-hall-2",
+      "monty-hall-3",
+      "moses-ark-1",
+      "mushroom-1",
+      "mushroom-2",
+      "mustard-family-1",
+      "mustard-family-2",
+      "mustard-family-3",
+      "needle-1",
+      "newspaper-1",
+      "newspaper-2",
+      "nine-1",
+      "nose-foot-1",
+      "one-story-house-1",
+      "one-story-house-2",
+      "one-story-house-3",
+      "overtake-second-1",
+      "overtake-second-2",
+      "palm-1",
+      "parachute-1",
+      "penny-1",
+      "penny-2",
+      "piano-1",
+      "post-office-1",
+      "potato-1",
+      "queue-1",
+      "rain-1",
+      "red-stone-1",
+      "reflection-1",
+      "reflection-2",
+      "river-1",
+      "road-1",
+      "romeo-juliet-1",
+      "rooster-egg-1",
+      "rooster-egg-2",
+      "rubber-band-1",
+      "seconds-year-1",
+      "seconds-year-2",
+      "secret-1",
+      "shadow-1",
+      "sheep-1",
+      "sheep-2",
+      "shoe-1",
+      "short-1",
+      "silence-1",
+      "six-seven-1",
+      "sphinx-1",
+      "sponge-1",
+      "stairs-1",
+      "stamp-1",
+      "stamp-2",
+      "stick-1",
+      "stick-2",
+      "subtract-five-1",
+      "subtract-five-2",
+      "surgeon-1",
+      "surgeon-2",
+      "surgeon-3",
+      "teapot-1",
+      "teapot-2",
+      "telephone-1",
+      "tennis-ball-1",
+      "that-mans-father-1",
+      "that-mans-father-2",
+      "three-apples-1",
+      "three-apples-2",
+      "three-apples-3",
+      "time-flies-1",
+      "tomorrow-1",
+      "ton-1",
+      "towel-1",
+      "towel-2",
+      "tree-bark-1",
+      "trouble-1",
+      "trouble-2",
+      "two-coins-1",
+      "two-coins-2",
+      "two-fathers-two-sons-1",
+      "two-fathers-two-sons-2",
+      "two-mothers-two-daughters-1",
+      "umbrella-1",
+      "widgets-1",
+      "widgets-2",
+      "widgets-3",
+      "widows-sister-2",
+      "window-1",
+      "wrong-2",
+      "yellow-hat-1",
+      "yellow-hat-2",
+      "your-name-1",
+      "your-word-1"
+    ],
+    "n_sources": 199,
+    "n_shared_familiar_sources": 182,
+    "rows": [
+      {
+        "id": "jalapeno:DeepSeek-V4-Flash-0731|on",
+        "model": "jalapeno:DeepSeek-V4-Flash-0731",
+        "thinking": "on",
+        "n_items": 264,
+        "n_conditioned": 747,
+        "cor": 0.020080321285140562,
+        "ci95": [
+          0.0070028011204481795,
+          0.03537414965986395
+        ],
+        "alt_acc": 0.9659090909090909,
+        "shared_familiar_cor": 0.020491803278688523,
+        "shared_familiar_n": 732
+      },
+      {
+        "id": "jalapeno:GLM-5.3-Flash|on",
+        "model": "jalapeno:GLM-5.3-Flash",
+        "thinking": "on",
+        "n_items": 264,
+        "n_conditioned": 1310,
+        "cor": 0.04198473282442748,
+        "ci95": [
+          0.024626865671641792,
+          0.06196078431372549
+        ],
+        "alt_acc": 0.9492424242424242,
+        "shared_familiar_cor": 0.04180327868852459,
+        "shared_familiar_n": 1220
+      },
+      {
+        "id": "nous:meituan/longcat-2.0:free|on",
+        "model": "nous:meituan/longcat-2.0:free",
+        "thinking": "on",
+        "n_items": 264,
+        "n_conditioned": 1290,
+        "cor": 0.046511627906976744,
+        "ci95": [
+          0.02823529411764706,
+          0.06896551724137931
+        ],
+        "alt_acc": 0.9363636363636364,
+        "shared_familiar_cor": 0.04426229508196721,
+        "shared_familiar_n": 1220
+      },
+      {
+        "id": "nous:meituan/longcat-2.0:free|off",
+        "model": "nous:meituan/longcat-2.0:free",
+        "thinking": "off",
+        "n_items": 264,
+        "n_conditioned": 1290,
+        "cor": 0.12558139534883722,
+        "ci95": [
+          0.08814814814814814,
+          0.16567164179104477
+        ],
+        "alt_acc": 0.8242424242424242,
+        "shared_familiar_cor": 0.12786885245901639,
+        "shared_familiar_n": 1220
+      },
+      {
+        "id": "jalapeno:DeepSeek-V4-Flash-0731|off",
+        "model": "jalapeno:DeepSeek-V4-Flash-0731",
+        "thinking": "off",
+        "n_items": 264,
+        "n_conditioned": 1245,
+        "cor": 0.13253012048192772,
+        "ci95": [
+          0.09113924050632911,
+          0.176984126984127
+        ],
+        "alt_acc": 0.8090909090909091,
+        "shared_familiar_cor": 0.13524590163934427,
+        "shared_familiar_n": 1220
+      }
+    ],
+    "comparisons": [
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+        "b": "jalapeno:DeepSeek-V4-Flash-0731|on",
+        "n_items": 249,
+        "n_clusters": 177,
+        "difference": 0.11244979919678715,
+        "ci95": [
+          0.07372881355932204,
+          0.15518207282913166
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+        "b": "jalapeno:GLM-5.3-Flash|on",
+        "n_items": 248,
+        "n_clusters": 176,
+        "difference": 0.09193548387096774,
+        "ci95": [
+          0.05147679324894515,
+          0.1327935222672065
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+        "b": "nous:meituan/longcat-2.0:free|off",
+        "n_items": 245,
+        "n_clusters": 173,
+        "difference": 0.0073469387755102054,
+        "ci95": [
+          -0.030327868852459014,
+          0.0467741935483871
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+        "b": "nous:meituan/longcat-2.0:free|on",
+        "n_items": 245,
+        "n_clusters": 173,
+        "difference": 0.09061224489795919,
+        "ci95": [
+          0.05344129554655871,
+          0.13168724279835392
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+        "b": "jalapeno:GLM-5.3-Flash|on",
+        "n_items": 248,
+        "n_clusters": 176,
+        "difference": -0.020967741935483872,
+        "ci95": [
+          -0.039303482587064675,
+          -0.004216073781291173
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+        "b": "nous:meituan/longcat-2.0:free|off",
+        "n_items": 245,
+        "n_clusters": 173,
+        "difference": -0.10693877551020407,
+        "ci95": [
+          -0.14786324786324787,
+          -0.06962962962962964
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+        "b": "nous:meituan/longcat-2.0:free|on",
+        "n_items": 245,
+        "n_clusters": 173,
+        "difference": -0.023673469387755105,
+        "ci95": [
+          -0.04,
+          -0.009125475285171105
+        ]
+      },
+      {
+        "a": "jalapeno:GLM-5.3-Flash|on",
+        "b": "nous:meituan/longcat-2.0:free|off",
+        "n_items": 257,
+        "n_clusters": 182,
+        "difference": -0.08326848249027237,
+        "ci95": [
+          -0.12449799196787148,
+          -0.045914396887159536
+        ]
+      },
+      {
+        "a": "jalapeno:GLM-5.3-Flash|on",
+        "b": "nous:meituan/longcat-2.0:free|on",
+        "n_items": 257,
+        "n_clusters": 182,
+        "difference": -0.0038910505836575876,
+        "ci95": [
+          -0.020553359683794466,
+          0.011363636363636366
+        ]
+      },
+      {
+        "a": "nous:meituan/longcat-2.0:free|off",
+        "b": "nous:meituan/longcat-2.0:free|on",
+        "n_items": 258,
+        "n_clusters": 183,
+        "difference": 0.07906976744186046,
+        "ci95": [
+          0.0424,
+          0.11496062992125984
+        ]
+      }
+    ]
+  },
+  "minimal_insertion_development": {
+    "item_ids": [
+      "bald-rain-1",
+      "birds-wire-3",
+      "dirt-in-hole-2",
+      "egg-yolk-2",
+      "johnnys-mother-3",
+      "last-brick-2",
+      "monty-hall-3",
+      "mustard-family-3",
+      "one-story-house-3",
+      "rooster-egg-2",
+      "seconds-year-2",
+      "subtract-five-2",
+      "that-mans-father-2",
+      "three-apples-3",
+      "two-fathers-two-sons-2",
+      "yellow-hat-2"
+    ],
+    "n_sources": 16,
+    "n_shared_familiar_sources": 16,
+    "rows": [
+      {
+        "id": "jalapeno:DeepSeek-V4-Flash-0731|on",
+        "model": "jalapeno:DeepSeek-V4-Flash-0731",
+        "thinking": "on",
+        "n_items": 16,
+        "n_conditioned": 48,
+        "cor": 0.125,
+        "ci95": [
+          0.0,
+          0.2916666666666667
+        ],
+        "alt_acc": 0.8541666666666666,
+        "shared_familiar_cor": 0.125,
+        "shared_familiar_n": 48
+      },
+      {
+        "id": "jalapeno:GLM-5.3-Flash|on",
+        "model": "jalapeno:GLM-5.3-Flash",
+        "thinking": "on",
+        "n_items": 16,
+        "n_conditioned": 80,
+        "cor": 0.225,
+        "ci95": [
+          0.0875,
+          0.3875
+        ],
+        "alt_acc": 0.7625,
+        "shared_familiar_cor": 0.225,
+        "shared_familiar_n": 80
+      },
+      {
+        "id": "nous:meituan/longcat-2.0:free|on",
+        "model": "nous:meituan/longcat-2.0:free",
+        "thinking": "on",
+        "n_items": 16,
+        "n_conditioned": 80,
+        "cor": 0.2375,
+        "ci95": [
+          0.1,
+          0.4125
+        ],
+        "alt_acc": 0.7625,
+        "shared_familiar_cor": 0.2375,
+        "shared_familiar_n": 80
+      },
+      {
+        "id": "jalapeno:DeepSeek-V4-Flash-0731|off",
+        "model": "jalapeno:DeepSeek-V4-Flash-0731",
+        "thinking": "off",
+        "n_items": 16,
+        "n_conditioned": 80,
+        "cor": 0.375,
+        "ci95": [
+          0.1875,
+          0.5875
+        ],
+        "alt_acc": 0.6,
+        "shared_familiar_cor": 0.375,
+        "shared_familiar_n": 80
+      },
+      {
+        "id": "nous:meituan/longcat-2.0:free|off",
+        "model": "nous:meituan/longcat-2.0:free",
+        "thinking": "off",
+        "n_items": 16,
+        "n_conditioned": 80,
+        "cor": 0.4,
+        "ci95": [
+          0.2,
+          0.6125
+        ],
+        "alt_acc": 0.575,
+        "shared_familiar_cor": 0.4,
+        "shared_familiar_n": 80
+      }
+    ],
+    "comparisons": [
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+        "b": "jalapeno:DeepSeek-V4-Flash-0731|on",
+        "n_items": 16,
+        "n_clusters": 16,
+        "difference": 0.25,
+        "ci95": [
+          0.09166666666666667,
+          0.4291666666666667
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+        "b": "jalapeno:GLM-5.3-Flash|on",
+        "n_items": 16,
+        "n_clusters": 16,
+        "difference": 0.15,
+        "ci95": [
+          -0.037500000000000006,
+          0.35
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+        "b": "nous:meituan/longcat-2.0:free|off",
+        "n_items": 16,
+        "n_clusters": 16,
+        "difference": -0.025,
+        "ci95": [
+          -0.1875,
+          0.125
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+        "b": "nous:meituan/longcat-2.0:free|on",
+        "n_items": 16,
+        "n_clusters": 16,
+        "difference": 0.1375,
+        "ci95": [
+          0.0125,
+          0.2875
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+        "b": "jalapeno:GLM-5.3-Flash|on",
+        "n_items": 16,
+        "n_clusters": 16,
+        "difference": -0.1,
+        "ci95": [
+          -0.24583333333333335,
+          0.016666666666666656
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+        "b": "nous:meituan/longcat-2.0:free|off",
+        "n_items": 16,
+        "n_clusters": 16,
+        "difference": -0.275,
+        "ci95": [
+          -0.5125,
+          -0.054166666666666675
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+        "b": "nous:meituan/longcat-2.0:free|on",
+        "n_items": 16,
+        "n_clusters": 16,
+        "difference": -0.1125,
+        "ci95": [
+          -0.2125,
+          -0.020833333333333346
+        ]
+      },
+      {
+        "a": "jalapeno:GLM-5.3-Flash|on",
+        "b": "nous:meituan/longcat-2.0:free|off",
+        "n_items": 16,
+        "n_clusters": 16,
+        "difference": -0.175,
+        "ci95": [
+          -0.425,
+          0.075
+        ]
+      },
+      {
+        "a": "jalapeno:GLM-5.3-Flash|on",
+        "b": "nous:meituan/longcat-2.0:free|on",
+        "n_items": 16,
+        "n_clusters": 16,
+        "difference": -0.012499999999999997,
+        "ci95": [
+          -0.175,
+          0.1625
+        ]
+      },
+      {
+        "a": "nous:meituan/longcat-2.0:free|off",
+        "b": "nous:meituan/longcat-2.0:free|on",
+        "n_items": 16,
+        "n_clusters": 16,
+        "difference": 0.1625,
+        "ci95": [
+          0.0125,
+          0.3375
+        ]
+      }
+    ]
+  },
+  "observed_thinking_failures_posthoc": {
+    "item_ids": [
+      "bald-rain-1",
+      "bear-house-1",
+      "cat-fur-1",
+      "cowboy-friday-1",
+      "craw-0001-1",
+      "craw-0091-1",
+      "craw-0187-1",
+      "craw-0200-1",
+      "darkness-1",
+      "dirt-in-hole-2",
+      "electric-train-1",
+      "hiccups-1",
+      "johnnys-mother-1",
+      "last-brick-2",
+      "married-boat-1",
+      "marys-father-1",
+      "months-28-days-1",
+      "months-28-days-3",
+      "mushroom-2",
+      "mustard-family-3",
+      "nine-1",
+      "nose-foot-1",
+      "one-story-house-1",
+      "one-story-house-3",
+      "parachute-1",
+      "red-stone-1",
+      "rooster-egg-1",
+      "rooster-egg-2",
+      "secret-1",
+      "subtract-five-2",
+      "surgeon-1",
+      "three-apples-1",
+      "three-apples-3",
+      "two-fathers-two-sons-2",
+      "yellow-hat-1"
+    ],
+    "n_sources": 31,
+    "n_shared_familiar_sources": 29,
+    "rows": [
+      {
+        "id": "jalapeno:DeepSeek-V4-Flash-0731|on",
+        "model": "jalapeno:DeepSeek-V4-Flash-0731",
+        "thinking": "on",
+        "n_items": 35,
+        "n_conditioned": 99,
+        "cor": 0.15151515151515152,
+        "ci95": [
+          0.0625,
+          0.25806451612903225
+        ],
+        "alt_acc": 0.8,
+        "shared_familiar_cor": 0.15151515151515152,
+        "shared_familiar_n": 99
+      },
+      {
+        "id": "jalapeno:GLM-5.3-Flash|on",
+        "model": "jalapeno:GLM-5.3-Flash",
+        "thinking": "on",
+        "n_items": 35,
+        "n_conditioned": 175,
+        "cor": 0.3142857142857143,
+        "ci95": [
+          0.21025641025641026,
+          0.42424242424242425
+        ],
+        "alt_acc": 0.6742857142857143,
+        "shared_familiar_cor": 0.3090909090909091,
+        "shared_familiar_n": 165
+      },
+      {
+        "id": "nous:meituan/longcat-2.0:free|on",
+        "model": "nous:meituan/longcat-2.0:free",
+        "thinking": "on",
+        "n_items": 35,
+        "n_conditioned": 175,
+        "cor": 0.34285714285714286,
+        "ci95": [
+          0.24,
+          0.45454545454545453
+        ],
+        "alt_acc": 0.6,
+        "shared_familiar_cor": 0.32727272727272727,
+        "shared_familiar_n": 165
+      },
+      {
+        "id": "nous:meituan/longcat-2.0:free|off",
+        "model": "nous:meituan/longcat-2.0:free",
+        "thinking": "off",
+        "n_items": 35,
+        "n_conditioned": 175,
+        "cor": 0.42857142857142855,
+        "ci95": [
+          0.28,
+          0.5705882352941176
+        ],
+        "alt_acc": 0.4742857142857143,
+        "shared_familiar_cor": 0.41818181818181815,
+        "shared_familiar_n": 165
+      },
+      {
+        "id": "jalapeno:DeepSeek-V4-Flash-0731|off",
+        "model": "jalapeno:DeepSeek-V4-Flash-0731",
+        "thinking": "off",
+        "n_items": 35,
+        "n_conditioned": 165,
+        "cor": 0.45454545454545453,
+        "ci95": [
+          0.3090909090909091,
+          0.593939393939394
+        ],
+        "alt_acc": 0.46285714285714286,
+        "shared_familiar_cor": 0.45454545454545453,
+        "shared_familiar_n": 165
+      }
+    ],
+    "comparisons": [
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+        "b": "jalapeno:DeepSeek-V4-Flash-0731|on",
+        "n_items": 33,
+        "n_clusters": 29,
+        "difference": 0.30303030303030304,
+        "ci95": [
+          0.14408602150537636,
+          0.44814814814814813
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+        "b": "jalapeno:GLM-5.3-Flash|on",
+        "n_items": 33,
+        "n_clusters": 29,
+        "difference": 0.14545454545454548,
+        "ci95": [
+          -0.025806451612903215,
+          0.30000000000000004
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+        "b": "nous:meituan/longcat-2.0:free|off",
+        "n_items": 33,
+        "n_clusters": 29,
+        "difference": 0.03636363636363637,
+        "ci95": [
+          -0.11764705882352941,
+          0.18181818181818182
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+        "b": "nous:meituan/longcat-2.0:free|on",
+        "n_items": 33,
+        "n_clusters": 29,
+        "difference": 0.1272727272727273,
+        "ci95": [
+          -0.038709677419354833,
+          0.2896551724137931
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+        "b": "jalapeno:GLM-5.3-Flash|on",
+        "n_items": 33,
+        "n_clusters": 29,
+        "difference": -0.1575757575757576,
+        "ci95": [
+          -0.2784313725490196,
+          -0.03063063063063064
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+        "b": "nous:meituan/longcat-2.0:free|off",
+        "n_items": 33,
+        "n_clusters": 29,
+        "difference": -0.26666666666666666,
+        "ci95": [
+          -0.4378378378378378,
+          -0.07843137254901962
+        ]
+      },
+      {
+        "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+        "b": "nous:meituan/longcat-2.0:free|on",
+        "n_items": 33,
+        "n_clusters": 29,
+        "difference": -0.17575757575757578,
+        "ci95": [
+          -0.27037037037037037,
+          -0.07586206896551725
+        ]
+      },
+      {
+        "a": "jalapeno:GLM-5.3-Flash|on",
+        "b": "nous:meituan/longcat-2.0:free|off",
+        "n_items": 35,
+        "n_clusters": 31,
+        "difference": -0.11428571428571428,
+        "ci95": [
+          -0.3055555555555556,
+          0.08
+        ]
+      },
+      {
+        "a": "jalapeno:GLM-5.3-Flash|on",
+        "b": "nous:meituan/longcat-2.0:free|on",
+        "n_items": 35,
+        "n_clusters": 31,
+        "difference": -0.02857142857142857,
+        "ci95": [
+          -0.14857142857142858,
+          0.08717948717948718
+        ]
+      },
+      {
+        "a": "nous:meituan/longcat-2.0:free|off",
+        "b": "nous:meituan/longcat-2.0:free|on",
+        "n_items": 35,
+        "n_clusters": 31,
+        "difference": 0.08571428571428572,
+        "ci95": [
+          -0.07058823529411765,
+          0.24117647058823527
+        ]
+      }
+    ]
+  }
+}

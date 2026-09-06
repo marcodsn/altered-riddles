@@ -347,3 +347,46 @@ results/                  # leaderboard.json, LEADERBOARD.md, judge_agreement.js
 inspect/                  # inspect_ai task
 v1/                       # frozen v1 results + README, for the record
 ```
+
+## Core + Hard follow-up: audit foundation
+
+Implementation/protocol: `docs/CORE_HARD_PROTOCOL.md`. Initial AI validity
+findings: `docs/VALIDITY_AUDIT_INITIAL.md`. Reproducible diagnostic outputs:
+`results/audit/core-hard-v2/` (prior engineering snapshot retained as v1).
+
+- Corrected the leaderboard's independently bootstrapped pseudo-paired comparisons.
+  New comparisons jointly resample clusters on shared familiar items; point ranks
+  replace misleading equivalence groups. Historical tables remain untouched.
+- Core point estimates remain unchanged. Exploratory paired Core differences for
+  DeepSeek thinking-on versus GLM and Longcat have pointwise intervals below zero;
+  the earlier blanket claim that all thinking-on rows are tied is not supported
+  by the corrected comparison. This is not a multiplicity-adjusted global ranking.
+- Added complete-score/sample checks, per-sample text drift checks, diagnostic
+  slices, shared-familiar sensitivity, and an explicit unreviewed validity queue.
+- Initial direct AI review identified underdetermination/contradiction concerns
+  in the error tail. No items are automatically dropped or silently rewritten.
+- Four Nous `:free` advisory requests (Step and Solar) all failed with HTTP 400
+  `missing tags`; artifacts retained under `results/audit/validity-free-v1/`.
+  No model review votes or paid fallback calls. Jalapeno spending deferred until
+  current pricing and a bounded envelope are established.
+- The initial 14 offline regression tests passed. Remaining release work is
+  explicitly listed in the protocol; no human adjudication, Hard test freeze,
+  or public launch yet.
+
+### Flagged-item adjudication follow-up
+
+- User authorized proceeding directly and supplied the Nous user tag `marcodsn`.
+  The live-verified wire format is `{"tags": ["user=marcodsn"]}`; it fixes the
+  missing-tag blocker. Wrong-shape probes and unsuccessful requests are retained.
+- Solar Pro 4 and Laguna S 2.1 free routes supplied advisory reviews. Step requires
+  reasoning and exhausted the bounded 3,000-token limit, so no Step votes count.
+- Direct AI adjudication of ten flagged items recommends 3 keep, 6 revise, 1
+  exclude. Reasons, disagreements, and human-pending status are recorded under
+  `results/audit/adjudication-v1/`; no changes to historical active items or scores.
+- Six isolated candidate repairs are in `data/revisions/core-hard-pilot.yaml`.
+  They received a further blinded AI review; no difficulty scores are transferred
+  from old texts. Both reviewer models misread exactly 28 days as at least 28:
+  their rationales are rejected, with a deterministic Gregorian-calendar check
+  added to the tests. Model agreement is not ground truth.
+- Full Core adjudication, human approval, fresh repair runs, a held-out Hard set,
+  and public-release checks remain outstanding. The benchmark is not launch-ready.

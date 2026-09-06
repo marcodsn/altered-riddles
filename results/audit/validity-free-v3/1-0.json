@@ -1,0 +1,67 @@
+{
+  "model": "upstage/solar-pro4:free",
+  "batch": 0,
+  "item_ids": [
+    "mustard-family-3",
+    "bear-house-1",
+    "married-boat-1",
+    "months-28-days-1",
+    "marys-father-1"
+  ],
+  "prompt_sha256": "26a4c00b8e3ea84c72256fa6387bb6e1f55e90f5d511e4fd4759304d6650cf1b",
+  "reply": {
+    "model": "upstage/solar-pro4:free",
+    "text": "[\n  {\n    \"id\": \"mustard-family-3\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": false,\n    \"contradictory_premises\": true,\n    \"concern\": \"Premise 'each daughter has one brother' entails one shared brother, contradicting 'six brothers in all'.\",\n    \"disposition\": \"revise\"\n  },\n  {\n    \"id\": \"bear-house-1\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": false,\n    \"contradictory_premises\": true,\n    \"concern\": \"Geometrically impossible house (all sides south) contradicts Earth geography required for the familiar answer; proposed answer ignores the riddle's logic.\",\n    \"disposition\": \"revise\"\n  },\n  {\n    \"id\": \"married-boat-1\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": true,\n    \"contradictory_premises\": false,\n    \"concern\": \"Text explicitly states people went below deck, entailing the proposed answer; familiar answer relies on excluded wordplay.\",\n    \"disposition\": \"keep\"\n  },\n  {\n    \"id\": \"months-28-days-1\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": false,\n    \"contradictory_premises\": false,\n    \"concern\": \"Familiar answer (all months) is logically entailed by 'have 28 days'; proposed answer excludes months with more than 28 days.\",\n    \"disposition\": \"revise\"\n  },\n  {\n    \"id\": \"marys-father-1\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": false,\n    \"contradictory_premises\": false,\n    \"concern\": \"Text states 'Mary's father', entailing Mary is a daughter; proposed answer ignores this premise.\",\n    \"disposition\": \"revise\"\n  }\n]",
+    "reasoning": null,
+    "prompt_tokens": 517,
+    "completion_tokens": 409,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "latency_s": 5.803,
+    "attempts": 1,
+    "error": null
+  },
+  "reviews": [
+    {
+      "id": "mustard-family-3",
+      "original_excluded": false,
+      "accepted_entailed": false,
+      "contradictory_premises": true,
+      "concern": "Premise 'each daughter has one brother' entails one shared brother, contradicting 'six brothers in all'.",
+      "disposition": "revise"
+    },
+    {
+      "id": "bear-house-1",
+      "original_excluded": false,
+      "accepted_entailed": false,
+      "contradictory_premises": true,
+      "concern": "Geometrically impossible house (all sides south) contradicts Earth geography required for the familiar answer; proposed answer ignores the riddle's logic.",
+      "disposition": "revise"
+    },
+    {
+      "id": "married-boat-1",
+      "original_excluded": false,
+      "accepted_entailed": true,
+      "contradictory_premises": false,
+      "concern": "Text explicitly states people went below deck, entailing the proposed answer; familiar answer relies on excluded wordplay.",
+      "disposition": "keep"
+    },
+    {
+      "id": "months-28-days-1",
+      "original_excluded": false,
+      "accepted_entailed": false,
+      "contradictory_premises": false,
+      "concern": "Familiar answer (all months) is logically entailed by 'have 28 days'; proposed answer excludes months with more than 28 days.",
+      "disposition": "revise"
+    },
+    {
+      "id": "marys-father-1",
+      "original_excluded": false,
+      "accepted_entailed": false,
+      "contradictory_premises": false,
+      "concern": "Text states 'Mary's father', entailing Mary is a daughter; proposed answer ignores this premise.",
+      "disposition": "revise"
+    }
+  ],
+  "valid": true
+}

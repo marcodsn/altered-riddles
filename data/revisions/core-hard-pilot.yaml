@@ -1,0 +1,70 @@
+# AI-authored revisions for validation only. NOT part of the active benchmark.
+# Each changed item needs blinded validity checks, human adjudication and NEW runs.
+# Do not transfer old scores or difficulty estimates to these texts.
+- id: mustard-family-3-r1
+  replaces: mustard-family-3
+  source: mustard-family
+  status: draft_pending_validation
+  human_review: pending
+  text: "Mr. and Mrs. Mustard have six daughters and six sons, all siblings of one another. Counting only Mr. Mustard, Mrs. Mustard, and these children, how many people are in the family?"
+  answer: fourteen
+  aliases: ["14", "fourteen people"]
+  original_answer: nine
+  why_original_fails: "Two parents plus twelve distinct children is fourteen, not nine. The sibling statements are consistent."
+  tradeoff: "Less subtle than the old item; validity takes priority over preserving its measured difficulty."
+
+- id: months-28-days-1-r1
+  replaces: months-28-days-1
+  source: months-28-days
+  status: draft_pending_validation
+  human_review: pending
+  text: "In a common (non-leap) year of the Gregorian calendar, some months have 30 days and some have 31. How many months have exactly 28 days?"
+  answer: "one, February"
+  aliases: ["one", "1", "February", "one month"]
+  original_answer: all of them
+  why_original_fails: "Exactly 28 excludes months with 30 or 31 days. In a stated common Gregorian year, February alone has 28."
+
+- id: marys-father-1-r1
+  replaces: marys-father-1
+  source: marys-father
+  status: draft_pending_validation
+  human_review: pending
+  text: "Mary's father has five daughters. From oldest to youngest, their only given names are Mary, Nene, Nini, Nono, and Nunu. What is the given name of his fifth (youngest) daughter?"
+  answer: Nunu
+  aliases: ["Nunu"]
+  original_answer: Mary
+  why_original_fails: "Mary is explicitly the oldest daughter; the youngest daughter's only given name is Nunu. Mary is not an uncounted sixth child or an alternative name."
+
+- id: johnnys-mother-1-r1
+  replaces: johnnys-mother-1
+  source: johnnys-mother
+  status: draft_pending_validation
+  human_review: pending
+  text: "Johnny's mother has three children. From oldest to youngest, their only given names are April, Johnny, and June. What is the given name of her third (youngest) child?"
+  answer: June
+  aliases: ["June"]
+  original_answer: Johnny
+  why_original_fails: "Johnny is explicitly the second child. The third child's only given name is June; no contradictory fourth child is implied."
+
+- id: hiccups-1-r1
+  replaces: hiccups-1
+  source: hiccups
+  status: draft_pending_validation
+  human_review: pending
+  text: "A man walks into a bar and asks for a glass of water. He has no hiccups. The bartender hands him the water. The man says, 'Thank you for giving me the water I asked for,' and leaves. What did he explicitly thank the bartender for?"
+  answer: "giving him the water he asked for"
+  aliases: ["giving him water", "the glass of water", "the water"]
+  original_answer: the man had hiccups
+  why_original_fails: "The question asks for the explicitly stated reason, which is receiving water. Hiccups are explicitly absent."
+  tradeoff: "A validity repair and Core control, not an assumed Hard item."
+
+- id: last-brick-2-r1
+  replaces: last-brick-2
+  source: last-brick
+  status: draft_pending_validation
+  human_review: pending
+  text: "A brick building requires exactly 1,000 bricks in total. Exactly 998 bricks have already been laid, and all of them will stay in place. How many additional bricks must be laid to finish the building?"
+  answer: two
+  aliases: ["2", "two bricks"]
+  original_answer: "one, the last one"
+  why_original_fails: "The question asks the number of additional bricks required, not which single brick marks completion. The difference is 1,000 minus 998, or two."

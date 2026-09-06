@@ -1,0 +1,67 @@
+{
+  "model": "poolside/laguna-s-2.1:free",
+  "batch": 1,
+  "item_ids": [
+    "johnnys-mother-1",
+    "hiccups-1",
+    "parachute-1",
+    "yellow-hat-1",
+    "last-brick-2"
+  ],
+  "prompt_sha256": "22ebf657c19b70e106753e3fbae6f38c1dae0902b17f2a6ebe38c17b88499e90",
+  "reply": {
+    "model": "poolside/laguna-s-2.1:free",
+    "text": "[\n  {\n    \"id\": \"johnnys-mother-1\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": true,\n    \"contradictory_premises\": false,\n    \"concern\": \"The text explicitly states the third child is named June, making the proposed answer directly entailed. The familiar answer 'Johnny' contradicts the given information.\",\n    \"disposition\": \"exclude\"\n  },\n  {\n    \"id\": \"hiccups-1\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": true,\n    \"contradictory_premises\": false,\n    \"concern\": \"The proposed answer is directly supported by the text: the man asked for water, received it, and said thank you. The familiar answer introduces an unstated premise (hiccups) not present in the altered text.\",\n    \"disposition\": \"keep\"\n  },\n  {\n    \"id\": \"parachute-1\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": false,\n    \"contradictory_premises\": false,\n    \"concern\": \"The proposed answer 'thirst' is plausible but not definitively entailed; the text does not explicitly state the cause of death. The familiar answer 'parachute didn't open' is not supported by the altered text, which lacks any reference to a parachute.\",\n    \"disposition\": \"revise\"\n  },\n  {\n    \"id\": \"yellow-hat-1\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": true,\n    \"contradictory_premises\": false,\n    \"concern\": \"The proposed answer 'yellow' is directly entailed by the text, as the color of the hat does not change when wet. The familiar answer 'wet' is a play on words not supported by the literal text.\",\n    \"disposition\": \"keep\"\n  },\n  {\n    \"id\": \"last-brick-2\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": true,\n    \"contradictory_premises\": false,\n    \"concern\": \"The proposed answer 'two' is directly entailed by the text: 1,000 bricks are needed and 998 are laid, so 2 remain. The familiar answer 'one' contradicts the arithmetic presented.\",\n    \"disposition\": \"exclude\"\n  }\n]",
+    "reasoning": null,
+    "prompt_tokens": 518,
+    "completion_tokens": 543,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "latency_s": 9.371,
+    "attempts": 1,
+    "error": null
+  },
+  "reviews": [
+    {
+      "id": "johnnys-mother-1",
+      "original_excluded": false,
+      "accepted_entailed": true,
+      "contradictory_premises": false,
+      "concern": "The text explicitly states the third child is named June, making the proposed answer directly entailed. The familiar answer 'Johnny' contradicts the given information.",
+      "disposition": "exclude"
+    },
+    {
+      "id": "hiccups-1",
+      "original_excluded": false,
+      "accepted_entailed": true,
+      "contradictory_premises": false,
+      "concern": "The proposed answer is directly supported by the text: the man asked for water, received it, and said thank you. The familiar answer introduces an unstated premise (hiccups) not present in the altered text.",
+      "disposition": "keep"
+    },
+    {
+      "id": "parachute-1",
+      "original_excluded": false,
+      "accepted_entailed": false,
+      "contradictory_premises": false,
+      "concern": "The proposed answer 'thirst' is plausible but not definitively entailed; the text does not explicitly state the cause of death. The familiar answer 'parachute didn't open' is not supported by the altered text, which lacks any reference to a parachute.",
+      "disposition": "revise"
+    },
+    {
+      "id": "yellow-hat-1",
+      "original_excluded": false,
+      "accepted_entailed": true,
+      "contradictory_premises": false,
+      "concern": "The proposed answer 'yellow' is directly entailed by the text, as the color of the hat does not change when wet. The familiar answer 'wet' is a play on words not supported by the literal text.",
+      "disposition": "keep"
+    },
+    {
+      "id": "last-brick-2",
+      "original_excluded": false,
+      "accepted_entailed": true,
+      "contradictory_premises": false,
+      "concern": "The proposed answer 'two' is directly entailed by the text: 1,000 bricks are needed and 998 are laid, so 2 remain. The familiar answer 'one' contradicts the arithmetic presented.",
+      "disposition": "exclude"
+    }
+  ],
+  "valid": true
+}

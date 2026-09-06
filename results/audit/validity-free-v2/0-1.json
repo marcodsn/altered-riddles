@@ -1,0 +1,26 @@
+{
+  "model": "stepfun/step-3.7-flash:free",
+  "batch": 1,
+  "item_ids": [
+    "johnnys-mother-1",
+    "hiccups-1",
+    "parachute-1",
+    "yellow-hat-1",
+    "last-brick-2"
+  ],
+  "prompt_sha256": "22ebf657c19b70e106753e3fbae6f38c1dae0902b17f2a6ebe38c17b88499e90",
+  "reply": {
+    "model": "stepfun/step-3.7-flash:free",
+    "text": "",
+    "reasoning": null,
+    "prompt_tokens": null,
+    "completion_tokens": null,
+    "reasoning_tokens": null,
+    "finish_reason": null,
+    "latency_s": 1.372,
+    "attempts": 1,
+    "error": "InternalServerError: Error code: 500 - {'status': 500, 'message': 'Something unexpected happened while processing your request.'}"
+  },
+  "reviews": null,
+  "valid": false
+}

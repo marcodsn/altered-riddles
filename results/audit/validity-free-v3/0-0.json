@@ -1,0 +1,26 @@
+{
+  "model": "stepfun/step-3.7-flash:free",
+  "batch": 0,
+  "item_ids": [
+    "mustard-family-3",
+    "bear-house-1",
+    "married-boat-1",
+    "months-28-days-1",
+    "marys-father-1"
+  ],
+  "prompt_sha256": "26a4c00b8e3ea84c72256fa6387bb6e1f55e90f5d511e4fd4759304d6650cf1b",
+  "reply": {
+    "model": "stepfun/step-3.7-flash:free",
+    "text": "",
+    "reasoning": null,
+    "prompt_tokens": null,
+    "completion_tokens": null,
+    "reasoning_tokens": null,
+    "finish_reason": null,
+    "latency_s": 0.32,
+    "attempts": 1,
+    "error": "BadRequestError: Error code: 400 - {'status': 400, 'message': 'This request is not valid. Check the model name and other parameters. Additional info: Reasoning is mandatory for this endpoint and cannot be disabled.'}"
+  },
+  "reviews": null,
+  "valid": false
+}

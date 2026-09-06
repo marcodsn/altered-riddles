@@ -1,0 +1,67 @@
+{
+  "model": "poolside/laguna-s-2.1:free",
+  "batch": 0,
+  "item_ids": [
+    "mustard-family-3",
+    "bear-house-1",
+    "married-boat-1",
+    "months-28-days-1",
+    "marys-father-1"
+  ],
+  "prompt_sha256": "26a4c00b8e3ea84c72256fa6387bb6e1f55e90f5d511e4fd4759304d6650cf1b",
+  "reply": {
+    "model": "poolside/laguna-s-2.1:free",
+    "text": "[\n  {\n    \"id\": \"mustard-family-3\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": false,\n    \"contradictory_premises\": true,\n    \"concern\": \"The text states 'each daughter has one brother' but then concludes 'there are six brothers in all,' which contradicts the singular brother premise. The proposed answer of fourteen is not entailed by the altered text.\",\n    \"disposition\": \"revise\"\n  },\n  {\n    \"id\": \"bear-house-1\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": true,\n    \"contradictory_premises\": false,\n    \"concern\": \"The altered text explicitly describes the bear as brown, making the proposed answer directly entailed. The familiar answer of white relies on geographic assumptions not present in the altered version.\",\n    \"disposition\": \"keep\"\n  },\n  {\n    \"id\": \"married-boat-1\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": true,\n    \"contradictory_premises\": false,\n    \"concern\": \"The altered text provides a literal explanation (people went below deck) that is directly supported by the narrative. The proposed answer is entailed by the altered text.\",\n    \"disposition\": \"keep\"\n  },\n  {\n    \"id\": \"months-28-days-1\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": false,\n    \"contradictory_premises\": false,\n    \"concern\": \"The altered text asks how many months have exactly 28 days, and the proposed answer 'one, February' is factually incorrect since all months have at least 28 days. The familiar answer 'all of them' is the correct literal interpretation.\",\n    \"disposition\": \"revise\"\n  },\n  {\n    \"id\": \"marys-father-1\",\n    \"original_excluded\": false,\n    \"accepted_entailed\": false,\n    \"contradictory_premises\": false,\n    \"concern\": \"The altered text lists five daughters as Nana, Nene, Nini, Nono, and Nunu, making the proposed answer 'Nunu' literally correct based on the text. However, the familiar answer 'Mary' relies on the unstated assumption that Mary is one of the daughters, which is not explicitly stated in the altered version.\",\n    \"disposition\": \"revise\"\n  }\n]",
+    "reasoning": null,
+    "prompt_tokens": 515,
+    "completion_tokens": 557,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "latency_s": 12.488,
+    "attempts": 1,
+    "error": null
+  },
+  "reviews": [
+    {
+      "id": "mustard-family-3",
+      "original_excluded": false,
+      "accepted_entailed": false,
+      "contradictory_premises": true,
+      "concern": "The text states 'each daughter has one brother' but then concludes 'there are six brothers in all,' which contradicts the singular brother premise. The proposed answer of fourteen is not entailed by the altered text.",
+      "disposition": "revise"
+    },
+    {
+      "id": "bear-house-1",
+      "original_excluded": false,
+      "accepted_entailed": true,
+      "contradictory_premises": false,
+      "concern": "The altered text explicitly describes the bear as brown, making the proposed answer directly entailed. The familiar answer of white relies on geographic assumptions not present in the altered version.",
+      "disposition": "keep"
+    },
+    {
+      "id": "married-boat-1",
+      "original_excluded": false,
+      "accepted_entailed": true,
+      "contradictory_premises": false,
+      "concern": "The altered text provides a literal explanation (people went below deck) that is directly supported by the narrative. The proposed answer is entailed by the altered text.",
+      "disposition": "keep"
+    },
+    {
+      "id": "months-28-days-1",
+      "original_excluded": false,
+      "accepted_entailed": false,
+      "contradictory_premises": false,
+      "concern": "The altered text asks how many months have exactly 28 days, and the proposed answer 'one, February' is factually incorrect since all months have at least 28 days. The familiar answer 'all of them' is the correct literal interpretation.",
+      "disposition": "revise"
+    },
+    {
+      "id": "marys-father-1",
+      "original_excluded": false,
+      "accepted_entailed": false,
+      "contradictory_premises": false,
+      "concern": "The altered text lists five daughters as Nana, Nene, Nini, Nono, and Nunu, making the proposed answer 'Nunu' literally correct based on the text. However, the familiar answer 'Mary' relies on the unstated assumption that Mary is one of the daughters, which is not explicitly stated in the altered version.",
+      "disposition": "revise"
+    }
+  ],
+  "valid": true
+}

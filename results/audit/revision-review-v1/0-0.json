@@ -1,0 +1,67 @@
+{
+  "model": "upstage/solar-pro4:free",
+  "batch": 0,
+  "item_ids": [
+    "mustard-family-3-r1",
+    "months-28-days-1-r1",
+    "marys-father-1-r1",
+    "johnnys-mother-1-r1",
+    "hiccups-1-r1"
+  ],
+  "prompt_sha256": "d2a5ff18f7d20804c93b59adcda4633c3b452c5f2eada3dc3172db89987fc54f",
+  "reply": {
+    "model": "upstage/solar-pro4:free",
+    "text": "\n\n[\n  {\n    \"id\": \"mustard-family-3-r1\",\n    \"original_excluded\": true,\n    \"accepted_entailed\": true,\n    \"contradictory_premises\": false,\n    \"concern\": \"Text explicitly lists 12 children plus 2 parents; 'familiar' answer relies on unstated sibling-sharing assumption not present in text.\",\n    \"disposition\": \"keep\"\n  },\n  {\n    \"id\": \"months-28-days-1-r1\",\n    \"original_excluded\": true,\n    \"accepted_entailed\": false,\n    \"contradictory_premises\": false,\n    \"concern\": \"Text specifies 'exactly 28 days'; proposed answer is factually incorrect (February has 28 days in common year, but all months have at least 28).\",\n    \"disposition\": \"exclude\"\n  },\n  {\n    \"id\": \"marys-father-1-r1\",\n    \"original_excluded\": true,\n    \"accepted_entailed\": true,\n    \"contradictory_premises\": false,\n    \"concern\": \"Text explicitly lists five names including Mary; proposed answer follows explicit enumeration, familiar answer relies on external riddle knowledge.\",\n    \"disposition\": \"keep\"\n  },\n  {\n    \"id\": \"johnnys-mother-1-r1\",\n    \"original_excluded\": true,\n    \"accepted_entailed\": true,\n    \"contradictory_premises\": false,\n    \"concern\": \"Text explicitly lists three names including Johnny; proposed answer follows explicit enumeration, familiar answer relies on external riddle knowledge.\",\n    \"disposition\": \"keep\"\n  },\n  {\n    \"id\": \"hiccups-1-r1\",\n    \"original_excluded\": true,\n    \"accepted_entailed\": true,\n    \"contradictory_premises\": false,\n    \"concern\": \"Text explicitly states man has no hiccups and thanks for water asked for; proposed answer matches explicit text, familiar answer relies on altered premise.\",\n    \"disposition\": \"keep\"\n  }\n]",
+    "reasoning": null,
+    "prompt_tokens": 590,
+    "completion_tokens": 439,
+    "reasoning_tokens": 0,
+    "finish_reason": "stop",
+    "latency_s": 4.767,
+    "attempts": 1,
+    "error": null
+  },
+  "reviews": [
+    {
+      "id": "mustard-family-3-r1",
+      "original_excluded": true,
+      "accepted_entailed": true,
+      "contradictory_premises": false,
+      "concern": "Text explicitly lists 12 children plus 2 parents; 'familiar' answer relies on unstated sibling-sharing assumption not present in text.",
+      "disposition": "keep"
+    },
+    {
+      "id": "months-28-days-1-r1",
+      "original_excluded": true,
+      "accepted_entailed": false,
+      "contradictory_premises": false,
+      "concern": "Text specifies 'exactly 28 days'; proposed answer is factually incorrect (February has 28 days in common year, but all months have at least 28).",
+      "disposition": "exclude"
+    },
+    {
+      "id": "marys-father-1-r1",
+      "original_excluded": true,
+      "accepted_entailed": true,
+      "contradictory_premises": false,
+      "concern": "Text explicitly lists five names including Mary; proposed answer follows explicit enumeration, familiar answer relies on external riddle knowledge.",
+      "disposition": "keep"
+    },
+    {
+      "id": "johnnys-mother-1-r1",
+      "original_excluded": true,
+      "accepted_entailed": true,
+      "contradictory_premises": false,
+      "concern": "Text explicitly lists three names including Johnny; proposed answer follows explicit enumeration, familiar answer relies on external riddle knowledge.",
+      "disposition": "keep"
+    },
+    {
+      "id": "hiccups-1-r1",
+      "original_excluded": true,
+      "accepted_entailed": true,
+      "contradictory_premises": false,
+      "concern": "Text explicitly states man has no hiccups and thanks for water asked for; proposed answer matches explicit text, familiar answer relies on altered premise.",
+      "disposition": "keep"
+    }
+  ],
+  "valid": true
+}
