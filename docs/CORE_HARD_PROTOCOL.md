@@ -41,9 +41,13 @@ Every item needs separate answers to:
 
 The generated queue starts `unreviewed`; it does not import informal historical
 claims of human review. Preserve independent reviews and an adjudication log.
-AI advisory output must remain explicitly AI-labelled. Two human reviews are
-required for disputed/high-error items before freeze; do not invent reviewer
-identities or treat agreement between models as human validation.
+AI advisory output must remain explicitly AI-labelled. Reviewer policy (owner
+decision, 2026-09-06): one human reviewer, the owner, plus explicitly labelled AI
+reviews; the human reviews only disputed items and judge-decided rows, not the
+whole set. Do not invent reviewer identities or treat agreement between models
+as human validation. Standard (owner-approved 2026-09-06): strict entailment
+under ordinary readings; plausible is not enough, and the original answer must
+fail as an answer to the altered question.
 
 Suggested dispositions: keep, revise-and-rerun, exclude-with-reason, unresolved.
 No automated exclusion based solely on override frequency or model consensus.
@@ -52,7 +56,8 @@ Revised texts are new versions and invalidate prior answers.
 ## Core and Hard
 
 **Core:** audit the current 264 items, publish an exclusion/change log, then freeze.
-Maintain the prior snapshot for historical comparisons.
+Maintain the prior snapshot for historical comparisons. Owner decision 2026-09-06:
+Core is frozen and released first; Hard is a later, separate track.
 
 **Hard development:** the current 16 minimal-insertion items and 35 observed
 thinking-failure items are diagnostic development data. They are not a held-out
@@ -75,6 +80,22 @@ Include original, unwarned altered, warned altered, less-recognizable paraphrase
 and matched unfamiliar controls in a bounded pilot. Validate control difficulty
 separately. Original familiarity does not establish that a particular error was
 caused by memorization.
+
+## Scoring provenance (since 2026-09-06)
+
+- Matcher v2 (`altered_riddles.match.MATCHER_VERSION`): a reply that matches both
+  the accepted and the original list goes to the judge unless it equals one alias
+  exactly. The earlier longer-alias tie-break mislabelled correct replies that
+  quoted an original justification phrase (`results/audit/rescore-v1/`).
+- Every scored row carries the raw sample's `text_sha`; every `scored_summary.json`
+  carries per-item fingerprints of text, answer, aliases, original answer and
+  original aliases, the matcher version, code hashes, the judge spec and the
+  judge-prompt hash; `scored.json` (familiarity) carries a fingerprint of the
+  per-source original answers. The board excludes a row whose scores predate the
+  current matcher or whose fingerprints differ from the current item file.
+- Two run directories for one (model, thinking, condition) slot are an error;
+  `board --manifest runs.json` names the runs to use, and the chosen run list is
+  written into `leaderboard.json` as `run_manifest`.
 
 ## Cost and run policy
 

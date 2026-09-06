@@ -18,6 +18,9 @@ _DOT = re.compile(r"(?<!\d)\.|\.(?!\d)")
 _ARTICLES = ("a ", "an ", "the ")
 
 
+MATCHER_VERSION = 2  # 1: longer-alias tie-break (2026-09-05); 2: mixed replies always go to the judge (2026-09-06)
+
+
 def norm(s: str) -> str:
     s = s.lower().replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
     s = s.replace("'s ", " ").replace("'", "")
@@ -87,19 +90,14 @@ def label(reply_answer: str, *, correct: list[str], original: list[str]) -> str:
             return "correct"
         if exact_o and not exact_c:
             return "original"
-        # Second tie-break: the side whose matched alias is longer (in words)
-        # wins, so "one mile (halfway)" is correct and "yellow, it just gets
-        # wet" stays ambiguous. Equal lengths stay 'both' for the judge.
-        # (A positional rule, "the alias that appears first wins", was tried on
-        # 2026-09-05 and agreed with the judge on only 155 of 263 mixed replies:
-        # it mislabels self-corrections and restatements. Mixed replies go to
-        # the judge; item-level `original_aliases` handles justification phrases.)
-        len_c = max((len(norm(a).split()) for a in correct if matches(reply_answer, [a])), default=0)
-        len_o = max((len(norm(a).split()) for a in original if matches(reply_answer, [a])), default=0)
-        if len_c > len_o:
-            return "correct"
-        if len_o > len_c:
-            return "original"
+        # Every other mixed reply goes to the judge. Two heuristics were tried
+        # and dropped: "the alias that appears first wins" (2026-09-05, agreed
+        # with the judge on 155 of 263 mixed replies; mislabels self-corrections)
+        # and "the longer matched alias wins" (2026-09-05 to 2026-09-06: it
+        # labelled "Three apples (the two you took plus the one in your pocket)"
+        # as original because the justification phrase "the two you took" is an
+        # original alias longer than "three apples"; over the Tier-0 runs it
+        # decided 164 rows, 39 of them correct replies counted as overrides).
         return "both"
     if c:
         return "correct"

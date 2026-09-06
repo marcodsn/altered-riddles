@@ -390,3 +390,20 @@ findings: `docs/VALIDITY_AUDIT_INITIAL.md`. Reproducible diagnostic outputs:
   added to the tests. Model agreement is not ground truth.
 - Full Core adjudication, human approval, fresh repair runs, a held-out Hard set,
   and public-release checks remain outstanding. The benchmark is not launch-ready.
+
+### 2026-09-06: decisions, AI validity pass, matcher fix
+
+- Owner decisions: strict-entailment standard; one human reviewer plus labelled AI
+  reviews (no second human); Core frozen first, Hard later; Jalapeno envelope USD 1
+  for this phase, the section 6 allocation stands for the launch panel.
+- Human sheet for the 10 flagged items + rooster-egg-2:
+  `results/audit/adjudication-v1/human_review.yaml` (pending). AI pass over the other
+  253 items: `results/audit/validity-pass-v1/` (252 keep, cat-fur-1 flagged).
+- The pass found deterministic mislabels: the longer-alias tie-break counted correct
+  replies that quote an original phrase as overrides. Matcher v2 sends mixed replies
+  to the judge; scores now carry provenance fingerprints and the board rejects stale
+  scores; runs are selected by an explicit manifest, never directory order.
+  Re-score: 161 judge calls, 45 labels changed, COR moved by ≤ 0.6 points, ranks
+  unchanged (`results/audit/rescore-v1/`, board `results/v2/`, audit `core-hard-v3`).
+- Routes checked 2026-09-06: 7 Nous `:free` routes with catalog pricing 0, Jalapeno
+  21 models (`results/audit/routes-2026-09-06/`).
