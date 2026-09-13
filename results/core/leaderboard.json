@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-13T18:16:48Z",
+ "generated_at": "2026-09-13T18:21:08Z",
  "n_boot": 2000,
  "seed": 0,
  "run_manifest": [
@@ -233,6 +233,73 @@
   },
   {
    "checks": [],
+   "truncated_rate": 0.0114,
+   "dodge_rate": 0.0356,
+   "familiar_share": 0.965,
+   "drift": {
+    "stale": 0,
+    "missing": 0,
+    "unhashed": 0
+   },
+   "id": "jalapeno:Kimi-K2.5|off",
+   "model": "jalapeno:Kimi-K2.5",
+   "thinking": "off",
+   "n_items": 264,
+   "n_answers": 1320,
+   "familiar_sources": 192,
+   "n_conditioned": 1285,
+   "alt_acc": 0.8803030303030303,
+   "cor": 0.08638132295719844,
+   "cor_ci95": [
+    0.05511811023622047,
+    0.1236220472440945
+   ],
+   "original_rate": 0.08409090909090909,
+   "other_rate": 0.035606060606060606,
+   "abstain_rate": 0.0,
+   "pending": 0,
+   "warned_acc": null,
+   "override_gap": null,
+   "median_reasoning_tokens": 0.0,
+   "mean_output_tokens": 18.081060606060607,
+   "original_acc": 0.9738693467336684,
+   "by_type": {
+    "hard_constraint": {
+     "n_items": 112,
+     "alt_acc": 0.8892857142857142,
+     "cor": 0.07272727272727272
+    },
+    "negated_premise": {
+     "n_items": 48,
+     "alt_acc": 0.8458333333333333,
+     "cor": 0.13478260869565217
+    },
+    "question_swap": {
+     "n_items": 63,
+     "alt_acc": 0.946031746031746,
+     "cor": 0.012698412698412698
+    },
+    "stated": {
+     "n_items": 21,
+     "alt_acc": 0.7619047619047619,
+     "cor": 0.22105263157894736
+    },
+    "trivialized": {
+     "n_items": 20,
+     "alt_acc": 0.83,
+     "cor": 0.15789473684210525
+    }
+   },
+   "familiarity_mode": "direct",
+   "samples": 5,
+   "error_rate": 0.0,
+   "run_dir": "runs/jalapeno_Kimi-K2.5/unwarned-thinkoff-k5",
+   "point_rank": 4,
+   "rank_best": 4,
+   "rank_worst": 6
+  },
+  {
+   "checks": [],
    "truncated_rate": 0.0023,
    "dodge_rate": 0.0538,
    "familiar_share": 0.97,
@@ -294,9 +361,9 @@
    "samples": 5,
    "error_rate": 0.0,
    "run_dir": "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
-   "point_rank": 4,
+   "point_rank": 5,
    "rank_best": 4,
-   "rank_worst": 6,
+   "rank_worst": 7,
    "thinking_gap": 0.08759689922480621
   },
   {
@@ -319,8 +386,8 @@
    "alt_acc": 0.8325757575757575,
    "cor": 0.12191235059760956,
    "cor_ci95": [
-    0.08494208494208494,
-    0.1609375
+    0.08372093023255814,
+    0.15905511811023623
    ],
    "original_rate": 0.11742424242424243,
    "other_rate": 0.05,
@@ -362,9 +429,9 @@
    "samples": 5,
    "error_rate": 0.0,
    "run_dir": "runs/jalapeno_DeepSeek-V4-Pro/unwarned-thinkoff-k5",
-   "point_rank": 5,
-   "rank_best": 4,
-   "rank_worst": 6
+   "point_rank": 6,
+   "rank_best": 5,
+   "rank_worst": 7
   },
   {
    "checks": [],
@@ -429,9 +496,9 @@
    "samples": 5,
    "error_rate": 0.0,
    "run_dir": "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
-   "point_rank": 6,
+   "point_rank": 7,
    "rank_best": 4,
-   "rank_worst": 6,
+   "rank_worst": 7,
    "thinking_gap": 0.11137884872824631
   }
  ],
@@ -440,11 +507,6 @@
    "model": "nous:poolside/laguna-s-2.1:free",
    "thinking": "off",
    "reason": "other+abstain 11%: COR flattered, rank by accuracy; familiar with only 80% of item sources"
-  },
-  {
-   "model": "jalapeno:Kimi-K2.5",
-   "thinking": "off",
-   "reason": "incomplete/invalid scoring: 57 unresolved, 0 missing items, 0 missing samples, 0 unexpected samples, 0 duplicate samples"
   }
  ],
  "review_flags": [
@@ -453,23 +515,23 @@
    "override_on": 0.846,
    "override_off": 1.0,
    "n_on": 13,
-   "n_off": 20,
+   "n_off": 25,
    "reason": "overridden by everyone in both modes: very strong prior, or ambiguous"
   },
   {
    "item": "married-boat-1",
    "override_on": 0.769,
-   "override_off": 0.05,
+   "override_off": 0.04,
    "n_on": 13,
-   "n_off": 20,
+   "n_off": 25,
    "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
   },
   {
    "item": "yellow-hat-1",
    "override_on": 0.385,
-   "override_off": 0.15,
+   "override_off": 0.2,
    "n_on": 13,
-   "n_off": 20,
+   "n_off": 25,
    "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
   },
   {
@@ -477,7 +539,7 @@
    "override_on": 0.308,
    "override_off": 0.0,
    "n_on": 13,
-   "n_off": 20,
+   "n_off": 25,
    "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
   }
  ],
@@ -485,8 +547,8 @@
   {
    "type": "hard_constraint",
    "n_items": 112,
-   "mean_cor": 0.0607377602510736,
-   "mean_alt_acc": 0.9031746031746032,
+   "mean_cor": 0.06245054774767348,
+   "mean_alt_acc": 0.9011904761904762,
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731|on": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
@@ -505,6 +567,12 @@
      "thinking": "on",
      "alt_acc": 0.9696428571428571,
      "cor": 0.007272727272727273
+    },
+    "jalapeno:Kimi-K2.5|off": {
+     "model": "jalapeno:Kimi-K2.5",
+     "thinking": "off",
+     "alt_acc": 0.8892857142857142,
+     "cor": 0.07272727272727272
     },
     "nous:meituan/longcat-2.0:free|off": {
      "model": "nous:meituan/longcat-2.0:free",
@@ -529,8 +597,8 @@
   {
    "type": "negated_premise",
    "n_items": 48,
-   "mean_cor": 0.08422045574606725,
-   "mean_alt_acc": 0.8759259259259259,
+   "mean_cor": 0.09144362045315081,
+   "mean_alt_acc": 0.8716269841269841,
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731|on": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
@@ -549,6 +617,12 @@
      "thinking": "on",
      "alt_acc": 0.9375,
      "cor": 0.0391304347826087
+    },
+    "jalapeno:Kimi-K2.5|off": {
+     "model": "jalapeno:Kimi-K2.5",
+     "thinking": "off",
+     "alt_acc": 0.8458333333333333,
+     "cor": 0.13478260869565217
     },
     "nous:meituan/longcat-2.0:free|off": {
      "model": "nous:meituan/longcat-2.0:free",
@@ -573,8 +647,8 @@
   {
    "type": "question_swap",
    "n_items": 63,
-   "mean_cor": 0.024597284590203772,
-   "mean_alt_acc": 0.9493827160493827,
+   "mean_cor": 0.022897445748519336,
+   "mean_alt_acc": 0.9489040060468632,
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731|on": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
@@ -593,6 +667,12 @@
      "thinking": "on",
      "alt_acc": 0.9809523809523809,
      "cor": 0.00967741935483871
+    },
+    "jalapeno:Kimi-K2.5|off": {
+     "model": "jalapeno:Kimi-K2.5",
+     "thinking": "off",
+     "alt_acc": 0.946031746031746,
+     "cor": 0.012698412698412698
     },
     "nous:meituan/longcat-2.0:free|off": {
      "model": "nous:meituan/longcat-2.0:free",
@@ -617,8 +697,8 @@
   {
    "type": "stated",
    "n_items": 21,
-   "mean_cor": 0.20665784832451498,
-   "mean_alt_acc": 0.7576719576719576,
+   "mean_cor": 0.20871424593229104,
+   "mean_alt_acc": 0.7582766439909296,
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731|on": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
@@ -637,6 +717,12 @@
      "thinking": "on",
      "alt_acc": 0.8285714285714286,
      "cor": 0.14285714285714285
+    },
+    "jalapeno:Kimi-K2.5|off": {
+     "model": "jalapeno:Kimi-K2.5",
+     "thinking": "off",
+     "alt_acc": 0.7619047619047619,
+     "cor": 0.22105263157894736
     },
     "nous:meituan/longcat-2.0:free|off": {
      "model": "nous:meituan/longcat-2.0:free",
@@ -661,8 +747,8 @@
   {
    "type": "trivialized",
    "n_items": 20,
-   "mean_cor": 0.1069298245614035,
-   "mean_alt_acc": 0.8649999999999999,
+   "mean_cor": 0.11421052631578947,
+   "mean_alt_acc": 0.86,
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731|on": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
@@ -681,6 +767,12 @@
      "thinking": "on",
      "alt_acc": 0.95,
      "cor": 0.042105263157894736
+    },
+    "jalapeno:Kimi-K2.5|off": {
+     "model": "jalapeno:Kimi-K2.5",
+     "thinking": "off",
+     "alt_acc": 0.83,
+     "cor": 0.15789473684210525
     },
     "nous:meituan/longcat-2.0:free|off": {
      "model": "nous:meituan/longcat-2.0:free",
@@ -739,6 +831,17 @@
   },
   {
    "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+   "b": "jalapeno:Kimi-K2.5|off",
+   "n_items": 244,
+   "n_clusters": 172,
+   "difference": 0.03770491803278688,
+   "ci95": [
+    -0.0007843137254901957,
+    0.07619047619047618
+   ]
+  },
+  {
+   "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
    "b": "nous:meituan/longcat-2.0:free|off",
    "n_items": 245,
    "n_clusters": 173,
@@ -783,6 +886,17 @@
   },
   {
    "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+   "b": "jalapeno:Kimi-K2.5|off",
+   "n_items": 244,
+   "n_clusters": 172,
+   "difference": -0.07595628415300547,
+   "ci95": [
+    -0.11083333333333334,
+    -0.04469987228607919
+   ]
+  },
+  {
+   "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
    "b": "nous:meituan/longcat-2.0:free|off",
    "n_items": 245,
    "n_clusters": 173,
@@ -816,6 +930,17 @@
   },
   {
    "a": "jalapeno:DeepSeek-V4-Pro|off",
+   "b": "jalapeno:Kimi-K2.5|off",
+   "n_items": 248,
+   "n_clusters": 174,
+   "difference": 0.03387096774193549,
+   "ci95": [
+    0.002439024390243902,
+    0.06721311475409836
+   ]
+  },
+  {
+   "a": "jalapeno:DeepSeek-V4-Pro|off",
    "b": "nous:meituan/longcat-2.0:free|off",
    "n_items": 249,
    "n_clusters": 175,
@@ -838,6 +963,17 @@
   },
   {
    "a": "jalapeno:GLM-5.3-Flash|on",
+   "b": "jalapeno:Kimi-K2.5|off",
+   "n_items": 256,
+   "n_clusters": 181,
+   "difference": -0.06328125,
+   "ci95": [
+    -0.09649805447470818,
+    -0.03241106719367589
+   ]
+  },
+  {
+   "a": "jalapeno:GLM-5.3-Flash|on",
    "b": "nous:meituan/longcat-2.0:free|off",
    "n_items": 257,
    "n_clusters": 182,
@@ -856,6 +992,28 @@
    "ci95": [
     -0.01947565543071161,
     0.010317460317460317
+   ]
+  },
+  {
+   "a": "jalapeno:Kimi-K2.5|off",
+   "b": "nous:meituan/longcat-2.0:free|off",
+   "n_items": 253,
+   "n_clusters": 178,
+   "difference": -0.0308300395256917,
+   "ci95": [
+    -0.06363636363636364,
+    0.002390438247011952
+   ]
+  },
+  {
+   "a": "jalapeno:Kimi-K2.5|off",
+   "b": "nous:meituan/longcat-2.0:free|on",
+   "n_items": 253,
+   "n_clusters": 178,
+   "difference": 0.05849802371541502,
+   "ci95": [
+    0.030115830115830116,
+    0.09230769230769231
    ]
   },
   {
