@@ -1,94 +1,94 @@
 {
- "deterministic_resolved": 0.8902,
+ "deterministic_resolved": 0.9311,
  "judge": "jalapeno:DeepSeek-V4-Flash-0731",
- "judged_rows": 88,
+ "judged_rows": 91,
  "overall": {
-  "n": 1263,
-  "correct": 0.8868,
-  "original": 0.0784,
-  "other": 0.0348,
+  "n": 1320,
+  "correct": 0.8803,
+  "original": 0.0841,
+  "other": 0.0356,
   "abstain": 0.0,
   "pending": 0.0
  },
  "conditioned_on_familiar": {
-  "n": 1229,
-  "correct": 0.8836,
-  "original": 0.0806,
-  "other": 0.0358,
+  "n": 1285,
+  "correct": 0.877,
+  "original": 0.0864,
+  "other": 0.0366,
   "abstain": 0.0,
   "pending": 0.0,
   "familiar_sources_known": true,
-  "cor": 0.0806
+  "cor": 0.0864
  },
  "by_type": {
   "stated": {
-   "n": 93,
-   "correct": 0.8172,
-   "original": 0.1505,
-   "other": 0.0323,
+   "n": 105,
+   "correct": 0.7619,
+   "original": 0.2,
+   "other": 0.0381,
    "abstain": 0.0,
    "pending": 0.0
   },
   "negated_premise": {
-   "n": 229,
-   "correct": 0.8559,
-   "original": 0.1223,
-   "other": 0.0218,
+   "n": 240,
+   "correct": 0.8458,
+   "original": 0.1292,
+   "other": 0.025,
    "abstain": 0.0,
    "pending": 0.0
   },
   "hard_constraint": {
-   "n": 536,
-   "correct": 0.8899,
-   "original": 0.0709,
-   "other": 0.0392,
+   "n": 560,
+   "correct": 0.8893,
+   "original": 0.0714,
+   "other": 0.0393,
    "abstain": 0.0,
    "pending": 0.0
   },
   "question_swap": {
-   "n": 310,
-   "correct": 0.9452,
-   "original": 0.0129,
-   "other": 0.0419,
+   "n": 315,
+   "correct": 0.946,
+   "original": 0.0127,
+   "other": 0.0413,
    "abstain": 0.0,
    "pending": 0.0
   },
   "trivialized": {
-   "n": 95,
-   "correct": 0.8211,
-   "original": 0.1579,
-   "other": 0.0211,
+   "n": 100,
+   "correct": 0.83,
+   "original": 0.15,
+   "other": 0.02,
    "abstain": 0.0,
    "pending": 0.0
   }
  },
  "by_family": {
   "riddle": {
-   "n": 634,
-   "correct": 0.9054,
-   "original": 0.0584,
-   "other": 0.0363,
+   "n": 645,
+   "correct": 0.9023,
+   "original": 0.0605,
+   "other": 0.0372,
    "abstain": 0.0,
    "pending": 0.0
   },
   "puzzle": {
-   "n": 380,
-   "correct": 0.8447,
-   "original": 0.1184,
-   "other": 0.0368,
+   "n": 415,
+   "correct": 0.8313,
+   "original": 0.1301,
+   "other": 0.0386,
    "abstain": 0.0,
    "pending": 0.0
   },
   "crawsome": {
-   "n": 249,
-   "correct": 0.9036,
-   "original": 0.0683,
-   "other": 0.0281,
+   "n": 260,
+   "correct": 0.9038,
+   "original": 0.0692,
+   "other": 0.0269,
    "abstain": 0.0,
    "pending": 0.0
   }
  },
- "scored_at": "2026-09-13T16:24:50Z",
+ "scored_at": "2026-09-13T18:20:15Z",
  "scoring": {
   "items_file": "results/audit/adjudication-v2/core.candidate.jsonl",
   "items_sha256": "1aa1567a06c507ba40a71df54cd7530a249a5106dbb96898a5a5493d085d9a28",
