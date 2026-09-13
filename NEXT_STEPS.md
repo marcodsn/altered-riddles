@@ -1,5 +1,16 @@
 # Altered Riddles — remaining work and execution instructions
 
+## 2026-09-13: Core preview published on the website
+
+Owner decision: move marcodsn.me/altered-riddles to the Core board now as a labelled
+**development preview** (three models, five thinking configurations), keep the v1
+board only as a JSON download (no v1 route), and drop the "released" label only at
+freeze. `results/core/leaderboard.json` is the public feed (copy of the adjudicated
+board; see `results/core/README.md` and `docs/WEBSITE_CONTRACT.md`). v2 was
+fast-forwarded to `main`; the previous `main` is preserved as `snapshot-13-09-2026`.
+This is a preview, not a freeze, license grant or launch; the freeze list below is
+unchanged.
+
 ## Latest owner instruction and release preparation
 
 AI adjudication is sufficient; **no independent human validation is required**.

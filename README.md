@@ -10,8 +10,10 @@ these scores with v1. The historical README and leaderboard are preserved in
 
 ## Current evidence
 
-- [Candidate leaderboard](results/audit/astra-adjudication-v1/core-board/LEADERBOARD.md)
-- [Native JSON board](results/audit/astra-adjudication-v1/core-board/leaderboard.json)
+- [Candidate leaderboard](results/core/LEADERBOARD.md) (public preview feed; copy of the
+  adjudicated board in `results/audit/astra-adjudication-v1/core-board/`)
+- [Native JSON board](results/core/leaderboard.json), read by
+  [marcodsn.me/altered-riddles](https://marcodsn.me/altered-riddles)
 - [Scoped AI adjudication and exact impacts](results/audit/astra-adjudication-v1/README.md)
 - [Execution, review provenance and scoring corrections](results/audit/adjudication-v2/README.md)
 - [Protocol](docs/CORE_HARD_PROTOCOL.md), [preserved release policy](docs/CORE_RELEASE_POLICY.md),
