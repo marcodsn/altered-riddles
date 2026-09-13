@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-13T16:07:20Z",
+ "generated_at": "2026-09-13T16:31:42Z",
  "n_boot": 2000,
  "seed": 0,
  "run_manifest": [
@@ -18,7 +18,10 @@
   "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
   "runs/nous_poolside_laguna-s-2.1_free/original-thinkoff-k5",
   "runs/nous_poolside_laguna-s-2.1_free/unwarned-thinkoff-k5",
-  "runs/nous_poolside_laguna-s-2.1_free/warned-thinkoff-k5"
+  "runs/nous_poolside_laguna-s-2.1_free/warned-thinkoff-k5",
+  "runs/jalapeno_Kimi-K2.5/original-thinkoff-k5",
+  "runs/jalapeno_Kimi-K2.5/unwarned-thinkoff-k5",
+  "runs/jalapeno_Kimi-K2.5/warned-thinkoff-k5"
  ],
  "familiar_threshold": 0.8,
  "rows": [
@@ -367,6 +370,11 @@
    "model": "nous:poolside/laguna-s-2.1:free",
    "thinking": "off",
    "reason": "other+abstain 11%: COR flattered, rank by accuracy; familiar with only 80% of item sources"
+  },
+  {
+   "model": "jalapeno:Kimi-K2.5",
+   "thinking": "off",
+   "reason": "incomplete/invalid scoring: 57 unresolved, 0 missing items, 0 missing samples, 0 unexpected samples, 0 duplicate samples"
   }
  ],
  "review_flags": [
