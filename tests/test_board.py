@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from altered_riddles.board import build, render_md
+from altered_riddles.board import build, rank_spread, render_md, type_breakdown
 from altered_riddles.match import MATCHER_VERSION
 from altered_riddles.score import SCORER_VERSION, familiarity_fingerprint, item_fingerprints
 
@@ -51,6 +51,30 @@ class BoardTests(unittest.TestCase):
         p.write_text(json.dumps(doc))
         self.assertEqual(self.board()["rows"], [])
         self.assertIn("scorer", self.board()["excluded"][0]["reason"])
+
+    def test_rank_spread_from_pairwise_intervals(self):
+        board = [{"id": "a"}, {"id": "b"}, {"id": "c"}]
+        comps = [{"a": "a", "b": "b", "ci95": [-0.3, -0.1]},   # a significantly lower COR than b
+                 {"a": "a", "b": "c", "ci95": [-0.2, 0.1]},    # a vs c undecided
+                 {"a": "b", "b": "c", "ci95": [0.05, 0.3]}]    # b significantly higher than c
+        self.assertEqual(rank_spread("a", board, comps), (1, 2))
+        self.assertEqual(rank_spread("b", board, comps), (3, 3))
+        self.assertEqual(rank_spread("c", board, comps), (1, 2))
+
+    def test_row_carries_original_acc_tokens_and_type_breakdown(self):
+        self.items["a"]["type"] = "stated"
+        (self.unw / "raw.jsonl").write_text(json.dumps({"unit_id": "a", "sample": 0, "text_sha": hashlib.sha256(b"changed").hexdigest()[:16],
+                                                        "reply": {"completion_tokens": 40, "error": None}}) + "\n")
+        b = self.board()
+        r = b["rows"][0]
+        self.assertEqual(r["original_acc"], 1.0)
+        self.assertEqual(r["mean_output_tokens"], 40)
+        self.assertEqual((r["rank_best"], r["rank_worst"]), (1, 1))
+        self.assertEqual(r["by_type"], {"stated": {"n_items": 1, "alt_acc": 1.0, "cor": 0.0}})
+        self.assertEqual(b["alteration_types"][0]["type"], "stated")
+        self.assertEqual(b["alteration_types"][0]["per_model"][r["id"]]["cor"], 0.0)
+        self.assertEqual(type_breakdown([])[0:0], [])
+        self.assertIn("rank spread", render_md(b))
 
     def test_point_rank_not_equivalence(self):
         b = self.board()

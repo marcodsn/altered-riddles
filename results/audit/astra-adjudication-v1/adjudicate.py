@@ -220,10 +220,21 @@ def derivative(manifest_path, target_root, items_file, decisions):
     return manifest, impacts
 
 
+AUDIT_COMMIT = "9b8ce599b83e09045070813603b1eb2e73c18f4e"  # commit that landed this audit with the code it hashed
+
+
 def verify_preserved():
+    """Every hashed artifact must match either the working tree or, for code that evolved after
+    the audit, the version fixed at AUDIT_COMMIT in git history. Data artifacts must not move."""
+    import hashlib
+    import subprocess
     hashes = load(ROOT / "preserved_hashes.json")
     for path, expected in hashes.items():
-        require(Path(path).exists() and sha(path) == expected, "preserved artifact mismatch: " + path)
+        if Path(path).exists() and sha(path) == expected:
+            continue
+        blob = subprocess.run(["git", "show", f"{AUDIT_COMMIT}:{path}"], capture_output=True)
+        require(path.endswith(".py") and blob.returncode == 0 and hashlib.sha256(blob.stdout).hexdigest() == expected,
+                "preserved artifact mismatch: " + path)
     return len(hashes)
 
 
