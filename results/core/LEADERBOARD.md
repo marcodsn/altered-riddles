@@ -1,6 +1,6 @@
 # Altered Riddles v2 — leaderboard
 
-_Generated 2026-09-13T15:06:28Z. Primary metric: **COR** (conditioned override rate, lower is better) with a clustered-bootstrap CI95 (clusters = source riddle, 2000 draws). Ranks are point estimates, not significant differences; the rank spread counts rows whose pairwise interval excludes zero. Comparisons in the JSON use shared familiar items and jointly resampled clusters (pointwise intervals, not multiplicity-adjusted). Rows must pass scoring and pre-publish checks; Git commitment status is not verified._
+_Generated 2026-09-13T16:07:20Z. Primary metric: **COR** (conditioned override rate, lower is better) with a clustered-bootstrap CI95 (clusters = source riddle, 2000 draws). Ranks are point estimates, not significant differences; the rank spread counts rows whose pairwise interval excludes zero. Comparisons in the JSON use shared familiar items and jointly resampled clusters (pointwise intervals, not multiplicity-adjusted). Rows must pass scoring and pre-publish checks; Git commitment status is not verified._
 
 | point rank | rank spread | model | thinking | items | COR ↓ | CI95 | orig acc | alt acc ↑ | warned acc | override gap | abstain | other | median reasoning tok | mean out tok | k | pending | familiarity | checks |
 |---|---|---|---|---:|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|
@@ -21,13 +21,17 @@ _All rows pass: item set unchanged since the run, every passed item answered, tr
 | jalapeno:DeepSeek-V4-Flash-0731 | 12.6% | 1.5% | 11.1% |
 | nous:meituan/longcat-2.0:free | 11.5% | 2.7% | 8.8% |
 
+## Not on the board
+
+- nous:poolside/laguna-s-2.1:free (off): other+abstain 11%: COR flattered, rank by accuracy; familiar with only 80% of item sources
+
 ## Items to review (validity flags)
 
 _Human look before publishing; nothing is dropped automatically. Read the traces: a defensible alternative reading means re-pin or drop; a genuine override stays._
 
 | item | override, thinking on | override, thinking off | n on / off | why flagged |
 |---|---:|---:|---:|---|
-| bear-house-1 | 84.6% | 100.0% | 13 / 10 | overridden by everyone in both modes: very strong prior, or ambiguous |
-| married-boat-1 | 76.9% | 0.0% | 13 / 10 | thinking-on override above thinking-off: reasoning finds an alternative reading? |
-| yellow-hat-1 | 38.5% | 0.0% | 13 / 10 | thinking-on override above thinking-off: reasoning finds an alternative reading? |
-| last-brick-2 | 30.8% | 0.0% | 13 / 10 | thinking-on override above thinking-off: reasoning finds an alternative reading? |
+| bear-house-1 | 84.6% | 100.0% | 13 / 15 | overridden by everyone in both modes: very strong prior, or ambiguous |
+| married-boat-1 | 76.9% | 0.0% | 13 / 15 | thinking-on override above thinking-off: reasoning finds an alternative reading? |
+| yellow-hat-1 | 38.5% | 0.0% | 13 / 15 | thinking-on override above thinking-off: reasoning finds an alternative reading? |
+| last-brick-2 | 30.8% | 0.0% | 13 / 15 | thinking-on override above thinking-off: reasoning finds an alternative reading? |
