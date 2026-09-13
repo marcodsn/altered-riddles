@@ -6,7 +6,7 @@ from pathlib import Path
 
 from altered_riddles.board import build, render_md
 from altered_riddles.match import MATCHER_VERSION
-from altered_riddles.score import familiarity_fingerprint, item_fingerprints
+from altered_riddles.score import SCORER_VERSION, familiarity_fingerprint, item_fingerprints
 
 
 class BoardTests(unittest.TestCase):
@@ -24,8 +24,8 @@ class BoardTests(unittest.TestCase):
             (path / "summary.json").write_text(json.dumps({"guardrail": "PASS", "n_rows": 1}))
             (path / "raw.jsonl").write_text(json.dumps({"unit_id": "a", "text_sha": hashlib.sha256(b"changed").hexdigest()[:16]}) + "\n")
         (self.orig / "scored.json").write_text(json.dumps({"familiar": {"src": 1.},
-                                                           "scoring": {"familiarity_fingerprint": familiarity_fingerprint(self.items)}}))
-        (self.unw / "scored_summary.json").write_text(json.dumps({"scoring": {"matcher_version": MATCHER_VERSION,
+                                                           "scoring": {"scorer_version": SCORER_VERSION, "familiarity_fingerprint": familiarity_fingerprint(self.items)}}))
+        (self.unw / "scored_summary.json").write_text(json.dumps({"scoring": {"matcher_version": MATCHER_VERSION, "scorer_version": SCORER_VERSION,
                                                                               "item_fingerprints": item_fingerprints(self.items, {"a"})}}))
         self.scored = {"unit_id": "a", "sample": 0, "label": "correct"}
         self.save()
@@ -35,6 +35,22 @@ class BoardTests(unittest.TestCase):
 
     def board(self):
         return build(self.items, self.root, 100, 0)
+
+    def test_old_scorer_version_is_excluded(self):
+        p = self.unw / "scored_summary.json"
+        doc = json.loads(p.read_text())
+        doc["scoring"].pop("scorer_version")
+        p.write_text(json.dumps(doc))
+        self.assertEqual(self.board()["rows"], [])
+        self.assertIn("scorer", self.board()["excluded"][0]["reason"])
+
+    def test_old_familiarity_extractor_is_excluded(self):
+        p = self.orig / "scored.json"
+        doc = json.loads(p.read_text())
+        doc["scoring"].pop("scorer_version")
+        p.write_text(json.dumps(doc))
+        self.assertEqual(self.board()["rows"], [])
+        self.assertIn("scorer", self.board()["excluded"][0]["reason"])
 
     def test_point_rank_not_equivalence(self):
         b = self.board()

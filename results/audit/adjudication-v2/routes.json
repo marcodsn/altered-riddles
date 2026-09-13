@@ -1,0 +1,105 @@
+{
+  "checked_at": "2026-09-09T08:51:14.853258+00:00",
+  "providers": {
+    "jalapeno": {
+      "n_models": 21,
+      "selected": {
+        "DeepSeek-V4-Flash-0731": {
+          "id": "DeepSeek-V4-Flash-0731",
+          "created": 1788541671,
+          "object": "model",
+          "owned_by": "magikcloud",
+          "shutdown_date": null,
+          "model": "DeepSeek-V4-Flash-0731",
+          "context_length": 1048576,
+          "max_completion_tokens": 1048576
+        },
+        "GLM-5.3-Flash": {
+          "id": "GLM-5.3-Flash",
+          "created": 1788541671,
+          "object": "model",
+          "owned_by": "magikcloud",
+          "shutdown_date": null,
+          "model": "GLM-5.3-Flash",
+          "context_length": 1048576,
+          "max_completion_tokens": 1048576
+        },
+        "Qwen3-Next-80B-A3B-Thinking": {
+          "id": "Qwen3-Next-80B-A3B-Thinking",
+          "created": 1784297002,
+          "object": "model",
+          "owned_by": "magikcloud",
+          "shutdown_date": null,
+          "model": "Qwen3-Next-80B-A3B-Thinking",
+          "context_length": 131072,
+          "max_completion_tokens": 114688
+        },
+        "Qwen3.5-35B-A3B": {
+          "id": "Qwen3.5-35B-A3B",
+          "created": 1784297002,
+          "object": "model",
+          "owned_by": "magikcloud",
+          "shutdown_date": null,
+          "model": "Qwen3.5-35B-A3B",
+          "context_length": 262144,
+          "max_completion_tokens": 147456
+        }
+      },
+      "missing": []
+    },
+    "nous": {
+      "n_models": 391,
+      "selected": {
+        "meituan/longcat-2.0:free": {
+          "id": "meituan/longcat-2.0:free",
+          "created": 1784554658,
+          "object": null,
+          "owned_by": null,
+          "shutdown_date": null,
+          "canonical_slug": "meituan/longcat-2.0:free",
+          "hugging_face_id": null,
+          "name": "Meituan: LongCat 2.0",
+          "description": "LongCat 2.0 is a sparse mixture-of-experts model from Meituan with 48B active parameters out of 1.6T total, and a 1M token context window. It targets coding, repository-scale edits, long-horizon problem solving, and agentic tool use. Reasoning is on by default and can be turned off with the `reasoning` parameter.",
+          "context_length": 1048576,
+          "architecture": {
+            "modality": "text->text",
+            "input_modalities": [
+              "text"
+            ],
+            "output_modalities": [
+              "text"
+            ],
+            "tokenizer": "Other"
+          },
+          "pricing": {
+            "prompt": "0.0000000000",
+            "completion": "0.0000000000"
+          },
+          "top_provider": {
+            "context_length": 1048576,
+            "max_completion_tokens": 131072
+          },
+          "supported_parameters": [
+            "frequency_penalty",
+            "logit_bias",
+            "max_tokens",
+            "presence_penalty",
+            "reasoning",
+            "seed",
+            "stop",
+            "temperature",
+            "tool_choice",
+            "tools",
+            "top_k",
+            "top_p"
+          ],
+          "default_parameters": {},
+          "aliases": [
+            "meituan/longcat-2.0:free"
+          ]
+        }
+      },
+      "missing": []
+    }
+  }
+}

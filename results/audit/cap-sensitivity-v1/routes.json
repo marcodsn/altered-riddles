@@ -1,0 +1,54 @@
+{
+  "checked_at": "2026-09-12T14:15:55.800005+00:00",
+  "providers": {
+    "nous": {
+      "selected": {
+        "meituan/longcat-2.0:free": {
+          "id": "meituan/longcat-2.0:free",
+          "canonical_slug": "meituan/longcat-2.0:free",
+          "hugging_face_id": null,
+          "name": "Meituan: LongCat 2.0",
+          "created": 1784554658,
+          "description": "LongCat 2.0 is a sparse mixture-of-experts model from Meituan with 48B active parameters out of 1.6T total, and a 1M token context window. It targets coding, repository-scale edits, long-horizon problem solving, and agentic tool use. Reasoning is on by default and can be turned off with the `reasoning` parameter.",
+          "context_length": 1048576,
+          "architecture": {
+            "modality": "text->text",
+            "input_modalities": [
+              "text"
+            ],
+            "output_modalities": [
+              "text"
+            ],
+            "tokenizer": "Other"
+          },
+          "pricing": {
+            "prompt": "0.0000000000",
+            "completion": "0.0000000000"
+          },
+          "top_provider": {
+            "context_length": 1048576,
+            "max_completion_tokens": 131072
+          },
+          "supported_parameters": [
+            "frequency_penalty",
+            "logit_bias",
+            "max_tokens",
+            "presence_penalty",
+            "reasoning",
+            "seed",
+            "stop",
+            "temperature",
+            "tool_choice",
+            "tools",
+            "top_k",
+            "top_p"
+          ],
+          "default_parameters": {},
+          "aliases": [
+            "meituan/longcat-2.0:free"
+          ]
+        }
+      }
+    }
+  }
+}

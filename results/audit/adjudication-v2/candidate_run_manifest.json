@@ -1,0 +1,85 @@
+{
+  "runs": [
+    "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/original-thinkoff-k5",
+    "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+    "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+    "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+    "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+    "runs/core-candidate-v1/jalapeno_GLM-5.3-Flash/original-thinkon-k5",
+    "runs/core-candidate-v1/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5",
+    "runs/core-candidate-v1/jalapeno_GLM-5.3-Flash/warned-thinkon-k5",
+    "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/original-thinkoff-k5",
+    "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+    "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+    "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkoff-k5",
+    "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5"
+  ],
+  "items_file": "results/audit/adjudication-v2/core.candidate.jsonl",
+  "lineage": [
+    {
+      "derived": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/original-thinkoff-k5",
+      "historical": "runs/jalapeno_DeepSeek-V4-Flash-0731/original-thinkoff-k5",
+      "fresh": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/original-thinkoff-k5"
+    },
+    {
+      "derived": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+      "historical": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+      "fresh": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "derived": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+      "historical": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+      "fresh": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3"
+    },
+    {
+      "derived": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+      "historical": "runs/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+      "fresh": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5"
+    },
+    {
+      "derived": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+      "historical": "runs/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+      "fresh": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3"
+    },
+    {
+      "derived": "runs/core-candidate-v1/jalapeno_GLM-5.3-Flash/original-thinkon-k5",
+      "historical": "runs/jalapeno_GLM-5.3-Flash/original-thinkon-k5",
+      "fresh": "runs/core-repairs-v1/jalapeno_GLM-5.3-Flash/original-thinkon-k5"
+    },
+    {
+      "derived": "runs/core-candidate-v1/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5",
+      "historical": "runs/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5",
+      "fresh": "runs/core-repairs-v1/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5"
+    },
+    {
+      "derived": "runs/core-candidate-v1/jalapeno_GLM-5.3-Flash/warned-thinkon-k5",
+      "historical": "runs/jalapeno_GLM-5.3-Flash/warned-thinkon-k5",
+      "fresh": "runs/core-repairs-v1/jalapeno_GLM-5.3-Flash/warned-thinkon-k5"
+    },
+    {
+      "derived": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/original-thinkoff-k5",
+      "historical": "runs/nous_meituan_longcat-2.0_free/original-thinkoff-k5",
+      "fresh": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/original-thinkoff-k5"
+    },
+    {
+      "derived": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+      "historical": "runs/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+      "fresh": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5"
+    },
+    {
+      "derived": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+      "historical": "runs/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+      "fresh": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5"
+    },
+    {
+      "derived": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkoff-k5",
+      "historical": "runs/nous_meituan_longcat-2.0_free/warned-thinkoff-k5",
+      "fresh": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkoff-k5"
+    },
+    {
+      "derived": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+      "historical": "runs/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+      "fresh": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5"
+    }
+  ]
+}

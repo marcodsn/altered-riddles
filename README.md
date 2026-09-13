@@ -1,235 +1,118 @@
-# Altered Riddles
+# Altered Riddles — Core v2
 
-**Measures how often models repeat a familiar answer after the premises change, alongside altered-answer accuracy and original-riddle familiarity.**
+A diagnostic of whether language models follow altered premises or repeat a
+familiar riddle's now-wrong answer.
 
-## Leaderboard
+**Status: development candidate, not a frozen release.** Current results cover
+264 items and three model families (five thinking configurations). Do not combine
+these scores with v1. The historical README and leaderboard are preserved in
+[docs/README_V1.md](docs/README_V1.md) and `results/` respectively.
 
-> Top 10 models evaluated are shown below. Main metric: **Conditioned Override Rate** (lower = better). [Full leaderboard](https://marcodsn.me/altered-riddles).
+## Current evidence
 
-| Rank | Rank Spread | Model | Reasoning | Effort | Orig Acc ↑ | Alt Acc ↑ | Cond Override ↓ | CI95 | Override Rate ↓ | Tok/riddle | Samp/riddle |
-|------|-------------|-------|-----------|--------|-----------|----------|-----------------|------|-----------------|------------|-------------|
-| 1 | [1–7] | xiaomi/mimo-v2-pro | on | high | 95.5% | 41.6% | 28.7% | +/-5.4% | 32.6% | 1719.9 | 3.00 |
-| 2 | [1–8] | openai/gpt-oss-20b | on | high | 83.2% | 35.5% | 29.0% | +/-6.6% | 30.1% | 3002.7 | 1.00 |
-| 3 | [1–11] | openai/gpt-5.4-mini | on | high | 93.6% | 42.8% | 30.6% | +/-6.3% | 32.3% | 1858.2 | 1.00 |
-| 4 | [1–12] | minimaxai/minimax-m2.7 | on | high | 88.6% | 36.3% | 32.3% | +/-6.7% | 32.1% | 4991.7 | 1.00 |
-| 5 | [1–12] | zai-org/glm-5.1 | on | high | 96.8% | 37.2% | 32.4% | +/-6.3% | 34.3% | 4030.6 | 1.00 |
-| 6 | [1–11] | openai/gpt-oss-120b | on | high | 89.1% | 36.8% | 33.2% | +/-6.6% | 34.2% | 750.9 | 1.00 |
-| 7 | [2–10] | xiaomi/mimo-v2-omni | on | high | 93.6% | 38.7% | 33.7% | +/-5.7% | 32.7% | 1631.1 | 3.00 |
-| 8 | [3–12] | zai-org/glm-5 | on | high | 95.9% | 36.4% | 34.6% | +/-6.4% | 38.0% | 3539.3 | 1.00 |
-| 9 | [1–12] | mistralai/mistral-small-2603 | on | high | 88.2% | 35.5% | 34.9% | +/-6.6% | 32.3% | 1924.5 | 1.00 |
-| 10 | [3–12] | google/gemma-4-31b-it | on | high | 95.5% | 40.2% | 36.2% | +/-6.4% | 34.2% | 1597.5 | 1.00 |
+- [Candidate leaderboard](results/audit/astra-adjudication-v1/core-board/LEADERBOARD.md)
+- [Native JSON board](results/audit/astra-adjudication-v1/core-board/leaderboard.json)
+- [Scoped AI adjudication and exact impacts](results/audit/astra-adjudication-v1/README.md)
+- [Execution, review provenance and scoring corrections](results/audit/adjudication-v2/README.md)
+- [Protocol](docs/CORE_HARD_PROTOCOL.md), [preserved release policy](docs/CORE_RELEASE_POLICY.md),
+  [current policy amendment](docs/CORE_RELEASE_POLICY_AMENDMENT_ASTRA_V1.md)
+- [Remaining work](NEXT_STEPS.md)
 
-## Motivation
+Eight approved repairs passed the warned solvability and original-answer
+invalidation gates and were freshly evaluated. Empty answers and truncated
+reasoning without final content score as abstentions. Historical raw outputs are
+retained; explicit manifests select the current scores.
 
-Large language models often memorize well-known riddles and produce the standard answer even when critical details have been changed. This benchmark measures how reliably models can override those memorized patterns and attend to the actual content of the prompt.
+**Adjudicated:** 13 historical review/judge disagreements resolved by subscription
+Astra AI review: 12 current candidate labels changed and one confirmed, with exact
+unchanged item/answer/raw bindings. No general scorer rules changed. Two pending
+Longcat 64k repair-slice answers separately became `other`: 78/80 correct (97.5%),
+zero pending/errors/truncations. This diagnostic does not replace the full-board
+16k results or establish a causal cap effect. [Evidence and limitations](results/audit/astra-adjudication-v1/README.md).
+AI review is sufficient, but is not human or independent empirical validation.
+Source permissions, release provenance and packaging remain open; no freeze approved.
 
-**Classic example:**
+## Metrics and scope
 
-> *"The surgeon, who is the boy's father, says 'I cannot operate on this boy, he's my son!' — Who is the surgeon to the boy?"*
+**Conditioned Override Rate (COR, lower is better):** among unwarned responses
+whose source the model answered correctly in at least 80% of original samples,
+the fraction giving the original, now-invalid answer.
 
-Many LLMs answer **"the mother"** — the answer to the original, well-known version of this riddle — despite the prompt explicitly stating that the surgeon is the boy's **father**. The correct answer is simply "the father."
+Always read COR alongside altered accuracy, familiarity coverage, conditioned
+response counts, other errors and abstentions. In the current board, altered
+accuracy/other/abstain rates cover **all** unwarned responses, while COR covers
+only familiar sources. Familiarity coverage is not original-answer accuracy.
+Abstaining can lower COR; different models can have different COR denominators.
 
-(Below is the original riddle for reference)
+Intervals use source/answer-cluster bootstrap resampling. Ranks are descriptive
+point estimates, not established differences or equivalence groups. Pairwise
+intervals are exploratory and pointwise, not multiplicity-adjusted.
 
-> *A man and his son are in a terrible accident and are rushed to the hospital in critical condition. The doctor looks at the boy and exclaims, "I can't operate on this boy; he's my son!" How could this be?*
+Core uses five alteration types: `stated`, `hard_constraint`, `negated_premise`,
+`trivialized`, and `question_swap`. Accepted answers must be entailed and original
+answers excluded under ordinary readings. AI model votes alone are not proof of
+validity. Familiarity and continuation probes do not prove that a particular
+error was caused by memorization. Gate-model selection, a small evaluation panel,
+unequal sample counts and token caps limit generalization. Hard is a separate,
+future track; development failure slices are not a held-out Hard test.
 
-### Failure Examples
+## Setup
 
-Even frontier models fall victim to this pattern override:
-
-![Example of pattern override failure with the surgeon riddle](assets/failed-riddle-1-sonnet-4-6.png)
-*Model: Sonnet 4.6; fail*
-
-![Example of pattern override failure with another riddle](assets/failed-riddle-2-gemini-3-1-flash.png)
-*Model: Gemini 3.1 Flash with Thinking; fail, a correct answer could have been "a plant"*
-
-## What This Benchmark Measures
-
-Altered Riddles takes well-known riddles and introduces small modifications that change the correct answer. The core question: *when a model knows the original riddle, does it reason through the altered version or blindly recall the memorized answer?*
-
-**Main metric — Conditioned Override Rate:** Among altered riddles where the model answered the *original* riddle correctly, how often did it give that same (now-wrong) original answer to the *altered* version?
-
-A lower conditioned override rate is better — it means the model is reasoning about the actual text rather than pattern-matching to memorized answers.
-
-## Alteration Types
-
-Each altered riddle falls into one of four categories:
-
-| Type | Description |
-|------|-------------|
-| `constraint_addition` | A new constraint rules out the original answer (e.g., "and it grows from the ground") |
-| `meaning_shift` | A key word is changed to shift its meaning in context |
-| `context_swap` | The setting or perspective is swapped, changing the logical answer |
-| `bias_probe` | The riddle explicitly states information that contradicts a known model bias |
-
-## Pipeline
-
-The benchmark follows a 10-step pipeline:
-
-```
-riddles_source.csv (credits to https://github.com/crawsome/riddles)
-    │
-    ▼
-1. sanity_check.py     ──▶  Filter to "common" riddles (≥60% model accuracy)
-    │
-    ▼
-2. generate.py         ──▶  Generate altered riddles
-    │                        Output: data/generated/raw.jsonl
-    ▼
-3. validate.py         ──▶  LLM validation of raw riddles
-    │                        Output: data/generated/validated.jsonl
-    ▼
-4. deduplicate.py      ──▶  Remove near-duplicate altered riddles
-    │
-    ▼
-5. human_review.py     ──▶  Manual review and approval
-    │                        Output: data/pool.jsonl
-    ▼
-6. promote.py          ──▶  Promote to benchmark (fixed + auxiliary split)
-    │                        Output: data/benchmark.jsonl + data/benchmark_fixed.jsonl
-    ▼
-7. benchmark.py        ──▶  Run models on original + altered riddles
-    │                        Output: data/model_outputs/<model>.jsonl
-    ▼
-8. evaluate.py         ──▶  LLM-as-a-parser scoring
-    │                        Output: results/<model>_eval.json
-    ▼
-9. leaderboard.py      ──▶  Generate leaderboard (JSON + Markdown)
-                             Output: results/leaderboard.json, results/LEADERBOARD.md
+```sh
+python -m venv .venv
+.venv/bin/pip install -r requirements.txt
+cp .env.example .env  # add credentials only for routes you intend to use
+.venv/bin/python -m unittest discover -s tests -v
 ```
 
-## Quick Start
+## Reproduce the candidate board offline
 
-### Setup
+From the repository root, using the accompanying raw/scored run directories:
 
-```bash
-pip install -r requirements.txt
-cp .env.example .env  # Add your API keys
+```sh
+.venv/bin/python -m altered_riddles.board \
+  --items results/audit/adjudication-v2/core.candidate.jsonl \
+  --manifest results/audit/astra-adjudication-v1/candidate_run_manifest.json \
+  --out-dir results/local-core-check
 ```
 
-### 1. Sanity Check — Find Common Riddles
+This makes no inference calls. The generated table's automated checks are not
+release approval; retain the open-issue warnings above when sharing it.
 
-```bash
-# Run solvers against source riddles
-python -m scripts.sanity_check solve --solvers local gemini openai
+## Running models
 
-# Judge the answers and compute per-riddle accuracy
-python -m scripts.sanity_check judge --judge-provider local
-```
+Use the `altered_riddles` package, not the historical `scripts` pipeline.
+`run --help` describes original, unwarned and warned conditions; `score --help`
+describes deterministic matching and optional judge calls. **Current owner rule:**
+subscription-backed Astra subagents are authorized; inference is restricted to
+verified free models. No paid Astra/Jalapeno calls or paid fallback. This adjudication
+made no inference API calls. The generic CLI can spend credits and does not enforce
+this policy; do not treat historical paid-route examples as authorization.
 
-### 2. Generate Altered Riddles
+An explicit `run --max-tokens 64000` creates a separate `-cap64000` configuration.
+It does not replace existing default-cap samples. Use a new `--runs-dir` for a
+new experiment, predeclare the whole evaluation slice, and retain failures.
+Do not rerun only truncated answers and splice successful retries into a board.
+Provider context length does not guarantee support for an output-token cap.
 
-```bash
-# Generate from common riddles (mean_accuracy >= 60%)
-python -m scripts.generate --provider gemini --num-calls 50
-python -m scripts.generate --provider openai --num-calls 50
-```
+## Website compatibility
 
-### 3. Validate
+The existing public website uses the v1 feed in `results/leaderboard.json`.
+Core JSON is an object with `rows`, not that legacy array/NDJSON schema. The
+companion website has local support for both schemas, including native interval
+endpoints and correctly labelled familiarity coverage. No feed switch or website
+deployment has been performed. See [the integration contract](docs/WEBSITE_CONTRACT.md).
 
-```bash
-python -m scripts.validate --provider local --batch-size 20
-```
+## Release, contamination and corrections
 
-### 4. Deduplicate
+The dataset is not yet frozen. Public altered items may enter future training
+corpora; record release dates and model versions and do not claim previously
+exposed items are private canaries. Do not infer contamination from individual
+answers. Corrections will have a versioned change log, new item IDs when wording
+changes, fresh responses for new text, and preserved prior snapshots. Changes to
+scoring require new score artifacts and provenance, not rewritten raw answers.
 
-```bash
-python -m scripts.deduplicate
-python -m scripts.deduplicate --dry-run  # Preview first
-```
-
-### 5. Human Review
-
-```bash
-python -m scripts.human_review
-```
-
-### 6. Promote to Benchmark
-
-```bash
-# Initial split: 30% fixed (private), 70% auxiliary (public)
-python -m scripts.promote split --fixed-count 100 --auxiliary-count 250
-
-# Or add incrementally
-python -m scripts.promote add --count 50 --set auxiliary
-
-# Check status
-python -m scripts.promote status
-
-# Refresh auxiliary set (for new benchmark revisions)
-python -m scripts.promote refresh-auxiliary --count 250
-```
-
-### 7. Run the Benchmark
-
-```bash
-# Deterministic (temperature 0)
-python -m scripts.benchmark --provider gemini
-python -m scripts.benchmark --provider openai --model gpt-5.4
-
-# With sampling (multiple samples per riddle)
-python -m scripts.benchmark --provider openai --temperature 0.7 --num-samples 5
-
-# Only altered riddles, batched
-python -m scripts.benchmark --provider local --only altered --batch-size 20
-
-# Single API-call smoke test for reasoning/settings
-python -m scripts.benchmark --provider openai --reasoning --one-entry-test
-```
-
-### 8. Evaluate
-
-```bash
-python -m scripts.evaluate --provider local --batch-size 20
-```
-
-### 9. Generate Leaderboard
-
-```bash
-python -m scripts.leaderboard
-```
-
-## Benchmark Entry Format
-
-Each entry in `benchmark.jsonl` contains:
-
-```json
-{
-  "id": "alt_0001",
-  "original_riddle": "I'm tall when I'm young, and I'm short when I'm old. What am I?",
-  "original_answer": "A candle.",
-  "original_accepted_answers": ["A candle."],
-  "original_reasoning": "A candle starts tall and becomes shorter as it burns.",
-  "altered_riddle": "I'm tall when I'm young, and I'm short when I'm old, and I grow from the ground. What am I?",
-  "altered_answer": "A plant.",
-  "altered_accepted_answers": ["A plant.", "A tree."],
-  "altered_competing_answers": [],
-  "altered_reasoning": "Adding 'grows from the ground' eliminates candle.",
-  "source": "gemini-3.1-pro",
-  "type": "constraint_addition",
-  "set": "auxiliary"
-}
-```
-
-## Confidence Intervals
-
-All accuracy metrics use 95% confidence intervals computed via clustered bootstrap, where clusters are defined by the original riddle. This accounts for the non-independence of altered riddles derived from the same source.
-
-## Providers
-
-The benchmark supports multiple LLM providers out of the box. See `scripts/core/config.py` for the full registry. Adding a new provider is as simple as adding an entry to the `PROVIDERS` dict.
-
-## Citation
-
-```bibtex
-@misc{marcodsn_2025_alteredriddles,  
-  title = {Altered Riddles Benchmark},  
-  author = {Marco De Santis},  
-  year = {2026},  
-  url = {https://marcodsn.me/altered-riddles} 
-}
-```
-
-## License
-
-The riddle source data and benchmark methodology are provided for research purposes.
+Code/data licensing and upstream source permissions are still under review.
+No new blanket data license is asserted here. See `data/sources.yaml` for recorded
+source provenance. A public release remains blocked until redistribution terms
+are settled.

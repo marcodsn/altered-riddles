@@ -1,5 +1,45 @@
 # Altered Riddles — remaining work and execution instructions
 
+## Latest owner instruction and release preparation
+
+AI adjudication is sufficient; **no independent human validation is required**.
+The owner now explicitly authorizes **subscription-backed Astra subagents**,
+superseding the earlier no-subagents policy. Actual review runtime was
+`openai-codex/gpt-6-astra`, not the paid Nous Astra API. Future authorized inference
+must use **verified free models only**: no paid Astra/Jalapeno, credit-funded paid
+routes or paid fallback. This adjudication used **zero inference API calls**.
+See `docs/CORE_RELEASE_POLICY_AMENDMENT_ASTRA_V1.md`; the hash-bound prospective
+`docs/CORE_RELEASE_POLICY.md` remains unchanged as historical evidence.
+
+- All 13 historical disagreements resolved through AI assessment plus consistency
+  challenge and supervisor-approved interpretation. All match unchanged current
+  samples: 12 candidate labels changed, one confirmed; zero historical-only cases.
+- Two cap-run pending answers separately became `other`: 39/40 correct per condition,
+  78/80 overall (97.5%), no pending/errors/truncations. This selected fresh repair
+  slice is not a causal cap estimate or a full-board replacement.
+- New scored directories: `runs/core-candidate-adjudicated-v1/` and
+  `runs/cap-sensitivity-adjudicated-v1/`. Base judge provenance and all historical
+  raw/scored artifacts retained. No generic scorer-rule changes or 64k splicing.
+- Current board and manifests: `results/audit/astra-adjudication-v1/`. Five rows pass
+  automated checks, point ranks unchanged. DeepSeek-off COR rises 0.160643 percentage
+  points; Longcat-off COR rises 0.077519 points. All changes are in `impact.json`.
+- 780 existing input/artifact files have unchanged SHA-256 evidence, including old
+  boards, item files and pre-inference policy. AI review is not human or independent
+  empirical validation and does not establish population judge accuracy.
+- Validation: 51 offline tests pass (seven scoped-overlay/rendering regressions), 205
+  source/derived manifest file hashes match, and a separate CLI board rebuild matches
+  all rows/comparisons/flags. `git diff --check` passes; Git index remains empty.
+
+Final AI implementation review found no P1 scoring issues. Its one P2 stale
+human-review instruction was corrected in the audit-local renderer/current markdown;
+`post_review_correction.json` records the change and successful 51-test recheck.
+
+Next: resolve source permissions and per-item release provenance, then complete
+offline packaging/submission and final release checks.
+No freeze, license grant, launch, push/deploy/tag, website edit or broader panel was
+performed in this adjudication. Hard, inspect_ai and independent replication remain
+outstanding; no paid-model expansion is authorized.
+
 ## Goal and current status
 
 Make this a credible, reproducible, widely adopted diagnostic of whether models
@@ -7,9 +47,14 @@ follow altered premises instead of giving familiar answers. Do not manufacture
 difficulty by retaining ambiguous or contradictory items.
 
 **Not launch-ready.** Audit tooling works, scoring provenance is in place, the Core
-item set has been AI-reviewed in full, and the owner's human checks are pending.
-Work directly in this repository; do not use subagents unless the owner explicitly
-changes that instruction.
+item set has been AI-reviewed in full, and owner adjudications are now consolidated.
+All eight approved repairs have passed validation and fresh evaluation is complete.
+The current development board is `results/audit/astra-adjudication-v1/core-board/`.
+A newly discovered empty/truncated-answer bug was fixed and scored offline; older
+boards (including results/v2) are historical, not current. The 45-row label sheet
+has mixed owner/AI provenance; its 13 judge disagreements are resolved in the new
+AI overlay, not rewritten in the historical sheet. It is not an independent human
+agreement study. Subscription-backed Astra subagents are explicitly authorized.
 
 ### Read first
 
@@ -29,11 +74,11 @@ pipeline or mix its scores with v2 results.
 
 1. **Standard:** strict entailment under ordinary readings. Plausible is not enough;
    the original answer must fail as an answer to the altered question.
-2. **Reviewers:** one human (the owner) plus explicitly labelled AI reviews. No second
-   human reviewer. The human reviews disputed items and judge-decided rows only.
+2. **Reviewers (superseded):** originally one human plus labelled AI reviews.
+   Latest instruction permits strong-model AI adjudication without human validation.
 3. **Scope:** freeze and release Core first; Hard is a later, separate track.
-4. **Budget:** Jalapeno envelope USD 1 for this phase; the PLAN section 6 allocation
-   (~USD 75) stands for the launch panel.
+4. **Budget (superseded):** the former Jalapeno USD 1 envelope and PLAN launch
+   allocation are historical. Current permission is verified free inference only.
 
 ## What has already been done
 
@@ -75,18 +120,24 @@ Historical raw outputs are untouched. Pre-fix scores are in git at `6c568ce`.
 5. Keep original-answer familiarity, altered accuracy, COR, abstentions, and other
    errors distinct. Document denominators and sample counts.
 6. No publication, push, release tag, or external announcement without owner approval.
-7. Use only Nous `:free` routes and verified cheap Jalapeno models for API work.
-   No silent provider substitutions or paid fallback.
+7. Only verified free inference models; subscription-backed Astra subagents are
+   authorized separately. No paid Astra/Jalapeno, silent substitutions or paid fallback.
 8. Keep API keys out of source files, logs, manifests, and chat.
 
 ## 1. Owner's checks — blocking
 
-- [ ] Fill `results/audit/adjudication-v1/human_review.yaml` (11 items: disposition +
-      one-line reason). Then the assistant folds it into `adjudication-v2/decisions.json`
-      with reviewer, date, text hash and disposition.
-- [ ] Decide `cat-fur-1`: keep as a Core control, rewrite to "left or right", or exclude.
-- [ ] Label `results/audit/rescore-v1/label_changes_sheet.yaml` (45 judge-decided rows,
-      blind). The assistant then records judge–human agreement on these rows.
+- [x] Consolidate the 11-item sheet plus cat into `adjudication-v2/decisions.json`,
+      recording owner-authored versus owner-approved AI amendments, text hashes,
+      and recording timestamps (original review dates are not invented).
+- [x] Decide `cat-fur-1`: owner approved the explicit "left or right" rewrite in chat;
+      staged as `cat-fur-1-r1` in `data/revisions/cat-fur-v1.yaml` and the consolidated
+      `data/revisions/core-approved-v1.yaml` (historical pilot snapshot preserved).
+      Validation and fresh model runs remain pending; historical text and scores are unchanged.
+- [x] Complete the 45-row label sheet and record provenance in
+      `adjudication-v2/label_audit.json`: 43 AI blind labels, one unchanged owner label,
+      one owner-approved AI correction. Mixed-provenance agreement: 32/45 (71.1%).
+- [x] Resolve the 13 review/judge disagreements in `astra-adjudication-v1/` with
+      exact bindings and AI provenance; no judge–human accuracy claim.
 - The remaining 252 items are AI-reviewed `keep`; no human pass is planned (decision 2).
 
 **Exit condition:** every item has a disposition with the reviewer named; no unresolved
@@ -96,12 +147,22 @@ contradictions promoted into a release.
 
 Drafts: `data/revisions/core-hard-pilot.yaml`. Advisory: `results/audit/revision-review-v1/`.
 
-- [ ] After the sheet: stage approved `-r1` items as new IDs in a candidate item file,
-      keeping `replaces`; run the warned gate and the invalidation probe on them.
-- [ ] Review aliases for overlap with original answers and over-broad matching.
-- [ ] Fresh original/familiarity, unwarned and warned runs on the Tier-0 rows with the
-      documented settings; new run directories; score with matcher v2.
-- [ ] Never count pending/error labels as successes or discard them to improve COR.
+- [x] Stage eight approved `-r1` items with `replaces` in
+      `data/revisions/core-approved-v1.yaml`; all eight pass the unchanged four-model
+      warned gate and invalidation probe (32/32 correct; 32/32 invalid).
+- [x] Review aliases for overlap and final-answer coverage; offline checks and
+      AI gate-explanation review recorded in `adjudication-v2/`.
+- [x] Fresh original/familiarity, unwarned and warned Tier-0 runs completed:
+      488 responses across 13 configurations, 0 API errors, 14 token-cap stops.
+      Original prompts, sample counts and token caps retained; no resampling.
+- [x] Empty answers deterministically abstain; truncated reasoning is not a final
+      answer. Scorer v2 corrects 202 labels in the composed candidate, plus one
+      answer-text-only change, without new inference. Matcher remains v2.
+- [x] Rebuilt 264-item Core candidate with explicit manifests and per-sample lineage;
+      five full-board rows pass existing checks. Historical raw files are unchanged.
+- [x] Initial token-cap sensitivity: Longcat all eight repairs, both thinking-on
+      conditions at 64k, 80 replies with no truncation. Both pending labels are now `other`;
+      full-board high-cap evaluation is not done. See latest status above.
 
 Repairs are likely Core controls; do not call them Hard until difficulty is measured.
 
@@ -110,10 +171,10 @@ Repairs are likely Core controls; do not call them Hard until difficulty is meas
 - [x] Fingerprints on familiarity scores and altered scores; stale scores rejected.
 - [x] Raw-to-scored sample correspondence (`text_sha` on every scored row).
 - [x] Explicit run manifest instead of directory order.
-- [ ] Judge-label audit against the owner's 45-row sheet (and, if wanted, the pilot's
-      61-row judge sheet in `results/pilot/`, still unlabelled).
-- [ ] Predeclare comparison families and multiplicity handling before any
-      significance-based leaderboard claim.
+- [x] Resolve the 13 selected disagreements from the 45-row mixed-provenance sheet.
+      No representative judge-accuracy audit or pilot 61-row adjudication is claimed.
+- [x] Initial preview explicitly excludes significance-based ranking claims.
+      Future confirmatory comparisons need their own prospective family/correction.
 - [ ] Prospective precision/power analysis using independent source clusters.
 
 Current pairwise intervals are exploratory and pointwise. Do not describe point ranks
@@ -137,7 +198,7 @@ families not used for selection, matched controls. Unchanged from the protocol.
 Nous request metadata: `{"tags": ["user=marcodsn"]}` (`--user-tag marcodsn` in
 `review_validity`; other entry points do not inject it). `review_validity` is bounded:
 two free models, 20 items, batches of five, eight requests, 3,000 output tokens, no
-retries. Jalapeno: record prices before inference; USD 1 envelope this phase.
+retries. Earlier Jalapeno envelopes are superseded: verified free inference only.
 
 ## 6. Package, replicate and launch
 
@@ -164,7 +225,10 @@ milestone update this file and `PLAN.md` with the work done, commands and result
 usage and cost evidence, open questions, approvals received versus pending, and the
 next action.
 
-**Next action now:** owner fills the 11-item sheet, decides `cat-fur-1`, labels the
-45-row sheet. Assistant then folds the decisions into `adjudication-v2`, stages and
-runs the approved repairs, records judge agreement, and drafts the predeclared
-comparison policy. Do not freeze Core or run the launch panel before that.
+**Historical handoff before the latest instructions above:** steps 1–4 are complete; use the scorer-v2 board and manifests
+under `results/audit/adjudication-v2/`, not the superseded intermediate boards.
+Resolve the 13 mixed-provenance label disagreements, review token-cap sensitivity,
+and predeclare the comparison policy before final audit/freeze. The successful
+sequence made 64 gate/probe calls, 488 evaluation calls and 34 judge calls; offline
+scorer repair made no calls. Final conservative ledger: USD .565084178, including
+prior-work and interrupted-call reserves. 39 tests pass. No publication authorized.

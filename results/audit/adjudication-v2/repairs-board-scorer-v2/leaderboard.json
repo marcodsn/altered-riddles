@@ -1,0 +1,190 @@
+{
+  "generated_at": "2026-09-09T10:21:50Z",
+  "n_boot": 2000,
+  "seed": 0,
+  "run_manifest": [
+    "runs/core-repairs-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/original-thinkoff-k5",
+    "runs/core-repairs-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+    "runs/core-repairs-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+    "runs/core-repairs-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+    "runs/core-repairs-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+    "runs/core-repairs-scored-v2/jalapeno_GLM-5.3-Flash/original-thinkon-k5",
+    "runs/core-repairs-scored-v2/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5",
+    "runs/core-repairs-scored-v2/jalapeno_GLM-5.3-Flash/warned-thinkon-k5",
+    "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/original-thinkoff-k5",
+    "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+    "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+    "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkoff-k5",
+    "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5"
+  ],
+  "familiar_threshold": 0.8,
+  "rows": [
+    {
+      "checks": [],
+      "truncated_rate": 0.025,
+      "dodge_rate": 0.075,
+      "familiar_share": 1.0,
+      "drift": {
+        "stale": 0,
+        "missing": 0,
+        "unhashed": 0
+      },
+      "id": "nous:meituan/longcat-2.0:free|on",
+      "model": "nous:meituan/longcat-2.0:free",
+      "thinking": "on",
+      "n_items": 8,
+      "n_answers": 40,
+      "familiar_sources": 8,
+      "n_conditioned": 40,
+      "alt_acc": 0.925,
+      "cor": 0.0,
+      "cor_ci95": [
+        0.0,
+        0.0
+      ],
+      "original_rate": 0.0,
+      "other_rate": 0.05,
+      "abstain_rate": 0.025,
+      "pending": 0,
+      "warned_acc": 0.725,
+      "override_gap": -0.20000000000000007,
+      "median_reasoning_tokens": 194.0,
+      "familiarity_mode": "direct",
+      "samples": 5,
+      "error_rate": 0.0,
+      "run_dir": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+      "point_rank": 1,
+      "thinking_gap": 0.175
+    },
+    {
+      "checks": [],
+      "truncated_rate": 0.0,
+      "dodge_rate": 0.0,
+      "familiar_share": 1.0,
+      "drift": {
+        "stale": 0,
+        "missing": 0,
+        "unhashed": 0
+      },
+      "id": "jalapeno:GLM-5.3-Flash|on",
+      "model": "jalapeno:GLM-5.3-Flash",
+      "thinking": "on",
+      "n_items": 8,
+      "n_answers": 40,
+      "familiar_sources": 8,
+      "n_conditioned": 40,
+      "alt_acc": 0.95,
+      "cor": 0.05,
+      "cor_ci95": [
+        0.0,
+        0.15
+      ],
+      "original_rate": 0.05,
+      "other_rate": 0.0,
+      "abstain_rate": 0.0,
+      "pending": 0,
+      "warned_acc": 1.0,
+      "override_gap": 0.050000000000000044,
+      "median_reasoning_tokens": 169.5,
+      "familiarity_mode": "thinking",
+      "samples": 5,
+      "error_rate": 0.0,
+      "run_dir": "runs/core-repairs-scored-v2/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5",
+      "point_rank": 2
+    },
+    {
+      "checks": [],
+      "truncated_rate": 0.0,
+      "dodge_rate": 0.025,
+      "familiar_share": 1.0,
+      "drift": {
+        "stale": 0,
+        "missing": 0,
+        "unhashed": 0
+      },
+      "id": "nous:meituan/longcat-2.0:free|off",
+      "model": "nous:meituan/longcat-2.0:free",
+      "thinking": "off",
+      "n_items": 8,
+      "n_answers": 40,
+      "familiar_sources": 8,
+      "n_conditioned": 40,
+      "alt_acc": 0.8,
+      "cor": 0.175,
+      "cor_ci95": [
+        0.0,
+        0.425
+      ],
+      "original_rate": 0.175,
+      "other_rate": 0.025,
+      "abstain_rate": 0.0,
+      "pending": 0,
+      "warned_acc": 0.775,
+      "override_gap": -0.025000000000000022,
+      "median_reasoning_tokens": 0.0,
+      "familiarity_mode": "direct",
+      "samples": 5,
+      "error_rate": 0.0,
+      "run_dir": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+      "point_rank": 3,
+      "thinking_gap": 0.175
+    }
+  ],
+  "excluded": [
+    {
+      "model": "jalapeno:DeepSeek-V4-Flash-0731",
+      "thinking": "off",
+      "reason": "other+abstain 15%: COR flattered, rank by accuracy"
+    },
+    {
+      "model": "jalapeno:DeepSeek-V4-Flash-0731",
+      "thinking": "on",
+      "reason": "other+abstain 12%: COR flattered, rank by accuracy"
+    }
+  ],
+  "review_flags": [],
+  "comparisons": [
+    {
+      "a": "jalapeno:GLM-5.3-Flash|on",
+      "b": "nous:meituan/longcat-2.0:free|off",
+      "n_items": 8,
+      "n_clusters": 8,
+      "difference": -0.125,
+      "ci95": [
+        -0.375,
+        0.0
+      ]
+    },
+    {
+      "a": "jalapeno:GLM-5.3-Flash|on",
+      "b": "nous:meituan/longcat-2.0:free|on",
+      "n_items": 8,
+      "n_clusters": 8,
+      "difference": 0.05,
+      "ci95": [
+        0.0,
+        0.15000000000000002
+      ]
+    },
+    {
+      "a": "nous:meituan/longcat-2.0:free|off",
+      "b": "nous:meituan/longcat-2.0:free|on",
+      "n_items": 8,
+      "n_clusters": 8,
+      "difference": 0.175,
+      "ci95": [
+        0.0,
+        0.425
+      ]
+    }
+  ],
+  "comparison_method": "item-balanced COR difference a-b on shared familiar items; jointly resampled clusters; pointwise CI95, no multiplicity adjustment",
+  "release_status": "development candidate, not frozen or publication-approved",
+  "scorer_version": 2,
+  "label_audit": "results/audit/adjudication-v2/label_audit.json",
+  "limitations": [
+    "13 mixed-provenance label-audit disagreements remain open.",
+    "14 fresh responses hit token caps; Longcat warned thinking-on had 11/40 truncations on repairs.",
+    "Reasoning-only truncated responses are abstentions, not answers. Raw samples retained."
+  ]
+}

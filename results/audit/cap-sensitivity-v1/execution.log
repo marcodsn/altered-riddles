@@ -1,0 +1,296 @@
+nous:meituan/longcat-2.0:free unwarned-thinkon-k5-cap64000: units=8 calls=40 done=0 todo=40
+call 1: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 2: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 0: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 3: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 4: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 6: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 7: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 5: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 8: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 9: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 10: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 12: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 11: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 14: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 15: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 16: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 13: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 17: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 18: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 20: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 19: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 22: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 21: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 23: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 24: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 28: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 26: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 30: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 27: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 29: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 32: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 31: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 33: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 35: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 36: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 34: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 37: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 38: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 39: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 25: nous:meituan/longcat-2.0:free usage_estimated error=False
+{
+ "config": "unwarned-thinkon-k5-cap64000",
+ "n_expected": 40,
+ "n_rows": 40,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 174.0,
+ "mean_reasoning_tokens": 365.4,
+ "mean_completion_tokens": 373.3,
+ "reasoning_leak_rate": 1.0,
+ "truncated": 0,
+ "total_prompt_tokens": 2645,
+ "total_completion_tokens": 14931,
+ "elapsed_s_this_invocation": 129.1,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-12T14:18:04Z"
+}
+wrote runs/cap-sensitivity-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5-cap64000
+{
+ "deterministic_resolved": 0.975,
+ "judge": null,
+ "judged_rows": 0,
+ "overall": {
+  "n": 40,
+  "correct": 0.975,
+  "original": 0.0,
+  "other": 0.0,
+  "abstain": 0.0,
+  "pending": 0.025
+ },
+ "conditioned_on_familiar": {
+  "n": 0,
+  "correct": null,
+  "original": null,
+  "other": null,
+  "abstain": null,
+  "pending": null,
+  "familiar_sources_known": false,
+  "cor": null
+ },
+ "by_type": {
+  "hard_constraint": {
+   "n": 15,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "stated": {
+   "n": 15,
+   "correct": 0.9333,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0667
+  },
+  "trivialized": {
+   "n": 10,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "by_family": {
+  "puzzle": {
+   "n": 35,
+   "correct": 0.9714,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0286
+  },
+  "riddle": {
+   "n": 5,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "scored_at": "2026-09-12T14:18:04Z",
+ "scoring": {
+  "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "matcher_version": 2,
+  "scorer_version": 2,
+  "matcher_sha256": "efa3e5bb95a6d6c7",
+  "score_sha256": "c967f818a376c3c2",
+  "judge": null,
+  "judge_prompt_sha256": null,
+  "item_fingerprints": {
+   "cat-fur-1-r1": "d13aba7b776e229b",
+   "hiccups-1-r1": "94b8d02caabea189",
+   "johnnys-mother-1-r1": "86541b0139e8d373",
+   "marys-father-1-r1": "a84324ce90d6a889",
+   "months-28-days-1-r1": "1bfcdf4de34c1420",
+   "mustard-family-3-r1": "eb9e680b2cc17b06",
+   "parachute-1-r1": "383fea17aa59c184",
+   "rooster-egg-2-r1": "26b2948a0b2c2755"
+  }
+ }
+}
+nous:meituan/longcat-2.0:free warned-thinkon-k5-cap64000: units=8 calls=40 done=0 todo=40
+call 41: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 42: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 43: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 45: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 44: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 46: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 48: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 47: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 40: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 50: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 51: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 49: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 52: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 53: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 54: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 55: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 56: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 57: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 59: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 58: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 60: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 63: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 61: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 62: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 64: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 68: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 65: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 69: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 70: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 67: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 72: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 66: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 71: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 75: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 73: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 74: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 77: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 79: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 76: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 78: nous:meituan/longcat-2.0:free usage_estimated error=False
+{
+ "config": "warned-thinkon-k5-cap64000",
+ "n_expected": 40,
+ "n_rows": 40,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 556.0,
+ "mean_reasoning_tokens": 2940.6,
+ "mean_completion_tokens": 2949.1,
+ "reasoning_leak_rate": 1.0,
+ "truncated": 0,
+ "total_prompt_tokens": 3965,
+ "total_completion_tokens": 117964,
+ "elapsed_s_this_invocation": 653.3,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-12T14:28:58Z"
+}
+wrote runs/cap-sensitivity-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5-cap64000
+{
+ "deterministic_resolved": 0.975,
+ "judge": null,
+ "judged_rows": 0,
+ "overall": {
+  "n": 40,
+  "correct": 0.975,
+  "original": 0.0,
+  "other": 0.0,
+  "abstain": 0.0,
+  "pending": 0.025
+ },
+ "conditioned_on_familiar": {
+  "n": 0,
+  "correct": null,
+  "original": null,
+  "other": null,
+  "abstain": null,
+  "pending": null,
+  "familiar_sources_known": false,
+  "cor": null
+ },
+ "by_type": {
+  "hard_constraint": {
+   "n": 15,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "stated": {
+   "n": 15,
+   "correct": 0.9333,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0667
+  },
+  "trivialized": {
+   "n": 10,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "by_family": {
+  "puzzle": {
+   "n": 35,
+   "correct": 0.9714,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0286
+  },
+  "riddle": {
+   "n": 5,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "scored_at": "2026-09-12T14:28:58Z",
+ "scoring": {
+  "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "matcher_version": 2,
+  "scorer_version": 2,
+  "matcher_sha256": "efa3e5bb95a6d6c7",
+  "score_sha256": "c967f818a376c3c2",
+  "judge": null,
+  "judge_prompt_sha256": null,
+  "item_fingerprints": {
+   "cat-fur-1-r1": "d13aba7b776e229b",
+   "hiccups-1-r1": "94b8d02caabea189",
+   "johnnys-mother-1-r1": "86541b0139e8d373",
+   "marys-father-1-r1": "a84324ce90d6a889",
+   "months-28-days-1-r1": "1bfcdf4de34c1420",
+   "mustard-family-3-r1": "eb9e680b2cc17b06",
+   "parachute-1-r1": "383fea17aa59c184",
+   "rooster-egg-2-r1": "26b2948a0b2c2755"
+  }
+ }
+}

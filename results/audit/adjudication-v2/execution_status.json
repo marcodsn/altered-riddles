@@ -1,0 +1,16 @@
+{
+  "phase": "steps_1_to_4",
+  "status": "complete",
+  "at": "2026-09-09T10:21:52.338182+00:00",
+  "release_ready": false,
+  "current_board": "results/audit/adjudication-v2/core-board-scorer-v2/LEADERBOARD.md",
+  "superseded_boards": [
+    "core-board",
+    "repairs-board"
+  ],
+  "remaining": [
+    "13 mixed-provenance label disagreements",
+    "token-cap sensitivity review",
+    "comparison policy and freeze/release checks"
+  ]
+}

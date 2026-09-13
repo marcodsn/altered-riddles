@@ -1,5 +1,14 @@
 # Altered Riddles v2 — plan
 
+> **Current owner rule (2026-09-12):** subscription-backed Astra subagents are
+> explicitly authorized; only verified free inference models may be used. No paid
+> Astra/Jalapeno or paid fallback. This supersedes historical credit allocations and
+> no-subagent instructions below; those entries remain construction history.
+> The scoped adjudication made zero inference API calls. Current board:
+> `results/audit/astra-adjudication-v1/core-board/`. Policy amendment:
+> `docs/CORE_RELEASE_POLICY_AMENDMENT_ASTRA_V1.md` (original policy preserved).
+
+
 *Status: draft for Marco's review · 2026-09-04 · branch `v2` (from `eval-fixes`) · target repo `nullsilver-labs/altered-riddles`, rendered on nullsilver.com.*
 
 v2 keeps the metric idea and the plumbing, and rebuilds the dataset around two things v1 never proved: that the model actually **recalls** the original, and that the original answer is **provably wrong** for the altered version. Everything below is scoped to a **zero-money budget**; paid frontier rows come from credits or community runs, never from Marco's wallet.
@@ -407,3 +416,127 @@ findings: `docs/VALIDITY_AUDIT_INITIAL.md`. Reproducible diagnostic outputs:
   unchanged (`results/audit/rescore-v1/`, board `results/v2/`, audit `core-hard-v3`).
 - Routes checked 2026-09-06: 7 Nous `:free` routes with catalog pricing 0, Jalapeno
   21 models (`results/audit/routes-2026-09-06/`).
+
+### 2026-09-09: owner adjudications and eight prospective Core repairs
+
+- Owner authorized consolidation, staging, validation and fresh Tier-0 evaluation
+  in chat ("do 1-4"). No freeze, publication or budget increase authorized.
+- `results/audit/adjudication-v2/decisions.json` records 12 disputed-item decisions:
+  four keep and eight revise-and-rerun. Owner-authored judgments are distinguished
+  from AI amendments accepted by the owner; recording time is not a fabricated
+  original review date. Cat's explicit left/right rewrite is separately approved.
+- Eight new IDs are in `data/revisions/core-approved-v1.yaml`: Mustard family,
+  months, Mary, Johnny, hiccups, parachute, rooster and cat. Last brick stays as
+  written. Historical pilot draft, active items, raw runs and results/v2 are intact.
+- `label_audit.json` records 43 AI blind labels, one unchanged owner label and one
+  owner-approved AI correction. Mixed-provenance agreement with the judge: 32/45;
+  13 disagreements remain. This is not an independent human agreement study.
+- Offline checks pass. Four unchanged gate models returned 32/32 correct warned
+  answers and 32/32 invalid-original verdicts, with no errors, truncation or missing
+  thinking. AI explanation review (not vote-based adjudication) is recorded in
+  `gate_reasoning_review.json`; weak parachute/cat rationales are explicitly rejected.
+- Read-only routes rechecked; Nous longcat remains priced zero. Jalapeno price
+  evidence remains the owner's section 6 prices. The new bounded driver preserves
+  prompts, caps and samples, uses one attempt and no fallback, and reserves every
+  in-flight call against USD 1. Its initial queue-reservation bug was fixed and
+  tested; failed-attempt evidence is preserved with USD .13100965 conservatively
+  retained for four potentially in-flight calls. Post-gate charged/reserved bound:
+  USD .487260462 including USD .05 for earlier phase work (not a billing receipt).
+- Commands: `.venv/bin/python -m unittest discover -s tests -v` (33 tests pass),
+  `git diff --check`; audit-local `prepare.py`, `execute.py offline`, `execute.py gate`.
+  Fresh evaluation is running through `execute.py evaluate`, followed on success by
+  offline-only `rebuild.py`; see `execution_status.json`, logs and explicit manifests.
+- Completion: 488 fresh responses across 13 runs, no API errors, 14 token-cap stops;
+  264-item candidate composed with explicit sample lineage. Original data untouched.
+- Final audit found 12 empty fresh replies judged correct and one truncated thought
+  scored as an original answer. Scorer v2 fixes empty replies to abstain and forbids
+  truncated reasoning fallback; boards reject old scorer/familiarity versions.
+  An offline, no-inference rescore corrected 202 labels in the composed candidate
+  (179 correct, 19 other, 4 original to abstain), plus one answer-text-only change.
+  Familiarity rates are unchanged by the scorer repair. All 84 historical hashes
+  match; historical scores/boards remain untouched but are no longer current.
+- Current candidate: `adjudication-v2/core-board-scorer-v2/`, five rows passing
+  aggregate checks. The repair-only board excludes both DeepSeek rows for elevated
+  other+abstain. Longcat warned thinking-on truncated 11/40 repair replies; retain
+  and report these, without outcome-based resampling or hiding the local rate.
+- Successful calls: 64 gate/probe + 488 evaluation + 34 judge = 586. Final
+  conservative ledger USD .565084178 includes prior-work/interruption reserves;
+  scorer repair made no new calls. 39 tests and `git diff --check` pass.
+- Steps 1–4 complete. Next: resolve 13 mixed-provenance label disagreements,
+  review token-cap sensitivity, and settle comparison policy before final freeze.
+  No publication or additional spend is authorized by this completion.
+
+### Release preparation after owner approval to proceed
+
+- Owner now accepts strong-model AI adjudication without independent human
+  validation, requests a larger cap and allows considering more Jalapeno models.
+  AI provenance remains explicit; no human labels or identities are fabricated.
+- Live catalog checks: 21 Jalapeno models (no live pricing); Nous Longcat free
+  remains zero-priced. Astra is a paid Nous route at USD 10/M input and 50/M
+  output, outside the prior free-Nous policy. Paid exception/ceiling pending;
+  no Astra or additional Jalapeno calls made in this preparation.
+- Prospective initial preview policy: descriptive ranks and exploratory intervals
+  only; no significant ranking claims. `docs/CORE_RELEASE_POLICY.md` records the
+  policy after observing Tier-0 data, not as retrospective preregistration.
+- Added explicit `run --max-tokens` with separate `-capN` configurations and a
+  changed-settings resume guard. Default caps and historical answers unchanged.
+- Predeclared Longcat diagnostic: all eight repairs, both thinking-on conditions,
+  k=5, 64k cap, same prompts/temperature. 80 fresh free replies, no errors or
+  truncations. At 16k the old slice truncated 1/40 unwarned and 11/40 warned.
+  Each new condition has 39 deterministic correct and one pending answer. No
+  paid judge calls or cherry-picked replacement samples. Evidence/zero-dollar
+  ledger in `results/audit/cap-sensitivity-v1/`; raw runs in `runs/cap-sensitivity-v1/`.
+- README updated to Core, old README preserved in `docs/README_V1.md`, environment
+  template restored. Licensing/source permissions, freeze and package still pending.
+- Companion website local changes: dual-format reader shared by main/screenshot
+  pages, interval endpoints rather than fabricated symmetric CIs, actual coverage
+  and conditioned counts, no fake rank spread/original accuracy/mean tokens,
+  Core status/provenance caveats, incompatible v1 content hidden. Live feed URLs
+  untouched. Contract in `docs/WEBSITE_CONTRACT.md`.
+- Validation: 44 Python tests, site parser contracts plus actual candidate parsing,
+  Svelte check (0 errors/warnings), production build (upstream d3 circular warnings).
+  No push/deploy/tag, new model panel, resolved 13-row audit, or frozen release
+  claimed. Next: authorize bounded paid Astra (or an allowed AI alternative),
+  adjudicate 13 historical disagreements and two cap-run pending labels; apply
+  versioned corrections, source-license review and final release packaging.
+
+## 2026-09-12 — subscription Astra scoped AI adjudication
+
+- AI assessment and read-only consistency challenge used actual runtime
+  `openai-codex/gpt-6-astra` on subscription-backed native Pi subagents, not the paid
+  Nous Astra route. AI, not human or independent empirical validation. No inference
+  API calls or secrets read during the offline implementation.
+- Supervisor approved the scoped commitment interpretation and challenge changes:
+  historical-18 and historical-32 → `other`. No generic scorer/rubric changes.
+- 15 decisions: 5 original, 10 other, zero unresolved. All 13 historical cases match
+  unchanged current samples (zero historical-only): 12 candidate label changes,
+  one confirmation. Two separate cap pending → other. Exact final-answer, item
+  fingerprint, run/sample, raw-row and file hashes bind every decision.
+- Candidate transitions: 7 correct→other, 2 correct→original, 3 other→original;
+  historical-32 remains other. Versus the old review sheet: 11 labels agree, one
+  other→original and one correct→other. These selected cases do not estimate
+  population judge accuracy. Historical sheets and packets were not rewritten.
+- DeepSeek-off COR 12.449799%→12.610442%, altered accuracy
+  81.212121%→81.136364%, warned accuracy 77.272727%→77.045455%.
+  Longcat-off COR 11.395349%→11.472868%, altered accuracy
+  83.712121%→83.409091%, warned accuracy 76.287879%→76.212121%.
+  Five rows pass automated checks, ranks unchanged; all metric and exploratory
+  comparison deltas recorded in `astra-adjudication-v1/impact.json`.
+- Cap slice: 39/40 correct, 1/40 other in each condition; 97.5% total accuracy,
+  zero pending/errors/truncations. No high-cap splicing, paired-seed or full-panel
+  causal claim. Raw responses, item texts and old boards retained.
+- New candidate/cap score directories and explicit manifests retain base judge
+  provenance beneath named AI overlays. 780 old input/artifact hashes verified
+  unchanged, including the pre-inference release policy; amendment added instead.
+- Validation: 50 offline tests pass (six new scoped-overlay regressions), 205
+  source/derived file hashes match, and separate CLI board reproduction matches all
+  rows/comparisons/flags. `git diff --check` passes; no staged files. Dotenv reads
+  disabled for existing pipeline imports. Bounded logs in the new audit directory.
+- No license grant, freeze, broader panel, website changes or publication performed.
+  Source permissions, per-item release provenance, final package/submission checks
+  and explicit approval remain blockers; Hard/inspect_ai/replication remain undone.
+- Final fresh-context AI implementation review: no P1 scoring issues, one P2 stale
+  human-review instruction in the new board. Parent fixed the audit-local rendering
+  and current Markdown only, with a wording/reproducibility regression. Final 51
+  tests pass; 780 preserved hashes still match. `post_review_correction.json` records
+  the supplementary evidence without rewriting construction logs or validation hashes.

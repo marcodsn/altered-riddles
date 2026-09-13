@@ -41,11 +41,11 @@ Every item needs separate answers to:
 
 The generated queue starts `unreviewed`; it does not import informal historical
 claims of human review. Preserve independent reviews and an adjudication log.
-AI advisory output must remain explicitly AI-labelled. Reviewer policy (owner
-decision, 2026-09-06): one human reviewer, the owner, plus explicitly labelled AI
-reviews; the human reviews only disputed items and judge-decided rows, not the
-whole set. Do not invent reviewer identities or treat agreement between models
-as human validation. Standard (owner-approved 2026-09-06): strict entailment
+AI advisory output must remain explicitly AI-labelled. Reviewer policy (latest owner instruction): explicitly labelled strong-model AI
+adjudication is sufficient; no independent human validation is required. The earlier
+one-human-reviewer policy is superseded. Do not invent reviewer identities or treat
+agreement between models as human validation. Preserve disagreements and adjudication
+reasons; see `docs/CORE_RELEASE_POLICY.md`. Standard (owner-approved 2026-09-06): strict entailment
 under ordinary readings; plausible is not enough, and the original answer must
 fail as an answer to the altered question.
 
@@ -97,39 +97,65 @@ caused by memorization.
   `board --manifest runs.json` names the runs to use, and the chosen run list is
   written into `leaderboard.json` as `run_manifest`.
 
+### Scorer-v2 correction (2026-09-09)
+
+Empty model answers deterministically abstain and are never sent to an LLM judge.
+Reasoning-only replies stopped at the token cap have no committed answer; do not
+extract quoted original answers or tentative answers from their unfinished traces.
+A nontruncated reasoning fallback requires a standalone terminal `Answer:` line.
+Visible answer content remains scorable even when subsequent output is truncated.
+
+`scoring.scorer_version` is now required on both altered and familiarity scores;
+the board rejects older scores. This is separate from matcher version 2. Historical
+outputs remain archived unchanged. Current corrected candidate and explicit run
+manifests were under `results/audit/adjudication-v2/` (`*-scorer-v2` boards/manifests).
+The current scoped AI overlay board/manifests are in `results/audit/astra-adjudication-v1/`;
+base scorer/judge provenance and the older boards are preserved unchanged.
+The correction used no new inference. Report local truncation rates as well as
+full-board aggregate checks; no response is resampled or silently dropped.
+
 ## Cost and run policy
 
-- Nous inference must use model IDs ending in `:free`, verified in its catalog.
+- Current owner rule: subscription-backed Astra subagents are explicitly authorized,
+  superseding the old no-subagents policy. Actual adjudication runtime is
+  `openai-codex/gpt-6-astra`; this is not the paid Nous Astra API.
+- Only verified free inference models are authorized. Nous routes must end in
+  `:free` and have catalog-verified zero pricing. No paid Astra/Jalapeno, credit-funded
+  paid routes or paid fallback. This scoped adjudication made zero inference API calls.
 - `review_validity` is a bounded blinded AI review runner: one or two explicitly
   selected free models, at most 20 items, batches of five, at most eight inference
   requests, 3,000 output tokens/request, no SDK or application retries, explicit
   timeouts. No paid fallback. Use `--user-tag marcodsn` to send the live-verified
   Nous shape `{"tags": ["user=marcodsn"]}`. `--thinking` is explicit and recorded;
   provider default is the default because some routes require reasoning.
-- Jalapeno inference is deferred until current prices are recorded and a
-  worst-case initial envelope of <= USD 1 can be enforced, including retries and
-  reasoning tokens. A cheap-sounding model name is not price evidence.
+- Earlier Jalapeno price/budget allowances are superseded, not active permission.
+  The hash-bound pre-inference `docs/CORE_RELEASE_POLICY.md` is historical evidence;
+  current permissions and scoped rubric interpretation are recorded separately in
+  `docs/CORE_RELEASE_POLICY_AMENDMENT_ASTRA_V1.md`.
 - Preserve failed calls as unresolved; malformed/truncated reviews are not votes.
 - Never substitute another provider/model silently after a failure.
 
 ## Known remaining work
 
-- Ten flagged items now have AI adjudication recommendations (3 keep, 6 revise,
-  1 exclude) in `results/audit/adjudication-v1/`. Six separate candidate repairs
-  are in `data/revisions/core-hard-pilot.yaml`; these are not active benchmark
-  items, source-disjoint Hard test items, or human-approved replacements.
-- Human validity adjudication, remaining-item audit, scoring-label audit, fresh
-  runs of approved repairs, and source-disjoint Hard pilot authoring.
-- Familiarity scoring provenance: original-score caches do not currently carry
-  enough source/alias fingerprints to prove freshness. Do not claim complete
-  end-to-end score provenance from raw text hashes alone.
-- Selection of multiple historical runs per model/condition currently follows
-  the existing directory-order rule. A future submission manifest should select
-  runs explicitly rather than silently prefer a directory.
-- Item/alias-to-score fingerprints and raw-to-score correspondence checks.
-- Prospective multiplicity/power policy, more independent model families, and
-  standardized repeated sampling.
-- Packaging, license/provenance review, external replication, then public launch.
+- The 13 historical label disagreements are resolved by scoped AI adjudication:
+  all match unchanged current samples, 12 labels changed and one confirmed; no
+  historical-only cases. Two cap pending answers separately became `other`.
+  Human validation is not required; AI is not independent empirical validation.
+  Comparable unaudited responses were not reinterpreted; general scorer unchanged.
+- Eight approved repairs and fresh Tier-0 evaluation are complete; current scores
+  and manifests are in `astra-adjudication-v1/` and the two `*-adjudicated-v1` run
+  roots. Fingerprints, raw lineage and all metric deltas are recorded there.
+- Longcat's all-eight-repair 64k diagnostic completed 80 fresh responses with no
+  errors or truncations (`results/audit/cap-sensitivity-v1/`, preserved baseline;
+  completed labels in `astra-adjudication-v1/cap_comparison.json`). Each condition
+  is 39/40 correct and 1/40 other, no pending. No high-cap samples enter the full
+  candidate. This is not a paired-seed causal or full-panel cap estimate.
+- Initial preview claims are descriptive only (`docs/CORE_RELEASE_POLICY.md`).
+  Confirmatory multiplicity/power policy and broader standardized panel remain.
+- Freeze with accurate per-item provenance and source permissions; licensing,
+  submission validator, independent replication, inspect_ai and public packaging.
+- Website schema support is implemented locally in the companion checkout;
+  feed switching, versioned URLs and deployment have not happened.
 
 No release, publication, model ranking claim, or human review is approved by this
 engineering milestone alone.

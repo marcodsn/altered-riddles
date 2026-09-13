@@ -1,0 +1,28 @@
+{
+  "runtime_model": "openai-codex/gpt-6-astra",
+  "billing_route": "subscription-backed native Pi subagents, not paid Nous Astra API",
+  "provenance_source": "runtime model identified in supervisor task and input_manifest.json; copied assessment/challenge are available final review evidence, not fabricated API transcripts",
+  "packet": "review_packet.json",
+  "packet_sha256": "edc21ab48f30e930ef044aa648143d021f0c15fe5fd51cd819ef7af881df334c",
+  "evidence": [
+    {
+      "role": "initial AI assessment",
+      "source_managed_path": "/home/marco/.pi/agent/sessions/--mnt-data-projects-nullsilver-altered-riddles--/subagent-artifacts/outputs/c06bb5df-37ee-43c5-90ae-0206a36793bf/adjudication/assessment.md",
+      "audit_copy": "results/audit/astra-adjudication-v1/assessment.md",
+      "sha256": "db982d27307130ac4cd2c92ecf2a1a0b2185384cb9c353aefd2dab3386cf452a",
+      "runtime_model": "openai-codex/gpt-6-astra",
+      "human": false,
+      "independent_empirical_validation": false
+    },
+    {
+      "role": "AI consistency challenge (read assessment; not blinded)",
+      "source_managed_path": "/home/marco/.pi/agent/sessions/--mnt-data-projects-nullsilver-altered-riddles--/subagent-artifacts/outputs/c06bb5df-37ee-43c5-90ae-0206a36793bf/adjudication/challenge.md",
+      "audit_copy": "results/audit/astra-adjudication-v1/challenge.md",
+      "sha256": "f7ad39f52077879d36fd22502ce140d09df4dd717a9dfdef790092815211b407",
+      "runtime_model": "openai-codex/gpt-6-astra",
+      "human": false,
+      "independent_empirical_validation": false
+    }
+  ],
+  "decisions_authority": "Supervisor approvals recorded in assessment and challenge; two challenge changes supersede initial recommendations."
+}

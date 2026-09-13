@@ -1,0 +1,6 @@
+{
+  "runs": [
+    "runs/cap-sensitivity-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5-cap64000",
+    "runs/cap-sensitivity-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5-cap64000"
+  ]
+}

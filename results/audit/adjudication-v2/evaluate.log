@@ -1,0 +1,1938 @@
+jalapeno:DeepSeek-V4-Flash-0731 original-thinkoff-k5: units=8 calls=40 done=0 todo=40
+call 95: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 96: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 97: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 98: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 99: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 100: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 101: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 102: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 103: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 104: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 105: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 106: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 107: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 108: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 109: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 110: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 111: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 112: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 113: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 114: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 115: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 116: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 117: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 118: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 119: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 120: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 121: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 122: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 123: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 124: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 125: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 126: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 127: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 128: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 129: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 130: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 131: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 132: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 133: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 134: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+{
+ "config": "original-thinkoff-k5",
+ "n_expected": 40,
+ "n_rows": 40,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 0.0,
+ "mean_reasoning_tokens": 0,
+ "mean_completion_tokens": 5.7,
+ "reasoning_leak_rate": 0.0,
+ "truncated": 0,
+ "total_prompt_tokens": 1980,
+ "total_completion_tokens": 226,
+ "elapsed_s_this_invocation": 40.2,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-09T09:13:46Z"
+}
+wrote runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/original-thinkoff-k5
+familiar with 7/8 sources (>= 0.8)
+jalapeno:DeepSeek-V4-Flash-0731 unwarned-thinkoff-k5: units=8 calls=40 done=0 todo=40
+call 135: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 136: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 137: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 138: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 139: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 140: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 141: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 142: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 143: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 144: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 145: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 146: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 147: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 148: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 149: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 150: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 151: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 152: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 153: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 154: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 155: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 156: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 157: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 158: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 159: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 160: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 161: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 162: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 163: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 164: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 165: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 166: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 167: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 168: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 169: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 170: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 171: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 172: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 173: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 174: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+{
+ "config": "unwarned-thinkoff-k5",
+ "n_expected": 40,
+ "n_rows": 40,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 0.0,
+ "mean_reasoning_tokens": 0,
+ "mean_completion_tokens": 7.8,
+ "reasoning_leak_rate": 0.0,
+ "truncated": 0,
+ "total_prompt_tokens": 2525,
+ "total_completion_tokens": 313,
+ "elapsed_s_this_invocation": 40.5,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-09T09:14:27Z"
+}
+wrote runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5
+an error occurred during closing of asynchronous generator <async_generator object PoolByteStream.__aiter__ at 0x748211db93f0>
+asyncgen: <async_generator object PoolByteStream.__aiter__ at 0x748211db93f0>
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 427, in __aiter__
+    yield chunk
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 425, in __aiter__
+    async with safe_async_iterate(self._stream) as iterator:
+  File "/usr/lib/python3.12/contextlib.py", line 267, in __aexit__
+    raise RuntimeError("generator didn't stop after athrow()")
+RuntimeError: generator didn't stop after athrow()
+judge jalapeno:DeepSeek-V4-Flash-0731: 6 rows, 6 to call
+call 177: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 175: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 176: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 178: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 180: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 179: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+an error occurred during closing of asynchronous generator <async_generator object PoolByteStream.__aiter__ at 0x748211db88b0>
+asyncgen: <async_generator object PoolByteStream.__aiter__ at 0x748211db88b0>
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 427, in __aiter__
+    yield chunk
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 425, in __aiter__
+    async with safe_async_iterate(self._stream) as iterator:
+  File "/usr/lib/python3.12/contextlib.py", line 267, in __aexit__
+    raise RuntimeError("generator didn't stop after athrow()")
+RuntimeError: generator didn't stop after athrow()
+{
+ "deterministic_resolved": 0.85,
+ "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+ "judged_rows": 6,
+ "overall": {
+  "n": 40,
+  "correct": 0.65,
+  "original": 0.2,
+  "other": 0.15,
+  "abstain": 0.0,
+  "pending": 0.0
+ },
+ "conditioned_on_familiar": {
+  "n": 35,
+  "correct": 0.6,
+  "original": 0.2286,
+  "other": 0.1714,
+  "abstain": 0.0,
+  "pending": 0.0,
+  "familiar_sources_known": true,
+  "cor": 0.2286
+ },
+ "by_type": {
+  "hard_constraint": {
+   "n": 15,
+   "correct": 0.4,
+   "original": 0.3333,
+   "other": 0.2667,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "stated": {
+   "n": 15,
+   "correct": 0.6667,
+   "original": 0.2,
+   "other": 0.1333,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "trivialized": {
+   "n": 10,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "by_family": {
+  "puzzle": {
+   "n": 35,
+   "correct": 0.7143,
+   "original": 0.2286,
+   "other": 0.0571,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "riddle": {
+   "n": 5,
+   "correct": 0.2,
+   "original": 0.0,
+   "other": 0.8,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "scored_at": "2026-09-09T09:14:29Z",
+ "scoring": {
+  "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "matcher_version": 2,
+  "matcher_sha256": "efa3e5bb95a6d6c7",
+  "score_sha256": "65796ffc15949b24",
+  "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+  "judge_prompt_sha256": "fb4408090cab0e87",
+  "item_fingerprints": {
+   "cat-fur-1-r1": "d13aba7b776e229b",
+   "hiccups-1-r1": "94b8d02caabea189",
+   "johnnys-mother-1-r1": "86541b0139e8d373",
+   "marys-father-1-r1": "a84324ce90d6a889",
+   "months-28-days-1-r1": "1bfcdf4de34c1420",
+   "mustard-family-3-r1": "eb9e680b2cc17b06",
+   "parachute-1-r1": "383fea17aa59c184",
+   "rooster-egg-2-r1": "26b2948a0b2c2755"
+  }
+ }
+}
+jalapeno:DeepSeek-V4-Flash-0731 unwarned-thinkon-k3: units=8 calls=24 done=0 todo=24
+call 181: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 182: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 184: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 183: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 186: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 185: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 190: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 191: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 189: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 192: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 193: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 195: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 194: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 187: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 188: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 199: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 196: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 201: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 202: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 203: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 204: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 200: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 197: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 198: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+{
+ "config": "unwarned-thinkon-k3",
+ "n_expected": 24,
+ "n_rows": 24,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 131.0,
+ "mean_reasoning_tokens": 1437.8,
+ "mean_completion_tokens": 1444.5,
+ "reasoning_leak_rate": 1.0,
+ "truncated": 1,
+ "total_prompt_tokens": 1515,
+ "total_completion_tokens": 34667,
+ "elapsed_s_this_invocation": 721.9,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-09T09:26:31Z"
+}
+wrote runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3
+an error occurred during closing of asynchronous generator <async_generator object PoolByteStream.__aiter__ at 0x748211e5da80>
+asyncgen: <async_generator object PoolByteStream.__aiter__ at 0x748211e5da80>
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 427, in __aiter__
+    yield chunk
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 425, in __aiter__
+    async with safe_async_iterate(self._stream) as iterator:
+  File "/usr/lib/python3.12/contextlib.py", line 267, in __aexit__
+    raise RuntimeError("generator didn't stop after athrow()")
+RuntimeError: generator didn't stop after athrow()
+judge jalapeno:DeepSeek-V4-Flash-0731: 3 rows, 3 to call
+call 205: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 206: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 207: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+an error occurred during closing of asynchronous generator <async_generator object PoolByteStream.__aiter__ at 0x748211e5e3e0>
+asyncgen: <async_generator object PoolByteStream.__aiter__ at 0x748211e5e3e0>
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 427, in __aiter__
+    yield chunk
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 425, in __aiter__
+    async with safe_async_iterate(self._stream) as iterator:
+  File "/usr/lib/python3.12/contextlib.py", line 267, in __aexit__
+    raise RuntimeError("generator didn't stop after athrow()")
+RuntimeError: generator didn't stop after athrow()
+{
+ "deterministic_resolved": 0.875,
+ "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+ "judged_rows": 3,
+ "overall": {
+  "n": 24,
+  "correct": 0.9167,
+  "original": 0.0,
+  "other": 0.0833,
+  "abstain": 0.0,
+  "pending": 0.0
+ },
+ "conditioned_on_familiar": {
+  "n": 21,
+  "correct": 0.9048,
+  "original": 0.0,
+  "other": 0.0952,
+  "abstain": 0.0,
+  "pending": 0.0,
+  "familiar_sources_known": true,
+  "cor": 0.0
+ },
+ "by_type": {
+  "hard_constraint": {
+   "n": 9,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "stated": {
+   "n": 9,
+   "correct": 0.7778,
+   "original": 0.0,
+   "other": 0.2222,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "trivialized": {
+   "n": 6,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "by_family": {
+  "puzzle": {
+   "n": 21,
+   "correct": 0.9048,
+   "original": 0.0,
+   "other": 0.0952,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "riddle": {
+   "n": 3,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "scored_at": "2026-09-09T09:26:32Z",
+ "scoring": {
+  "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "matcher_version": 2,
+  "matcher_sha256": "efa3e5bb95a6d6c7",
+  "score_sha256": "65796ffc15949b24",
+  "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+  "judge_prompt_sha256": "fb4408090cab0e87",
+  "item_fingerprints": {
+   "cat-fur-1-r1": "d13aba7b776e229b",
+   "hiccups-1-r1": "94b8d02caabea189",
+   "johnnys-mother-1-r1": "86541b0139e8d373",
+   "marys-father-1-r1": "a84324ce90d6a889",
+   "months-28-days-1-r1": "1bfcdf4de34c1420",
+   "mustard-family-3-r1": "eb9e680b2cc17b06",
+   "parachute-1-r1": "383fea17aa59c184",
+   "rooster-egg-2-r1": "26b2948a0b2c2755"
+  }
+ }
+}
+jalapeno:DeepSeek-V4-Flash-0731 warned-thinkoff-k5: units=8 calls=40 done=0 todo=40
+call 208: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 209: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 210: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 211: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 212: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 213: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 214: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 215: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 216: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 217: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 218: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 219: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 220: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 221: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 222: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 223: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 224: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 225: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 226: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 227: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 228: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 229: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 230: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 231: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 232: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 234: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 235: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 236: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 233: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 237: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 238: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 239: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 240: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 241: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 242: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 243: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 245: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 244: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 246: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 247: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+{
+ "config": "warned-thinkoff-k5",
+ "n_expected": 40,
+ "n_rows": 40,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 0.0,
+ "mean_reasoning_tokens": 0,
+ "mean_completion_tokens": 11.9,
+ "reasoning_leak_rate": 0.0,
+ "truncated": 0,
+ "total_prompt_tokens": 3845,
+ "total_completion_tokens": 475,
+ "elapsed_s_this_invocation": 40.6,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-09T09:27:13Z"
+}
+wrote runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5
+an error occurred during closing of asynchronous generator <async_generator object PoolByteStream.__aiter__ at 0x748211db86d0>
+asyncgen: <async_generator object PoolByteStream.__aiter__ at 0x748211db86d0>
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 427, in __aiter__
+    yield chunk
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 425, in __aiter__
+    async with safe_async_iterate(self._stream) as iterator:
+  File "/usr/lib/python3.12/contextlib.py", line 267, in __aexit__
+    raise RuntimeError("generator didn't stop after athrow()")
+RuntimeError: generator didn't stop after athrow()
+judge jalapeno:DeepSeek-V4-Flash-0731: 5 rows, 5 to call
+call 251: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 248: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 249: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 250: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 252: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+{
+ "deterministic_resolved": 0.875,
+ "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+ "judged_rows": 5,
+ "overall": {
+  "n": 40,
+  "correct": 0.75,
+  "original": 0.175,
+  "other": 0.075,
+  "abstain": 0.0,
+  "pending": 0.0
+ },
+ "conditioned_on_familiar": {
+  "n": 35,
+  "correct": 0.7143,
+  "original": 0.2,
+  "other": 0.0857,
+  "abstain": 0.0,
+  "pending": 0.0,
+  "familiar_sources_known": true,
+  "cor": 0.2
+ },
+ "by_type": {
+  "hard_constraint": {
+   "n": 15,
+   "correct": 0.6,
+   "original": 0.2667,
+   "other": 0.1333,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "stated": {
+   "n": 15,
+   "correct": 0.9333,
+   "original": 0.0,
+   "other": 0.0667,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "trivialized": {
+   "n": 10,
+   "correct": 0.7,
+   "original": 0.3,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "by_family": {
+  "puzzle": {
+   "n": 35,
+   "correct": 0.7714,
+   "original": 0.2,
+   "other": 0.0286,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "riddle": {
+   "n": 5,
+   "correct": 0.6,
+   "original": 0.0,
+   "other": 0.4,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "scored_at": "2026-09-09T09:27:15Z",
+ "scoring": {
+  "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "matcher_version": 2,
+  "matcher_sha256": "efa3e5bb95a6d6c7",
+  "score_sha256": "65796ffc15949b24",
+  "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+  "judge_prompt_sha256": "fb4408090cab0e87",
+  "item_fingerprints": {
+   "cat-fur-1-r1": "d13aba7b776e229b",
+   "hiccups-1-r1": "94b8d02caabea189",
+   "johnnys-mother-1-r1": "86541b0139e8d373",
+   "marys-father-1-r1": "a84324ce90d6a889",
+   "months-28-days-1-r1": "1bfcdf4de34c1420",
+   "mustard-family-3-r1": "eb9e680b2cc17b06",
+   "parachute-1-r1": "383fea17aa59c184",
+   "rooster-egg-2-r1": "26b2948a0b2c2755"
+  }
+ }
+}
+jalapeno:DeepSeek-V4-Flash-0731 warned-thinkon-k3: units=8 calls=24 done=0 todo=24
+call 256: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 257: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 258: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 259: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 255: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 261: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 260: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 262: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 263: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 264: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 265: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 266: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 267: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 254: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 268: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 269: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 253: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 271: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 270: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 272: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 273: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 274: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 276: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 275: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+{
+ "config": "warned-thinkon-k3",
+ "n_expected": 24,
+ "n_rows": 24,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 2719.5,
+ "mean_reasoning_tokens": 3577.6,
+ "mean_completion_tokens": 3584.5,
+ "reasoning_leak_rate": 1.0,
+ "truncated": 0,
+ "total_prompt_tokens": 2307,
+ "total_completion_tokens": 86027,
+ "elapsed_s_this_invocation": 1031.3,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-09T09:44:26Z"
+}
+wrote runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3
+{
+ "deterministic_resolved": 1.0,
+ "judge": null,
+ "judged_rows": 0,
+ "overall": {
+  "n": 24,
+  "correct": 1.0,
+  "original": 0.0,
+  "other": 0.0,
+  "abstain": 0.0,
+  "pending": 0.0
+ },
+ "conditioned_on_familiar": {
+  "n": 21,
+  "correct": 1.0,
+  "original": 0.0,
+  "other": 0.0,
+  "abstain": 0.0,
+  "pending": 0.0,
+  "familiar_sources_known": true,
+  "cor": 0.0
+ },
+ "by_type": {
+  "hard_constraint": {
+   "n": 9,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "stated": {
+   "n": 9,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "trivialized": {
+   "n": 6,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "by_family": {
+  "puzzle": {
+   "n": 21,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "riddle": {
+   "n": 3,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "scored_at": "2026-09-09T09:44:26Z",
+ "scoring": {
+  "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "matcher_version": 2,
+  "matcher_sha256": "efa3e5bb95a6d6c7",
+  "score_sha256": "65796ffc15949b24",
+  "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+  "judge_prompt_sha256": "fb4408090cab0e87",
+  "item_fingerprints": {
+   "cat-fur-1-r1": "d13aba7b776e229b",
+   "hiccups-1-r1": "94b8d02caabea189",
+   "johnnys-mother-1-r1": "86541b0139e8d373",
+   "marys-father-1-r1": "a84324ce90d6a889",
+   "months-28-days-1-r1": "1bfcdf4de34c1420",
+   "mustard-family-3-r1": "eb9e680b2cc17b06",
+   "parachute-1-r1": "383fea17aa59c184",
+   "rooster-egg-2-r1": "26b2948a0b2c2755"
+  }
+ }
+}
+jalapeno:GLM-5.3-Flash original-thinkon-k5: units=8 calls=40 done=0 todo=40
+call 277: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 278: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 280: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 279: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 281: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 282: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 283: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 284: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 285: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 286: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 287: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 288: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 289: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 290: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 291: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 292: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 293: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 294: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 296: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 295: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 297: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 298: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 299: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 302: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 300: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 301: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 303: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 306: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 307: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 305: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 308: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 309: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 304: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 310: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 312: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 311: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 313: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 315: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 314: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 316: jalapeno:GLM-5.3-Flash usage_estimated error=False
+{
+ "config": "original-thinkon-k5",
+ "n_expected": 40,
+ "n_rows": 40,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 55.5,
+ "mean_reasoning_tokens": 59.1,
+ "mean_completion_tokens": 65.5,
+ "reasoning_leak_rate": 1.0,
+ "truncated": 0,
+ "total_prompt_tokens": 2320,
+ "total_completion_tokens": 2620,
+ "elapsed_s_this_invocation": 76.7,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-09T09:45:43Z"
+}
+wrote runs/core-repairs-v1/jalapeno_GLM-5.3-Flash/original-thinkon-k5
+familiar with 8/8 sources (>= 0.8)
+jalapeno:GLM-5.3-Flash unwarned-thinkon-k5: units=8 calls=40 done=0 todo=40
+call 317: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 319: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 318: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 320: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 321: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 322: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 323: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 324: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 325: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 327: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 326: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 328: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 329: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 330: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 332: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 331: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 333: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 334: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 335: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 336: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 337: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 339: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 338: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 340: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 341: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 344: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 345: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 346: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 347: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 348: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 342: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 350: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 349: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 352: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 353: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 351: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 354: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 355: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 356: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 343: jalapeno:GLM-5.3-Flash usage_estimated error=False
+{
+ "config": "unwarned-thinkon-k5",
+ "n_expected": 40,
+ "n_rows": 40,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 169.5,
+ "mean_reasoning_tokens": 284.6,
+ "mean_completion_tokens": 294.5,
+ "reasoning_leak_rate": 1.0,
+ "truncated": 0,
+ "total_prompt_tokens": 2830,
+ "total_completion_tokens": 11779,
+ "elapsed_s_this_invocation": 112.3,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-09T09:47:35Z"
+}
+wrote runs/core-repairs-v1/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5
+an error occurred during closing of asynchronous generator <async_generator object PoolByteStream.__aiter__ at 0x748211e5e6b0>
+asyncgen: <async_generator object PoolByteStream.__aiter__ at 0x748211e5e6b0>
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/http11.py", line 313, in __aiter__
+    yield chunk
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 425, in __aiter__
+    async with safe_async_iterate(self._stream) as iterator:
+  File "/usr/lib/python3.12/contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(value)
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_utils.py", line 62, in safe_async_iterate
+    await iterator.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/http11.py", line 320, in __aiter__
+    raise exc
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/http11.py", line 311, in __aiter__
+    async with safe_async_iterate(self._connection._receive_response_body(**kwargs)) as iterator:
+  File "/usr/lib/python3.12/contextlib.py", line 267, in __aexit__
+    raise RuntimeError("generator didn't stop after athrow()")
+RuntimeError: generator didn't stop after athrow()
+judge jalapeno:DeepSeek-V4-Flash-0731: 1 rows, 1 to call
+call 357: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+{
+ "deterministic_resolved": 0.975,
+ "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+ "judged_rows": 1,
+ "overall": {
+  "n": 40,
+  "correct": 0.95,
+  "original": 0.05,
+  "other": 0.0,
+  "abstain": 0.0,
+  "pending": 0.0
+ },
+ "conditioned_on_familiar": {
+  "n": 40,
+  "correct": 0.95,
+  "original": 0.05,
+  "other": 0.0,
+  "abstain": 0.0,
+  "pending": 0.0,
+  "familiar_sources_known": true,
+  "cor": 0.05
+ },
+ "by_type": {
+  "hard_constraint": {
+   "n": 15,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "stated": {
+   "n": 15,
+   "correct": 0.8667,
+   "original": 0.1333,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "trivialized": {
+   "n": 10,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "by_family": {
+  "puzzle": {
+   "n": 35,
+   "correct": 0.9429,
+   "original": 0.0571,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "riddle": {
+   "n": 5,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "scored_at": "2026-09-09T09:47:36Z",
+ "scoring": {
+  "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "matcher_version": 2,
+  "matcher_sha256": "efa3e5bb95a6d6c7",
+  "score_sha256": "65796ffc15949b24",
+  "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+  "judge_prompt_sha256": "fb4408090cab0e87",
+  "item_fingerprints": {
+   "cat-fur-1-r1": "d13aba7b776e229b",
+   "hiccups-1-r1": "94b8d02caabea189",
+   "johnnys-mother-1-r1": "86541b0139e8d373",
+   "marys-father-1-r1": "a84324ce90d6a889",
+   "months-28-days-1-r1": "1bfcdf4de34c1420",
+   "mustard-family-3-r1": "eb9e680b2cc17b06",
+   "parachute-1-r1": "383fea17aa59c184",
+   "rooster-egg-2-r1": "26b2948a0b2c2755"
+  }
+ }
+}
+jalapeno:GLM-5.3-Flash warned-thinkon-k5: units=8 calls=40 done=0 todo=40
+call 359: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 358: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 361: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 360: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 362: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 363: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 364: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 365: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 366: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 368: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 369: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 367: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 370: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 371: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 372: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 374: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 373: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 375: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 376: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 377: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 378: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 380: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 379: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 381: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 382: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 383: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 384: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 385: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 387: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 389: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 388: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 390: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 391: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 386: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 393: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 395: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 392: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 394: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 396: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 397: jalapeno:GLM-5.3-Flash usage_estimated error=False
+{
+ "config": "warned-thinkon-k5",
+ "n_expected": 40,
+ "n_rows": 40,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 183.5,
+ "mean_reasoning_tokens": 212.2,
+ "mean_completion_tokens": 222.4,
+ "reasoning_leak_rate": 1.0,
+ "truncated": 0,
+ "total_prompt_tokens": 4150,
+ "total_completion_tokens": 8896,
+ "elapsed_s_this_invocation": 59.3,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-09T09:48:36Z"
+}
+wrote runs/core-repairs-v1/jalapeno_GLM-5.3-Flash/warned-thinkon-k5
+an error occurred during closing of asynchronous generator <async_generator object PoolByteStream.__aiter__ at 0x748211dbba60>
+asyncgen: <async_generator object PoolByteStream.__aiter__ at 0x748211dbba60>
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 427, in __aiter__
+    yield chunk
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 425, in __aiter__
+    async with safe_async_iterate(self._stream) as iterator:
+  File "/usr/lib/python3.12/contextlib.py", line 267, in __aexit__
+    raise RuntimeError("generator didn't stop after athrow()")
+RuntimeError: generator didn't stop after athrow()
+{
+ "deterministic_resolved": 1.0,
+ "judge": null,
+ "judged_rows": 0,
+ "overall": {
+  "n": 40,
+  "correct": 1.0,
+  "original": 0.0,
+  "other": 0.0,
+  "abstain": 0.0,
+  "pending": 0.0
+ },
+ "conditioned_on_familiar": {
+  "n": 40,
+  "correct": 1.0,
+  "original": 0.0,
+  "other": 0.0,
+  "abstain": 0.0,
+  "pending": 0.0,
+  "familiar_sources_known": true,
+  "cor": 0.0
+ },
+ "by_type": {
+  "hard_constraint": {
+   "n": 15,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "stated": {
+   "n": 15,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "trivialized": {
+   "n": 10,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "by_family": {
+  "puzzle": {
+   "n": 35,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "riddle": {
+   "n": 5,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "scored_at": "2026-09-09T09:48:36Z",
+ "scoring": {
+  "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "matcher_version": 2,
+  "matcher_sha256": "efa3e5bb95a6d6c7",
+  "score_sha256": "65796ffc15949b24",
+  "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+  "judge_prompt_sha256": "fb4408090cab0e87",
+  "item_fingerprints": {
+   "cat-fur-1-r1": "d13aba7b776e229b",
+   "hiccups-1-r1": "94b8d02caabea189",
+   "johnnys-mother-1-r1": "86541b0139e8d373",
+   "marys-father-1-r1": "a84324ce90d6a889",
+   "months-28-days-1-r1": "1bfcdf4de34c1420",
+   "mustard-family-3-r1": "eb9e680b2cc17b06",
+   "parachute-1-r1": "383fea17aa59c184",
+   "rooster-egg-2-r1": "26b2948a0b2c2755"
+  }
+ }
+}
+nous:meituan/longcat-2.0:free original-thinkoff-k5: units=8 calls=40 done=0 todo=40
+call 398: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 400: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 399: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 401: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 403: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 405: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 404: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 406: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 402: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 407: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 410: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 408: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 409: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 411: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 413: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 414: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 415: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 412: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 416: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 417: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 418: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 419: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 420: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 421: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 422: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 423: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 424: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 425: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 426: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 427: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 428: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 429: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 430: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 432: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 431: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 435: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 434: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 433: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 436: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 437: nous:meituan/longcat-2.0:free usage_estimated error=False
+{
+ "config": "original-thinkoff-k5",
+ "n_expected": 40,
+ "n_rows": 40,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 0.0,
+ "mean_reasoning_tokens": 0,
+ "mean_completion_tokens": 6.2,
+ "reasoning_leak_rate": 0.0,
+ "truncated": 1,
+ "total_prompt_tokens": 2215,
+ "total_completion_tokens": 249,
+ "elapsed_s_this_invocation": 55.4,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-09T09:49:31Z"
+}
+wrote runs/core-repairs-v1/nous_meituan_longcat-2.0_free/original-thinkoff-k5
+familiar with 8/8 sources (>= 0.8)
+nous:meituan/longcat-2.0:free unwarned-thinkoff-k5: units=8 calls=40 done=0 todo=40
+call 438: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 439: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 440: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 441: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 442: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 443: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 445: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 444: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 446: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 447: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 448: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 450: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 449: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 451: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 452: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 453: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 454: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 455: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 456: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 457: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 459: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 458: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 460: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 461: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 463: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 464: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 462: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 465: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 466: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 467: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 469: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 468: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 471: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 470: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 472: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 473: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 474: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 475: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 476: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 477: nous:meituan/longcat-2.0:free usage_estimated error=False
+{
+ "config": "unwarned-thinkoff-k5",
+ "n_expected": 40,
+ "n_rows": 40,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 0.0,
+ "mean_reasoning_tokens": 0,
+ "mean_completion_tokens": 8.2,
+ "reasoning_leak_rate": 0.0,
+ "truncated": 0,
+ "total_prompt_tokens": 2765,
+ "total_completion_tokens": 328,
+ "elapsed_s_this_invocation": 59.8,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-09T09:50:31Z"
+}
+wrote runs/core-repairs-v1/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5
+judge jalapeno:DeepSeek-V4-Flash-0731: 2 rows, 2 to call
+call 478: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 479: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+an error occurred during closing of asynchronous generator <async_generator object PoolByteStream.__aiter__ at 0x748211db85e0>
+asyncgen: <async_generator object PoolByteStream.__aiter__ at 0x748211db85e0>
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 427, in __aiter__
+    yield chunk
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 425, in __aiter__
+    async with safe_async_iterate(self._stream) as iterator:
+  File "/usr/lib/python3.12/contextlib.py", line 267, in __aexit__
+    raise RuntimeError("generator didn't stop after athrow()")
+RuntimeError: generator didn't stop after athrow()
+{
+ "deterministic_resolved": 0.95,
+ "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+ "judged_rows": 2,
+ "overall": {
+  "n": 40,
+  "correct": 0.8,
+  "original": 0.175,
+  "other": 0.025,
+  "abstain": 0.0,
+  "pending": 0.0
+ },
+ "conditioned_on_familiar": {
+  "n": 40,
+  "correct": 0.8,
+  "original": 0.175,
+  "other": 0.025,
+  "abstain": 0.0,
+  "pending": 0.0,
+  "familiar_sources_known": true,
+  "cor": 0.175
+ },
+ "by_type": {
+  "hard_constraint": {
+   "n": 15,
+   "correct": 0.6667,
+   "original": 0.3333,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "stated": {
+   "n": 15,
+   "correct": 0.8,
+   "original": 0.1333,
+   "other": 0.0667,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "trivialized": {
+   "n": 10,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "by_family": {
+  "puzzle": {
+   "n": 35,
+   "correct": 0.7714,
+   "original": 0.2,
+   "other": 0.0286,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "riddle": {
+   "n": 5,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "scored_at": "2026-09-09T09:50:32Z",
+ "scoring": {
+  "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "matcher_version": 2,
+  "matcher_sha256": "efa3e5bb95a6d6c7",
+  "score_sha256": "65796ffc15949b24",
+  "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+  "judge_prompt_sha256": "fb4408090cab0e87",
+  "item_fingerprints": {
+   "cat-fur-1-r1": "d13aba7b776e229b",
+   "hiccups-1-r1": "94b8d02caabea189",
+   "johnnys-mother-1-r1": "86541b0139e8d373",
+   "marys-father-1-r1": "a84324ce90d6a889",
+   "months-28-days-1-r1": "1bfcdf4de34c1420",
+   "mustard-family-3-r1": "eb9e680b2cc17b06",
+   "parachute-1-r1": "383fea17aa59c184",
+   "rooster-egg-2-r1": "26b2948a0b2c2755"
+  }
+ }
+}
+nous:meituan/longcat-2.0:free unwarned-thinkon-k5: units=8 calls=40 done=0 todo=40
+call 480: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 481: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 482: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 483: nous:meituan/longcat-2.0:free usage_estimated error=False
+Task exception was never retrieved
+future: <Task finished name='Task-1790' coro=<AsyncClient.aclose() done, defined at /mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpx2/_client.py:2198> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpx2/_client.py", line 2205, in aclose
+    await self._transport.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpx2/_transports/default.py", line 400, in aclose
+    await self._pool.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 382, in aclose
+    await self._close_connections(closing_connections)
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 374, in _close_connections
+    await connection.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection.py", line 157, in aclose
+    await self._connection.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/http11.py", line 236, in aclose
+    await self._network_stream.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_backends/anyio.py", line 55, in aclose
+    await self._stream.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/anyio/streams/tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 1467, in aclose
+    self._transport.close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 1211, in close
+    super().close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 875, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 795, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 541, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+call 484: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 486: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 485: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 487: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 488: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 489: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 490: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 491: nous:meituan/longcat-2.0:free usage_estimated error=False
+Task exception was never retrieved
+future: <Task finished name='Task-1797' coro=<AsyncClient.aclose() done, defined at /mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpx2/_client.py:2198> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpx2/_client.py", line 2205, in aclose
+    await self._transport.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpx2/_transports/default.py", line 400, in aclose
+    await self._pool.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 382, in aclose
+    await self._close_connections(closing_connections)
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 374, in _close_connections
+    await connection.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection.py", line 157, in aclose
+    await self._connection.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/http11.py", line 236, in aclose
+    await self._network_stream.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_backends/anyio.py", line 55, in aclose
+    await self._stream.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/anyio/streams/tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 1467, in aclose
+    self._transport.close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 1211, in close
+    super().close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 875, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 795, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 541, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+call 492: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 493: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 495: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 494: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 496: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 497: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 498: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 499: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 500: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 501: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 503: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 502: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 507: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 505: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 508: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 510: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 509: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 511: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 504: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 513: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 512: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 515: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 516: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 517: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 518: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 519: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 514: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 506: nous:meituan/longcat-2.0:free usage_estimated error=False
+{
+ "config": "unwarned-thinkon-k5",
+ "n_expected": 40,
+ "n_rows": 40,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 194.0,
+ "mean_reasoning_tokens": 662.8,
+ "mean_completion_tokens": 671.0,
+ "reasoning_leak_rate": 1.0,
+ "truncated": 1,
+ "total_prompt_tokens": 2645,
+ "total_completion_tokens": 26841,
+ "elapsed_s_this_invocation": 320.1,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-09T09:55:52Z"
+}
+wrote runs/core-repairs-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5
+judge jalapeno:DeepSeek-V4-Flash-0731: 2 rows, 2 to call
+call 520: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 521: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+an error occurred during closing of asynchronous generator <async_generator object PoolByteStream.__aiter__ at 0x748211db86d0>
+asyncgen: <async_generator object PoolByteStream.__aiter__ at 0x748211db86d0>
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/http11.py", line 313, in __aiter__
+    yield chunk
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 425, in __aiter__
+    async with safe_async_iterate(self._stream) as iterator:
+  File "/usr/lib/python3.12/contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(value)
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_utils.py", line 62, in safe_async_iterate
+    await iterator.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/http11.py", line 320, in __aiter__
+    raise exc
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/http11.py", line 311, in __aiter__
+    async with safe_async_iterate(self._connection._receive_response_body(**kwargs)) as iterator:
+  File "/usr/lib/python3.12/contextlib.py", line 267, in __aexit__
+    raise RuntimeError("generator didn't stop after athrow()")
+RuntimeError: generator didn't stop after athrow()
+{
+ "deterministic_resolved": 0.95,
+ "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+ "judged_rows": 2,
+ "overall": {
+  "n": 40,
+  "correct": 0.925,
+  "original": 0.025,
+  "other": 0.05,
+  "abstain": 0.0,
+  "pending": 0.0
+ },
+ "conditioned_on_familiar": {
+  "n": 40,
+  "correct": 0.925,
+  "original": 0.025,
+  "other": 0.05,
+  "abstain": 0.0,
+  "pending": 0.0,
+  "familiar_sources_known": true,
+  "cor": 0.025
+ },
+ "by_type": {
+  "hard_constraint": {
+   "n": 15,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "stated": {
+   "n": 15,
+   "correct": 0.8,
+   "original": 0.0667,
+   "other": 0.1333,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "trivialized": {
+   "n": 10,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "by_family": {
+  "puzzle": {
+   "n": 35,
+   "correct": 0.9143,
+   "original": 0.0286,
+   "other": 0.0571,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "riddle": {
+   "n": 5,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "scored_at": "2026-09-09T09:55:53Z",
+ "scoring": {
+  "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "matcher_version": 2,
+  "matcher_sha256": "efa3e5bb95a6d6c7",
+  "score_sha256": "65796ffc15949b24",
+  "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+  "judge_prompt_sha256": "fb4408090cab0e87",
+  "item_fingerprints": {
+   "cat-fur-1-r1": "d13aba7b776e229b",
+   "hiccups-1-r1": "94b8d02caabea189",
+   "johnnys-mother-1-r1": "86541b0139e8d373",
+   "marys-father-1-r1": "a84324ce90d6a889",
+   "months-28-days-1-r1": "1bfcdf4de34c1420",
+   "mustard-family-3-r1": "eb9e680b2cc17b06",
+   "parachute-1-r1": "383fea17aa59c184",
+   "rooster-egg-2-r1": "26b2948a0b2c2755"
+  }
+ }
+}
+nous:meituan/longcat-2.0:free warned-thinkoff-k5: units=8 calls=40 done=0 todo=40
+call 523: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 522: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 524: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 525: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 526: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 527: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 528: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 530: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 529: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 531: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 532: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 533: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 535: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 534: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 537: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 538: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 539: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 540: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 541: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 536: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 543: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 544: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 542: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 545: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 547: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 548: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 549: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 550: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 546: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 552: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 553: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 554: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 555: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 556: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 557: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 551: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 558: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 559: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 560: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 561: nous:meituan/longcat-2.0:free usage_estimated error=False
+{
+ "config": "warned-thinkoff-k5",
+ "n_expected": 40,
+ "n_rows": 40,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 0.0,
+ "mean_reasoning_tokens": 0,
+ "mean_completion_tokens": 7.3,
+ "reasoning_leak_rate": 0.0,
+ "truncated": 0,
+ "total_prompt_tokens": 4085,
+ "total_completion_tokens": 293,
+ "elapsed_s_this_invocation": 52.6,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-09T09:56:46Z"
+}
+wrote runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkoff-k5
+judge jalapeno:DeepSeek-V4-Flash-0731: 4 rows, 4 to call
+Task exception was never retrieved
+future: <Task finished name='Task-1869' coro=<AsyncClient.aclose() done, defined at /mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpx2/_client.py:2198> exception=RuntimeError('Event loop is closed')>
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpx2/_client.py", line 2205, in aclose
+    await self._transport.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpx2/_transports/default.py", line 400, in aclose
+    await self._pool.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 382, in aclose
+    await self._close_connections(closing_connections)
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 374, in _close_connections
+    await connection.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection.py", line 157, in aclose
+    await self._connection.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/http11.py", line 236, in aclose
+    await self._network_stream.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_backends/anyio.py", line 55, in aclose
+    await self._stream.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/anyio/streams/tls.py", line 248, in aclose
+    await self.transport_stream.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 1467, in aclose
+    self._transport.close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 1211, in close
+    super().close()
+  File "/usr/lib/python3.12/asyncio/selector_events.py", line 875, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 795, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 541, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+call 565: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 562: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 563: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 564: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+an error occurred during closing of asynchronous generator <async_generator object safe_async_iterate at 0x748212acaa40>
+asyncgen: <async_generator object safe_async_iterate at 0x748212acaa40>
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/http11.py", line 313, in __aiter__
+    yield chunk
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_utils.py", line 62, in safe_async_iterate
+    await iterator.aclose()
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/http11.py", line 320, in __aiter__
+    raise exc
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/http11.py", line 311, in __aiter__
+    async with safe_async_iterate(self._connection._receive_response_body(**kwargs)) as iterator:
+  File "/usr/lib/python3.12/contextlib.py", line 267, in __aexit__
+    raise RuntimeError("generator didn't stop after athrow()")
+RuntimeError: generator didn't stop after athrow()
+an error occurred during closing of asynchronous generator <async_generator object PoolByteStream.__aiter__ at 0x748211f9ff10>
+asyncgen: <async_generator object PoolByteStream.__aiter__ at 0x748211f9ff10>
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 427, in __aiter__
+    yield chunk
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/.venv/lib/python3.12/site-packages/httpcore2/_async/connection_pool.py", line 425, in __aiter__
+    async with safe_async_iterate(self._stream) as iterator:
+  File "/usr/lib/python3.12/contextlib.py", line 267, in __aexit__
+    raise RuntimeError("generator didn't stop after athrow()")
+RuntimeError: generator didn't stop after athrow()
+{
+ "deterministic_resolved": 0.9,
+ "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+ "judged_rows": 4,
+ "overall": {
+  "n": 40,
+  "correct": 0.775,
+  "original": 0.125,
+  "other": 0.1,
+  "abstain": 0.0,
+  "pending": 0.0
+ },
+ "conditioned_on_familiar": {
+  "n": 40,
+  "correct": 0.775,
+  "original": 0.125,
+  "other": 0.1,
+  "abstain": 0.0,
+  "pending": 0.0,
+  "familiar_sources_known": true,
+  "cor": 0.125
+ },
+ "by_type": {
+  "hard_constraint": {
+   "n": 15,
+   "correct": 0.6667,
+   "original": 0.3333,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "stated": {
+   "n": 15,
+   "correct": 0.7333,
+   "original": 0.0,
+   "other": 0.2667,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "trivialized": {
+   "n": 10,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "by_family": {
+  "puzzle": {
+   "n": 35,
+   "correct": 0.7429,
+   "original": 0.1429,
+   "other": 0.1143,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "riddle": {
+   "n": 5,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "scored_at": "2026-09-09T09:56:47Z",
+ "scoring": {
+  "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "matcher_version": 2,
+  "matcher_sha256": "efa3e5bb95a6d6c7",
+  "score_sha256": "65796ffc15949b24",
+  "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+  "judge_prompt_sha256": "fb4408090cab0e87",
+  "item_fingerprints": {
+   "cat-fur-1-r1": "d13aba7b776e229b",
+   "hiccups-1-r1": "94b8d02caabea189",
+   "johnnys-mother-1-r1": "86541b0139e8d373",
+   "marys-father-1-r1": "a84324ce90d6a889",
+   "months-28-days-1-r1": "1bfcdf4de34c1420",
+   "mustard-family-3-r1": "eb9e680b2cc17b06",
+   "parachute-1-r1": "383fea17aa59c184",
+   "rooster-egg-2-r1": "26b2948a0b2c2755"
+  }
+ }
+}
+nous:meituan/longcat-2.0:free warned-thinkon-k5: units=8 calls=40 done=0 todo=40
+call 568: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 569: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 566: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 571: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 567: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 573: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 572: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 576: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 575: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 577: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 578: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 579: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 580: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 574: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 581: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 582: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 584: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 583: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 586: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 585: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 587: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 588: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 589: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 590: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 592: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 591: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 595: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 570: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 596: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 598: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 594: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 593: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 597: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 599: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 601: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 600: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 602: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 603: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 604: nous:meituan/longcat-2.0:free usage_estimated error=False
+call 605: nous:meituan/longcat-2.0:free usage_estimated error=False
+{
+ "config": "warned-thinkon-k5",
+ "n_expected": 40,
+ "n_rows": 40,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 715.5,
+ "mean_reasoning_tokens": 4967.7,
+ "mean_completion_tokens": 4974.3,
+ "reasoning_leak_rate": 1.0,
+ "truncated": 11,
+ "total_prompt_tokens": 3965,
+ "total_completion_tokens": 198973,
+ "elapsed_s_this_invocation": 952.1,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-09T10:12:39Z"
+}
+wrote runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5
+judge jalapeno:DeepSeek-V4-Flash-0731: 11 rows, 11 to call
+call 606: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 608: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 609: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 607: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 612: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 610: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 613: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 611: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 614: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 615: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 616: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+{
+ "deterministic_resolved": 0.725,
+ "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+ "judged_rows": 11,
+ "overall": {
+  "n": 40,
+  "correct": 1.0,
+  "original": 0.0,
+  "other": 0.0,
+  "abstain": 0.0,
+  "pending": 0.0
+ },
+ "conditioned_on_familiar": {
+  "n": 40,
+  "correct": 1.0,
+  "original": 0.0,
+  "other": 0.0,
+  "abstain": 0.0,
+  "pending": 0.0,
+  "familiar_sources_known": true,
+  "cor": 0.0
+ },
+ "by_type": {
+  "hard_constraint": {
+   "n": 15,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "stated": {
+   "n": 15,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "trivialized": {
+   "n": 10,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "by_family": {
+  "puzzle": {
+   "n": 35,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  },
+  "riddle": {
+   "n": 5,
+   "correct": 1.0,
+   "original": 0.0,
+   "other": 0.0,
+   "abstain": 0.0,
+   "pending": 0.0
+  }
+ },
+ "scored_at": "2026-09-09T10:12:43Z",
+ "scoring": {
+  "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "matcher_version": 2,
+  "matcher_sha256": "efa3e5bb95a6d6c7",
+  "score_sha256": "65796ffc15949b24",
+  "judge": "jalapeno:DeepSeek-V4-Flash-0731",
+  "judge_prompt_sha256": "fb4408090cab0e87",
+  "item_fingerprints": {
+   "cat-fur-1-r1": "d13aba7b776e229b",
+   "hiccups-1-r1": "94b8d02caabea189",
+   "johnnys-mother-1-r1": "86541b0139e8d373",
+   "marys-father-1-r1": "a84324ce90d6a889",
+   "months-28-days-1-r1": "1bfcdf4de34c1420",
+   "mustard-family-3-r1": "eb9e680b2cc17b06",
+   "parachute-1-r1": "383fea17aa59c184",
+   "rooster-egg-2-r1": "26b2948a0b2c2755"
+  }
+ }
+}

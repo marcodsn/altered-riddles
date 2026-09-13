@@ -1,0 +1,53 @@
+{
+  "runs": [
+    "runs/cap-sensitivity-adjudicated-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5-cap64000",
+    "runs/cap-sensitivity-adjudicated-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5-cap64000"
+  ],
+  "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "source_manifest": "results/audit/cap-sensitivity-v1/run_manifest.json",
+  "source_manifest_sha256": "adb16b4af15f3b3f20d709304ec7799abee71c6c79c3c685a817798970073d24",
+  "scorer_version": 2,
+  "adjudication": "results/audit/astra-adjudication-v1/decisions.json",
+  "inference_calls": 0,
+  "lineage": [
+    {
+      "source_run": "runs/cap-sensitivity-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5-cap64000",
+      "derived_run": "runs/cap-sensitivity-adjudicated-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5-cap64000",
+      "source_files_sha256": {
+        "config.json": "0215d827127f25d2f55aa2fa5f72a3e2a5218a5e6dbf2f163a0fba7e045b605b",
+        "raw.jsonl": "518d46d6cf30241238f327687dc302c5ba8da6b43f9adee4fc5a2ea04c02da35",
+        "scored.jsonl": "30a002f021d3878d153eba2a42560c06900e31207b5fa219a83dd57a7cca8df2",
+        "scored_summary.json": "28c16ba0cf2afd3a8b3a417bdc46b9c6401aadb6ed9737291bb40f7759aae569",
+        "summary.json": "965c310b5bd0ba392d2e99a034db062d4343a6891995d21cec9d852f0fb5deec"
+      },
+      "derived_files_sha256": {
+        "adjudication_overlay.json": "9dd477766ed9c9690a658e171e46a9d66110b23b1f3642d6b18669c8dd06d196",
+        "config.json": "0215d827127f25d2f55aa2fa5f72a3e2a5218a5e6dbf2f163a0fba7e045b605b",
+        "raw.jsonl": "518d46d6cf30241238f327687dc302c5ba8da6b43f9adee4fc5a2ea04c02da35",
+        "scored.jsonl": "3dc0737973428961aeafe42301c3830a031b4ae07ecedeb8aa543d38ca90c8bb",
+        "scored_summary.json": "877c18d111c4f100d76b1b8d4b4ed20e0bae936fd6b72a2ca94131158641f351",
+        "summary.json": "965c310b5bd0ba392d2e99a034db062d4343a6891995d21cec9d852f0fb5deec"
+      }
+    },
+    {
+      "source_run": "runs/cap-sensitivity-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5-cap64000",
+      "derived_run": "runs/cap-sensitivity-adjudicated-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5-cap64000",
+      "source_files_sha256": {
+        "config.json": "8bf53b6e28827baee8bce8ee5f9f982af0ed650910484ecc45ace65a1320186d",
+        "raw.jsonl": "d31207525c3ee17b96637e85ae727be79257cb00db605382a9ecbfff83b4fe52",
+        "scored.jsonl": "5586d9af8bbcb5ea36cf428a76757695a7fa69e94a3dc726658e869030f7931d",
+        "scored_summary.json": "89dbe313d77dbda44dcf2dd9702bf28b50aee4402f69ed70adb123df290ba149",
+        "summary.json": "bcdec421897dc53703e6a00724ea84e96e8af565ad8717a60a3340818e2617e4"
+      },
+      "derived_files_sha256": {
+        "adjudication_overlay.json": "3167612753f5edaf7ce1e0340db83d7dba9392500b1fb8613446b44fd1b22606",
+        "config.json": "8bf53b6e28827baee8bce8ee5f9f982af0ed650910484ecc45ace65a1320186d",
+        "raw.jsonl": "d31207525c3ee17b96637e85ae727be79257cb00db605382a9ecbfff83b4fe52",
+        "scored.jsonl": "b4e92a887ffcb753e1bd3b201defa347ed2dabee76b59d4429cad01fd58ad151",
+        "scored_summary.json": "9a42cd0c253ffe93ee768c7d8325241b57a63c3faf0c52ed7028dcdfb8b5d908",
+        "summary.json": "bcdec421897dc53703e6a00724ea84e96e8af565ad8717a60a3340818e2617e4"
+      }
+    }
+  ]
+}

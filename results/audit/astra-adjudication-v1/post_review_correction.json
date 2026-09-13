@@ -1,0 +1,23 @@
+{
+  "recorded_at": "2026-09-12T15:05:55.121028+00:00",
+  "scope": "Parent P2 documentation correction after final read-only review; no scoring or JSON board changes.",
+  "review_file": "final-review.md",
+  "review_sha256": "6b646ebdb3fe6a0394d13032a0a7da0ee277936a7e5ae3ff8ba367d7a6475f9d",
+  "finding": "Obsolete mandatory human-review wording in new current board",
+  "disposition": "Fixed in audit-local renderer/current markdown only; generic renderer and historical boards unchanged.",
+  "construction_script_sha256": "64a5fa9edc9b939d0c581d34316792adcb84811e9a9d7125c3fe323e4ecfbb62",
+  "post_review_script_sha256": "8dfc0d7ed7e865d074b4cfdda95e71e7a71b6bcb7ce7c1da931b16223909e5d3",
+  "prior_current_markdown_sha256": "db97a08fd37b5186c8753740de668f7881fd3169e606355be42d5318500b4cc7",
+  "current_markdown_sha256": "d6e9ea19d0fe801d8c1ba2d744037a52d1c3912b9e1b3112ba56a8a437d352bf",
+  "regression_test": "test_current_board_uses_approved_ai_review_policy",
+  "tests": {
+    "count": 51,
+    "passed": true,
+    "log": "post-review-tests.log",
+    "sha256": "bbf2e8b1f8e6f9b7432c08ff91c6481ab4e18cdb7ad86a0b4399b1c9e09f5fc8"
+  },
+  "preserved_files_verified": 780,
+  "diff_check": "passed",
+  "inference_calls": 0,
+  "historical_construction_records": "validation.json, checks.json and checks.log retained as original execution evidence; this supplements rather than rewrites them."
+}

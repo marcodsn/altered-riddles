@@ -1,0 +1,146 @@
+{
+  "n_truncated": 14,
+  "rows": [
+    {
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+      "unit_id": "parachute-1-r1",
+      "sample": 2,
+      "condition": "unwarned",
+      "label": "correct",
+      "final": "",
+      "content_present": false,
+      "reasoning_tokens": 15999
+    },
+    {
+      "run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/original-thinkoff-k5",
+      "unit_id": "parachute",
+      "sample": 2,
+      "condition": "original",
+      "label": null,
+      "final": "He jumped from a plane and his parachute (the unopened package) failed to",
+      "content_present": true,
+      "reasoning_tokens": null
+    },
+    {
+      "run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+      "unit_id": "parachute-1-r1",
+      "sample": 1,
+      "condition": "unwarned",
+      "label": "original",
+      "final": "Wait, I remember a riddle: \"A man is found dead in a field with a backpack. How did he die?\" Answer: His parachute didn't open. But here it's sandwiches.",
+      "content_present": false,
+      "reasoning_tokens": 15999
+    },
+    {
+      "run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+      "unit_id": "mustard-family-3-r1",
+      "sample": 4,
+      "condition": "warned",
+      "label": "correct",
+      "final": "",
+      "content_present": false,
+      "reasoning_tokens": 15999
+    },
+    {
+      "run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+      "unit_id": "parachute-1-r1",
+      "sample": 3,
+      "condition": "warned",
+      "label": "correct",
+      "final": "",
+      "content_present": false,
+      "reasoning_tokens": 15999
+    },
+    {
+      "run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+      "unit_id": "parachute-1-r1",
+      "sample": 2,
+      "condition": "warned",
+      "label": "correct",
+      "final": "",
+      "content_present": false,
+      "reasoning_tokens": 15999
+    },
+    {
+      "run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+      "unit_id": "rooster-egg-2-r1",
+      "sample": 1,
+      "condition": "warned",
+      "label": "correct",
+      "final": "",
+      "content_present": false,
+      "reasoning_tokens": 15999
+    },
+    {
+      "run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+      "unit_id": "rooster-egg-2-r1",
+      "sample": 3,
+      "condition": "warned",
+      "label": "correct",
+      "final": "",
+      "content_present": false,
+      "reasoning_tokens": 15999
+    },
+    {
+      "run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+      "unit_id": "cat-fur-1-r1",
+      "sample": 0,
+      "condition": "warned",
+      "label": "correct",
+      "final": "",
+      "content_present": false,
+      "reasoning_tokens": 15999
+    },
+    {
+      "run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+      "unit_id": "rooster-egg-2-r1",
+      "sample": 4,
+      "condition": "warned",
+      "label": "correct",
+      "final": "",
+      "content_present": false,
+      "reasoning_tokens": 15999
+    },
+    {
+      "run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+      "unit_id": "cat-fur-1-r1",
+      "sample": 1,
+      "condition": "warned",
+      "label": "correct",
+      "final": "",
+      "content_present": false,
+      "reasoning_tokens": 15999
+    },
+    {
+      "run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+      "unit_id": "cat-fur-1-r1",
+      "sample": 2,
+      "condition": "warned",
+      "label": "correct",
+      "final": "",
+      "content_present": false,
+      "reasoning_tokens": 15999
+    },
+    {
+      "run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+      "unit_id": "cat-fur-1-r1",
+      "sample": 3,
+      "condition": "warned",
+      "label": "correct",
+      "final": "",
+      "content_present": false,
+      "reasoning_tokens": 15999
+    },
+    {
+      "run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+      "unit_id": "cat-fur-1-r1",
+      "sample": 4,
+      "condition": "warned",
+      "label": "correct",
+      "final": "",
+      "content_present": false,
+      "reasoning_tokens": 15999
+    }
+  ],
+  "note": "Retained under the predeclared caps; no resampling or silent dropping. Longcat warned thinking-on has 11/40 truncations on repairs, so its warned accuracy is cap-sensitive even when the full-board aggregate passes checks."
+}

@@ -1,0 +1,99 @@
+{
+  "scope": "Development diagnostic; fresh stochastic replicates, not a causal full-board estimate. No old answers replaced.",
+  "conditions": {
+    "unwarned": {
+      "baseline": {
+        "run_dir": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+        "raw_sha256": "06ee3992b6ad04f60e893dc365ecc37fccefdd0456730e4ea8fc27980d952764",
+        "max_tokens": 16000,
+        "n": 40,
+        "errors": 0,
+        "truncated": 1,
+        "finish_reasons": {
+          "stop": 39,
+          "length": 1
+        },
+        "visible_answer_count": 38,
+        "scorable_answer_count": 39,
+        "labels": {
+          "correct": 37,
+          "other": 2,
+          "abstain": 1
+        },
+        "total_completion_tokens": 26841,
+        "median_reasoning_tokens": 194.0,
+        "elapsed_s": 320.1
+      },
+      "high_cap": {
+        "run_dir": "runs/cap-sensitivity-adjudicated-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5-cap64000",
+        "raw_sha256": "518d46d6cf30241238f327687dc302c5ba8da6b43f9adee4fc5a2ea04c02da35",
+        "max_tokens": 64000,
+        "n": 40,
+        "errors": 0,
+        "truncated": 0,
+        "finish_reasons": {
+          "stop": 40
+        },
+        "visible_answer_count": 39,
+        "scorable_answer_count": 40,
+        "labels": {
+          "correct": 39,
+          "other": 1
+        },
+        "total_completion_tokens": 14931,
+        "median_reasoning_tokens": 174.0,
+        "elapsed_s": 129.1,
+        "base_run_dir": "runs/cap-sensitivity-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5-cap64000",
+        "accuracy": 0.975
+      }
+    },
+    "warned": {
+      "baseline": {
+        "run_dir": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "raw_sha256": "dca20a096b1df4fac3793d2c410a71052bbfc65e71fbf39c36bb6556ea095cec",
+        "max_tokens": 16000,
+        "n": 40,
+        "errors": 0,
+        "truncated": 11,
+        "finish_reasons": {
+          "stop": 29,
+          "length": 11
+        },
+        "visible_answer_count": 29,
+        "scorable_answer_count": 29,
+        "labels": {
+          "correct": 29,
+          "abstain": 11
+        },
+        "total_completion_tokens": 198973,
+        "median_reasoning_tokens": 715.5,
+        "elapsed_s": 952.1
+      },
+      "high_cap": {
+        "run_dir": "runs/cap-sensitivity-adjudicated-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5-cap64000",
+        "raw_sha256": "d31207525c3ee17b96637e85ae727be79257cb00db605382a9ecbfff83b4fe52",
+        "max_tokens": 64000,
+        "n": 40,
+        "errors": 0,
+        "truncated": 0,
+        "finish_reasons": {
+          "stop": 40
+        },
+        "visible_answer_count": 40,
+        "scorable_answer_count": 40,
+        "labels": {
+          "correct": 39,
+          "other": 1
+        },
+        "total_completion_tokens": 117964,
+        "median_reasoning_tokens": 556.0,
+        "elapsed_s": 653.3,
+        "base_run_dir": "runs/cap-sensitivity-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5-cap64000",
+        "accuracy": 0.975
+      }
+    }
+  },
+  "adjudication": "results/audit/astra-adjudication-v1/decisions.json",
+  "base_comparison_sha256": "809d1c9902efb7df04bb01e83f7f0b46297f044a6288e4a0ee2c63f5a5b42609",
+  "notice": "AI adjudication, not human review or independent empirical validation; selected cases, not a representative judge-accuracy audit."
+}

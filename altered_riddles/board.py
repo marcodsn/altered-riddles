@@ -121,7 +121,7 @@ def score_staleness(run_dir: str, items: dict[str, dict[str, Any]], expected: se
     fields a label depends on (text, answer, aliases, original answer/aliases) and the
     matcher version; any mismatch with the current item file invalidates them."""
     from altered_riddles.match import MATCHER_VERSION
-    from altered_riddles.score import item_fingerprints
+    from altered_riddles.score import SCORER_VERSION, item_fingerprints
     summ_p = Path(run_dir) / "scored_summary.json"
     if not summ_p.exists():
         return "no scored_summary.json"
@@ -130,6 +130,8 @@ def score_staleness(run_dir: str, items: dict[str, dict[str, Any]], expected: se
         return "scores carry no provenance fingerprint (re-score)"
     if prov.get("matcher_version") != MATCHER_VERSION:
         return f"scored with matcher v{prov.get('matcher_version')}, current v{MATCHER_VERSION} (re-score)"
+    if prov.get("scorer_version") != SCORER_VERSION:
+        return f"scores predate scorer v{SCORER_VERSION} empty/truncated-answer handling (re-score)"
     stored = prov.get("item_fingerprints", {})
     now = item_fingerprints(items, expected)
     changed = sum(1 for u, h in now.items() if stored.get(u) != h)
@@ -139,10 +141,12 @@ def score_staleness(run_dir: str, items: dict[str, dict[str, Any]], expected: se
 
 
 def familiarity_staleness(run_dir: str, items: dict[str, dict[str, Any]]) -> str | None:
-    from altered_riddles.score import familiarity_fingerprint
+    from altered_riddles.score import SCORER_VERSION, familiarity_fingerprint
     prov = json.loads((Path(run_dir) / "scored.json").read_text()).get("scoring")
     if not prov:
         return "familiarity scores carry no provenance fingerprint (re-score)"
+    if prov.get("scorer_version") != SCORER_VERSION:
+        return f"familiarity scores predate scorer v{SCORER_VERSION} answer extraction (re-score)"
     if prov.get("familiarity_fingerprint") != familiarity_fingerprint(items):
         return "original answers/aliases changed since familiarity scoring (re-score)"
     return None

@@ -1,0 +1,159 @@
+{
+  "recorded_at": "2026-09-12T14:38:49.993087+00:00",
+  "runtime_model": "openai-codex/gpt-6-astra",
+  "billing_route": "subscription-backed native Pi subagent, no paid inference API",
+  "audit_sha256": "9180aed0175e0fbed8915e5d63587be24373aeb155dcb9b056947586979046b6",
+  "packet_sha256": "edc21ab48f30e930ef044aa648143d021f0c15fe5fd51cd819ef7af881df334c",
+  "lineage": [
+    {
+      "case_id": "historical-1",
+      "audit_n": 1,
+      "run": "jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+      "unit_id": "surgeon-3",
+      "sample": 0,
+      "item_file": "data/gated.jsonl",
+      "item_file_sha256": "c483f6271aa221a3ce1d41df0876048cbce24bbaee01ec2ce911257cc5a037f6",
+      "previous_labels_withheld_from_packet": true
+    },
+    {
+      "case_id": "historical-7",
+      "audit_n": 7,
+      "run": "jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+      "unit_id": "subtract-five-2",
+      "sample": 0,
+      "item_file": "data/gated.jsonl",
+      "item_file_sha256": "c483f6271aa221a3ce1d41df0876048cbce24bbaee01ec2ce911257cc5a037f6",
+      "previous_labels_withheld_from_packet": true
+    },
+    {
+      "case_id": "historical-10",
+      "audit_n": 10,
+      "run": "jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+      "unit_id": "one-story-house-3",
+      "sample": 3,
+      "item_file": "data/gated.jsonl",
+      "item_file_sha256": "c483f6271aa221a3ce1d41df0876048cbce24bbaee01ec2ce911257cc5a037f6",
+      "previous_labels_withheld_from_packet": true
+    },
+    {
+      "case_id": "historical-17",
+      "audit_n": 17,
+      "run": "nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+      "unit_id": "electric-train-1",
+      "sample": 2,
+      "item_file": "data/gated.jsonl",
+      "item_file_sha256": "c483f6271aa221a3ce1d41df0876048cbce24bbaee01ec2ce911257cc5a037f6",
+      "previous_labels_withheld_from_packet": true
+    },
+    {
+      "case_id": "historical-18",
+      "audit_n": 18,
+      "run": "nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+      "unit_id": "one-story-house-1",
+      "sample": 2,
+      "item_file": "data/gated.jsonl",
+      "item_file_sha256": "c483f6271aa221a3ce1d41df0876048cbce24bbaee01ec2ce911257cc5a037f6",
+      "previous_labels_withheld_from_packet": true
+    },
+    {
+      "case_id": "historical-19",
+      "audit_n": 19,
+      "run": "nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+      "unit_id": "one-story-house-1",
+      "sample": 1,
+      "item_file": "data/gated.jsonl",
+      "item_file_sha256": "c483f6271aa221a3ce1d41df0876048cbce24bbaee01ec2ce911257cc5a037f6",
+      "previous_labels_withheld_from_packet": true
+    },
+    {
+      "case_id": "historical-20",
+      "audit_n": 20,
+      "run": "nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+      "unit_id": "garbage-truck-1",
+      "sample": 2,
+      "item_file": "data/gated.jsonl",
+      "item_file_sha256": "c483f6271aa221a3ce1d41df0876048cbce24bbaee01ec2ce911257cc5a037f6",
+      "previous_labels_withheld_from_packet": true
+    },
+    {
+      "case_id": "historical-24",
+      "audit_n": 24,
+      "run": "jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+      "unit_id": "electric-train-1",
+      "sample": 3,
+      "item_file": "data/gated.jsonl",
+      "item_file_sha256": "c483f6271aa221a3ce1d41df0876048cbce24bbaee01ec2ce911257cc5a037f6",
+      "previous_labels_withheld_from_packet": true
+    },
+    {
+      "case_id": "historical-25",
+      "audit_n": 25,
+      "run": "jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+      "unit_id": "one-story-house-1",
+      "sample": 1,
+      "item_file": "data/gated.jsonl",
+      "item_file_sha256": "c483f6271aa221a3ce1d41df0876048cbce24bbaee01ec2ce911257cc5a037f6",
+      "previous_labels_withheld_from_packet": true
+    },
+    {
+      "case_id": "historical-32",
+      "audit_n": 32,
+      "run": "jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+      "unit_id": "stick-2",
+      "sample": 4,
+      "item_file": "data/gated.jsonl",
+      "item_file_sha256": "c483f6271aa221a3ce1d41df0876048cbce24bbaee01ec2ce911257cc5a037f6",
+      "previous_labels_withheld_from_packet": true
+    },
+    {
+      "case_id": "historical-33",
+      "audit_n": 33,
+      "run": "jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+      "unit_id": "lunch-dinner-2",
+      "sample": 0,
+      "item_file": "data/gated.jsonl",
+      "item_file_sha256": "c483f6271aa221a3ce1d41df0876048cbce24bbaee01ec2ce911257cc5a037f6",
+      "previous_labels_withheld_from_packet": true
+    },
+    {
+      "case_id": "historical-34",
+      "audit_n": 34,
+      "run": "jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+      "unit_id": "lunch-dinner-2",
+      "sample": 4,
+      "item_file": "data/gated.jsonl",
+      "item_file_sha256": "c483f6271aa221a3ce1d41df0876048cbce24bbaee01ec2ce911257cc5a037f6",
+      "previous_labels_withheld_from_packet": true
+    },
+    {
+      "case_id": "historical-41",
+      "audit_n": 41,
+      "run": "nous_meituan_longcat-2.0_free/warned-thinkoff-k5",
+      "unit_id": "your-word-1",
+      "sample": 3,
+      "item_file": "data/gated.jsonl",
+      "item_file_sha256": "c483f6271aa221a3ce1d41df0876048cbce24bbaee01ec2ce911257cc5a037f6",
+      "previous_labels_withheld_from_packet": true
+    },
+    {
+      "case_id": "cap-unwarned-thinkon-k5-cap64000-3",
+      "run": "runs/cap-sensitivity-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5-cap64000",
+      "unit_id": "parachute-1-r1",
+      "sample": 3,
+      "scored_sha256": "30a002f021d3878d153eba2a42560c06900e31207b5fa219a83dd57a7cca8df2",
+      "raw_sha256": "518d46d6cf30241238f327687dc302c5ba8da6b43f9adee4fc5a2ea04c02da35",
+      "item_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+      "item_file_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691"
+    },
+    {
+      "case_id": "cap-warned-thinkon-k5-cap64000-1",
+      "run": "runs/cap-sensitivity-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5-cap64000",
+      "unit_id": "parachute-1-r1",
+      "sample": 1,
+      "scored_sha256": "5586d9af8bbcb5ea36cf428a76757695a7fa69e94a3dc726658e869030f7931d",
+      "raw_sha256": "d31207525c3ee17b96637e85ae727be79257cb00db605382a9ecbfff83b4fe52",
+      "item_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+      "item_file_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691"
+    }
+  ]
+}
