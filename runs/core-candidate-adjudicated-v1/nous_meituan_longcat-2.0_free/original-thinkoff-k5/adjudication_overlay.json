@@ -1,0 +1,11 @@
+{
+  "type": "AI adjudication overlay",
+  "runtime_model": "openai-codex/gpt-6-astra",
+  "notice": "AI adjudication, not human review or independent empirical validation; selected cases, not a representative judge-accuracy audit.",
+  "decisions_file": "results/audit/astra-adjudication-v1/decisions.json",
+  "decisions_sha256": "374a88b51a2be5520349108a9e479dfb0a19cbf2802ab62df87794b7751b2b94",
+  "case_ids": [],
+  "inference_calls": 0,
+  "base_run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/original-thinkoff-k5",
+  "base_raw_sha256": "73c1d4bca86f021d5234be77aa6bdf132e1c0da2b4e4df88d3d4472da8e6dfb0"
+}

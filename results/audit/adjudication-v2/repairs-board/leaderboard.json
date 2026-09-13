@@ -1,0 +1,249 @@
+{
+  "generated_at": "2026-09-09T10:12:45Z",
+  "n_boot": 2000,
+  "seed": 0,
+  "run_manifest": [
+    "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/original-thinkoff-k5",
+    "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+    "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+    "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+    "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+    "runs/core-repairs-v1/jalapeno_GLM-5.3-Flash/original-thinkon-k5",
+    "runs/core-repairs-v1/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5",
+    "runs/core-repairs-v1/jalapeno_GLM-5.3-Flash/warned-thinkon-k5",
+    "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/original-thinkoff-k5",
+    "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+    "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+    "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkoff-k5",
+    "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5"
+  ],
+  "familiar_threshold": 0.8,
+  "rows": [
+    {
+      "checks": [],
+      "truncated_rate": 0.0417,
+      "dodge_rate": 0.0833,
+      "familiar_share": 0.875,
+      "drift": {
+        "stale": 0,
+        "missing": 0,
+        "unhashed": 0
+      },
+      "id": "jalapeno:DeepSeek-V4-Flash-0731|on",
+      "model": "jalapeno:DeepSeek-V4-Flash-0731",
+      "thinking": "on",
+      "n_items": 8,
+      "n_answers": 24,
+      "familiar_sources": 7,
+      "n_conditioned": 21,
+      "alt_acc": 0.9166666666666666,
+      "cor": 0.0,
+      "cor_ci95": [
+        0.0,
+        0.0
+      ],
+      "original_rate": 0.0,
+      "other_rate": 0.08333333333333333,
+      "abstain_rate": 0.0,
+      "pending": 0,
+      "warned_acc": 1.0,
+      "override_gap": 0.08333333333333337,
+      "median_reasoning_tokens": 131.0,
+      "familiarity_mode": "direct",
+      "samples": 3,
+      "error_rate": 0.0,
+      "run_dir": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+      "point_rank": 1
+    },
+    {
+      "checks": [],
+      "truncated_rate": 0.025,
+      "dodge_rate": 0.05,
+      "familiar_share": 1.0,
+      "drift": {
+        "stale": 0,
+        "missing": 0,
+        "unhashed": 0
+      },
+      "id": "nous:meituan/longcat-2.0:free|on",
+      "model": "nous:meituan/longcat-2.0:free",
+      "thinking": "on",
+      "n_items": 8,
+      "n_answers": 40,
+      "familiar_sources": 8,
+      "n_conditioned": 40,
+      "alt_acc": 0.925,
+      "cor": 0.025,
+      "cor_ci95": [
+        0.0,
+        0.075
+      ],
+      "original_rate": 0.025,
+      "other_rate": 0.05,
+      "abstain_rate": 0.0,
+      "pending": 0,
+      "warned_acc": 1.0,
+      "override_gap": 0.07499999999999996,
+      "median_reasoning_tokens": 194.0,
+      "familiarity_mode": "direct",
+      "samples": 5,
+      "error_rate": 0.0,
+      "run_dir": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+      "point_rank": 2,
+      "thinking_gap": 0.15
+    },
+    {
+      "checks": [],
+      "truncated_rate": 0.0,
+      "dodge_rate": 0.0,
+      "familiar_share": 1.0,
+      "drift": {
+        "stale": 0,
+        "missing": 0,
+        "unhashed": 0
+      },
+      "id": "jalapeno:GLM-5.3-Flash|on",
+      "model": "jalapeno:GLM-5.3-Flash",
+      "thinking": "on",
+      "n_items": 8,
+      "n_answers": 40,
+      "familiar_sources": 8,
+      "n_conditioned": 40,
+      "alt_acc": 0.95,
+      "cor": 0.05,
+      "cor_ci95": [
+        0.0,
+        0.15
+      ],
+      "original_rate": 0.05,
+      "other_rate": 0.0,
+      "abstain_rate": 0.0,
+      "pending": 0,
+      "warned_acc": 1.0,
+      "override_gap": 0.050000000000000044,
+      "median_reasoning_tokens": 169.5,
+      "familiarity_mode": "thinking",
+      "samples": 5,
+      "error_rate": 0.0,
+      "run_dir": "runs/core-repairs-v1/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5",
+      "point_rank": 3
+    },
+    {
+      "checks": [],
+      "truncated_rate": 0.0,
+      "dodge_rate": 0.025,
+      "familiar_share": 1.0,
+      "drift": {
+        "stale": 0,
+        "missing": 0,
+        "unhashed": 0
+      },
+      "id": "nous:meituan/longcat-2.0:free|off",
+      "model": "nous:meituan/longcat-2.0:free",
+      "thinking": "off",
+      "n_items": 8,
+      "n_answers": 40,
+      "familiar_sources": 8,
+      "n_conditioned": 40,
+      "alt_acc": 0.8,
+      "cor": 0.175,
+      "cor_ci95": [
+        0.0,
+        0.425
+      ],
+      "original_rate": 0.175,
+      "other_rate": 0.025,
+      "abstain_rate": 0.0,
+      "pending": 0,
+      "warned_acc": 0.775,
+      "override_gap": -0.025000000000000022,
+      "median_reasoning_tokens": 0.0,
+      "familiarity_mode": "direct",
+      "samples": 5,
+      "error_rate": 0.0,
+      "run_dir": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+      "point_rank": 4,
+      "thinking_gap": 0.15
+    }
+  ],
+  "excluded": [
+    {
+      "model": "jalapeno:DeepSeek-V4-Flash-0731",
+      "thinking": "off",
+      "reason": "other+abstain 15%: COR flattered, rank by accuracy"
+    }
+  ],
+  "review_flags": [],
+  "comparisons": [
+    {
+      "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+      "b": "jalapeno:GLM-5.3-Flash|on",
+      "n_items": 7,
+      "n_clusters": 7,
+      "difference": -0.05714285714285715,
+      "ci95": [
+        -0.17142857142857146,
+        0.0
+      ]
+    },
+    {
+      "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+      "b": "nous:meituan/longcat-2.0:free|off",
+      "n_items": 7,
+      "n_clusters": 7,
+      "difference": -0.19999999999999998,
+      "ci95": [
+        -0.4857142857142857,
+        0.0
+      ]
+    },
+    {
+      "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+      "b": "nous:meituan/longcat-2.0:free|on",
+      "n_items": 7,
+      "n_clusters": 7,
+      "difference": -0.028571428571428574,
+      "ci95": [
+        -0.08571428571428573,
+        0.0
+      ]
+    },
+    {
+      "a": "jalapeno:GLM-5.3-Flash|on",
+      "b": "nous:meituan/longcat-2.0:free|off",
+      "n_items": 8,
+      "n_clusters": 8,
+      "difference": -0.125,
+      "ci95": [
+        -0.375,
+        0.0
+      ]
+    },
+    {
+      "a": "jalapeno:GLM-5.3-Flash|on",
+      "b": "nous:meituan/longcat-2.0:free|on",
+      "n_items": 8,
+      "n_clusters": 8,
+      "difference": 0.025,
+      "ci95": [
+        0.0,
+        0.07500000000000001
+      ]
+    },
+    {
+      "a": "nous:meituan/longcat-2.0:free|off",
+      "b": "nous:meituan/longcat-2.0:free|on",
+      "n_items": 8,
+      "n_clusters": 8,
+      "difference": 0.15,
+      "ci95": [
+        0.0,
+        0.4
+      ]
+    }
+  ],
+  "comparison_method": "item-balanced COR difference a-b on shared familiar items; jointly resampled clusters; pointwise CI95, no multiplicity adjustment",
+  "release_status": "development candidate; not frozen or publication-approved",
+  "label_audit": "results/audit/adjudication-v2/label_audit.json",
+  "label_audit_warning": "13 mixed-provenance review/judge disagreements remain; no independent 45-row human agreement claim."
+}

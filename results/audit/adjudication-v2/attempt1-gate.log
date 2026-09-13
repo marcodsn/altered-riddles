@@ -1,0 +1,33 @@
+items=8 models=4 calls=64 todo=64
+Traceback (most recent call last):
+  File "/mnt/data/projects/nullsilver/altered-riddles/results/audit/adjudication-v2/execute.py", line 233, in <module>
+    main()
+  File "/mnt/data/projects/nullsilver/altered-riddles/results/audit/adjudication-v2/execute.py", line 226, in main
+    {'offline': offline, 'gate': do_gate, 'evaluate': do_evaluate}[args.phase]()
+  File "/mnt/data/projects/nullsilver/altered-riddles/results/audit/adjudication-v2/execute.py", line 157, in do_gate
+    asyncio.run(gate.run(args))
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/mnt/data/projects/nullsilver/altered-riddles/altered_riddles/gate.py", line 178, in run
+    await gather_limited([one(j) for j in todo], progress_every=50, label="gate calls ")
+  File "/mnt/data/projects/nullsilver/altered-riddles/altered_riddles/llm.py", line 312, in gather_limited
+    await asyncio.gather(*(run(i, c) for i, c in enumerate(coros)))
+  File "/mnt/data/projects/nullsilver/altered-riddles/altered_riddles/llm.py", line 307, in run
+    results[i] = await c
+                 ^^^^^^^
+  File "/mnt/data/projects/nullsilver/altered-riddles/altered_riddles/gate.py", line 172, in one
+    reply = await clients[prov].chat(model, [{"role": "user", "content": msg}], max_tokens=MAX_TOKENS, thinking=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/projects/nullsilver/altered-riddles/results/audit/adjudication-v2/execute.py", line 112, in chat
+    entry, prices = BUDGET.reserve(self.provider, model, messages, kw['max_tokens'])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/projects/nullsilver/altered-riddles/results/audit/adjudication-v2/execute.py", line 77, in reserve
+    raise RuntimeError(f'Budget blocked before dispatch: used/reserved={used:.6f}, next ceiling={ceiling:.6f}')
+RuntimeError: Budget blocked before dispatch: used/reserved=0.984225, next ceiling=0.048673

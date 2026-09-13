@@ -1,0 +1,18 @@
+{
+ "config": "original-thinkoff-k5",
+ "n_expected": 995,
+ "n_rows": 995,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 0,
+ "mean_reasoning_tokens": 0,
+ "mean_completion_tokens": 4.8,
+ "reasoning_leak_rate": 0.0,
+ "truncated": 25,
+ "total_prompt_tokens": 48615,
+ "total_completion_tokens": 4737,
+ "elapsed_s_this_invocation": 0.0,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-09T10:12:44Z"
+}

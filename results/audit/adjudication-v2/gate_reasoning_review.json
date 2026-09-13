@@ -1,0 +1,19 @@
+{
+  "reviewer": "AI coding assistant; not a human reviewer",
+  "review_date": "2026-09-09",
+  "scope": "Final answers and explanatory content of all 64 gate/probe replies checked against the eight revised texts; not a claim of independent human validation or exhaustive hidden-trace analysis.",
+  "proceed_to_evaluation": true,
+  "gate_results": {"warned_correct": 32, "original_invalid": 32, "errors": 0, "truncated": 0, "warned_no_thinking": 0},
+  "items": [
+    {"id": "mustard-family-3-r1", "assessment": "Two parents plus six daughters and six sons entails fourteen; the counting scope is explicit and nine fails."},
+    {"id": "months-28-days-1-r1", "assessment": "Exactly 28 days in an explicitly common Gregorian year entails one month. All twelve answers a different quantifier."},
+    {"id": "marys-father-1-r1", "assessment": "Explicit age order and only given names make Nunu the fifth/youngest; Mary is the oldest, with no missing sixth daughter."},
+    {"id": "johnnys-mother-1-r1", "assessment": "Explicit age order and only given names make June third; Johnny is second, with no inconsistent fourth child."},
+    {"id": "hiccups-1-r1", "assessment": "Quoted thanks explicitly identifies receiving water; hiccups are explicitly absent. Water aliases cover all four warned answers."},
+    {"id": "parachute-1-r1", "assessment": "The stated autopsy establishes dehydration rather than injury. This explicit finding, not merely the absence of a parachute mention, excludes the original as the cause-of-death answer.", "advisory_caveats": "Qwen3-Next cites only the sandwiches/no-parachute clue: insufficient by itself. GLM adds an unsupported stranded/starvation backstory. Reject those embellishments; the explicit autopsy finding independently supports the disposition."},
+    {"id": "rooster-egg-2-r1", "assessment": "The stated hen and gravity-driven rolling on a slope make downhill the ordinary reading and the offered directional choice excludes the rooster fact as an answer. No alternative direction or physical defect was identified in final explanations."},
+    {"id": "cat-fur-1-r1", "assessment": "The explicit left-or-right choice excludes outside as an answer, while the shaving contrast supports right. Outside remains an anatomical truth; rejection rests on the question's options, not on declaring fur no longer external.", "advisory_caveats": "Do not adopt Qwen3.5's loose claim of a logical contradiction with outside; the explicit binary question is the sufficient reason."}
+  ],
+  "alias_action": "No alias edits needed after the gate; all 32 warned final answers are correctly covered without original-answer overlap.",
+  "limitations": "These are prospective Core controls; gate unanimity is not human consensus, difficulty evidence, or publication approval. The separate 13 label-audit disagreements remain open."
+}

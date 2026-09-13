@@ -1,0 +1,5 @@
+{"key": "cat-fur-1-r1|0|f1a887d0fcd59fcb", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "parachute-1-r1|1|394697dfd66fb9a7", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "rooster-egg-2-r1|1|68c3291ebf97a8da", "verdict": "original", "raw": "original", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "rooster-egg-2-r1|3|4a0e9d3ff3648b3d", "verdict": "original", "raw": "original", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}
+{"key": "cat-fur-1-r1|1|5b8dcee99ba41d0f", "verdict": "other", "raw": "other", "error": null, "judge": "jalapeno:DeepSeek-V4-Flash-0731"}

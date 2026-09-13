@@ -1,0 +1,135 @@
+# Owner-approved AI-authored repairs; validation and fresh runs required. NOT active Core.
+- id: mustard-family-3-r1
+  replaces: mustard-family-3
+  source: mustard-family
+  type: hard_constraint
+  status: owner_approved_pending_validation
+  human_review: owner_approved_ai_authored_rewrite
+  text: Mr. and Mrs. Mustard have six daughters and six sons, all siblings of one another. Counting only
+    Mr. Mustard, Mrs. Mustard, and these children, how many people are in the family?
+  answer: fourteen
+  aliases:
+  - '14'
+  - fourteen people
+  why_original_fails: Two parents plus twelve distinct children is fourteen, not nine. The sibling statements
+    are consistent.
+  note: Prospective Core repair; not assumed Hard. New text requires fresh runs.
+- id: months-28-days-1-r1
+  replaces: months-28-days-1
+  source: months-28-days
+  type: hard_constraint
+  status: owner_approved_pending_validation
+  human_review: owner_approved_ai_authored_rewrite
+  text: In a common (non-leap) year of the Gregorian calendar, some months have 30 days and some have
+    31. How many months have exactly 28 days?
+  answer: one, February
+  aliases:
+  - one
+  - '1'
+  - February
+  - one month
+  why_original_fails: Exactly 28 excludes months with 30 or 31 days. In a stated common Gregorian year,
+    February alone has 28.
+  note: Prospective Core repair; not assumed Hard. New text requires fresh runs.
+- id: marys-father-1-r1
+  replaces: marys-father-1
+  source: marys-father
+  type: stated
+  status: owner_approved_pending_validation
+  human_review: owner_approved_ai_authored_rewrite
+  text: Mary's father has five daughters. From oldest to youngest, their only given names are Mary, Nene,
+    Nini, Nono, and Nunu. What is the given name of his fifth (youngest) daughter?
+  answer: Nunu
+  aliases:
+  - Nunu
+  why_original_fails: Mary is explicitly the oldest daughter; the youngest daughter's only given name
+    is Nunu. Mary is not an uncounted sixth child or an alternative name.
+  note: Prospective Core repair; not assumed Hard. New text requires fresh runs.
+- id: johnnys-mother-1-r1
+  replaces: johnnys-mother-1
+  source: johnnys-mother
+  type: stated
+  status: owner_approved_pending_validation
+  human_review: owner_approved_ai_authored_rewrite
+  text: Johnny's mother has three children. From oldest to youngest, their only given names are April,
+    Johnny, and June. What is the given name of her third (youngest) child?
+  answer: June
+  aliases:
+  - June
+  why_original_fails: Johnny is explicitly the second child. The third child's only given name is June;
+    no contradictory fourth child is implied.
+  note: Prospective Core repair; not assumed Hard. New text requires fresh runs.
+- id: hiccups-1-r1
+  replaces: hiccups-1
+  source: hiccups
+  type: trivialized
+  status: owner_approved_pending_validation
+  human_review: owner_approved_ai_authored_rewrite
+  text: A man walks into a bar and asks for a glass of water. He has no hiccups. The bartender hands him
+    the water. The man says, 'Thank you for giving me the water I asked for,' and leaves. What did he
+    explicitly thank the bartender for?
+  answer: giving him the water he asked for
+  aliases:
+  - giving him water
+  - the glass of water
+  - the water
+  why_original_fails: The question asks for the explicitly stated reason, which is receiving water. Hiccups
+    are explicitly absent.
+  note: Prospective Core repair; not assumed Hard. New text requires fresh runs.
+- id: parachute-1-r1
+  replaces: parachute-1
+  source: parachute
+  type: stated
+  status: owner_approved_pending_validation
+  human_review: owner_approved_ai_authored_rewrite
+  text: A man is found dead in a desert beside an unopened package of sandwiches. An autopsy establishes
+    that he died of dehydration, not an injury. What killed him?
+  answer: dehydration
+  aliases:
+  - dehydration
+  - thirst
+  - lack of water
+  - he died of thirst
+  - he died of dehydration
+  - no water
+  - he ran out of water
+  why_original_fails: The autopsy explicitly establishes dehydration, not injury, as the cause of death.
+    A failed parachute is not the stated cause.
+  note: Prospective Core repair; not assumed Hard. New text requires fresh runs.
+- id: rooster-egg-2-r1
+  replaces: rooster-egg-2
+  source: rooster-egg
+  type: trivialized
+  status: owner_approved_pending_validation
+  human_review: owner_approved_ai_authored_rewrite
+  text: A hen lays an egg on a sloping barn roof. The egg begins rolling freely under gravity, with nothing
+    pushing it or blocking its path. Does it roll uphill or downhill?
+  answer: downhill
+  aliases:
+  - down the slope
+  - down the roof
+  - down
+  why_original_fails: The egg is laid by a hen, and the question asks the direction of its free rolling
+    under gravity. Roosters not laying eggs does not answer that question.
+  note: Prospective Core repair; not assumed Hard. New text requires fresh runs.
+- id: cat-fur-1-r1
+  replaces: cat-fur-1
+  source: cat-fur
+  type: hard_constraint
+  status: owner_approved_pending_validation
+  human_review: owner_approved_rewrite_in_chat
+  text: A cat's left side has been shaved for surgery and its right side has not. Which side, left or
+    right, has more fur?
+  answer: the right side
+  aliases:
+  - right
+  - the right
+  - its right side
+  - the right side
+  - the unshaved side
+  - the unshaved right side
+  - right side
+  why_original_fails: The question explicitly restricts the comparison to left or right; the outside is
+    not one of those alternatives. The unshaved right side has more fur.
+  note: Makes the comparison explicit; requires fresh validation and model runs, with no scores transferred
+    from cat-fur-1.

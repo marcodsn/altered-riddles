@@ -101,10 +101,31 @@ async def run(args: argparse.Namespace) -> None:
         units = [{"id": it["id"], "text": it["text"]} for it in items]
         max_tokens = MAX_TOKENS["on" if thinking_on else "off"]
 
+    cap_override = getattr(args, "max_tokens", None)
+    if cap_override is not None:
+        if cap_override < 1:
+            raise ValueError("max_tokens must be positive")
+        max_tokens = cap_override
+
     cfg_name = f"{args.condition}-think{'on' if thinking_on else 'off'}-k{args.samples}"
+    if cap_override is not None:
+        # A cap change is a new experiment, never a retry of selected failures.
+        cfg_name += f"-cap{max_tokens}"
     out_dir = Path(args.runs_dir) / sanitize(f"{provider}_{model}") / cfg_name
     out_dir.mkdir(parents=True, exist_ok=True)
     raw_path = out_dir / "raw.jsonl"
+
+    config_path = out_dir / "config.json"
+    if raw_path.exists():
+        if not config_path.exists():
+            raise ValueError("raw outputs without config.json; use a new runs directory")
+        stored = json.loads(config_path.read_text())
+        requested = {"max_tokens": max_tokens, "temperature": args.temperature,
+                     "prompt": PROMPTS[args.condition],
+                     "thinking_request_params": thinking_extra(model, thinking_on)}
+        changed = [key for key, value in requested.items() if stored.get(key) != value]
+        if changed:
+            raise ValueError(f"run settings changed ({', '.join(changed)}); use a new runs directory")
 
     # A stored reply is reusable only while the unit's text is unchanged: rows
     # whose text_sha no longer matches (item rephrased or removed) are dropped.
@@ -205,6 +226,8 @@ def main() -> None:
     ap.add_argument("--condition", choices=["original", "unwarned", "warned"], default="unwarned")
     ap.add_argument("--samples", type=int, default=5)
     ap.add_argument("--temperature", type=float, default=None, help="default: provider default")
+    ap.add_argument("--max-tokens", type=int, default=None,
+                    help="explicit output cap; creates a separate -capN run, never replaces default-cap replies")
     ap.add_argument("--items", default="data/gated.jsonl")
     ap.add_argument("--passed-only", action="store_true")
     ap.add_argument("--limit", type=int, default=0)

@@ -1,0 +1,2206 @@
+{
+  "scorer_version": 2,
+  "reason": "Empty replies must abstain without a judge; unfinished truncated reasoning is not a committed answer.",
+  "fresh": {
+    "n_runs": 13,
+    "n_rows": 3,
+    "excluded": [
+      {
+        "model": "jalapeno:DeepSeek-V4-Flash-0731",
+        "thinking": "off",
+        "reason": "other+abstain 15%: COR flattered, rank by accuracy"
+      },
+      {
+        "model": "jalapeno:DeepSeek-V4-Flash-0731",
+        "thinking": "on",
+        "reason": "other+abstain 12%: COR flattered, rank by accuracy"
+      }
+    ],
+    "changes": [
+      {
+        "run": "runs/core-repairs-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+        "source_run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+        "unit_id": "parachute-1-r1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+        "source_run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+        "unit_id": "parachute-1-r1",
+        "sample": 1,
+        "old_label": "original",
+        "new_label": "abstain",
+        "old_final": "Wait, I remember a riddle: \"A man is found dead in a field with a backpack. How did he die?\" Answer: His parachute didn't open. But here it's sandwiches.",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "mustard-family-3-r1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "parachute-1-r1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "parachute-1-r1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "rooster-egg-2-r1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "rooster-egg-2-r1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "cat-fur-1-r1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "rooster-egg-2-r1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "cat-fur-1-r1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "cat-fur-1-r1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "cat-fur-1-r1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-repairs-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-repairs-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "cat-fur-1-r1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      }
+    ],
+    "label_transitions": {
+      "correct -> abstain": 12,
+      "original -> abstain": 1
+    }
+  },
+  "core": {
+    "n_runs": 13,
+    "n_rows": 5,
+    "excluded": [],
+    "changes": [
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+        "unit_id": "craw-0274-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "4.  Format: Answer: <your answer in a few words>Answer: a coat hanger",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+        "unit_id": "parachute-1-r1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "left-hand-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "left-hand-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "mustard-family-2",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "mustard-family-2",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "ton-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "craw-0313-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "craw-0328-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "craw-0370-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "craw-0379-1",
+        "sample": 1,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "craw-0379-1",
+        "sample": 2,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "letter-w-2",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "I lean answer \"No single letter\" maybe with \"A and R\" in final? The instruction \"Answer: <your answer in a few words>\" perhaps one can answer \"A and R\" and it's a",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "stamp-1",
+        "sample": 0,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "coffin-2",
+        "sample": 0,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "But need final format: \"Answer: The man who makes it.\" That's a single line. I'll output",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "bed-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "Let's see if there is any possibility \"A dog with one head, four feet, four legs, and barks\" is answer. The prompt asks \"What has one head, four feet, four legs, and barks?\" The answer \"A dog\" is enough. But \"Read every word and answer exactly as written\" maybe wants \"Answer: A dog\" not \"A dog",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "palm-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "die-2",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "stick-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "barber-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "trouble-2",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "queue-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "gone-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "gone-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "leap-year-2",
+        "sample": 0,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "leap-year-2",
+        "sample": 2,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "craw-0001-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "craw-0001-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "craw-0173-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "craw-0192-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "Let's maybe answer with a phrase that acknowledges both? The required form \"Answer: <your answer in a few words>\" could be \"the tide, but continuously.\" But they want few words. If I answer \"the tide\" and include \"not twice a day\" maybe \"Answer: The tide (but it pulls continuously, not twice",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "craw-0192-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "craw-0221-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "craw-0221-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "red-stone-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "I'll output: Answer: white",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "lid-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "letter-v-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "letter-v-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "post-office-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "post-office-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "december-letter-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "Let's prepare final: \"Answer: G",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "december-letter-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "deck-of-cards-2",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "craw-0200-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "craw-0200-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "source_run": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+        "unit_id": "craw-0200-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_GLM-5.3-Flash/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/jalapeno_GLM-5.3-Flash/warned-thinkon-k5",
+        "unit_id": "letter-v-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/jalapeno_GLM-5.3-Flash/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/jalapeno_GLM-5.3-Flash/warned-thinkon-k5",
+        "unit_id": "post-office-1",
+        "sample": 1,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "- \"A typewriter\"",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+        "unit_id": "mushroom-2",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+        "unit_id": "mushroom-2",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+        "unit_id": "parachute-1-r1",
+        "sample": 1,
+        "old_label": "original",
+        "new_label": "abstain",
+        "old_final": "Wait, I remember a riddle: \"A man is found dead in a field with a backpack. How did he die?\" Answer: His parachute didn't open. But here it's sandwiches.",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "lily-pads-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "mustard-family-2",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "mustard-family-2",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "penny-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "age-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "age-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "letter-e-3",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "letter-g-2",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "letter-e-3",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "letter-e-3",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "letter-g-2",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "letter-g-2",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "letter-g-2",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "mushroom-2",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "mushroom-2",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "mushroom-2",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "tomorrow-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "tomorrow-1",
+        "sample": 2,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "Maybe the riddle is: \"What is it that you can never catch?\" Answer: \"Time.\"",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "tomorrow-1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "corn-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "corn-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "dictionary-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "coffin-2",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "coffin-2",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "coffin-2",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "bed-2",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "teapot-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "shoe-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "shoe-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "shoe-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "deck-of-cards-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "deck-of-cards-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "deck-of-cards-1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "library-2",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "wrong-2",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "window-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "ok right through a person?\" Answer: \"An X-ray.\" So if the riddle is \"What invention lets a doctor look right through your skin to your bones?\" it's combining both. The answer might be \"an X-ray\" because it's the invention that lets you look through a person. But the addition of \"doctor\" and \"skin to",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "window-1",
+        "sample": 3,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "right hand. \"What is so fragile that saying its name breaks it?\" Answer: Silence. \"What is always in front of you but can't be seen?\" Answer: The future. \"What can travel around the world while staying in a corner?\" Answer: A stamp. \"What has many keys but can't open a single lock?\" Answer: A piano.",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "window-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "artichoke-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "potato-1",
+        "sample": 3,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "potato-1",
+        "sample": 2,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "potato-1",
+        "sample": 4,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "gummy-bear-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "jump-building-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "die-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "jump-building-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "die-2",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "die-2",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "die-2",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "carrot-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "carrot-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "carrot-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "stick-2",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "stick-2",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "stick-2",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "stick-2",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "barber-1",
+        "sample": 1,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "Wait, \"shear sheep\" could be a pun for \"sheer ship\"? \"Sheer\" as in \"sheer fabric",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "barber-1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "barber-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "Let's confirm: The classic riddle: \"I shear sheep every day, but my own coat never changes. What am I?\" Answer: \"A sheep shearer.\" The modified version: \"I shear every day, but my own coat stays the same, because I only sheep.\" The addition of \"because I only sheep",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "barber-2",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "trouble-2",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "trouble-2",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "bucket-hole-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "bucket-hole-1",
+        "sample": 2,
+        "old_label": "original",
+        "new_label": "abstain",
+        "old_final": "it weigh more?\" Answer: \"a hole\" is for less. For more, I've heard \"a hole\" is not it. There's a riddle: \"What can you put in a bucket to make it weigh more?\" Answer: \"a hole\" is wrong. Maybe \"a shadow\"? No. \"A reflection\"? No. \"A hole\" is the classic. Another classic: \"What can you put in a bucket",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "bucket-hole-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "queue-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "battery-2",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "ice-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "lunch-dinner-2",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "lunch-dinner-2",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "gone-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "gone-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "gone-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "gone-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "leap-year-2",
+        "sample": 2,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "leap-year-2",
+        "sample": 1,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "leap-year-2",
+        "sample": 4,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "leap-year-2",
+        "sample": 3,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0001-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0001-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0076-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0075-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0076-1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0095-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0116-1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0126-1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0126-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0126-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0126-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0126-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0163-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0173-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0173-1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0173-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0173-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "I recall a similar riddle: \"I'm never wrong and always right. I can hurt to hear but I set you free. What am I?\" Answer: truth",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0192-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0221-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0303-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0303-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0303-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0303-1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0393-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "brain-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "brain-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0393-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "lid-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "lid-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "lid-1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "bear-house-2",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "red-stone-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "red-stone-1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "red-stone-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "letter-v-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "letter-v-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "letter-v-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "letter-v-1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "letter-v-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "post-office-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "post-office-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "post-office-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "birds-wire-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "post-office-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "romeo-juliet-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "romeo-juliet-1",
+        "sample": 1,
+        "old_label": "original",
+        "new_label": "abstain",
+        "old_final": "Another version: \"A man is found dead in a room with a puddle of water and broken glass. How did he die?\" Answer: He was a fish. Then someone modified it to: \"Romeo and Juliet, two goldfish, are found dead on the floor beside broken glass and a puddle",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "romeo-juliet-1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "romeo-juliet-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "half-of-two-1",
+        "sample": 0,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "half of 8?\" and the answer is \"3\" because if you write 8 and cut it vertically, the left half is a 3? No, 8 is symmetric. If you cut it vertically, you get two 0s? No, 8 is two circles. Cut vertically: left half is a 3? I'm confusing. There's a riddle: \"What is half of 8?\" Answer: \"3\" (if you cut it",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "six-seven-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "cows-drink-1",
+        "sample": 3,
+        "old_label": "abstain",
+        "new_label": "abstain",
+        "old_final": "There's a riddle",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "cows-drink-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "carrot-1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "deck-of-cards-2",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "deck-of-cards-2",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "deck-of-cards-2",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0200-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0200-1",
+        "sample": 1,
+        "old_label": "other",
+        "new_label": "abstain",
+        "old_final": "Maybe the well-known riddle is: \"What has a neck but no head",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0200-1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "craw-0200-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "seconds-year-1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "seconds-year-1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "seconds-year-1",
+        "sample": 3,
+        "old_label": "original",
+        "new_label": "abstain",
+        "old_final": "Maybe it's: \"How many seconds are there in a day?\" and the trick is that \"a day\" is not a full day, but \"day\" meaning \"daytime\" (12 hours)? Then it's 43,200. But it says \"the unit of time\", and a",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "seconds-year-1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "mustard-family-3-r1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "parachute-1-r1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "parachute-1-r1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "rooster-egg-2-r1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "rooster-egg-2-r1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "cat-fur-1-r1",
+        "sample": 0,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "rooster-egg-2-r1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "cat-fur-1-r1",
+        "sample": 1,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "cat-fur-1-r1",
+        "sample": 2,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "cat-fur-1-r1",
+        "sample": 3,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      },
+      {
+        "run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "source_run": "runs/core-candidate-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+        "unit_id": "cat-fur-1-r1",
+        "sample": 4,
+        "old_label": "correct",
+        "new_label": "abstain",
+        "old_final": "",
+        "new_final": ""
+      }
+    ],
+    "label_transitions": {
+      "correct -> abstain": 179,
+      "other -> abstain": 19,
+      "original -> abstain": 4,
+      "abstain -> abstain": 1
+    }
+  },
+  "inference_calls": 0,
+  "historical_files_unchanged": true,
+  "code_sha256": {
+    "/mnt/data/projects/nullsilver/altered-riddles/altered_riddles/score.py": "2eafb2c4d7d97f36cef1a48ef0e823df222429124e3c6a8b238b1b3d70746e11",
+    "/mnt/data/projects/nullsilver/altered-riddles/altered_riddles/board.py": "4876616fc8e83b946cfd7f39b1608d8dfc4eeeb141b5e87ea31f0bafd30797ef",
+    "/mnt/data/projects/nullsilver/altered-riddles/results/audit/adjudication-v2/rescore_empty_v1.py": "ae2cd810a538e42a061110512453dc719202c578e59227883fba2dc2d61546f2"
+  }
+}

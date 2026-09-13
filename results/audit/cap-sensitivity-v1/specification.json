@@ -1,0 +1,34 @@
+{
+  "recorded_before_inference": "2026-09-12T14:15:55.801550+00:00",
+  "status": "development cap sensitivity, not replacement leaderboard results",
+  "model": "nous:meituan/longcat-2.0:free",
+  "items": [
+    "mustard-family-3-r1",
+    "months-28-days-1-r1",
+    "marys-father-1-r1",
+    "johnnys-mother-1-r1",
+    "hiccups-1-r1",
+    "parachute-1-r1",
+    "rooster-egg-2-r1",
+    "cat-fur-1-r1"
+  ],
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "baseline_cap": 16000,
+  "new_cap": 64000,
+  "conditions": [
+    "unwarned",
+    "warned"
+  ],
+  "samples": 5,
+  "planned_responses": 80,
+  "thinking": "on",
+  "temperature": null,
+  "attempts_per_request": 1,
+  "selection": "all eight approved repairs, not only prior truncations",
+  "policy": "docs/CORE_RELEASE_POLICY.md",
+  "policy_sha256": "c4edf4755f929f7fe35e3326874b48dd3bac05cabea2156e4fb830391ec18fd9",
+  "driver_sha256": "495714e4660a389bc424f67f0b680083f2917755dd79ff2607240d5050d42ff1",
+  "run_code_sha256": "e6a5de36b2277dc831a227aed35c7364855580319e00f78981ae2d8e36e86540",
+  "script_sha256": "2d9db3de3c2a015c0bf9fc7bb8d2bee47d87e0bf804cf7f9e876238f4bc9873e",
+  "limit_usd": 0
+}

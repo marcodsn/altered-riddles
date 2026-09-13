@@ -1,0 +1,13 @@
+{
+  "type": "AI adjudication overlay",
+  "runtime_model": "openai-codex/gpt-6-astra",
+  "notice": "AI adjudication, not human review or independent empirical validation; selected cases, not a representative judge-accuracy audit.",
+  "decisions_file": "results/audit/astra-adjudication-v1/decisions.json",
+  "decisions_sha256": "374a88b51a2be5520349108a9e479dfb0a19cbf2802ab62df87794b7751b2b94",
+  "case_ids": [
+    "cap-warned-thinkon-k5-cap64000-1"
+  ],
+  "inference_calls": 0,
+  "base_run": "runs/cap-sensitivity-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5-cap64000",
+  "base_raw_sha256": "d31207525c3ee17b96637e85ae727be79257cb00db605382a9ecbfff83b4fe52"
+}

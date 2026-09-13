@@ -1,0 +1,59 @@
+test_all_derivatives_preserve_raw_and_base_provenance (test_astra_adjudication.AstraAdjudicationTests.test_all_derivatives_preserve_raw_and_base_provenance) ... ok
+test_binding_rejects_changed_final_item_and_duplicate_sample (test_astra_adjudication.AstraAdjudicationTests.test_binding_rejects_changed_final_item_and_duplicate_sample) ... ok
+test_board_and_exact_impact (test_astra_adjudication.AstraAdjudicationTests.test_board_and_exact_impact) ... ok
+test_cap_is_separate_and_fully_resolved (test_astra_adjudication.AstraAdjudicationTests.test_cap_is_separate_and_fully_resolved) ... ok
+test_packet_lineage_and_approved_dispositions_offline (test_astra_adjudication.AstraAdjudicationTests.test_packet_lineage_and_approved_dispositions_offline) ... ok
+test_preserved_hashes_and_amended_policy (test_astra_adjudication.AstraAdjudicationTests.test_preserved_hashes_and_amended_policy) ... ok
+test_exactly_28_is_not_at_least_28 (test_audit.AuditTests.test_exactly_28_is_not_at_least_28) ... ok
+test_nous_user_tag_wire_shape (test_audit.AuditTests.test_nous_user_tag_wire_shape) ... ok
+test_review_parser_fails_closed (test_audit.AuditTests.test_review_parser_fails_closed) ... ok
+test_revision_provenance_and_isolation (test_audit.AuditTests.test_revision_provenance_and_isolation) ... ok
+test_shared_familiarity_and_pairing (test_audit.AuditTests.test_shared_familiarity_and_pairing) ... ok
+test_alias_edit_invalidates_scores (test_board.BoardTests.test_alias_edit_invalidates_scores) ... ok
+test_dodge_guardrail_blocks_row (test_board.BoardTests.test_dodge_guardrail_blocks_row) ... ok
+test_failed_gate_item_is_not_scored (test_board.BoardTests.test_failed_gate_item_is_not_scored) ... ok
+test_missing_and_duplicate_samples_excluded (test_board.BoardTests.test_missing_and_duplicate_samples_excluded) ... ok
+test_old_familiarity_extractor_is_excluded (test_board.BoardTests.test_old_familiarity_extractor_is_excluded) ... ok
+test_old_matcher_version_is_excluded (test_board.BoardTests.test_old_matcher_version_is_excluded) ... ok
+test_old_scorer_version_is_excluded (test_board.BoardTests.test_old_scorer_version_is_excluded) ... ok
+test_original_alias_edit_invalidates_familiarity (test_board.BoardTests.test_original_alias_edit_invalidates_familiarity) ... ok
+test_pending_error_unknown_labels_excluded (test_board.BoardTests.test_pending_error_unknown_labels_excluded) ... ok
+test_point_rank_not_equivalence (test_board.BoardTests.test_point_rank_not_equivalence) ... ok
+test_scores_without_provenance_are_excluded (test_board.BoardTests.test_scores_without_provenance_are_excluded) ... ok
+test_stale_sample_cannot_hide_behind_fresh_sample (test_board.BoardTests.test_stale_sample_cannot_hide_behind_fresh_sample) ... ok
+test_stale_text_blocks_row (test_board.BoardTests.test_stale_text_blocks_row) ... ok
+test_two_runs_for_one_slot_need_a_manifest (test_board.BoardTests.test_two_runs_for_one_slot_need_a_manifest) ... ok
+test_exact_match_still_beats_substring_overlap (test_match.MatchTests.test_exact_match_still_beats_substring_overlap) ... ok
+test_extract_final_answer (test_match.MatchTests.test_extract_final_answer) ... ok
+test_justification_phrase_does_not_flip_a_correct_reply (test_match.MatchTests.test_justification_phrase_does_not_flip_a_correct_reply) ... ok
+test_matches_word_boundaries_and_reordering (test_match.MatchTests.test_matches_word_boundaries_and_reordering) ... ok
+test_mixed_replies_go_to_the_judge (test_match.MatchTests.test_mixed_replies_go_to_the_judge) ... ok
+test_single_list_matches_are_deterministic (test_match.MatchTests.test_single_list_matches_are_deterministic) ... ok
+test_version_marker (test_match.MatchTests.test_version_marker) ... ok
+test_budget_rejects_before_reservation_and_retains_unknown_usage (test_repair_workflow.RepairWorkflowTests.test_budget_rejects_before_reservation_and_retains_unknown_usage) ... ok
+test_eight_replacements_are_isolated_and_aliases_disjoint (test_repair_workflow.RepairWorkflowTests.test_eight_replacements_are_isolated_and_aliases_disjoint) ... ok
+test_label_provenance_is_not_claimed_as_human_agreement (test_repair_workflow.RepairWorkflowTests.test_label_provenance_is_not_claimed_as_human_agreement) ... ok
+test_only_dispatch_slots_reserve_budget (test_repair_workflow.RepairWorkflowTests.test_only_dispatch_slots_reserve_budget) ... call 0: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+test_cap_creates_separate_run_and_preserves_original (test_run.RunCapTests.test_cap_creates_separate_run_and_preserves_original) ... ok
+test_changed_settings_fail_before_mutation (test_run.RunCapTests.test_changed_settings_fail_before_mutation) ... ok
+test_invalid_cap_rejected_without_inference (test_run.RunCapTests.test_invalid_cap_rejected_without_inference) ... ok
+test_missing_config_rejected (test_run.RunCapTests.test_missing_config_rejected) ... ok
+test_scoring_with_capped_familiarity_directory (test_run.RunCapTests.test_scoring_with_capped_familiarity_directory) ... /mnt/data/projects/nullsilver/altered-riddles/altered_riddles/score.py:228: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpjmc2ecnp/runs/jalapeno_DeepSeek-V4-Flash-0731/original-thinkoff-k5-cap64/scored.json' mode='r' encoding='UTF-8'>
+test_empty_answers_abstain_without_judge_and_errors_stay_errors (test_score.ScoreTests.test_empty_answers_abstain_without_judge_and_errors_stay_errors) ... ok
+test_fallback_requires_terminal_standalone_answer (test_score.ScoreTests.test_fallback_requires_terminal_standalone_answer) ... ok
+test_truncated_reasoning_is_not_a_committed_answer (test_score.ScoreTests.test_truncated_reasoning_is_not_a_committed_answer) ... ok
+test_visible_answer_remains_scorable_even_at_token_cap (test_score.ScoreTests.test_visible_answer_remains_scorable_even_at_token_cap) ... ok
+test_cluster_is_resampled_as_a_whole (test_statistics.PairedComparisonTests.test_cluster_is_resampled_as_a_whole) ... ok
+test_identical_models_have_zero_difference_on_every_draw (test_statistics.PairedComparisonTests.test_identical_models_have_zero_difference_on_every_draw) ... ok
+test_no_overlap_and_invalid_draw_count (test_statistics.PairedComparisonTests.test_no_overlap_and_invalid_draw_count) ... ok
+test_only_shared_items_are_compared (test_statistics.PairedComparisonTests.test_only_shared_items_are_compared) ... ok
+test_reproducible_and_symmetric (test_statistics.PairedComparisonTests.test_reproducible_and_symmetric) ... ok
+Ran 50 tests in 0.682s
+OK
+
+Offline overlay construction: 15 decisions; zero inference API calls.
+Preservation verification: 780 unchanged old input files.
+Manifest verification: 205 source/derived file hashes match.
+CLI board reproduction: rows/comparisons/review_flags/excluded/run_manifest/n_boot/seed exactly match.
+git diff --check: passed.
+git diff --cached --name-only: empty.

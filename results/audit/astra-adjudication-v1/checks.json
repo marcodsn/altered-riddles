@@ -1,0 +1,24 @@
+{
+  "tests": {
+    "command": "PYTHON_DOTENV_DISABLED=1 .venv/bin/python -m unittest discover -s tests -v",
+    "result": "passed",
+    "tests": 50,
+    "new_tests": 6
+  },
+  "preservation": {
+    "files": 780,
+    "all_unchanged": true
+  },
+  "manifest_bindings_verified": 205,
+  "offline_cli_board_reproduction": {
+    "rows": 5,
+    "bootstrap_draws": 2000,
+    "seed": 0,
+    "rows_comparisons_flags_exclusions_exact_match": true
+  },
+  "git_diff_check": "passed",
+  "no_staged_files": true,
+  "inference_api_calls": 0,
+  "dotenv_reads_disabled": true,
+  "review_gate": "Parent reviewer acceptance required; this is implementation validation, not independent empirical validation."
+}

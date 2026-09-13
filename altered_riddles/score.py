@@ -26,6 +26,7 @@ import argparse
 import asyncio
 import hashlib
 import json
+import re
 import sys
 import time
 from collections import Counter, defaultdict
@@ -37,6 +38,7 @@ from altered_riddles.match import extract_final_answer, label as det_label, matc
 from altered_riddles.probe import parse_model_spec
 
 FAMILIAR_THRESHOLD = 0.8
+SCORER_VERSION = 2  # 1: implicit; 2: empty answers abstain, no truncated reasoning fallback
 JUDGE_LABELS = ("correct", "original", "other", "abstain")
 JUDGE_PROMPT = """You are grading a model's answer to a riddle or puzzle. Decide what the ANSWER expresses.
 
@@ -154,7 +156,7 @@ def scoring_provenance(items_path: Path, judge_spec: str | None) -> dict[str, An
     import altered_riddles.match as m
     return {
         "items_file": str(items_path), "items_sha256": hashlib.sha256(items_path.read_bytes()).hexdigest(),
-        "matcher_version": m.MATCHER_VERSION,
+        "matcher_version": m.MATCHER_VERSION, "scorer_version": SCORER_VERSION,
         "matcher_sha256": hashlib.sha256(Path(m.__file__).read_bytes()).hexdigest()[:16],
         "score_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()[:16],
         "judge": judge_spec, "judge_prompt_sha256": hashlib.sha256(JUDGE_PROMPT.encode()).hexdigest()[:16] if judge_spec else None,
@@ -174,9 +176,14 @@ def answer_text(rep: dict[str, Any]) -> str:
     text = (rep.get("text") or "").strip()
     if text:
         return text
+    # A token-cap stop in reasoning is unfinished deliberation, not a final answer.
+    if rep.get("finish_reason") == "length":
+        return ""
     tail = (rep.get("reasoning") or "")[-REASONING_TAIL:]
-    if "answer:" in tail.lower():
-        return extract_final_answer(tail)
+    lines = [line.strip() for line in tail.splitlines() if line.strip()]
+    # Require an explicit terminal answer line, not an inline quoted classic answer.
+    if lines and re.fullmatch(r"\**answer\**\s*[:\-–]\s*\S.*", lines[-1], re.IGNORECASE):
+        return extract_final_answer(lines[-1])
     return ""
 
 
@@ -193,9 +200,11 @@ def score_altered(run_dir: Path, items: dict[str, dict[str, Any]], judge_spec: s
                            "text_sha": r.get("text_sha")})
             continue
         final = extract_final_answer(answer_text(rep))
-        det = det_label(final, correct=[it["answer"], *it.get("aliases", [])], original=[it["original_answer"], *it.get("original_aliases", [])])
+        # An empty answer cannot solve the riddle. Do not ask a judge that may
+        # answer the riddle itself when there is no model answer to grade.
+        det = "abstain" if not final else det_label(final, correct=[it["answer"], *it.get("aliases", [])], original=[it["original_answer"], *it.get("original_aliases", [])])
         scored.append({"unit_id": r["unit_id"], "sample": r["sample"], "final": final, "det": det,
-                       "label": det if det in ("correct", "original") else "pending",
+                       "label": det if det in ("correct", "original", "abstain") else "pending",
                        "reasoning_tokens": rep.get("reasoning_tokens"), "finish_reason": rep.get("finish_reason"),
                        "text_sha": r.get("text_sha")})  # ties the scored row to the raw sample it came from
     pending = [s for s in scored if s["label"] == "pending"]
@@ -214,7 +223,7 @@ def score_altered(run_dir: Path, items: dict[str, dict[str, Any]], judge_spec: s
     # ------------------------------------------------------------ metrics
     familiar: dict[str, float] = {}
     fam_candidates = sorted(run_dir.parent.glob("original-think*-k*/scored.json"),
-                            key=lambda p: ("thinkoff" in p.parent.name, int(p.parent.name.rsplit("k", 1)[1])))
+                            key=lambda p: ("thinkoff" in p.parent.name, int(p.parent.name.split("-k", 1)[1].split("-", 1)[0])))
     if fam_candidates:
         familiar = json.load(fam_candidates[-1].open())["familiar"]
     counts = Counter(s["label"] for s in scored)
@@ -233,7 +242,7 @@ def score_altered(run_dir: Path, items: dict[str, dict[str, Any]], judge_spec: s
         return {"n": tot, **{k: round(c[k] / tot, 4) if tot else None for k in ("correct", "original", "other", "abstain", "pending")}}
 
     summary = {
-        "deterministic_resolved": round(sum(1 for s in scored if s["det"] in ("correct", "original")) / max(1, len(scored)), 4),
+        "deterministic_resolved": round(sum(1 for s in scored if s["det"] in ("correct", "original", "abstain")) / max(1, len(scored)), 4),
         "judge": judge_name, "judged_rows": len(pending) if judge_name else 0,
         "overall": rates(counts),
         "conditioned_on_familiar": {**rates(cond_counts), "familiar_sources_known": bool(familiar),

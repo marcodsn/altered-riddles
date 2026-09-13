@@ -35,8 +35,8 @@
   - brown, as stated
   why_original_fails: The text states the bear is brown; 'white' is the memorized polar-bear answer, contradicted
     by the text.
-  disposition: null
-  reason: ''
+  disposition: 'keep'
+  reason: 'While unrealistic, there is no rule that says a riddle has to be realistic. The answer is stated in the text and as so it is easily solvable by a human. why_original_fails is also sound.'
 - id: married-boat-1
   type: stated
   text_sha16: f384f6dc9c52e7c5
@@ -58,8 +58,8 @@
   - they're below deck
   why_original_fails: The text says everyone went below deck to shelter; 'everyone is married' is the
     pun the text no longer supports.
-  disposition: null
-  reason: ''
+  disposition: 'keep'
+  reason: 'This riddle is very easy to humans, a lot more than the original, yet LLMs may fail, so we shall keep it. why_original_fails is sound.'
 - id: yellow-hat-1
   type: question_swap
   text_sha16: 920f02264eb6facf
@@ -71,8 +71,8 @@
   - still yellow
   - yellow, and wet
   why_original_fails: The question asks for the color, which does not change; 'wet' answers what it becomes.
-  disposition: null
-  reason: ''
+  disposition: 'keep'
+  reason: 'The answer is one and obvious. why_original_fails is sound.'
 - id: mustard-family-3
   type: hard_constraint
   text_sha16: e6883c820029d047
@@ -96,8 +96,8 @@
     aliases:
     - '14'
     - fourteen people
-  disposition: null
-  reason: ''
+  disposition: 'r1'
+  reason: 'The original altered was quite ambiguous: each daughter has one brother of her own. R1 is more obvious but also more sound.'
 - id: months-28-days-1
   type: hard_constraint
   text_sha16: ed0af1d8d7d163a0
@@ -123,8 +123,8 @@
     - '1'
     - February
     - one month
-  disposition: null
-  reason: ''
+  disposition: 'r1'
+  reason: 'The count is zero in a leap year, so the accepted answer is not entailed without specifying a common year; R1 supplies that constraint.'
 - id: marys-father-1
   type: stated
   text_sha16: b6a62c174bb1b504
@@ -144,8 +144,8 @@
     answer: Nunu
     aliases:
     - Nunu
-  disposition: null
-  reason: ''
+  disposition: 'r1'
+  reason: 'The answer is obvious and sound.'
 - id: johnnys-mother-1
   type: stated
   text_sha16: f3e3ad36bb32e022
@@ -164,8 +164,8 @@
     answer: June
     aliases:
     - June
-  disposition: null
-  reason: ''
+  disposition: 'r1'
+  reason: 'Fine, but very easy, we may need to replace or revise it later on.'
 - id: hiccups-1
   type: trivialized
   text_sha16: 296cff28bea60bae
@@ -207,8 +207,8 @@
     - giving him water
     - the glass of water
     - the water
-  disposition: null
-  reason: ''
+  disposition: 'r1'
+  reason: 'The water could have relieved hiccups, leaving an alternative explanation for his thanks; R1 rules out hiccups and makes the reason explicit.'
 - id: parachute-1
   type: stated
   text_sha16: 9720345cafcab749
@@ -227,8 +227,8 @@
   - he ran out of water
   why_original_fails: The package is sandwiches, not a parachute, and the empty bottle in a desert points
     to dehydration.
-  disposition: null
-  reason: ''
+  disposition: 'other'
+  reason: 'Rewrite proposed: A man is found dead in a desert beside an unopened package of sandwiches. An autopsy establishes that he died of dehydration, not an injury. What killed him? Accepted answer: dehydration; retain the existing thirst-related aliases. The current clues only suggest dehydration and do not rule out a parachuting death.'
 - id: last-brick-2
   type: hard_constraint
   text_sha16: 9b0f065aaad542bb
@@ -253,8 +253,8 @@
     aliases:
     - '2'
     - two bricks
-  disposition: null
-  reason: ''
+  disposition: 'keep'
+  reason: 'Sounds fine, and why_original_fails sounds good too.'
 - id: rooster-egg-2
   type: trivialized
   text_sha16: 8930d2a316d2244e
@@ -274,5 +274,5 @@
   - it rolls down the roof
   why_original_fails: Hens lay eggs, so the joke premise is gone; the egg rolls down whichever way the
     roof slopes.
-  disposition: null
-  reason: ''
+  disposition: 'other'
+  reason: 'Rewrite proposed: A hen lays an egg on a sloping barn roof. The egg begins rolling freely under gravity, with nothing pushing it or blocking its path. Does it roll uphill or downhill? Accepted answer: downhill; aliases: down the slope, down the roof, down. The current text does not establish a sloping roof or that the egg rolls at all.'

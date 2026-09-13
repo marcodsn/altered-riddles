@@ -1,0 +1,85 @@
+{
+  "reviewer": "AI coding assistant; not an independent human review",
+  "candidate_sha256": "5aad7b8db362cab9a240c884b94f9cfdce375742597fe969db6a226ebed729f0",
+  "checks": [
+    "8 unique new IDs",
+    "known sources/types",
+    "required fields present",
+    "no normalized accepted/original alias overlap",
+    "replaces links retained"
+  ],
+  "items": [
+    {
+      "id": "mustard-family-3-r1",
+      "text_sha16": "f9e640ac8b418216",
+      "premises_consistent_under_ordinary_readings": true,
+      "accepted_answer_entailed_under_ordinary_readings": true,
+      "original_excluded_as_answer": true,
+      "reason": "Two parents plus twelve distinct children is fourteen, not nine. The sibling statements are consistent.",
+      "limitations": "Validity repair/Core control; no Hard-difficulty claim."
+    },
+    {
+      "id": "months-28-days-1-r1",
+      "text_sha16": "c952111e2937dfb8",
+      "premises_consistent_under_ordinary_readings": true,
+      "accepted_answer_entailed_under_ordinary_readings": true,
+      "original_excluded_as_answer": true,
+      "reason": "Exactly 28 excludes months with 30 or 31 days. In a stated common Gregorian year, February alone has 28.",
+      "limitations": "Validity repair/Core control; no Hard-difficulty claim."
+    },
+    {
+      "id": "marys-father-1-r1",
+      "text_sha16": "4eb4cbe7967b4884",
+      "premises_consistent_under_ordinary_readings": true,
+      "accepted_answer_entailed_under_ordinary_readings": true,
+      "original_excluded_as_answer": true,
+      "reason": "Mary is explicitly the oldest daughter; the youngest daughter's only given name is Nunu. Mary is not an uncounted sixth child or an alternative name.",
+      "limitations": "Validity repair/Core control; no Hard-difficulty claim."
+    },
+    {
+      "id": "johnnys-mother-1-r1",
+      "text_sha16": "410d7d4de4073576",
+      "premises_consistent_under_ordinary_readings": true,
+      "accepted_answer_entailed_under_ordinary_readings": true,
+      "original_excluded_as_answer": true,
+      "reason": "Johnny is explicitly the second child. The third child's only given name is June; no contradictory fourth child is implied.",
+      "limitations": "Validity repair/Core control; no Hard-difficulty claim."
+    },
+    {
+      "id": "hiccups-1-r1",
+      "text_sha16": "ca06043431c57ac4",
+      "premises_consistent_under_ordinary_readings": true,
+      "accepted_answer_entailed_under_ordinary_readings": true,
+      "original_excluded_as_answer": true,
+      "reason": "The question asks for the explicitly stated reason, which is receiving water. Hiccups are explicitly absent.",
+      "limitations": "Validity repair/Core control; no Hard-difficulty claim."
+    },
+    {
+      "id": "parachute-1-r1",
+      "text_sha16": "d3d0efd5e7e4cf15",
+      "premises_consistent_under_ordinary_readings": true,
+      "accepted_answer_entailed_under_ordinary_readings": true,
+      "original_excluded_as_answer": true,
+      "reason": "The autopsy explicitly establishes dehydration, not injury, as the cause of death. A failed parachute is not the stated cause.",
+      "limitations": "Explicit cause-of-death statement relies on the stated autopsy finding."
+    },
+    {
+      "id": "rooster-egg-2-r1",
+      "text_sha16": "3065009cc29cbf1c",
+      "premises_consistent_under_ordinary_readings": true,
+      "accepted_answer_entailed_under_ordinary_readings": true,
+      "original_excluded_as_answer": true,
+      "reason": "The egg is laid by a hen, and the question asks the direction of its free rolling under gravity. Roosters not laying eggs does not answer that question.",
+      "limitations": "Gravity-driven rolling assumes an ordinary roof and no initial uphill impulse; direction choice is explicit."
+    },
+    {
+      "id": "cat-fur-1-r1",
+      "text_sha16": "d46a9e3d68c80e8a",
+      "premises_consistent_under_ordinary_readings": true,
+      "accepted_answer_entailed_under_ordinary_readings": true,
+      "original_excluded_as_answer": true,
+      "reason": "The question explicitly restricts the comparison to left or right; the outside is not one of those alternatives. The unshaved right side has more fur.",
+      "limitations": "Validity repair/Core control; no Hard-difficulty claim."
+    }
+  ]
+}

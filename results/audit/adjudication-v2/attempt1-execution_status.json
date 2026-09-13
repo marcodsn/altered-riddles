@@ -1,0 +1,6 @@
+{
+  "phase": "gate",
+  "status": "blocked",
+  "at": "2026-09-09T08:54:30.851660+00:00",
+  "error": "RuntimeError: Budget blocked before dispatch: used/reserved=0.984225, next ceiling=0.048673"
+}

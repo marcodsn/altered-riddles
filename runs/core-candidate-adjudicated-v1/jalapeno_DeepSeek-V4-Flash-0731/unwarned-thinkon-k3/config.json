@@ -1,0 +1,28 @@
+{
+  "provider": "jalapeno",
+  "model": "DeepSeek-V4-Flash-0731",
+  "condition": "unwarned",
+  "thinking": "on",
+  "thinking_request_params": {
+    "reasoning": {
+      "enabled": true
+    }
+  },
+  "familiarity_mode": null,
+  "samples": 3,
+  "temperature": null,
+  "max_tokens": 16000,
+  "prompt": "{text}\n\nReply with a single line of the form:\nAnswer: <your answer in a few words>",
+  "items_file": "results/audit/adjudication-v2/core.candidate.jsonl",
+  "items_sha256": "1aa1567a06c507ba40a71df54cd7530a249a5106dbb96898a5a5493d085d9a28",
+  "n_units": 264,
+  "passed_only": true,
+  "git_commit": "2af688756dc00e0cdc7ed6d8373bd2637e42cec8",
+  "started_at": "2026-09-09T10:12:44Z",
+  "derived_run": true,
+  "derivation_note": "started_at is composition time, not a claim that old replies were generated anew; consult lineage.json for original timestamps.",
+  "raw_lineage": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3/lineage.json",
+  "score_only_derivative": true,
+  "raw_source_dir": "runs/core-candidate-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+  "raw_source_sha256": "b3a32b3799ba229e691c64c027a44bcfcd26ca7794d959ba2ef3ae8158340c60"
+}

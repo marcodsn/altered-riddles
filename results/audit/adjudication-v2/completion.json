@@ -1,0 +1,25 @@
+{
+  "completed_at": "2026-09-09T10:27:18.174602+00:00",
+  "steps_1_to_4": "complete",
+  "repairs": 8,
+  "successful_gate_probe_calls": 64,
+  "fresh_evaluation_responses": 488,
+  "fresh_run_configurations": 13,
+  "successful_judge_calls": 34,
+  "fresh_api_errors": 0,
+  "fresh_truncations": 14,
+  "scorer_repair_api_calls": 0,
+  "scorer_version": 2,
+  "matcher_version": 2,
+  "historical_files_verified_unchanged": 84,
+  "tests_passed": 39,
+  "git_diff_check": "pass",
+  "conservative_budget_usd": 0.565084178,
+  "current_board": "results/audit/adjudication-v2/core-board-scorer-v2/LEADERBOARD.md",
+  "release_ready": false,
+  "remaining": [
+    "13 mixed-provenance label-audit disagreements",
+    "token-cap sensitivity",
+    "comparison policy and final freeze/release checks"
+  ]
+}

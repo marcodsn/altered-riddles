@@ -1,0 +1,18 @@
+{
+ "provider": "jalapeno",
+ "model": "GLM-5.3-Flash",
+ "condition": "original",
+ "thinking": "on",
+ "thinking_request_params": {},
+ "familiarity_mode": "thinking",
+ "samples": 5,
+ "temperature": null,
+ "max_tokens": 4000,
+ "prompt": "Solve this riddle. Reply with only the answer, in a few words, and nothing else.\n\n{text}",
+ "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+ "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+ "n_units": 8,
+ "passed_only": true,
+ "git_commit": "2af688756dc00e0cdc7ed6d8373bd2637e42cec8",
+ "started_at": "2026-09-09T09:44:26Z"
+}

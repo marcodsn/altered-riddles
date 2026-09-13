@@ -1,0 +1,11 @@
+{
+  "type": "AI adjudication overlay",
+  "runtime_model": "openai-codex/gpt-6-astra",
+  "notice": "AI adjudication, not human review or independent empirical validation; selected cases, not a representative judge-accuracy audit.",
+  "decisions_file": "results/audit/astra-adjudication-v1/decisions.json",
+  "decisions_sha256": "374a88b51a2be5520349108a9e479dfb0a19cbf2802ab62df87794b7751b2b94",
+  "case_ids": [],
+  "inference_calls": 0,
+  "base_run": "runs/core-candidate-scored-v2/jalapeno_GLM-5.3-Flash/original-thinkon-k5",
+  "base_raw_sha256": "b66f76353b70064d1c35a5931b7f691d00c6028fedc838c9134055f795aa574c"
+}

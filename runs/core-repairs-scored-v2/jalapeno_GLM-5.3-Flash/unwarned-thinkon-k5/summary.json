@@ -1,0 +1,18 @@
+{
+ "config": "unwarned-thinkon-k5",
+ "n_expected": 40,
+ "n_rows": 40,
+ "errors": 0,
+ "error_rate": 0.0,
+ "median_reasoning_tokens": 169.5,
+ "mean_reasoning_tokens": 284.6,
+ "mean_completion_tokens": 294.5,
+ "reasoning_leak_rate": 1.0,
+ "truncated": 0,
+ "total_prompt_tokens": 2830,
+ "total_completion_tokens": 11779,
+ "elapsed_s_this_invocation": 112.3,
+ "guardrail": "PASS",
+ "guardrail_reasons": [],
+ "finished_at": "2026-09-09T09:47:35Z"
+}

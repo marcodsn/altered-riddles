@@ -1,0 +1,82 @@
+items=8 models=4 calls=64 todo=64
+call 32: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 33: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+call 36: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 35: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 37: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+call 34: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 40: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 41: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+call 38: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 42: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 44: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 39: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 43: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 45: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+call 48: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 47: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 49: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+call 50: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 52: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 46: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 53: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+call 54: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 56: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 57: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+call 58: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 51: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 60: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 31: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 61: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+call 62: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 64: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 65: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+call 66: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 67: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 68: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 59: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 69: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+call 70: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 72: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 73: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+call 74: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 63: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 71: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 76: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 77: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+call 75: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 79: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 80: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 82: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 81: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+  gate calls 50/64
+call 78: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 84: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 85: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+call 55: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 86: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 88: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 89: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+call 87: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 92: jalapeno:GLM-5.3-Flash usage_estimated error=False
+call 90: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 93: jalapeno:Qwen3-Next-80B-A3B-Thinking usage_estimated error=False
+call 94: jalapeno:Qwen3.5-35B-A3B usage_estimated error=False
+call 91: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+call 83: jalapeno:DeepSeek-V4-Flash-0731 usage_estimated error=False
+done in 911s
+
+items=8 passed=8 failed=0 (rule: >= 3 of 4 correct when warned AND >= 3 of 4 call the original invalid)
+  stated             3/3
+  hard_constraint    3/3
+  trivialized        2/2
+
+per model (warned, thinking on):
+  jalapeno:DeepSeek-V4-Flash-0731               correct=8 original=0 both=0 unmatched=0 error=0 no_thinking=0
+  jalapeno:GLM-5.3-Flash                        correct=8 original=0 both=0 unmatched=0 error=0 no_thinking=0
+  jalapeno:Qwen3-Next-80B-A3B-Thinking          correct=8 original=0 both=0 unmatched=0 error=0 no_thinking=0
+  jalapeno:Qwen3.5-35B-A3B                      correct=8 original=0 both=0 unmatched=0 error=0 no_thinking=0
+
+invalidation probe: verdicts {'invalid': 32}; items where the ORIGINAL is still valid per < 3 of 4 models: 0 of 8
+
+wrote results/audit/adjudication-v2/repairs.gated.jsonl

@@ -1,0 +1,387 @@
+{
+  "notice": "Selected disputed/pending cases, not a representative accuracy audit. Prior labels withheld; supplied rubric and answers are ground truth candidates subject to explicit validity flags.",
+  "cases": [
+    {
+      "case_id": "historical-1",
+      "item": {
+        "id": "surgeon-3",
+        "source": "surgeon",
+        "type": "stated",
+        "family": "riddle",
+        "text": "A father and his son are in a car accident. The father dies at the scene and the son is rushed to the hospital. At the hospital the surgeon, who is the boy's uncle, says, \"I cannot operate on this boy, he is my nephew.\" Who is the surgeon to the boy?",
+        "answer": "his uncle",
+        "aliases": [
+          "uncle",
+          "the boy's uncle",
+          "the uncle"
+        ],
+        "original_answer": "the surgeon is the boy's mother",
+        "original_aliases": [
+          "mother",
+          "his mother",
+          "the boy's mother",
+          "the surgeon is his mother",
+          "the doctor is his mother",
+          "she is his mother"
+        ],
+        "why_original_fails": "The text states the surgeon is the boy's uncle and calls him 'my nephew'."
+      },
+      "final_answer_to_grade": "His mother (the boy’s other uncle’s spouse)."
+    },
+    {
+      "case_id": "historical-7",
+      "item": {
+        "id": "subtract-five-2",
+        "source": "subtract-five",
+        "type": "hard_constraint",
+        "family": "puzzle",
+        "text": "How many times can you subtract 5 from 25 until nothing is left?",
+        "answer": "five",
+        "aliases": [
+          "five",
+          "5",
+          "five times",
+          "5 times"
+        ],
+        "original_answer": "once",
+        "original_aliases": [
+          "one",
+          "1",
+          "one time",
+          "only once"
+        ],
+        "why_original_fails": "'Until nothing is left' asks for the count of subtractions 25 → 20 → 15 → 10 → 5 → 0, which is five; 'once' is the joke about 25 no longer being 25."
+      },
+      "final_answer_to_grade": "Once (after subtracting 5 once, 20 remains, so you can subtract repeatedly, but the question asks \"until nothing is left\" after the first subtraction, 25-5=20, so you subtract once and have 20, not nothing; but if you mean subtracting 5 repeatedly, you can subtract 5 five times until zero. The trick answer is \"once\" because after that you're subtracting from 20, not 25. So the classic answer is: once.)"
+    },
+    {
+      "case_id": "historical-10",
+      "item": {
+        "id": "one-story-house-3",
+        "source": "one-story-house",
+        "type": "stated",
+        "family": "puzzle",
+        "text": "There is a one-story house in which everything is yellow. The walls are yellow, the doors are yellow, the furniture is yellow, and the stairs down to the basement are yellow. What color are the stairs?",
+        "answer": "yellow",
+        "aliases": [
+          "yellow"
+        ],
+        "original_answer": "there are no stairs, it is a one-story house",
+        "original_aliases": [
+          "there are no stairs",
+          "no stairs",
+          "it has no stairs"
+        ],
+        "why_original_fails": "The text states there are stairs to the basement and that they are yellow; 'there are no stairs' contradicts the text."
+      },
+      "final_answer_to_grade": "Yellow (but it’s a one-story house, so there are no stairs down to a basement—the premise is impossible)."
+    },
+    {
+      "case_id": "historical-17",
+      "item": {
+        "id": "electric-train-1",
+        "source": "electric-train",
+        "type": "trivialized",
+        "family": "puzzle",
+        "text": "A steam train is travelling north at 100 miles per hour. The wind is blowing from the east. Which way does the smoke blow?",
+        "answer": "west",
+        "aliases": [
+          "to the west",
+          "westward",
+          "towards the west",
+          "south-west",
+          "southwest",
+          "west and behind the train"
+        ],
+        "original_answer": "electric trains don't produce smoke",
+        "original_aliases": [
+          "there is no smoke",
+          "no smoke",
+          "electric trains have no smoke",
+          "nowhere"
+        ],
+        "why_original_fails": "A steam train does produce smoke; wind from the east carries it toward the west."
+      },
+      "final_answer_to_grade": "The smoke blows west, but there is no smoke because it's a steam train."
+    },
+    {
+      "case_id": "historical-18",
+      "item": {
+        "id": "one-story-house-1",
+        "source": "one-story-house",
+        "type": "trivialized",
+        "family": "puzzle",
+        "text": "There is a two-story house in which everything is yellow. The walls are yellow, the doors are yellow, the furniture is yellow. What color are the stairs?",
+        "answer": "yellow",
+        "aliases": [],
+        "original_answer": "there are no stairs, it is a one-story house",
+        "original_aliases": [
+          "there are no stairs",
+          "no stairs",
+          "it has no stairs"
+        ],
+        "why_original_fails": "A two-story house has stairs, and everything in it is yellow."
+      },
+      "final_answer_to_grade": "There are no stairs, it's a two-story house with everything yellow, so the stairs would be yellow too."
+    },
+    {
+      "case_id": "historical-19",
+      "item": {
+        "id": "one-story-house-1",
+        "source": "one-story-house",
+        "type": "trivialized",
+        "family": "puzzle",
+        "text": "There is a two-story house in which everything is yellow. The walls are yellow, the doors are yellow, the furniture is yellow. What color are the stairs?",
+        "answer": "yellow",
+        "aliases": [],
+        "original_answer": "there are no stairs, it is a one-story house",
+        "original_aliases": [
+          "there are no stairs",
+          "no stairs",
+          "it has no stairs"
+        ],
+        "why_original_fails": "A two-story house has stairs, and everything in it is yellow."
+      },
+      "final_answer_to_grade": "There are no stairs; it's a two-story house, but the question is a trick—if everything is yellow, the stairs would also be yellow."
+    },
+    {
+      "case_id": "historical-20",
+      "item": {
+        "id": "garbage-truck-1",
+        "source": "garbage-truck",
+        "type": "negated_premise",
+        "family": "riddle",
+        "text": "What has wheels and flies, is an aircraft, and takes off from a runway?",
+        "answer": "an airplane",
+        "aliases": [
+          "airplane",
+          "an airplane",
+          "a plane",
+          "plane",
+          "an aeroplane",
+          "aeroplane",
+          "an aircraft",
+          "aircraft",
+          "a jet",
+          "jet"
+        ],
+        "original_answer": "a garbage truck",
+        "original_aliases": [
+          "garbage truck",
+          "a trash truck"
+        ],
+        "why_original_fails": "The original excludes aircraft; this text says it is an aircraft that takes off from a runway, so it is an airplane, not a garbage truck."
+      },
+      "final_answer_to_grade": "A garbage truck (or a plane that carries waste)"
+    },
+    {
+      "case_id": "historical-24",
+      "item": {
+        "id": "electric-train-1",
+        "source": "electric-train",
+        "type": "trivialized",
+        "family": "puzzle",
+        "text": "A steam train is travelling north at 100 miles per hour. The wind is blowing from the east. Which way does the smoke blow?",
+        "answer": "west",
+        "aliases": [
+          "to the west",
+          "westward",
+          "towards the west",
+          "south-west",
+          "southwest",
+          "west and behind the train"
+        ],
+        "original_answer": "electric trains don't produce smoke",
+        "original_aliases": [
+          "there is no smoke",
+          "no smoke",
+          "electric trains have no smoke",
+          "nowhere"
+        ],
+        "why_original_fails": "A steam train does produce smoke; wind from the east carries it toward the west."
+      },
+      "final_answer_to_grade": "There is no smoke — it's a steam train, but steam, not smoke, and the steam blows west."
+    },
+    {
+      "case_id": "historical-25",
+      "item": {
+        "id": "one-story-house-1",
+        "source": "one-story-house",
+        "type": "trivialized",
+        "family": "puzzle",
+        "text": "There is a two-story house in which everything is yellow. The walls are yellow, the doors are yellow, the furniture is yellow. What color are the stairs?",
+        "answer": "yellow",
+        "aliases": [],
+        "original_answer": "there are no stairs, it is a one-story house",
+        "original_aliases": [
+          "there are no stairs",
+          "no stairs",
+          "it has no stairs"
+        ],
+        "why_original_fails": "A two-story house has stairs, and everything in it is yellow."
+      },
+      "final_answer_to_grade": "There are no stairs — it's a two-story house, but not necessarily with stairs; also, everything is yellow, so if stairs existed, they'd be yellow."
+    },
+    {
+      "case_id": "historical-32",
+      "item": {
+        "id": "stick-2",
+        "source": "stick",
+        "type": "question_swap",
+        "family": "riddle",
+        "text": "A stick is brown and sticky. What is white and sticky, and comes in a bottle for gluing paper?",
+        "answer": "glue",
+        "aliases": [
+          "glue",
+          "white glue",
+          "paper glue",
+          "PVA glue",
+          "PVA",
+          "school glue",
+          "craft glue"
+        ],
+        "original_answer": "a stick",
+        "original_aliases": [
+          "stick"
+        ],
+        "why_original_fails": "The question asks for the white sticky thing in a bottle for paper: glue; the stick is only mentioned."
+      },
+      "final_answer_to_grade": "A brown stick is brown and sticky; a white stick is white and sticky, and comes in a bottle for gluing paper (glue stick)."
+    },
+    {
+      "case_id": "historical-33",
+      "item": {
+        "id": "lunch-dinner-2",
+        "source": "lunch-dinner",
+        "type": "question_swap",
+        "family": "riddle",
+        "text": "You can never eat lunch or dinner for breakfast. Which of the three meals do you eat in the morning?",
+        "answer": "breakfast",
+        "aliases": [
+          "breakfast"
+        ],
+        "original_answer": "lunch and dinner",
+        "original_aliases": [
+          "lunch or dinner",
+          "dinner and lunch",
+          "lunch and supper",
+          "supper and lunch"
+        ],
+        "why_original_fails": "The question asks for the morning meal; 'lunch and dinner' are the meals that are not it."
+      },
+      "final_answer_to_grade": "none (you can never eat lunch or dinner for breakfast, so breakfast is the only morning meal, but the wording implies a trick—you eat breakfast in the morning)."
+    },
+    {
+      "case_id": "historical-34",
+      "item": {
+        "id": "lunch-dinner-2",
+        "source": "lunch-dinner",
+        "type": "question_swap",
+        "family": "riddle",
+        "text": "You can never eat lunch or dinner for breakfast. Which of the three meals do you eat in the morning?",
+        "answer": "breakfast",
+        "aliases": [
+          "breakfast"
+        ],
+        "original_answer": "lunch and dinner",
+        "original_aliases": [
+          "lunch or dinner",
+          "dinner and lunch",
+          "lunch and supper",
+          "supper and lunch"
+        ],
+        "why_original_fails": "The question asks for the morning meal; 'lunch and dinner' are the meals that are not it."
+      },
+      "final_answer_to_grade": "none (you can never eat lunch or dinner for breakfast, and breakfast is the morning meal)"
+    },
+    {
+      "case_id": "historical-41",
+      "item": {
+        "id": "your-word-1",
+        "source": "your-word",
+        "type": "hard_constraint",
+        "family": "riddle",
+        "text": "What can you keep after giving it to someone, and it makes both of you sneeze and cough for a week?",
+        "answer": "a cold",
+        "aliases": [
+          "cold",
+          "a cold",
+          "the common cold",
+          "a virus",
+          "the flu",
+          "flu",
+          "a cold virus"
+        ],
+        "original_answer": "your word",
+        "original_aliases": [
+          "a promise",
+          "promise"
+        ],
+        "why_original_fails": "Your word does not make anyone sneeze; a cold is kept after being passed on and makes both people sneeze and cough for a week (pepper does not last a week)."
+      },
+      "final_answer_to_grade": "your word (a cold)"
+    },
+    {
+      "case_id": "cap-unwarned-thinkon-k5-cap64000-3",
+      "item": {
+        "id": "parachute-1-r1",
+        "source": "parachute",
+        "type": "stated",
+        "family": "puzzle",
+        "text": "A man is found dead in a desert beside an unopened package of sandwiches. An autopsy establishes that he died of dehydration, not an injury. What killed him?",
+        "answer": "dehydration",
+        "aliases": [
+          "dehydration",
+          "thirst",
+          "lack of water",
+          "he died of thirst",
+          "he died of dehydration",
+          "no water",
+          "he ran out of water"
+        ],
+        "original_answer": "his parachute didn't open",
+        "original_aliases": [
+          "parachute",
+          "the package was his parachute",
+          "his parachute failed to open",
+          "parachute failure",
+          "his parachute did not open",
+          "skydiving accident"
+        ],
+        "why_original_fails": "The autopsy explicitly establishes dehydration, not injury, as the cause of death. A failed parachute is not the stated cause."
+      },
+      "final_answer_to_grade": "He didn't open the sandwiches"
+    },
+    {
+      "case_id": "cap-warned-thinkon-k5-cap64000-1",
+      "item": {
+        "id": "parachute-1-r1",
+        "source": "parachute",
+        "type": "stated",
+        "family": "puzzle",
+        "text": "A man is found dead in a desert beside an unopened package of sandwiches. An autopsy establishes that he died of dehydration, not an injury. What killed him?",
+        "answer": "dehydration",
+        "aliases": [
+          "dehydration",
+          "thirst",
+          "lack of water",
+          "he died of thirst",
+          "he died of dehydration",
+          "no water",
+          "he ran out of water"
+        ],
+        "original_answer": "his parachute didn't open",
+        "original_aliases": [
+          "parachute",
+          "the package was his parachute",
+          "his parachute failed to open",
+          "parachute failure",
+          "his parachute did not open",
+          "skydiving accident"
+        ],
+        "why_original_fails": "The autopsy explicitly establishes dehydration, not injury, as the cause of death. A failed parachute is not the stated cause."
+      },
+      "final_answer_to_grade": "Nothing, they are not alive."
+    }
+  ]
+}

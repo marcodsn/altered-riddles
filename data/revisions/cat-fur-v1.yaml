@@ -1,0 +1,12 @@
+# AI-authored rewrite approved by owner in chat; not active benchmark data.
+- id: cat-fur-1-r1
+  replaces: cat-fur-1
+  source: cat-fur
+  status: draft_pending_validation
+  human_review: owner_approved_rewrite_in_chat
+  text: "A cat's left side has been shaved for surgery and its right side has not. Which side, left or right, has more fur?"
+  answer: "the right side"
+  aliases: ["right", "the right", "its right side", "the right side", "the unshaved side", "the unshaved right side", "right side"]
+  original_answer: "the outside"
+  why_original_fails: "The question explicitly restricts the comparison to left or right; the outside is not one of those alternatives. The unshaved right side has more fur."
+  tradeoff: "Makes the comparison explicit; requires fresh validation and model runs, with no scores transferred from cat-fur-1."

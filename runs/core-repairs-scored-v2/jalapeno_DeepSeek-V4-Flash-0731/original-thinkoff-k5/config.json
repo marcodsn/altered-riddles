@@ -1,0 +1,25 @@
+{
+  "provider": "jalapeno",
+  "model": "DeepSeek-V4-Flash-0731",
+  "condition": "original",
+  "thinking": "off",
+  "thinking_request_params": {
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "familiarity_mode": "direct",
+  "samples": 5,
+  "temperature": null,
+  "max_tokens": 16,
+  "prompt": "Solve this riddle. Reply with only the answer, in a few words, and nothing else.\n\n{text}",
+  "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "n_units": 8,
+  "passed_only": true,
+  "git_commit": "2af688756dc00e0cdc7ed6d8373bd2637e42cec8",
+  "started_at": "2026-09-09T09:13:06Z",
+  "score_only_derivative": true,
+  "raw_source_dir": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/original-thinkoff-k5",
+  "raw_source_sha256": "f8e5c756e0de74829fb942605ff92e4eca2f8d0d9ba3a4dfed5c390980704a3f"
+}

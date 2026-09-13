@@ -1,0 +1,25 @@
+{
+  "provider": "jalapeno",
+  "model": "DeepSeek-V4-Flash-0731",
+  "condition": "warned",
+  "thinking": "on",
+  "thinking_request_params": {
+    "reasoning": {
+      "enabled": true
+    }
+  },
+  "familiarity_mode": null,
+  "samples": 3,
+  "temperature": null,
+  "max_tokens": 16000,
+  "prompt": "This is a modified version of a well-known riddle or puzzle. The usual answer may be wrong here. Read every word and answer the question exactly as written.\n\n{text}\n\nReply with a single line of the form:\nAnswer: <your answer in a few words>",
+  "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+  "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+  "n_units": 8,
+  "passed_only": true,
+  "git_commit": "2af688756dc00e0cdc7ed6d8373bd2637e42cec8",
+  "started_at": "2026-09-09T09:27:15Z",
+  "score_only_derivative": true,
+  "raw_source_dir": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+  "raw_source_sha256": "7f0f7e2d13139e9c8c7a89ed9ecdcfda2d1d48959a1cdc71ddf486db1c56b94b"
+}

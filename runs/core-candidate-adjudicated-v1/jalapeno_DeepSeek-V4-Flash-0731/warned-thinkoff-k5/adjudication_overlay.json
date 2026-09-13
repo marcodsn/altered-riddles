@@ -1,0 +1,17 @@
+{
+  "type": "AI adjudication overlay",
+  "runtime_model": "openai-codex/gpt-6-astra",
+  "notice": "AI adjudication, not human review or independent empirical validation; selected cases, not a representative judge-accuracy audit.",
+  "decisions_file": "results/audit/astra-adjudication-v1/decisions.json",
+  "decisions_sha256": "374a88b51a2be5520349108a9e479dfb0a19cbf2802ab62df87794b7751b2b94",
+  "case_ids": [
+    "historical-24",
+    "historical-25",
+    "historical-32",
+    "historical-33",
+    "historical-34"
+  ],
+  "inference_calls": 0,
+  "base_run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+  "base_raw_sha256": "aa58920eec34595e31a5f189879304e854fc61141f40a7c5c9661acd4383b668"
+}

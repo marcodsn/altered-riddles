@@ -1,0 +1,20 @@
+{
+  "preserved_input_files": 780,
+  "all_preserved_hashes_match": true,
+  "inference_calls": 0,
+  "runtime_model": "openai-codex/gpt-6-astra",
+  "case_count": 15,
+  "current_candidate_cases": 13,
+  "historical_only_cases": 0,
+  "cap_cases": 2,
+  "board_rows": 5,
+  "excluded": [],
+  "board_checks": {
+    "jalapeno:DeepSeek-V4-Flash-0731|on": [],
+    "jalapeno:GLM-5.3-Flash|on": [],
+    "nous:meituan/longcat-2.0:free|on": [],
+    "nous:meituan/longcat-2.0:free|off": [],
+    "jalapeno:DeepSeek-V4-Flash-0731|off": []
+  },
+  "script_sha256": "64a5fa9edc9b939d0c581d34316792adcb84811e9a9d7125c3fe323e4ecfbb62"
+}

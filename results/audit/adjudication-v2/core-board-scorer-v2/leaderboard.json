@@ -1,0 +1,363 @@
+{
+  "generated_at": "2026-09-09T10:21:52Z",
+  "n_boot": 2000,
+  "seed": 0,
+  "run_manifest": [
+    "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/original-thinkoff-k5",
+    "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+    "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+    "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+    "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+    "runs/core-candidate-scored-v2/jalapeno_GLM-5.3-Flash/original-thinkon-k5",
+    "runs/core-candidate-scored-v2/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5",
+    "runs/core-candidate-scored-v2/jalapeno_GLM-5.3-Flash/warned-thinkon-k5",
+    "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/original-thinkoff-k5",
+    "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+    "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+    "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkoff-k5",
+    "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5"
+  ],
+  "familiar_threshold": 0.8,
+  "rows": [
+    {
+      "checks": [],
+      "truncated_rate": 0.0013,
+      "dodge_rate": 0.0189,
+      "familiar_share": 0.94,
+      "drift": {
+        "stale": 0,
+        "missing": 0,
+        "unhashed": 0
+      },
+      "id": "jalapeno:DeepSeek-V4-Flash-0731|on",
+      "model": "jalapeno:DeepSeek-V4-Flash-0731",
+      "thinking": "on",
+      "n_items": 264,
+      "n_answers": 792,
+      "familiar_sources": 187,
+      "n_conditioned": 747,
+      "alt_acc": 0.9671717171717171,
+      "cor": 0.014725568942436412,
+      "cor_ci95": [
+        0.004081632653061225,
+        0.027237354085603113
+      ],
+      "original_rate": 0.013888888888888888,
+      "other_rate": 0.016414141414141416,
+      "abstain_rate": 0.0025252525252525255,
+      "pending": 0,
+      "warned_acc": 0.8939393939393939,
+      "override_gap": -0.0732323232323232,
+      "median_reasoning_tokens": 133.5,
+      "familiarity_mode": "direct",
+      "samples": 3,
+      "error_rate": 0.0,
+      "run_dir": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+      "point_rank": 1,
+      "thinking_gap": 0.10977242302543506
+    },
+    {
+      "checks": [],
+      "truncated_rate": 0.0,
+      "dodge_rate": 0.0083,
+      "familiar_share": 0.99,
+      "drift": {
+        "stale": 0,
+        "missing": 0,
+        "unhashed": 0
+      },
+      "id": "jalapeno:GLM-5.3-Flash|on",
+      "model": "jalapeno:GLM-5.3-Flash",
+      "thinking": "on",
+      "n_items": 264,
+      "n_answers": 1320,
+      "familiar_sources": 197,
+      "n_conditioned": 1310,
+      "alt_acc": 0.9696969696969697,
+      "cor": 0.022137404580152672,
+      "cor_ci95": [
+        0.010687022900763359,
+        0.0375
+      ],
+      "original_rate": 0.02196969696969697,
+      "other_rate": 0.008333333333333333,
+      "abstain_rate": 0.0,
+      "pending": 0,
+      "warned_acc": 0.9878787878787879,
+      "override_gap": 0.018181818181818188,
+      "median_reasoning_tokens": 100.0,
+      "familiarity_mode": "thinking",
+      "samples": 5,
+      "error_rate": 0.0,
+      "run_dir": "runs/core-candidate-scored-v2/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5",
+      "point_rank": 2
+    },
+    {
+      "checks": [],
+      "truncated_rate": 0.0023,
+      "dodge_rate": 0.0197,
+      "familiar_share": 0.97,
+      "drift": {
+        "stale": 0,
+        "missing": 0,
+        "unhashed": 0
+      },
+      "id": "nous:meituan/longcat-2.0:free|on",
+      "model": "nous:meituan/longcat-2.0:free",
+      "thinking": "on",
+      "n_items": 264,
+      "n_answers": 1320,
+      "familiar_sources": 193,
+      "n_conditioned": 1290,
+      "alt_acc": 0.9537878787878787,
+      "cor": 0.027131782945736434,
+      "cor_ci95": [
+        0.013278008298755186,
+        0.043410852713178294
+      ],
+      "original_rate": 0.026515151515151516,
+      "other_rate": 0.017424242424242425,
+      "abstain_rate": 0.0022727272727272726,
+      "pending": 0,
+      "warned_acc": 0.8325757575757575,
+      "override_gap": -0.12121212121212122,
+      "median_reasoning_tokens": 133.0,
+      "familiarity_mode": "direct",
+      "samples": 5,
+      "error_rate": 0.0,
+      "run_dir": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+      "point_rank": 3,
+      "thinking_gap": 0.08682170542635659
+    },
+    {
+      "checks": [],
+      "truncated_rate": 0.0023,
+      "dodge_rate": 0.0515,
+      "familiar_share": 0.97,
+      "drift": {
+        "stale": 0,
+        "missing": 0,
+        "unhashed": 0
+      },
+      "id": "nous:meituan/longcat-2.0:free|off",
+      "model": "nous:meituan/longcat-2.0:free",
+      "thinking": "off",
+      "n_items": 264,
+      "n_answers": 1320,
+      "familiar_sources": 193,
+      "n_conditioned": 1290,
+      "alt_acc": 0.8371212121212122,
+      "cor": 0.11395348837209303,
+      "cor_ci95": [
+        0.07630522088353414,
+        0.14958677685950414
+      ],
+      "original_rate": 0.11136363636363636,
+      "other_rate": 0.051515151515151514,
+      "abstain_rate": 0.0,
+      "pending": 0,
+      "warned_acc": 0.7628787878787879,
+      "override_gap": -0.07424242424242422,
+      "median_reasoning_tokens": 0.0,
+      "familiarity_mode": "direct",
+      "samples": 5,
+      "error_rate": 0.0,
+      "run_dir": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+      "point_rank": 4,
+      "thinking_gap": 0.08682170542635659
+    },
+    {
+      "checks": [],
+      "truncated_rate": 0.0076,
+      "dodge_rate": 0.0705,
+      "familiar_share": 0.94,
+      "drift": {
+        "stale": 0,
+        "missing": 0,
+        "unhashed": 0
+      },
+      "id": "jalapeno:DeepSeek-V4-Flash-0731|off",
+      "model": "jalapeno:DeepSeek-V4-Flash-0731",
+      "thinking": "off",
+      "n_items": 264,
+      "n_answers": 1320,
+      "familiar_sources": 187,
+      "n_conditioned": 1245,
+      "alt_acc": 0.8121212121212121,
+      "cor": 0.12449799196787148,
+      "cor_ci95": [
+        0.08470588235294117,
+        0.1664
+      ],
+      "original_rate": 0.11742424242424243,
+      "other_rate": 0.07045454545454545,
+      "abstain_rate": 0.0,
+      "pending": 0,
+      "warned_acc": 0.7727272727272727,
+      "override_gap": -0.039393939393939426,
+      "median_reasoning_tokens": 0.0,
+      "familiarity_mode": "direct",
+      "samples": 5,
+      "error_rate": 0.0,
+      "run_dir": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+      "point_rank": 5,
+      "thinking_gap": 0.10977242302543506
+    }
+  ],
+  "excluded": [],
+  "review_flags": [
+    {
+      "item": "bear-house-1",
+      "override_on": 0.846,
+      "override_off": 1.0,
+      "n_on": 13,
+      "n_off": 10,
+      "reason": "overridden by everyone in both modes: very strong prior, or ambiguous"
+    },
+    {
+      "item": "married-boat-1",
+      "override_on": 0.769,
+      "override_off": 0.0,
+      "n_on": 13,
+      "n_off": 10,
+      "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
+    },
+    {
+      "item": "yellow-hat-1",
+      "override_on": 0.385,
+      "override_off": 0.0,
+      "n_on": 13,
+      "n_off": 10,
+      "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
+    },
+    {
+      "item": "last-brick-2",
+      "override_on": 0.308,
+      "override_off": 0.0,
+      "n_on": 13,
+      "n_off": 10,
+      "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
+    }
+  ],
+  "comparisons": [
+    {
+      "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+      "b": "jalapeno:DeepSeek-V4-Flash-0731|on",
+      "n_items": 249,
+      "n_clusters": 177,
+      "difference": 0.10977242302543508,
+      "ci95": [
+        0.07357237715803454,
+        0.1497311827956989
+      ]
+    },
+    {
+      "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+      "b": "jalapeno:GLM-5.3-Flash|on",
+      "n_items": 248,
+      "n_clusters": 176,
+      "difference": 0.10161290322580645,
+      "ci95": [
+        0.0632,
+        0.14112903225806453
+      ]
+    },
+    {
+      "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+      "b": "nous:meituan/longcat-2.0:free|off",
+      "n_items": 245,
+      "n_clusters": 173,
+      "difference": 0.00653061224489796,
+      "ci95": [
+        -0.02936507936507936,
+        0.043373493975903614
+      ]
+    },
+    {
+      "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+      "b": "nous:meituan/longcat-2.0:free|on",
+      "n_items": 245,
+      "n_clusters": 173,
+      "difference": 0.09959183673469389,
+      "ci95": [
+        0.06428571428571428,
+        0.13865546218487396
+      ]
+    },
+    {
+      "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+      "b": "jalapeno:GLM-5.3-Flash|on",
+      "n_items": 248,
+      "n_clusters": 176,
+      "difference": -0.00860215053763441,
+      "ci95": [
+        -0.02278481012658228,
+        0.004533333333333332
+      ]
+    },
+    {
+      "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+      "b": "nous:meituan/longcat-2.0:free|off",
+      "n_items": 245,
+      "n_clusters": 173,
+      "difference": -0.10503401360544218,
+      "ci95": [
+        -0.14454022988505746,
+        -0.06957671957671958
+      ]
+    },
+    {
+      "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+      "b": "nous:meituan/longcat-2.0:free|on",
+      "n_items": 245,
+      "n_clusters": 173,
+      "difference": -0.01197278911564626,
+      "ci95": [
+        -0.02296918767507003,
+        -0.0023904382470119525
+      ]
+    },
+    {
+      "a": "jalapeno:GLM-5.3-Flash|on",
+      "b": "nous:meituan/longcat-2.0:free|off",
+      "n_items": 257,
+      "n_clusters": 182,
+      "difference": -0.09182879377431907,
+      "ci95": [
+        -0.13019607843137257,
+        -0.055970149253731345
+      ]
+    },
+    {
+      "a": "jalapeno:GLM-5.3-Flash|on",
+      "b": "nous:meituan/longcat-2.0:free|on",
+      "n_items": 257,
+      "n_clusters": 182,
+      "difference": -0.004669260700389105,
+      "ci95": [
+        -0.01947565543071161,
+        0.010317460317460317
+      ]
+    },
+    {
+      "a": "nous:meituan/longcat-2.0:free|off",
+      "b": "nous:meituan/longcat-2.0:free|on",
+      "n_items": 258,
+      "n_clusters": 183,
+      "difference": 0.08682170542635659,
+      "ci95": [
+        0.05426356589147287,
+        0.12015209125475286
+      ]
+    }
+  ],
+  "comparison_method": "item-balanced COR difference a-b on shared familiar items; jointly resampled clusters; pointwise CI95, no multiplicity adjustment",
+  "release_status": "development candidate, not frozen or publication-approved",
+  "scorer_version": 2,
+  "label_audit": "results/audit/adjudication-v2/label_audit.json",
+  "limitations": [
+    "13 mixed-provenance label-audit disagreements remain open.",
+    "14 fresh responses hit token caps; Longcat warned thinking-on had 11/40 truncations on repairs.",
+    "Reasoning-only truncated responses are abstentions, not answers. Raw samples retained."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "phase": "owner-authorized repairs, not release",
+  "candidate_sha256": "5aad7b8db362cab9a240c884b94f9cfdce375742597fe969db6a226ebed729f0",
+  "code_sha256": {
+    "altered_riddles/__init__.py": "51d0c0582b44e6b8b2834fd18d0568b84b82f2e0220c12e7e785500c95c5184a",
+    "altered_riddles/llm.py": "5254be55428f6a56a37492ece836f1b7cc0b6cc6f16d99dd6c78af8d0737f62b",
+    "altered_riddles/probe.py": "affe06f574be15801d184617835d95e8eaf5b0033b6a50a8ca104dc02865c4f7",
+    "altered_riddles/match.py": "efa3e5bb95a6d6c7ad78408389c136d52242286f522b0ee4514ba33aaae66ed7",
+    "altered_riddles/gate.py": "ba2ca4a995689637f2e95ec7a8203fafe779c1024d583a74eb4f845ef5cb0762",
+    "altered_riddles/run.py": "3754d1e231de76a5734b901a42bec6eb9fc815f684f072717e1344f48ec8d2a8",
+    "altered_riddles/score.py": "65796ffc15949b2464fb3fe90183308fb6f334d0e89d16e75c2fdcf1ffc5318b",
+    "altered_riddles/freeze.py": "9a515571869a77360739d8dfd40515b116f5c6992ae657f366f791292fc8cec8",
+    "altered_riddles/board.py": "0cc86b20cfaf18f24ba5f454d5af11e07f1ffb3aff6a9c257e8978901509661b",
+    "altered_riddles/agreement.py": "9b4ae89615d087608c750bcc724d3b8ffa987cdb8a460e50bc399fd8d48f9952",
+    "altered_riddles/statistics.py": "5c309f14e26585df0115e7138e8524cd6322d6756ddb9f0d863879acb42b5584",
+    "altered_riddles/audit.py": "416e78198b3525643c35c1d9f88bdb2f195345462d647194c08553a664dbf022",
+    "altered_riddles/review_validity.py": "935d18180faf7352f14777c352603a7b8aa27493684c48ff94a433cb36c897e9",
+    "results/audit/adjudication-v2/prepare.py": "143446bb199085de93c43b3b542f0ce0e80f6913a93a5b525b255f6a897f86ec",
+    "results/audit/adjudication-v2/execute.py": "495714e4660a389bc424f67f0b680083f2917755dd79ff2607240d5050d42ff1",
+    "results/audit/adjudication-v2/rebuild.py": "b4be238fb617a0ad5f5079c5cbe7840803c1cbe7ed84f64f6e1927777b74a08f"
+  },
+  "rebuild_code_sha256": "b041399e101d3c5a60050d59bd9a239fea85d1be11fe1b6fa6fc20348b11b391",
+  "rebuild_code_note": "Rebuild gained lifecycle status and historical-hash checks before its first execution; code_sha256 above preserves the initial snapshot."
+}

@@ -1,0 +1,40 @@
+{"unit_id": "mustard-family-3-r1", "sample": 1, "final": "14 people", "det": "correct", "label": "correct", "reasoning_tokens": 621, "finish_reason": "stop", "text_sha": "f9e640ac8b418216"}
+{"unit_id": "mustard-family-3-r1", "sample": 2, "final": "14 people", "det": "correct", "label": "correct", "reasoning_tokens": 394, "finish_reason": "stop", "text_sha": "f9e640ac8b418216"}
+{"unit_id": "mustard-family-3-r1", "sample": 3, "final": "14 people", "det": "correct", "label": "correct", "reasoning_tokens": 797, "finish_reason": "stop", "text_sha": "f9e640ac8b418216"}
+{"unit_id": "months-28-days-1-r1", "sample": 0, "final": "1 (February)", "det": "correct", "label": "correct", "reasoning_tokens": 302, "finish_reason": "stop", "text_sha": "c952111e2937dfb8"}
+{"unit_id": "mustard-family-3-r1", "sample": 4, "final": "14", "det": "correct", "label": "correct", "reasoning_tokens": 649, "finish_reason": "stop", "text_sha": "f9e640ac8b418216"}
+{"unit_id": "months-28-days-1-r1", "sample": 1, "final": "1 month (February).", "det": "correct", "label": "correct", "reasoning_tokens": 385, "finish_reason": "stop", "text_sha": "c952111e2937dfb8"}
+{"unit_id": "months-28-days-1-r1", "sample": 3, "final": "1", "det": "correct", "label": "correct", "reasoning_tokens": 218, "finish_reason": "stop", "text_sha": "c952111e2937dfb8"}
+{"unit_id": "months-28-days-1-r1", "sample": 2, "final": "1 month", "det": "correct", "label": "correct", "reasoning_tokens": 344, "finish_reason": "stop", "text_sha": "c952111e2937dfb8"}
+{"unit_id": "mustard-family-3-r1", "sample": 0, "final": "14", "det": "correct", "label": "correct", "reasoning_tokens": 2170, "finish_reason": "stop", "text_sha": "f9e640ac8b418216"}
+{"unit_id": "marys-father-1-r1", "sample": 0, "final": "Nunu", "det": "correct", "label": "correct", "reasoning_tokens": 338, "finish_reason": "stop", "text_sha": "4eb4cbe7967b4884"}
+{"unit_id": "marys-father-1-r1", "sample": 1, "final": "Nunu", "det": "correct", "label": "correct", "reasoning_tokens": 287, "finish_reason": "stop", "text_sha": "4eb4cbe7967b4884"}
+{"unit_id": "months-28-days-1-r1", "sample": 4, "final": "1", "det": "correct", "label": "correct", "reasoning_tokens": 304, "finish_reason": "stop", "text_sha": "c952111e2937dfb8"}
+{"unit_id": "marys-father-1-r1", "sample": 2, "final": "Nunu", "det": "correct", "label": "correct", "reasoning_tokens": 266, "finish_reason": "stop", "text_sha": "4eb4cbe7967b4884"}
+{"unit_id": "marys-father-1-r1", "sample": 3, "final": "Nunu", "det": "correct", "label": "correct", "reasoning_tokens": 255, "finish_reason": "stop", "text_sha": "4eb4cbe7967b4884"}
+{"unit_id": "marys-father-1-r1", "sample": 4, "final": "Nunu", "det": "correct", "label": "correct", "reasoning_tokens": 368, "finish_reason": "stop", "text_sha": "4eb4cbe7967b4884"}
+{"unit_id": "johnnys-mother-1-r1", "sample": 0, "final": "June", "det": "correct", "label": "correct", "reasoning_tokens": 308, "finish_reason": "stop", "text_sha": "410d7d4de4073576"}
+{"unit_id": "johnnys-mother-1-r1", "sample": 1, "final": "June", "det": "correct", "label": "correct", "reasoning_tokens": 423, "finish_reason": "stop", "text_sha": "410d7d4de4073576"}
+{"unit_id": "johnnys-mother-1-r1", "sample": 2, "final": "June", "det": "correct", "label": "correct", "reasoning_tokens": 318, "finish_reason": "stop", "text_sha": "410d7d4de4073576"}
+{"unit_id": "johnnys-mother-1-r1", "sample": 4, "final": "June", "det": "correct", "label": "correct", "reasoning_tokens": 195, "finish_reason": "stop", "text_sha": "410d7d4de4073576"}
+{"unit_id": "johnnys-mother-1-r1", "sample": 3, "final": "June", "det": "correct", "label": "correct", "reasoning_tokens": 307, "finish_reason": "stop", "text_sha": "410d7d4de4073576"}
+{"unit_id": "hiccups-1-r1", "sample": 0, "final": "giving me the water I asked for", "det": "correct", "label": "correct", "reasoning_tokens": 425, "finish_reason": "stop", "text_sha": "ca06043431c57ac4"}
+{"unit_id": "hiccups-1-r1", "sample": 3, "final": "giving him the water he asked for", "det": "correct", "label": "correct", "reasoning_tokens": 246, "finish_reason": "stop", "text_sha": "ca06043431c57ac4"}
+{"unit_id": "hiccups-1-r1", "sample": 1, "final": "giving me the water I asked for", "det": "correct", "label": "correct", "reasoning_tokens": 447, "finish_reason": "stop", "text_sha": "ca06043431c57ac4"}
+{"unit_id": "hiccups-1-r1", "sample": 2, "final": "giving him the water he asked for", "det": "correct", "label": "correct", "reasoning_tokens": 724, "finish_reason": "stop", "text_sha": "ca06043431c57ac4"}
+{"unit_id": "hiccups-1-r1", "sample": 4, "final": "giving him the water he asked for", "det": "correct", "label": "correct", "reasoning_tokens": 491, "finish_reason": "stop", "text_sha": "ca06043431c57ac4"}
+{"unit_id": "parachute-1-r1", "sample": 3, "final": "Dehydration", "det": "correct", "label": "correct", "reasoning_tokens": 825, "finish_reason": "stop", "text_sha": "d3d0efd5e7e4cf15"}
+{"unit_id": "parachute-1-r1", "sample": 0, "final": "Dehydration.", "det": "correct", "label": "correct", "reasoning_tokens": 4049, "finish_reason": "stop", "text_sha": "d3d0efd5e7e4cf15"}
+{"unit_id": "parachute-1-r1", "sample": 4, "final": "Dehydration", "det": "correct", "label": "correct", "reasoning_tokens": 3032, "finish_reason": "stop", "text_sha": "d3d0efd5e7e4cf15"}
+{"unit_id": "rooster-egg-2-r1", "sample": 0, "final": "downhill", "det": "correct", "label": "correct", "reasoning_tokens": 3907, "finish_reason": "stop", "text_sha": "3065009cc29cbf1c"}
+{"unit_id": "parachute-1-r1", "sample": 2, "final": "Dehydration", "det": "correct", "label": "correct", "reasoning_tokens": 8415, "finish_reason": "stop", "text_sha": "d3d0efd5e7e4cf15"}
+{"unit_id": "rooster-egg-2-r1", "sample": 2, "final": "downhill", "det": "correct", "label": "correct", "reasoning_tokens": 1269, "finish_reason": "stop", "text_sha": "3065009cc29cbf1c"}
+{"unit_id": "parachute-1-r1", "sample": 1, "final": "Nothing, they are not alive.", "det": "unmatched", "label": "pending", "reasoning_tokens": 16582, "finish_reason": "stop", "text_sha": "d3d0efd5e7e4cf15"}
+{"unit_id": "rooster-egg-2-r1", "sample": 1, "final": "downhill", "det": "correct", "label": "correct", "reasoning_tokens": 13075, "finish_reason": "stop", "text_sha": "3065009cc29cbf1c"}
+{"unit_id": "cat-fur-1-r1", "sample": 0, "final": "right", "det": "correct", "label": "correct", "reasoning_tokens": 1364, "finish_reason": "stop", "text_sha": "d46a9e3d68c80e8a"}
+{"unit_id": "rooster-egg-2-r1", "sample": 3, "final": "downhill", "det": "correct", "label": "correct", "reasoning_tokens": 9243, "finish_reason": "stop", "text_sha": "3065009cc29cbf1c"}
+{"unit_id": "rooster-egg-2-r1", "sample": 4, "final": "downhill", "det": "correct", "label": "correct", "reasoning_tokens": 8929, "finish_reason": "stop", "text_sha": "3065009cc29cbf1c"}
+{"unit_id": "cat-fur-1-r1", "sample": 2, "final": "the right side", "det": "correct", "label": "correct", "reasoning_tokens": 841, "finish_reason": "stop", "text_sha": "d46a9e3d68c80e8a"}
+{"unit_id": "cat-fur-1-r1", "sample": 4, "final": "right", "det": "correct", "label": "correct", "reasoning_tokens": 7261, "finish_reason": "stop", "text_sha": "d46a9e3d68c80e8a"}
+{"unit_id": "cat-fur-1-r1", "sample": 1, "final": "left (if the cat is facing you, its right side with more fur is on your left)", "det": "correct", "label": "correct", "reasoning_tokens": 10068, "finish_reason": "stop", "text_sha": "d46a9e3d68c80e8a"}
+{"unit_id": "cat-fur-1-r1", "sample": 3, "final": "The right side", "det": "correct", "label": "correct", "reasoning_tokens": 17183, "finish_reason": "stop", "text_sha": "d46a9e3d68c80e8a"}

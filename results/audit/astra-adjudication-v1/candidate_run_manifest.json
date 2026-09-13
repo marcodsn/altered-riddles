@@ -1,0 +1,313 @@
+{
+  "runs": [
+    "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/original-thinkoff-k5",
+    "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+    "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+    "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+    "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+    "runs/core-candidate-adjudicated-v1/jalapeno_GLM-5.3-Flash/original-thinkon-k5",
+    "runs/core-candidate-adjudicated-v1/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5",
+    "runs/core-candidate-adjudicated-v1/jalapeno_GLM-5.3-Flash/warned-thinkon-k5",
+    "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/original-thinkoff-k5",
+    "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+    "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+    "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/warned-thinkoff-k5",
+    "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5"
+  ],
+  "items_file": "results/audit/adjudication-v2/core.candidate.jsonl",
+  "items_sha256": "1aa1567a06c507ba40a71df54cd7530a249a5106dbb96898a5a5493d085d9a28",
+  "source_manifest": "results/audit/adjudication-v2/candidate_run_manifest_scorer_v2.json",
+  "source_manifest_sha256": "683827f201e4278b6a308da19d0633d2d0ff99e160e7743948fe3757ac10bf1f",
+  "scorer_version": 2,
+  "adjudication": "results/audit/astra-adjudication-v1/decisions.json",
+  "inference_calls": 0,
+  "lineage": [
+    {
+      "source_run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/original-thinkoff-k5",
+      "derived_run": "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/original-thinkoff-k5",
+      "source_files_sha256": {
+        "config.json": "6df211557d3024540cc33f8d7c91f5e138f7695f62becca592cb8f2b4882fe8e",
+        "lineage.json": "61bdd9ebbc3b5f2cd08352475ac452b8b8ca939901d975ebd6e578a2b07dc672",
+        "raw.jsonl": "9e67d97ac18f30d35fdbaafb72abb9489a575023c15bd26e2558a5ccd405f4c7",
+        "scored.json": "2e5fbcb3bf7f61e133c1d03dc6828cad50557fc723d0a6218a8d3060ed974968",
+        "summary.json": "10660188ed0ecf89430282429e8b347c3118dcbe3718b3b134b7f492e37fc26d"
+      },
+      "derived_files_sha256": {
+        "adjudication_overlay.json": "7aa7e7acc451889f23d6515c2de9591a4b6f698b22fca38c40a9b686d494fa32",
+        "config.json": "6df211557d3024540cc33f8d7c91f5e138f7695f62becca592cb8f2b4882fe8e",
+        "lineage.json": "61bdd9ebbc3b5f2cd08352475ac452b8b8ca939901d975ebd6e578a2b07dc672",
+        "raw.jsonl": "9e67d97ac18f30d35fdbaafb72abb9489a575023c15bd26e2558a5ccd405f4c7",
+        "scored.json": "2e5fbcb3bf7f61e133c1d03dc6828cad50557fc723d0a6218a8d3060ed974968",
+        "summary.json": "10660188ed0ecf89430282429e8b347c3118dcbe3718b3b134b7f492e37fc26d"
+      }
+    },
+    {
+      "source_run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+      "derived_run": "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+      "source_files_sha256": {
+        "config.json": "1864a911504d87715e72585de8de87b53b6f3288f9074ee59454abe027ab92ab",
+        "judge_cache.jsonl": "bd70868d5a362dcaebb203b8b30690b628a84efc80f1b735e992302df14b5a2e",
+        "lineage.json": "184a64cff154f15205b94da55bc961866260418fc53a27c5b3687a0161984160",
+        "raw.jsonl": "7944338dd7d80ff930b2f5e40542c823854681e3bf3fa088767334287e13d79c",
+        "scored.jsonl": "e051ad6c1a05f474d06655830d82ffb60023886e3ba85fe3f58b30cc04996856",
+        "scored_summary.json": "41b399322024f6aae92b9affd54ed2f71f4f894d9e912e2c63b02ba147dccfac",
+        "summary.json": "3436846c907bc9adb4db253781bdbcf28e9360f39b3d81e91169d03b7411faa9"
+      },
+      "derived_files_sha256": {
+        "adjudication_overlay.json": "42fa389ee2931ac5a6f8ae6facf8aabae17da7e995b548692d339bc7b0a9359f",
+        "config.json": "1864a911504d87715e72585de8de87b53b6f3288f9074ee59454abe027ab92ab",
+        "judge_cache.jsonl": "bd70868d5a362dcaebb203b8b30690b628a84efc80f1b735e992302df14b5a2e",
+        "lineage.json": "184a64cff154f15205b94da55bc961866260418fc53a27c5b3687a0161984160",
+        "raw.jsonl": "7944338dd7d80ff930b2f5e40542c823854681e3bf3fa088767334287e13d79c",
+        "scored.jsonl": "8a80d67039f19097cfe57323f9e4f3d36e509e2d3bcbc00a76afa61224d36292",
+        "scored_summary.json": "c0f9c3eb594187e2dd948516c29713755ccf1109b83d2559de3a0081473272cb",
+        "summary.json": "3436846c907bc9adb4db253781bdbcf28e9360f39b3d81e91169d03b7411faa9"
+      }
+    },
+    {
+      "source_run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+      "derived_run": "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+      "source_files_sha256": {
+        "config.json": "7bddc136e4a9bbef15023f76de40e944ba5be0d2bb4e0071700064edaddfeb0b",
+        "judge_cache.jsonl": "efd0ee66009eac188d8039b483e8787c748d14ecb6fb90f838954e03ddceaa8e",
+        "lineage.json": "8cad2f14432b3df5c1316088d5f97390ab0a9f50f72d3aeb8887e01d8db264d2",
+        "raw.jsonl": "b3a32b3799ba229e691c64c027a44bcfcd26ca7794d959ba2ef3ae8158340c60",
+        "scored.jsonl": "e54a0bc7bff05d8a6e29cd42b8fd65e2369bc6099a6acf380285f62615667668",
+        "scored_summary.json": "c8d75ba31e2a969beb78e67011d4c8d41cc73b0d6369ebb34cdcff3ae5da069a",
+        "summary.json": "f440680eb090f5cba417a9f35eb44d804ae08acb44bca5fe9098c91bc3b8b3de"
+      },
+      "derived_files_sha256": {
+        "adjudication_overlay.json": "e11398ff1f4bb56ef7456a82d2c625e27d9e15df085f759e1253259d71a9ea1b",
+        "config.json": "7bddc136e4a9bbef15023f76de40e944ba5be0d2bb4e0071700064edaddfeb0b",
+        "judge_cache.jsonl": "efd0ee66009eac188d8039b483e8787c748d14ecb6fb90f838954e03ddceaa8e",
+        "lineage.json": "8cad2f14432b3df5c1316088d5f97390ab0a9f50f72d3aeb8887e01d8db264d2",
+        "raw.jsonl": "b3a32b3799ba229e691c64c027a44bcfcd26ca7794d959ba2ef3ae8158340c60",
+        "scored.jsonl": "e54a0bc7bff05d8a6e29cd42b8fd65e2369bc6099a6acf380285f62615667668",
+        "scored_summary.json": "04f2c329da4b637d821ed514d9666266ffd32cefe8ae744851f7f62dbab93913",
+        "summary.json": "f440680eb090f5cba417a9f35eb44d804ae08acb44bca5fe9098c91bc3b8b3de"
+      }
+    },
+    {
+      "source_run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+      "derived_run": "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+      "source_files_sha256": {
+        "config.json": "e201e1c0f72e281a2c87467e1bc9ade7ecf18587810f3de9bb105bb7e6e1aedd",
+        "judge_cache.jsonl": "3d8ba74e8462c5b83bb660aac4d8716555633616053f87e946fb9791a4121ff3",
+        "lineage.json": "d2014f45e11d394601abd3e596bd9a2efb2a441437f5de6de8caa2ec6edf11f9",
+        "raw.jsonl": "aa58920eec34595e31a5f189879304e854fc61141f40a7c5c9661acd4383b668",
+        "scored.jsonl": "6bf1b147bc08478676863a428ee7893803b140fa5b4637ea143251253130d001",
+        "scored_summary.json": "9eb2c9755f2762d02c3b36d09b5911ed6a827277b81c0e4ca8fe1921ac943468",
+        "summary.json": "34a006e3626927de5dd0f60eb7cf7beeb156baf5b2bc7344985b7f6142663f62"
+      },
+      "derived_files_sha256": {
+        "adjudication_overlay.json": "b8062f6cb8c34ea880d56b2a54748382622d4d14e285b7a904de2e7adecfbf65",
+        "config.json": "e201e1c0f72e281a2c87467e1bc9ade7ecf18587810f3de9bb105bb7e6e1aedd",
+        "judge_cache.jsonl": "3d8ba74e8462c5b83bb660aac4d8716555633616053f87e946fb9791a4121ff3",
+        "lineage.json": "d2014f45e11d394601abd3e596bd9a2efb2a441437f5de6de8caa2ec6edf11f9",
+        "raw.jsonl": "aa58920eec34595e31a5f189879304e854fc61141f40a7c5c9661acd4383b668",
+        "scored.jsonl": "1ff0d0931525d778782df29993e11ee2ea090f598abf6ece653b385b02920275",
+        "scored_summary.json": "c8f1c166576560bbe604d19cfcccc9c2bd60a8c77cf28d0baffdb42598315c22",
+        "summary.json": "34a006e3626927de5dd0f60eb7cf7beeb156baf5b2bc7344985b7f6142663f62"
+      }
+    },
+    {
+      "source_run": "runs/core-candidate-scored-v2/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+      "derived_run": "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+      "source_files_sha256": {
+        "config.json": "66e46e33aa5f905fb1605836e24128c19b69b9fdb58a9077046c910c1049e788",
+        "judge_cache.jsonl": "72ec2bd64064169d53dc9c5df7b9a1883b9981f4a7e1e69ee892b449c7a56c4f",
+        "lineage.json": "43af9b4715c1df7298a00b87ee43b4b8ebbbae9786f9262a0e25c544a16e4a0f",
+        "raw.jsonl": "1af924882b7afd0aff6570afc516442a911041751007c9e3c4f3f6d1cf918383",
+        "scored.jsonl": "a4c9875a1124efbc43300aa90f7472a57177ee0f65a824d8935aadeed9f18731",
+        "scored_summary.json": "24267c8838140a66ed9e75e490821d5c8263749325b0ada489c3345e45b1dea2",
+        "summary.json": "0cf720eaa4a50a7987de5b85de91c685aeb038e88135ed60ec9103315fa31aaa"
+      },
+      "derived_files_sha256": {
+        "adjudication_overlay.json": "e23e5cad11956c4657adf1e4c0d68792a777f5cd40f354841fb0f95723acf7e4",
+        "config.json": "66e46e33aa5f905fb1605836e24128c19b69b9fdb58a9077046c910c1049e788",
+        "judge_cache.jsonl": "72ec2bd64064169d53dc9c5df7b9a1883b9981f4a7e1e69ee892b449c7a56c4f",
+        "lineage.json": "43af9b4715c1df7298a00b87ee43b4b8ebbbae9786f9262a0e25c544a16e4a0f",
+        "raw.jsonl": "1af924882b7afd0aff6570afc516442a911041751007c9e3c4f3f6d1cf918383",
+        "scored.jsonl": "a4c9875a1124efbc43300aa90f7472a57177ee0f65a824d8935aadeed9f18731",
+        "scored_summary.json": "5af6c5664f1fe12e2c0f07b02dff6ceda4567ab3d7b6011f156d36162207983a",
+        "summary.json": "0cf720eaa4a50a7987de5b85de91c685aeb038e88135ed60ec9103315fa31aaa"
+      }
+    },
+    {
+      "source_run": "runs/core-candidate-scored-v2/jalapeno_GLM-5.3-Flash/original-thinkon-k5",
+      "derived_run": "runs/core-candidate-adjudicated-v1/jalapeno_GLM-5.3-Flash/original-thinkon-k5",
+      "source_files_sha256": {
+        "config.json": "f86dd0a9bf489d212612ef16bba256d9c43767f185c4ff1e899aa40aad183589",
+        "lineage.json": "2e26c72df5a8ed6db3d1c3f8671ce8e88dd72d9578dd2fd37d0ded52c6c2477f",
+        "raw.jsonl": "b66f76353b70064d1c35a5931b7f691d00c6028fedc838c9134055f795aa574c",
+        "scored.json": "c878e013d05548c6bb815e36132b9f78ebbfd2f8429038585a61da91ca871266",
+        "summary.json": "7d5cbaf01ae66f8a335bc26ec2fe14b6cfda88509689b2ea71c2755fb7dcbcb4"
+      },
+      "derived_files_sha256": {
+        "adjudication_overlay.json": "975214b83f16590d58891b9e87242a4f409285512b7465de8dff55215e0315b3",
+        "config.json": "f86dd0a9bf489d212612ef16bba256d9c43767f185c4ff1e899aa40aad183589",
+        "lineage.json": "2e26c72df5a8ed6db3d1c3f8671ce8e88dd72d9578dd2fd37d0ded52c6c2477f",
+        "raw.jsonl": "b66f76353b70064d1c35a5931b7f691d00c6028fedc838c9134055f795aa574c",
+        "scored.json": "c878e013d05548c6bb815e36132b9f78ebbfd2f8429038585a61da91ca871266",
+        "summary.json": "7d5cbaf01ae66f8a335bc26ec2fe14b6cfda88509689b2ea71c2755fb7dcbcb4"
+      }
+    },
+    {
+      "source_run": "runs/core-candidate-scored-v2/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5",
+      "derived_run": "runs/core-candidate-adjudicated-v1/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5",
+      "source_files_sha256": {
+        "config.json": "4cfb4be799a322d92f0b922c8e7781d72e059db264dfb705a6cb11d0cf26f146",
+        "judge_cache.jsonl": "285cf365beb02c6df6003405643df97b14cb528de39af81b47482ff400bdada0",
+        "lineage.json": "3cbcd6f4c524078e98e40ba034296449555d285800cb6b228a23f97622c5840b",
+        "raw.jsonl": "92cda2521a2dd0863c63372feac7aa49811ea6eb9398e21533d2a3328e419fa3",
+        "scored.jsonl": "afe655390a874164a2a0ea0e2f24db0ef9eed0504901be5b6dce80b7c77780b5",
+        "scored_summary.json": "ec9336b60d3f057684893eeef5cd0d3323f03e416cc1e503f55428f93d864b76",
+        "summary.json": "97bd0e4847f0e88193b2f4417ec18d035df7462ff65a40f35144cd3acf9a2231"
+      },
+      "derived_files_sha256": {
+        "adjudication_overlay.json": "c063ad489d49c20c995ce652e28bcfa9236e405bb00fff691f159f77d3d6d8d4",
+        "config.json": "4cfb4be799a322d92f0b922c8e7781d72e059db264dfb705a6cb11d0cf26f146",
+        "judge_cache.jsonl": "285cf365beb02c6df6003405643df97b14cb528de39af81b47482ff400bdada0",
+        "lineage.json": "3cbcd6f4c524078e98e40ba034296449555d285800cb6b228a23f97622c5840b",
+        "raw.jsonl": "92cda2521a2dd0863c63372feac7aa49811ea6eb9398e21533d2a3328e419fa3",
+        "scored.jsonl": "afe655390a874164a2a0ea0e2f24db0ef9eed0504901be5b6dce80b7c77780b5",
+        "scored_summary.json": "e8a98a2145655102407a2d3baa9990e290bf3cbc4233be8e13ccb8cad7b9e39e",
+        "summary.json": "97bd0e4847f0e88193b2f4417ec18d035df7462ff65a40f35144cd3acf9a2231"
+      }
+    },
+    {
+      "source_run": "runs/core-candidate-scored-v2/jalapeno_GLM-5.3-Flash/warned-thinkon-k5",
+      "derived_run": "runs/core-candidate-adjudicated-v1/jalapeno_GLM-5.3-Flash/warned-thinkon-k5",
+      "source_files_sha256": {
+        "config.json": "6b9b6bc939b253de0440d2945ab7f94c1efe0acf4f4b23a66056146106210731",
+        "judge_cache.jsonl": "bc4ba257cd1c7d12be14d6edc0542203f95c1bcea333082410c274bc5005acc2",
+        "lineage.json": "a1faddc1738869e7b52b221c9da7ad4333550cd169004049f4474b6648803f45",
+        "raw.jsonl": "6f14b2b58b429c1d918bbc34297bd65919d43f8fb3c59e49c1715a0b54d98191",
+        "scored.jsonl": "b4e9fc2d21431426cc2db9e8631374604e12ca5747acd919c900f565014b23e8",
+        "scored_summary.json": "b08eeba21a20ab76eff3903937eeadf8e6333f3cb24f5254b5db7ce9c66fb868",
+        "summary.json": "5917a04ce2bcaa0e2b95153e3dd9161e06315374131d06fc132d70006977432d"
+      },
+      "derived_files_sha256": {
+        "adjudication_overlay.json": "95aebef14d66de094b3a056bde818ef83e0fecaa19549dd42960e2b4c1c03531",
+        "config.json": "6b9b6bc939b253de0440d2945ab7f94c1efe0acf4f4b23a66056146106210731",
+        "judge_cache.jsonl": "bc4ba257cd1c7d12be14d6edc0542203f95c1bcea333082410c274bc5005acc2",
+        "lineage.json": "a1faddc1738869e7b52b221c9da7ad4333550cd169004049f4474b6648803f45",
+        "raw.jsonl": "6f14b2b58b429c1d918bbc34297bd65919d43f8fb3c59e49c1715a0b54d98191",
+        "scored.jsonl": "b4e9fc2d21431426cc2db9e8631374604e12ca5747acd919c900f565014b23e8",
+        "scored_summary.json": "f9f9bbfad48d6a1a9d38c7397a9f572a42e6f767ef2a1105ba8e9435fda6d02d",
+        "summary.json": "5917a04ce2bcaa0e2b95153e3dd9161e06315374131d06fc132d70006977432d"
+      }
+    },
+    {
+      "source_run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/original-thinkoff-k5",
+      "derived_run": "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/original-thinkoff-k5",
+      "source_files_sha256": {
+        "config.json": "5057fddfc936b530f8a3c08568f2b21f5aebf07ce4f8281e8106c5396a213853",
+        "lineage.json": "6225819035bee31c9c7c013f0eec6cc65b86bababecccfdf68b8ac5dcd14bff6",
+        "raw.jsonl": "73c1d4bca86f021d5234be77aa6bdf132e1c0da2b4e4df88d3d4472da8e6dfb0",
+        "scored.json": "c3b60ca3902ffe0bb6b7044c32cdfc4e3b89f5b15c5c44d492669c138823138f",
+        "summary.json": "a6896f1721d51fc2f972d18467694d44343ff0b4660327dc853d079b3c521b92"
+      },
+      "derived_files_sha256": {
+        "adjudication_overlay.json": "86649db12c8f5b107ec5fd9c6c1fec62ccb60711de809af7b5cbce4ad4f9f5f4",
+        "config.json": "5057fddfc936b530f8a3c08568f2b21f5aebf07ce4f8281e8106c5396a213853",
+        "lineage.json": "6225819035bee31c9c7c013f0eec6cc65b86bababecccfdf68b8ac5dcd14bff6",
+        "raw.jsonl": "73c1d4bca86f021d5234be77aa6bdf132e1c0da2b4e4df88d3d4472da8e6dfb0",
+        "scored.json": "c3b60ca3902ffe0bb6b7044c32cdfc4e3b89f5b15c5c44d492669c138823138f",
+        "summary.json": "a6896f1721d51fc2f972d18467694d44343ff0b4660327dc853d079b3c521b92"
+      }
+    },
+    {
+      "source_run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+      "derived_run": "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+      "source_files_sha256": {
+        "config.json": "d146ed7a0c12ffef7cfb23bbd3be5803d79d5670bd2e05dfea86282a73bce729",
+        "judge_cache.jsonl": "85729db8bb9db363e26eebcc7de1fdd99a3c9a2e5fc706bc928bf03971a6ee54",
+        "lineage.json": "82c4c77a4f347160530315a47e7f5ae241c88a5169d2f5f00c062fcab682c30b",
+        "raw.jsonl": "5e44e2cf7d445f37ac1e6cd440cb01987d215b3931a4fbba0dbc5e6c88406ce2",
+        "scored.jsonl": "55accaa9226e643bf3891f74e76ebd64fc6ca035ac89177b2a4068f895770808",
+        "scored_summary.json": "d0d1651f5c1283d7574de0f8d06a8e973d30cef567c110e5a2db4f51fbd48927",
+        "summary.json": "5f107f97ad2cd3c19069928ddeb6350332cf181bac607a721228e60f941b75c7"
+      },
+      "derived_files_sha256": {
+        "adjudication_overlay.json": "c6f659dc7e4e97ec57be77b8968754d1779dfe2a7e6f46c0e1c82d0e9352f24d",
+        "config.json": "d146ed7a0c12ffef7cfb23bbd3be5803d79d5670bd2e05dfea86282a73bce729",
+        "judge_cache.jsonl": "85729db8bb9db363e26eebcc7de1fdd99a3c9a2e5fc706bc928bf03971a6ee54",
+        "lineage.json": "82c4c77a4f347160530315a47e7f5ae241c88a5169d2f5f00c062fcab682c30b",
+        "raw.jsonl": "5e44e2cf7d445f37ac1e6cd440cb01987d215b3931a4fbba0dbc5e6c88406ce2",
+        "scored.jsonl": "79fc1bb7e8fc00f64c121f8bfcbf68101eb1af949ecd5651f09dd253708e286b",
+        "scored_summary.json": "0184166c372881546bf1144b3794ffe0f74513b0847fff7a8ce6adc96fe817da",
+        "summary.json": "5f107f97ad2cd3c19069928ddeb6350332cf181bac607a721228e60f941b75c7"
+      }
+    },
+    {
+      "source_run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+      "derived_run": "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+      "source_files_sha256": {
+        "config.json": "60149ffe9ef1baf000b7885e31b62bbe390aa688ba6eebd07b8a74fe5b9971c6",
+        "judge_cache.jsonl": "abb2db36fccf586256ad1f30f0504ea8503cb70e92396e31e3fa7401b893324c",
+        "lineage.json": "30f004ab2f8a7ed0b938ba14fc65f846b2a18e923c90be2bc5cfa9f5c27593d7",
+        "raw.jsonl": "bcc57dcb406f38b6a89c7a9260163ec915a1f89195ced761f2df571ef4daec97",
+        "scored.jsonl": "9acf50512878c04453974ab9a2c991ce5c380e232ce84b2d32b2b2f33cf1639c",
+        "scored_summary.json": "ecd15f514930fbba10419600b1af722bc90c75ec08e298d94abd553504e3349b",
+        "summary.json": "05308b92e954476a5387099e3fb7d15a14228d4add6e5d7a146ff76ac6e42935"
+      },
+      "derived_files_sha256": {
+        "adjudication_overlay.json": "89cf826385a700724adda3c41ae58ddfda42db70eaafa83ced52ec97422852ba",
+        "config.json": "60149ffe9ef1baf000b7885e31b62bbe390aa688ba6eebd07b8a74fe5b9971c6",
+        "judge_cache.jsonl": "abb2db36fccf586256ad1f30f0504ea8503cb70e92396e31e3fa7401b893324c",
+        "lineage.json": "30f004ab2f8a7ed0b938ba14fc65f846b2a18e923c90be2bc5cfa9f5c27593d7",
+        "raw.jsonl": "bcc57dcb406f38b6a89c7a9260163ec915a1f89195ced761f2df571ef4daec97",
+        "scored.jsonl": "9acf50512878c04453974ab9a2c991ce5c380e232ce84b2d32b2b2f33cf1639c",
+        "scored_summary.json": "8c6849e540ffa9dc209095bf9c58d213aa5764541ab510253c968c664d11d177",
+        "summary.json": "05308b92e954476a5387099e3fb7d15a14228d4add6e5d7a146ff76ac6e42935"
+      }
+    },
+    {
+      "source_run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkoff-k5",
+      "derived_run": "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/warned-thinkoff-k5",
+      "source_files_sha256": {
+        "config.json": "d4b2aa2d02d13962447b7c0e1dbae349d433aba4b8fd73f0715472f93ecbff42",
+        "judge_cache.jsonl": "22c81ddd78ce747fc2543fa4c3be87facbf1e981c02d97aebe54c1231e3fc830",
+        "lineage.json": "f933ca3bbd9bfb4dc85e1ae356afc14b5688421cb2fbfb2df6346ef97c0f5b99",
+        "raw.jsonl": "17b3daefd70047a820c886f756a2f7b8e52b915f957087bea8ccee5adbc9ca91",
+        "scored.jsonl": "faa4031582fc3949f26928c9e15d6d0fb006d9d50af51c518e17d34cdae95a26",
+        "scored_summary.json": "71c8cb32b5e76ae3649b6bef09c8348ec15daec72c236854be6c82606618632d",
+        "summary.json": "61d680daea5a9bf309657292bc2e2f8c73f3c3fdbc75474182513fcf94d0e267"
+      },
+      "derived_files_sha256": {
+        "adjudication_overlay.json": "45142199e4ecb62550b95479b60a80a5cc539b6eadf0b75dd3aed08ce550d66b",
+        "config.json": "d4b2aa2d02d13962447b7c0e1dbae349d433aba4b8fd73f0715472f93ecbff42",
+        "judge_cache.jsonl": "22c81ddd78ce747fc2543fa4c3be87facbf1e981c02d97aebe54c1231e3fc830",
+        "lineage.json": "f933ca3bbd9bfb4dc85e1ae356afc14b5688421cb2fbfb2df6346ef97c0f5b99",
+        "raw.jsonl": "17b3daefd70047a820c886f756a2f7b8e52b915f957087bea8ccee5adbc9ca91",
+        "scored.jsonl": "bfb0f22e8d4dfeb6c6a21bf9aa6724520b99a4682531d5f4431ec6d40b8755d0",
+        "scored_summary.json": "b5650583c983301a8abcfb1a48a29e2381628fcc0ca304a2cf26cfaff7578fe8",
+        "summary.json": "61d680daea5a9bf309657292bc2e2f8c73f3c3fdbc75474182513fcf94d0e267"
+      }
+    },
+    {
+      "source_run": "runs/core-candidate-scored-v2/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+      "derived_run": "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+      "source_files_sha256": {
+        "config.json": "3ccb7cddaa90f45f1447d1f2bc150305fc6838b6f5fb372f3d6b245df7233666",
+        "judge_cache.jsonl": "5ec8dc4c320d1768bfa9719fd32934da1751da48707d06491752848df2e77cca",
+        "lineage.json": "b1acae2ea1dceb8a7b36085cdda55fc880594a9e62794e5d64d9c1903d0dc795",
+        "raw.jsonl": "61cf864b41484c058b58802d7ad98b2792ebe6652a5fa888facce6475599a62b",
+        "scored.jsonl": "8f5c309e63fc5778c81630e9a6275b33f25fe59d040e38f90bf978980dcbf25b",
+        "scored_summary.json": "09c71044532cc44233c1321f9a4e481051e5113734eab9c75f708a9da5741aa8",
+        "summary.json": "e531cf40ef9d11b86982908378988e56997f132b150429da99ae99679843bd8c"
+      },
+      "derived_files_sha256": {
+        "adjudication_overlay.json": "4fb8e49ebcb93df5b367626e9cbda9b7826a20bff502233668f6d19fbafdd4c4",
+        "config.json": "3ccb7cddaa90f45f1447d1f2bc150305fc6838b6f5fb372f3d6b245df7233666",
+        "judge_cache.jsonl": "5ec8dc4c320d1768bfa9719fd32934da1751da48707d06491752848df2e77cca",
+        "lineage.json": "b1acae2ea1dceb8a7b36085cdda55fc880594a9e62794e5d64d9c1903d0dc795",
+        "raw.jsonl": "61cf864b41484c058b58802d7ad98b2792ebe6652a5fa888facce6475599a62b",
+        "scored.jsonl": "8f5c309e63fc5778c81630e9a6275b33f25fe59d040e38f90bf978980dcbf25b",
+        "scored_summary.json": "afb1b7d97770b154ec020faa325c4031106b8a6f52ea7bcd036bbfbd0c5048e7",
+        "summary.json": "e531cf40ef9d11b86982908378988e56997f132b150429da99ae99679843bd8c"
+      }
+    }
+  ]
+}

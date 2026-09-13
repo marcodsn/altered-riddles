@@ -1,0 +1,22 @@
+{
+ "provider": "nous",
+ "model": "meituan/longcat-2.0:free",
+ "condition": "original",
+ "thinking": "off",
+ "thinking_request_params": {
+  "reasoning": {
+   "enabled": false
+  }
+ },
+ "familiarity_mode": "direct",
+ "samples": 5,
+ "temperature": null,
+ "max_tokens": 16,
+ "prompt": "Solve this riddle. Reply with only the answer, in a few words, and nothing else.\n\n{text}",
+ "items_file": "results/audit/adjudication-v2/repairs.gated.jsonl",
+ "items_sha256": "b73a9dfb2868fdfd08f2064336783e4ea69decf3d02ef884c5e908b20c0c5691",
+ "n_units": 8,
+ "passed_only": true,
+ "git_commit": "2af688756dc00e0cdc7ed6d8373bd2637e42cec8",
+ "started_at": "2026-09-09T09:48:36Z"
+}

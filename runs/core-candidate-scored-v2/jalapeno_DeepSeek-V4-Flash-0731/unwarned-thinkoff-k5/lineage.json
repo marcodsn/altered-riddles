@@ -1,0 +1,6617 @@
+{
+  "historical": {
+    "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+    "raw_sha256": "5816f5b7acc2924d008e2cc220300e7af16ca60cc6495026ed234b811534ebe8",
+    "config_sha256": "f299970eef268ad892ce264de7af484ca2cbe5ce1574e391fc40bdba698ec64c",
+    "retained_samples": 1280
+  },
+  "fresh": {
+    "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+    "raw_sha256": "cd86142540d8b5c3621e21337ec8edf47c14aed7cb9e9be5224d44c80592c942",
+    "config_sha256": "28df6a815ef0df9b477a60451a02aea53fc7e30074f54a5a18b2fb4efc8a12f2",
+    "retained_samples": 40
+  },
+  "sample_origin": [
+    {
+      "unit_id": "surgeon-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "surgeon-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "surgeon-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "surgeon-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "surgeon-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "surgeon-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "surgeon-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "surgeon-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "surgeon-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "surgeon-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "surgeon-3",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "surgeon-3",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "surgeon-3",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "surgeon-3",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "surgeon-3",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "candle-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "candle-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "candle-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "candle-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "candle-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "candle-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "candle-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "candle-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "candle-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "keyboard-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "candle-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "keyboard-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "keyboard-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "keyboard-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "keyboard-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "needle-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "needle-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "needle-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "needle-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "needle-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "comb-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "comb-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "comb-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "comb-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "comb-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stairs-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stairs-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stairs-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stairs-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stairs-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "short-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "short-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "short-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "short-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-m-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-m-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "short-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-m-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-m-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-m-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "glove-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "glove-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "glove-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "glove-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "glove-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cold-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cold-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cold-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cold-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "tree-bark-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "tree-bark-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cold-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "tree-bark-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "tree-bark-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "tree-bark-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "telephone-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "telephone-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "telephone-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "telephone-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "telephone-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "left-hand-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "left-hand-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "left-hand-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "left-hand-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "left-hand-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "nose-foot-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "nose-foot-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "nose-foot-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "nose-foot-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "nose-foot-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "nine-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "nine-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "nine-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "nine-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "nine-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "that-mans-father-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "that-mans-father-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "that-mans-father-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "that-mans-father-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "that-mans-father-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bat-and-ball-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bat-and-ball-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bat-and-ball-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bat-and-ball-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bat-and-ball-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bat-and-ball-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bat-and-ball-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bat-and-ball-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bat-and-ball-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bat-and-ball-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bat-and-ball-3",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bat-and-ball-3",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bat-and-ball-3",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bat-and-ball-3",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bat-and-ball-3",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lily-pads-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lily-pads-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lily-pads-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lily-pads-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lily-pads-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lily-pads-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lily-pads-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lily-pads-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lily-pads-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lily-pads-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widgets-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widgets-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widgets-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widgets-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widgets-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widgets-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widgets-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widgets-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widgets-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widgets-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sheep-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sheep-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sheep-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sheep-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sheep-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sheep-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sheep-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sheep-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sheep-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sheep-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "months-28-days-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "months-28-days-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "months-28-days-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "months-28-days-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "months-28-days-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "moses-ark-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "moses-ark-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "moses-ark-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "moses-ark-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "moses-ark-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "dirt-in-hole-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "dirt-in-hole-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "dirt-in-hole-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "dirt-in-hole-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "dirt-in-hole-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "feathers-bricks-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "feathers-bricks-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "feathers-bricks-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "feathers-bricks-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "feathers-bricks-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "feathers-bricks-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "feathers-bricks-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "feathers-bricks-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "feathers-bricks-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "feathers-bricks-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "divide-by-half-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "divide-by-half-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "divide-by-half-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "divide-by-half-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "divide-by-half-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "divide-by-half-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "divide-by-half-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "divide-by-half-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "divide-by-half-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "divide-by-half-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "subtract-five-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "subtract-five-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "subtract-five-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "subtract-five-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "subtract-five-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-coins-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-coins-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-coins-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-coins-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-coins-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "greenhouse-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "greenhouse-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "greenhouse-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "greenhouse-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "greenhouse-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "overtake-second-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "overtake-second-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "overtake-second-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "overtake-second-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "overtake-second-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "electric-train-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "electric-train-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "electric-train-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "electric-train-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "electric-train-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-fathers-two-sons-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-fathers-two-sons-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-fathers-two-sons-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-fathers-two-sons-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-fathers-two-sons-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "marys-father-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "marys-father-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "marys-father-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "marys-father-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "marys-father-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "johnnys-mother-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "johnnys-mother-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "johnnys-mother-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "johnnys-mother-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "johnnys-mother-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "three-apples-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "three-apples-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "three-apples-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "three-apples-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "three-apples-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mustard-family-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mustard-family-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mustard-family-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "last-brick-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mustard-family-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "last-brick-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "last-brick-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "last-brick-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mustard-family-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "last-brick-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "one-story-house-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "one-story-house-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "one-story-house-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "one-story-house-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "one-story-house-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monty-hall-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monty-hall-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monty-hall-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "yellow-hat-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monty-hall-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monty-hall-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "yellow-hat-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "yellow-hat-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "yellow-hat-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "yellow-hat-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-coins-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-coins-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-coins-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-coins-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-coins-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "greenhouse-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "greenhouse-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "greenhouse-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "greenhouse-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "greenhouse-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "months-28-days-3",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "months-28-days-3",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "months-28-days-3",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "overtake-second-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "overtake-second-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "overtake-second-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "overtake-second-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "months-28-days-3",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "overtake-second-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "three-apples-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "months-28-days-3",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "three-apples-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "three-apples-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "three-apples-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "three-apples-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mustard-family-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mustard-family-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mustard-family-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mustard-family-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mustard-family-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "one-story-house-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "one-story-house-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "forty-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "forty-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "forty-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "one-story-house-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "forty-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "forty-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widgets-3",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widgets-3",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "one-story-house-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widgets-3",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widgets-3",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "one-story-house-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widgets-3",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lily-pads-3",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lily-pads-3",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lily-pads-3",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lily-pads-3",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lily-pads-3",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "divide-by-half-3",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "divide-by-half-3",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "divide-by-half-3",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "divide-by-half-3",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "divide-by-half-3",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "electric-train-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "electric-train-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "electric-train-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "electric-train-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "electric-train-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widows-sister-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widows-sister-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widows-sister-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widows-sister-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "widows-sister-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "marys-father-3",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "marys-father-3",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "marys-father-3",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "marys-father-3",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "marys-father-3",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "comb-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "comb-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "comb-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "comb-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "comb-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "ton-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "ton-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "ton-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "ton-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "ton-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "map-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "map-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "map-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "map-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "map-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "coin-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "coin-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "coin-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "coin-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "coin-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "clock-hands-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "clock-hands-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "clock-hands-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "clock-hands-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "clock-hands-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "clock-face-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "clock-face-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "clock-face-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "clock-face-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "clock-face-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "secret-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "secret-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "secret-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "secret-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "secret-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "darkness-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "darkness-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "darkness-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "darkness-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "darkness-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "shadow-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "shadow-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "shadow-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "shadow-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "shadow-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "egg-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "egg-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "egg-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "egg-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "egg-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bottle-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bottle-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bottle-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bottle-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bottle-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rain-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rain-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rain-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rain-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rain-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "umbrella-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "umbrella-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "umbrella-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "umbrella-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "umbrella-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "time-flies-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "time-flies-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "time-flies-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "time-flies-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "time-flies-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "fence-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "fence-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "fence-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "fence-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "fence-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "light-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "light-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "light-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "light-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "light-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "road-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "road-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "road-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "road-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "road-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rubber-band-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rubber-band-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rubber-band-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rubber-band-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rubber-band-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sphinx-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sphinx-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sphinx-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sphinx-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sphinx-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "piano-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "piano-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "piano-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "piano-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "piano-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rooster-egg-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rooster-egg-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rooster-egg-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rooster-egg-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rooster-egg-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-mothers-two-daughters-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-mothers-two-daughters-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-mothers-two-daughters-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-mothers-two-daughters-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-mothers-two-daughters-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "egg-yolk-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "egg-yolk-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "egg-yolk-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "egg-yolk-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "egg-yolk-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0007-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0007-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0007-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0007-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0007-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0030-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0030-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0030-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0030-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0030-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0068-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0068-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0068-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0068-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0068-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0069-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0069-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0069-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0069-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0069-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0137-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0137-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0137-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0137-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0137-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0187-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0187-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0187-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0187-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0187-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0226-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0226-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0226-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0226-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0226-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0313-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0313-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0313-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0313-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0313-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0008-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0008-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0008-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0008-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0008-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0010-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0010-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0010-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0010-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0010-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0014-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0014-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0014-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0014-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0014-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0052-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0052-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0052-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0052-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0052-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0055-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0055-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0055-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0055-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0055-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0058-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0058-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0058-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0058-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0058-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0091-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0091-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0091-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0091-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0091-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0098-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0098-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0098-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0098-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0125-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0098-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0125-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0125-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0125-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0125-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0159-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0159-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0159-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0159-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0159-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0204-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0204-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0204-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0204-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0220-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0204-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0220-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0220-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0220-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0220-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0241-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0241-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0241-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0241-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0241-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0283-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0283-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0283-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0283-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0283-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0328-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0328-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0328-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0328-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0370-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0328-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0370-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0370-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0370-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0370-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0379-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0379-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0379-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0379-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0379-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0388-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0388-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0388-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0388-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0388-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "towel-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "towel-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "towel-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "towel-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "towel-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "towel-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "towel-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "towel-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "towel-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "towel-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "echo-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "echo-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "echo-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "echo-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "echo-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "penny-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "penny-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "penny-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "penny-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "penny-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "penny-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "penny-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "penny-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "penny-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "penny-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "river-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "river-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "river-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "river-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "age-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "age-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "age-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "age-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "age-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "river-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "silence-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "silence-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "silence-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "silence-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "silence-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "future-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "future-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "future-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "future-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "future-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "future-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "future-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "future-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "future-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "future-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "your-name-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "your-name-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "your-name-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "your-name-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "your-name-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "breath-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "breath-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "breath-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "breath-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "breath-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "elephant-shadow-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "elephant-shadow-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "elephant-shadow-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "elephant-shadow-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "elephant-shadow-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "fire-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "fire-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "fire-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "fire-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "fire-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "envelope-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "envelope-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "envelope-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "envelope-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-e-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "envelope-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-e-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-e-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-e-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-e-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-e-3",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-e-3",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-e-3",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-e-3",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-e-3",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-g-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-g-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-g-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-g-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-g-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-r-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-r-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-r-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-r-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-r-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-w-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-w-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-w-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-w-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-w-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mushroom-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mushroom-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mushroom-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mushroom-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mushroom-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mushroom-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sponge-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sponge-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sponge-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sponge-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mushroom-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "sponge-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "tomorrow-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mushroom-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "tomorrow-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "tomorrow-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "tomorrow-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mushroom-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "tomorrow-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "corn-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mushroom-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "corn-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "corn-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "corn-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "corn-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stamp-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stamp-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stamp-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stamp-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stamp-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stamp-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stamp-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stamp-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stamp-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stamp-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "your-word-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "your-word-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "your-word-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "your-word-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "your-word-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "dictionary-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "dictionary-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "dictionary-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "dictionary-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "dictionary-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "coffin-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "coffin-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "coffin-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "coffin-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "coffin-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "coffin-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "coffin-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "coffin-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "coffin-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "coffin-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "book-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "book-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "book-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "book-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "book-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "reflection-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "reflection-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "reflection-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "reflection-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "charcoal-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "charcoal-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "charcoal-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "charcoal-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "charcoal-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "charcoal-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "reflection-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "charcoal-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "charcoal-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "charcoal-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "charcoal-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bed-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bed-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bed-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bed-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bed-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bed-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bed-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bed-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bed-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bed-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "chalkboard-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "chalkboard-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "chalkboard-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "chalkboard-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "chalkboard-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "teapot-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "teapot-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "teapot-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "teapot-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "teapot-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "teapot-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "teapot-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "teapot-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "teapot-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "teapot-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "shoe-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "shoe-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "shoe-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "shoe-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "shoe-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "deck-of-cards-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "deck-of-cards-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "deck-of-cards-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "deck-of-cards-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "deck-of-cards-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "library-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "library-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "library-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "library-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "library-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "library-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "library-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "library-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "library-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "library-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "wrong-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "wrong-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "wrong-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "wrong-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "wrong-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "window-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "window-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "window-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "window-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "window-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "garbage-truck-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "garbage-truck-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "garbage-truck-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "garbage-truck-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "garbage-truck-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "artichoke-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "artichoke-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "artichoke-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "artichoke-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "artichoke-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "carpet-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "carpet-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "carpet-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "carpet-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "carpet-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "alphabet-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "alphabet-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "alphabet-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "alphabet-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "alphabet-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "potato-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "potato-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "potato-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "potato-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "potato-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "palm-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "palm-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "palm-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "palm-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "palm-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "gummy-bear-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "gummy-bear-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "gummy-bear-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "gummy-bear-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "gummy-bear-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "jump-building-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "jump-building-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "jump-building-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "jump-building-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "jump-building-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "die-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "die-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "die-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "die-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "die-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "die-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "die-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "die-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "die-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "die-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "tennis-ball-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "tennis-ball-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "tennis-ball-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "tennis-ball-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "tennis-ball-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "carrot-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "carrot-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "carrot-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "carrot-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "carrot-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "carrot-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "carrot-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "carrot-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "carrot-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "carrot-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stick-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stick-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stick-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stick-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stick-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stick-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stick-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stick-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stick-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "stick-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "barber-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "barber-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "barber-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "barber-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "barber-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "barber-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "barber-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "barber-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "barber-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "barber-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "married-boat-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "married-boat-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "married-boat-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "married-boat-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "married-boat-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "joke-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "joke-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "joke-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "joke-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "joke-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "trouble-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "trouble-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "trouble-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "trouble-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "trouble-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "trouble-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "trouble-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "trouble-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "trouble-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "trouble-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bucket-hole-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bucket-hole-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bucket-hole-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bucket-hole-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "queue-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bucket-hole-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "queue-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "queue-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "queue-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "queue-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "battery-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "battery-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "battery-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "battery-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "battery-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "battery-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "battery-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "battery-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "battery-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "battery-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bookkeeper-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bookkeeper-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bookkeeper-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bookkeeper-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bookkeeper-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "ice-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "ice-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "ice-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "ice-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "ice-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lunch-dinner-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lunch-dinner-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lunch-dinner-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lunch-dinner-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lunch-dinner-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "gone-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "gone-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "gone-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "gone-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "gone-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "newspaper-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "newspaper-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "newspaper-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "newspaper-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "newspaper-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "newspaper-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "newspaper-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "newspaper-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "newspaper-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "newspaper-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bury-survivors-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bury-survivors-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bury-survivors-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bury-survivors-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "everest-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "everest-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bury-survivors-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "everest-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "everest-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "everest-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "leap-year-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "leap-year-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "leap-year-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "leap-year-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "leap-year-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cowboy-friday-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cowboy-friday-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cowboy-friday-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cowboy-friday-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cowboy-friday-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monopoly-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monopoly-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monopoly-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monopoly-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monopoly-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0001-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0001-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0001-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0001-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0001-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0025-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0025-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0025-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0025-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0025-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0051-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0051-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0051-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0051-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0051-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0075-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0075-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0075-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0075-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0075-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0076-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0076-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0076-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0076-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0076-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0095-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0095-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0095-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0095-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0095-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0116-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0116-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0116-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0116-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0116-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0126-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0126-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0126-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0126-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0126-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0129-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0129-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0129-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0129-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0129-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0163-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0163-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0163-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0163-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0163-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0173-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0173-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0173-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0173-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0173-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0192-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0192-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0192-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0192-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0192-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0221-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0221-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0221-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0221-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0221-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0232-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0232-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0232-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0232-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0232-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0259-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0259-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0259-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0259-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0259-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0274-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0274-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0274-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0274-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0274-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0288-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0288-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0288-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0288-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0288-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0291-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0291-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0291-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0291-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0291-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0292-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0292-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0292-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0292-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0292-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0297-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0297-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0297-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0297-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0297-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0303-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0303-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0303-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0303-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0303-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0368-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0368-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0368-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0368-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0368-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0372-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0372-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0372-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0372-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0372-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0381-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0381-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0381-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0381-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0381-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "brain-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "brain-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "brain-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "brain-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "brain-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lid-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lid-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0393-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lid-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0393-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lid-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0393-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "lid-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bear-house-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0393-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bear-house-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0393-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bear-house-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bear-house-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bear-house-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bear-house-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bear-house-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bear-house-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bear-house-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bear-house-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "red-stone-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "red-stone-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "red-stone-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "red-stone-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "red-stone-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "eight-days-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "eight-days-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "eight-days-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "eight-days-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "eight-days-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-v-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-v-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-v-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-v-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "letter-v-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "post-office-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "post-office-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "post-office-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "post-office-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "birds-wire-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "birds-wire-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "birds-wire-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "birds-wire-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "birds-wire-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "birds-wire-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "birds-wire-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "post-office-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "birds-wire-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "birds-wire-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "birds-wire-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "romeo-juliet-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "romeo-juliet-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "romeo-juliet-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "romeo-juliet-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "december-letter-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "december-letter-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "december-letter-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "december-letter-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "december-letter-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "half-of-two-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "half-of-two-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "half-of-two-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "half-of-two-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "half-of-two-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "black-dog-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "black-dog-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "black-dog-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "black-dog-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "romeo-juliet-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "six-seven-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "six-seven-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "black-dog-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "six-seven-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "six-seven-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "six-seven-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cows-drink-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cows-drink-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cows-drink-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cows-drink-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cows-drink-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monty-hall-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monty-hall-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monty-hall-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monty-hall-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monty-hall-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "footsteps-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "footsteps-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "footsteps-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "footsteps-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "footsteps-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "reflection-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "reflection-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "reflection-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "reflection-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "reflection-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "deck-of-cards-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "deck-of-cards-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "deck-of-cards-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "deck-of-cards-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "deck-of-cards-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "joke-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "joke-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "joke-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "joke-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "joke-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0200-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0200-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0200-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0200-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "seconds-year-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "craw-0200-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "seconds-year-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "seconds-year-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "seconds-year-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "seconds-year-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monty-hall-3",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monty-hall-3",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monty-hall-3",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monty-hall-3",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "monty-hall-3",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "dirt-in-hole-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "dirt-in-hole-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "dirt-in-hole-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "dirt-in-hole-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "dirt-in-hole-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "subtract-five-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "subtract-five-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "subtract-five-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "subtract-five-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-fathers-two-sons-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "subtract-five-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-fathers-two-sons-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-fathers-two-sons-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-fathers-two-sons-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "two-fathers-two-sons-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "johnnys-mother-3",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "johnnys-mother-3",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "johnnys-mother-3",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "johnnys-mother-3",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "johnnys-mother-3",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "three-apples-3",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "three-apples-3",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "three-apples-3",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "three-apples-3",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "three-apples-3",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "yellow-hat-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "yellow-hat-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "yellow-hat-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "yellow-hat-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "yellow-hat-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "last-brick-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "last-brick-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "last-brick-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "last-brick-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "last-brick-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "egg-yolk-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "egg-yolk-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "egg-yolk-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "egg-yolk-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "egg-yolk-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "one-story-house-3",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "one-story-house-3",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "one-story-house-3",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "one-story-house-3",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "one-story-house-3",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bald-rain-1",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bald-rain-1",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bald-rain-1",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bald-rain-1",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "bald-rain-1",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "seconds-year-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "seconds-year-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "seconds-year-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "seconds-year-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "seconds-year-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "that-mans-father-2",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "that-mans-father-2",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "that-mans-father-2",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "that-mans-father-2",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "that-mans-father-2",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "birds-wire-3",
+      "sample": 0,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "birds-wire-3",
+      "sample": 1,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "birds-wire-3",
+      "sample": 2,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "birds-wire-3",
+      "sample": 3,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "birds-wire-3",
+      "sample": 4,
+      "run": "runs/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mustard-family-3-r1",
+      "sample": 0,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mustard-family-3-r1",
+      "sample": 1,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mustard-family-3-r1",
+      "sample": 2,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mustard-family-3-r1",
+      "sample": 3,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "mustard-family-3-r1",
+      "sample": 4,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "months-28-days-1-r1",
+      "sample": 0,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "months-28-days-1-r1",
+      "sample": 1,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "months-28-days-1-r1",
+      "sample": 2,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "months-28-days-1-r1",
+      "sample": 3,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "months-28-days-1-r1",
+      "sample": 4,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "marys-father-1-r1",
+      "sample": 0,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "marys-father-1-r1",
+      "sample": 1,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "marys-father-1-r1",
+      "sample": 2,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "marys-father-1-r1",
+      "sample": 3,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "marys-father-1-r1",
+      "sample": 4,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "johnnys-mother-1-r1",
+      "sample": 0,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "johnnys-mother-1-r1",
+      "sample": 1,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "johnnys-mother-1-r1",
+      "sample": 2,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "johnnys-mother-1-r1",
+      "sample": 3,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "johnnys-mother-1-r1",
+      "sample": 4,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "hiccups-1-r1",
+      "sample": 0,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "hiccups-1-r1",
+      "sample": 1,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "hiccups-1-r1",
+      "sample": 2,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "hiccups-1-r1",
+      "sample": 3,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "hiccups-1-r1",
+      "sample": 4,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "parachute-1-r1",
+      "sample": 0,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "parachute-1-r1",
+      "sample": 1,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "parachute-1-r1",
+      "sample": 2,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "parachute-1-r1",
+      "sample": 3,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "parachute-1-r1",
+      "sample": 4,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rooster-egg-2-r1",
+      "sample": 0,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rooster-egg-2-r1",
+      "sample": 1,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rooster-egg-2-r1",
+      "sample": 2,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rooster-egg-2-r1",
+      "sample": 3,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "rooster-egg-2-r1",
+      "sample": 4,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cat-fur-1-r1",
+      "sample": 0,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cat-fur-1-r1",
+      "sample": 1,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cat-fur-1-r1",
+      "sample": 2,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cat-fur-1-r1",
+      "sample": 3,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    },
+    {
+      "unit_id": "cat-fur-1-r1",
+      "sample": 4,
+      "run": "runs/core-repairs-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5"
+    }
+  ],
+  "historical_texts_unchanged": true
+}
