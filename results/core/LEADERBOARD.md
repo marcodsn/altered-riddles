@@ -1,20 +1,14 @@
-# Development candidate — scoped AI adjudication v1, NOT a release
-
-AI adjudication, not human review or independent empirical validation; selected cases, not a representative judge-accuracy audit.
-
-13 historical cases resolved (all match unchanged current samples); two cap answers resolved separately. Historical token caps remain; no 64k splicing. Source permissions and release checks remain outstanding.
-
 # Altered Riddles v2 — leaderboard
 
-_Generated 2026-09-12T14:51:41Z. Primary metric: **COR** (conditioned override rate, lower is better) with a clustered-bootstrap CI95 (clusters = source riddle, 2000 draws). Ranks are point estimates, not significant differences. Comparisons in the JSON use shared familiar items and jointly resampled clusters (pointwise intervals, not multiplicity-adjusted). Rows must pass scoring and pre-publish checks; Git commitment status is not verified._
+_Generated 2026-09-13T15:06:28Z. Primary metric: **COR** (conditioned override rate, lower is better) with a clustered-bootstrap CI95 (clusters = source riddle, 2000 draws). Ranks are point estimates, not significant differences; the rank spread counts rows whose pairwise interval excludes zero. Comparisons in the JSON use shared familiar items and jointly resampled clusters (pointwise intervals, not multiplicity-adjusted). Rows must pass scoring and pre-publish checks; Git commitment status is not verified._
 
-| point rank | model | thinking | items | COR ↓ | CI95 | alt acc ↑ | warned acc | override gap | abstain | other | median reasoning tok | k | pending | familiarity | checks |
-|---|---|---|---:|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---|---|
-| 1 | jalapeno:DeepSeek-V4-Flash-0731 | on | 264 | 1.5% | [0.4, 2.7] | 96.7% | 89.4% | -7.3% | 0.3% | 1.6% | 133.5 | 3 | 0 | direct | ok |
-| 2 | jalapeno:GLM-5.3-Flash | on | 264 | 2.2% | [1.1, 3.8] | 97.0% | 98.8% | 1.8% | 0.0% | 0.8% | 100.0 | 5 | 0 | thinking | ok |
-| 3 | nous:meituan/longcat-2.0:free | on | 264 | 2.7% | [1.3, 4.3] | 95.4% | 83.3% | -12.1% | 0.2% | 1.7% | 133.0 | 5 | 0 | direct | ok |
-| 4 | nous:meituan/longcat-2.0:free | off | 264 | 11.5% | [7.6, 15.0] | 83.4% | 76.2% | -7.2% | 0.0% | 5.4% | 0.0 | 5 | 0 | direct | ok |
-| 5 | jalapeno:DeepSeek-V4-Flash-0731 | off | 264 | 12.6% | [8.6, 16.9] | 81.1% | 77.0% | -4.1% | 0.0% | 7.0% | 0.0 | 5 | 0 | direct | ok |
+| point rank | rank spread | model | thinking | items | COR ↓ | CI95 | orig acc | alt acc ↑ | warned acc | override gap | abstain | other | median reasoning tok | mean out tok | k | pending | familiarity | checks |
+|---|---|---|---|---:|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|
+| 1 | 1–2 | jalapeno:DeepSeek-V4-Flash-0731 | on | 264 | 1.5% | [0.4, 2.7] | 94.5% | 96.7% | 89.4% | -7.3% | 0.3% | 1.6% | 133.5 | 488 | 3 | 0 | direct | ok |
+| 2 | 1–3 | jalapeno:GLM-5.3-Flash | on | 264 | 2.2% | [1.1, 3.8] | 98.8% | 97.0% | 98.8% | 1.8% | 0.0% | 0.8% | 100.0 | 182 | 5 | 0 | thinking | ok |
+| 3 | 2–3 | nous:meituan/longcat-2.0:free | on | 264 | 2.7% | [1.3, 4.3] | 97.1% | 95.4% | 83.3% | -12.1% | 0.2% | 1.7% | 133.0 | 326 | 5 | 0 | direct | ok |
+| 4 | 4–5 | nous:meituan/longcat-2.0:free | off | 264 | 11.5% | [7.6, 15.0] | 97.1% | 83.4% | 76.2% | -7.2% | 0.0% | 5.4% | 0.0 | 7 | 5 | 0 | direct | ok |
+| 5 | 4–5 | jalapeno:DeepSeek-V4-Flash-0731 | off | 264 | 12.6% | [8.6, 16.9] | 94.5% | 81.1% | 77.0% | -4.1% | 0.0% | 7.0% | 0.0 | 10 | 5 | 0 | direct | ok |
 
 ## Pre-publish checks
 
@@ -29,7 +23,7 @@ _All rows pass: item set unchanged since the run, every passed item answered, tr
 
 ## Items to review (validity flags)
 
-_Explicitly labelled AI validity review before publishing; no human review is required. Nothing is dropped automatically. Read the traces: a defensible alternative reading means re-pin or drop; a genuine override stays._
+_Human look before publishing; nothing is dropped automatically. Read the traces: a defensible alternative reading means re-pin or drop; a genuine override stays._
 
 | item | override, thinking on | override, thinking off | n on / off | why flagged |
 |---|---:|---:|---:|---|

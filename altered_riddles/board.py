@@ -12,6 +12,12 @@ Per (model, thinking) row:
   override_gap   warned accuracy minus unwarned accuracy (same thinking)
   abstain        share of unwarned answers labelled abstain
   point_rank     descriptive COR ordering, not a significance claim
+  rank_best/worst plausible rank range: 1 + rows significantly better ... n - rows
+                 significantly worse, from the pairwise comparison intervals
+  original_acc   accuracy on the original riddles (mean per-source accuracy of the
+                 familiarity run over the item sources)
+  mean_output_tokens  mean completion tokens per unwarned answer (verbosity/cost)
+  alteration_types    per-type COR / altered accuracy per row (board level)
   comparisons    jointly clustered, shared-familiar-item comparisons
   thinking_gap   COR(off) minus COR(on) for the same model, when both exist
 
@@ -152,6 +158,57 @@ def familiarity_staleness(run_dir: str, items: dict[str, dict[str, Any]]) -> str
     return None
 
 
+def mean_output_tokens(run_dir: str, expected: set[str]) -> float | None:
+    """Mean completion tokens over the latest successful reply per (item, sample)."""
+    latest: dict[tuple[str, int], dict[str, Any]] = {}
+    raw_p = Path(run_dir) / "raw.jsonl"
+    if not raw_p.exists():
+        return None
+    for r in load_jsonl(raw_p):
+        if r["unit_id"] not in expected:
+            continue
+        key = (r["unit_id"], r.get("sample", 0))
+        if key not in latest or not r.get("reply", {}).get("error"):
+            latest[key] = r
+    toks = [r["reply"]["completion_tokens"] for r in latest.values()
+            if isinstance(r.get("reply"), dict) and isinstance(r["reply"].get("completion_tokens"), (int, float))]
+    return mean(toks)
+
+
+def rank_spread(row_id: str, board: list[dict[str, Any]], comparisons: list[dict[str, Any]]) -> tuple[int, int]:
+    """Plausible rank range from the pairwise COR-difference intervals: best = 1 + number of
+    rows whose COR is significantly lower, worst = n - number of rows significantly higher.
+    A pointwise interval excluding zero counts as significant; no multiplicity adjustment."""
+    better, worse = set(), set()
+    for c in comparisons:
+        if row_id not in (c["a"], c["b"]) or c.get("ci95") is None or c["ci95"][0] is None:
+            continue
+        other = c["b"] if c["a"] == row_id else c["a"]
+        lo, hi = c["ci95"]
+        # difference is COR(a) - COR(b): entirely positive means a overrides more than b
+        a_worse = lo > 0
+        a_better = hi < 0
+        if c["a"] == row_id:
+            (worse if a_better else better if a_worse else set()).add(other)
+        else:
+            (better if a_better else worse if a_worse else set()).add(other)
+    return 1 + len(better), len(board) - len(worse)
+
+
+def type_breakdown(board: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Per alteration type: mean COR / altered accuracy across rows, and each row's values."""
+    types = sorted({t for r in board for t in r.get("by_type", {})})
+    out = []
+    for t in types:
+        per = {r["id"]: {"model": r["model"], "thinking": r["thinking"], **r["by_type"][t]} for r in board if t in r.get("by_type", {})}
+        cors = [v["cor"] for v in per.values() if v["cor"] is not None]
+        accs = [v["alt_acc"] for v in per.values() if v["alt_acc"] is not None]
+        out.append({"type": t, "n_items": max((v["n_items"] for v in per.values()), default=0),
+                    "mean_cor": mean(cors), "mean_alt_acc": mean(accs),
+                    "per_model": {k: {kk: vv for kk, vv in v.items() if kk != "n_items"} for k, v in per.items()}})
+    return out
+
+
 def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: int, manifest: list[str] | None = None) -> dict[str, Any]:
     if n_boot < 1:
         raise ValueError("n_boot must be positive")
@@ -228,6 +285,19 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
                     and all(s["label"] in {"correct", "original", "other", "abstain"} for s in ws)):
                 warned_acc = mean([int(s["label"] == "correct") for s in ws])
         alt_acc = mean([int(s["label"] == "correct") for s in scored])
+        item_sources = {items[u]["source"] for u in expected if u in items}
+        original_acc = mean([familiar[src] for src in sorted(item_sources) if src in familiar])
+        mean_tokens = mean_output_tokens(unw["dir"], expected)
+        by_type_acc: dict[str, list[int]] = defaultdict(list)
+        by_type_cor: dict[str, list[int]] = defaultdict(list)
+        for s in scored:
+            it = items[s["unit_id"]]
+            t = it.get("type", "unknown")
+            by_type_acc[t].append(int(s["label"] == "correct"))
+            if familiar.get(it["source"], 0) >= FAMILIAR_THRESHOLD:
+                by_type_cor[t].append(int(s["label"] == "original"))
+        by_type = {t: {"n_items": len({s["unit_id"] for s in scored if items[s["unit_id"]].get("type", "unknown") == t}),
+                       "alt_acc": mean(by_type_acc[t]), "cor": mean(by_type_cor.get(t, []))} for t in sorted(by_type_acc)}
         # pre-publish checks (automatic part of the release checklist)
         checks: list[str] = []
         d = drift(unw["dir"], items, expected)
@@ -258,7 +328,6 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
         dodge = ((labels["other"] + labels["abstain"]) / n) if n else 0.0
         if dodge > CHECK_MAX_DODGE:
             checks.append(f"other+abstain {dodge:.0%}: COR flattered, rank by accuracy")
-        item_sources = {items[u]["source"] for u in expected if u in items}
         fam_share = (sum(1 for src in item_sources if familiar.get(src, 0) >= FAMILIAR_THRESHOLD) / len(item_sources)) if item_sources else 0.0
         if fam_share < CHECK_MIN_FAMILIAR:
             checks.append(f"familiar with only {fam_share:.0%} of item sources")
@@ -276,6 +345,7 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
             "abstain_rate": labels["abstain"] / n if n else None, "pending": pending,
             "warned_acc": warned_acc, "override_gap": (warned_acc - alt_acc) if (warned_acc is not None and alt_acc is not None) else None,
             "median_reasoning_tokens": unw["summary"].get("median_reasoning_tokens"),
+            "mean_output_tokens": mean_tokens, "original_acc": original_acc, "by_type": by_type,
             "familiarity_mode": orig["config"].get("familiarity_mode", "direct"),
             "samples": unw["config"]["samples"], "error_rate": unw["summary"].get("error_rate"),
             "run_dir": unw["dir"],
@@ -303,6 +373,9 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
         r["point_rank"] = rank
     comparisons = pairwise_comparisons(item_rates, {u: it.get("cluster", it["source"]) for u, it in items.items()},
                                       n_boot=n_boot, seed=seed)
+    for r in board:
+        r["rank_best"], r["rank_worst"] = rank_spread(r["id"], board, comparisons)
+    alteration_types = type_breakdown(board)
     # thinking gap
     by_model: dict[str, dict[str, dict[str, Any]]] = defaultdict(dict)
     for r in board:
@@ -315,7 +388,7 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
     return {"generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "n_boot": n_boot, "seed": seed,
             "run_manifest": manifest if manifest is not None else sorted(r["dir"] for e in rows.values() for r in e["runs"].values()),
             "familiar_threshold": FAMILIAR_THRESHOLD, "rows": board, "excluded": excluded, "review_flags": review,
-            "comparisons": comparisons,
+            "alteration_types": alteration_types, "comparisons": comparisons,
             "comparison_method": "item-balanced COR difference a-b on shared familiar items; jointly resampled clusters; pointwise CI95, no multiplicity adjustment"}
 
 
@@ -325,12 +398,14 @@ def pct(x: float | None) -> str:
 
 def render_md(b: dict[str, Any]) -> str:
     lines = ["# Altered Riddles v2 — leaderboard", "",
-             f"_Generated {b['generated_at']}. Primary metric: **COR** (conditioned override rate, lower is better) with a clustered-bootstrap CI95 (clusters = source riddle, {b['n_boot']} draws). Ranks are point estimates, not significant differences. Comparisons in the JSON use shared familiar items and jointly resampled clusters (pointwise intervals, not multiplicity-adjusted). Rows must pass scoring and pre-publish checks; Git commitment status is not verified._", "",
-             "| point rank | model | thinking | items | COR ↓ | CI95 | alt acc ↑ | warned acc | override gap | abstain | other | median reasoning tok | k | pending | familiarity | checks |",
-             "|---|---|---|---:|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---|---|"]
+             f"_Generated {b['generated_at']}. Primary metric: **COR** (conditioned override rate, lower is better) with a clustered-bootstrap CI95 (clusters = source riddle, {b['n_boot']} draws). Ranks are point estimates, not significant differences; the rank spread counts rows whose pairwise interval excludes zero. Comparisons in the JSON use shared familiar items and jointly resampled clusters (pointwise intervals, not multiplicity-adjusted). Rows must pass scoring and pre-publish checks; Git commitment status is not verified._", "",
+             "| point rank | rank spread | model | thinking | items | COR ↓ | CI95 | orig acc | alt acc ↑ | warned acc | override gap | abstain | other | median reasoning tok | mean out tok | k | pending | familiarity | checks |",
+             "|---|---|---|---|---:|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|"]
     for r in b["rows"]:
         ci = "—" if r["cor_ci95"][0] is None else f"[{100*r['cor_ci95'][0]:.1f}, {100*r['cor_ci95'][1]:.1f}]"
-        lines.append(f"| {r.get('point_rank','—')} | {r['model']} | {r['thinking']} | {r['n_items']} | {pct(r['cor'])} | {ci} | {pct(r['alt_acc'])} | {pct(r['warned_acc'])} | {pct(r['override_gap'])} | {pct(r['abstain_rate'])} | {pct(r['other_rate'])} | {r['median_reasoning_tokens']} | {r['samples']} | {r['pending']} | {r.get('familiarity_mode', 'direct')} | {'ok' if not r.get('checks') else 'see below'} |")
+        spread = f"{r['rank_best']}–{r['rank_worst']}" if r.get("rank_best") is not None else "—"
+        mot = "—" if r.get("mean_output_tokens") is None else f"{r['mean_output_tokens']:.0f}"
+        lines.append(f"| {r.get('point_rank','—')} | {spread} | {r['model']} | {r['thinking']} | {r['n_items']} | {pct(r['cor'])} | {ci} | {pct(r.get('original_acc'))} | {pct(r['alt_acc'])} | {pct(r['warned_acc'])} | {pct(r['override_gap'])} | {pct(r['abstain_rate'])} | {pct(r['other_rate'])} | {r['median_reasoning_tokens']} | {mot} | {r['samples']} | {r['pending']} | {r.get('familiarity_mode', 'direct')} | {'ok' if not r.get('checks') else 'see below'} |")
     flagged = [r for r in b["rows"] if r.get("checks")]
     lines += ["", "## Pre-publish checks", ""]
     if not flagged:
@@ -362,10 +437,13 @@ def main() -> None:
     ap.add_argument("--n-boot", type=int, default=BOOT)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--manifest", default=None, help="JSON file {\"runs\": [run dirs]} naming exactly which runs to use")
+    ap.add_argument("--status", default="development candidate, not frozen or publication-approved",
+                    help="release_status string written into the board; displayed verbatim by the website")
     args = ap.parse_args()
     items = {i["id"]: i for i in load_jsonl(Path(args.items))}
     manifest = json.loads(Path(args.manifest).read_text())["runs"] if args.manifest else None
     b = build(items, Path(args.runs_dir), args.n_boot, args.seed, manifest)
+    b["release_status"] = args.status
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
     (out / "leaderboard.json").write_text(json.dumps(b, indent=1))
