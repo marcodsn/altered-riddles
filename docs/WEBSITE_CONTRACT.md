@@ -2,17 +2,19 @@
 
 Website checkout: `../../marcodsn.me` relative to this repository.
 
-## Existing deployment
+## Deployment (switched to Core preview on 2026-09-13)
 
 Both `/altered-riddles` and `/altered-riddles/leaderboard-screenshot` fetch:
 
-`https://raw.githubusercontent.com/marcodsn/altered-riddles/main/results/leaderboard.json`
+`https://raw.githubusercontent.com/marcodsn/altered-riddles/main/results/core/leaderboard.json`
 
-The main page also fetches v1 alteration aggregates and a last-updated timestamp
-from that repository. It does not fetch the current Core candidate automatically.
-The old website CLAUDE.md description of a local static asset is stale.
+The last-updated timestamp comes from the GitHub commits API on that same path.
+`results/core/` is a copy of the current adjudicated board (see its README). The
+historical v1 feed at `results/leaderboard.json` is untouched and linked from the
+page as a JSON download only; there is no v1 route. The v1 board as published is on
+the `snapshot-13-09-2026` branch.
 
-## Local compatibility changes (not deployed)
+## Reader
 
 `src/lib/utils/leaderboard.ts` exposes a shared `parseLeaderboard` reader for
 legacy arrays/NDJSON and the native v2 `{rows: [...]}` object. Both pages use it.
@@ -50,10 +52,14 @@ The reader tests cover both legacy formats, v2 provider/model handling, interval
 formatting, missing/unavailable metrics and malformed rates/intervals. Also check
 against the actual candidate board before switching feeds.
 
-## Deployment still required
+## Status tag and freeze
 
-The local reader is compatible; the deployed site has not changed. Do not overwrite
-the old feed or push a development board as a release. After freeze, decide the
-public repository/branch and versioned feed path, update both fetch URLs, timestamp
-lookup, download links, dataset links and citation metadata together. Historical
-v1 must stay accessible. This work does not switch URLs or publish either repo.
+The page shows a status tag next to the date. `parseLeaderboard` maps
+`release_status` to "development preview" unless the string says frozen/released
+without a "not". The full string is the tag's tooltip and appears in the Core
+caveat paragraph. Nothing on the page calls the preview a release.
+
+At freeze: replace `results/core/leaderboard.json` with the frozen board (status
+string marking it released), then update the website citation date/metadata and
+dataset links in the same change. Never rewrite `results/leaderboard.json` from
+Core data.
