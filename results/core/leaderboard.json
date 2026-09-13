@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-13T18:21:08Z",
+ "generated_at": "2026-09-13T19:00:40Z",
  "n_boot": 2000,
  "seed": 0,
  "run_manifest": [
@@ -24,7 +24,10 @@
   "runs/jalapeno_Kimi-K2.5/warned-thinkoff-k5",
   "runs/jalapeno_DeepSeek-V4-Pro/original-thinkoff-k5",
   "runs/jalapeno_DeepSeek-V4-Pro/unwarned-thinkoff-k5",
-  "runs/jalapeno_DeepSeek-V4-Pro/warned-thinkoff-k5"
+  "runs/jalapeno_DeepSeek-V4-Pro/warned-thinkoff-k5",
+  "runs/jalapeno_GLM-5.1/original-thinkoff-k5",
+  "runs/jalapeno_GLM-5.1/unwarned-thinkoff-k5",
+  "runs/jalapeno_GLM-5.1/warned-thinkoff-k5"
  ],
  "familiar_threshold": 0.8,
  "rows": [
@@ -296,7 +299,7 @@
    "run_dir": "runs/jalapeno_Kimi-K2.5/unwarned-thinkoff-k5",
    "point_rank": 4,
    "rank_best": 4,
-   "rank_worst": 6
+   "rank_worst": 7
   },
   {
    "checks": [],
@@ -363,7 +366,7 @@
    "run_dir": "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
    "point_rank": 5,
    "rank_best": 4,
-   "rank_worst": 7,
+   "rank_worst": 8,
    "thinking_gap": 0.08759689922480621
   },
   {
@@ -431,7 +434,74 @@
    "run_dir": "runs/jalapeno_DeepSeek-V4-Pro/unwarned-thinkoff-k5",
    "point_rank": 6,
    "rank_best": 5,
-   "rank_worst": 7
+   "rank_worst": 8
+  },
+  {
+   "checks": [],
+   "truncated_rate": 0.0,
+   "dodge_rate": 0.0409,
+   "familiar_share": 0.965,
+   "drift": {
+    "stale": 0,
+    "missing": 0,
+    "unhashed": 0
+   },
+   "id": "jalapeno:GLM-5.1|off",
+   "model": "jalapeno:GLM-5.1",
+   "thinking": "off",
+   "n_items": 264,
+   "n_answers": 1320,
+   "familiar_sources": 192,
+   "n_conditioned": 1285,
+   "alt_acc": 0.8393939393939394,
+   "cor": 0.12295719844357976,
+   "cor_ci95": [
+    0.08278688524590164,
+    0.1646153846153846
+   ],
+   "original_rate": 0.11969696969696969,
+   "other_rate": 0.04015151515151515,
+   "abstain_rate": 0.0007575757575757576,
+   "pending": 0,
+   "warned_acc": 0.8234848484848485,
+   "override_gap": -0.015909090909090873,
+   "median_reasoning_tokens": 0.0,
+   "mean_output_tokens": 5.083333333333333,
+   "original_acc": 0.9728643216080402,
+   "by_type": {
+    "hard_constraint": {
+     "n_items": 112,
+     "alt_acc": 0.8553571428571428,
+     "cor": 0.12
+    },
+    "negated_premise": {
+     "n_items": 48,
+     "alt_acc": 0.8291666666666667,
+     "cor": 0.1148936170212766
+    },
+    "question_swap": {
+     "n_items": 63,
+     "alt_acc": 0.926984126984127,
+     "cor": 0.02
+    },
+    "stated": {
+     "n_items": 21,
+     "alt_acc": 0.6190476190476191,
+     "cor": 0.36
+    },
+    "trivialized": {
+     "n_items": 20,
+     "alt_acc": 0.73,
+     "cor": 0.23
+    }
+   },
+   "familiarity_mode": "direct",
+   "samples": 5,
+   "error_rate": 0.0,
+   "run_dir": "runs/jalapeno_GLM-5.1/unwarned-thinkoff-k5",
+   "point_rank": 7,
+   "rank_best": 4,
+   "rank_worst": 8
   },
   {
    "checks": [],
@@ -496,9 +566,9 @@
    "samples": 5,
    "error_rate": 0.0,
    "run_dir": "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
-   "point_rank": 7,
+   "point_rank": 8,
    "rank_best": 4,
-   "rank_worst": 7,
+   "rank_worst": 8,
    "thinking_gap": 0.11137884872824631
   }
  ],
@@ -515,15 +585,15 @@
    "override_on": 0.846,
    "override_off": 1.0,
    "n_on": 13,
-   "n_off": 25,
+   "n_off": 30,
    "reason": "overridden by everyone in both modes: very strong prior, or ambiguous"
   },
   {
    "item": "married-boat-1",
    "override_on": 0.769,
-   "override_off": 0.04,
+   "override_off": 0.033,
    "n_on": 13,
-   "n_off": 25,
+   "n_off": 30,
    "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
   },
   {
@@ -531,7 +601,7 @@
    "override_on": 0.385,
    "override_off": 0.2,
    "n_on": 13,
-   "n_off": 25,
+   "n_off": 30,
    "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
   },
   {
@@ -539,7 +609,7 @@
    "override_on": 0.308,
    "override_off": 0.0,
    "n_on": 13,
-   "n_off": 25,
+   "n_off": 30,
    "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
   }
  ],
@@ -547,8 +617,8 @@
   {
    "type": "hard_constraint",
    "n_items": 112,
-   "mean_cor": 0.06245054774767348,
-   "mean_alt_acc": 0.9011904761904762,
+   "mean_cor": 0.06964422927921429,
+   "mean_alt_acc": 0.8954613095238095,
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731|on": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
@@ -586,6 +656,12 @@
      "alt_acc": 0.8607142857142858,
      "cor": 0.10654205607476636
     },
+    "jalapeno:GLM-5.1|off": {
+     "model": "jalapeno:GLM-5.1",
+     "thinking": "off",
+     "alt_acc": 0.8553571428571428,
+     "cor": 0.12
+    },
     "jalapeno:DeepSeek-V4-Flash-0731|off": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
      "thinking": "off",
@@ -597,8 +673,8 @@
   {
    "type": "negated_premise",
    "n_items": 48,
-   "mean_cor": 0.09144362045315081,
-   "mean_alt_acc": 0.8716269841269841,
+   "mean_cor": 0.09437487002416654,
+   "mean_alt_acc": 0.8663194444444444,
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731|on": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
@@ -636,6 +712,12 @@
      "alt_acc": 0.8166666666666667,
      "cor": 0.13953488372093023
     },
+    "jalapeno:GLM-5.1|off": {
+     "model": "jalapeno:GLM-5.1",
+     "thinking": "off",
+     "alt_acc": 0.8291666666666667,
+     "cor": 0.1148936170212766
+    },
     "jalapeno:DeepSeek-V4-Flash-0731|off": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
      "thinking": "off",
@@ -647,8 +729,8 @@
   {
    "type": "question_swap",
    "n_items": 63,
-   "mean_cor": 0.022897445748519336,
-   "mean_alt_acc": 0.9489040060468632,
+   "mean_cor": 0.022535265029954416,
+   "mean_alt_acc": 0.9461640211640212,
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731|on": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
@@ -686,6 +768,12 @@
      "alt_acc": 0.9142857142857143,
      "cor": 0.036065573770491806
     },
+    "jalapeno:GLM-5.1|off": {
+     "model": "jalapeno:GLM-5.1",
+     "thinking": "off",
+     "alt_acc": 0.926984126984127,
+     "cor": 0.02
+    },
     "jalapeno:DeepSeek-V4-Flash-0731|off": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
      "thinking": "off",
@@ -697,8 +785,8 @@
   {
    "type": "stated",
    "n_items": 21,
-   "mean_cor": 0.20871424593229104,
-   "mean_alt_acc": 0.7582766439909296,
+   "mean_cor": 0.22762496519075465,
+   "mean_alt_acc": 0.7408730158730159,
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731|on": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
@@ -736,6 +824,12 @@
      "alt_acc": 0.6095238095238096,
      "cor": 0.35
     },
+    "jalapeno:GLM-5.1|off": {
+     "model": "jalapeno:GLM-5.1",
+     "thinking": "off",
+     "alt_acc": 0.6190476190476191,
+     "cor": 0.36
+    },
     "jalapeno:DeepSeek-V4-Flash-0731|off": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
      "thinking": "off",
@@ -747,8 +841,8 @@
   {
    "type": "trivialized",
    "n_items": 20,
-   "mean_cor": 0.11421052631578947,
-   "mean_alt_acc": 0.86,
+   "mean_cor": 0.1286842105263158,
+   "mean_alt_acc": 0.84375,
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731|on": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
@@ -786,6 +880,12 @@
      "alt_acc": 0.69,
      "cor": 0.2
     },
+    "jalapeno:GLM-5.1|off": {
+     "model": "jalapeno:GLM-5.1",
+     "thinking": "off",
+     "alt_acc": 0.73,
+     "cor": 0.23
+    },
     "jalapeno:DeepSeek-V4-Flash-0731|off": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
      "thinking": "off",
@@ -816,6 +916,17 @@
    "ci95": [
     -0.026495726495726495,
     0.03305084745762712
+   ]
+  },
+  {
+   "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+   "b": "jalapeno:GLM-5.1|off",
+   "n_items": 245,
+   "n_clusters": 173,
+   "difference": 0.004897959183673469,
+   "ci95": [
+    -0.0350597609561753,
+    0.046153846153846156
    ]
   },
   {
@@ -875,6 +986,17 @@
   },
   {
    "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+   "b": "jalapeno:GLM-5.1|off",
+   "n_items": 245,
+   "n_clusters": 173,
+   "difference": -0.10829931972789117,
+   "ci95": [
+    -0.1540983606557377,
+    -0.06533333333333333
+   ]
+  },
+  {
+   "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
    "b": "jalapeno:GLM-5.3-Flash|on",
    "n_items": 248,
    "n_clusters": 176,
@@ -919,6 +1041,17 @@
   },
   {
    "a": "jalapeno:DeepSeek-V4-Pro|off",
+   "b": "jalapeno:GLM-5.1|off",
+   "n_items": 247,
+   "n_clusters": 173,
+   "difference": -0.004048582995951417,
+   "ci95": [
+    -0.03937007874015748,
+    0.0314410480349345
+   ]
+  },
+  {
+   "a": "jalapeno:DeepSeek-V4-Pro|off",
    "b": "jalapeno:GLM-5.3-Flash|on",
    "n_items": 250,
    "n_clusters": 176,
@@ -959,6 +1092,50 @@
    "ci95": [
     0.061847389558232935,
     0.13178294573643412
+   ]
+  },
+  {
+   "a": "jalapeno:GLM-5.1|off",
+   "b": "jalapeno:GLM-5.3-Flash|on",
+   "n_items": 256,
+   "n_clusters": 181,
+   "difference": 0.1015625,
+   "ci95": [
+    0.06171875,
+    0.1430769230769231
+   ]
+  },
+  {
+   "a": "jalapeno:GLM-5.1|off",
+   "b": "jalapeno:Kimi-K2.5|off",
+   "n_items": 252,
+   "n_clusters": 177,
+   "difference": 0.034126984126984124,
+   "ci95": [
+    -0.005063291139240507,
+    0.07644787644787646
+   ]
+  },
+  {
+   "a": "jalapeno:GLM-5.1|off",
+   "b": "nous:meituan/longcat-2.0:free|off",
+   "n_items": 252,
+   "n_clusters": 177,
+   "difference": 0.003968253968253969,
+   "ci95": [
+    -0.0349809885931559,
+    0.04247104247104247
+   ]
+  },
+  {
+   "a": "jalapeno:GLM-5.1|off",
+   "b": "nous:meituan/longcat-2.0:free|on",
+   "n_items": 252,
+   "n_clusters": 177,
+   "difference": 0.09365079365079365,
+   "ci95": [
+    0.054771784232365145,
+    0.13807531380753138
    ]
   },
   {
