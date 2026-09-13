@@ -1,6 +1,6 @@
 # Altered Riddles v2 — leaderboard
 
-_Generated 2026-09-13T16:07:20Z. Primary metric: **COR** (conditioned override rate, lower is better) with a clustered-bootstrap CI95 (clusters = source riddle, 2000 draws). Ranks are point estimates, not significant differences; the rank spread counts rows whose pairwise interval excludes zero. Comparisons in the JSON use shared familiar items and jointly resampled clusters (pointwise intervals, not multiplicity-adjusted). Rows must pass scoring and pre-publish checks; Git commitment status is not verified._
+_Generated 2026-09-13T16:31:42Z. Primary metric: **COR** (conditioned override rate, lower is better) with a clustered-bootstrap CI95 (clusters = source riddle, 2000 draws). Ranks are point estimates, not significant differences; the rank spread counts rows whose pairwise interval excludes zero. Comparisons in the JSON use shared familiar items and jointly resampled clusters (pointwise intervals, not multiplicity-adjusted). Rows must pass scoring and pre-publish checks; Git commitment status is not verified._
 
 | point rank | rank spread | model | thinking | items | COR ↓ | CI95 | orig acc | alt acc ↑ | warned acc | override gap | abstain | other | median reasoning tok | mean out tok | k | pending | familiarity | checks |
 |---|---|---|---|---:|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|
@@ -24,6 +24,7 @@ _All rows pass: item set unchanged since the run, every passed item answered, tr
 ## Not on the board
 
 - nous:poolside/laguna-s-2.1:free (off): other+abstain 11%: COR flattered, rank by accuracy; familiar with only 80% of item sources
+- jalapeno:Kimi-K2.5 (off): incomplete/invalid scoring: 57 unresolved, 0 missing items, 0 missing samples, 0 unexpected samples, 0 duplicate samples
 
 ## Items to review (validity flags)
 
