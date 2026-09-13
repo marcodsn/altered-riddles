@@ -24,7 +24,10 @@
     "runs/jalapeno_DeepSeek-V4-Pro/warned-thinkoff-k5",
     "runs/jalapeno_GLM-5.1/original-thinkoff-k5",
     "runs/jalapeno_GLM-5.1/unwarned-thinkoff-k5",
-    "runs/jalapeno_GLM-5.1/warned-thinkoff-k5"
+    "runs/jalapeno_GLM-5.1/warned-thinkoff-k5",
+    "runs/jalapeno_GLM-5.2/original-thinkoff-k5",
+    "runs/jalapeno_GLM-5.2/unwarned-thinkoff-k5",
+    "runs/jalapeno_GLM-5.2/warned-thinkoff-k5"
   ],
   "items_file": "results/audit/adjudication-v2/core.candidate.jsonl",
   "items_sha256": "1aa1567a06c507ba40a71df54cd7530a249a5106dbb96898a5a5493d085d9a28",

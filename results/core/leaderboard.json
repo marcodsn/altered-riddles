@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-13T19:00:40Z",
+ "generated_at": "2026-09-13T20:42:56Z",
  "n_boot": 2000,
  "seed": 0,
  "run_manifest": [
@@ -27,7 +27,10 @@
   "runs/jalapeno_DeepSeek-V4-Pro/warned-thinkoff-k5",
   "runs/jalapeno_GLM-5.1/original-thinkoff-k5",
   "runs/jalapeno_GLM-5.1/unwarned-thinkoff-k5",
-  "runs/jalapeno_GLM-5.1/warned-thinkoff-k5"
+  "runs/jalapeno_GLM-5.1/warned-thinkoff-k5",
+  "runs/jalapeno_GLM-5.2/original-thinkoff-k5",
+  "runs/jalapeno_GLM-5.2/unwarned-thinkoff-k5",
+  "runs/jalapeno_GLM-5.2/warned-thinkoff-k5"
  ],
  "familiar_threshold": 0.8,
  "rows": [
@@ -299,7 +302,74 @@
    "run_dir": "runs/jalapeno_Kimi-K2.5/unwarned-thinkoff-k5",
    "point_rank": 4,
    "rank_best": 4,
-   "rank_worst": 7
+   "rank_worst": 8
+  },
+  {
+   "checks": [],
+   "truncated_rate": 0.0,
+   "dodge_rate": 0.0568,
+   "familiar_share": 0.98,
+   "drift": {
+    "stale": 0,
+    "missing": 0,
+    "unhashed": 0
+   },
+   "id": "jalapeno:GLM-5.2|off",
+   "model": "jalapeno:GLM-5.2",
+   "thinking": "off",
+   "n_items": 264,
+   "n_answers": 1320,
+   "familiar_sources": 195,
+   "n_conditioned": 1300,
+   "alt_acc": 0.8393939393939394,
+   "cor": 0.10538461538461538,
+   "cor_ci95": [
+    0.06923076923076923,
+    0.14474708171206227
+   ],
+   "original_rate": 0.10378787878787879,
+   "other_rate": 0.05606060606060606,
+   "abstain_rate": 0.0007575757575757576,
+   "pending": 0,
+   "warned_acc": 0.8,
+   "override_gap": -0.039393939393939315,
+   "median_reasoning_tokens": 0.0,
+   "mean_output_tokens": 6.512121212121212,
+   "original_acc": 0.9788944723618092,
+   "by_type": {
+    "hard_constraint": {
+     "n_items": 112,
+     "alt_acc": 0.8714285714285714,
+     "cor": 0.0972972972972973
+    },
+    "negated_premise": {
+     "n_items": 48,
+     "alt_acc": 0.8291666666666667,
+     "cor": 0.11304347826086956
+    },
+    "question_swap": {
+     "n_items": 63,
+     "alt_acc": 0.9047619047619048,
+     "cor": 0.0064516129032258064
+    },
+    "stated": {
+     "n_items": 21,
+     "alt_acc": 0.6666666666666666,
+     "cor": 0.24761904761904763
+    },
+    "trivialized": {
+     "n_items": 20,
+     "alt_acc": 0.66,
+     "cor": 0.29
+    }
+   },
+   "familiarity_mode": "direct",
+   "samples": 5,
+   "error_rate": 0.0,
+   "run_dir": "runs/jalapeno_GLM-5.2/unwarned-thinkoff-k5",
+   "point_rank": 5,
+   "rank_best": 4,
+   "rank_worst": 9
   },
   {
    "checks": [],
@@ -364,9 +434,9 @@
    "samples": 5,
    "error_rate": 0.0,
    "run_dir": "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
-   "point_rank": 5,
+   "point_rank": 6,
    "rank_best": 4,
-   "rank_worst": 8,
+   "rank_worst": 9,
    "thinking_gap": 0.08759689922480621
   },
   {
@@ -432,9 +502,9 @@
    "samples": 5,
    "error_rate": 0.0,
    "run_dir": "runs/jalapeno_DeepSeek-V4-Pro/unwarned-thinkoff-k5",
-   "point_rank": 6,
+   "point_rank": 7,
    "rank_best": 5,
-   "rank_worst": 8
+   "rank_worst": 9
   },
   {
    "checks": [],
@@ -499,9 +569,9 @@
    "samples": 5,
    "error_rate": 0.0,
    "run_dir": "runs/jalapeno_GLM-5.1/unwarned-thinkoff-k5",
-   "point_rank": 7,
+   "point_rank": 8,
    "rank_best": 4,
-   "rank_worst": 8
+   "rank_worst": 9
   },
   {
    "checks": [],
@@ -566,9 +636,9 @@
    "samples": 5,
    "error_rate": 0.0,
    "run_dir": "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
-   "point_rank": 8,
+   "point_rank": 9,
    "rank_best": 4,
-   "rank_worst": 8,
+   "rank_worst": 9,
    "thinking_gap": 0.11137884872824631
   }
  ],
@@ -585,23 +655,23 @@
    "override_on": 0.846,
    "override_off": 1.0,
    "n_on": 13,
-   "n_off": 30,
+   "n_off": 35,
    "reason": "overridden by everyone in both modes: very strong prior, or ambiguous"
   },
   {
    "item": "married-boat-1",
    "override_on": 0.769,
-   "override_off": 0.033,
+   "override_off": 0.029,
    "n_on": 13,
-   "n_off": 30,
+   "n_off": 35,
    "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
   },
   {
    "item": "yellow-hat-1",
    "override_on": 0.385,
-   "override_off": 0.2,
+   "override_off": 0.171,
    "n_on": 13,
-   "n_off": 30,
+   "n_off": 35,
    "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
   },
   {
@@ -609,7 +679,7 @@
    "override_on": 0.308,
    "override_off": 0.0,
    "n_on": 13,
-   "n_off": 30,
+   "n_off": 35,
    "reason": "thinking-on override above thinking-off: reasoning finds an alternative reading?"
   }
  ],
@@ -617,8 +687,8 @@
   {
    "type": "hard_constraint",
    "n_items": 112,
-   "mean_cor": 0.06964422927921429,
-   "mean_alt_acc": 0.8954613095238095,
+   "mean_cor": 0.07271679239233463,
+   "mean_alt_acc": 0.8927910052910053,
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731|on": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
@@ -643,6 +713,12 @@
      "thinking": "off",
      "alt_acc": 0.8892857142857142,
      "cor": 0.07272727272727272
+    },
+    "jalapeno:GLM-5.2|off": {
+     "model": "jalapeno:GLM-5.2",
+     "thinking": "off",
+     "alt_acc": 0.8714285714285714,
+     "cor": 0.0972972972972973
     },
     "nous:meituan/longcat-2.0:free|off": {
      "model": "nous:meituan/longcat-2.0:free",
@@ -673,8 +749,8 @@
   {
    "type": "negated_premise",
    "n_items": 48,
-   "mean_cor": 0.09437487002416654,
-   "mean_alt_acc": 0.8663194444444444,
+   "mean_cor": 0.09644915982824466,
+   "mean_alt_acc": 0.8621913580246914,
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731|on": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
@@ -699,6 +775,12 @@
      "thinking": "off",
      "alt_acc": 0.8458333333333333,
      "cor": 0.13478260869565217
+    },
+    "jalapeno:GLM-5.2|off": {
+     "model": "jalapeno:GLM-5.2",
+     "thinking": "off",
+     "alt_acc": 0.8291666666666667,
+     "cor": 0.11304347826086956
     },
     "nous:meituan/longcat-2.0:free|off": {
      "model": "nous:meituan/longcat-2.0:free",
@@ -729,8 +811,8 @@
   {
    "type": "question_swap",
    "n_items": 63,
-   "mean_cor": 0.022535265029954416,
-   "mean_alt_acc": 0.9461640211640212,
+   "mean_cor": 0.020748192571429014,
+   "mean_alt_acc": 0.9415637860082305,
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731|on": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
@@ -755,6 +837,12 @@
      "thinking": "off",
      "alt_acc": 0.946031746031746,
      "cor": 0.012698412698412698
+    },
+    "jalapeno:GLM-5.2|off": {
+     "model": "jalapeno:GLM-5.2",
+     "thinking": "off",
+     "alt_acc": 0.9047619047619048,
+     "cor": 0.0064516129032258064
     },
     "nous:meituan/longcat-2.0:free|off": {
      "model": "nous:meituan/longcat-2.0:free",
@@ -785,8 +873,8 @@
   {
    "type": "stated",
    "n_items": 21,
-   "mean_cor": 0.22762496519075465,
-   "mean_alt_acc": 0.7408730158730159,
+   "mean_cor": 0.22984652990500942,
+   "mean_alt_acc": 0.7326278659611992,
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731|on": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
@@ -811,6 +899,12 @@
      "thinking": "off",
      "alt_acc": 0.7619047619047619,
      "cor": 0.22105263157894736
+    },
+    "jalapeno:GLM-5.2|off": {
+     "model": "jalapeno:GLM-5.2",
+     "thinking": "off",
+     "alt_acc": 0.6666666666666666,
+     "cor": 0.24761904761904763
     },
     "nous:meituan/longcat-2.0:free|off": {
      "model": "nous:meituan/longcat-2.0:free",
@@ -841,8 +935,8 @@
   {
    "type": "trivialized",
    "n_items": 20,
-   "mean_cor": 0.1286842105263158,
-   "mean_alt_acc": 0.84375,
+   "mean_cor": 0.14660818713450294,
+   "mean_alt_acc": 0.8233333333333334,
    "per_model": {
     "jalapeno:DeepSeek-V4-Flash-0731|on": {
      "model": "jalapeno:DeepSeek-V4-Flash-0731",
@@ -867,6 +961,12 @@
      "thinking": "off",
      "alt_acc": 0.83,
      "cor": 0.15789473684210525
+    },
+    "jalapeno:GLM-5.2|off": {
+     "model": "jalapeno:GLM-5.2",
+     "thinking": "off",
+     "alt_acc": 0.66,
+     "cor": 0.29
     },
     "nous:meituan/longcat-2.0:free|off": {
      "model": "nous:meituan/longcat-2.0:free",
@@ -927,6 +1027,17 @@
    "ci95": [
     -0.0350597609561753,
     0.046153846153846156
+   ]
+  },
+  {
+   "a": "jalapeno:DeepSeek-V4-Flash-0731|off",
+   "b": "jalapeno:GLM-5.2|off",
+   "n_items": 247,
+   "n_clusters": 175,
+   "difference": 0.019433198380566803,
+   "ci95": [
+    -0.017322834645669288,
+    0.06062992125984252
    ]
   },
   {
@@ -997,6 +1108,17 @@
   },
   {
    "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
+   "b": "jalapeno:GLM-5.2|off",
+   "n_items": 247,
+   "n_clusters": 175,
+   "difference": -0.09284750337381917,
+   "ci95": [
+    -0.13565891472868216,
+    -0.05328083989501312
+   ]
+  },
+  {
+   "a": "jalapeno:DeepSeek-V4-Flash-0731|on",
    "b": "jalapeno:GLM-5.3-Flash|on",
    "n_items": 248,
    "n_clusters": 176,
@@ -1052,6 +1174,17 @@
   },
   {
    "a": "jalapeno:DeepSeek-V4-Pro|off",
+   "b": "jalapeno:GLM-5.2|off",
+   "n_items": 250,
+   "n_clusters": 176,
+   "difference": 0.0128,
+   "ci95": [
+    -0.01955555555555555,
+    0.04686192468619247
+   ]
+  },
+  {
+   "a": "jalapeno:DeepSeek-V4-Pro|off",
    "b": "jalapeno:GLM-5.3-Flash|on",
    "n_items": 250,
    "n_clusters": 176,
@@ -1096,6 +1229,17 @@
   },
   {
    "a": "jalapeno:GLM-5.1|off",
+   "b": "jalapeno:GLM-5.2|off",
+   "n_items": 256,
+   "n_clusters": 181,
+   "difference": 0.01640625,
+   "ci95": [
+    -0.010526315789473684,
+    0.045112781954887216
+   ]
+  },
+  {
+   "a": "jalapeno:GLM-5.1|off",
    "b": "jalapeno:GLM-5.3-Flash|on",
    "n_items": 256,
    "n_clusters": 181,
@@ -1136,6 +1280,50 @@
    "ci95": [
     0.054771784232365145,
     0.13807531380753138
+   ]
+  },
+  {
+   "a": "jalapeno:GLM-5.2|off",
+   "b": "jalapeno:GLM-5.3-Flash|on",
+   "n_items": 259,
+   "n_clusters": 184,
+   "difference": 0.0833976833976834,
+   "ci95": [
+    0.04477611940298507,
+    0.12248062015503877
+   ]
+  },
+  {
+   "a": "jalapeno:GLM-5.2|off",
+   "b": "jalapeno:Kimi-K2.5|off",
+   "n_items": 255,
+   "n_clusters": 180,
+   "difference": 0.018823529411764704,
+   "ci95": [
+    -0.02047244094488189,
+    0.05917602996254681
+   ]
+  },
+  {
+   "a": "jalapeno:GLM-5.2|off",
+   "b": "nous:meituan/longcat-2.0:free|off",
+   "n_items": 256,
+   "n_clusters": 181,
+   "difference": -0.0125,
+   "ci95": [
+    -0.04860557768924303,
+    0.023166023166023165
+   ]
+  },
+  {
+   "a": "jalapeno:GLM-5.2|off",
+   "b": "nous:meituan/longcat-2.0:free|on",
+   "n_items": 256,
+   "n_clusters": 181,
+   "difference": 0.07578125,
+   "ci95": [
+    0.042622950819672135,
+    0.11187739463601533
    ]
   },
   {

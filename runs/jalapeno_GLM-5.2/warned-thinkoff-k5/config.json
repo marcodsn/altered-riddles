@@ -1,0 +1,23 @@
+{
+ "provider": "jalapeno",
+ "model": "GLM-5.2",
+ "condition": "warned",
+ "thinking": "off",
+ "thinking_request_params": {
+  "thinking": {
+   "type": "disabled"
+  }
+ },
+ "familiarity_mode": null,
+ "samples": 5,
+ "temperature": null,
+ "max_tokens": 200,
+ "prompt": "This is a modified version of a well-known riddle or puzzle. The usual answer may be wrong here. Read every word and answer the question exactly as written.\n\n{text}\n\nReply with a single line of the form:\nAnswer: <your answer in a few words>",
+ "items_file": "results/audit/adjudication-v2/core.candidate.jsonl",
+ "items_sha256": "1aa1567a06c507ba40a71df54cd7530a249a5106dbb96898a5a5493d085d9a28",
+ "n_units": 264,
+ "passed_only": true,
+ "user_tag": null,
+ "git_commit": "745b0affbebf80e2857f574fe766efaa267ac4b7",
+ "started_at": "2026-09-13T19:42:19Z"
+}
