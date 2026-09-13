@@ -1,0 +1,24 @@
+{
+  "runs": [
+    "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/original-thinkoff-k5",
+    "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkoff-k5",
+    "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/unwarned-thinkon-k3",
+    "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkoff-k5",
+    "runs/core-candidate-adjudicated-v1/jalapeno_DeepSeek-V4-Flash-0731/warned-thinkon-k3",
+    "runs/core-candidate-adjudicated-v1/jalapeno_GLM-5.3-Flash/original-thinkon-k5",
+    "runs/core-candidate-adjudicated-v1/jalapeno_GLM-5.3-Flash/unwarned-thinkon-k5",
+    "runs/core-candidate-adjudicated-v1/jalapeno_GLM-5.3-Flash/warned-thinkon-k5",
+    "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/original-thinkoff-k5",
+    "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/unwarned-thinkoff-k5",
+    "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/unwarned-thinkon-k5",
+    "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/warned-thinkoff-k5",
+    "runs/core-candidate-adjudicated-v1/nous_meituan_longcat-2.0_free/warned-thinkon-k5",
+    "runs/nous_poolside_laguna-s-2.1_free/original-thinkoff-k5",
+    "runs/nous_poolside_laguna-s-2.1_free/unwarned-thinkoff-k5",
+    "runs/nous_poolside_laguna-s-2.1_free/warned-thinkoff-k5"
+  ],
+  "items_file": "results/audit/adjudication-v2/core.candidate.jsonl",
+  "items_sha256": "1aa1567a06c507ba40a71df54cd7530a249a5106dbb96898a5a5493d085d9a28",
+  "base_manifest": "results/audit/astra-adjudication-v1/candidate_run_manifest.json",
+  "note": "Live, growing manifest for results/core: starts from the frozen/adjudicated astra-adjudication-v1 runs (untouched) and appends freshly benchmarked models as they complete scoring. Unlike the base manifest, additions here involve new inference and are not individually adjudicated -- board.py still excludes any row whose guardrail fails."
+}
