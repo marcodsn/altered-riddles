@@ -1,6 +1,8 @@
 # marcodsn.me integration contract
 
-Website checkout: `../../marcodsn.me` relative to this repository.
+Website checkout: `../../marcodsn.me` relative to this repository. The deployed
+branch is `dev` (the site's `main` is an unrelated, stale history); deployment is a
+manual `git pull` + docker rebuild on the server, see the site's `INSTRUCTIONS.md`.
 
 ## Deployment (switched to Core preview on 2026-09-13)
 
