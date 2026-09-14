@@ -24,7 +24,7 @@ class RunCapTests(unittest.TestCase):
             items=str(self.items), passed_only=False, limit=0, thinking='on',
             condition='warned', samples=1, runs_dir=str(self.root / 'runs'),
             temperature=None, concurrency=1, retries=1, rpm=None, timeout=10,
-            max_tokens=None)
+            max_tokens=None, user_tag=None)
         self.reply = Reply('test', 'Answer: yes', None, 10, 110, 100, 'stop', 0, 1)
 
     def execute(self):
@@ -45,6 +45,29 @@ class RunCapTests(unittest.TestCase):
         new = next((self.root / 'runs').glob('*/*-cap64000/config.json'))
         self.assertEqual(json.loads(new.read_text())['max_tokens'], 64000)
         self.assertEqual(self.execute().await_count, 0)
+
+    def test_uncounted_reasoning_text_satisfies_the_thinking_guardrail(self):
+        self.reply = Reply('test', 'Answer: yes', 'word ' * 200, 10, 210, 0, 'stop', 0, 1)
+        self.execute()
+        path = next((self.root / 'runs').glob('*/*/summary.json'))
+        summary = json.loads(path.read_text())
+        self.assertEqual(summary['guardrail'], 'PASS')
+        self.assertEqual(summary['median_reasoning_tokens'], 200)
+        self.assertEqual(summary['reasoning_tokens_estimated_rows'], 1)
+        raw = path.with_name('raw.jsonl')
+        self.assertEqual(json.loads(raw.read_text())['reply']['reasoning_tokens'], 0)
+        before = raw.read_bytes()
+        self.assertEqual(self.execute().await_count, 0)
+        self.assertEqual(raw.read_bytes(), before)
+        self.assertEqual(json.loads(path.read_text())['guardrail'], 'PASS')
+
+    def test_near_empty_reasoning_text_is_not_thinking(self):
+        self.reply = Reply('test', 'Answer: yes', 'Hmm, yes.', 10, 110, 0, 'stop', 0, 1)
+        self.execute()
+        summary = json.loads(next((self.root / 'runs').glob('*/*/summary.json')).read_text())
+        self.assertEqual(summary['guardrail'], 'FAIL')
+        self.assertEqual(summary['median_reasoning_tokens'], 0)
+        self.assertEqual(summary['reasoning_tokens_estimated_rows'], 0)
 
     def test_changed_settings_fail_before_mutation(self):
         self.execute()

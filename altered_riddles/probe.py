@@ -41,7 +41,7 @@ from typing import Any
 
 import yaml
 
-from altered_riddles.llm import PROVIDERS, Client, Reply, gather_limited
+from altered_riddles.llm import PROVIDERS, Client, Reply, effective_reasoning_tokens, gather_limited
 
 A_PROMPT = "Solve this riddle. Reply with only the answer, in a few words, and nothing else.\n\n{text}"
 B_PROMPT = (
@@ -292,7 +292,7 @@ async def run(args: argparse.Namespace) -> None:
                     errors += 1
                     continue
                 rep = row["reply"]
-                if (rep.get("reasoning_tokens") or 0) > 0:
+                if effective_reasoning_tokens(rep) > 0:
                     leaks += 1
                     continue
                 valid += 1
@@ -305,7 +305,7 @@ async def run(args: argparse.Namespace) -> None:
                 vscore, vpass, vleak = None, False, False
             else:
                 brep = brow["reply"]
-                vleak = (brep.get("reasoning_tokens") or 0) > 0
+                vleak = effective_reasoning_tokens(brep) > 0
                 prefix, _ = split_prefix(src["text"])
                 vscore = round(verbatim_score(src["text"], prefix, brep.get("text", "")), 3)
                 vpass = (vscore >= B_THRESHOLD) and not vleak

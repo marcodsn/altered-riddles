@@ -20,6 +20,11 @@ hash, git commit and start time. summary.json applies the guardrails:
   * thinking off and > 5% of replies show reasoning -> FAIL (leaked)
   * > 5% unrecoverable errors                       -> FAIL (error rate)
 
+Both reasoning guardrails read llm.effective_reasoning_tokens, which falls back
+to the length of the reasoning text on routes that serve a chain of thought but
+never populate the usage counter. Guardrails are recomputed from raw.jsonl on
+every invocation, so rerunning the same command re-judges an existing run.
+
 A failed run is kept on disk but must not be scored onto the board.
 
 Usage:
@@ -41,8 +46,9 @@ import time
 from pathlib import Path
 from typing import Any
 
-from altered_riddles.llm import Client, gather_limited, thinking_extra
+from altered_riddles.llm import Client, effective_reasoning_tokens, gather_limited, thinking_extra
 from altered_riddles.probe import parse_model_spec
+from altered_riddles.review_validity import request_tags
 
 PROMPTS = {
     "original": "Solve this riddle. Reply with only the answer, in a few words, and nothing else.\n\n{text}",
@@ -154,7 +160,7 @@ async def run(args: argparse.Namespace) -> None:
         "familiarity_mode": (None if args.condition != "original" else ("thinking" if thinking_on else "direct")),
         "samples": args.samples, "temperature": args.temperature, "max_tokens": max_tokens,
         "prompt": PROMPTS[args.condition], "items_file": str(items_path), "items_sha256": sha256_file(items_path),
-        "n_units": len(units), "passed_only": args.passed_only, "git_commit": git_commit(),
+        "n_units": len(units), "passed_only": args.passed_only, "user_tag": args.user_tag, "git_commit": git_commit(),
         "started_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
     }
     (out_dir / "config.json").write_text(json.dumps(config, indent=1))
@@ -168,7 +174,8 @@ async def run(args: argparse.Namespace) -> None:
         unit, sample = job
         prompt = PROMPTS[args.condition].format(text=unit["text"])
         reply = await client.chat(model, [{"role": "user", "content": prompt}], max_tokens=max_tokens,
-                                  thinking=thinking_on, temperature=args.temperature)
+                                  thinking=thinking_on, temperature=args.temperature,
+                                  extra_body=request_tags(args.user_tag) or None)
         fh.write(json.dumps({"unit_id": unit["id"], "sample": sample, "text_sha": text_sha[unit["id"]],
                              "reply": reply.as_dict()}, ensure_ascii=False) + "\n")
         fh.flush()
@@ -191,7 +198,8 @@ async def run(args: argparse.Namespace) -> None:
     n = len(replies)
     errors = sum(1 for r in replies if r.get("error"))
     ok = [r for r in replies if not r.get("error")]
-    rts = [r.get("reasoning_tokens") or 0 for r in ok]
+    rts = [effective_reasoning_tokens(r) for r in ok]
+    estimated = sum(1 for r, rt in zip(ok, rts) if rt and not (r.get("reasoning_tokens") or 0))
     cts = [r.get("completion_tokens") or 0 for r in ok]
     median_rt = statistics.median(rts) if rts else 0
     leak_rate = (sum(1 for x in rts if x > 0) / len(rts)) if rts else 0.0
@@ -208,7 +216,8 @@ async def run(args: argparse.Namespace) -> None:
         "error_rate": round(errors / n, 4) if n else None, "median_reasoning_tokens": median_rt,
         "mean_reasoning_tokens": round(statistics.mean(rts), 1) if rts else None,
         "mean_completion_tokens": round(statistics.mean(cts), 1) if cts else None,
-        "reasoning_leak_rate": round(leak_rate, 4), "truncated": truncated,
+        "reasoning_leak_rate": round(leak_rate, 4), "reasoning_tokens_estimated_rows": estimated,
+        "truncated": truncated,
         "total_prompt_tokens": sum(r.get("prompt_tokens") or 0 for r in ok),
         "total_completion_tokens": sum(cts), "elapsed_s_this_invocation": round(elapsed, 1),
         "guardrail": "PASS" if not fails else "FAIL", "guardrail_reasons": fails,
@@ -236,6 +245,8 @@ def main() -> None:
     ap.add_argument("--timeout", type=float, default=600.0, help="seconds per request; slow reasoning models need 1800+")
     ap.add_argument("--retries", type=int, default=8, help="attempts per call before recording an error")
     ap.add_argument("--runs-dir", default="runs")
+    ap.add_argument("--user-tag", default=None,
+                     help="Nous tags entry user=VALUE; required by some Nous routes (e.g. step-3.7-flash, solar-pro4)")
     asyncio.run(run(ap.parse_args()))
 
 

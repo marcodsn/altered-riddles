@@ -33,7 +33,7 @@ from typing import Any
 
 import yaml
 
-from altered_riddles.llm import Client, gather_limited
+from altered_riddles.llm import Client, effective_reasoning_tokens, gather_limited
 from altered_riddles.match import extract_final_answer, label
 from altered_riddles.probe import Cache, load_crawsome, load_sources, parse_model_spec
 
@@ -194,7 +194,7 @@ async def run(args: argparse.Namespace) -> None:
             rep = row["reply"]
             final = extract_final_answer(rep["text"])
             lab = label(final, correct=[it["answer"], *it["aliases"]], original=[it["original_answer"], *it["original_aliases"]])
-            no_thinking = not (rep.get("reasoning_tokens") or 0)
+            no_thinking = not effective_reasoning_tokens(rep)
             answers[mname] = {
                 "final": final, "label": lab, "reasoning_tokens": rep.get("reasoning_tokens"),
                 "completion_tokens": rep.get("completion_tokens"), "no_thinking": no_thinking,
