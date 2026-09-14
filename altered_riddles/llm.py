@@ -114,6 +114,24 @@ class Reply:
         }
 
 
+MIN_REASONING_WORDS = 20  # below this the reasoning field is a stray fragment, not deliberation
+
+
+def effective_reasoning_tokens(reply: dict[str, Any]) -> int:
+    """How much thinking a stored reply is evidence of, whether or not the
+    provider counted it. Some routes (Nous stepfun/step-3.7-flash) stream a full
+    chain of thought but always report usage.reasoning_tokens = 0, which reads as
+    "thinking was not served". Word count is the fallback because it under-counts
+    real tokens by roughly a quarter: the estimate can never clear a guardrail
+    that the true count would fail.
+    """
+    reported = reply.get("reasoning_tokens") or 0
+    if reported:
+        return int(reported)
+    words = len((reply.get("reasoning") or "").split())
+    return words if words >= MIN_REASONING_WORDS else 0
+
+
 def _usage_field(usage: Any, *path: str) -> int | None:
     node = usage
     for key in path:
