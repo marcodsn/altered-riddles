@@ -1,0 +1,23 @@
+{
+ "provider": "nous",
+ "model": "inclusionai/ling-3.0-flash-sante:free",
+ "condition": "warned",
+ "thinking": "on",
+ "thinking_request_params": {
+  "reasoning": {
+   "enabled": true
+  }
+ },
+ "familiarity_mode": null,
+ "samples": 5,
+ "temperature": null,
+ "max_tokens": 16000,
+ "prompt": "This is a modified version of a well-known riddle or puzzle. The usual answer may be wrong here. Read every word and answer the question exactly as written.\n\n{text}\n\nReply with a single line of the form:\nAnswer: <your answer in a few words>",
+ "items_file": "results/audit/adjudication-v2/core.candidate.jsonl",
+ "items_sha256": "1aa1567a06c507ba40a71df54cd7530a249a5106dbb96898a5a5493d085d9a28",
+ "n_units": 264,
+ "passed_only": true,
+ "user_tag": null,
+ "git_commit": "f059d797a32ec96a7ea7d44f93b10dec30374003",
+ "started_at": "2026-09-14T07:51:13Z"
+}

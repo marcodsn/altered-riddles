@@ -41,7 +41,12 @@
     "runs/jalapeno_Qwen3.5-122B-A10B/warned-thinkoff-k5",
     "runs/nous_inclusionai_ling-3.0-flash-sante_free/original-thinkoff-k5",
     "runs/nous_inclusionai_ling-3.0-flash-sante_free/unwarned-thinkoff-k5",
-    "runs/nous_inclusionai_ling-3.0-flash-sante_free/warned-thinkoff-k5"
+    "runs/nous_inclusionai_ling-3.0-flash-sante_free/warned-thinkoff-k5",
+    "runs/jalapeno_Qwen3.5-397B-A17B/original-thinkoff-k5",
+    "runs/jalapeno_Qwen3.5-397B-A17B/unwarned-thinkoff-k5",
+    "runs/jalapeno_Qwen3.5-397B-A17B/warned-thinkoff-k5",
+    "runs/nous_inclusionai_ling-3.0-flash-sante_free/unwarned-thinkon-k5",
+    "runs/nous_inclusionai_ling-3.0-flash-sante_free/warned-thinkon-k5"
   ],
   "items_file": "results/audit/adjudication-v2/core.candidate.jsonl",
   "items_sha256": "1aa1567a06c507ba40a71df54cd7530a249a5106dbb96898a5a5493d085d9a28",
