@@ -1,0 +1,23 @@
+{
+ "provider": "jalapeno",
+ "model": "GLM-5.3",
+ "condition": "original",
+ "thinking": "off",
+ "thinking_request_params": {
+  "thinking": {
+   "type": "disabled"
+  }
+ },
+ "familiarity_mode": "direct",
+ "samples": 5,
+ "temperature": null,
+ "max_tokens": 16,
+ "prompt": "Solve this riddle. Reply with only the answer, in a few words, and nothing else.\n\n{text}",
+ "items_file": "results/audit/adjudication-v2/core.candidate.jsonl",
+ "items_sha256": "1aa1567a06c507ba40a71df54cd7530a249a5106dbb96898a5a5493d085d9a28",
+ "n_units": 199,
+ "passed_only": true,
+ "user_tag": null,
+ "git_commit": "745b0affbebf80e2857f574fe766efaa267ac4b7",
+ "started_at": "2026-09-13T20:26:23Z"
+}
