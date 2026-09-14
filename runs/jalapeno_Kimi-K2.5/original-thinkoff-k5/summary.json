@@ -12,8 +12,8 @@
  "truncated": 5,
  "total_prompt_tokens": 47330,
  "total_completion_tokens": 4144,
- "elapsed_s_this_invocation": 6.8,
+ "elapsed_s_this_invocation": 0.0,
  "guardrail": "PASS",
  "guardrail_reasons": [],
- "finished_at": "2026-09-13T15:53:28Z"
+ "finished_at": "2026-09-13T17:21:52Z"
 }

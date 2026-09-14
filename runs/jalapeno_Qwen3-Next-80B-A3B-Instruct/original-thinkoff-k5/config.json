@@ -1,0 +1,19 @@
+{
+ "provider": "jalapeno",
+ "model": "Qwen3-Next-80B-A3B-Instruct",
+ "condition": "original",
+ "thinking": "off",
+ "thinking_request_params": {},
+ "familiarity_mode": "direct",
+ "samples": 5,
+ "temperature": null,
+ "max_tokens": 16,
+ "prompt": "Solve this riddle. Reply with only the answer, in a few words, and nothing else.\n\n{text}",
+ "items_file": "results/audit/adjudication-v2/core.candidate.jsonl",
+ "items_sha256": "1aa1567a06c507ba40a71df54cd7530a249a5106dbb96898a5a5493d085d9a28",
+ "n_units": 199,
+ "passed_only": true,
+ "user_tag": null,
+ "git_commit": "a35a5d8026923dc769f287f83a90bf6f0be7ba39",
+ "started_at": "2026-09-13T22:27:38Z"
+}
