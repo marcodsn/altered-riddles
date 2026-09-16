@@ -41,3 +41,26 @@ data/probe/
 
 # held-out canary items (never committed)
 data/canary/
+
+# Core v2 — private: item texts/answers, raw model runs and per-item audit records.
+# Only boards (leaderboard.json / LEADERBOARD.md), manifests, logs and code are public.
+data/items/batch*.yaml
+data/gated.jsonl
+data/pilot_items.jsonl
+data/revisions/
+runs/
+results/pilot/*.jsonl
+results/audit/**/*.jsonl
+results/audit/adjudication-v2/scorer_v2_correction.json
+results/audit/adjudication-v2/label_audit.json
+results/audit/adjudication-v2/decisions.json
+results/audit/adjudication-v2/prepare.py
+results/audit/adjudication-v1/human_review.yaml
+results/audit/rescore-v1/label_changes_sheet.yaml
+results/audit/astra-adjudication-v1/review_packet.json
+results/audit/astra-adjudication-v1/approved_dispositions.json
+results/audit/astra-adjudication-v1/decisions.json
+results/audit/validity-free-v*/[01]-[01].json
+results/audit/revision-review-v1/[01]-[01].json
+experimental/jev_choice/options.jsonl
+experimental/jev_choice/runs/

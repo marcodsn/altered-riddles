@@ -107,6 +107,12 @@ deployment has been performed. See [the integration contract](docs/WEBSITE_CONTR
 
 ## Release, contamination and corrections
 
+Core item texts, answers and aliases (`data/items/batch*.yaml`, `data/gated.jsonl`,
+`data/revisions/`), every `runs/` directory (model reasoning quotes the items) and the
+per-item audit sheets under `results/audit/` and `results/pilot/` are held privately
+and are not in this repository. Only boards, manifests, logs, docs and code are
+public. The rebuild commands above assume the private files are present locally.
+
 The dataset is not yet frozen. Public altered items may enter future training
 corpora; record release dates and model versions and do not claim previously
 exposed items are private canaries. Do not infer contamination from individual
