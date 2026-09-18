@@ -140,10 +140,27 @@ async def run(args: argparse.Namespace) -> None:
     if raw_path.exists():
         kept: list[str] = []
         stale = 0
+        unknown: dict[str, int] = {}
+        rows_in: list[tuple[dict[str, Any], str]] = []
         for line in raw_path.read_text().splitlines():
             if not line.strip():
                 continue
             row = json.loads(line)
+            rows_in.append((row, line))
+            if row["unit_id"] not in text_sha:
+                unknown[row["unit_id"]] = unknown.get(row["unit_id"], 0) + 1
+        # A unit the items file does not know at all is usually the WRONG items file
+        # (renamed/repaired ids, a different split), not an intentional item drop, and
+        # its replies would be deleted for good: refuse unless the caller says so.
+        if unknown and not getattr(args, "allow_prune", False):
+            sample_ids = ", ".join(sorted(unknown)[:10])
+            raise SystemExit(
+                f"{sum(unknown.values())} existing rows in {raw_path} belong to {len(unknown)} unit ids that are "
+                f"not in {items_path} ({sample_ids}). Resuming would delete those replies permanently.\n"
+                f"Check that --items is the item file this run was made with "
+                f"(config.json records items_file={json.loads(config_path.read_text()).get('items_file')!r}); "
+                f"pass --allow-prune only if dropping those replies is intended.")
+        for row, line in rows_in:
             if row.get("text_sha") != text_sha.get(row["unit_id"]):
                 stale += 1
                 continue
@@ -240,6 +257,9 @@ def main() -> None:
     ap.add_argument("--items", default="data/gated.jsonl")
     ap.add_argument("--passed-only", action="store_true")
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--allow-prune", action="store_true",
+                    help="permit resuming with an items file that does not contain some already-answered "
+                         "unit ids; their replies are deleted (default: refuse, it is usually the wrong file)")
     ap.add_argument("--concurrency", type=int, default=8)
     ap.add_argument("--rpm", type=int, default=None, help="cap requests per minute per provider")
     ap.add_argument("--timeout", type=float, default=600.0, help="seconds per request; slow reasoning models need 1800+")

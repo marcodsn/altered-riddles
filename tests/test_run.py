@@ -101,6 +101,21 @@ class RunCapTests(unittest.TestCase):
         summary = json.loads((directory / 'scored_summary.json').read_text())
         self.assertEqual(summary['conditioned_on_familiar']['n'], 1)
 
+    def test_unknown_unit_ids_refuse_to_prune_existing_replies(self):
+        self.execute()
+        raw = next((self.root / 'runs').glob('*/*/raw.jsonl'))
+        before = raw.read_bytes()
+        # same riddle, repaired id: the old replies must not be deleted silently
+        self.items.write_text(json.dumps({'id': 'x-r1', 'source': 's', 'text': 'Question, exactly?',
+                                          'original_text': 'Original?'}) + '\n')
+        with self.assertRaisesRegex(SystemExit, 'not in'):
+            self.execute()
+        self.assertEqual(raw.read_bytes(), before)
+        self.args.allow_prune = True
+        self.execute()
+        ids = {json.loads(l)['unit_id'] for l in raw.read_text().splitlines() if l.strip()}
+        self.assertEqual(ids, {'x-r1'})
+
     def test_missing_config_rejected(self):
         self.execute()
         cfg = next((self.root / 'runs').glob('*/*/config.json'))
