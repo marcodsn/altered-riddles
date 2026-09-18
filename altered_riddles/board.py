@@ -238,14 +238,20 @@ def build(items: dict[str, dict[str, Any]], runs_dir: Path, n_boot: int, seed: i
         # rows for items dropped since the run are ignored (their raw rows are pruned on the next resume)
         scored = [s for s in load_jsonl(scored_p) if s["unit_id"] in items]
         unresolved = sum(s["label"] not in {"correct", "original", "other", "abstain"} for s in scored)
+        errored = sum(s["label"] == "error" for s in scored)
+        judge_unresolved = unresolved - errored
         answered = {s["unit_id"] for s in scored}
         keys = {(s["unit_id"], s["sample"]) for s in scored}
         expected_keys = {(u, sample) for u in expected for sample in range(unw["config"]["samples"])}
         if unresolved or answered != expected or keys != expected_keys or len(keys) != len(scored):
-            excluded.append({"model": mkey, "thinking": th,
-                             "reason": f"incomplete/invalid scoring: {unresolved} unresolved, "
-                                       f"{len(expected - answered)} missing items, {len(expected_keys - keys)} missing samples, "
-                                       f"{len(keys - expected_keys)} unexpected samples, {len(scored) - len(keys)} duplicate samples"})
+            parts = []
+            if errored:
+                parts.append(f"{errored} rows failed with API errors (retryable: resume the run)")
+            if judge_unresolved:
+                parts.append(f"{judge_unresolved} rows the judge could not resolve")
+            parts.append(f"{len(expected - answered)} missing items, {len(expected_keys - keys)} missing samples, "
+                         f"{len(keys - expected_keys)} unexpected samples, {len(scored) - len(keys)} duplicate samples")
+            excluded.append({"model": mkey, "thinking": th, "reason": "incomplete/invalid scoring: " + "; ".join(parts)})
             continue
         familiar = json.loads(fam_p.read_text())["familiar"]
         pending = 0
