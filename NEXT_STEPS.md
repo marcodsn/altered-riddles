@@ -1,5 +1,27 @@
 # Altered Riddles — remaining work and execution instructions
 
+## 2026-09-18: item-file incident, Core rebuild, results/v2 frozen as a snapshot
+
+A resume typed with the default `--items data/gated.jsonl` was run against Core run
+directories, whose item set is `results/audit/adjudication-v2/core.candidate.jsonl`.
+The two files differ in exactly the eight adjudicated repairs (`<id>` vs `<id>-r1`;
+the other 256 items and all 199 source riddles are byte-identical), so `run.py`'s
+resume pruned 1,744 replies to the repaired items and re-answered the superseded
+wording. The pruned replies are unrecoverable (`runs/` is private and uncommitted).
+
+- **Repaired.** All 52 affected (model, thinking, condition) directories were re-run
+  and re-scored against `core.candidate.jsonl`: 1,744 repaired-item answers restored,
+  zero stale ids, zero error/pending labels. Cost: 1,024 Jalapeno calls, 720 free Nous
+  calls, ≤329 judge calls. Familiarity (`original`) runs were unaffected — the two item
+  files agree on every source riddle and original answer.
+- **Guard.** `altered_riddles.run` now refuses to resume when raw replies exist for unit
+  ids the item file does not know (renamed or removed items), before touching the file;
+  `--allow-prune` opts in. Regression test in `tests/test_run.py`.
+- **Core rebuilt** from `results/core/manifest.json` with the seven thinking-on models
+  added (22 rows). `results/core/README.md` now states the item-file rule.
+- **`results/v2` is a historical snapshot** and must not be rebuilt; see
+  `results/v2/README.md`.
+
 ## 2026-09-13: Core preview published on the website
 
 Owner decision: move marcodsn.me/altered-riddles to the Core board now as a labelled

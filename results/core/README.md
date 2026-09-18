@@ -26,3 +26,12 @@ Rules for this path:
 - The historical v1 feed `results/leaderboard.json` is never rewritten from Core data.
 - At freeze: rebuild with `--status` naming the frozen release, and update the website
   citation metadata in the same change.
+- **Item file.** Core runs, scores and boards use
+  `results/audit/adjudication-v2/core.candidate.jsonl`, not the historical
+  `data/gated.jsonl` (the CLI default and `full.sh`'s `ITEMS`). The two files differ in
+  exactly eight items: the 2026-09-09 adjudicated repairs replace `<id>` with `<id>-r1`
+  and reword them. Resuming a Core run with `--items data/gated.jsonl` therefore prunes
+  the repaired replies and re-answers superseded wording; `altered_riddles.run` now
+  refuses that (unknown unit ids) unless `--allow-prune` is passed. Pass
+  `--items results/audit/adjudication-v2/core.candidate.jsonl` to every `run` and
+  `score` invocation for a run directory listed in `results/core/manifest.json`.
